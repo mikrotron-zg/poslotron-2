@@ -18,7 +18,7 @@
  */
 
 apply from: 'common.gradle'
-rootProject.name = 'ofbiz'
+rootProject.name = 'poslotron-2'
 
 def fileSep = System.getProperty("file.separator")
 def isWindows = System.getProperty('os.name').toLowerCase().contains("windows")
