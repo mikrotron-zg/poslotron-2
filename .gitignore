@@ -2,7 +2,7 @@ bin/
 build/
 applications/*/build
 framework/*/build
-/plugins/
+/plugins/ecommerce/
 runtime/git-rebase/*
 runtime/SvnInfo.ftl
 runtime/GitInfo.ftl
@@ -39,3 +39,4 @@ desktop.ini
 node_modules/
 /docs/asciidoc/images/
 .asciidoctorconfig.adoc
+themes/common-theme/webapp/images/products
