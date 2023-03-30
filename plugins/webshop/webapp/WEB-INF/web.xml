@@ -27,7 +27,7 @@ under the License.
     <context-param>
         <description>A unique ID used to look up the WebSite entity</description>
         <param-name>webSiteId</param-name>
-        <param-value>WebStore</param-value>
+        <param-value>WebStoreHR</param-value>
     </context-param>
     <context-param>
         <description>A unique name used to identify/recognize the local dispatcher for the Service Engine</description>
