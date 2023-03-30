@@ -17,32 +17,58 @@
  * under the License.
  */
 body {
-    font-size: 0.9rem;
+    font-size:0.9rem;
 }
-a,.btn-link{
-    color: #158ae2;
+a, .btn-link {
+    color:#158ae2;
 }
+
+a:hover, .btn-link:hover  {
+    color:#f07c00;
+    text-decoration:none;
+}
+
 a.btn-primary {
-    color: white!important;
+    color:white!important;
 }
+
+a.btn-outline-secondary {
+    color:#f07c00;
+    border-color:#f07c00;
+}
+
+a.btn-outline-secondary:hover {
+    color:white;
+    background-color:#f07c00;
+    border-color:#f07c00;
+}
+
 #ecom-mainarea{
     padding:10px;
-    margin-top: 20px;
-    position: relative;
-    text-align: left;
-    flex: 1;
+    margin-top:20px;
+    position:relative;
+    text-align:left;
+    flex:1;
 }
+
 .card {
     margin-bottom:20px!important;
 }
+
+.card-header {
+    background:#f0f0f0;
+}
+
 .d-flex.justify-content-center a {
     margin-bottom: 10px;
 }
 
 .card .card-img-top {
-    height: 140px;
-    width: auto;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
 }
+
 .card-body ul {
     padding : 0px;
 }
@@ -56,11 +82,12 @@ a.btn-primary {
     margin-top: 10px;
     overflow-x: auto;
 }
+
 .detail-image {
     height: 300px!important;
     width: auto!important;
     max-width: 300px!important;
- }
+}
 
 .quick-links a, #paginationBox a {
     color: #000000;
@@ -86,11 +113,17 @@ label.required:after {
     text-align:right;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color:#ffffff!important;
+.navbar-dark {
+    background:#6f6f6f!important;
 }
+
+.navbar-dark .navbar-nav .nav-link {
+    color:#ffffff;
+}
+
 .navbar-dark .nav-item:hover, .navbar-dark .nav-item .nav-link:hover{
-    background: #555555!important;
+    /*background: #a0a0a0!important;*/
+    color:#f07c00;
 }
 
 #parentContainer {
@@ -106,11 +139,13 @@ label.required:after {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: fixed;
 }
+
 .jGrowl.center {
   top: 10px;
   width: 50%;
   left: 25%;
 }
+
 button.jGrowl-close {
     float: right;
 }
@@ -119,6 +154,7 @@ button.jGrowl-close {
     height: 0;
     visibility: hidden;
 }
+
 .promotion-products .products-card {
     width: 100%;
     max-width: 100%;

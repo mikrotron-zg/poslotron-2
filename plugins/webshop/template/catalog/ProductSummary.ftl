@@ -62,7 +62,7 @@ ${variantInfoJavaScript!}
       <#if requestAttributes.productCategoryMember??>
         <#assign prodCatMem = requestAttributes.productCategoryMember>
       </#if>
-      <#assign smallImageUrl = productContentWrapper.get("SMALL_IMAGE_URL", "url")!>
+      <#assign smallImageUrl = productContentWrapper.get("MEDIUM_IMAGE_URL", "url")!>
         <#assign largeImageUrl = productContentWrapper.get("LARGE_IMAGE_URL", "url")!>
           <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.jpg"></#if>
           <#if !largeImageUrl?string?has_content><#assign largeImageUrl = "/images/defaultImage.jpg"></#if>
