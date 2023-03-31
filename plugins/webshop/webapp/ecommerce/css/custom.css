@@ -73,8 +73,22 @@ a.btn-outline-secondary:hover {
     padding : 0px;
 }
 
+.card-text-fixed-height {
+    min-height:13rem;
+    overflow:hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10; /* number of lines to show */
+    line-clamp: 10; 
+    -webkit-box-orient: vertical;
+}
+
 .products-card .card-title a {
+    min-height:5.5rem;
     white-space: normal;
+}
+
+.product-id-price {
+    min-height:7rem;
 }
 
 .gallery {
