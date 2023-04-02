@@ -22,6 +22,7 @@
     <property key="foundgenericWebEvent.conversion_failed">
         <value xml:lang="en">conversion failed</value>
         <value xml:lang="fr">La conversion a échoué. "${fval}" est erroné</value>
+        <value xml:lang="hr">konverzija nije uspjela</value>
         <value xml:lang="it">conversione fallita</value>
         <value xml:lang="ja">変換が失敗しました</value>
         <value xml:lang="pt">Falha na conversÃ£o</value>
@@ -33,6 +34,7 @@
         <value xml:lang="en">already exists with primary key: "${primaryKey}; please change</value>
         <value xml:lang="es">Ya existe esta llave primaria: "${primaryKey}; cambiarla.</value>
         <value xml:lang="fr">Existe déjà avec la clé primaire "${primaryKey}"</value>
+        <value xml:lang="hr">već postoji s primarnim ključem: "${primaryKey}; promijenite</value>
         <value xml:lang="it">già esistente con chiave primaria: "${primaryKey}; per favore cambiarla</value>
         <value xml:lang="ja">プライマリキーがすでに存在します: "${primaryKey}、変更してください</value>
         <value xml:lang="pt">jÃ¡ existe com a chave primÃ¡ria: "${primaryKey}, por favor mude</value>
@@ -44,6 +46,7 @@
     <property key="genericWebEvent.conversion_failed">
         <value xml:lang="en">conversion failed</value>
         <value xml:lang="fr">La conversion a échoué</value>
+        <value xml:lang="hr">konverzija nije uspjela</value>
         <value xml:lang="it">conversione fallita</value>
         <value xml:lang="ja">変換が失敗しました</value>
         <value xml:lang="pt">Falha na conversÃ£o</value>
@@ -56,6 +59,7 @@
         <value xml:lang="en">Create failed while checking if exists (read error)</value>
         <value xml:lang="es">Registro fallido durante revisión (error de lectura)</value>
         <value xml:lang="fr">La création a échoué durant la vérification d'existence (erreur de lecture)</value>
+        <value xml:lang="hr">Izrada nije uspjela kod provjere postoji li otprije (pogreška čitanja)</value>
         <value xml:lang="it">Creazione fallita durante il controllo di esistenza (errore di lettura)</value>
         <value xml:lang="ja">作成が失敗しました、存在チェック中読み込みエラーが発生しました</value>
         <value xml:lang="pt">Falaha na criaÃ§Ã£o ao verificar se existe (erro de leitura)</value>
@@ -68,6 +72,7 @@
         <value xml:lang="en">Creation of ${entityName} failed for entity</value>
         <value xml:lang="es">Registro de ${entityName} fallido por la entidad</value>
         <value xml:lang="fr">La création de ${entityName} a échoué pour l'entité </value>
+        <value xml:lang="hr">Izrada ${entityName} nije uspjela za entitet</value>
         <value xml:lang="it">Creazione dell'${entityName} fallita per entità</value>
         <value xml:lang="ja">エンティティ ${entityName} の作成に失敗しました</value>
         <value xml:lang="pt">CriaÃ§Ã£o de ${entityName} falhou para entidade</value>
@@ -80,6 +85,7 @@
         <value xml:lang="en">The delegator object was not found in the request, please check the control servlet init</value>
         <value xml:lang="es">Objeto deletar no fue encontrado en el request, favor revisar el init del servlet</value>
         <value xml:lang="fr">Impossible de trouver l'objet delegator dans la requête, SVP vérifiez l'initialisation du control servlet</value>
+        <value xml:lang="hr">Objekt delegator nije pronađen u zahtjevu, molimo provjerite control servlet init</value>
         <value xml:lang="it">L'oggetto delegator non è stato trovato nella request, per favore controlla la control servlet init</value>
         <value xml:lang="ja">リクエスト中にデリゲーターオブジェクトが見つかりません、コントロールサーブレットを確認してください</value>
         <value xml:lang="pt">O objeto delegator nÃ£o foi encontrado no pedido, verifique o init do control servlet</value>
@@ -92,6 +98,7 @@
         <value xml:lang="en">Delete failed (write error)</value>
         <value xml:lang="es">Eliminación fallida(error de escritura)</value>
         <value xml:lang="fr">L'annulation a échouée: (erreur d'écriture)</value>
+        <value xml:lang="hr">Brisanje nije uspjelo (pogreška u pisanju)</value>
         <value xml:lang="it">Cancellazione fallita (errore di scrittura)</value>
         <value xml:lang="ja">削除が失敗しました（書き込みエラー）</value>
         <value xml:lang="pt">Falha na exclusÃ£o (erro de escrita)</value>
@@ -103,11 +110,13 @@
     <property key="genericWebEvent.delete_succeeded">
         <value xml:lang="en">Delete succeeded</value>
         <value xml:lang="fr">La suppression a été effectuée: </value>
+    <value xml:lang="hr">Brisanje je uspjelo</value>
     </property>
     <property key="genericWebEvent.entity_name_not_specified">
         <value xml:lang="en">The entityName was not specified, but is required</value>
         <value xml:lang="es">El nombre de la entidad no fue especificado, pero es requerido</value>
         <value xml:lang="fr">Le nom de l'entité (entityName) n'a pas ete spécifié, mais il est nécessaire</value>
+        <value xml:lang="hr">Naziv entiteta nije naveden, ali je obavezan</value>
         <value xml:lang="it">Nome entità non è stato specificato, ma è richiesto</value>
         <value xml:lang="ja">必要なエンティティ名が指定されませんでした</value>
         <value xml:lang="pt">O entityName nÃ£o foi especificado, mas Ã© necessÃ¡rio</value>
@@ -120,6 +129,7 @@
         <value xml:lang="en">failed</value>
         <value xml:lang="es">Falló</value>
         <value xml:lang="fr">échoué</value>
+        <value xml:lang="hr">neuspjeh</value>
         <value xml:lang="it">fallita</value>
         <value xml:lang="ja">失敗しました</value>
         <value xml:lang="pt">Falha</value>
@@ -132,6 +142,7 @@
         <value xml:lang="en">Fatal error: field type "${fieldType}" not found genericWebEvent.conversion_failed=conversion failed: "${fval}" is not a valid</value>
         <value xml:lang="es">Error fatal: Tipo de campo "${fieldType}" no encontrado genericWebEvent.conversion_failed=conversion failed: "${fval}" invalido</value>
         <value xml:lang="fr">Erreur fatale: le type de champ ${fieldType} introuvable, genericWebEvent.conversion_failed=conversion échouée : "${fval}" est erroné</value>
+        <value xml:lang="hr">Fatalna pogreška: vrsta polja "${fieldType}" nije pronađena genericWebEvent.conversion_failed=conversion failed: "${fval}" nije valjana</value>
         <value xml:lang="it">Errore Fatale: tipo campo "${fieldType}" non trovato genericWebEvent.conversion_failed=conversione fallita: "${fval}" non è valido</value>
         <value xml:lang="ja">致命的エラー: 項目種類 "${fieldType}" が見つかりません genericWebEvent.conversion_failed=conversion が失敗しました: "${fval}" が有効ではありません</value>
         <value xml:lang="pt">Erro fatal: tipo de campo "${fieldType}" nÃ£o encontrado genericWebEvent.conversion_failed=conversion falha: "${FVal}" nÃ£o Ã© vÃ¡lido</value>
@@ -144,6 +155,7 @@
         <value xml:lang="en">The following error(s) occurred</value>
         <value xml:lang="es">El siguiente error ha ocurrido</value>
         <value xml:lang="fr">L'erreur suivante est apparue</value>
+        <value xml:lang="hr">Dogodila se sljedeća(e) pogreška(e)</value>
         <value xml:lang="it">Il seguente(i) errore(i) sono successi</value>
         <value xml:lang="ja">次のエラーが発生しました</value>
         <value xml:lang="pt">O seguinte erro (s) ocorreu(eram)</value>
@@ -156,6 +168,7 @@
         <value xml:lang="en">You do not have sufficient permissions to</value>
         <value xml:lang="es">No cuenta con suficientes permisos</value>
         <value xml:lang="fr">Vous n'avez pas d'autorisations suffisantes pour </value>
+        <value xml:lang="hr">Nemate dovoljna dopuštenja za</value>
         <value xml:lang="it">Tu non hai sufficienti permessi per</value>
         <value xml:lang="ja">必要な権限がありません</value>
         <value xml:lang="pt">VocÃª nÃ£o tem permissÃµes suficientes para</value>
@@ -167,6 +180,7 @@
     <property key="genericWebEvent.not_sufficient_permissions_01Tu">
         <value xml:lang="en">genericWebEvent.not_sufficient_permissions_01Tu</value>
         <value xml:lang="fr">Vous n'avez pas les autorisations nécessaires</value>
+        <value xml:lang="hr">genericWebEvent.not_sufficient_permissions_01Tu</value>
         <value xml:lang="it">non hai sufficienti permessi per</value>
         <value xml:lang="ja">genericWebEvent.not_sufficient_permissions_01Tu</value>
         <value xml:lang="zh">没有足够的权限</value>
@@ -176,6 +190,7 @@
         <value xml:lang="en">${updateMode}   ${entityName} (${entityPlainTableName}_${updateMode} or ${entityPlainTableName}_ADMIN needed)</value>
         <value xml:lang="es">${updateMode}   ${entityName} (${entityPlainTableName}_${updateMode} o ${entityPlainTableName}_ADMIN necesarios)</value>
         <value xml:lang="fr">${updateMode}   ${entityName} (${entityPlainTableName}_${updateMode} ou ${entityPlainTableName}_ADMIN demandée)</value>
+        <value xml:lang="hr">${updateMode} ${entityName} (${entityPlainTableName}_${updateMode} ili ${entityPlainTableName}_ADMIN potreban)</value>
         <value xml:lang="it">${updateMode}   ${entityName} (${entityPlainTableName}_${updateMode} o ${entityPlainTableName}_ADMIN necessitano)</value>
         <value xml:lang="ja">${updateMode}   ${entityName} (${entityPlainTableName}_${updateMode} または ${entityPlainTableName}_ADMIN が必要です)</value>
         <value xml:lang="pt">${updateMode}   ${entityName} (${entityPlainTableName}_${updateMode} ou ${entityPlainTableName}_ADMIN necessÃ¡rio)</value>
@@ -188,6 +203,7 @@
         <value xml:lang="en">The security object was not found in the request, please check the control servlet init</value>
         <value xml:lang="es">El token de seguridad no fue encontrado, revisar el inicio del servlet</value>
         <value xml:lang="fr">Impossible de trouver l'objet security dans la requête, SVP vérifiez l'initialisation du control servlet</value>
+        <value xml:lang="hr">Sigurnosni objekt nije pronađen u zahtjevu, molimo provjerite control servlet init</value>
         <value xml:lang="it">L'oggetto sicurezza non è stato trovato nella request, per favore controlla la control servlet init</value>
         <value xml:lang="ja">リクエスト中にセキュリティオブジェクトが見つかりません、コントロールサーブレットを確認してください</value>
         <value xml:lang="pt">O objeto de seguranÃ§a nÃ£o foi encontrado no pedido, verifique o init do control servlet</value>
@@ -200,6 +216,7 @@
         <value xml:lang="en">Update Mode specified (${updateMode}) was not valid</value>
         <value xml:lang="es">Modo de actualización (${updateMode}) invalido</value>
         <value xml:lang="fr">Le mode de mise à jour (${updateMode}) spécifié est erroné</value>
+        <value xml:lang="hr">Naveden način ažuriranja (${updateMode}) nije valjan</value>
         <value xml:lang="it">Modo aggiornamento specificato (${updateMode}) non è valido</value>
         <value xml:lang="ja">指定された更新モード (${updateMode}) は有効ではありません</value>
         <value xml:lang="pt">Modo de atualizaÃ§Ã£o especificado (${UpdateMode}) nÃ£o Ã© vÃ¡lido</value>
@@ -212,6 +229,7 @@
         <value xml:lang="en">Update Mode was not specified, but is required</value>
         <value xml:lang="es">Modo de actualización no especificado, pero requerido</value>
         <value xml:lang="fr">Le mode de mise à jour n'a pas ete spécifié, mais il est nécessaire</value>
+        <value xml:lang="hr">Način ažuriranja nije naveden, ali je obavezan</value>
         <value xml:lang="it">Modo aggiornamento non è stato specificato, ma è richiesto</value>
         <value xml:lang="ja">必要な更新モードが指定されていません</value>
         <value xml:lang="pt">Modo de atualizaÃ§Ã£o nÃ£o foi especificado mas Ã© necessÃ¡rio</value>
@@ -224,6 +242,7 @@
         <value xml:lang="en">Update of ${entityName} failed for value</value>
         <value xml:lang="es">Actualización de ${entityName} fallo</value>
         <value xml:lang="fr">La mise à jour de ${entityName} a échoué pour la valeur </value>
+        <value xml:lang="hr">Ažuriranje vrijednosti ${entityName} nije uspjelo</value>
         <value xml:lang="it">Aggiornamento dell'${entityName} fallita per il valore</value>
         <value xml:lang="ja">${entityName} の値の更新が失敗しました</value>
         <value xml:lang="pt">AtualizaÃ§Ã£o de ${entityName} falhou para o valor</value>
@@ -236,6 +255,7 @@
         <value xml:lang="en">validation failed</value>
         <value xml:lang="es">validación fallida</value>
         <value xml:lang="fr">la validation a échoué</value>
+        <value xml:lang="hr">provjera valjanosti nije uspjela</value>
         <value xml:lang="it">validazione fallita</value>
         <value xml:lang="ja">バリデーションが失敗しました</value>
         <value xml:lang="pt">Falha de validaÃ§Ã£o</value>
@@ -246,19 +266,24 @@
     </property>
     <property key="WebtoolsRequiredFieldMissingEoModeldFullPath">
         <value xml:lang="en">Required Field Missing : Eo Modeld Full Path</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Eo modelirana puna putanja</value>
     </property>
     <property key="WebtoolsRequiredFieldMissingServiceName">
         <value xml:lang="en">Required Field Missing : Service Name</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Naziv servisa</value>
     </property>
     <property key="WebtoolsRequiredFieldMissingUpdateLabel">
         <value xml:lang="en">Required Field Missing : Update Label</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Ažuriraj natpis</value>
     </property>
     <property key="WebtoolsRequiredFieldMissingFileName">
         <value xml:lang="en">Required Field Missing : File Name</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Naziv datoteke</value>
     </property>
     <property key="saveLabelsToXmlFile.exceptionDuringSaveLabelsToXmlFile">
         <value xml:lang="en">Exception during saving labels to xml file</value>
         <value xml:lang="fr">Erreur durant la sauvegarde des traductions dans le fichier XML</value>
+        <value xml:lang="hr">Iznimka tijekom spremanja natpisa u xml datoteku</value>
         <value xml:lang="it">Eccezione durante il salvataggio delle labels su file xml</value>
         <value xml:lang="ja">ラベルをxmlファイルに保存中、例外が発生しました</value>
         <value xml:lang="pt">ExceÃ§Ã£o durante a gravaÃ§Ã£o das labels para o arquivo xml</value>
@@ -268,6 +293,7 @@
     <property key="utilCache.clearAllCaches">
         <value xml:lang="en">Cleared all caches</value>
         <value xml:lang="fr">Tous les caches ont été purgés</value>
+        <value xml:lang="hr">Očišćene sve predmemorije</value>
         <value xml:lang="it">Tutte le cache sono state pulite</value>
         <value xml:lang="ja">すべてのキャッシュがクリアされました</value>
         <value xml:lang="pt">Todos os caches foram limpos</value>
@@ -279,6 +305,7 @@
     <property key="utilCache.clearAllExpiredElements">
         <value xml:lang="en">Cleared all expired elements from all caches</value>
         <value xml:lang="fr">Tous les éléments périmés ont été purgés des caches</value>
+        <value xml:lang="hr">Izbrisani su svi elementi kojima je istekao rok trajanja iz svih predmemorija</value>
         <value xml:lang="it">Pulite tutti gli elementi scaduti da tutte le caches</value>
         <value xml:lang="ja">失効したすべての要素がキャッシュからクリアされました</value>
         <value xml:lang="pt">Todos elementos expirados foram limpos de todas as caches</value>
@@ -290,6 +317,7 @@
     <property key="utilCache.clearCache">
         <value xml:lang="en">Cleared cache with name: ${name}</value>
         <value xml:lang="fr">Tous les caches de nom ${name} ont été purgés</value>
+        <value xml:lang="hr">Očišćena predmemorija s imenom: ${name}</value>
         <value xml:lang="it">Pulita cache con nome: ${name}</value>
         <value xml:lang="ja">キャッシュがクリアされました: ${name}</value>
         <value xml:lang="pt">Os seguinte cache foi limpo: $ {nome}</value>
@@ -301,6 +329,7 @@
     <property key="utilCache.couldNotClearCache">
         <value xml:lang="en">Could not clear cache, no name specified</value>
         <value xml:lang="fr">Impossible de vider le cache, aucun nom fourni</value>
+        <value xml:lang="hr">Nije moguće izbrisati predmemoriju, nije navedeno ime</value>
         <value xml:lang="it">Non è possibile pulire la cache, nessun nome specificato</value>
         <value xml:lang="ja">名前が指定されていないため、キャッシュがクリアできませんでした</value>
         <value xml:lang="pt">NÃ£o foi possÃ­vel limpar o cache, nenhum nome especificado</value>
@@ -312,6 +341,7 @@
     <property key="utilCache.couldNotClearCacheNotFoundName">
         <value xml:lang="en">Could not clear cache, cache not found with name: ${name}</value>
         <value xml:lang="fr">Impossible de vider le cache, aucun cache trouvé ayant comme nom ${name}</value>
+        <value xml:lang="hr">Nije moguće očistiti predmemoriju, predmemorija nije pronađena s imenom: ${name}</value>
         <value xml:lang="it">Non è possibile pulire la cache, cache non trovata con nome: ${name}</value>
         <value xml:lang="ja">キャッシュが見つからないため、クリアできませんでした: ${name}</value>
         <value xml:lang="pt">NÃ£o foi possÃ­vel limpar o cache, nenhum cache foi encontrado com o nome: ${nome}</value>
@@ -323,6 +353,7 @@
     <property key="utilCache.couldNotRemoveElement">
         <value xml:lang="en">Could not remove cache element, cache not found with name: ${name}</value>
         <value xml:lang="fr">Impossible de supprimer l'élément du cache, aucun cache trouvé ayant comme nom ${name}</value>
+        <value xml:lang="hr">Nije moguće ukloniti element predmemorije, predmemorija nije pronađena s nazivom: ${name}</value>
         <value xml:lang="it">Non è possibile rimuovere l'elemento della cache, cache non trovata con nome: ${name}</value>
         <value xml:lang="ja">キャッシュが見つからないため、キャッシュの要素を削除できませんでした: ${name}</value>
         <value xml:lang="pt">NÃ£o foi possÃ­vel remover o elemento de cache, nenhum cache foi encontrado com o nome: ${nome}</value>
@@ -334,6 +365,7 @@
     <property key="utilCache.couldNotRemoveElementNumber">
         <value xml:lang="en">Could not remove cache element, element not found with cache name: ${name} , element number: ${numString}</value>
         <value xml:lang="fr">Impossible de supprimer l'élément du cache, aucun élément trouvé ayant comme nom de cache ${name} et n° d'élément:  ${numString}</value>
+        <value xml:lang="hr">Nije moguće ukloniti element predmemorije, element nije pronađen s nazivom predmemorije: ${name}, brojem elementa: ${numString}</value>
         <value xml:lang="it">Non è possibile rimuovere l'elemento della cache, elemento non trovato con nome cache: ${name} , elemento numero: ${numString}</value>
         <value xml:lang="ja">キャッシュが見つからないため、キャッシュの要素を削除できませんでした。名前: ${name} , 要素番号: ${numString}</value>
         <value xml:lang="pt">NÃ£o foi possÃ­vel remover o elemento de cache, nenhum elemento foi encontrado com o nome de cache: ${name}, nÂº do elemento: ${numString}</value>
@@ -345,6 +377,7 @@
     <property key="utilCache.couldNotUpdateCacheSetting">
         <value xml:lang="en">Could not update cache settings, no name specified</value>
         <value xml:lang="fr">Impossible de mettre à jour la configuration du cache, aucun nom fourni</value>
+        <value xml:lang="hr">Nije moguće ažurirati postavke predmemorije, naziv nije naveden</value>
         <value xml:lang="it">Non è possibile aggiornare le impostazioni della cache, nessun nome specificato</value>
         <value xml:lang="ja">名前が指定されていないため、キャッシュの設定を更新できませんでした</value>
         <value xml:lang="pt">NÃ£o foi possÃ­vel atualizar as configuraÃ§Ãµes de cache, nenhum nome especificado</value>
@@ -356,6 +389,7 @@
     <property key="utilCache.removeElementWithKey">
         <value xml:lang="en">Removed element from cache with key: ${key}</value>
         <value xml:lang="fr">Tous les éléments du cache ayant comme clef ${key} ont été supprimés</value>
+        <value xml:lang="hr">Uklonjen element iz predmemorije s ključem: ${key}</value>
         <value xml:lang="it">Rimosso elemento dalla cache con chiave: ${key}</value>
         <value xml:lang="ja">キャッシュから要素を削除しました: ${key}</value>
         <value xml:lang="pt">elemento removido do cache com a chave: ${chave}</value>
@@ -367,6 +401,7 @@
     <property key="utilCacheEvents.noCacheNameSpecified">
         <value xml:lang="en">Could not remove cache line/element, no cache name specified</value>
         <value xml:lang="fr">Impossible de supprimer la ligne/élément du cache, aucun nom fourni</value>
+        <value xml:lang="hr">Nije moguće ukloniti redak/element predmemorije, naziv predmemorije nije naveden</value>
         <value xml:lang="it">Non è possibile rimuovere la riga/elemento, nessun nome di cache specificato</value>
         <value xml:lang="ja">キャッシュ名が指定されていないため、キャッシュから要素/行が削除できませんでした</value>
         <value xml:lang="pt">NÃ£o foi possÃ­vel remover linha de cache/elemento, nenhum nome de cache especificado</value>
@@ -378,6 +413,7 @@
     <property key="utilCacheEvents.noElementNumberSpecified">
         <value xml:lang="en">Could not remove cache line/element, no element number specified</value>
         <value xml:lang="fr">Impossible de supprimer la ligne/élément du cache, aucun n° d'élément fourni</value>
+        <value xml:lang="hr">Nije moguće ukloniti redak/element predmemorije, nije naveden broj elementa</value>
         <value xml:lang="it">Non è possibile rimuovere la riga/elemento, nessun numero elemento specificato</value>
         <value xml:lang="ja">要素番号が指定されていないため、キャッシュから要素/行が削除できませんでした</value>
         <value xml:lang="pt">NÃ£o foi possÃ­vel remover linha de cache/elemento, nenhum nÃºmero de elemento especificado</value>
@@ -389,6 +425,7 @@
     <property key="utilCacheEvents.permissionEdit">
         <value xml:lang="en">You do not have permission to perform this operation, UTIL_CACHE_EDIT required</value>
         <value xml:lang="fr">Vous n'avez pas l'autorisation pour exécuter cette opération, UTIL_CACHE_EDIT nécessaire</value>
+        <value xml:lang="hr">Nemate dopuštenje za izvođenje ove operacije, potrebno je UTIL_CACHE_EDIT</value>
         <value xml:lang="it">Tu non hai il permesso di eseguire questa operazione, permesso UTIL_CACHE_EDIT richiesto</value>
         <value xml:lang="ja">この操作を行う権限がありません、UTIL_CACHE_EDIT が必要です</value>
         <value xml:lang="pt">VocÃª nÃ£o tem permissÃ£o para executar esta operaÃ§Ã£o, UTIL_CACHE_EDIT necessÃ¡ria</value>

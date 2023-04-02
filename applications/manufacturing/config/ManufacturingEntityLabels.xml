@@ -23,6 +23,7 @@
         <value xml:lang="en">Manufacturing Order receipt</value>
         <value xml:lang="es">Recibo de Orden de Producción</value>
         <value xml:lang="fr">Reçu d'ordre de fabrication</value>
+        <value xml:lang="hr">Potvrda narudžbe za proizvodnju</value>
         <value xml:lang="it">Ricevuto Ordine Produzione</value>
         <value xml:lang="ja">生産注文受付</value>
         <value xml:lang="pt-BR">Recibo de pedido de produção</value>
@@ -36,6 +37,7 @@
         <value xml:lang="en">Manufacturing Order requirement</value>
         <value xml:lang="es">Requisito de Orden de Producción</value>
         <value xml:lang="fr">Besoin d'ordre de fabrication</value>
+        <value xml:lang="hr">Zahtjev za narudžbu proizvodnje</value>
         <value xml:lang="it">Fabbisogno Ordine Produzione</value>
         <value xml:lang="ja">生産注文要求</value>
         <value xml:lang="pt-BR">Requisito do pedido de produção</value>
@@ -49,6 +51,7 @@
         <value xml:lang="en">Mrp requirement</value>
         <value xml:lang="es">Requisito de Mrp</value>
         <value xml:lang="fr">Besoin Mrp</value>
+        <value xml:lang="hr">MRP zahtjev</value>
         <value xml:lang="it">Fabbisogno Mrp</value>
         <value xml:lang="ja">MRP要求</value>
         <value xml:lang="nl">MRP - requirement</value>
@@ -63,6 +66,7 @@
         <value xml:lang="en">Proposed Manufacturing Order receipt</value>
         <value xml:lang="es">Orden de Producción Propuesta</value>
         <value xml:lang="fr">Reçu d'ordre de fabrication proposé</value>
+        <value xml:lang="hr">Potvrda predloženog proizvodnog naloga</value>
         <value xml:lang="it">Ricevuta Proposta Ordine Produzione</value>
         <value xml:lang="ja">生産注文提案受付</value>
         <value xml:lang="pt-BR">Recibo de pedido de produção proposto</value>
@@ -76,6 +80,7 @@
         <value xml:lang="en">Proposed Purchase Order receipt</value>
         <value xml:lang="es">Recibo de Pedido de Compra propuesto</value>
         <value xml:lang="fr">Reçu d'ordre d'achat proposé</value>
+        <value xml:lang="hr">Potvrda predložene narudžbenice</value>
         <value xml:lang="it">Ricevuta Proposta Ordine Acquisto</value>
         <value xml:lang="ja">購買注文提案受付</value>
         <value xml:lang="pt-BR">Recibo de pedido de compra proposto</value>
@@ -89,6 +94,7 @@
         <value xml:lang="en">Purchase Order receipt</value>
         <value xml:lang="es">Recibo de Pedido de Compra</value>
         <value xml:lang="fr">Reçu d'ordre d'achat</value>
+        <value xml:lang="hr">Potvrda narudžbenice</value>
         <value xml:lang="it">Ricevuto Ordine Acquisto</value>
         <value xml:lang="ja">購買注文受付</value>
         <value xml:lang="pt-BR">Recibo de pedido de compra</value>
@@ -102,6 +108,7 @@
         <value xml:lang="en">Sales order shipment</value>
         <value xml:lang="es">Envío de Pedido de Venta</value>
         <value xml:lang="fr">Expédition de commande de vente</value>
+        <value xml:lang="hr">Isporuka prodajnog naloga</value>
         <value xml:lang="it">Spedizioni Ordini Vendita</value>
         <value xml:lang="ja">販売注文発送</value>
         <value xml:lang="nl">Verkooporder - zending</value>
@@ -116,6 +123,7 @@
         <value xml:lang="en">Default calendar used when no specific calendar is defined</value>
         <value xml:lang="es">El calendario por defecto se usará cuando no se especifique otro</value>
         <value xml:lang="fr">Calendrier utilisé par défaut quand aucun calendrier spécifique n'est défini</value>
+        <value xml:lang="hr">Zadani kalendar koji se koristi kada nije definiran određeni kalendar</value>
         <value xml:lang="it">Calendario di Default usato quando nessun calendario specifico è definito</value>
         <value xml:lang="ja">カレンダが指定されない時に使用するデフォルトカレンダ</value>
         <value xml:lang="nl">Standaard kalender</value>
@@ -128,6 +136,7 @@
     </property>
     <property key="TechDataCalendar.description.DEMO_CALENDAR">
         <value xml:lang="en">Demo Workcenter Calendar</value>
+        <value xml:lang="hr">Demo kalendar radnog centra</value>
         <value xml:lang="it">Calendario demo</value>
         <value xml:lang="ja">デモワークセンターカレンダ</value>
         <value xml:lang="pt-BR">Calendário de demonstração</value>
@@ -139,6 +148,7 @@
         <value xml:lang="en">DRYING</value>
         <value xml:lang="es">Calendario del taller de secado</value>
         <value xml:lang="fr">Calendrier d'atelier de séchage</value>
+        <value xml:lang="hr">SUŠENJE</value>
         <value xml:lang="it">Calendario Officina Asciugatura</value>
         <value xml:lang="ja">空のカレンダ</value>
         <value xml:lang="nl">Kalender - drogen</value>
@@ -153,6 +163,7 @@
         <value xml:lang="en">MACHINING</value>
         <value xml:lang="es">Calendario del Taller de Maquinaria</value>
         <value xml:lang="fr">Calendrier d'atelier d'usinage</value>
+        <value xml:lang="hr">OBRADA</value>
         <value xml:lang="it">Calendario Officina Macchine</value>
         <value xml:lang="ja">一致するカレンダ</value>
         <value xml:lang="nl">Kalender - manchines</value>
@@ -167,6 +178,7 @@
         <value xml:lang="en">Calendar used for Re-Order date calculation for bought product</value>
         <value xml:lang="es">Calendario usado para el cálculo de la fecha de repetición de pedido para productos comprados</value>
         <value xml:lang="fr">Calendrier utilisé pour le calcul de la date de commande répétitive de l'article acheté</value>
+        <value xml:lang="hr">Kalendar koji se koristi za izračun datuma ponovne narudžbe za kupljeni proizvod</value>
         <value xml:lang="it">Calendario usato per Ri-Ordini data calcolo per prodotti acquistati</value>
         <value xml:lang="ja">購入製品の注文日再計算に使用するカレンダ</value>
         <value xml:lang="nl">Kalender - leverancier</value>
@@ -181,6 +193,7 @@
         <value xml:lang="en">8hours/days</value>
         <value xml:lang="es">8 horas/día</value>
         <value xml:lang="fr">8heures/jour</value>
+        <value xml:lang="hr">8 sati/dan</value>
         <value xml:lang="it">8 ore/giorno</value>
         <value xml:lang="ja">8時間/日</value>
         <value xml:lang="nl">8 uur/dag</value>
@@ -193,6 +206,7 @@
     </property>
     <property key="TechDataCalendarWeek.description.DEMO_WEEK">
         <value xml:lang="en">Demo calendar week of 8hours/days 5days/week starting at 8h30 from monday to friday</value>
+        <value xml:lang="hr">Demo kalendarski tjedan od 8 sati/dana 5 dana/tjedno s početkom u 8:30 od ponedjeljka do petka</value>
         <value xml:lang="it">Calendario settimanale demo di 8 ore/giorno 5 giorni/settimana iniziando alle 8:30 dal lunedì al venerdì</value>
         <value xml:lang="ja">デモカレンダ週、8時間/日、5日/週、月曜日～金曜日、8:30開始</value>
         <value xml:lang="pt-BR">Calendário semanal de demonstração de 8 horas/dia 5 dias/semana começando às 8:30h de segunda à sexta-feira</value>
@@ -204,6 +218,7 @@
         <value xml:lang="en">HOLIDAY</value>
         <value xml:lang="es">Calendario de vacaciones, 0 horas/día, 0 días/semana</value>
         <value xml:lang="fr">Caldendrier des vacances (0 heure/jour, 0 jour/semaine)</value>
+        <value xml:lang="hr">DOPUST</value>
         <value xml:lang="it">Calendario per il periodo di vacanze, 0 ore/giorno 0 giorni/settimana</value>
         <value xml:lang="ja">休日</value>
         <value xml:lang="nl">Feestdag / vakantie</value>
@@ -218,6 +233,7 @@
         <value xml:lang="en">STD24H-7D</value>
         <value xml:lang="es">Calendario estándar 24h al día, 7 días a la semana</value>
         <value xml:lang="fr">Calendrier standard 24 heures, 7 jours</value>
+        <value xml:lang="hr">STD24H-7D</value>
         <value xml:lang="it">Calendario Standard aperto 24 ore al giorno 7 giorni alla settimana</value>
         <value xml:lang="ja">標準カレンダ、24時間、7日</value>
         <value xml:lang="nl">7 dagen/24 uur per dag</value>
@@ -232,6 +248,7 @@
         <value xml:lang="en">STD8H-5D</value>
         <value xml:lang="es">Calendario estándar 8 horas/día, 5 días a la semana. Comienza 8h30 de lunes a viernes</value>
         <value xml:lang="fr">Calendrier standard 8heures/jour, 5 jours par semaine</value>
+        <value xml:lang="hr">STD8H-5D</value>
         <value xml:lang="it">Calendario Standard 8 ore/giorno 5giorni/settimana con inizio alle 8:30 dal Lunedì al Venerdì</value>
         <value xml:lang="ja">標準カレンダ、8時間、5日</value>
         <value xml:lang="nl">5 dagen/8 uur per dag</value>
@@ -246,6 +263,7 @@
         <value xml:lang="en">8hours/days, currently the Re-Order Process convert day to mms with 8h/days</value>
         <value xml:lang="es">8 horas/día, expresado en mms</value>
         <value xml:lang="fr">8 heures/jour, actuellement le precessus de renouvellement de commande converti le jour en mms à 8h/jour</value>
+        <value xml:lang="hr">8 sati/dan, trenutno proces ponovne narudžbe pretvara dan u mms s 8 h/dan</value>
         <value xml:lang="it">8 ore/giorno, attualmente il Processo di Ri-Ordine converte il giorno a mms con 8h/giorno</value>
         <value xml:lang="ja">8時間/日、再注文プロセスが8時間/日で日数を変換します</value>
         <value xml:lang="nl">8 uur per dag</value>

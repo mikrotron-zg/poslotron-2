@@ -24,6 +24,7 @@
         <value xml:lang="en">Actual Cost</value>
         <value xml:lang="es">Costo Actual</value>
         <value xml:lang="fr">Coût réel</value>
+        <value xml:lang="hr">Stvarna cijena</value>
         <value xml:lang="it">Costo attuale</value>
         <value xml:lang="ja">実績原価</value>
         <value xml:lang="nl">Kosten werkelijk</value>
@@ -39,6 +40,7 @@
         <value xml:lang="en">Best Case Amount</value>
         <value xml:lang="es">Caso de Mejor Monto</value>
         <value xml:lang="fr">Montant dans le meilleur cas </value>
+        <value xml:lang="hr">Iznos u najboljem slučaju</value>
         <value xml:lang="it">Importo migliore caso</value>
         <value xml:lang="ja">ベストケース金額</value>
         <value xml:lang="nl">Bedrag best case</value>
@@ -52,6 +54,7 @@
         <value xml:lang="en">Budgeted Cost</value>
         <value xml:lang="es">Costo presupuestado</value>
         <value xml:lang="fr">Coût budgetisé</value>
+        <value xml:lang="hr">Proračunata cijena</value>
         <value xml:lang="it">Costo a budget</value>
         <value xml:lang="ja">予算原価</value>
         <value xml:lang="nl">Kosten budget</value>
@@ -67,6 +70,7 @@
         <value xml:lang="en">Change Note</value>
         <value xml:lang="es">Nota de cambio</value>
         <value xml:lang="fr">Note du changement</value>
+        <value xml:lang="hr">Napomena za promjenu</value>
         <value xml:lang="it">Nota per variazione</value>
         <value xml:lang="ja">変更記録</value>
         <value xml:lang="nl">Notitie verandering</value>
@@ -80,6 +84,7 @@
         <value xml:lang="en">Closed Amount</value>
         <value xml:lang="es">Monto cerrado</value>
         <value xml:lang="fr">Montant fermé</value>
+        <value xml:lang="hr">Zatvoreni iznos</value>
         <value xml:lang="it">Importo chiuso</value>
         <value xml:lang="ja">期末金額</value>
         <value xml:lang="nl">Bedrag afgesloten</value>
@@ -93,6 +98,7 @@
         <value xml:lang="en">Converted Leads</value>
         <value xml:lang="es">Convertir Ventas</value>
         <value xml:lang="fr">Prospects convertis</value>
+        <value xml:lang="hr">Pretvoreni potencijalni klijenti</value>
         <value xml:lang="it">Leads convertiti</value>
         <value xml:lang="ja">変換済リード</value>
         <value xml:lang="nl">Geconverteerde leads</value>
@@ -106,6 +112,7 @@
         <value xml:lang="en">Cust Request ID</value>
         <value xml:lang="es">Cod. requisito de Cliente</value>
         <value xml:lang="fr">Réf. de requête de client</value>
+        <value xml:lang="hr">Id prilagođenog zahtjeva</value>
         <value xml:lang="it">Numero richiesta cliente</value>
         <value xml:lang="ja">顧客リクエストID</value>
         <value xml:lang="nl">Klantverzoek ID</value>
@@ -121,6 +128,7 @@
         <value xml:lang="en">Expected Response Percent</value>
         <value xml:lang="es">Porcentaje de respuesta esperada</value>
         <value xml:lang="fr">Pourcentage de réponse estimé</value>
+        <value xml:lang="hr">Očekivani postotak odgovora</value>
         <value xml:lang="it">Percentuale di risposta stimata</value>
         <value xml:lang="ja">期待レスポンス割合(%)</value>
         <value xml:lang="nl">Verwacht response perc.</value>
@@ -134,6 +142,7 @@
         <value xml:lang="en">Expected Revenue</value>
         <value xml:lang="es">Ingresos esperados</value>
         <value xml:lang="fr">Revenu estimé</value>
+        <value xml:lang="hr">Očekivani prihod</value>
         <value xml:lang="it">Ricavo stimato</value>
         <value xml:lang="ja">期待利益</value>
         <value xml:lang="nl">Verwachte opbrengsten</value>
@@ -147,6 +156,7 @@
         <value xml:lang="en">Forecast Amount</value>
         <value xml:lang="es">Monto previsto</value>
         <value xml:lang="fr">Montant estimé</value>
+        <value xml:lang="hr">Predviđeni iznos</value>
         <value xml:lang="it">Importo previsto</value>
         <value xml:lang="ja">予測金額</value>
         <value xml:lang="nl">Bedrag forecast</value>
@@ -160,6 +170,7 @@
         <value xml:lang="en">Internal Party ID</value>
         <value xml:lang="es">Participante Interno</value>
         <value xml:lang="fr">Réf. d'acteur interne</value>
+        <value xml:lang="hr">Id internog sudionika</value>
         <value xml:lang="it">Soggetto interno</value>
         <value xml:lang="ja">内部取引先ID</value>
         <value xml:lang="nl">Interne partij ID</value>
@@ -173,6 +184,7 @@
         <value xml:lang="en">Num Sent</value>
         <value xml:lang="es">N° Envío</value>
         <value xml:lang="fr">N° envoyé</value>
+        <value xml:lang="hr">Broj poslanih</value>
         <value xml:lang="it">Num. invio</value>
         <value xml:lang="ja">送信済数量</value>
         <value xml:lang="nl">Aantal verzonden</value>
@@ -186,6 +198,7 @@
         <value xml:lang="en">Parent Sales Forecast ID</value>
         <value xml:lang="es">Cod. de Previsión de Venta Padre</value>
         <value xml:lang="fr">Réf. de vente parente estimée</value>
+        <value xml:lang="hr">Id prognoze matične prodaje</value>
         <value xml:lang="it">Previsione di vendita padre</value>
         <value xml:lang="ja">上位(親)の販売予測ID</value>
         <value xml:lang="nl">Ouder forecast ID</value>
@@ -199,6 +212,7 @@
         <value xml:lang="en">Percent Of Quota Closed</value>
         <value xml:lang="es">Porcentaje de cuota cerrado</value>
         <value xml:lang="fr">Pourcentage de quota fermé</value>
+        <value xml:lang="hr">Postotak zatvorene kvote</value>
         <value xml:lang="it">Quota di percentuale chiusa</value>
         <value xml:lang="ja">クローズ済割当割合(%)</value>
         <value xml:lang="nl">Perc. quota afgesloten</value>
@@ -212,6 +226,7 @@
         <value xml:lang="en">Percent Of Quota Forecast</value>
         <value xml:lang="es">Cuota porcentual de la previsión de Venta</value>
         <value xml:lang="fr">Pourcentage de quota estimé</value>
+        <value xml:lang="hr">Postotak prognoze kvote</value>
         <value xml:lang="it">Quota percentuale della previsione di vendita</value>
         <value xml:lang="ja">予測割当割合(%)</value>
         <value xml:lang="nl">Perc. quota forecast</value>
@@ -225,6 +240,7 @@
         <value xml:lang="en">Pipeline Amount</value>
         <value xml:lang="es">Monto transitorio</value>
         <value xml:lang="fr">Montant transitoire</value>
+        <value xml:lang="hr">Iznos cjevovoda</value>
         <value xml:lang="it">Importo di passaggio</value>
         <value xml:lang="ja">パイプライン金額</value>
         <value xml:lang="nl">Bedrag pijplijn</value>
@@ -238,6 +254,7 @@
         <value xml:lang="en">Product Catalog ID</value>
         <value xml:lang="es">Catálogo de Producto</value>
         <value xml:lang="fr">Réf. de catalogue</value>
+        <value xml:lang="hr">Id kataloga proizvoda</value>
         <value xml:lang="it">Catalogo prodotti</value>
         <value xml:lang="ja">製品カタログID</value>
         <value xml:lang="nl">Catalogus ID</value>
@@ -253,6 +270,7 @@
         <value xml:lang="en">Quota Amount</value>
         <value xml:lang="es">Monto de la Cuota</value>
         <value xml:lang="fr">Montant de quota</value>
+        <value xml:lang="hr">Iznos kvote</value>
         <value xml:lang="it">Importo quota</value>
         <value xml:lang="ja">割当金額</value>
         <value xml:lang="nl">Bedrag quota</value>
@@ -266,6 +284,7 @@
         <value xml:lang="en">Sales Forecast Detail ID</value>
         <value xml:lang="es">Pronóstico de Venta detallado</value>
         <value xml:lang="fr">Réf. de détail de vente estimée</value>
+        <value xml:lang="hr">Id pojedinosti predviđanja prodaje</value>
         <value xml:lang="it">Dettaglio previsione di vendita</value>
         <value xml:lang="ja">販売予測詳細ID</value>
         <value xml:lang="nl">Forecast detail ID</value>
@@ -279,6 +298,7 @@
         <value xml:lang="en">Sales Forecast ID</value>
         <value xml:lang="es">Cod. Previsión de Venta</value>
         <value xml:lang="fr">Réf. de vente estimée</value>
+        <value xml:lang="hr">Id predviđanja prodaje</value>
         <value xml:lang="it">Previsione di vendita</value>
         <value xml:lang="ja">販売予測ID</value>
         <value xml:lang="nl">Forecast ID</value>
@@ -293,6 +313,7 @@
         <value xml:lang="es">Campañas</value>
         <value xml:lang="es-CL">Campaña de Marketing</value>
         <value xml:lang="fr">Campagne marketing</value>
+        <value xml:lang="hr">Marketinška kampanja</value>
         <value xml:lang="it">Campagna di vendita</value>
         <value xml:lang="ja">キャンペーン</value>
         <value xml:lang="nl">Campagne</value>
@@ -309,6 +330,7 @@
         <value xml:lang="es">Crear campaña de marketing</value>
         <value xml:lang="es-CL">Crear campaña de Marketing</value>
         <value xml:lang="fr">Nouvelle campagne marketing</value>
+        <value xml:lang="hr">Napravi marketinšku kampanju</value>
         <value xml:lang="it">Nuova campagna di vendita</value>
         <value xml:lang="ja">キャンペーンを作成</value>
         <value xml:lang="nl">Nieuwe campagne</value>
@@ -325,6 +347,7 @@
         <value xml:lang="es">Campaña</value>
         <value xml:lang="es-CL">Campaña de Marketing</value>
         <value xml:lang="fr">Réf. de campagne marketing</value>
+        <value xml:lang="hr">Id marketinške kampanje</value>
         <value xml:lang="it">Codice campagna di vendita</value>
         <value xml:lang="ja">キャンペーンID</value>
         <value xml:lang="nl">Campagne ID</value>
@@ -340,6 +363,7 @@
         <value xml:lang="en">Invalid email address entered.</value>
         <value xml:lang="es">Dirección de correo electrónica introducida no es válida.</value>
         <value xml:lang="fr">Entrée d'adresse courriel irrecevable</value>
+        <value xml:lang="hr">Unesena je nevažeća e-mail adresa.</value>
         <value xml:lang="it">Indirizzo email inserito invalido.</value>
         <value xml:lang="ja">入力されたEメールアドレスは正しくありません。</value>
         <value xml:lang="nl">Fout emailadres opgegeven.</value>
@@ -355,6 +379,7 @@
         <value xml:lang="es">Nombre de la campaña</value>
         <value xml:lang="es-CL">Nombre de la Campaña</value>
         <value xml:lang="fr">Nom de la campagne</value>
+        <value xml:lang="hr">Naziv kampanje</value>
         <value xml:lang="it">Nome campagna</value>
         <value xml:lang="ja">キャンペーン名称</value>
         <value xml:lang="nl">Naam Campagne</value>
@@ -371,6 +396,7 @@
         <value xml:lang="es">Informe de campañas de marketing</value>
         <value xml:lang="es-CL">Informe de Campañas de Marketing</value>
         <value xml:lang="fr">Rapport des campagnes de marketing</value>
+        <value xml:lang="hr">Izvješće o marketinškoj kampanji</value>
         <value xml:lang="it">Report campagne di vendita</value>
         <value xml:lang="ja">キャンペーンレポート</value>
         <value xml:lang="nl">Campagne rapport</value>
@@ -386,6 +412,7 @@
         <value xml:lang="en">Create Marketing Campaign Role</value>
         <value xml:lang="es">Crear rol de campaña de marketing</value>
         <value xml:lang="fr">Créer le rôle de la campagne marketing</value>
+        <value xml:lang="hr">Stvori ulogu marketinške kampanje</value>
         <value xml:lang="it">Nuovo ruolo campagna di vendita</value>
         <value xml:lang="ja">キャンペーンロールを作成</value>
         <value xml:lang="nl">Nieuwe campagne-rol</value>
@@ -402,6 +429,7 @@
         <value xml:lang="es">Descripción de la campaña</value>
         <value xml:lang="es-CL">Descripción de la Campaña</value>
         <value xml:lang="fr">Résumé de la campagne</value>
+        <value xml:lang="hr">Sažetak kampanje</value>
         <value xml:lang="it">Sommario della campagna</value>
         <value xml:lang="ja">キャンペーンサマリ</value>
         <value xml:lang="nl">Samenvatting campagne</value>
@@ -417,6 +445,7 @@
         <value xml:lang="en">OFBiz: Marketing Manager</value>
         <value xml:lang="es">OFBiz: Gestión de Marketing</value>
         <value xml:lang="fr">OFBiz: Gestion du Marketing</value>
+        <value xml:lang="hr">OFBiz: upravljanje marketingom</value>
         <value xml:lang="it">OFBiz: Gestione vendite</value>
         <value xml:lang="ja">OFBiz: マーケティング管理</value>
         <value xml:lang="nl">OFBiz: Marketing Manager</value>
@@ -434,6 +463,7 @@
         <value xml:lang="es">Parte de la familia de software Apache OFBiz de código abierto</value>
         <value xml:lang="es-CL">Parte de la familia de Software Apache OFBiz de código abierto</value>
         <value xml:lang="fr">Un module de la famille Apache OFBiz, logiciel libre de gestion d'entreprise.</value>
+        <value xml:lang="hr">Dio Open For Business obitelji softvera otvorenog koda</value>
         <value xml:lang="it">Un modulo della famiglia di software open source Apache OFBiz</value>
         <value xml:lang="ja">Part of the Apache OFBiz Family of Open Source Software</value>
         <value xml:lang="nl">Deel van de Apache OFBiz-suite van Open Source Software</value>
@@ -453,6 +483,7 @@
         <value xml:lang="es">Lista de contactos</value>
         <value xml:lang="es-CL">Lista de Contactos</value>
         <value xml:lang="fr">Liste de contacts</value>
+        <value xml:lang="hr">Popis kontakata</value>
         <value xml:lang="it">Lista contatti</value>
         <value xml:lang="ja">連絡リスト</value>
         <value xml:lang="nl">Contactenlijst</value>
@@ -469,6 +500,7 @@
         <value xml:lang="es">Crear evento de comunicación</value>
         <value xml:lang="es-CL">Crear Evento de Comunicación</value>
         <value xml:lang="fr">Nouvel évènement de communication de la liste de contact</value>
+        <value xml:lang="hr">Stvori novi događaj komunikacije popisa kontakata</value>
         <value xml:lang="it">Nuovo evento comunicazione della lista contatti</value>
         <value xml:lang="ja">新規連絡リスト通信イベントを作成</value>
         <value xml:lang="nl">Nieuwe contactenlijst Comm Event</value>
@@ -485,6 +517,7 @@
         <value xml:lang="es">Código de evento</value>
         <value xml:lang="es-CL">Código de Evento</value>
         <value xml:lang="fr">Réf. d'évènement de communication</value>
+        <value xml:lang="hr">Id komunikacijskog događaja</value>
         <value xml:lang="it">Codice evento comunicazione</value>
         <value xml:lang="ja">通信イベントID</value>
         <value xml:lang="nl">ID Comm Event</value>
@@ -501,6 +534,7 @@
         <value xml:lang="es">Tipo de evento</value>
         <value xml:lang="es-CL">Tipo de Evento</value>
         <value xml:lang="fr">Réf. du type d'événement de communication</value>
+        <value xml:lang="hr">Id vrste komunikacijskog događaja</value>
         <value xml:lang="it">Tipo evento comunicazione</value>
         <value xml:lang="ja">通信イベント種類ID</value>
         <value xml:lang="pt-BR">ID de tipo de evento de comunicação</value>
@@ -515,6 +549,7 @@
         <value xml:lang="en">Contact List Communication Status</value>
         <value xml:lang="es">Estado de la lista de contactos de Comunicación</value>
         <value xml:lang="es-CL">Estado de la lista de Contactos</value>
+        <value xml:lang="hr">Status komunikacije popisa kontakata</value>
         <value xml:lang="ja">連絡リスト通信ステータス</value>
         <value xml:lang="pt-BR">Estado da comunicação com Lista de contatos</value>
         <value xml:lang="vi">Tình trạng danh sách liên hệ truyền thông</value>
@@ -527,6 +562,7 @@
         <value xml:lang="es">Código de lista</value>
         <value xml:lang="es-CL">Código de la Lista</value>
         <value xml:lang="fr">Réf. de la liste de contact</value>
+        <value xml:lang="hr">Id popisa kontakata</value>
         <value xml:lang="it">Codice lista contatti</value>
         <value xml:lang="ja">連絡リストID</value>
         <value xml:lang="nl">ID Contactenlijst</value>
@@ -543,6 +579,7 @@
         <value xml:lang="es">Nombre de lista</value>
         <value xml:lang="es-CL">Nombre de Lista de Contacto</value>
         <value xml:lang="fr">Nom de la liste de contact</value>
+        <value xml:lang="hr">Naziv popisa kontakata</value>
         <value xml:lang="it">Nome lista contatti</value>
         <value xml:lang="ja">連絡リスト名称</value>
         <value xml:lang="nl">Naam Contactenlijst</value>
@@ -559,6 +596,7 @@
         <value xml:lang="es">Tipo de lista</value>
         <value xml:lang="es-CL">Tipo de Lista</value>
         <value xml:lang="fr">Réf. du type de liste de contact</value>
+        <value xml:lang="hr">Id vrste popisa kontakata</value>
         <value xml:lang="it">Tipo lista contatti</value>
         <value xml:lang="ja">連絡リスト種類ID</value>
         <value xml:lang="nl">ID Soort Contactenlijst</value>
@@ -575,6 +613,7 @@
         <value xml:lang="es">Mecanismo de contacto</value>
         <value xml:lang="es-CL">Tipo de Mecanismo de Contacto</value>
         <value xml:lang="fr">Type de mécanisme de contact </value>
+        <value xml:lang="hr">Id vrste kontaktnog mehanizma</value>
         <value xml:lang="it">Tipo di contatti</value>
         <value xml:lang="ja">連絡方法種類ID</value>
         <value xml:lang="nl">ID Soort Contact Mechanism</value>
@@ -591,6 +630,7 @@
         <value xml:lang="es">Crear nueva lista de contactos</value>
         <value xml:lang="es-CL">Crear nueva lista de Contactos</value>
         <value xml:lang="fr">Nouvelle liste de contact</value>
+        <value xml:lang="hr">Napravi novi popis kontakata</value>
         <value xml:lang="it">Nuova lista contatti</value>
         <value xml:lang="ja">新規連絡リストを作成</value>
         <value xml:lang="nl">Nieuwe Contactenlijst</value>
@@ -606,6 +646,7 @@
         <value xml:lang="en">Find Contact Lists</value>
         <value xml:lang="es">Buscar Lista de Contactos</value>
         <value xml:lang="fr">Rechercher les listes de contact</value>
+        <value xml:lang="hr">Pronađi popise kontakata</value>
         <value xml:lang="it">Ricerca liste contatti</value>
         <value xml:lang="ja">連絡リストを検索</value>
         <value xml:lang="nl">Zoek Contactenlijst</value>
@@ -622,6 +663,7 @@
         <value xml:lang="es">Es pública ?</value>
         <value xml:lang="es-CL">¿Es Pública?</value>
         <value xml:lang="fr">Est publique ?</value>
+        <value xml:lang="hr">Je li javno?</value>
         <value xml:lang="it">E' pubblica ?</value>
         <value xml:lang="ja">公開?</value>
         <value xml:lang="nl">Openbaar?</value>
@@ -638,6 +680,7 @@
         <value xml:lang="es">Es de uso único?</value>
         <value xml:lang="es-CL">¿Es de uso Único?</value>
         <value xml:lang="fr">Est à usage unique ?</value>
+        <value xml:lang="hr">Je li jednokratna uporaba?</value>
         <value xml:lang="it">E' a singolo uso ?</value>
         <value xml:lang="ja">単一使用?</value>
         <value xml:lang="nl">Single Use?</value>
@@ -653,6 +696,7 @@
         <value xml:lang="en">Could not find email list [${contactListId}].</value>
         <value xml:lang="es">No se pudo encontrar la lista de correo electrónico [${contactListId}].</value>
         <value xml:lang="fr">Aucune liste de courriel [${contactListId}] trouvée.</value>
+        <value xml:lang="hr">Nije moguće pronaći popis e-mailova [${contactListId}].</value>
         <value xml:lang="it">Non è possibile trovare la lista e-mail [${contactListId}].</value>
         <value xml:lang="ja">Eメール一覧が見つかりません [${contactListId}]。</value>
         <value xml:lang="nl">Contactenlijst [${contactListId}] werd niet gevonden.</value>
@@ -669,6 +713,7 @@
         <value xml:lang="es">Código de verificación Opt-in</value>
         <value xml:lang="es-CL">Código de Verificación Opt-in</value>
         <value xml:lang="fr">Code de vérification d'inscription volontaire (Opt-in)</value>
+        <value xml:lang="hr">Opt-In Verify Code</value>
         <value xml:lang="it">Codice Verifica Opt-In</value>
         <value xml:lang="ja">選択確認コード</value>
         <value xml:lang="nl">Verificatie-code Opt-In</value>
@@ -683,6 +728,7 @@
         <value xml:lang="de">zusätzlicher Bestätigungscode</value>
         <value xml:lang="en">No Opt-in Verify Code specified, but one is required.</value>
         <value xml:lang="es">No hay código de verificación Opt-in especificado, pero uno es requerido.</value>
+        <value xml:lang="hr">Nije naveden kod za potvrdu uključivanja, ali je potreban.</value>
         <value xml:lang="it">Nessun codice di verifica Opt-in specificato, ma uno è obbligatorio.</value>
         <value xml:lang="ja">選択確認コードが指定されていません。１つは必須です。</value>
         <value xml:lang="vi">Mã xác nhận (Opt-In) chưa được nhập.</value>
@@ -693,6 +739,7 @@
         <value xml:lang="de">Der angegebene Bestätigungscode [${parameters.optInVerifyCode}] ist falsch. Bitte prüfen sie den zugeschickten Code.</value>
         <value xml:lang="en">The Opt-in Verify Code specified [${parameters.optInVerifyCode}] was not correct. Please check the code you were sent.</value>
         <value xml:lang="es">El código de verificación Opt-in especificado [${parameters.optInVerifyCode}] no es correcto. Por favor, compruebe el código que está enviando.</value>
+        <value xml:lang="hr">Navedeni kod za potvrdu uključivanja [${parameters.optInVerifyCode}] nije točan. Provjerite kôd koji vam je poslan.</value>
         <value xml:lang="it">Il codice di verifia Opt-in specificato [${parameters.optInVerifyCode}] non era corretto. Per favore verificare il codice che ti è stato inviato.</value>
         <value xml:lang="ja">指定された選択確認コード [${parameters.optInVerifyCode}] は正しくありません。コードを確認してください。</value>
         <value xml:lang="vi">Mã xác nhận (Opt-In) có giá trị [${parameters.optInVerifyCode}] không đúng. Bạn hãy kiểm tra lại mã xác nhận đã gửi.</value>
@@ -704,6 +751,7 @@
         <value xml:lang="en">Owner Party ID</value>
         <value xml:lang="es">Propietario</value>
         <value xml:lang="fr">Réf. d'acteur propriétaire</value>
+        <value xml:lang="hr">Id vlasnika</value>
         <value xml:lang="it">Codice soggetto proprietario</value>
         <value xml:lang="ja">所有者取引先ID</value>
         <value xml:lang="nl">ID Manager Contactenlijst</value>
@@ -719,6 +767,7 @@
         <value xml:lang="en">Import Parties</value>
         <value xml:lang="es">Importar Participantes</value>
         <value xml:lang="fr">Import d'acteurs</value>
+        <value xml:lang="hr">Uvoz sudionika</value>
         <value xml:lang="ja">取引先をインポート</value>
         <value xml:lang="th">นำเข้ากลุ่มผู้ใช้</value>
         <value xml:lang="vi">Nhập vào các Tác nhân</value>
@@ -731,6 +780,7 @@
         <value xml:lang="es">Participantes</value>
         <value xml:lang="es-CL">Lista de Contacto de Participantes</value>
         <value xml:lang="fr">Abonné à la liste de contact</value>
+        <value xml:lang="hr">Popis kontakata sudionika</value>
         <value xml:lang="it">Membro lista contatti</value>
         <value xml:lang="ja">連絡リスト取引先</value>
         <value xml:lang="nl">Partij Contactlijst</value>
@@ -746,6 +796,7 @@
         <value xml:lang="en">Create New Contact List Party</value>
         <value xml:lang="es">Asociar participante</value>
         <value xml:lang="fr">Créer un nouvel abonné à  la liste de contact</value>
+        <value xml:lang="hr">Stvori novog sudionika popisa kontakata</value>
         <value xml:lang="it">Nuovo membro lista contatti</value>
         <value xml:lang="ja">新規連絡リスト取引先を作成</value>
         <value xml:lang="nl">Nieuwe Partij Contactenlijst</value>
@@ -762,6 +813,7 @@
         <value xml:lang="es">Código de participante</value>
         <value xml:lang="es-CL">Código de Participante</value>
         <value xml:lang="fr">Réf. d'abonné à la liste de contact</value>
+        <value xml:lang="hr">Id sudionika</value>
         <value xml:lang="it">Codice membro lista contatti</value>
         <value xml:lang="ja">取引先ID</value>
         <value xml:lang="nl">ID Deelnemer</value>
@@ -778,6 +830,7 @@
         <value xml:lang="es">Mecanismo de contacto</value>
         <value xml:lang="es-CL">Mecanismo de contacto preferido</value>
         <value xml:lang="fr">Mécanisme de contact favori</value>
+        <value xml:lang="hr">Preferirani kontaktni mehanizam</value>
         <value xml:lang="it">Modo di contatto preferito</value>
         <value xml:lang="ja">通常の連絡方法</value>
         <value xml:lang="nl">Voorkeur Contact Mechanism</value>
@@ -794,6 +847,7 @@
         <value xml:lang="es">E-mail de verificación</value>
         <value xml:lang="es-CL">E-mail de Verificación</value>
         <value xml:lang="fr">Adresse courriel de vérification</value>
+        <value xml:lang="hr">Potvrdi e-mail od</value>
         <value xml:lang="it">Verifica Email da</value>
         <value xml:lang="ja">確認Eメール差出人</value>
         <value xml:lang="nl">Verifieer email van</value>
@@ -810,6 +864,7 @@
         <value xml:lang="es">Pantalla de verificación</value>
         <value xml:lang="es-CL">Pantalla de Verificaciónde E-mail</value>
         <value xml:lang="fr">Ecran de vérification du courriel</value>
+        <value xml:lang="hr">Zaslon za potvrdu e-maila</value>
         <value xml:lang="it">Schermo di verifica Email</value>
         <value xml:lang="ja">確認Eメール画面</value>
         <value xml:lang="nl">Verificatiescherm email</value>
@@ -826,6 +881,7 @@
         <value xml:lang="es">Título del mensaje</value>
         <value xml:lang="es-CL">Verificar Título del mensaje</value>
         <value xml:lang="fr">Sujet du courriel de vérification</value>
+        <value xml:lang="hr">Potvrdi naslov e-maila</value>
         <value xml:lang="it">Verifica Email Soggetto</value>
         <value xml:lang="ja">確認Eメール件名</value>
         <value xml:lang="nl">Verifieer onderwerp email</value>
@@ -842,6 +898,7 @@
         <value xml:lang="es">Sitio web de verificación</value>
         <value xml:lang="es-CL">Verificar Sitio web</value>
         <value xml:lang="fr">Réf. du site Internet du courriel de vérification</value>
+        <value xml:lang="hr">Potvrdi Id web stranice e-maila</value>
         <value xml:lang="it">Verifica Email Sito Web</value>
         <value xml:lang="ja">確認EメールWebサイトID</value>
         <value xml:lang="nl">Verifieer website email</value>
@@ -855,20 +912,25 @@
     <property key="MarketingContactMechNotExists">
         <value xml:lang="de">Der bevorzugte Kontaktmechanismus für Party [${partyId}] konnte nicht gefunden werden</value>
         <value xml:lang="en">Could not find the preferred contact mechanism for party [${parameters.partyId}]</value>
+    <value xml:lang="hr">Nije moguće pronaći željeni mehanizam kontakta za sudionika [${parameters.partyId}]</value>
     </property>
     <property key="MarketingContactListInvalidVerifyCode">
         <value xml:lang="en">Invalid verify code for the ${contactList.contactListName}</value>
+    <value xml:lang="hr">Nevažeći kod za potvrdu za ${contactList.contactListName}</value>
     </property>
     <property key="MarketingContactListAnotherEmailNotExist">
         <value xml:lang="en">The email address (${parameters.email}) does not have the Other Email Address as contact purpose</value>
+    <value xml:lang="hr">E-mail adresa (${parameters.email}) nema alternativnu e-mail adresu kao svrhu kontakta</value>
     </property>
     <property key="MarketingContactListPermissionError">
         <value xml:lang="en">Security Error: to run sendContactListPartyVerifyEmail you must have the MARKETING_VIEW or MARKETING_ADMIN permissions</value>
+    <value xml:lang="hr">Sigurnosna greška: da biste pokrenuli sendContactListPartyVerifyEmail morate imati dopuštenja MARKETING_VIEW ili MARKETING_ADMIN</value>
     </property>
     <property key="MarketingContactMechNotRightForContactList">
         <value xml:lang="de">Der bevorzugte Kontaktmechanismus [${preferredContactMechType.description}] ist vom falschen Typ für die Liste [${listContactMechType.description}].</value>
         <value xml:lang="en">The preferred contact mechanism [${preferredContactMechType.description}] was not of the right type for the list [${listContactMechType.description}].</value>
         <value xml:lang="es">El mecanismo de contacto preferido [${preferredContactMechType.description}] no es del tipo adecuado para la lista [${listContactMechType.description}].</value>
+        <value xml:lang="hr">Preferirani kontaktni mehanizam [${preferredContactMechType.description}] nije bio odgovarajuće vrste za popis [${listContactMechType.description}].</value>
         <value xml:lang="it">Il contatto preferito [${preferredContactMechType.description}] non era la giusta lista [${listContactMechType.description}].</value>
         <value xml:lang="ja">通常の連絡方法 [${preferredContactMechType.description}] は一覧 [${listContactMechType.description}] の正しい種類ではありません。</value>
         <value xml:lang="vi">Cơ chế liên lạc ưa thích [${preferredContactMechType.description}] không nằm trong loại của danh sách [${listContactMechType.description}].</value>
@@ -881,6 +943,7 @@
         <value xml:lang="es">Factor de conversión</value>
         <value xml:lang="es-CL">Factor de Conversión</value>
         <value xml:lang="fr">Taux de conversion</value>
+        <value xml:lang="hr">Stopa pretvorbe</value>
         <value xml:lang="it">Tasso di Conversione</value>
         <value xml:lang="ja">変換レート</value>
         <value xml:lang="nl">Koers conversie</value>
@@ -896,6 +959,7 @@
         <value xml:lang="en">Security Error: to run ${resourceDescription} you must have the MARKETING_CREATE or MARKETING_ADMIN permission</value>
         <value xml:lang="es">Error de Seguridad: para ejecutar ${resourceDescription} debes tener el permiso MARKETING_CREATE or MARKETING_ADMIN</value>
         <value xml:lang="fr">Erreur de sécurité : pour lancer ${resourceDescription}, vous devez avoir la permission MARKETING_CREATE ou MARKETING_ADMIN</value>
+        <value xml:lang="hr">Sigurnosna greška: za pokretanje ${resourceDescription} morate imati dopuštenje MARKETING_CREATE ili MARKETING_ADMIN</value>
         <value xml:lang="it">Errore di sicurezza: per eseguire ${resourceDescription} devi avere il permesso MARKETING_CREATE o MARKETING_ADMIN</value>
         <value xml:lang="ja">セキュリティエラー: ${resourceDescription} の実行には MARKETING_CREATE または MARKETING_ADMIN 権限が必要です。</value>
         <value xml:lang="vi">Lỗi phân quyền: để thực thi ${resourceDescription} bạn cần có quyền MARKETING_CREATE hoặc quyền MARKETING_ADMIN</value>
@@ -908,6 +972,7 @@
         <value xml:lang="es">Rango de fechas</value>
         <value xml:lang="es-CL">Intervalo de fechas</value>
         <value xml:lang="fr">Intervalle de date</value>
+        <value xml:lang="hr">Raspon datuma</value>
         <value xml:lang="it">Intervallo di Date</value>
         <value xml:lang="ja">日付範囲</value>
         <value xml:lang="nl">data-range</value>
@@ -923,6 +988,7 @@
         <value xml:lang="en">Security Error: to run ${resourceDescription} you must have the MARKETING_DELETE or MARKETING_ADMIN permission</value>
         <value xml:lang="es">Error de seguridad: para ejecutar ${resourceDescription} necesitas el permiso MARKETING_DELETE o MARKETING_ADMIN</value>
         <value xml:lang="fr">Erreur de sécurité : pour lancer ${resourceDescription}, vous devez avoir la permission MARKETING_DELETE ou MARKETING_ADMIN</value>
+        <value xml:lang="hr">Sigurnosna greška: za pokretanje ${resourceDescription} morate imati dopuštenje MARKETING_DELETE ili MARKETING_ADMIN</value>
         <value xml:lang="it">Errore di sicurezza: per eseguire ${resourceDescription} devi avere il permesso MARKETING_DELETE o MARKETING_ADMIN</value>
         <value xml:lang="ja">セキュリティエラー: ${resourceDescription} の実行には MARKETING_DELETE または MARKETING_ADMIN 権限が必要です。</value>
         <value xml:lang="vi">Lỗi phân quyền: để thực thi ${resourceDescription} bạn cần có quyền MARKETING_DELETE hoặc quyền MARKETING_ADMIN</value>
@@ -932,12 +998,14 @@
     <property key="MarketingEmailFormatError">
         <value xml:lang="en">${firstName} ${lastName} has ${emailFormatErrMsg}</value>
         <value xml:lang="es">${firstName} ${lastName} tiene ${emailFormatErrMsg}</value>
+    <value xml:lang="hr">${firstName} ${lastName} ima ${emailFormatErrMsg}</value>
     </property>
     <property key="MarketingEmailStatusReport">
         <value xml:lang="de">E-Mail Statusbericht</value>
         <value xml:lang="en">Email Status Report</value>
         <value xml:lang="es">Reporte de estadode Email</value>
         <value xml:lang="fr">Rapport du statut des courriels</value>
+        <value xml:lang="hr">Izvješće o statusu e-maila</value>
         <value xml:lang="it">Report stato e-mail</value>
         <value xml:lang="ja">Eメールステータスレポート</value>
         <value xml:lang="nl">Rapport email status</value>
@@ -951,6 +1019,7 @@
         <value xml:lang="en">Find SFA Accounts</value>
         <value xml:lang="es">Buscar cuentas SFA</value>
         <value xml:lang="fr">Rechercher les comptes de ventes</value>
+        <value xml:lang="hr">Pronađi SFA račune</value>
         <value xml:lang="it">Ricerca utenze SFA</value>
         <value xml:lang="ja">SFAアカウントを検索</value>
         <value xml:lang="nl">Zoeken/vinden accounts</value>
@@ -965,6 +1034,7 @@
         <value xml:lang="en">Find SFA Contacts</value>
         <value xml:lang="es">Buscar Contactos SFA</value>
         <value xml:lang="fr">Rechercher des contacts</value>
+        <value xml:lang="hr">Pronađi SFA kontakte</value>
         <value xml:lang="ja">SFA連絡を検索</value>
         <value xml:lang="nl">Zoeken/vinden contacten</value>
         <value xml:lang="pt-BR">Encontrar contatos da equipe de vendas</value>
@@ -978,6 +1048,7 @@
         <value xml:lang="en">Find SFA Leads</value>
         <value xml:lang="es">Buscar clientes potenciales SFA</value>
         <value xml:lang="fr">Rechercher des prospects</value>
+        <value xml:lang="hr">Pronađi SFA potencijalne klijente</value>
         <value xml:lang="ja">SFAリードを検索</value>
         <value xml:lang="nl">Zoeken/vinden leads</value>
         <value xml:lang="pt-BR">Buscar Leads da equipe de vendas</value>
@@ -992,6 +1063,7 @@
         <value xml:lang="es">Principal</value>
         <value xml:lang="es-CL">Página Principal</value>
         <value xml:lang="fr">Page d'accueil</value>
+        <value xml:lang="hr">Glavna stranica</value>
         <value xml:lang="it">Pagina Principale</value>
         <value xml:lang="ja">メイン</value>
         <value xml:lang="nl">Startpagina</value>
@@ -1007,6 +1079,7 @@
         <value xml:lang="en">Marketing Manager</value>
         <value xml:lang="es">Gestión de Marketing</value>
         <value xml:lang="fr">Application de gestion marketing</value>
+        <value xml:lang="hr">Upravljanje marketingom</value>
         <value xml:lang="it">Gestione vendite</value>
         <value xml:lang="ja">マーケティング管理</value>
         <value xml:lang="nl">Marketing Manager</value>
@@ -1023,6 +1096,7 @@
         <value xml:lang="es">Gestión de Marketing</value>
         <value xml:lang="es-CL">Aplicación de Gestión de Marketing</value>
         <value xml:lang="fr">Application de gestion marketing</value>
+        <value xml:lang="hr">Aplikacija za upravljanje marketingom</value>
         <value xml:lang="it">Applicazione gestione vendite</value>
         <value xml:lang="ja">マーケティング管理業務</value>
         <value xml:lang="nl">Marketing Managment</value>
@@ -1038,6 +1112,7 @@
         <value xml:lang="en">Welcome to the Marketing Manager!</value>
         <value xml:lang="es">Bienvenido a Gestión de Marketing!</value>
         <value xml:lang="fr">Bienvenue dans l'application de gestion du marketing !</value>
+        <value xml:lang="hr">Dobro došli u aplikaciju za upravljanje marketingom!</value>
         <value xml:lang="it">Benvenuto nell'applicazione gestione vendite!</value>
         <value xml:lang="ja">マーケティング管理へようこそ!</value>
         <value xml:lang="pt-BR">Bem-vindo à aplicação de Gestão de Marketing</value>
@@ -1048,18 +1123,22 @@
     </property> 
    <property key="MarketingNewsletterSubscriptionRequestSuccessMessage">
         <value xml:lang="en">Newsletter subscription request successful. Please check your inbox for verification email.</value>
+        <value xml:lang="hr">Zahtjev za pretplatu na newsletter uspješan. Provjerite svoj pristigli e-mail za potvrdu.</value>
         <value xml:lang="it">Richiesta di iscrizione alla Newsletter inviata con successo. Controlla la tua casella di posta per l'email di verifica.</value>
     </property>
     <property key="MarketingNewsletterSubscriptionReqstAlreadyExistsMsg">
         <value xml:lang="en">You have already requested to subscribe for our newsletter. However, you have not verified your subscription. We have resent you the verification mail - please check your inbox for verification email.</value>
+        <value xml:lang="hr">Već ste zatražili pretplatu na naš newsletter. Međutim, niste potvrdili svoju pretplatu. Ponovno smo vam poslali e-mail za potvrdu - provjerite svoj pristigli e-mail za potvrdu.</value>
         <value xml:lang="it">Hai già richiesto di iscriverti a questa newsletter, ma non hai verificato la sottoscrizione. Ti abbiamo nuovamente inviato l'email di verifica - controlla la tua casella di posta.</value>
     </property>
     <property key="MarketingNewsletterSubscriptionAlreadyExistsMsg">
         <value xml:lang="en">You are already subscribed to our newsletter.</value>
+        <value xml:lang="hr">Već ste pretplaćeni na naš newsletter.</value>
         <value xml:lang="it">Sei già iscritto alla nostra newsletter.</value>
     </property>
     <property key="MarketingNewsletterSubscriptionPendingRequestDeletedMessage">
         <value xml:lang="en">Successfully removed Newsletter subscription request.</value>
+        <value xml:lang="hr">Zahtjev za pretplatu na newsletter uspješno je uklonjen.</value>
         <value xml:lang="it">Richiesta di iscrizione alla newseltter rimossa con sucesso.</value>
     </property> 
     <property key="MarketingNoOfEmployees">
@@ -1068,6 +1147,7 @@
         <value xml:lang="es">Nº Empleados</value>
         <value xml:lang="es-CL">Nº de Empleados</value>
         <value xml:lang="fr">N° des employés</value>
+        <value xml:lang="hr">Broj zaposlenika</value>
         <value xml:lang="it">N. di impiegati</value>
         <value xml:lang="ja">従業員番号</value>
         <value xml:lang="pt-BR">Número de empregados</value>
@@ -1079,6 +1159,7 @@
         <value xml:lang="en">No party load</value>
         <value xml:lang="es">Sin carga de participante</value>
         <value xml:lang="fr">Aucun acteur chargé</value>
+    <value xml:lang="hr">Nema opterećenja sudionika</value>
     </property>
     <property key="MarketingOrderAmount">
         <value xml:lang="de">Auftragssumme</value>
@@ -1086,6 +1167,7 @@
         <value xml:lang="es">Cantidad de órdenes</value>
         <value xml:lang="es-CL">Cantidad de Ordenes</value>
         <value xml:lang="fr">Montant des commandes</value>
+        <value xml:lang="hr">Količina narudžbi</value>
         <value xml:lang="it">Importo degli Ordini</value>
         <value xml:lang="ja">注文金額</value>
         <value xml:lang="nl">Bedrag orders</value>
@@ -1102,6 +1184,7 @@
         <value xml:lang="es">Órdenes</value>
         <value xml:lang="es-CL">Ordenes</value>
         <value xml:lang="fr">Commandes</value>
+        <value xml:lang="hr">Narudžbe</value>
         <value xml:lang="it">Ordini</value>
         <value xml:lang="ja">注文</value>
         <value xml:lang="nl">Orders</value>
@@ -1118,6 +1201,7 @@
         <value xml:lang="es">Campaña padre</value>
         <value xml:lang="es-CL">Campaña Padre</value>
         <value xml:lang="fr">Réf. de campagne parent</value>
+        <value xml:lang="hr">Id nadređene kampanje</value>
         <value xml:lang="it">Codice Campagna Padre</value>
         <value xml:lang="ja">上位(親)のキャンペーンID</value>
         <value xml:lang="pt-BR">ID de campanha superior</value>
@@ -1131,17 +1215,20 @@
         <value xml:lang="en">Parties Loaded</value>
         <value xml:lang="es">Participante cargado</value>
         <value xml:lang="fr">Acteurs chargés</value>
+    <value xml:lang="hr">Sudionici učitani</value>
     </property>
     <property key="MarketingPartiesNoLoadedAlreadyExist">
         <value xml:lang="en">Parties no loaded because they already exist on the system</value>
         <value xml:lang="es">Participantes no cargados porque ya existen en el sistema.</value>
         <value xml:lang="fr">Acteurs non chargés car déjà présent dans le système</value>
+    <value xml:lang="hr">Sudionici nisu učitani jer već postoje u sustavu</value>
     </property>
     <property key="MarketingPartyStatusReport">
         <value xml:lang="de">Statusbericht Akteur</value>
         <value xml:lang="en">Party Status Report</value>
         <value xml:lang="es">Reporte de Estado de Participante</value>
         <value xml:lang="fr">Rapport du statut des acteurs</value>
+        <value xml:lang="hr">Izvješće o statusu sudionika</value>
         <value xml:lang="it">Report stato soggetti</value>
         <value xml:lang="ja">取引先ステータスレポート</value>
         <value xml:lang="pt-BR">Relatório de estado de participante</value>
@@ -1154,6 +1241,7 @@
         <value xml:lang="en">Reports</value>
         <value xml:lang="es">Informes</value>
         <value xml:lang="fr">Rapports</value>
+        <value xml:lang="hr">Izvještaji</value>
         <value xml:lang="it">Report</value>
         <value xml:lang="ja">レポート</value>
         <value xml:lang="nl">Rapporten</value>
@@ -1169,6 +1257,7 @@
         <value xml:lang="en">Segment</value>
         <value xml:lang="es">Segmentos</value>
         <value xml:lang="fr">Segment</value>
+        <value xml:lang="hr">Segment</value>
         <value xml:lang="it">Segmento</value>
         <value xml:lang="ja">セグメント</value>
         <value xml:lang="nl">Segment</value>
@@ -1185,6 +1274,7 @@
         <value xml:lang="es">Nueva clasificación de segmento</value>
         <value xml:lang="es-CL">Nueva clasificación de Segmento</value>
         <value xml:lang="fr">Créer une nouvelle classification de groupe de segment</value>
+        <value xml:lang="hr">Stvori novu klasifikaciju grupe segmenata</value>
         <value xml:lang="it">Creare Nuova Classificazione Gruppo Segmento</value>
         <value xml:lang="ja">新規セグメントグループ分類を作成</value>
         <value xml:lang="nl">Nieuwe Classificatie Segmentgroep</value>
@@ -1201,6 +1291,7 @@
         <value xml:lang="es">Nuevo segmento</value>
         <value xml:lang="es-CL">Nuevo Segmento</value>
         <value xml:lang="fr">Créer un nouveau groupe de segment</value>
+        <value xml:lang="hr">Stvori novu grupu segmenata</value>
         <value xml:lang="it">Nuovo gruppo di segmento</value>
         <value xml:lang="ja">新規セグメントグループを作成</value>
         <value xml:lang="nl">Nieuwe Segmentgroep</value>
@@ -1215,6 +1306,7 @@
         <value xml:lang="de">Fehler bei der Erstellung einer Segmentgruppe</value>
         <value xml:lang="en">Error on creation Segment Group</value>
         <value xml:lang="es">Error en creación de segmento</value>
+        <value xml:lang="hr">Greška pri stvaranju grupe segmenata</value>
         <value xml:lang="it">Errore durante la creazione di un nuovo gruppo segmento</value>
         <value xml:lang="ja">セグメントグループ作成時エラー</value>
         <value xml:lang="pt-BR">Erro ao criar grupo de segmento</value>
@@ -1227,6 +1319,7 @@
         <value xml:lang="en">Error on delete Segment Group</value>
         <value xml:lang="es">Error en eliminación de segmento</value>
         <value xml:lang="fr">Erreur dans la suppression d'un groupe de segment</value>
+        <value xml:lang="hr">Greška pri brisanju grupe segmenata</value>
         <value xml:lang="it">Errore durante la cancellazione di un gruppo segmento</value>
         <value xml:lang="ja">セグメントグループ削除時エラー</value>
         <value xml:lang="pt-BR">Erro ao excluir grupo de segmento</value>
@@ -1239,6 +1332,7 @@
         <value xml:lang="en">Description</value>
         <value xml:lang="es">Descripción</value>
         <value xml:lang="fr">Description</value>
+        <value xml:lang="hr">Opis</value>
         <value xml:lang="it">Descrizione</value>
         <value xml:lang="ja">詳細</value>
         <value xml:lang="nl">Omschrijving</value>
@@ -1255,6 +1349,7 @@
         <value xml:lang="es">Nueva ubicación</value>
         <value xml:lang="es-CL">Nueva ubicación para segmento</value>
         <value xml:lang="fr">Créer une nouvelle zone géographique de groupe de segment</value>
+        <value xml:lang="hr">Stvori novu geografsku grupu segmenata</value>
         <value xml:lang="it">Creare Nuovo Gruppo Segmento Geografia</value>
         <value xml:lang="ja">新規セグメントグループ位置を作成</value>
         <value xml:lang="nl">Nieuwe GEO Segmentgroep</value>
@@ -1270,6 +1365,7 @@
         <value xml:lang="en">Segment Group View Permission Error</value>
         <value xml:lang="es">Error de permiso en visualización de segmentos</value>
         <value xml:lang="fr">Permission de visualisation d'un groupe de segment refusé</value>
+        <value xml:lang="hr">Pogreška dopuštenja prikaza grupe segmenta</value>
         <value xml:lang="it">Errore permesso di visualizzare i gruppi segmento</value>
         <value xml:lang="ja">セグメントグループ表示権限エラー</value>
         <value xml:lang="pt-BR">Erro de permissões para visualização de grupo de segmento</value>
@@ -1282,6 +1378,7 @@
         <value xml:lang="en">No SegmentGroup found with ID:</value>
         <value xml:lang="es">No se encontraron segmentos con el ID:</value>
         <value xml:lang="fr">Aucun groupe de segment trouvé pour la réf. : </value>
+        <value xml:lang="hr">Nije pronađena grupa segmenta s Id-om:</value>
         <value xml:lang="it">Nessun Gruppo Segmento trovato con il codice:</value>
         <value xml:lang="ja">セグメントグループが見つかりません、ID:</value>
         <value xml:lang="nl">Geen Segmentgroep gevonden met ID:</value>
@@ -1297,6 +1394,7 @@
         <value xml:lang="en">Segment GroupParty ClassificationGroup ID</value>
         <value xml:lang="es">Cod. de segmento de grupo de participante</value>
         <value xml:lang="fr">Réf du groupe de classification d'acteur</value>
+        <value xml:lang="hr">Id grupne kvalifikacije segmenta pravne osobe</value>
         <value xml:lang="it">Soggetto gruppo segmento classificazione</value>
         <value xml:lang="ja">セグメントグループ取引先分類グループID</value>
         <value xml:lang="nl">ID Classificatiegroep Segmentgroep</value>
@@ -1310,6 +1408,7 @@
         <value xml:lang="en">Product Store ID</value>
         <value xml:lang="es">Tienda</value>
         <value xml:lang="fr">Réf. de centre de profit</value>
+        <value xml:lang="hr">Id trgovine proizvoda</value>
         <value xml:lang="it">Codice Negozio</value>
         <value xml:lang="ja">製品店舗ID</value>
         <value xml:lang="pt-BR">ID do produto</value>
@@ -1324,6 +1423,7 @@
         <value xml:lang="en">Create New Segment Group Role</value>
         <value xml:lang="es">Nuevo rol de segmento</value>
         <value xml:lang="fr">Créer un nouveau rôle de groupe de segment</value>
+        <value xml:lang="hr">Stvori novu ulogu grupe segmenata</value>
         <value xml:lang="it">Creare Nuovo Ruolo Gruppo Segmento</value>
         <value xml:lang="ja">新規セグメントグループロールを作成</value>
         <value xml:lang="nl">Nieuwe rol Segmentgroep</value>
@@ -1339,6 +1439,7 @@
         <value xml:lang="en">Segment</value>
         <value xml:lang="es">Segmentos</value>
         <value xml:lang="fr">Segment</value>
+        <value xml:lang="hr">Segment</value>
         <value xml:lang="it">Segmento</value>
         <value xml:lang="ja">セグメント</value>
         <value xml:lang="nl">Segment</value>
@@ -1354,6 +1455,7 @@
         <value xml:lang="en">Classification</value>
         <value xml:lang="es">Clasificación</value>
         <value xml:lang="fr">Classification</value>
+        <value xml:lang="hr">Klasifikacija</value>
         <value xml:lang="it">Classificazione</value>
         <value xml:lang="ja">分類</value>
         <value xml:lang="pt-BR">Classificação</value>
@@ -1368,6 +1470,7 @@
         <value xml:lang="en">Geo</value>
         <value xml:lang="es">Ubicación</value>
         <value xml:lang="fr">Zone géographique</value>
+        <value xml:lang="hr">Geo</value>
         <value xml:lang="it">Geografia</value>
         <value xml:lang="ja">位置</value>
         <value xml:lang="nl">GEO</value>
@@ -1383,6 +1486,7 @@
         <value xml:lang="en">Segment Group ID</value>
         <value xml:lang="es">Código de segmento</value>
         <value xml:lang="fr">Réf. du groupe de segment</value>
+        <value xml:lang="hr">Id grupe segmenata</value>
         <value xml:lang="it">Codice Gruppo Segmento</value>
         <value xml:lang="ja">セグメントグループID</value>
         <value xml:lang="nl">ID Segmentgroep</value>
@@ -1398,6 +1502,7 @@
         <value xml:lang="en">Find</value>
         <value xml:lang="es">Buscar</value>
         <value xml:lang="fr">Rechercher</value>
+        <value xml:lang="hr">Traži</value>
         <value xml:lang="it">Ricerca</value>
         <value xml:lang="ja">検索</value>
         <value xml:lang="nl">Vinden</value>
@@ -1413,6 +1518,7 @@
         <value xml:lang="en">Role</value>
         <value xml:lang="es">Rol</value>
         <value xml:lang="fr">Rôle</value>
+        <value xml:lang="hr">Uloga</value>
         <value xml:lang="it">Ruolo</value>
         <value xml:lang="ja">ロール</value>
         <value xml:lang="nl">Rol</value>
@@ -1428,6 +1534,7 @@
         <value xml:lang="en">Type</value>
         <value xml:lang="es">Tipo</value>
         <value xml:lang="fr">Type</value>
+        <value xml:lang="hr">Vrsta</value>
         <value xml:lang="it">Tipo</value>
         <value xml:lang="ja">種類</value>
         <value xml:lang="nl">Soort</value>
@@ -1443,6 +1550,7 @@
         <value xml:lang="en">Segment Group Type ID</value>
         <value xml:lang="es">Tipo de segmento</value>
         <value xml:lang="fr">Réf. du type de groupe de segment</value>
+        <value xml:lang="hr">Id vrste grupe segmenata</value>
         <value xml:lang="it">Tipo Gruppo Segmento</value>
         <value xml:lang="ja">セグメントグループ種類ID</value>
         <value xml:lang="nl">ID Type Segmentgroep</value>
@@ -1458,6 +1566,7 @@
         <value xml:lang="en">There was a problem processing your request.  Please try again.  If the problem persists, please contact us.</value>
         <value xml:lang="es">Hubo un problema al procesar su solicitud. Intente nuevamente. Si el problema persiste, contacte al administrador del sistema.</value>
         <value xml:lang="fr">Il y a eu un problème durant le traitement de votre demande. SVP, essayez encore. Si le problème persiste, contactez-nous, merci.</value>
+        <value xml:lang="hr">Došlo je do problema u obradi vašeg zahtjeva. Molimo  pokušajte ponovno. Ako problem potraje, kontaktirajte nas.</value>
         <value xml:lang="it">C'è stato un problema durante l'esecuzione della tua richiesta. Prego riprovare. Se il problema persiste, contattaci, grazie.</value>
         <value xml:lang="ja">リクエストの処理中に問題があります。再度実行してください。問題が解消しない場合は連絡してください。</value>
         <value xml:lang="pt-BR">Houve um erro ao processar seu pedido. Por favor, tente novamente. Se o problema persistir, entre em contato conosco.</value>
@@ -1471,6 +1580,7 @@
         <value xml:lang="en">Tracking</value>
         <value xml:lang="es">Seguimiento</value>
         <value xml:lang="fr">Suivi</value>
+        <value xml:lang="hr">Praćenje</value>
         <value xml:lang="it">Tracciatura</value>
         <value xml:lang="ja">追跡</value>
         <value xml:lang="pt-BR">Rastreio</value>
@@ -1485,6 +1595,7 @@
         <value xml:lang="en">Tracking Code</value>
         <value xml:lang="es">Seguimiento</value>
         <value xml:lang="fr">Code de suivi</value>
+        <value xml:lang="hr">Kod za praćenje</value>
         <value xml:lang="it">Codice Tracciatura</value>
         <value xml:lang="ja">追跡コード</value>
         <value xml:lang="pt-BR">Código para rastreio</value>
@@ -1499,6 +1610,7 @@
         <value xml:lang="es">Tiempo de facturación</value>
         <value xml:lang="es-CL">Tiempo de vida de facturación</value>
         <value xml:lang="fr">Durée de vie facturable</value>
+        <value xml:lang="hr">Naplativi životni vijek</value>
         <value xml:lang="it">Tempo di Vita Fatturabile</value>
         <value xml:lang="ja">請求可能期限</value>
         <value xml:lang="nl">Declareerbare levensduur</value>
@@ -1514,6 +1626,7 @@
         <value xml:lang="en">Comments</value>
         <value xml:lang="es">Comentarios</value>
         <value xml:lang="fr">Commentaires</value>
+        <value xml:lang="hr">Komentari</value>
         <value xml:lang="it">Commenti</value>
         <value xml:lang="ja">コメント</value>
         <value xml:lang="nl">Opmerkingen</value>
@@ -1529,6 +1642,7 @@
         <value xml:lang="en">Create Tracking Code</value>
         <value xml:lang="es">Crear seguimiento</value>
         <value xml:lang="fr">Nouveau code de suivi</value>
+        <value xml:lang="hr">Stvori kod za praćenje</value>
         <value xml:lang="it">Nuovo codice tracciatura</value>
         <value xml:lang="ja">追跡コードを作成</value>
         <value xml:lang="nl">Nieuwe Tracking Code</value>
@@ -1545,6 +1659,7 @@
         <value xml:lang="es">Catálogo</value>
         <value xml:lang="es-CL">Catálogo de producto por defecto</value>
         <value xml:lang="fr">Catalogue produit par défaut</value>
+        <value xml:lang="hr">Zadani Id kataloga proizvoda</value>
         <value xml:lang="it">Codice Catalogo Default</value>
         <value xml:lang="ja">デフォルト製品カタログID</value>
         <value xml:lang="nl">Standaard catalogus</value>
@@ -1560,6 +1675,7 @@
         <value xml:lang="en">Description</value>
         <value xml:lang="es">Descripción</value>
         <value xml:lang="fr">Description</value>
+        <value xml:lang="hr">Opis</value>
         <value xml:lang="it">Descrizione</value>
         <value xml:lang="ja">詳細</value>
         <value xml:lang="nl">Omschrijving</value>
@@ -1575,6 +1691,7 @@
         <value xml:lang="en">Group ID</value>
         <value xml:lang="es">Grupo</value>
         <value xml:lang="fr">Réf. du groupe</value>
+        <value xml:lang="hr">Id grupe</value>
         <value xml:lang="it">Codice Gruppo</value>
         <value xml:lang="ja">グループID</value>
         <value xml:lang="nl">ID Groep</value>
@@ -1590,6 +1707,7 @@
         <value xml:lang="en">Seconds</value>
         <value xml:lang="es">Segundos</value>
         <value xml:lang="fr">Secondes</value>
+        <value xml:lang="hr">Sekundi</value>
         <value xml:lang="it">Secondi</value>
         <value xml:lang="ja">秒</value>
         <value xml:lang="nl">Secondes</value>
@@ -1605,6 +1723,7 @@
         <value xml:lang="en">No override (co-brand) if empty</value>
         <value xml:lang="es">Si este campo queda vacío no se reemplazará</value>
         <value xml:lang="fr">Aucun remplacement (marque associée) si vide</value>
+        <value xml:lang="hr">Nema nadjačavanja (co-brand) ako je prazno</value>
         <value xml:lang="it">Nessuna sovrapposizione (co-brand) se vuoto</value>
         <value xml:lang="ja">空の場合(相互ブランド)上書しない</value>
         <value xml:lang="pt-BR">Não haverá sobreposição se este campo estiver vazio</value>
@@ -1619,6 +1738,7 @@
         <value xml:lang="en">No redirect if empty</value>
         <value xml:lang="es">Si este campo queda vacío no habrá redirección</value>
         <value xml:lang="fr">Aucune redirection si vide</value>
+        <value xml:lang="hr">Nema preusmjeravanja ako je prazno</value>
         <value xml:lang="it">Nessun redirect se vuoto</value>
         <value xml:lang="ja">空の場合リダイレクトしない</value>
         <value xml:lang="pt-BR">Não haverá redirecionamento se este campo estiver vazio</value>
@@ -1634,6 +1754,7 @@
         <value xml:lang="es">Órdenes de seguimiento</value>
         <value xml:lang="es-CL">Ordenes de seguimiento</value>
         <value xml:lang="fr">Codes de suivi des commandes</value>
+        <value xml:lang="hr">Narudžbe kodova za praćenje</value>
         <value xml:lang="it">Codice Tracciatura Ordini</value>
         <value xml:lang="ja">追跡コード注文</value>
         <value xml:lang="pt-BR">Código de rastreio de pedidos</value>
@@ -1649,6 +1770,7 @@
         <value xml:lang="es">Es facturable ?</value>
         <value xml:lang="es-CL">¿Es facturable?</value>
         <value xml:lang="fr">Facturable ?</value>
+        <value xml:lang="hr">Je li naplativo?</value>
         <value xml:lang="it">E' Fatturabile ?</value>
         <value xml:lang="ja">請求可能?</value>
         <value xml:lang="pt-BR">É faturável ?</value>
@@ -1664,6 +1786,7 @@
         <value xml:lang="es">Código de orden</value>
         <value xml:lang="es-CL">Código de Orden</value>
         <value xml:lang="fr">Réf. de l'ordre</value>
+        <value xml:lang="hr">Id narudžbe</value>
         <value xml:lang="it">Numero Ordine</value>
         <value xml:lang="ja">注文ID</value>
         <value xml:lang="pt-BR">ID do pedido</value>
@@ -1678,6 +1801,7 @@
         <value xml:lang="en">Override CSS URL</value>
         <value xml:lang="es">CSS</value>
         <value xml:lang="fr">URL de la CSS de remplacement</value>
+        <value xml:lang="hr">Nadjačaj CSS URL</value>
         <value xml:lang="it">Sostituzione URL CSS</value>
         <value xml:lang="ja">上書CSS URL</value>
         <value xml:lang="pt-BR">Sobrepor URL de CSS</value>
@@ -1691,6 +1815,7 @@
         <value xml:lang="en">Override Logo URL</value>
         <value xml:lang="es">Logo</value>
         <value xml:lang="fr">URL de l'image logo de remplacement</value>
+        <value xml:lang="hr">Nadjačaj URL logotipa</value>
         <value xml:lang="it">Sostituzione URL Logo</value>
         <value xml:lang="ja">上書ロゴURL</value>
         <value xml:lang="nl">Logo</value>
@@ -1706,6 +1831,7 @@
         <value xml:lang="en">Tracking Code Prod Catalog ID</value>
         <value xml:lang="es">Cod. seguimiento de producto de catálogo</value>
         <value xml:lang="fr">Réf. de code de suivi de catalogue</value>
+        <value xml:lang="hr">Id koda za praćenje kataloga proizvoda</value>
         <value xml:lang="it">Codice tracciatura catalogo</value>
         <value xml:lang="ja">追跡コード製品カタログID</value>
         <value xml:lang="pt-BR">ID do produto do Código de rastreio</value>
@@ -1719,6 +1845,7 @@
         <value xml:lang="es">URL</value>
         <value xml:lang="es-CL">URL de redirección</value>
         <value xml:lang="fr">URL de redirection</value>
+        <value xml:lang="hr">URL za preusmjeravanje</value>
         <value xml:lang="it">Ridirezione URL</value>
         <value xml:lang="ja">リダイレクトURL</value>
         <value xml:lang="pt-BR">URL de redirecionamento</value>
@@ -1734,6 +1861,7 @@
         <value xml:lang="es">Informe de seguimientos</value>
         <value xml:lang="es-CL">Informe de Seguimientos</value>
         <value xml:lang="fr">Rapport de code de suivi</value>
+        <value xml:lang="hr">Izvješće o kodu za praćenje</value>
         <value xml:lang="it">Report codici tracciatura</value>
         <value xml:lang="ja">追跡コードレポート</value>
         <value xml:lang="pt-BR">Relatório de código de rastreio</value>
@@ -1748,6 +1876,7 @@
         <value xml:lang="en">Sub-Group ID</value>
         <value xml:lang="es">Sub-grupo</value>
         <value xml:lang="fr">Réf. du sous-groupe</value>
+        <value xml:lang="hr">Id podgrupe</value>
         <value xml:lang="it">Codice Sotto-Gruppo</value>
         <value xml:lang="ja">サブグループID</value>
         <value xml:lang="pt-BR">ID de subgrupo</value>
@@ -1762,6 +1891,7 @@
         <value xml:lang="es">Tiempo de vida</value>
         <value xml:lang="es-CL">Tiempo de Vida</value>
         <value xml:lang="fr">Durée de vie du suivi</value>
+        <value xml:lang="hr">Životni vijek koji se može pratiti</value>
         <value xml:lang="it">Tracciatura Tempo di Vita</value>
         <value xml:lang="ja">追跡可能期限</value>
         <value xml:lang="pt-BR">Tempo de vida</value>
@@ -1776,6 +1906,7 @@
         <value xml:lang="en">Tracking Code ID</value>
         <value xml:lang="es">Código</value>
         <value xml:lang="fr">Réf. du code de suivi</value>
+        <value xml:lang="hr">Id koda za praćenje</value>
         <value xml:lang="it">Codice Tracciatura</value>
         <value xml:lang="ja">追跡コードID</value>
         <value xml:lang="pt-BR">ID de código de rastreio</value>
@@ -1791,6 +1922,7 @@
         <value xml:lang="es">Tipo de código</value>
         <value xml:lang="es-CL">Tipo de código de seguimiento</value>
         <value xml:lang="fr">Type de code de suivi</value>
+        <value xml:lang="hr">Id vrste koda za praćenje</value>
         <value xml:lang="it">Tipo Tracciatura</value>
         <value xml:lang="ja">追跡コード種類ID</value>
         <value xml:lang="pt-BR">ID de tipo de código de rastreio</value>
@@ -1805,6 +1937,7 @@
         <value xml:lang="en">Tracking Code Type</value>
         <value xml:lang="es">Tipo de seguimiento</value>
         <value xml:lang="fr">Type de code de suivi</value>
+        <value xml:lang="hr">Vrsta koda za praćenje</value>
         <value xml:lang="it">Tipo tracciatura</value>
         <value xml:lang="ja">追跡コード種類</value>
         <value xml:lang="pt-BR">Tipo de código de rastreio</value>
@@ -1819,6 +1952,7 @@
         <value xml:lang="en">Create Tracking Code Type</value>
         <value xml:lang="es">Crear tipo de seguimiento</value>
         <value xml:lang="fr">Nouveau type de code de suivi</value>
+        <value xml:lang="hr">Stvori vrstu koda za praćenje</value>
         <value xml:lang="it">Nuovo tipo tracciatura</value>
         <value xml:lang="ja">追跡コード種類を作成</value>
         <value xml:lang="pt-BR">Criar tipo de código de rastreio</value>
@@ -1833,6 +1967,7 @@
         <value xml:lang="en">Description</value>
         <value xml:lang="es">Descripción</value>
         <value xml:lang="fr">Description</value>
+        <value xml:lang="hr">Opis</value>
         <value xml:lang="it">Descrizione</value>
         <value xml:lang="ja">詳細</value>
         <value xml:lang="pt-BR">Descrição</value>
@@ -1847,6 +1982,7 @@
         <value xml:lang="en">Tracking Code Visits</value>
         <value xml:lang="es">Visitas de seguimiento</value>
         <value xml:lang="fr">Codes de suivi des visites</value>
+        <value xml:lang="hr">Posjeti koda za praćenje</value>
         <value xml:lang="it">Codice Tracciatura Visite</value>
         <value xml:lang="ja">追跡コード訪問</value>
         <value xml:lang="pt-BR">Visitas ao código de rastreio</value>
@@ -1861,6 +1997,7 @@
         <value xml:lang="en">Client Hostname</value>
         <value xml:lang="es">Host</value>
         <value xml:lang="fr">Nom d'hôte du client</value>
+        <value xml:lang="hr">Naziv glavnog računala klijenta</value>
         <value xml:lang="it">Nome Host Client</value>
         <value xml:lang="ja">クライアントホスト名</value>
         <value xml:lang="pt-BR">Nome do Host do cliente</value>
@@ -1876,6 +2013,7 @@
         <value xml:lang="es">Dirección IP</value>
         <value xml:lang="es-CL">Dirección IP cliente</value>
         <value xml:lang="fr">Adresse IP du client</value>
+        <value xml:lang="hr">IP adresa klijenta</value>
         <value xml:lang="it">Indirizzo IP Client</value>
         <value xml:lang="ja">クライアントIPアドレス</value>
         <value xml:lang="pt-BR">Número IP do cliente</value>
@@ -1891,6 +2029,7 @@
         <value xml:lang="es">Mecanismo de contacto</value>
         <value xml:lang="es-CL">Tipo de Mecanismo de contacto</value>
         <value xml:lang="fr">Type de coordonnées</value>
+        <value xml:lang="hr">Vrsta kontaktnog mehanizma</value>
         <value xml:lang="it">Tipo Contatto</value>
         <value xml:lang="ja">連絡方法種類</value>
         <value xml:lang="pt-BR">Tipo de mecanismo de contato</value>
@@ -1905,6 +2044,7 @@
         <value xml:lang="en">Party ID</value>
         <value xml:lang="es">Participante</value>
         <value xml:lang="fr">Réf. de l'acteur</value>
+        <value xml:lang="hr">Id sudionika</value>
         <value xml:lang="it">Codice Soggetto</value>
         <value xml:lang="ja">取引先ID</value>
         <value xml:lang="pt-BR">ID de participante</value>
@@ -1920,6 +2060,7 @@
         <value xml:lang="es">Tipo de rol</value>
         <value xml:lang="es-CL">Tipo de Rol</value>
         <value xml:lang="fr">Type de rôle</value>
+        <value xml:lang="hr">Id vrste uloge</value>
         <value xml:lang="it">Tipo Ruolo</value>
         <value xml:lang="ja">ロール種類ID</value>
         <value xml:lang="pt-BR">ID de tipo de papel</value>
@@ -1934,6 +2075,7 @@
         <value xml:lang="es">Código de sesión</value>
         <value xml:lang="es-CL">Código de Sesión</value>
         <value xml:lang="fr">Réf. de la session</value>
+        <value xml:lang="hr">Id sesije</value>
         <value xml:lang="it">Numero Sessione</value>
         <value xml:lang="ja">セッションID</value>
         <value xml:lang="pt-BR">ID de sessão</value>
@@ -1948,6 +2090,7 @@
         <value xml:lang="es">Código de fuente de la visita</value>
         <value xml:lang="es-CL">Código de Origen</value>
         <value xml:lang="fr">Réf. de l'origine</value>
+        <value xml:lang="hr">Id izvora</value>
         <value xml:lang="it">Numero Origine</value>
         <value xml:lang="ja">ソースID</value>
         <value xml:lang="pt-BR">ID de origem</value>
@@ -1962,6 +2105,7 @@
         <value xml:lang="en">Tracking Code Visit User Login ID</value>
         <value xml:lang="es">Cod. de Seguimiento de Visita de usuario</value>
         <value xml:lang="fr">Réf. de code de suivi de visite d'identifiant de connexion</value>
+        <value xml:lang="hr">Id koda za praćenje posjeta prijave korisnika</value>
         <value xml:lang="it">Codice tracciatura utente visita</value>
         <value xml:lang="ja">追跡コード訪問ログインユーザID</value>
         <value xml:lang="pt-BR">ID da vista do usuário ao código de rastreio</value>
@@ -1975,6 +2119,7 @@
         <value xml:lang="es">Código de visita</value>
         <value xml:lang="es-CL">Código de Visita</value>
         <value xml:lang="fr">Réf. de la visite</value>
+        <value xml:lang="hr">Id posjeta</value>
         <value xml:lang="it">Numero Visita</value>
         <value xml:lang="ja">訪問ID</value>
         <value xml:lang="pt-BR">ID de visita</value>
@@ -1989,6 +2134,7 @@
         <value xml:lang="es">Código de visitante</value>
         <value xml:lang="es-CL">Código de Visitante</value>
         <value xml:lang="fr">Réf. du visiteur</value>
+        <value xml:lang="hr">Id posjetitelja</value>
         <value xml:lang="it">Codice Visitatore</value>
         <value xml:lang="ja">訪問者ID</value>
         <value xml:lang="pt-BR">ID do visitante</value>
@@ -2004,6 +2150,7 @@
         <value xml:lang="es">Nombre de aplicación web</value>
         <value xml:lang="es-CL">Nombre de Aplicación web</value>
         <value xml:lang="fr">Nom de l'application Web</value>
+        <value xml:lang="hr">Naziv web aplikacije</value>
         <value xml:lang="it">Nome Applicazione Web</value>
         <value xml:lang="ja">Webアプリ名称</value>
         <value xml:lang="pt-BR">Nome da aplicação Web</value>
@@ -2017,6 +2164,7 @@
         <value xml:lang="de">Berechtigungsfehler: Um ${resourceDescription} auszuführen muss man MARKETING_UPDATE oder MARKETING_ADMIN Berechtigungen haben</value>
         <value xml:lang="en">Security Error: to run ${resourceDescription} you must have the MARKETING_UPDATE or MARKETING_ADMIN permission</value>
         <value xml:lang="es">Error de seguridad: para ejecutar ${resourceDescription} necesita el permiso MARKETING_UPDATE o MARKETING_ADMIN</value>
+        <value xml:lang="hr">Sigurnosna greška: za pokretanje ${resourceDescription} morate imati dopuštenje MARKETING_UPDATE ili MARKETING_ADMIN</value>
         <value xml:lang="it">Errore di sicurezza: per eseguire ${resourceDescription} devi avere il permesso MARKETING_UPDATE o MARKETING_ADMIN</value>
         <value xml:lang="ja">セキュリティエラー: ${resourceDescription} の実行には MARKETING_UPDATE または MARKETING_ADMIN 権限が必要です。</value>
         <value xml:lang="vi">Lỗi phân quyền: để thực thi ${resourceDescription} bạn cần quyền MARKETING_UPDATE hoặc quyền MARKETING_ADMIN</value>
@@ -2028,6 +2176,7 @@
         <value xml:lang="en">View Permission Error</value>
         <value xml:lang="es">Usted no cuenta con permiso de acceso</value>
         <value xml:lang="fr">Vous n'avez pas l'autorisation de voir</value>
+        <value xml:lang="hr">Greška dopuštenja pregleda</value>
         <value xml:lang="it">Mostra Errore Permessi</value>
         <value xml:lang="ja">表示権限エラー</value>
         <value xml:lang="pt-BR">Erro - você não possui permissão de acesso</value>
@@ -2042,6 +2191,7 @@
         <value xml:lang="en">Visits</value>
         <value xml:lang="es">Visitas</value>
         <value xml:lang="fr">Visites</value>
+        <value xml:lang="hr">Posjeti</value>
         <value xml:lang="it">Visite</value>
         <value xml:lang="ja">訪問</value>
         <value xml:lang="pt-BR">Visitas</value>
@@ -2057,6 +2207,7 @@
         <value xml:lang="es">WebSites</value>
         <value xml:lang="es-CL">Sitios Web</value>
         <value xml:lang="fr">Sites Web</value>
+        <value xml:lang="hr">Web stranice</value>
         <value xml:lang="ja">Webサイト</value>
         <value xml:lang="vi">Trang thông tin (website)</value>
         <value xml:lang="zh">网站</value>
@@ -2068,6 +2219,7 @@
         <value xml:lang="es">Crear WebSite</value>
         <value xml:lang="es-CL">Crear Sitio Web</value>
         <value xml:lang="fr">Créer un site Web</value>
+        <value xml:lang="hr">Izradi web stranicu</value>
         <value xml:lang="ja">Webサイトを作成</value>
         <value xml:lang="vi">Tạo mới trang thông tin</value>
         <value xml:lang="zh">创建网站</value>
@@ -2079,6 +2231,7 @@
         <value xml:lang="es">Ver WebSites</value>
         <value xml:lang="es-CL">Ver Sitios web</value>
         <value xml:lang="fr">Visualiser les sites Web</value>
+        <value xml:lang="hr">Prikaz web stranica</value>
         <value xml:lang="ja">Webサイト表示</value>
         <value xml:lang="vi">Xem Trang thông tin</value>
         <value xml:lang="zh">网站视图</value>
@@ -2089,6 +2242,7 @@
         <value xml:lang="en">Account Summary</value>
         <value xml:lang="es">Resumen de cuenta</value>
         <value xml:lang="fr">Résumé de compte</value>
+        <value xml:lang="hr">Sažetak računa</value>
         <value xml:lang="it">Sommario utente</value>
         <value xml:lang="ja">アカウントサマリ</value>
         <value xml:lang="pt-BR">Resumo da conta</value>
@@ -2101,6 +2255,7 @@
         <value xml:lang="en">Add Contact List</value>
         <value xml:lang="es">Nueva lista de contactos</value>
         <value xml:lang="fr">Ajouter une liste de contact</value>
+        <value xml:lang="hr">Dodaj popis kontakata</value>
         <value xml:lang="it">Aggiungi lista contatti</value>
         <value xml:lang="ja">連絡リストを追加</value>
         <value xml:lang="pt-BR">Adicionar lista de contatos</value>
@@ -2116,6 +2271,7 @@
         <value xml:lang="es">Nueva campaña de marketing</value>
         <value xml:lang="es-CL">Nueva Campaña de Marketing</value>
         <value xml:lang="fr">Ajouter une nouvelle campagne de marketing</value>
+        <value xml:lang="hr">Dodaj novu marketinšku kampanju</value>
         <value xml:lang="it">Aggiungi nuova campagna di vendita</value>
         <value xml:lang="ja">キャンペーンを追加</value>
         <value xml:lang="pt-BR">Adicionar nova Campanha de Marketing</value>
@@ -2131,6 +2287,7 @@
         <value xml:lang="es">Nuevo código de seguimiento</value>
         <value xml:lang="es-CL">Nuevo código de Seguimiento</value>
         <value xml:lang="fr">Ajouter un nouveau code de suivi</value>
+        <value xml:lang="hr">Dodaj novi kod za praćenje</value>
         <value xml:lang="it">Aggiungi Nuovo Codice Tracciatura</value>
         <value xml:lang="ja">追跡コードを追加</value>
         <value xml:lang="pt-BR">Adicionar novo código de rastreio</value>
@@ -2146,6 +2303,7 @@
         <value xml:lang="es">Nuevo tipo de código</value>
         <value xml:lang="es-CL">Nuevo tipo de código de seguimiento</value>
         <value xml:lang="fr">Ajouter un nouveau type de code de suivi</value>
+        <value xml:lang="hr">Dodaj novu vrstu koda za praćenje</value>
         <value xml:lang="it">Aggiungi nuovo tipo tracciatura</value>
         <value xml:lang="ja">追跡コード種類を追加</value>
         <value xml:lang="pt-BR">Adicionar novo tipo de código de rastreio</value>
@@ -2160,6 +2318,7 @@
         <value xml:lang="en">Assign Existing Account</value>
         <value xml:lang="es">Asignar una cuenta existente</value>
         <value xml:lang="fr">Associer un compte existant</value>
+        <value xml:lang="hr">Dodijeli postojeći račun</value>
         <value xml:lang="ja">既存のアカウントを割当</value>
         <value xml:lang="pt-BR">Designar uma conta existente</value>
         <value xml:lang="th">กำหนด Account ที่มีอยู่</value>
@@ -2172,6 +2331,7 @@
         <value xml:lang="en">Assign Existing Lead</value>
         <value xml:lang="es">Asignar Prospecto Cliente existente</value>
         <value xml:lang="fr">Associer un prospect existant</value>
+        <value xml:lang="hr">Dodijeli postojećeg potencijalnog klijenta</value>
         <value xml:lang="ja">既存のリードを割当</value>
         <value xml:lang="pt-BR">Designar um Lead existente</value>
         <value xml:lang="th">กำหนด Lead ที่มีอยู่</value>
@@ -2185,6 +2345,7 @@
         <value xml:lang="es">Crear nueva cuenta</value>
         <value xml:lang="es-CL">Crear nueva Cuenta</value>
         <value xml:lang="fr">Créer un nouveau compte</value>
+        <value xml:lang="hr">Napravi novi račun</value>
         <value xml:lang="it">Creare una nuova utenza</value>
         <value xml:lang="ja">新規アカウントを作成</value>
         <value xml:lang="pt-BR">Criar nova conta</value>
@@ -2198,6 +2359,7 @@
         <value xml:lang="es">Crear nuevo contacto</value>
         <value xml:lang="es-CL">Crear nuevo Contacto</value>
         <value xml:lang="fr">Créer un nouveau contact</value>
+        <value xml:lang="hr">Stvori novi kontakt</value>
         <value xml:lang="it">Creare un nuovo contatto</value>
         <value xml:lang="ja">新規連絡を作成</value>
         <value xml:lang="pt-BR">Criar novo contato</value>
@@ -2210,6 +2372,7 @@
         <value xml:lang="en">Create contact from vCard</value>
         <value xml:lang="es">Crear Contacto para vCard</value>
         <value xml:lang="fr">Créer un contact depuis une vCard</value>
+        <value xml:lang="hr">Stvori kontakt iz vCard-a</value>
         <value xml:lang="it">Creare contatto dalla vCard</value>
         <value xml:lang="ja">vCardから連絡を作成</value>
         <value xml:lang="pt-BR">Criar contato a partir do vCard</value>
@@ -2223,6 +2386,7 @@
         <value xml:lang="es">Crear nuevo lead</value>
         <value xml:lang="es-CL">Crear nuevo prospecto cliente</value>
         <value xml:lang="fr">Créer un nouveau prospect</value>
+        <value xml:lang="hr">Stvori novog potencijalnog klijenta</value>
         <value xml:lang="it">Creare nuovo lead</value>
         <value xml:lang="ja">新規リードを作成</value>
         <value xml:lang="pt-BR">Criar novo Lead</value>
@@ -2236,6 +2400,7 @@
         <value xml:lang="es">Crear nuevo lead desde vCard</value>
         <value xml:lang="es-CL">Crear nuevo cliente potencial desde vCard</value>
         <value xml:lang="fr">Créer un prospect depuis une vCard</value>
+        <value xml:lang="hr">Stvori potencijalnog klijenta iz vCard-a</value>
         <value xml:lang="it">Creare lead dalla vCard</value>
         <value xml:lang="ja">vCardからリードを作成</value>
         <value xml:lang="pt-BR">Criar novo Lead a partir do vCard</value>
@@ -2249,6 +2414,7 @@
         <value xml:lang="es">Editar cuenta</value>
         <value xml:lang="es-CL">Editar Cuenta</value>
         <value xml:lang="fr">Modifier le compte</value>
+        <value xml:lang="hr">Uredi račun</value>
         <value xml:lang="it">Aggiornare utente</value>
         <value xml:lang="ja">アカウントを編集</value>
         <value xml:lang="pt-BR">Editar conta</value>
@@ -2262,6 +2428,7 @@
         <value xml:lang="es">Editar lista de contactos</value>
         <value xml:lang="es-CL">Editar lista de Contactos</value>
         <value xml:lang="fr">Modifier la liste de contact</value>
+        <value xml:lang="hr">Uredi popis kontakata</value>
         <value xml:lang="it">Aggiorna lista contatti</value>
         <value xml:lang="ja">連絡リストを編集</value>
         <value xml:lang="pt-BR">Editar lista de contatos</value>
@@ -2276,6 +2443,7 @@
         <value xml:lang="en">Edit Contact List Comm Event</value>
         <value xml:lang="es">Editar evento de comunicación</value>
         <value xml:lang="fr">Modifier l'événement de communication de la liste de contact</value>
+        <value xml:lang="hr">Uredi kom. događaj popisa kontakata</value>
         <value xml:lang="it">Aggiorna Lista Contatto Evento Comunicazione</value>
         <value xml:lang="ja">連絡リスト通信イベントを編集</value>
         <value xml:lang="pt-BR">Editar evento de comunicação de lista de contatos</value>
@@ -2291,6 +2459,7 @@
         <value xml:lang="es">Añadir participante</value>
         <value xml:lang="es-CL">Añadir Participante a Lista</value>
         <value xml:lang="fr">Modifier l'abonné à la liste de contact</value>
+        <value xml:lang="hr">Uredi sudionika popisa kontakata</value>
         <value xml:lang="it">Aggiorna membro lista contatti</value>
         <value xml:lang="ja">連絡リスト取引先を編集</value>
         <value xml:lang="pt-BR">Editar participante de lista de contatos</value>
@@ -2306,6 +2475,7 @@
         <value xml:lang="es">Editar campaña de marketing</value>
         <value xml:lang="es-CL">Editar Campaña de Marketing</value>
         <value xml:lang="fr">Modifier la campagne marketing</value>
+        <value xml:lang="hr">Uredi marketinšku kampanju</value>
         <value xml:lang="it">Aggiorna campagna di vendita</value>
         <value xml:lang="ja">キャンペーンを編集</value>
         <value xml:lang="pt-BR">Editar Campanha de Marketing</value>
@@ -2321,6 +2491,7 @@
         <value xml:lang="es">Editar roles de la campaña de marketing</value>
         <value xml:lang="es-CL">Editar Roles de la Campaña de Marketing</value>
         <value xml:lang="fr">Modifier les rôles de la campagne marketing</value>
+        <value xml:lang="hr">Uredi ulogu marketinške kampanje</value>
         <value xml:lang="it">Aggiorna Ruolo Campagna Vendita</value>
         <value xml:lang="ja">キャンペーンロールを編集</value>
         <value xml:lang="pt-BR">Editar papel de Campanha de Marketing</value>
@@ -2335,6 +2506,7 @@
         <value xml:lang="en">Edit Sales Forecast</value>
         <value xml:lang="es">Editar pronóstico de Ventas</value>
         <value xml:lang="fr">Modifier la prévision de ventes</value>
+        <value xml:lang="hr">Uredi prognozu prodaje</value>
         <value xml:lang="it">Aggiorna previsioni di vendita</value>
         <value xml:lang="ja">販売予測を編集</value>
         <value xml:lang="pt-BR">Editar previsão de vendas</value>
@@ -2347,6 +2519,7 @@
         <value xml:lang="en">Edit Sales Forecast Detail</value>
         <value xml:lang="es">Editar detalle de pronóstico de ventas</value>
         <value xml:lang="fr">Modifier le détail de la prévision de ventes</value>
+        <value xml:lang="hr">Uredi pojedinosti prognoze prodaje</value>
         <value xml:lang="it">Aggiorna dettagli previsioni di vendita</value>
         <value xml:lang="ja">販売予測詳細を編集</value>
         <value xml:lang="pt-BR">Editar detalhes da previsão de vendas</value>
@@ -2359,6 +2532,7 @@
         <value xml:lang="en">Edit Segment Group</value>
         <value xml:lang="es">Editar segmento</value>
         <value xml:lang="fr">Modifier le groupe de segment</value>
+        <value xml:lang="hr">Uredi grupu segmenata</value>
         <value xml:lang="it">Aggiorna gruppo segmento</value>
         <value xml:lang="ja">セグメントグループを編集</value>
         <value xml:lang="pt-BR">Editar Grupo de Segmento</value>
@@ -2373,6 +2547,7 @@
         <value xml:lang="en">Edit Segment Group Classification</value>
         <value xml:lang="es">Editar clasificación de segmento</value>
         <value xml:lang="fr">Modifier la classification de groupe de segment</value>
+        <value xml:lang="hr">Uredi klasifikaciju grupe segmenata</value>
         <value xml:lang="it">Aggiorna Classificazione Gruppo Segmento</value>
         <value xml:lang="ja">セグメントグループ分類を編集</value>
         <value xml:lang="pt-BR">Editar classificação de Grupo de Segmento</value>
@@ -2387,6 +2562,7 @@
         <value xml:lang="en">Edit Segment Group Geo</value>
         <value xml:lang="es">Editar ubicación de segmento</value>
         <value xml:lang="fr">Modifier des zones géographiques du groupe de segment</value>
+        <value xml:lang="hr">Uredi geografsku grupu segmenata</value>
         <value xml:lang="it">Aggiorna Geografia Gruppo Segmento </value>
         <value xml:lang="ja">セグメントグループ位置を編集</value>
         <value xml:lang="pt-BR">Editar localização do Grupo de Segmento</value>
@@ -2402,6 +2578,7 @@
         <value xml:lang="es">Editar rol de segmento</value>
         <value xml:lang="es-CL">Editar Rol de segmento</value>
         <value xml:lang="fr">Modifier le rôle du groupe de segment</value>
+        <value xml:lang="hr">Uredi ulogu grupe segmenata</value>
         <value xml:lang="it">Aggiorna Ruolo Gruppo Segmento </value>
         <value xml:lang="ja">セグメントグループロールを編集</value>
         <value xml:lang="pt-BR">Editar Papel de Grupo de Segmento</value>
@@ -2417,6 +2594,7 @@
         <value xml:lang="es">Editar seguimiento</value>
         <value xml:lang="es-CL">Editar código de seguimiento</value>
         <value xml:lang="fr">Modifier le code de suivi</value>
+        <value xml:lang="hr">Uredi kod za praćenje</value>
         <value xml:lang="it">Aggiorna Codice Tracciatura</value>
         <value xml:lang="ja">追跡コードを編集</value>
         <value xml:lang="pt-BR">Editar código de rastreio</value>
@@ -2431,6 +2609,7 @@
         <value xml:lang="en">Edit Tracking Code Order</value>
         <value xml:lang="es">Editar orden de seguimiento</value>
         <value xml:lang="fr">Modifier la commande associée au code de suivi</value>
+        <value xml:lang="hr">Uredi redoslijed kodova za praćenje</value>
         <value xml:lang="it">Aggiorna Codice Tracciatura Ordine</value>
         <value xml:lang="ja">追跡コード注文を編集</value>
         <value xml:lang="pt-BR">Editar código de rastreio do pedido</value>
@@ -2445,6 +2624,7 @@
         <value xml:lang="en">Edit Tracking Code Type</value>
         <value xml:lang="es">Editar tipo de seguimiento</value>
         <value xml:lang="fr">Modifier le type de code de suivi</value>
+        <value xml:lang="hr">Uredi vrstu koda za praćenje</value>
         <value xml:lang="it">Aggiorna tipo tracciatura</value>
         <value xml:lang="ja">追跡コード種類を編集</value>
         <value xml:lang="pt-BR">Editar tipo de código de rastreio</value>
@@ -2460,6 +2640,7 @@
         <value xml:lang="es">Editar visita de seguimiento</value>
         <value xml:lang="es-CL">Editar código de visita de seguimiento</value>
         <value xml:lang="fr">Modifier la visite associée au code de suivi</value>
+        <value xml:lang="hr">Uredi kod za praćenje posjete</value>
         <value xml:lang="it">Aggiorna Codice Visita Tracciatura</value>
         <value xml:lang="ja">追跡コード訪問を編集</value>
         <value xml:lang="pt-BR">Editar visita ao código de rastreio</value>
@@ -2474,6 +2655,7 @@
         <value xml:lang="en">Find Contact List Communication Event</value>
         <value xml:lang="es">Buscar evento de comunicación</value>
         <value xml:lang="fr">Rechercher l'évènement de communication de la liste de contact</value>
+        <value xml:lang="hr">Pronađi kom. događaj popisa kontakata</value>
         <value xml:lang="it">Ricerca Lista Contatto Eventi Comunicazione</value>
         <value xml:lang="ja">連絡リスト通信イベントを検索</value>
         <value xml:lang="pt-BR">Buscar evento de comunicação da lista de contatos</value>
@@ -2489,6 +2671,7 @@
         <value xml:lang="es">Buscar eventos asociados</value>
         <value xml:lang="es-CL">Buscar eventos de comunicación asociados</value>
         <value xml:lang="fr">Rechercher les évènements de communication associés</value>
+        <value xml:lang="hr">Pronađi pridružene kom. događaje</value>
         <value xml:lang="it">Ricerca eventi comunicazione associati</value>
         <value xml:lang="ja">関連通信イベントを検索</value>
         <value xml:lang="pt-BR">Buscar Eventos de comunicação associados</value>
@@ -2503,6 +2686,7 @@
         <value xml:lang="en">Find Contact List Parties</value>
         <value xml:lang="es">Buscar participantes</value>
         <value xml:lang="fr">Rechercher les abonnés à la liste de contact</value>
+        <value xml:lang="hr">Pronađi sudionike popisa kontakata</value>
         <value xml:lang="it">Ricerca membri della lista contatti</value>
         <value xml:lang="ja">連絡リスト取引先を検索</value>
         <value xml:lang="pt-BR">Buscar participantes na lsita de contatos</value>
@@ -2517,6 +2701,7 @@
         <value xml:lang="en">Find Import Contact List Parties</value>
         <value xml:lang="es">Buscar contacto de participantes importados</value>
         <value xml:lang="fr">Rechercher des acteurs importés sur une liste de contact</value>
+        <value xml:lang="hr">Pronađi sudionike popisa kontakata za uvoz</value>
         <value xml:lang="ja">インポート連絡リスト取引先を検索</value>
         <value xml:lang="th">ค้นหารายการติดต่อกลุ่มผู้ใช้เพื่อการนำเข้า</value>
         <value xml:lang="vi">Tìm Danh sách liên hệ của Tác nhân đã nhập khẩu</value>
@@ -2529,6 +2714,7 @@
         <value xml:lang="es">Buscar rol de campaña</value>
         <value xml:lang="es-CL">Buscar Rol de Campaña de Marketing</value>
         <value xml:lang="fr">Rechercher le rôle de la campagne marketing</value>
+        <value xml:lang="hr">Pronađi ulogu marketinške kampanje</value>
         <value xml:lang="it">Ricerca Ruoli Campagne Vendita</value>
         <value xml:lang="ja">キャンペーンロールを検索</value>
         <value xml:lang="pt-BR">Buscar papel de Campanha de Marketing</value>
@@ -2543,6 +2729,7 @@
         <value xml:lang="en">Find Sales Forecast</value>
         <value xml:lang="es">Buscar previsión de ventas</value>
         <value xml:lang="fr">Recherche de prévision de ventes</value>
+        <value xml:lang="hr">Pronađi prognozu prodaje</value>
         <value xml:lang="it">Ricerca previsioni di vendita</value>
         <value xml:lang="ja">販売予測を検索</value>
         <value xml:lang="pt-BR">Buscar previsão de vendas</value>
@@ -2556,6 +2743,7 @@
         <value xml:lang="es">Buscar segmento</value>
         <value xml:lang="es-CL">Buscar Segmento</value>
         <value xml:lang="fr">Rechercher le groupe de segment</value>
+        <value xml:lang="hr">Pronađi grupu segmenata</value>
         <value xml:lang="it">Ricerca gruppo segmento</value>
         <value xml:lang="ja">セグメントグループを検索</value>
         <value xml:lang="pt-BR">Buscar Grupo de Segmento</value>
@@ -2570,6 +2758,7 @@
         <value xml:lang="en">Find Tracking Code</value>
         <value xml:lang="es">Buscar código de seguimiento</value>
         <value xml:lang="fr">Rechercher un code de suivi</value>
+        <value xml:lang="hr">Pronađi kod za praćenje</value>
         <value xml:lang="it">Ricerca codice tracciatura</value>
         <value xml:lang="ja">追跡コードを検索</value>
         <value xml:lang="pt-BR">Buscar código de rastreio</value>
@@ -2582,6 +2771,7 @@
         <value xml:lang="en">Find Tracking Code Orders</value>
         <value xml:lang="es">Buscar órdenes de seguimiento</value>
         <value xml:lang="fr">Rechercher les ordres associés au code de suivi</value>
+        <value xml:lang="hr">Pronađi narudžbe kodova za praćenje</value>
         <value xml:lang="it">Ricerca Codice Tracciatura Ordini</value>
         <value xml:lang="ja">追跡コード注文を検索</value>
         <value xml:lang="pt-BR">Buscar códigos de rastreio de pedidos</value>
@@ -2596,6 +2786,7 @@
         <value xml:lang="en">Find Tracking Code Visit</value>
         <value xml:lang="es">Buscar código de seguimiento de visita</value>
         <value xml:lang="fr">Rechercher un code de suivi de visite</value>
+        <value xml:lang="hr">Pronađi kod za praćenje posjete</value>
         <value xml:lang="it">Ricerca codice tracciatura visita</value>
         <value xml:lang="ja">追跡コード訪問を検索</value>
         <value xml:lang="pt-BR">Buscar visita ao código de rastreio</value>
@@ -2608,6 +2799,7 @@
         <value xml:lang="en">Find Tracking Code Visits</value>
         <value xml:lang="es">Buscar visitas de seguimiento</value>
         <value xml:lang="fr">Rechercher les visites associées au code de suivi</value>
+        <value xml:lang="hr">Pronađi posjete koda za praćenje</value>
         <value xml:lang="it">Ricerca Codice Tracciatura Visite</value>
         <value xml:lang="ja">追跡コード訪問を検索</value>
         <value xml:lang="pt-BR">Buscar visitas ao código de rastreio</value>
@@ -2623,6 +2815,7 @@
         <value xml:lang="es">Listado de listas de contactos</value>
         <value xml:lang="es-CL">Listado de listas de Contactos</value>
         <value xml:lang="fr">Afficher la liste de contact</value>
+        <value xml:lang="hr">Popis popisa kontakata</value>
         <value xml:lang="it">Lista contatto</value>
         <value xml:lang="ja">連絡リスト一覧</value>
         <value xml:lang="nl">Contactlijst(en) tonen</value>
@@ -2640,6 +2833,7 @@
         <value xml:lang="es">Mostrar eventos de comunicación</value>
         <value xml:lang="es-CL">Mostrar eventos de Comunicación</value>
         <value xml:lang="fr">Liste des événements de communication de la liste de contact</value>
+        <value xml:lang="hr">Popis Popis kom. događaja popisa kontakata</value>
         <value xml:lang="it">Visualizza Lista Contatti Eventi Comunicazioni</value>
         <value xml:lang="ja">連絡リスト通信イベントの一覧</value>
         <value xml:lang="pt-BR">Listar Eventos de Comunicação da lista de contatos</value>
@@ -2655,6 +2849,7 @@
         <value xml:lang="es">Mostrar participantes</value>
         <value xml:lang="es-CL">Lista de Participantes</value>
         <value xml:lang="fr">Liste des abonnés à la liste de contact</value>
+        <value xml:lang="hr">Popis sudionika popisa kontakata</value>
         <value xml:lang="it">Elenco membri della lista contatti</value>
         <value xml:lang="ja">連絡リスト取引先の一覧</value>
         <value xml:lang="pt-BR">Listar participantes da lista de contatos</value>
@@ -2670,6 +2865,7 @@
         <value xml:lang="es">Mostrar campañas de marketing</value>
         <value xml:lang="es-CL">Lista de Campañas de Marketing</value>
         <value xml:lang="fr">Liste des campagnes marketing</value>
+        <value xml:lang="hr">Popis marketinške kampanje</value>
         <value xml:lang="it">Lista campagne di vendita</value>
         <value xml:lang="ja">キャンペーン一覧</value>
         <value xml:lang="pt-BR">Listar Campanhas de Marketing</value>
@@ -2685,6 +2881,7 @@
         <value xml:lang="es">Mostrar roles de campaña</value>
         <value xml:lang="es-CL">Mostrar Roles de Campañas de Marketing</value>
         <value xml:lang="fr">Liste des rôles de la campagne marketing</value>
+        <value xml:lang="hr">Popis uloga marketinške kampanje</value>
         <value xml:lang="it">Lista ruoli campagna di vendita</value>
         <value xml:lang="ja">キャンペーンロール一覧</value>
         <value xml:lang="pt-BR">Listar papéis de Campanha de Marketing</value>
@@ -2699,6 +2896,7 @@
         <value xml:lang="en">List Segment Group Geos</value>
         <value xml:lang="es">Mostrar ubicación de segmento</value>
         <value xml:lang="fr">Liste des zones géographiques de groupe de segment</value>
+        <value xml:lang="hr">Popis geo. grupe segmenata</value>
         <value xml:lang="it">Lista Gruppo Segmento Geos</value>
         <value xml:lang="ja">セグメントグループ位置一覧</value>
         <value xml:lang="pt-BR">Listar localizações de Grupos de Segmento</value>
@@ -2714,6 +2912,7 @@
         <value xml:lang="es">Mostrar roles de segmentos</value>
         <value xml:lang="es-CL">Listar Roles de segmentos</value>
         <value xml:lang="fr">Liste des rôles du groupe de segment</value>
+        <value xml:lang="hr">Popis uloga grupe segmenata</value>
         <value xml:lang="it">Visualizza Ruoli Gruppo Segmento</value>
         <value xml:lang="ja">セグメントグループロール一覧</value>
         <value xml:lang="pt-BR">Listar papéis de Grupo de Segmento</value>
@@ -2729,6 +2928,7 @@
         <value xml:lang="es">Mostrar seguimientos</value>
         <value xml:lang="es-CL">Listar código de seguimientos</value>
         <value xml:lang="fr">Liste des codes de suivi</value>
+        <value xml:lang="hr">Popis kodova za praćenje</value>
         <value xml:lang="it">Lista codici tracciatura</value>
         <value xml:lang="ja">追跡コード一覧</value>
         <value xml:lang="pt-BR">Listar códigos de rastreio</value>
@@ -2744,6 +2944,7 @@
         <value xml:lang="es">Mostrar visitas de seguimiento para</value>
         <value xml:lang="es-CL">Listar visitas de seguimiento para</value>
         <value xml:lang="fr">Liste des visite associées pour le</value>
+        <value xml:lang="hr">Popis kodova za praćenje posjete za</value>
         <value xml:lang="it">Lista Codice Tracciatura Visita per</value>
         <value xml:lang="ja">追跡コード訪問一覧</value>
         <value xml:lang="pt-BR">Listar Visitaso ao Códigos de Rastreio para</value>
@@ -2759,6 +2960,7 @@
         <value xml:lang="es">Mostrar órdenes de seguimiento para</value>
         <value xml:lang="es-CL">Listar ordenes de seguimiento para</value>
         <value xml:lang="fr">Liste des ordres associés</value>
+        <value xml:lang="hr">Redoslijed popisa kodova za praćenje</value>
         <value xml:lang="it">Lista Codice Tracciatura Ordine</value>
         <value xml:lang="ja">追跡コード注文一覧</value>
         <value xml:lang="pt-BR">Listar código de ratreio para pedido</value>
@@ -2774,6 +2976,7 @@
         <value xml:lang="es">Mostrar órdenes de seguimiento para</value>
         <value xml:lang="es-CL">Mostrar Ordenes de seguimiento para</value>
         <value xml:lang="fr">Liste des ordres associés pour le</value>
+        <value xml:lang="hr">Popis kodova za praćenje narudžbe za</value>
         <value xml:lang="it">Lista Codice Tracciatura Ordine per</value>
         <value xml:lang="ja">追跡コード注文一覧</value>
         <value xml:lang="pt-BR">Listar código de rastreio de pedido para</value>
@@ -2788,6 +2991,7 @@
         <value xml:lang="en">List Tracking Code Type</value>
         <value xml:lang="es">Editar tipo de seguimiento</value>
         <value xml:lang="fr">Liste des types de code de suivi</value>
+        <value xml:lang="hr">Popis vrsta koda za praćenje</value>
         <value xml:lang="it">Lista tipi tracciatura</value>
         <value xml:lang="ja">追跡コード種類一覧</value>
         <value xml:lang="pt-BR">Listar tipo de código de rastreio</value>
@@ -2802,6 +3006,7 @@
         <value xml:lang="en">List Tracking Code Visit</value>
         <value xml:lang="es">Mostrar visitas de seguimiento</value>
         <value xml:lang="fr">Liste des visite associées</value>
+        <value xml:lang="hr">Popis posjeta koda za praćenje</value>
         <value xml:lang="it">Lista Codice Tracciatura Visita</value>
         <value xml:lang="ja">追跡コード訪問一覧</value>
         <value xml:lang="pt-BR">Listar visitas ao código de rastreio</value>
@@ -2816,6 +3021,7 @@
         <value xml:lang="en">Lookup Communication Event</value>
         <value xml:lang="es">Buscar evento de comunicación</value>
         <value xml:lang="fr">Rechercher un ou des  évènements de communication</value>
+        <value xml:lang="hr">Potraži kom. događaj</value>
         <value xml:lang="it">Ricerca Evento Comunicazione</value>
         <value xml:lang="ja">通信イベントを検索</value>
         <value xml:lang="pt-BR">Buscar Evento de Comunicação</value>
@@ -2830,6 +3036,7 @@
         <value xml:lang="en">Lookup Contact List</value>
         <value xml:lang="es">Buscar lista de contactos</value>
         <value xml:lang="fr">Rechercher une ou des listes de contact</value>
+        <value xml:lang="hr">Potraži popis kontakata</value>
         <value xml:lang="it">Ricerca Lista Contatti</value>
         <value xml:lang="ja">連絡リストを検索</value>
         <value xml:lang="pt-BR">Buscar Lista de Contatos</value>
@@ -2844,6 +3051,7 @@
         <value xml:lang="en">Lookup Sales Forecast</value>
         <value xml:lang="es">Buscar previsión de ventas</value>
         <value xml:lang="fr">Rechercher une ou des prévisions de ventes</value>
+        <value xml:lang="hr">Potraži prognozu prodaje</value>
         <value xml:lang="it">Ricerca previsioni di vendita</value>
         <value xml:lang="ja">販売予測を検索</value>
         <value xml:lang="pt-BR">Buscar previsões de venda</value>
@@ -2856,6 +3064,7 @@
         <value xml:lang="en">Lookup Segment Group</value>
         <value xml:lang="es">Buscar grupos de segmentos</value>
         <value xml:lang="fr">Rechercher un ou des groupes de segment</value>
+        <value xml:lang="hr">Potraži grupu segmenata</value>
         <value xml:lang="it">Ricerca Gruppi Segmento</value>
         <value xml:lang="ja">セグメントグループを検索</value>
         <value xml:lang="pt-BR">Buscar Grupo de segmento</value>
@@ -2870,6 +3079,7 @@
         <value xml:lang="en">Lookup Tracking Code</value>
         <value xml:lang="es">Buscar seguimiento</value>
         <value xml:lang="fr">Rechercher un ou des codes de suivi</value>
+        <value xml:lang="hr">Potraži kod za praćenje</value>
         <value xml:lang="it">Ricerca Codice Tracciatura</value>
         <value xml:lang="ja">追跡コードを検索</value>
         <value xml:lang="pt-BR">Buscar código de rastreio</value>
@@ -2884,6 +3094,7 @@
         <value xml:lang="en">Lookup Tracking Code Type</value>
         <value xml:lang="es">Buscar tipo de seguimiento</value>
         <value xml:lang="fr">Rechercher un ou des types de code de suivi</value>
+        <value xml:lang="hr">Potraži vrstu koda za praćenje</value>
         <value xml:lang="it">Ricerca tipo tracciatura</value>
         <value xml:lang="ja">追跡コード種類を検索</value>
         <value xml:lang="pt-BR">Buscar por tipo de código de rastreio</value>
@@ -2898,6 +3109,7 @@
         <value xml:lang="en">Lookup Visit</value>
         <value xml:lang="es">Buscar visita</value>
         <value xml:lang="fr">Rechercher une ou des visites</value>
+        <value xml:lang="hr">Potraži posjetu</value>
         <value xml:lang="it">Ricerca Visita</value>
         <value xml:lang="ja">訪問を検索</value>
         <value xml:lang="pt-BR">Buscar visita</value>
@@ -2912,6 +3124,7 @@
         <value xml:lang="en">Preferred Contact Mechanism</value>
         <value xml:lang="es">Mecanismo de contacto preferido</value>
         <value xml:lang="fr">Mécanisme de contact favori</value>
+        <value xml:lang="hr">Preferirani kontaktni mehanizam</value>
         <value xml:lang="it">Contatto Preferito</value>
         <value xml:lang="ja">通常の連絡方法</value>
         <value xml:lang="pt-BR">Mecanismo de contato preferencial</value>
@@ -2926,6 +3139,7 @@
         <value xml:lang="en">Accounts</value>
         <value xml:lang="es">Cuentas</value>
         <value xml:lang="fr">Comptes</value>
+        <value xml:lang="hr">Računi</value>
         <value xml:lang="it">Utenze</value>
         <value xml:lang="ja">アカウント</value>
         <value xml:lang="pt-BR">Contas</value>
@@ -2938,6 +3152,7 @@
         <value xml:lang="en">Account Name</value>
         <value xml:lang="es">Nombre de cuenta</value>
         <value xml:lang="fr">Nom de compte</value>
+        <value xml:lang="hr">Naziv računa</value>
         <value xml:lang="it">Nome utente</value>
         <value xml:lang="ja">アカウント名称</value>
         <value xml:lang="pt-BR">Nome da conta</value>
@@ -2950,6 +3165,7 @@
         <value xml:lang="en">Add Sales Forecast Detail</value>
         <value xml:lang="es">Agregar detalle de previsión de ventas</value>
         <value xml:lang="fr">Ajouter le détail de la prévision de ventes</value>
+        <value xml:lang="hr">Dodaj pojedinosti o prognozi prodaje</value>
         <value xml:lang="it">Aggiungi dettagli previsioni di vendita</value>
         <value xml:lang="ja">販売予測詳細を追加</value>
         <value xml:lang="pt-BR">Adicionar detalhes à previsão de vendas</value>
@@ -2962,6 +3178,7 @@
         <value xml:lang="en">All Accounts</value>
         <value xml:lang="es">Todas las Cuentas</value>
         <value xml:lang="fr">Tous les comptes</value>
+        <value xml:lang="hr">Svi računi</value>
         <value xml:lang="ja">すべてのアカウント</value>
         <value xml:lang="pt-BR">Todas contas</value>
         <value xml:lang="th">Account ทั้งหมด</value>
@@ -2974,6 +3191,7 @@
         <value xml:lang="en">All Contacts</value>
         <value xml:lang="es">Todos los Contactos</value>
         <value xml:lang="fr">Tous les contacts</value>
+        <value xml:lang="hr">Svi kontakti</value>
         <value xml:lang="ja">すべての連絡</value>
         <value xml:lang="pt-BR">Todos contatos</value>
         <value xml:lang="th">Contact ทั้งหมด</value>
@@ -2986,6 +3204,7 @@
         <value xml:lang="en">All Leads</value>
         <value xml:lang="es">Todos los clientes potenciales</value>
         <value xml:lang="fr">Tous les prospects</value>
+        <value xml:lang="hr">Svi potencijalni klijenti</value>
         <value xml:lang="ja">すべてのリード</value>
         <value xml:lang="pt-BR">Todos Leads</value>
         <value xml:lang="th">Lead ทั้งหมด</value>
@@ -2998,6 +3217,7 @@
         <value xml:lang="en">Assign To Me</value>
         <value xml:lang="es">Asignarmelo</value>
         <value xml:lang="fr">Me l'assigner</value>
+        <value xml:lang="hr">Dodijeli meni</value>
         <value xml:lang="ja">私に割当</value>
         <value xml:lang="pt-BR">Designar para mim</value>
         <value xml:lang="th">กำหนดให้ฉัน</value>
@@ -3010,6 +3230,7 @@
         <value xml:lang="en">Assigned by</value>
         <value xml:lang="es">Asignado por</value>
         <value xml:lang="fr">Assigné par</value>
+        <value xml:lang="hr">Dodijelio</value>
         <value xml:lang="ja">割当者</value>
         <value xml:lang="pt-BR">Designada por</value>
         <value xml:lang="th">กำหนดโดย</value>
@@ -3022,6 +3243,7 @@
         <value xml:lang="en">Automatically create a new contact by importing a vCard</value>
         <value xml:lang="es">Crear contacto automáticamente al importar vCard</value>
         <value xml:lang="fr">Créez automatiquement un nouveau contact par import d'une vCard</value>
+        <value xml:lang="hr">Automatski stvori novi kontakt uvozom vCard-a</value>
         <value xml:lang="it">Creazione automatica di un nuovo contatto importando una vCard</value>
         <value xml:lang="ja">vCardをインポートして連絡を自動で作成</value>
         <value xml:lang="pt-BR">Criar automaticamente um novo contato importando um vCard</value>
@@ -3034,6 +3256,7 @@
         <value xml:lang="es">Crear nuevo lead automaticamente importando vCard</value>
         <value xml:lang="es-CL">Crear nuevo cliente potencial automáticamente importando vCard</value>
         <value xml:lang="fr">Créez automatiquement un nouveau prospect par import d'une vCard</value>
+        <value xml:lang="hr">Automatski stvori novog potencijalnog klijenta uvozom vCard-a</value>
         <value xml:lang="it">Creazione automatica di un nuovo lead importando una vCard</value>
         <value xml:lang="ja">vCardをインポートしてリードを自動で作成</value>
         <value xml:lang="pt-BR">Criar automaticamente um novo Lead importando um vCard</value>
@@ -3046,6 +3269,7 @@
         <value xml:lang="en">Campaigns</value>
         <value xml:lang="es">Campañas</value>
         <value xml:lang="fr">Campagnes de ventes</value>
+        <value xml:lang="hr">Kampanje</value>
         <value xml:lang="it">Campagne</value>
         <value xml:lang="ja">キャンペーン</value>
         <value xml:lang="pt-BR">Campanhas</value>
@@ -3058,6 +3282,7 @@
         <value xml:lang="en">Failed to merge contacts. You have selected same contact to merge.</value>
         <value xml:lang="es">No se ha podido combinar los contactos. Ha seleccionado mismo contacto para combinar.</value>
         <value xml:lang="fr">Echec à la fusion des contacts. Vous avez choisi le même contact à fusionner.</value>
+        <value xml:lang="hr">Spajanje kontakata nije uspjelo. Odabrali ste isti kontakt za spajanje.</value>
         <value xml:lang="it">Fallito il merce dei contatti. Tu devi selezionare lo stesso contatto per fare il merge.</value>
         <value xml:lang="ja">連絡のマージに失敗しました。同じ連絡を選択しています。</value>
         <value xml:lang="pt-BR">Falha ao mesclar os contatos. Você selecionou o mesmo contato para mesclar.</value>
@@ -3071,6 +3296,7 @@
         <value xml:lang="es">No se ha podido unir leads. Ha seleccionado el mismo lead.</value>
         <value xml:lang="es-CL">No se ha podido unir clientes potenciales. Ha seleccionado el mismo cliente potencial.</value>
         <value xml:lang="fr">Echec à la fusion des prospects. Vous avez choisi le même prospect pour fusionner</value>
+        <value xml:lang="hr">Spajanje potencijalnih klijenata nije uspjelo. Odabrali ste istog potencijalnog klijenta za spajanje.</value>
         <value xml:lang="it">Fallito il merce dei leads. Tu devi selezionare lo stesso lead per fare il merge.</value>
         <value xml:lang="ja">リードのマージに失敗しました。同じリードを選択しています。</value>
         <value xml:lang="pt-BR">Falha ao mesclar Leads. Você selecionou o mesmo Lead para mesclar.</value>
@@ -3084,6 +3310,7 @@
         <value xml:lang="es">Clonar lead</value>
         <value xml:lang="es-CL">Clonar cliente potencial</value>
         <value xml:lang="fr">Dupliquer un prospect</value>
+        <value xml:lang="hr">Kloniraj potencijalnog klijenta</value>
         <value xml:lang="it">Clona lead</value>
         <value xml:lang="ja">リードをコピー</value>
         <value xml:lang="pt-BR">Clonar Lead</value>
@@ -3097,6 +3324,7 @@
         <value xml:lang="es">Fecha de cierre</value>
         <value xml:lang="es-CL">Fecha de Cierre</value>
         <value xml:lang="fr">Fermer à la date</value>
+        <value xml:lang="hr">Datum zatvaranja</value>
         <value xml:lang="it">Data di chiusura</value>
         <value xml:lang="ja">クローズ日</value>
         <value xml:lang="pt-BR">Data de encerramento</value>
@@ -3110,6 +3338,7 @@
         <value xml:lang="es">Gestor de fuerzas de ventas</value>
         <value xml:lang="es-CL">OFBiz: Gestión de Fuerzas de Ventas</value>
         <value xml:lang="fr">OFBiz: gestion des ventes</value>
+        <value xml:lang="hr">OFBiz: upravljanje prodajom</value>
         <value xml:lang="it">OFBiz: Gestione forze di vendita</value>
         <value xml:lang="ja">OFBiz: 営業支援(SFA)管理</value>
         <value xml:lang="pt-BR">OFBiz: gestor da equipe de vendas</value>
@@ -3121,6 +3350,7 @@
         <value xml:lang="de">Komplett</value>
         <value xml:lang="en">Complete</value>
         <value xml:lang="es">Completar</value>
+        <value xml:lang="hr">Gotovo</value>
         <value xml:lang="ja">完了</value>
         <value xml:lang="pt-BR">Completo</value>
         <value xml:lang="th">เสร็จสิ้น</value>
@@ -3133,6 +3363,7 @@
         <value xml:lang="en">Contact</value>
         <value xml:lang="es">Contacto</value>
         <value xml:lang="fr">Contact</value>
+        <value xml:lang="hr">Kontakt</value>
         <value xml:lang="it">Contatto</value>
         <value xml:lang="ja">連絡</value>
         <value xml:lang="pt-BR">Contato</value>
@@ -3145,6 +3376,7 @@
         <value xml:lang="en">Contacts</value>
         <value xml:lang="es">Contactos</value>
         <value xml:lang="fr">Contacts</value>
+        <value xml:lang="hr">Kontakti</value>
         <value xml:lang="it">Contatti</value>
         <value xml:lang="ja">連絡</value>
         <value xml:lang="pt-BR">Contatos</value>
@@ -3158,6 +3390,7 @@
         <value xml:lang="es">Convertir lead</value>
         <value xml:lang="es-CL">Convertir prospecto cliente</value>
         <value xml:lang="fr">Convertir le prospect</value>
+        <value xml:lang="hr">Pretvori potencijalnog klijenta</value>
         <value xml:lang="it">Converti lead</value>
         <value xml:lang="ja">リードを変換</value>
         <value xml:lang="pt-BR">Concretizar Lead</value>
@@ -3170,6 +3403,7 @@
         <value xml:lang="en">Create Account For Lead</value>
         <value xml:lang="es">Crear cuenta para cliente potencial</value>
         <value xml:lang="fr">Créer un compte pour le prospect</value>
+        <value xml:lang="hr">Stvori račun za potencijalnog klijenta</value>
         <value xml:lang="it">Crea utenza per leader</value>
         <value xml:lang="ja">リードに対するアカウントを作成</value>
         <value xml:lang="pt-BR">Criar conta para LEad</value>
@@ -3183,6 +3417,7 @@
         <value xml:lang="es">Crear contacto para lead</value>
         <value xml:lang="es-CL">Crear contacto para cliente potencial</value>
         <value xml:lang="fr">Créer un contact pour le prospect</value>
+        <value xml:lang="hr">Stvori kontakt za potencijalnog klijenta</value>
         <value xml:lang="it">Creare contatto per il lead</value>
         <value xml:lang="ja">リードに対する連絡を作成</value>
         <value xml:lang="pt-BR">Criar contato para Lead</value>
@@ -3195,6 +3430,7 @@
         <value xml:lang="en">Create from vCard</value>
         <value xml:lang="es">Crear desde vCard</value>
         <value xml:lang="fr">Créer depuis une vCard</value>
+        <value xml:lang="hr">Stvori iz vCard-a</value>
         <value xml:lang="it">Creare contatto dalla vCard</value>
         <value xml:lang="ja">vCardから作成</value>
         <value xml:lang="pt-BR">Criar a partir de vCard</value>
@@ -3207,6 +3443,7 @@
         <value xml:lang="en">Source</value>
         <value xml:lang="es">Origen</value>
         <value xml:lang="fr">Origine</value>
+        <value xml:lang="hr">Izvor</value>
         <value xml:lang="it">Origine</value>
         <value xml:lang="ja">ソース</value>
         <value xml:lang="pt-BR">Origem</value>
@@ -3219,6 +3456,7 @@
         <value xml:lang="en">Edit Opportunity</value>
         <value xml:lang="es">Editar Oportunidad</value>
         <value xml:lang="fr">Modifier l'opportunité</value>
+        <value xml:lang="hr">Uredi priliku</value>
         <value xml:lang="it">Aggiorna opportunità</value>
         <value xml:lang="ja">機会を編集</value>
         <value xml:lang="pt-BR">Editar oportunidade</value>
@@ -3231,6 +3469,7 @@
         <value xml:lang="en">Create/Update Sales Forecast</value>
         <value xml:lang="es">Crear/Actualizar previsión de ventas</value>
         <value xml:lang="fr">Créer/Mise à jour des prévisions de ventes</value>
+        <value xml:lang="hr">Stvori/ažuriraj prognozu prodaje</value>
         <value xml:lang="it">Crea/Aggiorna previsioni di vendita</value>
         <value xml:lang="ja">販売予測を作成/更新</value>
         <value xml:lang="pt-BR">Criar/atualizar previsão de vendas</value>
@@ -3243,6 +3482,7 @@
         <value xml:lang="en">Estimated Amount</value>
         <value xml:lang="es">Monto estimado</value>
         <value xml:lang="fr">Montant estimé</value>
+        <value xml:lang="hr">Procijenjeni iznos</value>
         <value xml:lang="it">Importo stimato</value>
         <value xml:lang="ja">予定金額</value>
         <value xml:lang="pt-BR">Montante estimado</value>
@@ -3255,6 +3495,7 @@
         <value xml:lang="en">Events</value>
         <value xml:lang="es">Eventos</value>
         <value xml:lang="fr">Évènements</value>
+        <value xml:lang="hr">Događaji</value>
         <value xml:lang="it">Eventi</value>
         <value xml:lang="ja">イベント</value>
         <value xml:lang="pt-BR">Eventos</value>
@@ -3267,6 +3508,7 @@
         <value xml:lang="en">Error during export data from VCard: ${errorString}</value>
         <value xml:lang="es">Error durante la exportación de datos desde VCard: ${errorString}</value>
         <value xml:lang="fr">Erreur durant l'export de la VCard : ${errorString}</value>
+        <value xml:lang="hr">Greška tijekom izvoza podataka iz VCard-a: ${errorString}</value>
         <value xml:lang="it">Errore durante l'esportazione dei dati da VCard: ${errorString}</value>
         <value xml:lang="ja">vCardからデータをエクスポート中にエラー: ${errorString}</value>
         <value xml:lang="vi">Lỗi xảy ra khi kết xuất dữ liệu từ VCard: ${errorString}</value>
@@ -3278,6 +3520,7 @@
         <value xml:lang="en">Error during export data from VCard, unable to open file for writing: ${errorString}</value>
         <value xml:lang="es">Error durante la exportación de datos desde VCard, no se puede abrir el archivo para escritura: ${errorString}</value>
         <value xml:lang="fr">Erreur durant l'export de la VCard, impossible d'ouvrir le fichier en écriture : ${errorString}</value>
+        <value xml:lang="hr">Greška tijekom izvoza podataka iz VCard-a, nije moguće otvoriti datoteku za pisanje: ${errorString}</value>
         <value xml:lang="it">Errore durante l'esportazione dei dati da VCard, non è possibile aprire il file in scrittura: ${errorString}</value>
         <value xml:lang="ja">vCardからデータをエクスポート中にエラー。書き込みファイルをオープンできません: ${errorString}</value>
         <value xml:lang="vi">Lỗi xảy ra khi kết xuất dữ liệu từ VCard, không thể mở tập tin để ghi: ${errorString}</value>
@@ -3289,6 +3532,7 @@
         <value xml:lang="en">Error during export data from VCard, unable to write data to: ${errorString}</value>
         <value xml:lang="es">Error durante la exportación de datos desde VCard, incapaz de escribir datos en: ${errorString}</value>
         <value xml:lang="fr">Erreur durant l'export de la VCard, impossible d'écrire les données : ${errorString}</value>
+        <value xml:lang="hr">Greška tijekom izvoza podataka iz VCard-a, nije moguće pisati podatke na: ${errorString}</value>
         <value xml:lang="it">Errore durante l'esportazione dei dati da VCard, non è possibile scrivere i dati in: ${errorString}</value>
         <value xml:lang="ja">vCardからデータをエクスポート中にエラー。ファイルにデータを書き込みできません: ${errorString}</value>
         <value xml:lang="vi">Lỗi xảy ra khi kết xuất dữ liệu từ VCard, không thể ghi dữ liệu tới: ${errorString}</value>
@@ -3300,6 +3544,7 @@
         <value xml:lang="en">Find Account Leads</value>
         <value xml:lang="es">Buscar Cuentas de Clientes Potenciales</value>
         <value xml:lang="fr">Recherche de prospects</value>
+        <value xml:lang="hr">Pronađi potencijalne kupce</value>
         <value xml:lang="ja">アカウントリードを検索</value>
         <value xml:lang="pt-BR">Buscar contas de Leads</value>
         <value xml:lang="th">ค้นหา Account Leads</value>
@@ -3312,6 +3557,7 @@
         <value xml:lang="en">Find Accounts</value>
         <value xml:lang="es">Buscar Cuentas</value>
         <value xml:lang="fr">Recherche de compte</value>
+        <value xml:lang="hr">Pronađi račune</value>
         <value xml:lang="ja">アカウントを検索</value>
         <value xml:lang="pt-BR">Buscar contas</value>
         <value xml:lang="th">ค้นหา Accounts</value>
@@ -3325,6 +3571,7 @@
         <value xml:lang="es">Buscar contactos</value>
         <value xml:lang="es-CL">Buscar Contactos</value>
         <value xml:lang="fr">Rechercher les contacts</value>
+        <value xml:lang="hr">Pronađi kontakte</value>
         <value xml:lang="it">Ricerca contatti</value>
         <value xml:lang="ja">連絡を検索</value>
         <value xml:lang="pt-BR">Buscar contatos</value>
@@ -3338,6 +3585,7 @@
         <value xml:lang="es">Buscar leads</value>
         <value xml:lang="es-CL">Buscar prospectos</value>
         <value xml:lang="fr">Recherchers les prospects</value>
+        <value xml:lang="hr">Pronađi potencijalne klijente</value>
         <value xml:lang="it">Ricerca leads</value>
         <value xml:lang="ja">リードを検索</value>
         <value xml:lang="pt-BR">Buscar Leads</value>
@@ -3351,6 +3599,7 @@
         <value xml:lang="es">Buscar oportunidades</value>
         <value xml:lang="es-CL">Buscar Oportunidades</value>
         <value xml:lang="fr">Rechercher les opportunités</value>
+        <value xml:lang="hr">Pronađi prilike</value>
         <value xml:lang="it">Ricerca opportunità</value>
         <value xml:lang="ja">機会を検索</value>
         <value xml:lang="pt-BR">Buscar oportunidades</value>
@@ -3364,6 +3613,7 @@
         <value xml:lang="es">Buscar resultados</value>
         <value xml:lang="es-CL">Buscar Resultados</value>
         <value xml:lang="fr">Rechercher les résultats</value>
+        <value xml:lang="hr">Pronađi rezultate</value>
         <value xml:lang="it">Ricerca risultati</value>
         <value xml:lang="ja">結果を検索</value>
         <value xml:lang="pt-BR">Buscar resultados</value>
@@ -3377,6 +3627,7 @@
         <value xml:lang="es">Primer contacto</value>
         <value xml:lang="es-CL">Primer Contacto</value>
         <value xml:lang="fr">Premier contact</value>
+        <value xml:lang="hr">Prvi kontakt</value>
         <value xml:lang="it">Primo contatto</value>
         <value xml:lang="ja">初回連絡</value>
         <value xml:lang="pt-BR">Primeiro contato</value>
@@ -3389,6 +3640,7 @@
         <value xml:lang="en">Please enter Person First name or Last name or Company name</value>
         <value xml:lang="es">Por favor, ingrese primer nombre de la persona o apellido o nombre de la Compañia</value>
         <value xml:lang="fr">Merci de saisir le prénom ou le nom pour une personne ou le nom pour une société</value>
+        <value xml:lang="hr">Unesite ime osobe ili prezime ili naziv tvrtke</value>
         <value xml:lang="ja">姓(FN)、名(LN)、または会社名を入力してください</value>
         <value xml:lang="pt-BR">Por favor, digite o nome da pessoa, sobrenome ou nome da empresa</value>
         <value xml:lang="vi">Bạn hãy nhập Tên hoặc Họ hoặc Tên công ty</value>
@@ -3400,6 +3652,7 @@
         <value xml:lang="en">Forecast</value>
         <value xml:lang="es">Previsión</value>
         <value xml:lang="fr">Prévision</value>
+        <value xml:lang="hr">Prognoza</value>
         <value xml:lang="it">Previsioni</value>
         <value xml:lang="ja">予測</value>
         <value xml:lang="pt-BR">Previsão</value>
@@ -3413,6 +3666,7 @@
         <value xml:lang="es">Importar lead</value>
         <value xml:lang="es-CL">Importar prospectos</value>
         <value xml:lang="fr">Importer le prospect</value>
+        <value xml:lang="hr">Uvoz potencijalnog klijenta</value>
         <value xml:lang="it">Importo lead</value>
         <value xml:lang="ja">リードをインポート</value>
         <value xml:lang="pt-BR">Importar Lead</value>
@@ -3424,17 +3678,20 @@
         <value xml:lang="en">All parties in this vcard are duplicated.</value>
         <value xml:lang="es">Todos los participantes en este vCard están duplicados.</value>
         <value xml:lang="fr">Tous les acteurs de cette vcard sont dupliqués.</value>
+    <value xml:lang="hr">Svi sudionici u ovom vcard-u su duplicirani.</value>
     </property>
     <property key="SfaImportVCardEmailFormatError">
         <value xml:lang="en">incorrect email format.</value>
         <value xml:lang="es">formato incorrecto de email.</value>
         <value xml:lang="fr">Format de l'addresse courriel incorrect.</value>
+    <value xml:lang="hr">netočan format e-maila.</value>
     </property>
     <property key="SfaImportVCardError">
         <value xml:lang="de">Fehler beim importieren von VCard: ${errorString}</value>
         <value xml:lang="en">Error during import data from VCard: ${errorString}</value>
         <value xml:lang="es">Error durante la importación de datos desde VCard: ${errorString}</value>
         <value xml:lang="fr">Erreur durant l'import de la VCard : ${errorString}</value>
+        <value xml:lang="hr">Greška tijekom uvoza podataka iz VCard-a: ${errorString}</value>
         <value xml:lang="it">Errore durante l'importazione dei dati da VCard: ${errorString}</value>
         <value xml:lang="ja">vCardからデータのインポート中にエラー: ${errorString}</value>
         <value xml:lang="vi">Lỗi xảy ra khi nhập khẩu dữ liệu từ VCard: ${errorString}</value>
@@ -3445,12 +3702,14 @@
         <value xml:lang="en">first name or last name missing.</value>
         <value xml:lang="es">falta nombre o apellido.</value>
         <value xml:lang="fr">Prénom ou nom manquant.</value>
+    <value xml:lang="hr">nedostaje ime ili prezime.</value>
     </property>
     <property key="SfaInitialAccount">
         <value xml:lang="de">Initiales Account</value>
         <value xml:lang="en">Initial Account</value>
         <value xml:lang="es">Cuenta inicial</value>
         <value xml:lang="fr">Compte initial</value>
+        <value xml:lang="hr">Početni račun</value>
         <value xml:lang="it">Utente iniziale</value>
         <value xml:lang="ja">初期アカウント</value>
         <value xml:lang="pt-BR">Conta inicial</value>
@@ -3464,6 +3723,7 @@
         <value xml:lang="es">Escenario inicial </value>
         <value xml:lang="es-CL">Escenario inicial</value>
         <value xml:lang="fr">Phase initiale</value>
+        <value xml:lang="hr">Početno stanje</value>
         <value xml:lang="it">Stage iniziale</value>
         <value xml:lang="ja">初期段階</value>
         <value xml:lang="pt-BR">Estágio inicial</value>
@@ -3476,6 +3736,7 @@
         <value xml:lang="en">Lead</value>
         <value xml:lang="es">Prospecto</value>
         <value xml:lang="fr">Prospect</value>
+        <value xml:lang="hr">Potencijalni klijent</value>
         <value xml:lang="it">Lead</value>
         <value xml:lang="ja">リード</value>
         <value xml:lang="pt-BR">Lead</value>
@@ -3485,12 +3746,14 @@
     </property>
     <property key="SfaLeadCreatedSuccessfully">
         <value xml:lang="en">Lead created successfully</value>
+    <value xml:lang="hr">Potencijalni klijent je uspješno kreiran</value>
     </property>
     <property key="SfaLeadSource">
         <value xml:lang="de">Lead Quelle</value>
         <value xml:lang="en">Lead Source</value>
         <value xml:lang="es">Origen de prospecto cliente</value>
         <value xml:lang="fr">Origine du prospect</value>
+        <value xml:lang="hr">Izvor potencijalnog klijenta</value>
         <value xml:lang="it">Lead origine</value>
         <value xml:lang="ja">リードソース</value>
         <value xml:lang="pt-BR">Origem do Lead</value>
@@ -3503,6 +3766,7 @@
         <value xml:lang="en">Leads</value>
         <value xml:lang="es">Prospectos</value>
         <value xml:lang="fr">Prospects</value>
+        <value xml:lang="hr">Potencijalni klijenti</value>
         <value xml:lang="it">Leads</value>
         <value xml:lang="ja">リード</value>
         <value xml:lang="pt-BR">Leads</value>
@@ -3515,6 +3779,7 @@
         <value xml:lang="en">List Sales Forecast Details</value>
         <value xml:lang="es">Lista de detalle de previsión de ventas</value>
         <value xml:lang="fr">Liste des détails de prévision de ventes</value>
+        <value xml:lang="hr">Popis pojedinosti prognoze prodaje</value>
         <value xml:lang="it">Lista dettagli previsioni di vendita</value>
         <value xml:lang="ja">販売予測詳細一覧</value>
         <value xml:lang="pt-BR">Listar detalhes de previsão de vendas</value>
@@ -3528,6 +3793,7 @@
         <value xml:lang="es">Gestión SFA</value>
         <value xml:lang="es-CL">Gestión de Fuerza de Ventas</value>
         <value xml:lang="fr">Application de gestion des ventes</value>
+        <value xml:lang="hr">Upravljanje prodajom</value>
         <value xml:lang="it">Gestione vendite</value>
         <value xml:lang="ja">営業支援(SFA)管理</value>
         <value xml:lang="pt-BR">Gestor de automação de equipe de vendas</value>
@@ -3540,6 +3806,7 @@
         <value xml:lang="es">Gestión CRM</value>
         <value xml:lang="es-CL">Gestión de Automatización de Equipo de Ventas</value>
         <value xml:lang="fr">Application de gestion des ventes</value>
+        <value xml:lang="hr">CRM prijava</value>
         <value xml:lang="it">Applicazione gestione forze esterne</value>
         <value xml:lang="ja">営業支援(SFA)管理業務</value>
         <value xml:lang="pt-BR">Applicação de gestão de automação de equipe de vendas</value>
@@ -3552,6 +3819,7 @@
         <value xml:lang="en">Welcome to the Sales Force Automation Manager Application.</value>
         <value xml:lang="es">Bienvenido a la Aplicación de Gestión de Automatización de Fuerza de Ventas.</value>
         <value xml:lang="fr">Bienvenue dans l'application de gestion des ventes.</value>
+        <value xml:lang="hr">Dobro došli u aplikaciju za upravljanje prodajom.</value>
         <value xml:lang="it">Benvenuto all'applicazione di gestione delle forze esterne.</value>
         <value xml:lang="ja">営業支援(SFA)管理業務へようこそ</value>
         <value xml:lang="pt-BR">Seja bem-vindo à aplicação de atomação da equipe de vendas.</value>
@@ -3564,6 +3832,7 @@
         <value xml:lang="en">Merge Contacts</value>
         <value xml:lang="es">Fusionar contactos</value>
         <value xml:lang="fr">Fusionner les contacts</value>
+        <value xml:lang="hr">Spoji kontakte</value>
         <value xml:lang="it">Merge Contatti</value>
         <value xml:lang="ja">連絡をマージ</value>
         <value xml:lang="pt-BR">Mesclar contatos</value>
@@ -3576,6 +3845,7 @@
         <value xml:lang="en">Merge Leads</value>
         <value xml:lang="es">Fusionar prospectos</value>
         <value xml:lang="fr">Fusionner les prospects</value>
+        <value xml:lang="hr">Spoji potencijalne klijente</value>
         <value xml:lang="it">Merge Leads</value>
         <value xml:lang="ja">リードをマージ</value>
         <value xml:lang="pt-BR">Mesclar Leads</value>
@@ -3588,6 +3858,7 @@
         <value xml:lang="en">Merging Following</value>
         <value xml:lang="es">Fusión siguiente</value>
         <value xml:lang="fr">Fusionner les suivants</value>
+        <value xml:lang="hr">Spoji praćenje</value>
         <value xml:lang="it">Merge seguendo i</value>
         <value xml:lang="ja">次をマージ中</value>
         <value xml:lang="pt-BR">Mesclar seguindo</value>
@@ -3600,6 +3871,7 @@
         <value xml:lang="en">My Accounts</value>
         <value xml:lang="es">Mis Cuentas</value>
         <value xml:lang="fr">Mes comptes</value>
+        <value xml:lang="hr">Moji računi</value>
         <value xml:lang="ja">私のアカウント</value>
         <value xml:lang="pt-BR">Minhas contas</value>
         <value xml:lang="th">Account ของฉัน</value>
@@ -3612,6 +3884,7 @@
         <value xml:lang="en">My Contacts</value>
         <value xml:lang="es">Mis Contactos</value>
         <value xml:lang="fr">Mes contacts</value>
+        <value xml:lang="hr">Moji kontakti</value>
         <value xml:lang="ja">私の連絡</value>
         <value xml:lang="pt-BR">Meus contatos</value>
         <value xml:lang="th">Contact ของฉัน</value>
@@ -3624,6 +3897,7 @@
         <value xml:lang="en">My Leads</value>
         <value xml:lang="es">Mis Prospectos</value>
         <value xml:lang="fr">Mes prospects</value>
+        <value xml:lang="hr">Moji potencijalni klijenti</value>
         <value xml:lang="ja">私のリード</value>
         <value xml:lang="pt-BR">Meus Leads</value>
         <value xml:lang="th">Lead ของฉัน</value>
@@ -3636,8 +3910,9 @@
         <value xml:lang="en">New Sales Forecast</value>
         <value xml:lang="es">Nueva previsión de Ventas</value>
         <value xml:lang="fr">Nouvelle prévision de vente</value>
+        <value xml:lang="hr">Nova prognoza prodaje</value>
         <value xml:lang="it">Nuova Previsioni di vendita</value>
-    <!-- JLR : not quite sure of the translation here (done with the help of Yahoo's babelfish), please check -->
+    
         <value xml:lang="ja">新規販売予測</value>
         <value xml:lang="pt-BR">Nova previsão de vendas</value>
         <value xml:lang="vi">Tạo mới Dự báo  bán hàng</value>
@@ -3649,6 +3924,7 @@
         <value xml:lang="en">Next Step</value>
         <value xml:lang="es">Siguiente paso</value>
         <value xml:lang="fr">Prochaine étape</value>
+        <value xml:lang="hr">Sljedeći korak</value>
         <value xml:lang="it">Passo successivo</value>
         <value xml:lang="ja">次の段階</value>
         <value xml:lang="pt-BR">Próximo passo</value>
@@ -3660,6 +3936,7 @@
         <value xml:lang="de">Nächster Schritt Datum</value>
         <value xml:lang="en">Next Step Date</value>
         <value xml:lang="es">Fecha siguiente paso</value>
+        <value xml:lang="hr">Datum sljedećeg koraka</value>
         <value xml:lang="ja">次の段階の日付</value>
         <value xml:lang="vi">Ngày thực hiện bước tiếp theo</value>
         <value xml:lang="zh">下一步的日期</value>
@@ -3670,6 +3947,7 @@
         <value xml:lang="en">No leads selected to merge</value>
         <value xml:lang="es">Ningún prospecto seleccionado para fusionar</value>
         <value xml:lang="fr">Aucun prospect sélectionné pour la fusion</value>
+        <value xml:lang="hr">Nema odabranih potencijalnih kupaca za spajanje</value>
         <value xml:lang="it">Nessun leads selezionato da fare merge</value>
         <value xml:lang="ja">マージするリードが選択されていません</value>
         <value xml:lang="pt-BR">Nenhum Lead selecionado para mesclar</value>
@@ -3682,6 +3960,7 @@
         <value xml:lang="en">Opportunities</value>
         <value xml:lang="es">Oportunidades</value>
         <value xml:lang="fr">Opportunités</value>
+        <value xml:lang="hr">Prilike</value>
         <value xml:lang="it">Opportunità</value>
         <value xml:lang="ja">機会</value>
         <value xml:lang="pt-BR">Oportunidades</value>
@@ -3693,6 +3972,7 @@
         <value xml:lang="de">Kommunikation zu Opportunity</value>
         <value xml:lang="en">Opportunity Communications</value>
         <value xml:lang="es">Comunicación de Oportunidades</value>
+        <value xml:lang="hr">Komunikacije prilika</value>
         <value xml:lang="ja">機会通信</value>
         <value xml:lang="pt-BR">Comunicação de oportunidades</value>
         <value xml:lang="vi">Truyền thông</value>
@@ -3704,6 +3984,7 @@
         <value xml:lang="en">Opportunity ID</value>
         <value xml:lang="es">Cod. Oportunidad</value>
         <value xml:lang="fr">Réf. d'opportunité</value>
+        <value xml:lang="hr">Id prilike</value>
         <value xml:lang="it">N. Opportunità</value>
         <value xml:lang="ja">機会ID</value>
         <value xml:lang="pt-BR">ID da oportunidade</value>
@@ -3716,6 +3997,7 @@
         <value xml:lang="en">Opportunity Information</value>
         <value xml:lang="es">Información de la Oportunidad</value>
         <value xml:lang="fr">Information sur l'opportunité</value>
+        <value xml:lang="hr">Informacije o prilikama</value>
         <value xml:lang="it">Informazioni oppportunità</value>
         <value xml:lang="ja">機会情報</value>
         <value xml:lang="pt-BR">Informação da oportunidade</value>
@@ -3728,6 +4010,7 @@
         <value xml:lang="en">Opportunity Name</value>
         <value xml:lang="es">Nombre Oportunidad</value>
         <value xml:lang="fr">Nom d'opportunité</value>
+        <value xml:lang="hr">Naziv prilike</value>
         <value xml:lang="it">Nome opportunità</value>
         <value xml:lang="ja">機会名称</value>
         <value xml:lang="pt-BR">Nome da oportunidade</value>
@@ -3740,6 +4023,7 @@
         <value xml:lang="en">Opportunity Summary</value>
         <value xml:lang="es">Resumen de Oportunidad</value>
         <value xml:lang="fr">Résumé d'opportunité</value>
+        <value xml:lang="hr">Sažetak prilike</value>
         <value xml:lang="it">Sommario opportunità</value>
         <value xml:lang="ja">機会サマリ</value>
         <value xml:lang="pt-BR">Resumo da oportunidade</value>
@@ -3752,6 +4036,7 @@
         <value xml:lang="en">Probability(%)</value>
         <value xml:lang="es">Probabilidad (%)</value>
         <value xml:lang="fr">Probabilité (%)</value>
+        <value xml:lang="hr">Vjerojatnost(%)</value>
         <value xml:lang="it">Probabilità(%)</value>
         <value xml:lang="ja">可能性(%)</value>
         <value xml:lang="pt-BR">Probabilidade (%)</value>
@@ -3764,6 +4049,7 @@
         <value xml:lang="en">Quick Add Contact</value>
         <value xml:lang="es">Agregar contacto rápido</value>
         <value xml:lang="fr">Ajout rapide d'un contact</value>
+        <value xml:lang="hr">Brzo dodavanje kontakta</value>
         <value xml:lang="it">Aggiunta veloce contatto</value>
         <value xml:lang="ja">連絡をクイック追加</value>
         <value xml:lang="pt-BR">Adição rápida de contato</value>
@@ -3776,6 +4062,7 @@
         <value xml:lang="en">Quick Add Lead</value>
         <value xml:lang="es">Agregar prospecto rápido</value>
         <value xml:lang="fr">Ajout rapide d'un prospect</value>
+        <value xml:lang="hr">Brzo dodavanje potencijalnog klijenta</value>
         <value xml:lang="it">Aggiunta veloce lead</value>
         <value xml:lang="ja">リードをクイック追加</value>
         <value xml:lang="pt-BR">Adição rápida de Lead</value>
@@ -3788,6 +4075,7 @@
         <value xml:lang="en">Sales Forecast</value>
         <value xml:lang="es">Previsión de Venta</value>
         <value xml:lang="fr">Prévision de ventes</value>
+        <value xml:lang="hr">Prognoza prodaje</value>
         <value xml:lang="it">Previsioni di vendita</value>
         <value xml:lang="ja">販売予測</value>
         <value xml:lang="pt-BR">Previsão de vendas</value>
@@ -3800,6 +4088,7 @@
         <value xml:lang="en">Second Contact</value>
         <value xml:lang="es">Segundo Contacto</value>
         <value xml:lang="fr">Deuxième contact</value>
+        <value xml:lang="hr">Drugi kontakt</value>
         <value xml:lang="it">Secondo contatto</value>
         <value xml:lang="ja">２回目連絡</value>
         <value xml:lang="pt-BR">Segundo contato</value>
@@ -3811,6 +4100,7 @@
         <value xml:lang="de">Wählen Sie ein existierendes Account oder lassen Sie es leer um ein neues Account zu erstellen"</value>
         <value xml:lang="en">Either select existing account or leave blank to create new account"</value>
         <value xml:lang="fr">Sélectionnez un compte existant ou laissez un espace vide pour créer un nouveau compte"</value>
+        <value xml:lang="hr">Odaberite postojeći račun ili ostavite prazno za stvaranje novog računa</value>
         <value xml:lang="it">Selezione entrambi utente esistente o lasciare vuoto per creare un nuovo utente</value>
         <value xml:lang="ja">既存のアカウントを選択するか、新規アカウントを作成する場合はブランクにしてください</value>
         <value xml:lang="pt-BR">Ou selecione uma conta existente ou deixe em branco para criar uma nova conta</value>
@@ -3823,6 +4113,7 @@
         <value xml:lang="en">Select Lead Owners</value>
         <value xml:lang="es">Seleccionar propietarios de prospectos</value>
         <value xml:lang="fr">Selection de vos propects</value>
+        <value xml:lang="hr">Odaberi vlasnike potencijalnih klijenata</value>
         <value xml:lang="ja">リード所有者を選択</value>
         <value xml:lang="pt-BR">Selecionar donos do Lead</value>
         <value xml:lang="vi">Chọn Sở hữu Đầu mối</value>
@@ -3834,6 +4125,7 @@
         <value xml:lang="en">Open Tasks Assigned by me.</value>
         <value xml:lang="es">Abrir Tareas asignadas por mí.</value>
         <value xml:lang="fr">Tâches ouvertes assignées par moi</value>
+        <value xml:lang="hr">Otvori zadatke koje sam dodijelio.</value>
         <value xml:lang="ja">私が割当したタスクを開く</value>
         <value xml:lang="pt-BR">Tarefas em aberto designadas para mim.</value>
         <value xml:lang="th">งานที่ฉันมอบหมาย</value>
@@ -3846,6 +4138,7 @@
         <value xml:lang="en">Open Tasks Assigned to me.</value>
         <value xml:lang="es">Abrir Tareas asignadas a mí.</value>
         <value xml:lang="fr">Tâches ouvertes qui me sont assignées</value>
+        <value xml:lang="hr">Otvori zadatke dodijeljene meni.</value>
         <value xml:lang="ja">私に割当済のタスクを開く</value>
         <value xml:lang="pt-BR">Tarefas em aberto designadas para mim.</value>
         <value xml:lang="th">งานที่มอบหมายให้ฉัน</value>
@@ -3858,6 +4151,7 @@
         <value xml:lang="en">Type</value>
         <value xml:lang="es">Tipo</value>
         <value xml:lang="fr">Type</value>
+        <value xml:lang="hr">Vrsta</value>
         <value xml:lang="it">Tipo</value>
         <value xml:lang="ja">種類</value>
         <value xml:lang="pt-BR">Tipo</value>
@@ -3870,6 +4164,7 @@
         <value xml:lang="en">Upload vCard</value>
         <value xml:lang="es">Subir vCard</value>
         <value xml:lang="fr">Téléchargement de la vCard vers le serveur</value>
+        <value xml:lang="hr">Prenesi vCard</value>
         <value xml:lang="it">Carica vCard</value>
         <value xml:lang="ja">vCardをアップロード</value>
         <value xml:lang="pt-BR">Enviar vCard</value>
@@ -3880,5 +4175,6 @@
     <property key="SfaVCard">
         <value xml:lang="en">vCard</value>
         <value xml:lang="es">vCard</value>
-    </property>
+    <value xml:lang="hr">vCard</value>
+        </property>
 </resource>

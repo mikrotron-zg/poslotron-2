@@ -24,6 +24,7 @@
         <value xml:lang="en">Could not copy user preferences: Invalid argument(s)</value>
         <value xml:lang="es">No se pueden copiar las preferencias del usuario: Argumento(s) no válido(s)</value>
         <value xml:lang="fr">Impossible de copier les préférences de l'utilisateur : argument(s) non valides</value>
+        <value xml:lang="hr">Nije moguće kopirati korisničke postavke: nevažeći argument(i)</value>
         <value xml:lang="it">Non è possibile copiare le preferenze utente: argomento(i) invalidi</value>
         <value xml:lang="ja">ユーザ設定がコピーできません: 引数が無効です</value>
         <value xml:lang="pt-BR">Não foi possível copiar as preferências do usuário: Argumento(s) inválido(s)</value>
@@ -38,6 +39,7 @@
         <value xml:lang="en">Could not copy user preferences (read/write failure): {0}</value>
         <value xml:lang="es">No se pueden copiar las preferencias del usuario (error de lectura/escritura): {0}</value>
         <value xml:lang="fr">Impossible de copier les préférences de l'utilisateur (erreur d'écriture ou de lecture) : {0}</value>
+        <value xml:lang="hr">Nije moguće kopirati korisničke postavke (neuspjeh čitanja/pisanja): {0}</value>
         <value xml:lang="it">Non è possibile copiare le preferenze utente (lettura/scrittura fallita): {0}</value>
         <value xml:lang="ja">ユーザ設定がコピーできません (読取/書込エラー): [0]</value>
         <value xml:lang="pt-BR">Não foi possível copiar as preferências do usuário (de leitura / gravação falha): {0}</value>
@@ -52,6 +54,7 @@
         <value xml:lang="en">Could not get user preferences: Invalid argument(s)</value>
         <value xml:lang="es">No se pueden obtener las preferencias del usuario: Argumento(s) no válido(s)</value>
         <value xml:lang="fr">Impossible d'obtenir les préférences de l'utilisateur : argument(s) non valides</value>
+        <value xml:lang="hr">Nije moguće dobiti korisničke postavke: nevažeći argument(i)</value>
         <value xml:lang="it">Non è possibile ottenerele preferenze utente: argomento(i) invalidi)</value>
         <value xml:lang="ja">ユーザ設定が取得できません: 引数が無効です</value>
         <value xml:lang="pt-BR">Não foi possível obter as preferências do usuário: Argumento(s) inválido(s)</value>
@@ -65,6 +68,7 @@
         <value xml:lang="en">Permissions error while getting user preferences</value>
         <value xml:lang="es">Error de permisos al obtener las preferencias del usuario</value>
         <value xml:lang="fr">Erreur de permissions tout en obtenant des préférences d'utilisateur</value>
+        <value xml:lang="hr">Pogreška s dopuštenjima prilikom dobivanja korisničkih postavki</value>
         <value xml:lang="it">Errore di permesso durante la lettura delle preferenza utente</value>
         <value xml:lang="ja">ユーザ設定の読取時に権限エラーが発生しました</value>
         <value xml:lang="pt-BR">Erro de Permissões ao obter as preferências do usuário</value>
@@ -78,6 +82,7 @@
         <value xml:lang="en">Could not get user preferences (read failure): {0}</value>
         <value xml:lang="es">No se pueden obtener las preferencias del usuario (error de lectura): {0}</value>
         <value xml:lang="fr">Impossible d'obtenir les préférences de l'utilisateur (erreur de lecture) : {0}</value>
+        <value xml:lang="hr">Nije moguće dobiti korisničke postavke (neuspješno čitanje): {0}</value>
         <value xml:lang="it">Non è possibile ottenere le preferenze utente (lettura fallita): {0}</value>
         <value xml:lang="ja">ユーザ設定が取得できません (読取エラー): [0]</value>
         <value xml:lang="pt-BR">Não foi possível obter as preferências do usuário (falha na leitura): {0}</value>
@@ -92,6 +97,7 @@
         <value xml:lang="en">Could not set user preferences: Invalid argument(s)</value>
         <value xml:lang="es">No se pueden establecer las preferencias del usuario: Argumento(s) no válido(s)</value>
         <value xml:lang="fr">Impossible de définir les préférences de l'utilisateur : argument(s) non valides</value>
+        <value xml:lang="hr">Nije moguće postaviti korisničke postavke: nevažeći argument(i)</value>
         <value xml:lang="it">Non è possibile ottenere le preferenze utente: argomento(i) invalidi</value>
         <value xml:lang="ja">ユーザ設定を設定できません: 引数が無効です</value>
         <value xml:lang="pt-BR">Não foi possível definir as preferências do usuário: Argumento(s) inválido(s)</value>
@@ -106,6 +112,7 @@
         <value xml:lang="en">Could not set user preferences (write failure): {0}</value>
         <value xml:lang="es">No se pueden establecer las preferencias del usuario (error de escritura): {0}</value>
         <value xml:lang="fr">Impossible de définir les préférences de l'utilisateur (erreur d'écriture): {0}</value>
+        <value xml:lang="hr">Nije moguće postaviti korisničke postavke (neuspjeh pisanja): {0}</value>
         <value xml:lang="it">Non è possibile ottenere le preferenze utente (scrittura fallita): {0}</value>
         <value xml:lang="ja">ユーザ設定を設定できません (書込エラー): [0]</value>
         <value xml:lang="pt-BR">Não foi possível definir as preferências do usuário (falha de escrita): {0}</value>

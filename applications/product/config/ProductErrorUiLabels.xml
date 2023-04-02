@@ -22,6 +22,7 @@
     <property key="categoryservices.error_find_next_products">
         <value xml:lang="de">Fehler beim Ermitteln der vorherigen/nächsten Produktinformationen: ${errMessage}</value>
         <value xml:lang="en">Error finding previous/next product info: ${errMessage}</value>
+        <value xml:lang="hr">Greška pri pronalaženju prethodne/sljedeće informacije o proizvodu: ${errMessage}</value>
         <value xml:lang="it">Errore nelle ricerca dei prodotti precedenti/successivi: ${errMessage}</value>
         <value xml:lang="ja">前/次の製品情報検索中にエラー: ${errMessage}.</value>
         <value xml:lang="zh">查找上一个/下一个产品信息时出错：${errMessage}</value>
@@ -30,6 +31,7 @@
     <property key="categoryservices.problems_getting_next_products">
         <value xml:lang="de">Index und ProductID dürfen nicht null sein.</value>
         <value xml:lang="en">Both Index and ProductID cannot be null.</value>
+        <value xml:lang="hr">Indeks i Id proizvoda ne mogu biti null.</value>
         <value xml:lang="it">Entrambi indice e prodotto non possono essere vuoti.</value>
         <value xml:lang="ja">索引と製品IDの両方とも空にできません。</value>
         <value xml:lang="zh">索引和产品标识都不能是空（null）。</value>
@@ -38,6 +40,7 @@
     <property key="categoryservices.problems_reading_category_entity">
         <value xml:lang="de">Problem beim Lesen der Produktkategorien: ${errMessage}.</value>
         <value xml:lang="en">Problem reading product categories: ${errMessage}.</value>
+        <value xml:lang="hr">Problem s čitanjem kategorija proizvoda: ${errMessage}.</value>
         <value xml:lang="it">Problemi leggendo categorie prodotto: ${errMessage}.</value>
         <value xml:lang="ja">製品カテゴリの読み込み中にエラー: ${errMessage}.</value>
         <value xml:lang="nl">Probleem inzake productcategoriën: ${errMessage}.</value>
@@ -47,6 +50,7 @@
     <property key="categoryservices.product_not_found">
         <value xml:lang="de">Produkt in der aktuellen Kategorie nicht gefunden.</value>
         <value xml:lang="en">Product not found in the current category.</value>
+        <value xml:lang="hr">Proizvod nije pronađen u trenutnoj kategoriji.</value>
         <value xml:lang="it">Prodotto non trovato nell'attuale categoria.</value>
         <value xml:lang="ja">現在のカテゴリに製品が見つかりません。</value>
         <value xml:lang="nl">Product niet gevonden</value>
@@ -55,98 +59,129 @@
     </property>
     <property key="facility.assocProducts">
         <value xml:lang="en">Required Field Missing : Assoc Products</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Povezani proizvodi</value>
     </property>
     <property key="facility.contactMechId">
         <value xml:lang="en">Required Field Missing : Contact Mech Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id mehanizma kontakta.</value>
     </property>
     <property key="facility.contactMechTypeId">
         <value xml:lang="en">Required Field Missing : Contact Mech Type Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste kontakt mehanizma.</value>
     </property>
     <property key="facility.containerId">
         <value xml:lang="en">Required Field Missing : Container ID</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id spremnika</value>
     </property>
     <property key="facility.emailAddress">
         <value xml:lang="en">Required Field Missing : Email Address.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: E-mail adresa.</value>
     </property>
     <property key="facility.fromDate">
         <value xml:lang="en">Required Field Missing : From Date.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Od datuma.</value>
     </property>
     <property key="facility.facilityId">
         <value xml:lang="en">Required Field Missing : Facility Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id objekta.</value>
     </property>
     <property key="facility.facilityIdTo">
         <value xml:lang="en">Required Field Missing : Facility Id To.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Id objekta za.</value>
     </property>
     <property key="facility.inventoryCountDate">
         <value xml:lang="en">Required Fied Missing : Inventory Count Date.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Datum inventara.</value>
     </property>
     <property key="facility.inventoryItemId">
         <value xml:lang="en">Required Field Missing : Inventory Item Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id stavke inventara.</value>
     </property>
     <property key="facility.inventoryItemVariance">
         <value xml:lang="en">Required Field Missing : Inventory Item Variance.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Odstupanje stavke inventara.</value>
     </property>
     <property key="facility.itemIssuanceId">
         <value xml:lang="en">Required Field Missing : Item Issuance Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id izdavanja artikla.</value>
     </property>
     <property key="facility.inventoryTransferId">
         <value xml:lang="en">Required Field Missing : Inventory Transfer Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id prijenosa inventara.</value>
     </property>
     <property key="facility.locationSeqId">
         <value xml:lang="en">Required Field Missing : Location Sequence Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id sekvence lokacije.</value>
     </property>
     <property key="facility.orderId">
         <value xml:lang="en">Required Field Missing : Order Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id narudžbe.</value>
     </property>
     <property key="facility.orderItems">
         <value xml:lang="en">Required Field Missing: Order Items.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Stavke narudžbe.</value>
     </property>
     <property key="facility.orderItemSeqId">
         <value xml:lang="en">Required Field Missing : Order Item Sequence Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Red.br. stavke narudžbe.</value>
     </property>
     <property key="facility.OrderItemShipGrpInvRes">
         <value xml:lang="en">Required Field Missing : Order Item Ship Grp Inv Res.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Inv Res. grupe otpreme stavke narudžbe</value>
     </property>
     <property key="facility.partyId">
         <value xml:lang="en">Requied Field Missing : Party Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id sudionika.</value>
     </property>
     <property key="facility.productId">
         <value xml:lang="en">Required Field Missing : Product Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id proizvoda.</value>
     </property>
     <property key="facility.promisedDatetime">
         <value xml:lang="en">Required Field Missing : Promised Date Time.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Obećani datum/vrijeme.</value>
     </property>
     <property key="facility.quantity">
         <value xml:lang="en">Required Field Missing : Quantity.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Količina.</value>
     </property>
     <property key="facility.quantityMoved">
         <value xml:lang="en">Required Field Missing : Quantity Moved.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Premještena količina.</value>
     </property>
     <property key="facility.requireInventory">
         <value xml:lang="en">Required Field Missing : Require Inventory.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Zahtijevaj inventar.</value>
     </property>
     <property key="facility.reservedDatetime">
         <value xml:lang="en">Required Field Missing : Reserved Date Time</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Rezervirano datum/vrijeme.</value>
     </property>
     <property key="facility.reserveOrderEnumId">
         <value xml:lang="en">Required Field Missing : Reserve Order Enum Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id slijeda rezervirane narudžbe.</value>
     </property>
 
     <property key="facility.shipGroupSeqId">
         <value xml:lang="en">Required Field Missing : Ship Group Sequence Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Red.br. grupe otpreme.</value>
     </property>
     <property key="facility.statusId">
         <value xml:lang="en">Required Field Missing : Status Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id statusa.</value>
     </property>
     <property key="facility.targetLocationSeqId">
         <value xml:lang="en">Required Field Missing : Target Location Sequence Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id sekvence ciljne lokacije.</value>
     </property>
     <property key="facility.xferQty">
         <value xml:lang="en">Required Field Missing : xferQty</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: xferQty</value>
     </property>
     <property key="ImageManagementErrorRmoveDefaultImage">
         <value xml:lang="de">Kann Bild nicht entfernen, es ist das Standardbild.</value>
         <value xml:lang="en">Unable to remove an image. It is the defualt image.</value>
+        <value xml:lang="hr">Nije moguće ukloniti sliku. To je zadana slika.</value>
         <value xml:lang="ja">画像の削除はできません。デフォルトの画像です。</value>
         <value xml:lang="th">ไม่สามารถลบรูปภาพ</value>
         <value xml:lang="zh">无法删除图片。它是缺省图片。</value>
@@ -156,6 +191,7 @@
         <value xml:lang="de">Es gibt keine Verbindung zwischen dem Los ${parameters.lotId} und dem Produkt ${parameters.productId}.</value>
         <value xml:lang="en">There is no link between the lot ${parameters.lotId} and the product ${parameters.productId}.</value>
         <value xml:lang="fr">Il n'y a pas de lien entre le lot ${parameters.lotId} et le produit ${parameters.productId}.</value>
+        <value xml:lang="hr">Ne postoji veza između serije ${parameters.lotId} i proizvoda ${parameters.productId}.</value>
         <value xml:lang="ja">ロット ${parameters.lotId} と製品 ${parameters.productId} にリンクがありません。</value>
         <value xml:lang="zh">在批次 ${parameters.lotId} 和产品 ${parameters.productId} 之间没有关联。</value>
         <value xml:lang="zh-TW">在批次 ${parameters.lotId} 和產品 ${parameters.productId} 之間沒有結合.</value>
@@ -164,6 +200,7 @@
         <value xml:lang="de">Nicht genug Bestand für dieses Los.</value>
         <value xml:lang="en">Not enough stock for this lot.</value>
         <value xml:lang="fr">Pas assez de stock pour ce lot.</value>
+        <value xml:lang="hr">Nema dovoljno zaliha za ovu seriju.</value>
         <value xml:lang="ja">このロットに十分な在庫がありません。</value>
         <value xml:lang="zh">库存不足以满足这个批次。</value>
         <value xml:lang="zh-TW">庫存不足以滿足這個批次.</value>
@@ -171,21 +208,26 @@
     <property key="PicklistManageTooMuchQuantity">
         <value xml:lang="en">The quantity entered (${parameters.quantity}) is higher than the quantity expected (${picklistItem.quantity}).</value>
         <value xml:lang="fr">La quantité entrée (${parameters.quantity}) est supérieure à  la quantité attendue (${picklistItem.quantity}).</value>
+        <value xml:lang="hr">Unesena količina (${parameters.quantity}) veća je od očekivane količine (${picklistItem.quantity}).</value>
         <value xml:lang="ja">入力した数量 (${parameters.quantity}) が期待した数量 (${picklistItem.quantity}) より大きい。</value>
         <value xml:lang="zh">输入的数量（${parameters.quantity}）大于期望的数量（${picklistItem.quantity}）。</value>
     </property>
     <property key="ProductCannotCreateTheTargetDirectory">
         <value xml:lang="en">Cannot create the target directory.</value>
+    <value xml:lang="hr">Nije moguće stvoriti ciljni direktorij.</value>
     </property>
      <property key="ProductCannotReplaceBecauseBothImagesAreTheSameImage">
        <value xml:lang="en">Cannot replace because both images are the same image.</value>
+    <value xml:lang="hr">Nije moguće zamijeniti jer su obje slike ista slika.</value>
     </property>
     <property key="ProductCannotReplaceImage">
         <value xml:lang="en">Cannot replace image.</value>
+    <value xml:lang="hr">Nije moguće zamijeniti sliku.</value>
     </property>
     <property key="ProductCreateCommunicationEventProductPermissionError">
         <value xml:lang="de">Berechtigungsfehler beim Erstellen des Produkt Communication Events</value>
         <value xml:lang="en">Create Communication Event Product Permission Error</value>
+        <value xml:lang="hr">Pogreška dopuštenja proizvoda za stvaranje komunikacijskog događaja</value>
         <value xml:lang="it">Errore di permesso durante la creazione evento comunicazione prodotto</value>
         <value xml:lang="ja">通信イベント製品作成権限エラー</value>
         <value xml:lang="zh">创建沟通事件产品权限时出错</value>
@@ -194,6 +236,7 @@
     <property key="ProductErrorAllOrderItemsAreNotPacked">
         <value xml:lang="de">FEHLER: Bestellpostionen sind nicht alle gepackt</value>
         <value xml:lang="en">ERROR: All order items are not packed</value>
+        <value xml:lang="hr">GREŠKA: Sve stavke narudžbe nisu zapakirane</value>
         <value xml:lang="ja">エラー: すべての注文アイテムが梱包されていません</value>
         <value xml:lang="nl">Orderregels zijn niet verpakt</value>
         <value xml:lang="zh">错误：所有订单明细都没有包装</value>
@@ -202,6 +245,7 @@
     <property key="ProductErrorAllOrderItemsAreNotVerified">
         <value xml:lang="de">FEHLER: Bestellpostionen sind nicht alle verifiziert</value>
         <value xml:lang="en">ERROR: All order items are not verified</value>
+        <value xml:lang="hr">GREŠKA: Sve stavke narudžbe nisu provjerene</value>
         <value xml:lang="ja">エラー: すべての注文アイテムが確認されていません</value>
         <value xml:lang="nl">Orderregels zijn niet geverifieerd</value>
         <value xml:lang="zh">错误：所有订单明细都没有验证</value>
@@ -209,13 +253,16 @@
     </property>
     <property key="ProductErrorCreatingNewVirtualProductFromVariantProducts">
         <value xml:lang="en">Error creating new virtual product from variant products: ${errorString}</value>
+    <value xml:lang="hr">Greška pri izradi novog virtualnog proizvoda iz varijanti proizvoda: ${errorString}</value>
     </property>
     <property key="ProductErrorsOccurInParsingImageProperties.xml">
         <value xml:lang="en">Errors occur in parsing ImageProperties.xml: ${errorString}</value>
+    <value xml:lang="hr">Pojavljuju se pogreške u raščlanjivanju ImageProperties.xml: ${errorString}</value>
     </property>
     <property key="ProductErrorEnteredBothDimensionAndPackageInputBoxField">
         <value xml:lang="de">FEHLER: Maßangaben und Verpackung wurden angegeben, beide Felder zusammen können nicht verarbeitet werden (bitte nur eins von beiden angeben)</value>
         <value xml:lang="en">ERROR: Entered Dimension and Package input box, both the fields cannot be processed together (should enter one of them)</value>
+        <value xml:lang="hr">GREŠKA: Unesene vrijednosti u polja za dimenzije i paket, oba polja se ne mogu obraditi zajedno (treba unijeti samo jedno od njih)</value>
         <value xml:lang="ja">エラー: 寸法と梱包箱の両方は同時に指定できません (1つのみ入力してください)</value>
         <value xml:lang="zh">错误：输入的尺寸和包装输入框，不能同时处理这两个数据项（应该输入其中之一）</value>
         <value xml:lang="zh-TW">錯誤:輸入的尺寸和包裝輸入框,不能同時處理這兩個數據項(應該輸入其中之一)</value>
@@ -223,6 +270,7 @@
     <property key="ProductErrorInventoryItemLabelIdNotFound">
         <value xml:lang="de">FEHLER: Inventar Etikett Id nicht gefunden </value>
         <value xml:lang="en">ERROR: Inventory Item Label Id Not Found</value>
+        <value xml:lang="hr">Greška: Id oznake stavke inventara nije pronađen</value>
         <value xml:lang="it">Errore riga etichetta inventario non trovata</value>
         <value xml:lang="ja">エラー: 在庫アイテムラベルIDが見つかりません</value>
         <value xml:lang="zh">发生库存明细标签标识无法找到的错误</value>
@@ -231,6 +279,7 @@
     <property key="ProductErrorIssueItemDidNotReturnAValidShipmentItemSeqId">
         <value xml:lang="de">FEHLER: Warenausgabe hat keine gültige shipmentItemSeqId zurückgegeben</value>
         <value xml:lang="en">ERROR: Issue item did not return a valid shipmentItemSeqId</value>
+        <value xml:lang="hr">GREŠKA: Stavka problema nije vratila važeći red. br. stavke otpreme</value>
         <value xml:lang="ja">エラー: 発行したアイテムが有効な発送アイテム連番IDを戻しませんでした</value>
         <value xml:lang="zh">错误：发货没有返回一个有效的送货明细序号标识（shipmentItemSeqId）</value>
         <value xml:lang="zh-TW">錯誤:發貨沒有返回一個有效的出貨細項序號標識(shipmentItemSeqId)</value>
@@ -238,6 +287,7 @@
     <property key="ProductErrorNoInventoryReservationsAvailableCannotVerifyThisItem">
         <value xml:lang="de">FEHLER: Keine Lagerreservierungen verfügbar, kann diesen Artikel nicht kommissionieren</value>
         <value xml:lang="en">ERROR: No inventory reservations available; cannot pick this item</value>
+        <value xml:lang="hr">GREŠKA: Nema dostupnih rezervacija inventara; nije moguće odabrati ovu stavku</value>
         <value xml:lang="ja">エラー: 有効な在庫予約がありません。このアイテムをピッキングできません</value>
         <value xml:lang="nl">Fout: geen voorraadreservering aanwezig: dit artikel kan niet gepickt worden</value>
         <value xml:lang="zh">错误：没有可用的库存预留；无法分拣这个明细</value>
@@ -246,6 +296,7 @@
     <property key="ProductErrorNoItemsCurrentlySetToBeShippedCannotComplete">
         <value xml:lang="de">FEHLER: Keine Artikel zum Versenden bereit, kann nicht fortfahren</value>
         <value xml:lang="en">ERROR: No items currently set to be shipped cannot complete</value>
+        <value xml:lang="hr">GREŠKA: Nijedan predmet koji je trenutačno postavljen za slanje ne može se dovršiti</value>
         <value xml:lang="ja">エラー: 発送完了できない状態のアイテムはありません</value>
         <value xml:lang="zh">错误：当前没有明细设置为要送货，不能完成</value>
         <value xml:lang="zh-TW">錯誤:當前沒有細項設置為要送貨,不能完成</value>
@@ -253,6 +304,7 @@
     <property key="ProductErrorNoShipGroupSequenceIdFoundCannotProcess">
         <value xml:lang="de">FEHLER: Keine Versandgruppen Sequenz Id gefunden, kann nicht fortfahren</value>
         <value xml:lang="en">ERROR: No ship group sequence Id found, cannot process</value>
+        <value xml:lang="hr">GREŠKA: Niti jedan sekvencijski Id grupe pošiljke nije pronađen, ne može se obraditi</value>
         <value xml:lang="ja">エラー: 発送グループ連番IDが見つかりません。処理できません</value>
         <value xml:lang="zh">错误：没有找到送货组序号标识，不能处理</value>
         <value xml:lang="zh-TW">錯誤:沒有找到送貨群組序號標識,不能處理</value>
@@ -260,6 +312,7 @@
     <property key="ProductErrorNotEnoughInventoryReservationAvailableCannotVerifyTheItem">
         <value xml:lang="de">FEHLER: Nicht genug Lagerreservierungen verfügbar, kann Artikel nicht abgleichen</value>
         <value xml:lang="en">ERROR: Not enough inventory reservation available; cannot verify the item</value>
+        <value xml:lang="hr">GREŠKA: Nije dostupna dovoljna rezervacija inventara; nije moguće provjeriti stavku</value>
         <value xml:lang="ja">エラー: 十分な在庫予約がありません。アイテムを確認できません</value>
         <value xml:lang="zh">错误：没有可用的足够的库存预留；无法验证这个明细</value>
         <value xml:lang="zh-TW">錯誤:沒有可用的足夠的庫存預留;無法驗證這個細項</value>
@@ -267,6 +320,7 @@
     <property key="ProductErrorNotEnteredAllFieldsInDimension">
         <value xml:lang="de">FEHLER: Nicht ale Felder (Länge, Breite, Höhe) bei der Größe angegeben</value>
         <value xml:lang="en">ERROR: Not entered all fields (length, width and height) in Dimension</value>
+        <value xml:lang="hr">GREŠKA: Nisu unesena sva polja (duljina, širina i visina) u Dimenziji</value>
         <value xml:lang="ja">エラー: 寸法のすべての項目が入力されていません (長さ、幅、および重量)</value>
         <value xml:lang="zh">错误：没有输入尺寸的全部数据项（长、宽、高）</value>
         <value xml:lang="zh-TW">錯誤:沒有輸入尺寸的全部資料項目(長、寬、高)</value>
@@ -274,6 +328,7 @@
     <property key="ProductErrorNoValidOrderItemFoundForProductWithEnteredQuantity">
         <value xml:lang="de">FEHLER: Keine gültige Bestellposition für Produkt [${productId}] mit Menge [${quantity}] gefunden</value>
         <value xml:lang="en">ERROR: No valid order item found for product [${productId}] with quantity [${quantity}]</value>
+        <value xml:lang="hr">GREŠKA: nije pronađena važeća stavka narudžbe za proizvod [${productId}] s količinom [${quantity}]</value>
         <value xml:lang="ja">エラー: 製品 [${productId}] の数量 [${quantity}] で有効な注文アイテムが見つかりません</value>
         <value xml:lang="zh">错误：没有找到有效的订单明细，查找条件：产品 [${productId}]，数量 [${quantity}]</value>
         <value xml:lang="zh-TW">錯誤:沒有找到有效的訂單細項,尋找條件:產品 [${productId}],數量 [${quantity}]</value>
@@ -281,6 +336,7 @@
     <property key="ProductErrorNumberOfPackageCannotBeGreaterThanTheNumberOfOrderedQuantity">
         <value xml:lang="de">FEHLER: Anzahl der Pakete kann nicht größer als die Bestellmenge sein</value>
         <value xml:lang="en">ERROR: Number of package cannot be greater than the number of ordered quantity</value>
+        <value xml:lang="hr">GREŠKA: Broj paketa ne može biti veći od broja naručene količine</value>
         <value xml:lang="ja">エラー: パッケージの数は注文数量よりも大きくできません</value>
         <value xml:lang="zh">错误：包装数量不能大于已下订单数量</value>
         <value xml:lang="zh-TW">錯誤:包裝數量不能大於已下訂單數量</value>
@@ -288,6 +344,7 @@
     <property key="ProductErrorPackageWeightCannotBeNullOrZero">
         <value xml:lang="de">FEHLER: Paketgewicht kann nicht null/0 sein, es sollte größer als 0 sein</value>
         <value xml:lang="en">ERROR: Package weight cannot be null/zero, it should be greater than zero</value>
+        <value xml:lang="hr">GREŠKA: Težina paketa ne može biti null/nula, trebala bi biti veća od nule</value>
         <value xml:lang="ja">エラー: パッケージの重量は空/ゼロにできません。ゼロより大きくしてください</value>
         <value xml:lang="nl">FOUT: Gewicht kan niet nul zijn</value>
         <value xml:lang="zh">错误：包装重量不能为空（null）/0，而应该大于0</value>
@@ -296,6 +353,7 @@
     <property key="ProductErrorShipmentItemCannotBeDeleted">
         <value xml:lang="de">FEHLER: Lieferposition kann nicht gelöscht werden, zuerst muss der zugehörige Content gelöscht werden</value>
         <value xml:lang="en">ERROR: Shipment Item cannot be deleted and require Shipment Package Content to be deleted first</value>
+        <value xml:lang="hr">GREŠKA: Stavku pošiljke nije moguće izbrisati, potrebno je da se prvo izbriše sadržaj paketa pošiljke</value>
         <value xml:lang="ja">エラー: 発送アイテムを削除できません。発送パッケージ内容を先に削除してください</value>
         <value xml:lang="zh">错误：不能删除送货明细，需要先删除送货包装内容</value>
         <value xml:lang="zh-TW">錯誤:不能刪除出貨細項,需要先刪除出貨包裝內容</value>
@@ -303,6 +361,7 @@
     <property key="ProductErrorShipmentPackageCannotBeDeleted">
         <value xml:lang="de">FEHLER: Liefereinheit kann nicht gelöscht werden, zuerst muss der zugehörige Content gelöscht werden</value>
         <value xml:lang="en">ERROR: Shipment Package cannot be deleted and require Shipment Package Content to be deleted first</value>
+        <value xml:lang="hr">GREŠKA: Paket pošiljke nije moguće izbrisati, potrebno je da se prvo izbriše sadržaj paketa pošiljke</value>
         <value xml:lang="ja">エラー: 発送パッケージを削除できません。発送パッケージ内容を先に削除してください</value>
         <value xml:lang="zh">错误：不能删除送货包装，需要先删除送货包装内容</value>
         <value xml:lang="zh-TW">錯誤:不能刪除出貨包裝,需要先刪除出貨包裝內容</value>
@@ -310,6 +369,7 @@
     <property key="ProductErrorVerifiedQtyDoesNotMatchTheReservedQtyForItem">
         <value xml:lang="de">FEHLER: Bestätigte Menge entspricht nicht der reservierten Menge für Artikel #${productId} [bestätigte Menge = ${verifiedQty} / reservierte Menge = ${reservedQty}]</value>
         <value xml:lang="en">ERROR: Verified quantity does not match the reserved quantity for item #${productId} [verified qty = ${verifiedQty} / reserved qty = ${reservedQty}]</value>
+        <value xml:lang="hr">GREŠKA: Potvrđena količina ne odgovara rezerviranoj količini za artikl #${productId} [verified qty = ${verifiedQty} / rezervirana količina = ${reservedQty}]</value>
         <value xml:lang="ja">エラー: 確認した数量が予約数量と一致しません。アイテム #${productId} [確認数量 = ${verifiedQty} / 予約数量 = ${reservedQty}]</value>
         <value xml:lang="zh">错误：已验证的数量与已预留的数量不一致，明细 #${productId} [已验证数量 = ${verifiedQty} / 已预留数量 = ${reservedQty}]</value>
         <value xml:lang="zh-TW">錯誤:已驗證的數量與已預留的數量不一致,細項 #${productId} [已驗證數量 = ${verifiedQty} / 已預留數量 = ${reservedQty}]</value>
@@ -319,6 +379,7 @@
         <value xml:lang="en">Association Type ID is missing.</value>
         <value xml:lang="es">Hace falta el código del tipo de asociación</value>
         <value xml:lang="fr">La réf. de type d'association est absente.</value>
+        <value xml:lang="hr">Nedostaje Id vrste povezivanja.</value>
         <value xml:lang="it">Tipo Associazione è mancante.</value>
         <value xml:lang="ja">関連付け種類IDが正しくありません。</value>
         <value xml:lang="ro">Tip Asociatie lipseste.</value>
@@ -332,6 +393,7 @@
         <value xml:lang="en">Attribute name is missing.</value>
         <value xml:lang="es">Falta el nombre del atributo.</value>
         <value xml:lang="fr">Le nom d'attribut est absent.</value>
+        <value xml:lang="hr">Nedostaje naziv atributa.</value>
         <value xml:lang="it">Nome Attributo è mancante.</value>
         <value xml:lang="ja">属性名称が正しくありません。</value>
         <value xml:lang="ro">Nume Atribut lipseste.</value>
@@ -345,6 +407,7 @@
         <value xml:lang="en">Could not create attribute (write error).</value>
         <value xml:lang="es">No se pudo crear atributo (error de escritura).</value>
         <value xml:lang="fr">Impossible de créer l'attribut (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće stvoriti atribut (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile creare l'attributo (errore scrittura).</value>
         <value xml:lang="ja">属性が作成できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila crearea atributului (eroare la scriere).</value>
@@ -358,6 +421,7 @@
         <value xml:lang="en">Could not create keywords (write error).</value>
         <value xml:lang="es">No se pudieron crear palabras clave (error de escritura).</value>
         <value xml:lang="fr">Impossible de créer le mot-clé (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće stvoriti ključne riječi (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile creare le chiavi (errore scrittura).</value>
         <value xml:lang="ja">キーワードが作成できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila crearea cheilor (eroare la scriere).</value>
@@ -371,6 +435,7 @@
         <value xml:lang="en">Could not create product association (already exists).</value>
         <value xml:lang="es">No se pudo crear asociación (ya existe).</value>
         <value xml:lang="fr">Impossible de créer l'association à l'article (existe déjà).</value>
+        <value xml:lang="hr">Nije moguće stvoriti povezivanje proizvoda (već postoji).</value>
         <value xml:lang="it">Non è possibile creare l'associazione prodotto (già esistente).</value>
         <value xml:lang="ja">製品関連付けが作成できません(すでに存在します)。</value>
         <value xml:lang="ro">Nu este posibila crearea asociere produs (deja existente).</value>
@@ -384,6 +449,7 @@
         <value xml:lang="en">Could not create product association (write error).</value>
         <value xml:lang="es">No se pudo crear asociación (error de escritura).</value>
         <value xml:lang="fr">Impossible de créer l'association à l'article (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće stvoriti povezivanje proizvoda (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile creare associazione prodotto (errore scrittura).</value>
         <value xml:lang="ja">製品関連付けが作成できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila crearea asocierii produs (eroare la scriere).</value>
@@ -397,6 +463,7 @@
         <value xml:lang="en">Could not create product-keyword entry (already exists).</value>
         <value xml:lang="es">No se pudo crear entrada de palabra clave-producto (ya existe).</value>
         <value xml:lang="fr">Impossible de créer le mot-clé de l'article (existe déjà).</value>
+        <value xml:lang="hr">Nije moguće stvoriti unos ključne riječi proizvoda (već postoji).</value>
         <value xml:lang="it">Non è possibile creare voce chiave-prodotto (già esistenti).</value>
         <value xml:lang="ja">製品キーワードが作成できません(すでに存在します)。</value>
         <value xml:lang="ro">Nu este posibila crearea campului cheie-produs (deja existenta).</value>
@@ -410,6 +477,7 @@
         <value xml:lang="en">Could not create product-keyword entry (write error).</value>
         <value xml:lang="es">No se pudo crear asociación entrada de palabra clave-producto (error de escritura).</value>
         <value xml:lang="fr">Impossible de créer le mot-clé de l'article (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće stvoriti unos ključne riječi proizvoda (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile creare voce chiave-prodotto (errore scrittura).</value>
         <value xml:lang="ja">製品キーワードが作成できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila crearea vocii cheie-produsd (eroare la scriere).</value>
@@ -423,6 +491,7 @@
         <value xml:lang="en">Could not delete attribute (write error).</value>
         <value xml:lang="es">No se pudo borrar atributo (error de escritura).</value>
         <value xml:lang="fr">Impossible de supprimer l'attribut (erreur d'écriture)</value>
+        <value xml:lang="hr">Nije moguće izbrisati atribut (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile cancellare attributo (errore scrittura).</value>
         <value xml:lang="ja">属性を削除できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila stergerea atributului (eroare la scriere).</value>
@@ -436,6 +505,7 @@
         <value xml:lang="en">Could not remove product-keywords (write error).</value>
         <value xml:lang="es">No se pudo remover producto-palabras clave (error de escritura).</value>
         <value xml:lang="fr">Impossible de supprimer le mot-clé de l'article (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće ukloniti ključne riječi proizvoda (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile cancellare chiavi-prodotto (errore scrittura).</value>
         <value xml:lang="ja">製品キーワードを削除できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila stergerea cheie -produs (eroare la scriere).</value>
@@ -449,6 +519,7 @@
         <value xml:lang="en">Could not remove product association (does not exist).</value>
         <value xml:lang="es">No se pudo remover asociación de producto (no existe).</value>
         <value xml:lang="fr">Impossible de supprimer le mot-clé de l'article (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće ukloniti povezivanje proizvoda (ne postoji).</value>
         <value xml:lang="it">Non è possibile cancellare associazione prodotto (non esiste).</value>
         <value xml:lang="ja">製品関連付けを削除できません(存在しません)。</value>
         <value xml:lang="ro">Nu este posibila stergerea asocierea produs (nu exista).</value>
@@ -462,6 +533,7 @@
         <value xml:lang="en">Could not remove product association (write error).</value>
         <value xml:lang="es">No se pudo remover asociación de producto (error de escritura).</value>
         <value xml:lang="fr">Impossible de supprimer l'association à l'article (n'existe pas).</value>
+        <value xml:lang="hr">Nije moguće ukloniti povezivanje proizvoda (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile cancellare associazione prodotto (errore scrittura).</value>
         <value xml:lang="ja">製品関連付けを削除できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila stergere asociere produs (eroare la scriere).</value>
@@ -475,6 +547,7 @@
         <value xml:lang="en">Could not remove product-keyword (does not exist);</value>
         <value xml:lang="es">No se pudo remover producto-palabra clave (no existe).</value>
         <value xml:lang="fr">Impossible de supprimer le mot-clé de l'article (n'existe pas).</value>
+        <value xml:lang="hr">Nije moguće ukloniti ključnu riječ proizvoda (ne postoji);</value>
         <value xml:lang="it">Non è possibile cancellare chiave-prodotto (non esiste).</value>
         <value xml:lang="ja">製品キーワードを削除できません(存在しません)。</value>
         <value xml:lang="ru">Невозможно удалить ключевое слово (не существует).</value>
@@ -487,6 +560,7 @@
         <value xml:lang="en">Could not remove product-keyword (write error);</value>
         <value xml:lang="es">No se pudo remover producto-palabra clave (error de escritura).</value>
         <value xml:lang="fr">Impossible de supprimer le mot-clé de l'article (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće ukloniti ključnu riječ proizvoda (pogreška pisanja);</value>
         <value xml:lang="it">Non è possibile cancellare chiave-prodotto (errore scrittura);</value>
         <value xml:lang="ja">製品キーワードを削除できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila stergerea cheie-produs (eroare la scriere);</value>
@@ -500,6 +574,7 @@
         <value xml:lang="en">Could not update attribute (write error).</value>
         <value xml:lang="es">No se pudo actualizar atributo (error de escritura).</value>
         <value xml:lang="fr">Impossible de mettre à jour l'attribut (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće ažurirati atribut (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile aggiornare attributo (errore scrittura).</value>
         <value xml:lang="ja">属性を更新できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila actualizarea atribut (eroare la scriere).</value>
@@ -513,6 +588,7 @@
         <value xml:lang="en">Could not update product association (write error).</value>
         <value xml:lang="es">No se pudo actualizar asociación de escritura (error de escritura).</value>
         <value xml:lang="fr">Impossible de mettre à jour l'association à l'article (erreur d'écriture).</value>
+        <value xml:lang="hr">Nije moguće ažurirati pridruživanje proizvoda (pogreška pisanja).</value>
         <value xml:lang="it">Non è possibile aggiornare associazione prodotto (errore scrittura).</value>
         <value xml:lang="ja">製品関連付けを更新できません(書き込みエラー)。</value>
         <value xml:lang="ro">Nu este posibila actualizarea asociatie produs (eroare la scriere).</value>
@@ -526,6 +602,7 @@
         <value xml:lang="en">Error getting the product list to index: ${gee}.</value>
         <value xml:lang="es">Error obteniendo la lista de productos en el índice: ${gee}.</value>
         <value xml:lang="fr">Erreur en obtenant la liste d'article à l'index : ${gee}.</value>
+        <value xml:lang="hr">Pogreška pri dobivanju popisa proizvoda za indeksiranje: ${gee}.</value>
         <value xml:lang="it">Errore leggendo la lista prodotti per indice: ${gee}.</value>
         <value xml:lang="ja">製品一覧取得エラー、インデックス: ${gee}。</value>
         <value xml:lang="ro">Eroare la citirea listei produs indexat: ${gee}.</value>
@@ -539,6 +616,7 @@
         <value xml:lang="en">The following errors occurred:</value>
         <value xml:lang="es">Ocurrieron los siguientes errores</value>
         <value xml:lang="fr">Les erreurs suivantes sont apparues :</value>
+        <value xml:lang="hr">Dogodile su se sljedeće greške:</value>
         <value xml:lang="it">I seguenti errori sono occorsi:</value>
         <value xml:lang="ja">次のエラーが発生しました:</value>
         <value xml:lang="ro">Urmatoarele erori au aparut:</value>
@@ -552,6 +630,7 @@
         <value xml:lang="en">From Date is missing.</value>
         <value xml:lang="es">Falta la fecha de inicio.</value>
         <value xml:lang="fr">La date de début manque.</value>
+        <value xml:lang="hr">'Datum od' nedostaje.</value>
         <value xml:lang="it">Data Da è mancante.</value>
         <value xml:lang="ja">開始日が正しくありません。</value>
         <value xml:lang="ro">Data De la lipseste.</value>
@@ -565,6 +644,7 @@
         <value xml:lang="en">Keyword creation complete for ${numProds} products.</value>
         <value xml:lang="es">Se completó la creación de palabras clave de ${numProds} productos.</value>
         <value xml:lang="fr">La création de mot-clé est terminée pour ${numProds} articless,</value>
+        <value xml:lang="hr">Izrada ključne riječi dovršena za ${numProds} proizvoda.</value>
         <value xml:lang="it">Creazione Chiave completata per ${numProds} prodotto(i).</value>
         <value xml:lang="ja">${numProds} 製品のキーワードが作成されました。</value>
         <value xml:lang="ro">Creare Cheie completa pentru ${numProds} produs(e).</value>
@@ -578,6 +658,7 @@
         <value xml:lang="en">Keyword creation complete for ${numProds} products, with errors in ${errProds} products (see the log for more details).</value>
         <value xml:lang="es">Se completó la creación de palabras clave de ${numProds} productos, con errores en ${errProds} productos (ver el log para más detalles).</value>
         <value xml:lang="fr">La création de mot-clé est terminée pour ${numProds} articles, avec des erreurs dans ${errProds} articles (voir la log - journal de bord - pour plus de détails).</value>
+        <value xml:lang="hr">Stvaranje ključne riječi dovršeno za ${numProds} proizvoda, s pogreškama u ${errProds} proizvoda (vidi log za više pojedinosti).</value>
         <value xml:lang="it">Creazione Chiave completata per ${numProds} prodotto(i), con errori in ${errProds} prodotto(i) (vedi il log per maggiori dettagli).</value>
         <value xml:lang="ja">${numProds} 製品のキーワードが作成されましたが、${errProds} 製品でエラーがありました (詳細はログを参照してください)。</value>
         <value xml:lang="ro">Creare Cheie complectata pentru ${numProds} produs(e), cu erori in ${errProds} produs(e) (vezi log pentru mai multe detalii).</value>
@@ -591,6 +672,7 @@
         <value xml:lang="en">Keyword is missing.</value>
         <value xml:lang="es">Falta la palabra clave.</value>
         <value xml:lang="fr">Le mot-clé est absent.</value>
+        <value xml:lang="hr">Ključna riječ nedostaje.</value>
         <value xml:lang="it">Chiave mancante.</value>
         <value xml:lang="ja">製品のキーワードが正しくありません。</value>
         <value xml:lang="ro">Chieie lipsa.</value>
@@ -604,6 +686,7 @@
         <value xml:lang="en">No Product ID specified, cannot update keywords.</value>
         <value xml:lang="es">No se especificó producto, no se puede actualizar palabras clave.</value>
         <value xml:lang="fr">Aucune réf. d'article indiquée, ne peut mettre à jour les mots-clés.</value>
+        <value xml:lang="hr">Nije naveden Id proizvoda, nije moguće ažurirati ključne riječi.</value>
         <value xml:lang="it">Nessun Codice Prodotto specificato, non è possibile aggiornare le chiavi.</value>
         <value xml:lang="ja">製品IDが指定されていません、キーワードが更新できません。</value>
         <value xml:lang="ro">Nici-un Cod Produs specificat, nu este posibila actualizarea cheilor.</value>
@@ -617,6 +700,7 @@
         <value xml:lang="en">You do not have sufficient permissions to ${updateMode} CATALOG (CATALOG_${updateMode} or CATALOG_ADMIN needed).</value>
         <value xml:lang="es">No tiene suficientes permisos para ${updateMode} se necesitan permisos de CATALOG (CATALOG_${updateMode} o CATALOG_ADMIN).</value>
         <value xml:lang="fr">Vous n'avez pas les autorisations suffisantes pour ${updatemode} le CATALOGUE (CATALOG_${updateMode} ou CATALOG_ADMIN requis).</value>
+        <value xml:lang="hr">Nemate dovoljna dopuštenja za ${updateMode} CATALOG (potreban je CATALOG_${updateMode} ili CATALOG_ADMIN).</value>
         <value xml:lang="it">Non hai permessi sufficienti per ${updateMode} CATALOG (permesso CATALOG_${updateMode} o CATALOG_ADMIN necessario).</value>
         <value xml:lang="ja">${updateMode} カタログに対する権限がありません、CATALOG_${updateMode} または CATALOG_ADMIN 権限が必要です。</value>
         <value xml:lang="ro">Nu aidestule permise pentru ${updateMode} CATALOG (este necesar permisul CATALOG_${updateMode} sau CATALOG_ADMIN).</value>
@@ -630,6 +714,7 @@
         <value xml:lang="en">Product ID To is missing.</value>
         <value xml:lang="es">Falta el código de producto destino.</value>
         <value xml:lang="fr">La réf. de "l'article vers" est absente.</value>
+        <value xml:lang="hr">'Id proizvoda za' nedostaje.</value>
         <value xml:lang="it">Codice Prodotto A mancante.</value>
         <value xml:lang="ja">製品ID(先)が正しくありません。</value>
         <value xml:lang="ro">Cod Produs A lipseste.</value>
@@ -643,6 +728,7 @@
         <value xml:lang="en">Product ID is missing.</value>
         <value xml:lang="es">Falta el código de producto.</value>
         <value xml:lang="fr">La réf. d'article est absente.</value>
+        <value xml:lang="hr">ID proizvoda nedostaje.</value>
         <value xml:lang="it">Codice Prodotto mancante.</value>
         <value xml:lang="ja">製品IDが正しくありません。</value>
         <value xml:lang="ro">Cod Produs lipseste.</value>
@@ -656,6 +742,7 @@
         <value xml:lang="en">Product To with id ${productIdTo} not found.</value>
         <value xml:lang="es">Producto destino con código ${productIdTo} no se encontró.</value>
         <value xml:lang="fr">Le "l'article vers" avec la réf. ${productidTo} non trouvé.</value>
+        <value xml:lang="hr">Proizvod Za s Id-om ${productIdTo} nije pronađen.</value>
         <value xml:lang="it">Prodotto A con Codice ${productIdTo} non trovato.</value>
         <value xml:lang="ja">製品ID(先) ${productIdTo} が見つかりません。</value>
         <value xml:lang="ro">Nu gaseste Produs A cu Cod ${productIdTo}.</value>
@@ -669,6 +756,7 @@
         <value xml:lang="en">Product with id ${productId} not found.</value>
         <value xml:lang="es">Producto con código ${productId} no fue encontrado.</value>
         <value xml:lang="fr">Produit avec la réf. ${productId} non trouvé.</value>
+        <value xml:lang="hr">Proizvod s Id-om ${productId} nije pronađen.</value>
         <value xml:lang="it">Prodotto con Codice ${productId} non trovato.</value>
         <value xml:lang="ja">製品ID ${productId} が見つかりません。</value>
         <value xml:lang="ro">Produs cu Cod ${productId} negasit.</value>
@@ -682,6 +770,7 @@
         <value xml:lang="en">Product with ID "${productId}", not found; cannot update keywords.</value>
         <value xml:lang="es">Producto con código "${productId}" no fue encotrado; no se pueden actualizar las palabras clave.</value>
         <value xml:lang="fr">L'article avec la réf. "${productId}", non trouvé. Ne peut mettre à jour les mots-clés.</value>
+        <value xml:lang="hr">Proizvod s Id-om ${productId} nije pronađen; nije moguće ažurirati ključne riječi.</value>
         <value xml:lang="it">Prodotto con Codice "${productId}", non trovato; non è possibile aggiornare le chiavi.</value>
         <value xml:lang="ja">製品ID ${productId} が見つかりません、キーワードを更新することができません。</value>
         <value xml:lang="ro">Produs cu Cod "${productId}", negasit; nu este posibila actualizarea cheilor.</value>
@@ -695,6 +784,7 @@
         <value xml:lang="en">Quantity not formatted correctly.</value>
         <value xml:lang="es">Cantidad no formateada correctamente.</value>
         <value xml:lang="fr">Quantité non formatée correctement.</value>
+        <value xml:lang="hr">Količina nije ispravno formatirana.</value>
         <value xml:lang="it">Quantità non formattata correttamente.</value>
         <value xml:lang="ja">数量の書式が正しくありません。</value>
         <value xml:lang="ro">Cantitatea nu este formatata corect.</value>
@@ -708,6 +798,7 @@
         <value xml:lang="en">SequenceNum not formatted correctly.</value>
         <value xml:lang="es">Número de secuencia no formateada correctamente.</value>
         <value xml:lang="fr">N° de séquence non composé correctement.</value>
+        <value xml:lang="hr">Redni broj nije ispravno formatiran.</value>
         <value xml:lang="it">Numero Sequence non formattato correttamente.</value>
         <value xml:lang="ja">連番の書式が正しくありません。</value>
         <value xml:lang="ro">Numar Secventa ne formatat corect.</value>
@@ -721,6 +812,7 @@
         <value xml:lang="en">Specified update mode: "${updateMode}" is not supported.</value>
         <value xml:lang="es">Modo especificado de actualización: "${updateMode}" no es soportado</value>
         <value xml:lang="fr">Le mode indiqué de mise à jour: "${updatemode}" n'est pas supporté.</value>
+        <value xml:lang="hr">Navedeni način ažuriranja: "${updateMode}" nije podržan.</value>
         <value xml:lang="it">Specificato modo di aggiornamento: "${updateMode}" non è supportato.</value>
         <value xml:lang="ja">指定された更新モード: "${updateMode}" はサポートされていません。</value>
         <value xml:lang="ro">Modul de actualizare specificat: "${updateMode}" nu a fost suportat.</value>
@@ -734,6 +826,7 @@
         <value xml:lang="en">Through Date not formatted correctly.</value>
         <value xml:lang="es">Fecha fin no formateada correctamente.</value>
         <value xml:lang="fr">Date de fin non composée correctement.</value>
+        <value xml:lang="hr">'Datum do' nije ispravno formatiran.</value>
         <value xml:lang="it">Data A non formattata correttamente.</value>
         <value xml:lang="ja">終了日の書式が正しくありません。</value>
         <value xml:lang="ro">Data A nu este formatata corect.</value>
@@ -747,6 +840,7 @@
         <value xml:lang="en">Update Mode was not specified, but is required.</value>
         <value xml:lang="es">No se especificó el modo de actualización, pero es requerido.</value>
         <value xml:lang="fr">Le mode de mise à jour n'a pas été indiqué, mais est exigé.</value>
+        <value xml:lang="hr">Način ažuriranja je obavezan, ali nije naveden.</value>
         <value xml:lang="it">Modo di Aggiornamento non è stato specificato, ma è richiesto.</value>
         <value xml:lang="ja">更新モードが指定されていません、入力してください。</value>
         <value xml:lang="ro">Mod de Actualizare nu a fost specificat, dar este cerut.</value>
@@ -759,6 +853,7 @@
         <value xml:lang="de">Die Produktmerkmal Typ ID darf nur Buchstaben, Zahlen und _ enthalten. Bitte erneut eingeben.</value>
         <value xml:lang="en">The Product Feature TypeId must contains only letters, underscore and digits. Please re-enter</value>
         <value xml:lang="fr">La réf. de type de caractéristique d'article ne doit contenir que des lettres, le tiret bas "_" et des chiffres. Recommencez SVP</value>
+        <value xml:lang="hr">Id vrste značajke proizvoda smije sadržavati samo slova, podvlaku i brojeve. Molim unesite ponovno</value>
         <value xml:lang="it">Il tipo caratteristica prodotto deve contenere solamente lettere, underscore e numeri. Prego reinserire</value>
         <value xml:lang="ja">製品機能種類IDは文字、アンダースコア、および数字のみで指定してください。再入力してください。</value>
         <value xml:lang="zh">产品特征类型标识必须只包含字符、下划线和数字。请重新输入</value>
@@ -768,6 +863,7 @@
         <value xml:lang="de">Bitte füllen Sie zunächst das Produktfeld</value>
         <value xml:lang="en">Please, fill the product field before</value>
         <value xml:lang="fr">Sélectionnez le produit d'abord</value>
+        <value xml:lang="hr">Molim vas da prethodno ispunite polje proizvoda</value>
         <value xml:lang="ja">先に製品フィールドを入力してください</value>
         <value xml:lang="zh">请先填写产品域</value>
         <value xml:lang="zh-TW">請先填寫產品域</value>
@@ -776,6 +872,7 @@
         <value xml:lang="de">Die lotId ist nicht erlaubt für das Produkt ${parameters.productId}.</value>
         <value xml:lang="en">The lotId is forbidden for the product ${parameters.productId}.</value>
         <value xml:lang="fr">Le numéro de lot est interdit pour ce produit ${parameters.productId}.</value>
+        <value xml:lang="hr">Id serije je zabranjen za proizvod ${parameters.productId}.</value>
         <value xml:lang="ja">製品 ${parameters.productId} に対するロットIDは許されていません。</value>
         <value xml:lang="zh">批次标识对产品 ${parameters.productId} 而言是禁用的。</value>
         <value xml:lang="zh-TW">批次標識對產品 ${parameters.productId} 而言是禁用的.</value>
@@ -784,6 +881,7 @@
         <value xml:lang="de">Die lotId ist obligatorisch für das Produkt ${parameters.productId}.</value>
         <value xml:lang="en">The lotId is mandatory for the product ${parameters.productId}.</value>
         <value xml:lang="fr">Le numéro de lot est obligatoire pour ce produit ${parameters.productId}.</value>
+        <value xml:lang="hr">Id serije je obavezan za proizvod ${parameters.productId}.</value>
         <value xml:lang="ja">製品 ${parameters.productId} に対するロットIDは必須です。</value>
         <value xml:lang="zh">批次标识对产品 ${parameters.productId} 而言是必须的。</value>
         <value xml:lang="zh-TW">批次標識對產品 ${parameters.productId} 而言是必須的.</value>
@@ -792,6 +890,7 @@
         <value xml:lang="de">Dieses Produkt ist an keinem Platz verfügbar</value>
         <value xml:lang="en">This Product is not in any Location</value>
         <value xml:lang="fr">Ce produit ne se trouve en aucun emplacement</value>
+        <value xml:lang="hr">Ovaj proizvod nije niti na jednoj lokaciji</value>
         <value xml:lang="ja">この製品はどの場所にも存在しません</value>
         <value xml:lang="zh">这个产品不在任何地方</value>
         <value xml:lang="zh-TW">這個產品不在任何地方</value>
@@ -799,6 +898,7 @@
     <property key="ProductNumberOfOrdersMustBeGreaterThenZeroToPrintPickSheet">
         <value xml:lang="de">Die Anzahl der Bestellungen muss größer als 0 sein. Bitte erneut eingeben um das Kommissionierblatt zu drucken.</value>
         <value xml:lang="en">The number of orders must be greater then zero. Please re-enter to print pick sheet.</value>
+        <value xml:lang="hr">Broj naloga mora biti veći od nule. Unesite ponovno za ispis liste za prikup.</value>
         <value xml:lang="ja">注文数量はゼロより大きくしてください。ピッキングシートを印刷するため再度入力してください</value>
         <value xml:lang="zh">订单数量必须大于0。请重新输入打印分拣表单。</value>
         <value xml:lang="zh-TW">訂單數量必須大於0.請重新輸入列印揀貨表單.</value>
@@ -806,22 +906,27 @@
     <property key="ProductNumberOfOrdersMustNotBeEmptyToPrintPickSheet">
         <value xml:lang="de">Die Anzahl der Bestellungen darf nicht leer sein. Bitte erneut eingeben um das Kommissionierblatt zu drucken.</value>
         <value xml:lang="en">The number of orders must not be empty. Please re-enter to print pick sheet.</value>
+        <value xml:lang="hr">Broj naloga ne smije biti prazan. Unesite ponovno za ispis liste za prikup.</value>
         <value xml:lang="ja">注文数量は空にできません。ピッキングシートを印刷するため再度入力してください</value>
         <value xml:lang="zh">订单数量必须不是空。请重新输入打印分拣表单。</value>
         <value xml:lang="zh-TW">訂單數量必須不是空.請重新輸入列印揀貨表單.</value>
     </property>
     <property key="ProductPleaseChooseImageToReplace">
         <value xml:lang="en">Please choose image to replace.</value>
+    <value xml:lang="hr">Odaberite sliku za zamjenu.</value>
     </property>
     <property key="ProductPleaseChooseReplacementImage">
         <value xml:lang="en">Please choose replacement image.</value>
+    <value xml:lang="hr">Odaberite zamjensku sliku.</value>
     </property>
     <property key="ProductPleaseSelectImage">
         <value xml:lang="en">Please select Image.</value>
+    <value xml:lang="hr">Odaberite sliku.</value>
     </property>
     <property key="ProductRemoveCommunicationEventProductPermissionError">
         <value xml:lang="de">Produkt Berechtigungsfehler beim Löschen des Kommunikationsevents</value>
         <value xml:lang="en">Remove Communication Event Product Permission Error</value>
+        <value xml:lang="hr">Ukloni komunikacijski događaj Greška dopuštenja proizvoda</value>
         <value xml:lang="it">Errore permesso durante la rimozione dell'evento comunicazione prodotto</value>
         <value xml:lang="ja">通信イベント製品削除権限エラー</value>
         <value xml:lang="zh">删除沟通事件时发生产品权限出错</value>
@@ -831,6 +936,7 @@
         <value xml:lang="de">Diese Retoure wurde noch nicht akzeptiert oder wurde schon empfangen.</value>
         <value xml:lang="en">This return is not yet accepted or already received.</value>
         <value xml:lang="fr">Ce retour n'est pas encore accepté ou déjà reçu.</value>
+        <value xml:lang="hr">Ovaj povrat još nije prihvaćen ili je već primljen.</value>
         <value xml:lang="it">Questo non è ancora accettato o già ricevuto.</value>
         <value xml:lang="ja">この返品は未受付または受取済です。</value>
         <value xml:lang="ru">Этот возврат еще не подтвержден или уже получен.</value>
@@ -842,6 +948,7 @@
         <value xml:lang="de">Die Retoure wurde angefordert.</value>
         <value xml:lang="en">The return is requested.</value>
         <value xml:lang="fr">Le retour est demandé.</value>
+        <value xml:lang="hr">Traži se povrat.</value>
         <value xml:lang="it">Il reso è richiesto.</value>
         <value xml:lang="ja">返品がリクエストされました。</value>
         <value xml:lang="ru">Запрошен возврат.</value>
@@ -853,6 +960,7 @@
         <value xml:lang="de">Ungültiger Statuswechsel: von ${productReview.statusId} nach ${parameters.statusId}</value>
         <value xml:lang="en">Status is not a valid change: from ${productReview.statusId} to ${parameters.statusId}</value>
         <value xml:lang="fr">Le changement de statut de ${productReview.statusId} à ${parameters.statusId} n'est pas autorisé</value>
+        <value xml:lang="hr">Status nije važeća promjena: iz ${productReview.statusId} u ${parameters.statusId}</value>
         <value xml:lang="it">Cambio di stato non è valido: da ${productReview.statusId} a ${parameters.statusId}</value>
         <value xml:lang="ja">ステータスの変更が有効ではありません: ${productReview.statusId} から ${parameters.statusId}</value>
         <value xml:lang="zh">状态变化无效：从 ${productReview.statusId} 变为 ${parameters.statusId}</value>
@@ -860,12 +968,14 @@
     </property>
     <property key="ProductScaleAdditionalImageInAllDifferentSizesIsImpossible">
         <value xml:lang="en">Scale additional image in all different sizes is impossible: ${errorString}</value>
+    <value xml:lang="hr">Nije moguće skalirati dodatnu sliku u svim različitim veličinama: ${errorString}</value>
     </property>
     <property key="productSearchEvents.added_param_features">
         <value xml:lang="de">${numAdded} Merkmale hinzugefügt mit ID ${productFeatureId}</value>
         <value xml:lang="en">Added ${numAdded} features with ID ${productFeatureId}</value>
         <value xml:lang="es">Se añadieron ${numAdded} características con códigos ${productFeatureId}</value>
         <value xml:lang="fr">Ajout de ${numAdded} caractéristiques avec la réf. ${productFeatureId}]</value>
+        <value xml:lang="hr">Dodano ${numAdded} značajki s Id-om ${productFeatureId}</value>
         <value xml:lang="it">Aggiunta(e) ${numAdded} caratteristiche con Codice ${productFeatureId}</value>
         <value xml:lang="ja">ID ${productFeatureId} の ${numAdded} 機能を追加しました</value>
         <value xml:lang="ro">Adauga ${numAdded} caracteristici cu Codul ${productFeatureId}</value>
@@ -879,6 +989,7 @@
         <value xml:lang="en">Added ${numAdded} product category members.</value>
         <value xml:lang="es">Se añadieron ${numAdded} miembros de categoría de productos.</value>
         <value xml:lang="fr">Ajout de ${numAdded} articles membres de la catégorie.</value>
+        <value xml:lang="hr">Dodano ${numAdded} članova kategorije proizvoda.</value>
         <value xml:lang="it">Aggiunti ${numAdded} membri prodotto categoria.</value>
         <value xml:lang="ja">${numAdded} 製品カテゴリメンバが追加されました。</value>
         <value xml:lang="ro">Adaugati ${numAdded} membri produs categorie.</value>
@@ -892,6 +1003,7 @@
         <value xml:lang="en">Error casting data types</value>
         <value xml:lang="es">Error convirtiendo tipos de datos</value>
         <value xml:lang="fr">Erreur pendant le remplacement de types de données</value>
+        <value xml:lang="hr">Pogreška pri konverziji tipova podataka</value>
         <value xml:lang="it">Errore di casting tipi dato</value>
         <value xml:lang="ja">データタイプキャストエラー</value>
         <value xml:lang="ro">Eroare de casting tip data</value>
@@ -905,6 +1017,7 @@
         <value xml:lang="en">Error getting search results</value>
         <value xml:lang="es">Error al obtener resultados de búsqueda</value>
         <value xml:lang="fr">Erreur survenue pendant la recherche</value>
+        <value xml:lang="hr">Pogreška pri dobivanju rezultata pretraživanja</value>
         <value xml:lang="it">Errore nella ricerca risultati</value>
         <value xml:lang="ja">検索結果取得エラー</value>
         <value xml:lang="ro">Eroare in cautarea resultatelor </value>
@@ -918,6 +1031,7 @@
         <value xml:lang="en">Error getting search results: ${errSearchResult}.</value>
         <value xml:lang="es">Error obteniendo resultados de búsqueda: ${errSearchResult}.</value>
         <value xml:lang="fr">Erreur dans les résultats de recherche : ${errSearchResult}.</value>
+        <value xml:lang="hr">Greška pri dobivanju rezultata pretraživanja: ${errSearchResult}.</value>
         <value xml:lang="it">Errore leggendo i risultati di ricerca: ${errSearchResult}.</value>
         <value xml:lang="ja">検索結果取得エラー: ${errSearchResult}。</value>
         <value xml:lang="ro">Eroare citind resultatele de cautare: ${errSearchResult}.</value>
@@ -931,6 +1045,7 @@
         <value xml:lang="en">Expired ${numExpired} items.</value>
         <value xml:lang="es">Expiraron ${numExpired} artículos.</value>
         <value xml:lang="fr">${numExpired} articles périmés.</value>
+        <value xml:lang="hr">Isteklo ${numExpired} stavki.</value>
         <value xml:lang="it">${numExpired} righe Scadute.</value>
         <value xml:lang="ja">${numExpired} アイテム失効済。</value>
         <value xml:lang="ro">${numExpired} linii Expirate.</value>
@@ -944,6 +1059,7 @@
         <value xml:lang="en">The fromDate was not formatted properly: ${errDateFormat}.</value>
         <value xml:lang="es">La fecha de fin no fue formateada adecuadamente: ${errDateFormat}.</value>
         <value xml:lang="fr">Le champ "Date de début" n'a pas été convenablement formaté : ${errDateFormat}.</value>
+        <value xml:lang="hr">'Datum od' nije ispravno formatiran: ${errDateFormat}.</value>
         <value xml:lang="it">La Data Da non è stata formattata propriamente: ${errDateFormat}.</value>
         <value xml:lang="ja">開始日の書式が正しくありません: ${errDateFormat}。</value>
         <value xml:lang="ro">Data De La nu a fost formatata: ${errDateFormat}.</value>
@@ -957,6 +1073,7 @@
         <value xml:lang="en">No results found, probably because there was an error or were no constraints.</value>
         <value xml:lang="es">No se encontraron resultados, probablemente porque hubo un error o no hubieron restricciones.</value>
         <value xml:lang="fr">Aucun résultat trouvé, probablement parce qu'il y avait une erreur ou aucunes contrainte.</value>
+        <value xml:lang="hr">Nema pronađenih rezultata, vjerojatno zato što je došlo do greške ili ograničenja.</value>
         <value xml:lang="it">Nessun risultato trovato, probabilmente perché c'era un'errore o nessuna costrizione.</value>
         <value xml:lang="ja">結果はありません。エラーが発生したか、制約がありません。</value>
         <value xml:lang="ro">Nici-un rezultat gasit, probabil pentru ca era o eroare si nici-o constrangere.</value>
@@ -970,6 +1087,7 @@
         <value xml:lang="en">Removed ${numRemoved} features with ID ${productFeatureId}</value>
         <value xml:lang="es">Se quitaron ${numRemoved} características con código ${productFeatureId}</value>
         <value xml:lang="fr">Suppression de ${numRemoved} caractéristiques avec la réf. ${productFeatureId}]</value>
+        <value xml:lang="hr">Uklonjeno ${numRemoved} značajki s Id-om ${productFeatureId}</value>
         <value xml:lang="it">Cancellato(i) ${numRemoved} caratteristiche con Codice ${productFeatureId}</value>
         <value xml:lang="ja">ID ${productFeatureId} の ${numAdded} 機能を削除しました</value>
         <value xml:lang="ro">Sters(i) ${numRemoved} caracteristici cu Cod ${productFeatureId}</value>
@@ -983,6 +1101,7 @@
         <value xml:lang="en">removed ${numRemoved} items.</value>
         <value xml:lang="es">se removieron ${numRemoved} artículos.</value>
         <value xml:lang="fr">${numRemoved} articles supprimés.</value>
+        <value xml:lang="hr">uklonjeno ${numRemoved} stavki.</value>
         <value xml:lang="it">${numRemoved} righe cancellate.</value>
         <value xml:lang="ja">${numRemoved} アイテム削除しました。</value>
         <value xml:lang="ru">удалено ${numRemoved} позиций.</value>
@@ -995,6 +1114,7 @@
         <value xml:lang="en">The thruDate is not formatted properly: ${errDateFormat}.</value>
         <value xml:lang="es">La fecha fin no fue formateada adecuadamente: ${errDateFormat}.</value>
         <value xml:lang="fr">Le champ "Date de fin" n'est pas convenablement formaté : ${errDateFormat}.</value>
+        <value xml:lang="hr">'Do datuma' nije ispravno formatirano: ${errDateFormat}.</value>
         <value xml:lang="it">La Data A non è stata formattata propriamente: ${errDateFormat}.</value>
         <value xml:lang="ja">終了日が正しい書式ではありません: ${errDateFormat}.</value>
         <value xml:lang="ro">Data A nu a fost formatata: ${errDateFormat}.</value>
@@ -1008,6 +1128,7 @@
         <value xml:lang="en">Both productId and productIdTo cannot be defined.</value>
         <value xml:lang="es">Tanto el código de producto como el código de producto destino no se pudieron definir.</value>
         <value xml:lang="fr">La "Réf. d'article" et la "Réf. d'article vers" n'ont pu être définis.</value>
+        <value xml:lang="hr">I 'Id proizvoda' i 'Id proizvoda za' ne mogu se definirati.</value>
         <value xml:lang="it">Entrambi productId e productIdTo non sono stati definiti.</value>
         <value xml:lang="ja">製品IDと製品ID(先)の両方とも指定することはできません。</value>
         <value xml:lang="ro">Amandoua productId si productIdTo nu au fost definite.</value>
@@ -1021,6 +1142,7 @@
         <value xml:lang="en">Both productId and productIdTo cannot be null.</value>
         <value xml:lang="es">Tanto el código de producto como el código de producto destino no se pueden ser nulos.</value>
         <value xml:lang="fr">La "Réf. d'article" et la "Réf. d'article vers" ne peuvent être toutes les 2 nulles.</value>
+        <value xml:lang="hr">I 'Id proizvoda' i 'Id proizvoda za' ne mogu biti null.</value>
         <value xml:lang="it">Entrambi productId e productIdTo non possono essere nulli.</value>
         <value xml:lang="ja">製品IDと製品ID(先)の両方とも空にすることはできません。</value>
         <value xml:lang="ro">Amandoua productId si productIdTo nu pot sa fie nuli.</value>
@@ -1034,6 +1156,7 @@
         <value xml:lang="en">Cannot build feature tree: featureList is null.</value>
         <value xml:lang="es">No se pudo construir el árbol de características: la lista de características es nula.</value>
         <value xml:lang="fr">Ne peut construire l'arbre de caractéristiques : la liste de caractéristiques est nulle.</value>
+        <value xml:lang="hr">Nije moguće generirati stablo značajki: popis značajki je null.</value>
         <value xml:lang="it">Non è possibli costruire l'albero delle caratteristiche build feature tree: featureList è nulla.</value>
         <value xml:lang="ja">機能ツリーを構築することができません。機能リストは空です。</value>
         <value xml:lang="ro">Nu este posibla construirea arborelui caracteristicilor build feature tree: featureList este nula.</value>
@@ -1047,6 +1170,7 @@
         <value xml:lang="en">Empty list of products returned.</value>
         <value xml:lang="es">Se devolvió una lista de productos vacía.</value>
         <value xml:lang="fr">Liste d'articles retournés vide.</value>
+        <value xml:lang="hr">Prazna lista vraćenih proizvoda.</value>
         <value xml:lang="it">Lista vuota di prodotti restituita.</value>
         <value xml:lang="ja">戻された製品リストが空です。</value>
         <value xml:lang="ro">Restituita-Lista goala de produse.</value>
@@ -1060,6 +1184,7 @@
         <value xml:lang="en">Empty list of selectable features found.</value>
         <value xml:lang="es">Se halló una lista de características seleccionables vacía.</value>
         <value xml:lang="fr">Liste de caractéristiques sélectionnables trouvées vide.</value>
+        <value xml:lang="hr">Pronađen je prazan popis značajki koje se mogu odabrati.</value>
         <value xml:lang="it">Lista vuota di caratteristiche selezionabili trovate.</value>
         <value xml:lang="ja">選択可能機能リストが空です。</value>
         <value xml:lang="ro">A Gasit o Lista goala de caracteristici selectionabile.</value>
@@ -1071,6 +1196,7 @@
     <property key="productservices.entity_error_quick_add_variant_data">
         <value xml:lang="de">Datenfehler bei der Schnelleingabe der Variantendaten</value>
         <value xml:lang="en">Entity error quick add variant data</value>
+        <value xml:lang="hr">Greška entiteta 'brzo dodaj podatke varijante'</value>
         <value xml:lang="it">Errore durante la lettura dei dati per l'aggiunta variante veloce.</value>
         <value xml:lang="ja">別型データのクイック追加でエンティティエラー</value>
         <value xml:lang="zh">快速添加多样化产品数据时发生实体错误</value>
@@ -1081,6 +1207,7 @@
         <value xml:lang="en">Error finding associated variant with ID ${productIdTo}, error was: ${errMessage}.</value>
         <value xml:lang="es">Error buscando una variante asociada con el código ${productIdTo}, el error fue: ${errMessage}.</value>
         <value xml:lang="fr">Erreur dans la variante associée avec la réf. ${productIdTo}, l'erreur était : ${errMessage}.</value>
+        <value xml:lang="hr">Greška pri pronalaženju povezane varijante s Id-om ${productIdTo}, greška je bila: ${errMessage}.</value>
         <value xml:lang="it">Errore nella ricerca associata alla variante con Codice ${productIdTo}, errore era: ${errMessage}.</value>
         <value xml:lang="ja">ID ${productIdTo} に関連付けられた別型の検索エラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare in cautarea asociata variantei cu Cod ${productIdTo}, eroarea era: ${errMessage}.</value>
@@ -1094,6 +1221,7 @@
         <value xml:lang="en">Feature grouping came back empty.</value>
         <value xml:lang="es">El grupo de características regresó vacío.</value>
         <value xml:lang="fr">Le groupe de caractéristiques est revenu vide.</value>
+        <value xml:lang="hr">Grupiranje značajki vratilo se prazno.</value>
         <value xml:lang="it">Raggruppamento Caratteristiche tornano indietro vuote.</value>
         <value xml:lang="ja">機能グループが空で戻されました。</value>
         <value xml:lang="ro">Ragrupamentul Caracteristici se intoarce inapoi gol.</value>
@@ -1107,6 +1235,7 @@
         <value xml:lang="en">Feature sample came back empty.</value>
         <value xml:lang="es">Ejemplo de características regresó vacío.</value>
         <value xml:lang="fr">L'exemple de caractéristique est revenu vide.</value>
+        <value xml:lang="hr">Uzorak značajke vratio se prazan.</value>
         <value xml:lang="it">Caratteristiche esempio torna indietro vuota.</value>
         <value xml:lang="ja">機能サンプルが空で戻されました。</value>
         <value xml:lang="ro">Caracteristici exemplu se intorc inapoi goale.</value>
@@ -1120,6 +1249,7 @@
         <value xml:lang="en">Invalid productId passed.</value>
         <value xml:lang="es">Código de producto inválido.</value>
         <value xml:lang="fr">Réf. d'article non valide.</value>
+        <value xml:lang="hr">Prosljeđen je nevažeći Id proizvoda.</value>
         <value xml:lang="it">Codice Prodotto passato non è valido.</value>
         <value xml:lang="ja">渡された製品IDが正しくありません</value>
         <value xml:lang="ro">Cod Produs trecut nu este valid.</value>
@@ -1133,6 +1263,7 @@
         <value xml:lang="en">Problem reading product feature entity: ${errMessage}.</value>
         <value xml:lang="es">Problema al leer la entidad de característica de producto: ${errMessage}.</value>
         <value xml:lang="fr">Problème à la lecture de l'entité des caractéristiques d'article : ${errMessage}.</value>
+        <value xml:lang="hr">Problem s čitanjem entiteta značajke proizvoda: ${errMessage}.</value>
         <value xml:lang="it">Problema leggendo l'entità caratteristiche prodotto: ${errMessage}.</value>
         <value xml:lang="ja">製品機能エンティティ: ${errMessage} の読み込みエラー。</value>
         <value xml:lang="ro">Problema citind entitatea caracteristicii produs: ${errMessage}.</value>
@@ -1146,6 +1277,7 @@
         <value xml:lang="en">Problem reading product features.</value>
         <value xml:lang="es">Problema al leer características de producto.</value>
         <value xml:lang="fr">Problème à la lecture des caractéristiques d'article.</value>
+        <value xml:lang="hr">Problem s čitanjem značajki proizvoda.</value>
         <value xml:lang="it">Problema leggendo caratteristiche prodotto.</value>
         <value xml:lang="ja">製品機能の読み込みエラー。</value>
         <value xml:lang="ro">Problema la citire caracteristici produs.</value>
@@ -1159,6 +1291,7 @@
         <value xml:lang="en">Problem reading product features: ${errProductFeatures}.</value>
         <value xml:lang="es">Problema al leer características de producto: ${errProductFeatures}.</value>
         <value xml:lang="fr">Problème à la lecture des caractéristiques d'article : ${errProductFeatures}.</value>
+        <value xml:lang="hr">Problem s čitanjem značajki proizvoda: ${errProductFeatures}.</value>
         <value xml:lang="it">Problema leggendo caratteristiche prodotto: ${errProductFeatures}.</value>
         <value xml:lang="ja">製品機能: ${errProductFeatures} の読み込みエラー。</value>
         <value xml:lang="ro">Problema la citire caracteristici produs: ${errProductFeatures}.</value>
@@ -1172,6 +1305,7 @@
         <value xml:lang="en">Problems getting the product entity.</value>
         <value xml:lang="es">Problemas al obtener la entidad de producto.</value>
         <value xml:lang="fr">Problème à la lecture de l'entité d'article.</value>
+        <value xml:lang="hr">Problemi s dohvaćanjem entiteta proizvoda.</value>
         <value xml:lang="it">Problema leggendo entità prodotto.</value>
         <value xml:lang="ja">製品エンティティの取得エラー。</value>
         <value xml:lang="ro">Problema la citirea entitatii produs.</value>
@@ -1185,6 +1319,7 @@
         <value xml:lang="en">Problems product association relation: ${errMessage}.</value>
         <value xml:lang="es">Problemas de relación de asociaciones de producto: ${errMessage}.</value>
         <value xml:lang="fr">Problème dans l'association d'article : ${errMessage}.</value>
+        <value xml:lang="hr">Problemi s odnosom povezivanja proizvoda: ${errMessage}.</value>
         <value xml:lang="it">Problema leggendo relazione associazione prodotto: ${errMessage}.</value>
         <value xml:lang="ja">製品関連付けの関係エラー: ${errMessage}.</value>
         <value xml:lang="ro">Problema la citirea relatiei asociere produs: ${errMessage}.</value>
@@ -1198,6 +1333,7 @@
         <value xml:lang="en">Problems reading product entity: ${errMessage}.</value>
         <value xml:lang="es">Problemas al leer entidad de producto: ${errMessage}.</value>
         <value xml:lang="fr">Problème à la lecture de l'entité d'article : ${errMessage}.</value>
+        <value xml:lang="hr">Problemi s čitanjem entiteta proizvoda: ${errMessage}.</value>
         <value xml:lang="it">Problemi leggendo entità prodotto: ${errMessage}.</value>
         <value xml:lang="ja">製品エンティティ読み込みエラー: ${errMessage}.</value>
         <value xml:lang="ro">Probleme la citirea entitatii produs: ${errMessage}.</value>
@@ -1209,6 +1345,7 @@
     <property key="productservices.product_not_found_with_ID">
         <value xml:lang="de">Produkt nicht gefunden mit ID</value>
         <value xml:lang="en">Product not found with ID</value>
+        <value xml:lang="hr">Nije pronađen proizvod s Id-om</value>
         <value xml:lang="it">Prodotto non trovato per codice</value>
         <value xml:lang="ja">製品IDが見つかりません。</value>
         <value xml:lang="zh">没有找到产品，标识是</value>
@@ -1216,12 +1353,14 @@
     </property>
     <property key="ProductSubscriptionCouldntBeExpired">
         <value xml:lang="en">Subscription couldn't be expired for subscriptionId: ${subscriptionId}</value>
+    <value xml:lang="hr">Pretplata nije mogla isteći za Id pretplate: ${subscriptionId}</value>
     </property>
     <property key="productutilservices.did_not_find_any_valid_variants_for_virtual_ID">
         <value xml:lang="de">Keine gültigen Varianten gefunden für virtuelles Produkt mit der ID [${productId}], kein Merge durchgeführt...</value>
         <value xml:lang="en">Did not find any valid variants for virtual ID [${productId}], not doing merge...</value>
         <value xml:lang="es">No se encontraron variantes válidas para el código de producto virtual [${productId}], no se realiza la unión...</value>
         <value xml:lang="fr">Aucune variante valide pour la réf. virtuelle [${productId}], pas de fusion...</value>
+        <value xml:lang="hr">Nije pronađena nijedna važeća varijanta za virtualni Id [${productId}], ne radi se spajanje...</value>
         <value xml:lang="it">Non è possibile trovare qualsiasi variante valida per Codice virtuale [${productId}], non facendo la fusione...</value>
         <value xml:lang="ja">仮想ID [${productId}] に対する別型が見つかりません。マージできません...</value>
         <value xml:lang="ro">Nu este posibila gasirea variantei valide pe Cod virtual [${productId}], ne fiind facuta fuziunea...</value>
@@ -1235,6 +1374,7 @@
         <value xml:lang="en">Entity error running clearAllVirtualProductImageNames: ${errMessage}.</value>
         <value xml:lang="es">Error de entidad al correr clearAllVirtualProductImageNames: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de base de données (entité) lors de l'exécution de clearAllVirtualProductImageNames : ${errMessage}.</value>
+        <value xml:lang="hr">Pogreška entiteta pri pokretanju clearAllVirtualProductImageNames: ${errMessage}.</value>
         <value xml:lang="it">Errore nell'esecuzione Entità clearAllVirtualProductImageNames: ${errMessage}.</value>
         <value xml:lang="ja">clearAllVirtualProductImageNamesの実行中にエンティティエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare in executia Entitatii clearAllVirtualProductImageNames: ${errMessage}.</value>
@@ -1248,6 +1388,7 @@
         <value xml:lang="en">Entity error running discVirtualsWithDiscVariants: ${errMessage}.</value>
         <value xml:lang="es">Error de entidad al correr discVirtualsWithDiscVariants: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de base de données (entité) lors de l'exécution de discVirtualsWithDiscVariants : ${errMessage}.</value>
+        <value xml:lang="hr">Pogreška entiteta pri pokretanju discVirtualsWithDiscVariants: ${errMessage}.</value>
         <value xml:lang="it">Errore nell'esecuzione Entità discVirtualsWithDiscVariants: ${errMessage}.</value>
         <value xml:lang="ja">discVirtualsWithDiscVariantsの実行中にエンティティエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare in executie Entitate discVirtualsWithDiscVariants: ${errMessage}.</value>
@@ -1261,6 +1402,7 @@
         <value xml:lang="en">Entity error running makeStandAloneFromSingleVariantVirtuals: ${errMessage}.</value>
         <value xml:lang="es">Error de entidad al correr makeStandAloneFromSingleVariantVirtuals: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de base de données (entité) lors de l'exécution de makeStandAloneFromSingleVariantVirtuals : ${errMessage}.</value>
+        <value xml:lang="hr">Pogreška entiteta pri pokretanju makeStandAloneFromSingleVariantVirtuals: ${errMessage}.</value>
         <value xml:lang="it">Errore nell'esecuzione Entità makeStandAloneFromSingleVariantVirtuals: ${errMessage}.</value>
         <value xml:lang="ja">makeStandAloneFromSingleVariantVirtualsの実行中にエンティティエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare in executie Entitate makeStandAloneFromSingleVariantVirtuals: ${errMessage}.</value>
@@ -1274,6 +1416,7 @@
         <value xml:lang="en">Entity error running removeCategoryMembersOfDiscProducts: ${errMessage}.</value>
         <value xml:lang="es">Error de entidad al correr removeCategoryMembersOfDiscProducts: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de base de données (entité) lors de l'exécution de removeCategoryMembersOfDiscProducts : ${errMessage}.</value>
+        <value xml:lang="hr">Pogreška entiteta pri pokretanju removeCategoryMembersOfDiscProducts: ${errMessage}.</value>
         <value xml:lang="it">Errore nell'esecuzione Entità removeCategoryMembersOfDiscProducts: ${errMessage}.</value>
         <value xml:lang="ja">removeCategoryMembersOfDiscProductsの実行中にエンティティエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare in executie Entitate removeCategoryMembersOfDiscProducts: ${errMessage}.</value>
@@ -1287,6 +1430,7 @@
         <value xml:lang="en">Entity error running removeDuplicateOpenEndedCategoryMembers: ${errMessage}.</value>
         <value xml:lang="es">Error de entidad al correr removeDuplicateOpenEndedCategoryMembers: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de base de données (entité) lors de l'exécution de removeDuplicateOpenEndedCategoryMembers : ${errMessage}.</value>
+        <value xml:lang="hr">Pogreška entiteta pri pokretanju removeDuplicateOpenEndedCategoryMembers: ${errMessage}.</value>
         <value xml:lang="it">Errore nell'esecuzione Entità removeDuplicateOpenEndedCategoryMembers: ${errMessage}.</value>
         <value xml:lang="ja">removeDuplicateOpenEndedCategoryMembersの実行中にエンティティエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare in executie Entitate removeDuplicateOpenEndedCategoryMembers: ${errMessage}.</value>
@@ -1300,6 +1444,7 @@
         <value xml:lang="en">Entity error running setAllProductImageNames: ${errMessage}.</value>
         <value xml:lang="es">Error de entidad al correr setAllProductImageNames: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de base de données (entité) lors de l'exécution de setAllProductImageNames : ${errMessage}.</value>
+        <value xml:lang="hr">Pogreška entiteta pri pokretanju setAllProductImageNames: ${errMessage}.</value>
         <value xml:lang="it">Errore nell'esecuzione Entità setAllProductImageNames: ${errMessage}.</value>
         <value xml:lang="ja">setAllProductImageNamesの実行中にエンティティエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare in executie Entitate setAllProductImageNames: ${errMessage}.</value>
@@ -1313,6 +1458,7 @@
         <value xml:lang="en">Error in attachProductFeaturesToCategory: ${errMessage}.</value>
         <value xml:lang="es">Error al correr attachProductFeaturesToCategory: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de base de données (entité) lors de l'exécution de attachProductFeaturesToCategory : ${errMessage}.</value>
+        <value xml:lang="hr">Pogreška u attachProductFeaturesToCategory: ${errMessage}.</value>
         <value xml:lang="it">Errore in attachProductFeaturesToCategory: ${errMessage}.</value>
         <value xml:lang="ja">attachProductFeaturesToCategoryでエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare in attachProductFeaturesToCategory: ${errMessage}.</value>
@@ -1326,6 +1472,7 @@
         <value xml:lang="en">Found more than one valid variant for virtual ID [${productId}], not doing merge...</value>
         <value xml:lang="es">Se encontrarón más de una variante válida para el código de producto virtual [${productId}], no se hace la unión...</value>
         <value xml:lang="fr">Plusieur variantes valides pour la réf. virtuelle [${productId}], pas de fusion...</value>
+        <value xml:lang="hr">Pronađeno je više od jedne valjane varijante za virtualni Id [${productId}], ne radi se spajanje...</value>
         <value xml:lang="it">Trovati più di una variante valida per Codice virtuale [${productId}], non facendo la fusione...</value>
         <value xml:lang="ja">仮想ID [${productId}] に対する別型が複数見つかりました、マージできません...</value>
         <value xml:lang="ro">Au fost gasite mai multe variante valide pentru Cod virtual [${productId}], ne fiind facuta fuziunea...</value>
@@ -1337,6 +1484,7 @@
     <property key="productworker.null_product_entity_not_valid">
         <value xml:lang="de">Null Produktentität ungültig</value>
         <value xml:lang="en">Null Product entity not valid</value>
+        <value xml:lang="hr">Entitet Null proizvod nije valjan</value>
         <value xml:lang="it">Entità Product nulla non valida</value>
         <value xml:lang="ja">製品エンティティは空にできません</value>
         <value xml:lang="zh">Null不能作为产品实体</value>
@@ -1346,6 +1494,7 @@
         <value xml:lang="de">Während des Schreibens ist ein Fehler aufgetreten</value>
         <value xml:lang="en">An error occured during writing</value>
         <value xml:lang="fr">Une erreur est survenue lors de l'écriture</value>
+        <value xml:lang="hr">Dolazi do greške tijekom pisanja</value>
         <value xml:lang="ja">書き込み中にエラーが発生しました</value>
         <value xml:lang="zh">写的过程中发生一个错误</value>
         <value xml:lang="zh-TW">寫的過程中發生一個錯誤</value>
@@ -1354,6 +1503,7 @@
         <value xml:lang="de">Eine aktuelles Bildmaß ist null</value>
         <value xml:lang="en">One current image dimension is null</value>
         <value xml:lang="fr">Une des dimensions de l'image courrante est nulle</value>
+        <value xml:lang="hr">Jedna trenutna dimenzija slike je null</value>
         <value xml:lang="ja">現在の画像の寸法が空です</value>
         <value xml:lang="zh">一个当前图像尺寸是null</value>
         <value xml:lang="zh-TW">一個當前圖像尺寸是null</value>
@@ -1362,6 +1512,7 @@
         <value xml:lang="de">Ein Parameter ist null</value>
         <value xml:lang="en">One parameter is null</value>
         <value xml:lang="fr">Un des paramètres est nul</value>
+        <value xml:lang="hr">Jedan parametar je null</value>
         <value xml:lang="ja">パラメータが空です</value>
         <value xml:lang="zh">一个参数是null</value>
         <value xml:lang="zh-TW">一個參數是null</value>
@@ -1370,6 +1521,7 @@
         <value xml:lang="de">Transformation kann nicht reversibel</value>
         <value xml:lang="en">Transform is non-invertible</value>
         <value xml:lang="fr">La transformation n'est pas réversible</value>
+        <value xml:lang="hr">Transformacija je neinvertibilna</value>
         <value xml:lang="ja">変換は非可逆的です</value>
         <value xml:lang="zh">转换是不可逆的</value>
         <value xml:lang="zh-TW">轉換是不可逆的</value>
@@ -1378,6 +1530,7 @@
         <value xml:lang="de">Kann Zielverzeichnis nicht erstellen</value>
         <value xml:lang="en">Unable to create target directory</value>
         <value xml:lang="fr">Impossible de créer le dossier cible</value>
+        <value xml:lang="hr">Nije moguće stvoriti odredišni direktorij</value>
         <value xml:lang="ja">対象のディレクトリが作成できません</value>
         <value xml:lang="zh">无法创建目标目录</value>
         <value xml:lang="zh-TW">無法新建目標目錄</value>
@@ -1386,6 +1539,7 @@
         <value xml:lang="de">Kann nicht parsen</value>
         <value xml:lang="en">Unable to parse</value>
         <value xml:lang="fr">Impossible d'analyser</value>
+        <value xml:lang="hr">Nije moguće raščlaniti</value>
         <value xml:lang="ja">解析できません</value>
         <value xml:lang="zh">无法解析</value>
         <value xml:lang="zh-TW">無法解析</value>
@@ -1394,6 +1548,7 @@
         <value xml:lang="de">Kann das Originalbild nicht skalieren</value>
         <value xml:lang="en">Unable to scale original image</value>
         <value xml:lang="fr">Impossible de redimensionner l'image originale</value>
+        <value xml:lang="hr">Nije moguće promijeniti veličinu izvorne slike</value>
         <value xml:lang="ja">元の画像をスケール変更できません</value>
         <value xml:lang="zh">无法缩放原始图像</value>
         <value xml:lang="zh-TW">無法縮放原始圖像</value>
@@ -1403,6 +1558,7 @@
         <value xml:lang="en">Entity error quick add variant data: ${errMessage}.</value>
         <value xml:lang="es">Error de entidad al añadir rápido datos de variantes: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de base de données (entité) lors de l'exécution de l'ajout rapide de données variantes : ${errMessage}.</value>
+        <value xml:lang="hr">Pogreška entiteta 'brzo dodaj podatke varijante': ${errMessage}.</value>
         <value xml:lang="it">Errora Entità aggiunta variante data: ${errMessage}.</value>
         <value xml:lang="ja">別型データのクイック追加でエンティティエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare Entitate adaugata varianta data: ${errMessage}.</value>
@@ -1416,6 +1572,7 @@
         <value xml:lang="en">featureTypeSize is not a number: ${featureTypeSizeStr}.</value>
         <value xml:lang="es">TypeSize de característica no es un número: ${featureTypeSizeStr}.</value>
         <value xml:lang="fr">La caractéristiques TypeSize n'est pas un nombre : ${featureTypeSizeStr}.</value>
+        <value xml:lang="hr">Vrsta veličine značajke nije broj: ${featureTypeSizeStr}.</value>
         <value xml:lang="it">featureTypeSize non è un numero: ${featureTypeSizeStr}.</value>
         <value xml:lang="ja">機能種類サイズが数字ではありません: ${featureTypeSizeStr}.</value>
         <value xml:lang="ro">featureTypeSize nu este un numar: ${featureTypeSizeStr}.</value>
@@ -1429,6 +1586,7 @@
         <value xml:lang="en">The productFeatureId for feature type number ${i} was not found.</value>
         <value xml:lang="es">El productFeatureId para número de tipo de característica ${i} no se encontró.</value>
         <value xml:lang="fr">La réf. de caractéristique d'article pour le type de caractéristique ${i} n'a pas été trouvée.</value>
+        <value xml:lang="hr">Id zančajke proizvoda za tip značajke broj ${i} nije pronađen.</value>
         <value xml:lang="it">La productFeatureId per caratteristica tipo numero ${i} non è stata trovata.</value>
         <value xml:lang="ja">製品種類番号 ${i} に対する製品機能IDが見つかりません。</value>
         <value xml:lang="ro">La productFeatureId pentru caracteristica tip numar ${i} nu a fost gasita.</value>
@@ -1442,6 +1600,7 @@
         <value xml:lang="en">productId is required but missing.</value>
         <value xml:lang="es">Se requiere el código de producto pero no fue especificado.</value>
         <value xml:lang="fr">La réf. d'article est indispensable mais manque.</value>
+        <value xml:lang="hr">Id proizvoda je obavezan, ali nedostaje.</value>
         <value xml:lang="it">productId è richiesto ma è mancante.</value>
         <value xml:lang="ja">必要な製品IDが正しくありません。</value>
         <value xml:lang="ro">productId este cerut dar lipseste.</value>
@@ -1455,6 +1614,7 @@
         <value xml:lang="en">Product not found with ID: ${productId}.</value>
         <value xml:lang="es">No se encontró el producto con el código: ${productId}.</value>
         <value xml:lang="fr">Article avec la réf. ${productId} non trouvé.</value>
+        <value xml:lang="hr">Nije pronađen proizvod s Id-om: ${productId}.</value>
         <value xml:lang="it">Prodotto non trovato con Codice: ${productId}.</value>
         <value xml:lang="ja">製品ID: ${productId} の製品が見つかりません。</value>
         <value xml:lang="ro">Produs negasit cu Codul: ${productId}.</value>
@@ -1468,6 +1628,7 @@
         <value xml:lang="en">Successfully created variant product with id: ${variantProductId} (includes association, and standard features for the variant).</value>
         <value xml:lang="es">Se creó exitosamente el producto variante con código: ${variantProductId} (incluye asociación, y características estándard para la variante).</value>
         <value xml:lang="fr">Création résussie de la variante d'article : réf. ${variantProductId} (inclut l'association, et les caractéristiques standards pour la variante).</value>
+        <value xml:lang="hr">Uspješno stvorena varijanta proizvoda s Id-om: ${variantProductId} (uključuje povezivanje i standardne značajke za varijantu).</value>
         <value xml:lang="it">Variante prodotto con Codice: ${variantProductId} creato con successo (incluse associazioni, e caratteristiche standard per la variante).</value>
         <value xml:lang="ja">id: ${variantProductId} の別型製品が正しく作成されました(別型の関連付け、および標準機能を含め)。</value>
         <value xml:lang="ro">Varianta produs cu Cod: ${variantProductId} creat cu succes (incluse asocieri si caracteristici standard pe varianta).</value>
@@ -1481,6 +1642,7 @@
         <value xml:lang="en">Transaction error creating quick add variant data: ${errMessage}.</value>
         <value xml:lang="es">Error de transacción creando data al añadir rápido variantes: ${errMessage}.</value>
         <value xml:lang="fr">Erreur de transaction pendant l'ajout rapide des données de variante : ${errMessage}.</value>
+        <value xml:lang="hr">Transakcijska greška pri kreiranju podataka varijante za brzo dodavanje: ${errMessage}.</value>
         <value xml:lang="it">Transazione errore creazione aggiunta veloce variante data: ${errMessage}.</value>
         <value xml:lang="ja">別型データのクイック追加時にトランザクションエラー: ${errMessage}.</value>
         <value xml:lang="ro">Eroare de Tranzactie la crearea adaugarea rapide a variantei data: ${errMessage}.</value>
@@ -1492,12 +1654,14 @@
     <property key="ShipmentCanChangeStatusPermissionError">
         <value xml:lang="en">Cannot perform this operation when the shipment [${testShipment.shipmentId}] is in the ${testShipmentStatus.description} [${testShipment.statusId}] status."</value>
         <value xml:lang="fr">Impossible de réaliser l'opération demandée quand l'expédition [${testShipment.shipmentId}] est dans le statut ${testShipmentStatus.description} [${testShipment.statusId}]</value>
+    <value xml:lang="hr">Nije moguće izvršiti ovu operaciju kada je pošiljka [${testShipment.shipmentId}] u statusu ${testShipmentStatus.description} [${testShipment.statusId}].</value>
     </property>
     <property key="variantevents.variantProductId_required_but_missing_enter_an_id">
         <value xml:lang="de">variantProductId wir benötigt, fehlt aber, bitte geben Sie eine ID für die neue Produktvariante an.</value>
         <value xml:lang="en">variantProductId is required but missing, please enter an id for the new variant product.</value>
         <value xml:lang="es">Se requiere el código del producto variante, pero no se especificó, por favor ingrese un código para el nuevo producto variante.</value>
         <value xml:lang="fr">La réf. de variante d'article est indispensable mais manque. S'il vous plaît entrez une réf. pour la nouvelle variante d'article.</value>
+        <value xml:lang="hr">Id varijante proizvoda je potreban, ali nedostaje, unesite Id za novu varijantu proizvoda.</value>
         <value xml:lang="it">Il codice della variante prodotto è richiesto ma mancante.</value>
         <value xml:lang="ja">必要な別型製品IDが正しくありません。新規別型製品のIDを入力してください。</value>
         <value xml:lang="ro">variantProductId este cerut dar lipseste, va rugam introduceti un Cod pentru noua Varianta produs.</value>
@@ -1508,107 +1672,142 @@
     </property>
     <property key="ProductRequiredFieldMissingAttrName">
         <value xml:lang="en">Required Field Missing : Attr Name.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Naziv atributa.</value>
     </property>
     <property key="ProductRequiredFieldMissingAvailable">
         <value xml:lang="en">Required Field Missing :Available.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje :Dostupno.</value>
     </property>
     <property key="ProductRequiredFieldMissingAvailableOrNotRequired">
         <value xml:lang="en">Required Field Missing :Available Or Not Required.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Dostupno ili nije obavezno.</value>
     </property>
     <property key="ProductRequiredFieldMissingCanceledQuantity">
         <value xml:lang="en">Required Field Missing :Canceled Quantity. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Otkazana količina.</value>
     </property>
     <property key="ProductRequiredFieldMissingCategoryId">
         <value xml:lang="en">Required Field Missing : Category Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id kategorije.</value>
     </property>
     <property key="ProductRequiredFieldMissingFacilityId">
         <value xml:lang="en">Required Field Missing :Facility Id.  </value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Id objekta.</value>
     </property>
     <property key="ProductRequiredFieldMissingIdCode">
         <value xml:lang="en">Required Field Missing : Id Code. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id kod.</value>
     </property>
     <property key="ProductRequiredFieldMissingImageUrl">
         <value xml:lang="en">Required Field Missing : Image Url. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje : URL slike.</value>
     </property>
     <property key="ProductRequiredFieldMissingInventoryItem">
         <value xml:lang="en">Required Field Missing : Inventory Item. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Stavka inventara.</value>
     </property>
     <property key="ProductRequiredFieldMissingInventoryItemId">
         <value xml:lang="en">Required Field Missing :Inventory Item Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id stavke inventara.</value>
     </property>
     <property key="ProductRequiredFieldMissingItemShipList">
         <value xml:lang="en">Required Field Missing :Item Ship List. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Popis pošiljki artikla.</value>
     </property>
     <property key="ProductRequiredFieldMissingItemIssuanceId">
         <value xml:lang="en">Required Field Missing :Item Issuance Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id izdavanja artikla.</value>
     </property>
     <property key="ProductRequiredFieldMissingNewItemQuantity">
         <value xml:lang="en">Required Field Missing :New Item Quantity. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Količina nove stavke.</value>
     </property>
     <property key="ProductRequiredFieldMissingOrderId">
         <value xml:lang="en">Required Field Missing : Order Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id narudžbe.</value>
     </property>
     <property key="ProductRequiredFieldMissingOrderItemSeqId">
         <value xml:lang="en">Required Field Missing :Order Item Seq Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Redni broj stavke narudžbe.</value>
     </property>
     <property key="ProductRequiredFieldMissingProductCategoryId">
         <value xml:lang="en">Required Field Missing : Product Category Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id kategorije proizvoda.</value>
     </property>
     <property key="ProductRequiredFieldMissingProductCategoryIdTo">
         <value xml:lang="en">Required Field Missing :Product Category Id To. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Id kategorije proizvoda za.</value>
     </property>
     <property key="ProductRequiredFieldMissingProductCost">
         <value xml:lang="en">Required Field Missing : Product Cost. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Trošak proizvoda.</value>
     </property>
     <property key="ProductRequiredFieldMissingProductFeatureApplTypeId">
         <value xml:lang="en">Required Field Missing : Product Feature Appl TypeId. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste aplikacije značajke proizvoda.</value>
     </property>
     <property key="ProductRequiredFieldMissingProductFeatureTypeId">
         <value xml:lang="en">Required Field Missing : Product Feature TypeId. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste značajke proizvoda.</value>
     </property>
     <property key="ProductRequiredFieldMissingProductId">
         <value xml:lang="en">Required Field Missing : Product Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id proizvoda.</value>
     </property>
     <property key="ProductRequiredFieldMissingProductStoreId">
         <value xml:lang="en">Required Field Missing : Product Store Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id trgovine proizvoda.</value>
     </property>
     <property key="ProductRequiredFieldMissingPromisedDatetime">
         <value xml:lang="en">Required Field Missing :Promised Date time. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Obećani datum/vrijeme.</value>
     </property>
     <property key="ProductRequiredFieldMissingQuantity">
         <value xml:lang="en">Required Field Missing : Quantity.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Količina.</value>
     </property>
     <property key="ProductRequiredFieldMissingQuantityAccepted">
         <value xml:lang="en">Required Field Missing :Quantity Accepted. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Prihvaćena količina.</value>
     </property>
     <property key="ProductRequiredFieldMissingQuantityNotReserved">
         <value xml:lang="en">Required Field Missing : Quantity Not Reserved.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Količina nije rezervirana.</value>
     </property>
     <property key="ProductRequiredFieldMissingReceiptId">
         <value xml:lang="en">Required Field Missing :Receipt Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id računa.</value>
     </property>
     <property key="ProductRequiredFieldMissingRequireInventory">
         <value xml:lang="en">Required Field Missing :Require Inventory.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Zahtjevaj inventar.</value>
     </property>
     <property key="ProductRequiredFieldMissingShipGroupSeqId">
         <value xml:lang="en">Required Field Missing :Ship Group Seq Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Redni broj grupe otpreme.</value>
     </property>
     <property key="ProductRequiredFieldMissingShipmentId">
         <value xml:lang="en">Required Field Missing :Shipment Id. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id pošiljke.</value>
     </property>
     <property key="ProductRequiredFieldMissingShipmentItemSeqId">
         <value xml:lang="en">Required Field Missing :Shipment Item SeqId. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Red.br. stavke pošiljke.</value>
     </property>
     <property key="ProductRequiredFieldMissingShipmentShipGroupFacilityList">
         <value xml:lang="en">Required Field Missing : Shipment Ship Group Facility List.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Popis objekata grupe otpreme za pošiljku.</value>
     </property>
     <property key="ProductRequiredFieldMissingSubscriptionId">
         <value xml:lang="en">Required Field Missing : Subscription Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id pretplate.</value>
     </property>
     <property key="ProductRequiredFieldMissingTaskCost">
         <value xml:lang="en">Required Field Missing : Task Cost. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Trošak zadatka.</value>
     </property>
     <property key="ProductRequiredFieldMissingTotalIssuedQty">
         <value xml:lang="en">Required Field Missing :Total Issued Qty. </value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Ukupna izdana količina.</value>
     </property>
 </resource>

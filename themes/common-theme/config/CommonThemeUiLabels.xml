@@ -21,5 +21,6 @@
     <property key="CommonThemeVisualThemeDescription">
         <value xml:lang="en">Common theme on techno html5/css/jquery</value>
         <value xml:lang="fr">Theme principal sur la techno html5/css/jquery</value>
+        <value xml:lang="hr">Zajednička tema bazirana na html5/css/jquery</value>
     </property>
 </resource>

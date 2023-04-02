@@ -23,24 +23,29 @@
     <property key="loginevents.change_password_request_error_missing_fields">
         <value xml:lang="en">Error accessing password: ${errorMessage}.</value>
         <value xml:lang="es">Merci de renseigner tous les champs </value>
+    <value xml:lang="hr">Greška prilikom pristupa lozinci: ${errorMessage}.</value>
     </property>
     <property key="loginevents.change_password_request_error_not_valid_parameters">
         <value xml:lang="en">Error accessing password: ${errorMessage}.</value>
         <value xml:lang="fr">La demande de changement de mot de passe n'est pas valide.</value>
+    <value xml:lang="hr">Greška prilikom pristupa lozinci: ${errorMessage}.</value>
     </property>
     <property key="loginevents.change_password_request_error_technical_error">
         <value xml:lang="en">Error accessing password: ${errorMessage}.</value>
         <value xml:lang="fr">Une erreur technique c'est produite. La nouveau mot de passe n'a pas été pris en compte</value>
+    <value xml:lang="hr">Greška prilikom pristupa lozinci: ${errorMessage}.</value>
     </property>
     <property key="loginevents.change_password_request_success">
         <value xml:lang="en">Error accessing password: ${errorMessage}.</value>
         <value xml:lang="fr">Le nouveau mot de passe est actif</value>
+    <value xml:lang="hr">Greška prilikom pristupa lozinci: ${errorMessage}.</value>
     </property>
     <property key="loginevents.error_accessing_password">
         <value xml:lang="de">Fehler beim Zugriff auf Passwort: ${errorMessage}.</value>
         <value xml:lang="en">Error accessing password: ${errorMessage}.</value>
         <value xml:lang="es">Error accediendo a la clave: ${errorMessage}.</value>
         <value xml:lang="fr">Erreur concernant le mot de passe: ${errorMessage}.</value>
+        <value xml:lang="hr">Pogreška pri pristupu lozinki: ${errorMessage}.</value>
         <value xml:lang="it">Errore accesso password:: ${errorMessage}.</value>
         <value xml:lang="ja">パスワードアクセスエラー: ${errorMessage}</value>
         <value xml:lang="nl">Fout bij toegang verkrijgen tot wachtwoord: ${errorMessage}.</value>
@@ -56,6 +61,7 @@
         <value xml:lang="en">Error accessing password change history: ${errorMessage}.</value>
         <value xml:lang="es">Error accediendo al histórico de cambios de la clave: ${errorMessage}.</value>
         <value xml:lang="fr">Erreur lors de l'accès à l'historique des mots de passe : ${errorMessage}.</value>
+        <value xml:lang="hr">Pogreška pri pristupu povijesti promjena lozinke: ${errorMessage}.</value>
         <value xml:lang="it">Errore di accesso alla storia dei cambi password: ${errorMessage}.</value>
         <value xml:lang="ja">パスワード履歴アクセスエラー: ${errorMessage}</value>
         <value xml:lang="nl">Fout bij toegang verkrijgen tot wachtwoord wijzigingsgeschiedenis: ${errorMessage}.</value>
@@ -70,6 +76,7 @@
         <value xml:lang="en">Error saving new password, the email that you receive will not have the correct password in it, your old password is still being used: ${errorMessage}.</value>
         <value xml:lang="es">Error al grabar la nueva clave: el email que recibirá no tendrá la clave correcta; se seguirá usando la clave anterior</value>
         <value xml:lang="fr">Erreur survenue pendant l'enregistrement du nouveau mot de passe, le courriel que vous allez recevoir ne comportera pas le mot de passe correct, votre ancien mot de passe est toujours valide: ${errorMessage}.</value>
+        <value xml:lang="hr">Pogreška pri spremanju nove lozinke, e-mail koji ste primili neće sadržavati ispravnu lozinku, vaša se stara lozinka još uvijek koristi: ${errorMessage}.</value>
         <value xml:lang="it">Errore nel salvataggio della nuova password, l'email che riceverai non ha una password corretta, la tua vecchia password è ancora valida: ${errorMessage}.</value>
         <value xml:lang="ja">パスワードの保存時にエラーが発生しました。あなたが受けとったEメールに記載されたパスワードは正しくありません。前回のパスワードが有効です: ${errorMessage}</value>
         <value xml:lang="nl">Fout bij het opslaan van het nieuwe wachtwoord, de email die u zal ontvangen bevat niet het correcte wachtwoord, uw oude wachtwoord is nog geldig: ${errorMessage}.</value>
@@ -84,6 +91,7 @@
         <value xml:lang="en">Error occurred: unable to email password.  Please try again later or contact customer service.</value>
         <value xml:lang="es">Error: no se pudo enviar la clave por correo. Intente nuevamente o contacte el servicio de soporte</value>
         <value xml:lang="fr">Erreur : impossible d'envoyer le mot de passe par courriel. Merci de réessayer ultérieurement ou de contacter votre service commercial.</value>
+        <value xml:lang="hr">Došlo je do pogreške: nije moguće poslati lozinku e-mailom. Pokušajte ponovo kasnije ili se obratite korisničkoj službi.</value>
         <value xml:lang="it">Errore: non è possibile mandare la password per e-mail. Riprovare più tardi o contattare il servizio clienti.</value>
         <value xml:lang="ja">エラーが発生しました: パスワードをEメールで送信することができません。後で再度実行するかカスタマサービスに連絡してください。</value>
         <value xml:lang="nl">Fout: het nieuwe wachtwoord kan niet gemaild worden. Probeert u het later a.u.b. of neem contact op met de klantenservice.</value>
@@ -99,6 +107,7 @@
         <value xml:lang="en">Error occurred: unable to email password.  Please try again later or contact customer service. (error was: ${errorMessage}).</value>
         <value xml:lang="es">Error: no se pudo enviar la clave por correo. Intente nuevamente o contacte el servicio de soporte. (el error fue: ${errorMessage}).</value>
         <value xml:lang="fr">Erreur : impossible d'envoyer le mot de passe par courriel. Merci de réessayer ultérieurement ou de contacter votre service commercial. (erreur: ${errorMessage}).</value>
+        <value xml:lang="hr">Došlo je do pogreške: nije moguće poslati lozinku e-mailom. Pokušajte ponovo kasnije ili se obratite korisničkoj službi. (pogreška je bila: ${errorMessage}).</value>
         <value xml:lang="it">Errore: non è possibile mandare la password per e-mail. Riprovare più tardi o contattare il servizio clienti. (errore: ${errorMessage})</value>
         <value xml:lang="ja">エラーが発生しました: パスワードをEメールで送信することができません。後で再度実行するかカスタマサービスに連絡してください。(エラー: ${errorMessage})</value>
         <value xml:lang="nl">Fout: het nieuwe wachtwoord kan niet gemaild worden. Probeert u het later a.u.b. of neem contact op met de klantenservice.(fout is ${errorMessage}).</value>
@@ -114,6 +123,7 @@
         <value xml:lang="en">following error occurred during login: ${errorMessage}</value>
         <value xml:lang="es">Error al conectar: ${errorMessage}</value>
         <value xml:lang="fr">${errorMessage}</value>
+        <value xml:lang="hr">dogodila se sljedeća pogreška tijekom prijave: ${errorMessage}</value>
         <value xml:lang="it">${errorMessage}</value>
         <value xml:lang="ja">ログイン時にエラーが発生しました: ${errorMessage}</value>
         <value xml:lang="nl">De volgende fout kwam voor tijdens het inloggen: ${errorMessage}</value>
@@ -127,28 +137,34 @@
     <property key="loginevents.impersonate_yourself">
         <value xml:lang="en">You can't impersonate yourself ... What are you trying to do ?</value>
         <value xml:lang="fr">Vous ne pouvez pas vous incarner vous même ... Qu'essayez-vous donc de faire ?</value>
+    <value xml:lang="hr">Ne možete se predstavljati ... Što pokušavate učiniti?</value>
     </property>
     <property key="loginevents.impersonate_notEnoughPermission">
         <value xml:lang="en">You cannot impersonate a login with more permission than you have : ${missingPermissions}</value>
         <value xml:lang="fr">Vous ne pouvez pas incarner un utilisateur avec un niveau de permission supérieur au vôtre : ${missingPermissions}</value>
+    <value xml:lang="hr">Ne možete lažno predstavljati prijavu s više dopuštenja nego što imate: ${missingPermissions}</value>
     </property>
     <property key="loginevents.impersonate_notAdmin">
         <value xml:lang="en">You cannot impersonate a login with ADMIN permission</value>
         <value xml:lang="fr">Vous ne pouvez pas incarner un utilisateur avec un niveau de permission ADMIN</value>
+    <value xml:lang="hr">Ne možete lažno predstavljati prijavu s ADMIN dozvolom</value>
     </property>
     <property key="loginevents.impersonation_disabled">
         <value xml:lang="en">Impersonation feature is disabled, please check security configuration</value>
         <value xml:lang="fr">La fonctionnalité d'incarnation est désactivée, merci de vérifier la configuration sécurité</value>
+    <value xml:lang="hr">Značajka lažnog predstavljanja je onemogućena, provjerite sigurnosnu konfiguraciju</value>
     </property>
     <property key="loginevents.impersonation_in_process">
         <value xml:lang="en">Impersonation of your user is in process by ${originUserLoginId}</value>
         <value xml:lang="fr">Incarnation de votre utilisateur en cours par ${originUserLoginId}</value>
+    <value xml:lang="hr">U tijeku je oponašanje vašeg korisnika od strane ${originUserLoginId}</value>
     </property>
     <property key="loginevents.new_password_createdandsent_check_email">
         <value xml:lang="de">Ein neues Passwort wurde erzeugt und Ihnen per E-Mail zugeschickt. Überprüfen Sie bitte Ihren E-Mail-Eingang.</value>
         <value xml:lang="en">A new password has been created and sent to you. Please check your Email.</value>
         <value xml:lang="es">Una nuevoa clave ha sido creada y enviada. Por favor revise su correo.</value>
         <value xml:lang="fr">Un nouveau mot de passe a été crée et envoyé. Merci de vérifier votre courriel.</value>
+        <value xml:lang="hr">Nova lozinka je stvorena i poslana. Molimo provjerite svoj e-mail sandučić.</value>
         <value xml:lang="it">Una nuova password è stata creata ed inviata. Controlla le email.</value>
         <value xml:lang="ja">新しいパスワードを送信しました。Eメールを確認してください。</value>
         <value xml:lang="nl">Er is een nieuw wachtwoord naar uw emailadres verzonden.</value>
@@ -164,6 +180,7 @@
         <value xml:lang="en">Your password has been sent to you. Please check your Email.</value>
         <value xml:lang="es">Su clave ha sido enviada. Revise su correo.</value>
         <value xml:lang="fr">Votre nouveau mot de passe vous a été envoyé. Merci de vérifier votre courriel.</value>
+        <value xml:lang="hr">Vaša lozinka vam je poslana. Molimo provjerite svoj e-mail sandučić.</value>
         <value xml:lang="it">La tua password ti è stata inviata. Controlla le email.</value>
         <value xml:lang="ja">パスワードを送信しました。Eメールを確認してください。</value>
         <value xml:lang="nl">Er is een nieuw wachtwoord naar uw emailadres verzonden.</value>
@@ -179,6 +196,7 @@
         <value xml:lang="en">No password hint was specified, try having the password emailed instead.</value>
         <value xml:lang="es">No se especificó una pista para la clave.</value>
         <value xml:lang="fr">Aucune spécification de mot de passé n'a été spécifiée, essayez de le recevoir par courriel.</value>
+        <value xml:lang="hr">Nije naveden nikakav podsjetnik na lozinku, pokušajte umjesto toga resetirati lozinku e-mailom.</value>
         <value xml:lang="it">Nessun suggerimento password è stato specificato, provare a richiedere l'invio della password per e-mail.</value>
         <value xml:lang="ja">パスワードのヒントが登録されていません。かわりにEメールで送信されるパスワードを試してください。</value>
         <value xml:lang="nl">Er is geen wachtwoord hint opgegeven, u kunt proberen een nieuw wachtwoord via de email op te vragen.</value>
@@ -194,6 +212,7 @@
         <value xml:lang="en">No Primary Email Address has been set, please contact customer service.</value>
         <value xml:lang="es">No se ha actualizado la dirección de correo.</value>
         <value xml:lang="fr">Pas d'adresse courriel créée, merci de contacter votre service commercial.</value>
+        <value xml:lang="hr">Primarna e-mail adresa nije postavljena, obratite se korisničkoj službi.</value>
         <value xml:lang="it">Indirizzo email primario non impostato, prego contattare il servizio clienti.</value>
         <value xml:lang="ja">Eメールアドレスが設定されていません。カスタマサービスに連絡してください。</value>
         <value xml:lang="nl">Er is geen primair emailadres ingesteld, neem a.u.b. contact op met de klantenservice.</value>
@@ -207,10 +226,12 @@
     <property key="loginevents.origin_username_is_present">
         <value xml:lang="en">You already have an impersonation in process. Please leave it before continue</value>
         <value xml:lang="fr">Vous avez déjà une incarnation en cours, veuillez mettre fin à celle-ci avant de continuer</value>
+    <value xml:lang="hr">Već imate lažno predstavljanje u postupku. Napustite ga prije nastavka</value>
     </property>
     <property key="loginevents.password_expiration_alert">
         <value xml:lang="en">Alert: Your password will expire on ${passwordExpirationDate}. Update password before it expired.</value>
         <value xml:lang="fr">Votre mot de passe va expirer le ${passwordExpirationDate}, modifiez le avant.</value>
+        <value xml:lang="hr">Upozorenje: Vaša lozinka će isteći ${passwordExpirationDate}. Ažurirajte lozinku prije nego što istekne.</value>
         <value xml:lang="ru">Уведомление: Твой пароль будет действителен на ${passwordExpirationDate}. Поменяйте пароль перед тем как его срок годности пройдет. </value>
         <value xml:lang="zh">注意：您的密码将在${passwordExpirationDate}过期，请在这之前更改密码。</value>
         <value xml:lang="zh-CN">注意：您的密码将在${passwordExpirationDate}过期，请在这之前更改密码。</value>
@@ -219,6 +240,7 @@
     <property key="loginevents.password_expired_message">
         <value xml:lang="en">Alert: Your password expired on ${passwordExpirationDate}. Update your password.</value>
         <value xml:lang="fr">Votre mot de passe a expiré le  ${passwordExpirationDate}, modifiez le.</value>
+        <value xml:lang="hr">Upozorenje: Vaša lozinka je istekla ${passwordExpirationDate}. Ažurirajte svoju lozinku.</value>
         <value xml:lang="ru">Уведомление: Твой пароль истек на ${passwordExpirationDate}. </value>
         <value xml:lang="zh">您的密码已于${passwordExpirationDate}过期，请更改密码。</value>
         <value xml:lang="zh-CN">您的密码已于${passwordExpirationDate}过期，请更改密码。</value>
@@ -229,6 +251,7 @@
         <value xml:lang="en">The Password Hint is: ${passwordHint}.</value>
         <value xml:lang="es">Su pista para la clave es:</value>
         <value xml:lang="fr">La description du mot de passe est: ${passwordHint}.</value>
+        <value xml:lang="hr">Podsjetnik na lozinku je: ${passwordHint}.</value>
         <value xml:lang="it">Il suggerimento password è: ${passwordHint}.</value>
         <value xml:lang="ja">パスワードヒント: ${passwordHint}</value>
         <value xml:lang="nl">Uw wachtwoord hint is: ${passwordHint}.</value>
@@ -244,6 +267,7 @@
         <value xml:lang="en">Your password has been changed successfully</value>
         <value xml:lang="es">Su clave se ha cambiado correctamente</value>
         <value xml:lang="fr">Votre mot de passe a été changé avec succès</value>
+        <value xml:lang="hr">Lozinka je uspješno promjenjena</value>
         <value xml:lang="it">La password è stata cambiata con successo</value>
         <value xml:lang="ja">パスワードが変更されました。</value>
         <value xml:lang="nl">Uw wachtwoord is aangepast</value>
@@ -257,6 +281,7 @@
         <value xml:lang="en">password was empty reenter</value>
         <value xml:lang="es">La clave no puede ser vacía</value>
         <value xml:lang="fr">Le mot de passe était vide, SVP recommencez.</value>
+        <value xml:lang="hr">Nedostaje lozinka, unesite ponovno.</value>
         <value xml:lang="it">La password è vuota, prego inserirla di nuovo.</value>
         <value xml:lang="ja">パスワードが入力されていません、入力してください。</value>
         <value xml:lang="nl">Het wachtwoord is leeg, toets a.u.b. opnieuw in.</value>
@@ -272,6 +297,7 @@
         <value xml:lang="en">Problems with configuration; please contact customer service.</value>
         <value xml:lang="es">Problemas con configuración. Contacte con el servicio de soporte.</value>
         <value xml:lang="fr">Problèmes avec la connexion, merci de contacter votre service commercial.</value>
+        <value xml:lang="hr">Problem s konfiguracijom, kontaktirajte korisničku službu.</value>
         <value xml:lang="it">Problemi con la configurazione; per favore contattare il servizio clienti.</value>
         <value xml:lang="ja">設定時にエラーが発生しました。カスタマサービスに連絡してください。</value>
         <value xml:lang="nl">Er is een probleem opgetreden met de configuratie. Neem a.u.b. contact op met de klantenservice.</value>
@@ -286,6 +312,7 @@
         <value xml:lang="en">You cannot login to this tenant</value>
         <value xml:lang="es">No puede conectarse con esta organización</value>
         <value xml:lang="fr">Vous ne pouvez pas vous connecter avec cet identifiant sur cette instance</value>
+        <value xml:lang="hr">Ne možete se prijaviti kod ovog korisnika aplikacije</value>
         <value xml:lang="ja">このテナントは使用できません。</value>
         <value xml:lang="pt-BR">Você não pode acessar este inquilino</value>
         <value xml:lang="ru">Ты не можешь зайти под этим логином</value>
@@ -297,6 +324,7 @@
         <value xml:lang="en">You cannot login to this application</value>
         <value xml:lang="es">No puede conectarse a esta aplicación (faltan permisos)</value>
         <value xml:lang="fr">Impossible de se connecter à cette application.</value>
+        <value xml:lang="hr">Nemate dozvolu za prijavu u ovu aplikaciju.</value>
         <value xml:lang="it">L'autenticazione per questa applicazione non è stata completata (permessi non sufficienti).</value>
         <value xml:lang="ja">このアプリケーションは使用できません。</value>
         <value xml:lang="nl">Het inloggen kan niet voltooid worden (niet bevoegd)</value>
@@ -312,6 +340,7 @@
         <value xml:lang="en">This user is already logged in.</value>
         <value xml:lang="es">El usuario ya se encuentra conectado</value>
         <value xml:lang="fr">L'utilisateur est déjà connecté.</value>
+        <value xml:lang="hr">Korisnik je već prijavljen.</value>
         <value xml:lang="it">L'utente è già autenticato.</value>
         <value xml:lang="ja">このユーザはすでにログインしています。</value>
         <value xml:lang="nl">Deze gebruiker is al ingelogd.</value>
@@ -327,6 +356,7 @@
         <value xml:lang="en">The Username was not found, please re-enter.</value>
         <value xml:lang="es">El usuario "${userLoginId}" no fue encontrado, por favor intente de nuevo.</value>
         <value xml:lang="fr">Le nom d'utilisateur est inconnu, entrez le de nouveau, SVP.</value>
+        <value xml:lang="hr">Korisničko ime nije pronađeno, unesite ponovno.</value>
         <value xml:lang="it">L'utente non è stato trovato, prego inserirlo di nuovo.</value>
         <value xml:lang="ja">ユーザ名は見つかりません、再度入力してください。</value>
         <value xml:lang="nl">De gebruikersnaam is niet gevonden, toets a.u.b. opnieuw in.</value>
@@ -342,6 +372,7 @@
         <value xml:lang="en">username was empty reenter</value>
         <value xml:lang="es">El usuario no puede ser vacío, por favor intente de nuevo.</value>
         <value xml:lang="fr">Le nom d'utilisateur est vide, taper le de nouveau SVP.</value>
+        <value xml:lang="hr">Nedostaje korisničko ime, unesite ponovno.</value>
         <value xml:lang="it">L'utente è vuoto, prego inserirlo di nuovo.</value>
         <value xml:lang="ja">ユーザ名が入力されていません、再度入力してください。</value>
         <value xml:lang="nl">De gebruikersnaam is leeg, toets a.u.b. opnieuw in.</value>
@@ -357,6 +388,7 @@
         <value xml:lang="en">New Password is missing.</value>
         <value xml:lang="es">Falta nueva clave.</value>
         <value xml:lang="fr">Le nouveau mot de passe manque</value>
+        <value xml:lang="hr">Nedostaje nova lozinka</value>
         <value xml:lang="it">La nuova password è mancante.</value>
         <value xml:lang="ja">新しいパスワードが正しくありません。</value>
         <value xml:lang="nl">Het nieuwe wachtwoord is leeg</value>
@@ -372,6 +404,7 @@
         <value xml:lang="en">New Password Verify is missing</value>
         <value xml:lang="es">Falta verificación de nueva clave</value>
         <value xml:lang="fr">La vérification du nouveau mot de passe manque</value>
+        <value xml:lang="hr">Nedostaje potvrda nove lozinke</value>
         <value xml:lang="it">La verifica della nuova password è mancante</value>
         <value xml:lang="ja">新しいパスワード(確認)が正しくありません。</value>
         <value xml:lang="nl">Nieuw verificatie wachtwoord is leeg</value>
@@ -387,6 +420,7 @@
         <value xml:lang="en">The (old) Password is missing.</value>
         <value xml:lang="es">Falta clave antigua.</value>
         <value xml:lang="fr">L'ancien mot de passe manque</value>
+        <value xml:lang="hr">Nedostaje postojeća lozinka.</value>
         <value xml:lang="it">La vecchia password è mancante.</value>
         <value xml:lang="ja">現在のパスワードが正しくありません。</value>
         <value xml:lang="nl">Het oude wachtwoord is leeg</value>
@@ -402,6 +436,7 @@
         <value xml:lang="en">New Password does not equal Verify Password</value>
         <value xml:lang="es">Las claves no coinciden</value>
         <value xml:lang="fr">Le nouveau mot de passe ne correspond pas à la vérification de ce nouveau mot de passe</value>
+        <value xml:lang="hr">Nova lozinka nije jednaka potvrdi lozinke</value>
         <value xml:lang="it">La nuova password non è ugugale alla password di verifica</value>
         <value xml:lang="ja">新しいパスワードがパスワード(確認)と異なります。</value>
         <value xml:lang="nl">Het nieuwe wachtwoord komt niet overeen met het verificatie wachtwoord</value>
@@ -417,6 +452,7 @@
         <value xml:lang="en">Password successfully updated.</value>
         <value xml:lang="es">Clave actualizada.</value>
         <value xml:lang="fr">Mot de passe mis à jour.</value>
+        <value xml:lang="hr">Lozinka je uspješno promjenjena.</value>
         <value xml:lang="it">Password aggiornta con successo.</value>
         <value xml:lang="ja">パスワードが更新されました。</value>
         <value xml:lang="nl">Wachtwoord met succes veranderd.</value>
@@ -432,6 +468,7 @@
         <value xml:lang="en">The account for user login id "${username}" has been disabled.</value>
         <value xml:lang="es">La cuenta "${username}" ha sido deshabilitada.</value>
         <value xml:lang="fr">Le compte de l'utilisateur "${username}" a été neutralisé.</value>
+        <value xml:lang="hr">Korisnički račun za prijavu "${username}" je onemogućen.</value>
         <value xml:lang="it">L'utente "${username}" è stato disabilitato</value>
         <value xml:lang="ja">ユーザ名 "${username}" が無効になりました。</value>
         <value xml:lang="nl">De gebruikersnaam: "${username}" is geblokkeerd.</value>
@@ -447,6 +484,7 @@
         <value xml:lang="en">Could not change password (read failure): ${errorMessage}.</value>
         <value xml:lang="es">No se pudo cambiar la clave. Error de lectura ${errorMessage}.</value>
         <value xml:lang="fr">Impossible de changer le mot de passe (erreur de lecture) : ${errormessage}.</value>
+        <value xml:lang="hr">Nije moguće promijeniti lozinku (neuspješno čitanje): ${errorMessage}.</value>
         <value xml:lang="it">Non è possibile cambiare la password (lettura fallita): ${errorMessage}.</value>
         <value xml:lang="ja">パスワードが変更できません (読取エラー): ${errorMessage}</value>
         <value xml:lang="nl">Het wachtwoord kan niet veranderd worden (leesfout): ${errorMessage}.</value>
@@ -462,6 +500,7 @@
         <value xml:lang="en">Could not change password, UserLogin with ID "${userLoginId}" does not exist.</value>
         <value xml:lang="es">No se pudo cambiar la clave. El usuario con Id "${userLoginId}" no existe.</value>
         <value xml:lang="fr">Impossible de changer le mot de passe, l'identifiant de connexion "${userLoginId}" n'existe pas.</value>
+        <value xml:lang="hr">Nije moguće promijeniti lozinku, korisnička prijava s ID-om "${user Login Id}" ne postoji.</value>
         <value xml:lang="it">Non è possibile cambiare la password, l'utente "${userLoginId}" non esiste.</value>
         <value xml:lang="ja">パスワードが変更できません、ユーザ名 "${userLoginId}" は存在しません。</value>
         <value xml:lang="nl">Het wachtwoord kan niet veranderd worden. De gebruikersnaam met "${userLoginId}" bestaat niet.</value>
@@ -477,6 +516,7 @@
         <value xml:lang="en">Could not change password (write failure): ${errorMessage}.</value>
         <value xml:lang="es">No se puede cambiar la clave: ${errorMessage}.</value>
         <value xml:lang="fr">Impossible de changer le mot de passe (erreur d'écriture) : ${errormessage}.\r\n</value>
+        <value xml:lang="hr">Nije moguće promijeniti lozinku (neuspješno pisanje): ${errorMessage}.</value>
         <value xml:lang="it">Non è possibile cambiare la password (scrittura fallita): ${errorMessage}.</value>
         <value xml:lang="ja">パスワードが変更できません (書込エラー): ${errorMessage}</value>
         <value xml:lang="nl">Het wachtwoord kan niet veranderd worden. (schrijffout): ${errorMessage}.</value>
@@ -492,6 +532,7 @@
         <value xml:lang="en">Could not create login user (read failure): ${errorMessage}.</value>
         <value xml:lang="es">No se pudo crear el usuario: ${errorMessage}.</value>
         <value xml:lang="fr">Impossible de créer l'utilisateur (erreur de lecture) : ${errormessage}.</value>
+        <value xml:lang="hr">Nije moguće stvoriti korisnika za prijavu (neuspješno čitanje): ${errorMessage}.</value>
         <value xml:lang="it">Non è possibile creare l'utente (lettura fallita): ${errorMessage}.</value>
         <value xml:lang="ja">ユーザが作成できません (読取エラー): ${errorMessage}</value>
         <value xml:lang="nl">De gebruikersnaam kan niet worden aangemaakt. (leesfout): ${errorMessage}.</value>
@@ -507,6 +548,7 @@
         <value xml:lang="en">Could not create login user: user with ID "${userLoginId}" already exists.</value>
         <value xml:lang="es">El usuario "${userLoginId}" ya existe</value>
         <value xml:lang="fr">Impossible de créer l'utilisateur "${userLoginId}", il existe déjà.</value>
+        <value xml:lang="hr">Nije moguće stvoriti korisničku prijavu: korisnik s ID-om "${userLoginId}" već postoji.</value>
         <value xml:lang="it">Non è possibile creare l'utente "${userLoginId}", già esistente.</value>
         <value xml:lang="ja">ユーザが作成できません: ユーザ名 "${userLoginId}" はすでに存在します。</value>
         <value xml:lang="nl">De gebruikersnaam kan niet worden aangemaakt: de gebruikersnaam "${userLoginId}" bestaat al.</value>
@@ -522,6 +564,7 @@
         <value xml:lang="en">Couldn't create login user (write failure): ${errorMessage}.</value>
         <value xml:lang="es">No se pudo crear usuario. Error de escritura: ${errorMessage}.</value>
         <value xml:lang="fr">Impossible de créer l'utilisateur (erreur d'écriture) : ${errormessage}.</value>
+        <value xml:lang="hr">Nije moguće stvoriti korisničku prijavu (neuspješno pisanje): ${errorMessage}.</value>
         <value xml:lang="it">Non è possibile creare l'utente (scrittura fallita): ${errorMessage}.</value>
         <value xml:lang="ja">ユーザが作成できません (書込エラー): ${errorMessage}</value>
         <value xml:lang="nl">De gebruikersnaam kan niet worden aangemaakt (schrijffout): ${errorMessage}.</value>
@@ -537,6 +580,7 @@
         <value xml:lang="en">Couldn't disable old login user (write failure): ${errorMessage}.</value>
         <value xml:lang="es">No se pudo deshabilitar el usuario ${errorMessage}.</value>
         <value xml:lang="fr">Impossible d'annuler l'ancien compte utilisateur (erreur d'écriture) : ${errorMessage}.</value>
+        <value xml:lang="hr">Nije moguće onemogućiti staru korisničku prijavu (neuspješno pisanje): ${errorMessage}.</value>
         <value xml:lang="it">Non è possibile disabilitare l'utente (scrittura fallita): ${errorMessage}.</value>
         <value xml:lang="ja">ユーザを無効にできません (書込エラー): ${errorMessage}</value>
         <value xml:lang="nl">De oude gebruikersnaam kan niet geblokkeerd worden (schrijffout): ${errorMessage}.</value>
@@ -552,6 +596,7 @@
         <value xml:lang="en">LDAP authentication failed.</value>
         <value xml:lang="es">Autentificación LDAP fallida.</value>
         <value xml:lang="fr">L'authentification LDAP a échouée.</value>
+        <value xml:lang="hr">LDAP autentifikacija nije uspjela.</value>
         <value xml:lang="it">Autenticazione LDAP fallita.</value>
         <value xml:lang="ja">LDAP認証に失敗しました。</value>
         <value xml:lang="nl">LDAP authenticatie mislukt.</value>
@@ -565,6 +610,7 @@
         <value xml:lang="en">You must be logged in and have permission to create a user login with a party ID for a party that already exists.</value>
         <value xml:lang="es">Debe estar conectado y contar con permisos para crear un usuario a un participante existente</value>
         <value xml:lang="fr">Vous devez être connecté et avoir l'autorisation de créer un compte utilisateur avec une réf. d'acteur d'un acteur qui existe déjà.</value>
+        <value xml:lang="hr">Morate biti prijavljeni i imati dopuštenje za stvaranje korisničke prijave s ID-om stranke za stranku koja već postoji.</value>
         <value xml:lang="it">Devi autenticarti ed avere i permessi per creare un'utente con un codice soggetto già esistente.</value>
         <value xml:lang="ja">既存の取引先にユーザを追加する場合は権限のあるユーザでログインが必要です。</value>
         <value xml:lang="nl">U moet ingelogd zijn en toegang hebben om een gebruikersnaam en relatie ID aan te maken voor een reeds bestaande relatie.</value>
@@ -580,6 +626,7 @@
         <value xml:lang="en">You must be logged in and have permission to create a user login with a party ID for a party that already exists.</value>
         <value xml:lang="es">Debe estar conectado y contar con permisos para crear un usuario a un participante existente</value>
         <value xml:lang="fr">Vous devez être connecté et avoir l'autorisation de créer un compte utilisateur avec une réf. d'acteur d'un acteur qui existe déjà.</value>
+        <value xml:lang="hr">Morate biti prijavljeni i imati dopuštenje za stvaranje korisničke prijave s ID-om stranke za stranku koja već postoji.</value>
         <value xml:lang="it">Devi autenticarti ed avere i permessi per creare un'utente con un codice soggetto già esistente.</value>
         <value xml:lang="ja">既存の取引先にユーザを追加する場合は権限のあるユーザでログインが必要です。</value>
         <value xml:lang="nl">U moet ingelogd zijn en toegang hebben om een gebruikersnaam en relatie ID aan te maken voor een reeds bestaande relatie.</value>
@@ -595,6 +642,7 @@
         <value xml:lang="en">The new password must be different from the old one.</value>
         <value xml:lang="es">La nueva clave debe ser diferente a la anterior.</value>
         <value xml:lang="fr">Le nouveau mot de passe doit être différent de l'ancien.</value>
+        <value xml:lang="hr">Nova lozinka mora se razlikovati od postojeće.</value>
         <value xml:lang="it">La nuova password deve essere diversa dalla vecchia.</value>
         <value xml:lang="ja">新しいパスワードは現在のパスワードと異なるものを入力してください。</value>
         <value xml:lang="nl">Uw nieuwe wachtwoord moet verschillen van het oude wachtwoord.</value>
@@ -609,6 +657,7 @@
         <value xml:lang="en">You do not have permission to update the password for this user login.</value>
         <value xml:lang="es">No tiene permisos para modificar la clave para este usuario.</value>
         <value xml:lang="fr">Vous n'avez pas l'autorisation de mettre à jour le mot de passe pour ce compte utilisateur.</value>
+        <value xml:lang="hr">Nemate dopuštenje za ažuriranje lozinke za prijavu ovog korisnika.</value>
         <value xml:lang="it">Non sei autorizzato ad aggiornare la password per questo utente.</value>
         <value xml:lang="ja">パスワードを更新する権限がありません。</value>
         <value xml:lang="nl">U heeft geen toegang tot het aanpassen van het wachtwoord van deze gebruikersnaam.</value>
@@ -624,6 +673,7 @@
         <value xml:lang="en">You do not have permission to update the security info for this user login.</value>
         <value xml:lang="es">No tiene permisos para actualizar la información de este usuario.</value>
         <value xml:lang="fr">Vous n'avez pas l'autorisation de mettre à jour l'information de sécurité pour ce compte utilisateur.</value>
+        <value xml:lang="hr">Nemate dopuštenje za ažuriranje sigurnosnih podataka za prijavu ovog korisnika.</value>
         <value xml:lang="it">Tu non sei autorizzato ad aggiornare le informazioni sulla sicurezza per questo utente.</value>
         <value xml:lang="ja">セキュリティ情報を更新する権限がありません。</value>
         <value xml:lang="nl">U heeft geen toegang tot het aanpassen van de veiligheidsinformatie van deze gebruikersnaam.</value>
@@ -639,6 +689,7 @@
         <value xml:lang="en">It is not scheduled to be re-enabled.</value>
         <value xml:lang="es">No se ha programado para ser reactivado</value>
         <value xml:lang="fr">Le renouvellement n'est pas envisagé.</value>
+        <value xml:lang="hr">Nije planirano da se ponovno omogući.</value>
         <value xml:lang="it">La riabilitazione non è stata programmata.</value>
         <value xml:lang="ja">有効になるスケジュールはありません。</value>
         <value xml:lang="nl">Het is niet gepland om weer te activeren.</value>
@@ -654,6 +705,7 @@
         <value xml:lang="en">Old Password was not correct, please re-enter.</value>
         <value xml:lang="es">La clave antigua no es correcta, por favor introdúzcala nuevamente</value>
         <value xml:lang="fr">L'ancien mot de passe n'est pas correct, réessayez SVP.</value>
+        <value xml:lang="hr">Postojeć lozinka nije ispravna, pokušajte ponovno.</value>
         <value xml:lang="it">La vecchia password non è corretta, riprovare prego.</value>
         <value xml:lang="ja">現在のパスワードが正しくありません。再度入力してください。</value>
         <value xml:lang="nl">Het oude wachtwoord is niet juist, geef het a.u.b. opnieuw in.</value>
@@ -669,6 +721,7 @@
         <value xml:lang="en">Party with specified party ID exists and you do not have permission to create a user login with this party ID.</value>
         <value xml:lang="es">El participante existe y usted no tiene permisos para crear usuarios a este participante</value>
         <value xml:lang="fr">L'acteur avec la réf. spécifiée existe et vous n'avez pas l'autorisation de créer un compte utilisateur avec cette réf. d'acteur.</value>
+        <value xml:lang="hr">Postojeće korisničko ime, dupliciranje nije dozvoljeno.</value>
         <value xml:lang="it">Il soggetto con il codice specificato esiste già e non hai i permessi per creare un'utente con questo codice soggetto.</value>
         <value xml:lang="ja">既存の取引先にユーザを追加する権限がありません。</value>
         <value xml:lang="nl">De relatie met opgegeven relatie ID bestaat al en u heeft geen toegang tot het aanmaken van een gebruikersnaam met deze relatie ID.</value>
@@ -684,6 +737,7 @@
         <value xml:lang="en">Party with specified party ID exists and you do not have permission to create a user login with this party ID.</value>
         <value xml:lang="es">Usted no tiene permiso para crear usuarios para este participante</value>
         <value xml:lang="fr">L'acteur avec la réf. spécifiée existe et vous n'avez pas l'autorisation de créer un compte utilisateur avec cette réf. d'acteur.</value>
+        <value xml:lang="hr">Postojeće korisničko ime, dupliciranje nije dozvoljeno.</value>
         <value xml:lang="it">Il soggetto con il codice specificato esiste già e non hai i permessi per creare un'utente con questo codice soggetto.</value>
         <value xml:lang="ja">既存の取引先にユーザを追加する権限がありません。</value>
         <value xml:lang="nl">Relatie met de opgegeven ID bestaat al en u heeft geen toegang tot het aanmaken van een gebruikersnaam met deze relatie ID.</value>
@@ -699,6 +753,7 @@
         <value xml:lang="en">The password does not match the pattern: ${passwordPatternMessage} </value>
         <value xml:lang="fr">Le mot de passe ne correspond pas au modèle: ${passwordPatternMessage}.</value>
         <value xml:lang="hi-IN">पासवर्ड पैटर्न मिलान नहीं है, कृपया निम्नलिखित पैटर्न देखें: ${passwordPatternMessage}</value>
+        <value xml:lang="hr">Lozinka ne odgovara uzorku: ${passwordPatternMessage}</value>
         <value xml:lang="it">La password non è corrispondente al modello, fare riferimento seguente schema: ${passwordPatternMessage}.</value>
         <value xml:lang="ru">Пароль не соответствует шаблону: ${passwordPatternMessage}</value>
         <value xml:lang="zh">密码不符合样式：${passwordPatternMessage} </value>
@@ -709,6 +764,7 @@
         <value xml:lang="en">Password did not match verify password.</value>
         <value xml:lang="es">Las claves no coinciden, verificar.</value>
         <value xml:lang="fr">Le nouveau mot de passe ne correspond pas à sa vérification.</value>
+        <value xml:lang="hr">Lozinka i potvrda lozinke se razlikuju.</value>
         <value xml:lang="it">La password non corrisponde alla password di verifica.</value>
         <value xml:lang="ja">パスワードがパスワード(確認)と異なります。</value>
         <value xml:lang="nl">Wachtwoorden komen niet overeen.</value>
@@ -724,6 +780,7 @@
         <value xml:lang="en">Password hint may not contain the password.</value>
         <value xml:lang="es">Su pista no puede contener la clave.</value>
         <value xml:lang="fr">L'indication d'aide au mot de passe ne peut pas contenir le mot de passe.</value>
+        <value xml:lang="hr">Podsjetnik ne smije sadržavati lozinku.</value>
         <value xml:lang="it">Il suggerimento password non può contenere la password.</value>
         <value xml:lang="ja">パスワードヒントにパスワードが含まれないようにしてください。</value>
         <value xml:lang="nl">Wachtwoord hint mag het wachtwoord niet bevatten.</value>
@@ -739,6 +796,7 @@
         <value xml:lang="en">Password incorrect.</value>
         <value xml:lang="es">Clave incorrecta.</value>
         <value xml:lang="fr">Mot de passe incorrect.</value>
+        <value xml:lang="hr">Pogrešna lozinka</value>
         <value xml:lang="it">Password non corretta.</value>
         <value xml:lang="ja">パスワードが正しくありません。</value>
         <value xml:lang="nl">Wachtwoord is niet juist.</value>
@@ -754,6 +812,7 @@
         <value xml:lang="en">Password may not equal the Username.</value>
         <value xml:lang="es">La clave no puede ser igual al nombre de usuario</value>
         <value xml:lang="fr">Le mot de passe ne peut pas être identique au nom d'utilisateur.0</value>
+        <value xml:lang="hr">Lozinka ne smije biti jednaka korisničkom imenu.</value>
         <value xml:lang="it">La password non può essere uguale al Nome Utente.</value>
         <value xml:lang="ja">パスワードはユーザ名と異なるものにしてください。</value>
         <value xml:lang="nl">Wachtwoord mag niet hetzelfde zijn als gebruikersnaam.</value>
@@ -769,6 +828,7 @@
         <value xml:lang="en">Password missing.</value>
         <value xml:lang="es">Falta clave.</value>
         <value xml:lang="fr">Le mot de passe manque</value>
+        <value xml:lang="hr">Nedostaje lozinka.</value>
         <value xml:lang="it">Password mancante.</value>
         <value xml:lang="ja">パスワードが間違っています。</value>
         <value xml:lang="nl">Wachtwoord is leeg.</value>
@@ -784,6 +844,7 @@
         <value xml:lang="en">Password cannot be one of your last ${passwordChangeHistoryLimit} passwords.</value>
         <value xml:lang="es">La clave no puede ser igual a las últimas ${passwordChangeHistoryLimit} claves.</value>
         <value xml:lang="fr">Le mot de passe ne peut être un de vos derniers ${passwordChangeHistoryLimit} mots de passe.</value>
+        <value xml:lang="hr">Lozinka ne može biti jedna od vaših zadnjih ${passwordChangeHistoryLimit} lozinki.</value>
         <value xml:lang="it">La password non può essere una delle tue ultime ${passwordChangeHistoryLimit} password.</value>
         <value xml:lang="ja">過去 ${passwordChangeHistoryLimit} 回以内に使われていないパスワードにしてください。</value>
         <value xml:lang="nl">Het wachtwoord mag niet overeenkomen met uw laatste ${passwordChangeHistoryLimit} wachtwoorden.</value>
@@ -798,6 +859,7 @@
         <value xml:lang="en">Password must be at least ${minPasswordLength} characters long.</value>
         <value xml:lang="es">La clave debe tener al menos ${minPasswordLength} caracteres.</value>
         <value xml:lang="fr">Le mot de passe doit être d'au moins ${minPasswordLength} caractères.</value>
+        <value xml:lang="hr">Lozinka mora imati najmanje ${minPasswordLength} znakova.</value>
         <value xml:lang="it">La password deve essere lunga almeno ${minPasswordLength} caratteri.</value>
         <value xml:lang="ja">パスワードは少なくとも ${minPasswordLength} 文字で入力してください。</value>
         <value xml:lang="nl">Wachtwoord moet op zijn minst ${minPasswordLength} karakters lang zijn.</value>
@@ -813,6 +875,7 @@
         <value xml:lang="en">Password or verify password missing.</value>
         <value xml:lang="es">Falta clave o verificación de clave.</value>
         <value xml:lang="fr">Le mot de passe ou la vérification de mot de passe manque</value>
+        <value xml:lang="hr">Nedostaje lozinka ili potvrda lozinke.</value>
         <value xml:lang="it">La password o verifica password è mancante.</value>
         <value xml:lang="ja">パスワードまたはパスワード(確認)が間違っています。</value>
         <value xml:lang="nl">Wachtwoord of herhaal wachtwoord is leeg</value>
@@ -826,6 +889,7 @@
     <property key="loginservices.password_reminder_subject">
         <value xml:lang="en">Password Reminder (${userLoginId})".</value>
         <value xml:lang="fr">Rappel du mot de passe (${userLoginId})".</value>
+        <value xml:lang="hr">Podsjetnik lozinke (${userLoginId})".</value>
         <value xml:lang="ru">Напоминатель о пароле (${userLoginId})".</value>
         <value xml:lang="zh">密码提示(${userLoginId})。</value>
         <value xml:lang="zh-TW">密碼提示(${userLoginId}).</value>
@@ -835,6 +899,7 @@
         <value xml:lang="en">since ${disabledDateTime}.</value>
         <value xml:lang="es">A partir de la fecha ${disabledDateTime}.</value>
         <value xml:lang="fr">depuis ${disabledDateTime}.</value>
+        <value xml:lang="hr">od ${disabledDateTime}.</value>
         <value xml:lang="it">dal ${disabledDateTime}.</value>
         <value xml:lang="ja">${disabledDateTime} から</value>
         <value xml:lang="nl">sinds ${disabledDateTime}.</value>
@@ -848,12 +913,14 @@
     <property key="loginservices.token_incorrect">
         <value xml:lang="en">Invalid Token</value>
         <value xml:lang="fr">Jeton non valide</value>
+    <value xml:lang="hr">Pogrešan token</value>
     </property>
     <property key="loginservices.user_not_found">
         <value xml:lang="de">Benutzer konnte nicht gefunden werden</value>
         <value xml:lang="en">User not found.</value>
         <value xml:lang="es">Usuario no encontrado.</value>
         <value xml:lang="fr">Utilisateur non trouvé.</value>
+        <value xml:lang="hr">Korisnik nije pronađen.</value>
         <value xml:lang="it">Utente non trovato.</value>
         <value xml:lang="ja">ユーザ名が間違っています。</value>
         <value xml:lang="nl">Gebruikersnaam niet gevonden.</value>
@@ -869,6 +936,7 @@
         <value xml:lang="en">Username missing.</value>
         <value xml:lang="es">Falta usuario.</value>
         <value xml:lang="fr">Le nom d'utilisateur manque.</value>
+        <value xml:lang="hr">Nedostaje korisničko ime.</value>
         <value xml:lang="it">Nome Utente mancante.</value>
         <value xml:lang="ja">ユーザ名が間違っています。</value>
         <value xml:lang="nl">Gebruikersnaam is leeg.</value>
@@ -884,6 +952,7 @@
         <value xml:lang="en">It will be re-enabled ${reEnableTime}.</value>
         <value xml:lang="es">Será reactivado en ${reEnableTime}.</value>
         <value xml:lang="fr">Il sera renouvellé : ${reEnableTime}.</value>
+        <value xml:lang="hr">Ponovo će biti omogućeno ${reEnableTime}.</value>
         <value xml:lang="it">Sarà riabilitato il ${reEnableTime}.</value>
         <value xml:lang="ja">${reEnableTime} に再度有効になります。</value>
         <value xml:lang="nl">Hij zal weer geactiveerd zijn op ${reEnableTime}.</value>

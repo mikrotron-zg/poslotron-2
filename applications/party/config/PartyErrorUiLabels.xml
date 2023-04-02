@@ -24,6 +24,7 @@
         <value xml:lang="de">Berechtigungsfehler: Um ${resourceDescription} auszuführen muss man PARTYMGR_CREATE oder PARTYMGR_UPDATE Berechtigungen haben</value>
         <value xml:lang="en">Security Error: to run ${resourceDescription} you must have the PARTYMGR_CREATE or PARTYMGR_UPDATE permission</value>
         <value xml:lang="fr">Erreur de sécurité : pour effectuer ${resourceDescription} vous devez avoir l'autorisation PARTYMGR_CREATE ou PARTYMGR_UPDATE</value>
+        <value xml:lang="hr">Sigurnosna greška: za pokretanje ${resourceDescription} morate imati dozvolu PARTYMGR_CREATE ili PARTYMGR_UPDATE</value>
         <value xml:lang="it">Errore di sicurezza: per eseguire ${resourceDescription} devi avere il permesso PARTYMGR_CREATE o PARTYMGR_UPDATE</value>
         <value xml:lang="ja">セキュリティエラー: ${resourceDescription} を実行するには PARTYMGR_CREATE または PARTYMGR_UPDATE 権限が必要です</value>
         <value xml:lang="vi">Lỗi phân quyền: để thực thi ${resourceDescription} bạn cần có quyền PARTYMGR_CREATE hoặc PARTYMGR_UPDATE</value>
@@ -31,96 +32,127 @@
     </property>
     <property key="PartyRequiredFieldMissingAddress1">
         <value xml:lang="en">Required Field Missing : Address1.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Adresa1.</value>
     </property>
     <property key="PartyRequiredFieldMissingCity">
         <value xml:lang="en">Required Field Missing : City.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Grad.</value>
     </property>
     <property key="PartyRequiredFieldMissingCurrentStatusId">
         <value xml:lang="en">Required Field Missing : Current Status Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Id trenutnog statusa.</value>
     </property>
     <property key="PartyRequiredFieldMissingPostalCode">
         <value xml:lang="en">Required Field Missing : Postal Code.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Poštanski broj.</value>
     </property>
     <property key="PartyRequiredFieldMissingWorkEffortName">
         <value xml:lang="en">Required Field Missing : WorkEffort Name.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Naziv uloženog rada.</value>
     </property>
     <property key="PartyRequiredFieldMissingWorkEffortTypeId">
         <value xml:lang="en">Required Field Missing : WorkEffort Type Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste uloženog rada.</value>
     </property>
     <property key="PartyRequiredFieldMissingAddress">
             <value xml:lang="en">Required Field Missing : Address</value>
+        <value xml:lang="hr">Nedostaje obavezno polje: Adresa.</value>
         </property>
     <property key="PartyRequiredFieldMissingChildRoleTypeIdList">
         <value xml:lang="en">Required Field Missing : ChildRole Type Id List</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Popis Id-ova vrste podređenih uloga.</value>
     </property>
     <property key="PartyRequiredFieldMissingContactMechId">
         <value xml:lang="en">Required Field Missing : Contact Mech Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id kontakt mehanizma.</value>
     </property>
     <property key="PartyRequiredFieldMissingContactMechPurposeTypeId">
         <value xml:lang="en">Required Field Missing : Contact Mech Purpose Type Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste svrhe kontakt mehanizma.</value>
     </property>
     <property key="PartyRequiredFieldMissingContactMechTypeId">
         <value xml:lang="en">Required Field Missing : Contact Mech Type Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste kontakt mehanizma.</value>
     </property>
     <property key="PartyRequiredFieldMissingEmailAddress">
         <value xml:lang="en">Required Field Missing : Email Address</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: E-mail adresa.</value>
     </property>
     <property key="PartyRequiredFieldMissingFirstName">
         <value xml:lang="en">Required Field Missing : First Name</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Ime.</value>
     </property>
     <property key="PartyRequiredFieldMissingLastName">
         <value xml:lang="en">Required Field Missing : Last Name</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Prezime.</value>
     </property>
     <property key="PartyRequiredFieldMissingLookupResult">
         <value xml:lang="en">Required Field Missing : Lookup Result</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Rezultat pretraživanja.</value>
     </property>
     <property key="PartyRequiredFieldMissingNewUserLogin">
         <value xml:lang="en">Required Field Missing : New User Login</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Prijava novog korisnika.</value>
     </property>
     <property key="PartyRequiredFieldMissingOldContactMechId">
         <value xml:lang="en">Required Field Missing : Old Contact Mech Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id starog kontakt mehanizma.</value>
     </property>
     <property key="PartyRequiredFieldMissingOrganizationPartyId">
         <value xml:lang="en">Required Field Missing : Organization Party Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id organizacije.</value>
     </property>
     <property key="PartyRequiredFieldMissingParentOrganizationPartyIdList">
         <value xml:lang="en">Required Field Missing : Organization Party Id List</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Popis Id-ova organizacija.</value>
     </property>
     <property key="PartyRequiredFieldMissingPartyId">
         <value xml:lang="en">Required Field Missing : Party Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id sudionika.</value>
     </property>
     <property key="PartyRequiredFieldMissingPartyIdFrom">
         <value xml:lang="en">Required Field Missing : Party Id From</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Id sudionika od.</value>
     </property>
     <property key="PartyRequiredFieldMissingPartyIdTo">
         <value xml:lang="en">Required Field Missing : Party Id To</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id sudionika prema.</value>
     </property>
     <property key="PartyRequiredFieldMissingPartyInvitationId">
         <value xml:lang="en">Required Field Missing : Party Invitation Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id pozivnice sudioniku.</value>
     </property>
     <property key="PartyRequiredFieldMissingProductStoreId">
         <value xml:lang="en">Required Field Missing : Product Store Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id trgovine proizvoda.</value>
     </property>
     <property key="PartyRequiredFieldMissingRelatedPartyIdList">
         <value xml:lang="en">Required Field Missing : Related Party Id List</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Popis Id-ova povezanih sudionika.</value>
     </property>
     <property key="PartyRequiredFieldMissingRoleTypeId">
         <value xml:lang="en">Required Field Missing : Role Type Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste uloge.</value>
     </property>
     <property key="PartyRequiredFieldMissingStatusId">
         <value xml:lang="en">Required Field Missing : Status Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id statusa.</value>
     </property>
     <property key="PartyRequiredFieldMissingTelno">
         <value xml:lang="en">Required Field Missing : Tel no.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Tel br.</value>
     </property>
     <property key="PartyRequiredFieldMissingUserLoginId">
         <value xml:lang="en">Required Field Missing : User Login Id</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id prijave korisnika.</value>
     </property>
     <property key="PartyRequiredFieldMissingVerifyHash">
         <value xml:lang="en">Required Field Missing : Verify Hash</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Provjera hasha.</value>
     </property>
     <property key="PartyUploadedFileDataNotFound">
         <value xml:lang="en">Uploaded file data not found</value>
+    <value xml:lang="hr">Podaci o prenesenoj datoteci nisu pronađeni</value>
     </property>
     <property key="commeventservices.communication_event_from_contact_mech_must_be_email">
         <value xml:lang="cs">Chyba: Komunikační událost musí mít jako odesílatele uvedenu emailovou adresu.</value>
@@ -129,6 +161,7 @@
         <value xml:lang="es">Error: Los eventos de comunicación deben tener un e-mail asociado</value>
         <value xml:lang="fr">ERREUR: la réf. d'évènement de communication doit avoir une coordonnée qui soit un courriel pour évènement de communication</value>
         <value xml:lang="hi-IN">त्रुटि: संचार आयोजन के पास एक संपर्क तंत्र होगा अर्थात संचार घटना(event) क्रमांक के लिए एक ईमेल</value>
+        <value xml:lang="hr">GREŠKA: Komunikacijski događaj mora imati kontaktni mehanizam koji je e-mail za Id kom. događaja</value>
         <value xml:lang="it">ERRORE: Evento comunicazioni deve avere un contatto che è un'evento comunicazione email</value>
         <value xml:lang="ja">エラー: 通信イベントはEメールの連絡方法(元)を持つ必要があります。通信イベントID</value>
         <value xml:lang="nl">Fout: Communicatie moet een 'van' adres hebben dat als mechanisme email heeft.</value>
@@ -144,6 +177,7 @@
         <value xml:lang="en">ERROR: Communication event must have a from contact mech that is an ftp server for communication event Id</value>
         <value xml:lang="es">Error: Los eventos de comunicación deben tener un servidor ftp asociado</value>
         <value xml:lang="fr">ERREUR: la réf. d'évènement de communication doit avoir une coordonnée qui soit un serveur ftp pour évènement de communication</value>
+    <value xml:lang="hr">GREŠKA: Komunikacijski događaj mora imati kontakt mehanizam koji je ftp poslužitelj za Id komunikacijskog događaja</value>
     </property>
     <property key="commeventservices.communication_event_must_be_email_for_email">
         <value xml:lang="de">FEHLER: Kommunikationsereignis ist keine E-Mail Kommunikation und kann nicht als E-Mail versendet werden für Kommunikationsereignis ID</value>
@@ -151,6 +185,7 @@
         <value xml:lang="es">ERROR: La comunicación no es un e-mail y no puede se enviado por mail</value>
         <value xml:lang="fr">ERREUR: l'évènement de communication n'est pas un courriel et ne peut être envoyé comme réf. d'évènement de communication </value>
         <value xml:lang="hi-IN">त्रुटि: संचार घटना(event) एक ईमेल संचार नहीं है और संचार घटना(event) क्रमांक के लिए ईमेल नहीं किया जा सकता है</value>
+        <value xml:lang="hr">GREŠKA: Komunikacijski događaj nije komunikacija e-mailom i ne može se poslati e-mailom za Id kom. događaja</value>
         <value xml:lang="it">ERRORE: Evento comunicazioni non è una comunicazione email e non può essere inviata email per l'evento comunicazioni</value>
         <value xml:lang="ja">エラー: 通信イベントはEメールではないためEメールを受け取ることはできません。通信イベントID</value>
         <value xml:lang="nl">Fout: Communicatie is geen email communicatie en kan niet gemaild worden voor communicatie event ID</value>
@@ -166,6 +201,7 @@
         <value xml:lang="en">ERROR: Communication event is not an Ftp communication and cannot be transfered for communication event Id </value>
         <value xml:lang="es">ERROR: La comunicación no es un transferencia ftp y no puede se enviado</value>
         <value xml:lang="fr">ERREUR: l'évènement de communication n'est pas un transfert ftp et ne peut être envoyé comme réf. d'évènement de communication </value>
+    <value xml:lang="hr">GREŠKA: Komunikacijski događaj nije ftp komunikacija i ne može se prenijeti za Id komunikacijskog događaja</value>
     </property>
     <property key="commeventservices.communication_event_not_found_failure">
         <value xml:lang="de">FEHLER: Kommunikationsereignis nicht gefunden mit der Kommunikationsereignis ID</value>
@@ -173,6 +209,7 @@
         <value xml:lang="es">ERROR: No se ha encontrado una comunicación con dicho código</value>
         <value xml:lang="fr">ERREUR: l'évènement de communication n'est pas trouvé pour cette réf.</value>
         <value xml:lang="hi-IN">त्रुटि: संचार घटना(event) क्रमांक के लिए संचार घटना(event) नहीं मिला है</value>
+        <value xml:lang="hr">GREŠKA: Komunikacijski događaj nije pronađen za Id kom. događaja</value>
         <value xml:lang="it">ERRORE: Evento comunicazioni non trovato per l'evento comunicazione con codice evento</value>
         <value xml:lang="ja">エラー: 通信イベントが見つかりません。通信イベントID</value>
         <value xml:lang="nl">Fout: Communicatie event niet gevonden voor deze communicatie ID</value>
@@ -186,6 +223,7 @@
     <property key="commeventservices.communication_event_role_status">
         <value xml:lang="de">Fehler: Kein gültiger Statuswechsel; alter Status: ${communicationEventRole.statusId}, neuer Status: ${parameters.statusId}</value>
         <value xml:lang="en">ERROR: Status is not a valid change; old Status: ${communicationEventRole.statusId}, new status: ${parameters.statusId}</value>
+        <value xml:lang="hr">GREŠKA: Status nije važeća promjena; stari status: ${communicationEventRole.statusId}, novi status: ${parameters.statusId}</value>
         <value xml:lang="it">ERRORE: Cambio di stato non valido; vecchio stato: ${communicationEventRole.statusId}, nuovo stato: ${parameters.statusId}</value>
         <value xml:lang="ja">エラー: ステータスの変更が有効ではありません。旧ステータス: ${communicationEventRole.statusId}, 新ステータス: ${parameters.statusId}</value>
         <value xml:lang="zh">错误：状态变化无效；旧的状态：${communicationEventRole.statusId}，新的状态：${parameters.statusId}</value>
@@ -195,6 +233,7 @@
         <value xml:lang="de">Fehler: Kein gültiger Statuswechsel; alter Status: ${communicationEvent.statusId}, neuer Status: ${parameters.statusId}</value>
         <value xml:lang="en">ERROR: Status is not a valid change; old Status: ${communicationEvent.statusId}, new status: ${parameters.statusId}</value>
         <value xml:lang="fr">ERREUR : Le changement de ${communicationEvent.statusId} à ${parameters.statusId} n'est pas valide</value>
+        <value xml:lang="hr">GREŠKA: Status nije važeća promjena; stari status: ${communicationEvent.statusId}, novi status: ${parameters.statusId}</value>
         <value xml:lang="ja">エラー: ステータスの変更が有効ではありません。旧ステータス: ${communicationEvent.statusId}, 新ステータス: ${parameters.statusId}</value>
         <value xml:lang="zh">错误：状态变化无效；旧的状态：${communicationEvent.statusId}，新的状态：${parameters.statusId}</value>
         <value xml:lang="zh-TW">錯誤:狀態變化無效;舊的狀態:${communicationEvent.statusId},新的狀態:${parameters.statusId}</value>
@@ -205,6 +244,7 @@
         <value xml:lang="es">ERROR: La comunicación debe tener especificado un mecanismo de contacto</value>
         <value xml:lang="fr">ERREUR: l'évènement de communication doit avoir une coordonnée destinataire qui soit un courriel pour réf. d'évènement de communication</value>
         <value xml:lang="hi-IN">त्रुटि: संचार आयोजन के पास एक संपर्क तंत्र होगा अर्थात संचार घटना(event) क्रमांक के लिए एक ईमेल</value>
+        <value xml:lang="hr">GREŠKA: Komunikacijski događaj mora imati kontakt mehanizam koji je e-mail za Id kom. događaja</value>
         <value xml:lang="it">ERRORE: Evento comunicazioni deve avere un contatto che ha un email per l'evento comunicazioni</value>
         <value xml:lang="ja">エラー: 通信イベントはEメールの連絡方法(先)を持つ必要があります。通信イベントID</value>
         <value xml:lang="nl">Fout: Communicatie event moet een 'naar' adres hebben dat een email is voor communicatie event ID</value>
@@ -221,6 +261,7 @@
         <value xml:lang="es">Error llamando al servicio sendEmailToContactList</value>
         <value xml:lang="fr">Erreur à l'appel du service sendEmailToContactList</value>
         <value xml:lang="hi-IN">SendEmailToContactList सेवा(service) बुलाने में त्रुटि</value>
+        <value xml:lang="hr">Greška pri pozivanju servisa sendEmailToContactList</value>
         <value xml:lang="it">Errore nell'esecuzione del servizio sendEmailToContactList</value>
         <value xml:lang="ja">sendEmailToContactListサービス呼び出し時にエラー</value>
         <value xml:lang="nl">Fout bij het uitvoeren van de service sendEmailToContactList</value>
@@ -236,6 +277,7 @@
         <value xml:lang="es">Error llamando al servicio sendMail</value>
         <value xml:lang="fr">Erreur à l'appel du service sendEmail</value>
         <value xml:lang="hi-IN">sendMail ﻿सेवा(service) ﻿बुलाने में त्रुटि</value>
+        <value xml:lang="hr">Greška pri pozivanju servisa sendMail</value>
         <value xml:lang="it">Errore nell'esecuzione del servizio sendMail</value>
         <value xml:lang="ja">sendMailサービス呼び出し時にエラー</value>
         <value xml:lang="nl">Fout: calling sendMail service</value>
@@ -251,6 +293,7 @@
         <value xml:lang="es">Error llamando al servicio updateContactListParty</value>
         <value xml:lang="fr">Erreur à l'appel du service updateContactListParty</value>
         <value xml:lang="hi-IN">updateContactListParty सेवा(service) बुलाने में त्रुटि</value>
+        <value xml:lang="hr">Greška pri pozivanju servisa updateContactListParty</value>
         <value xml:lang="it">Errore nell'esecuzione del servizio updateContactListParty</value>
         <value xml:lang="ja">updateContactListPartyサービス呼び出し時にエラー</value>
         <value xml:lang="nl">Fout: calling updateContactListParty service</value>
@@ -266,6 +309,7 @@
         <value xml:lang="es">Error llamando al servicio sendEmailToContactList</value>
         <value xml:lang="fr">Erreur dans le service sendEmailToContactList</value>
         <value xml:lang="hi-IN">sendEmailToContactList सेवा(service) बुलाने में त्रुटि</value>
+        <value xml:lang="hr">Greška u servisu sendEmailToContactList</value>
         <value xml:lang="it">Errore nell'esecuzione del servizio sendEmailToContactList</value>
         <value xml:lang="ja">sendEmailToContactListサービスでエラー</value>
         <value xml:lang="nl">Fout bij uitvoeren service sendEmailToContactList</value>
@@ -281,6 +325,7 @@
         <value xml:lang="es">Se ha omitido dirección de correo electrónico invalida</value>
         <value xml:lang="fr">Adresse courriel n'est pas valide</value>
         <value xml:lang="hi-IN">अवैध ईमेल पता छोड़दिया</value>
+        <value xml:lang="hr">Preskakanje nevažeće e-mail adrese</value>
         <value xml:lang="it">Scartato email non valido</value>
         <value xml:lang="ja">不正なEメールアドレスをスキップします</value>
         <value xml:lang="nl">Foutief e-mailadres wordt overgeslagen</value>
@@ -296,6 +341,7 @@
         <value xml:lang="es">ERROR: No se puede actualizar la información del contacto, dado que no corresponte al participante</value>
         <value xml:lang="fr">ERREUR: Impossible de mettre à jour l'information de contact spécifiée parce qu'elle ne correspond pas à l'acteur spécifié.</value>
         <value xml:lang="hi-IN">त्रुटि: निर्दिष्ट संपर्क जानकारी को अद्यतन(update) नहीं कर सकते क्योंकि यह निर्दिष्ट पार्टी के अनुरूप नहीं है|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće ažurirati navedene podatke za kontakt jer ne odgovaraju navedenom sudioniku.</value>
         <value xml:lang="it">ERRORE: Non è possibile cambiare informazioni contatto perchè questo non corrisponde al cliente specificato.</value>
         <value xml:lang="ja">エラー: 指定した取引先に対応しないため、指定した連絡情報を更新できません。</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden aangepast, omdat het niet bij de aangegeven relatie hoort.</value>
@@ -312,6 +358,7 @@
         <value xml:lang="es">ERROR: No se puede añadir proposito a los mecanismos de contacto: ${errMessage}.</value>
         <value xml:lang="fr">ERREUR: Ne peut pas ajouter l'objet de la coordonnée (erreur d'écriture) : ${errMessage.</value>
         <value xml:lang="hi-IN">त्रुटि: संपर्क तंत्र से उद्देश्य नहीं जोड़ पाएँ (लिखने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće dodati svrhu kontakt mehanizmu (greška pri pisanju): ${errMessage}.</value>
         <value xml:lang="it">ERRORE: Non è possibile aggiungere funzione al contatto (scrittura fallita): ${errMessage}.</value>
         <value xml:lang="ja">エラー: 連絡方法に目的を追加できません (書き込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">Fout: Doel kan niet worden toegevoegd aan contact mechanisme (schrijffout): ${errMessage}.</value>
@@ -328,6 +375,7 @@
         <value xml:lang="es">ERROR: No se pudo cambiar la información de contacto (la generación de código falló).</value>
         <value xml:lang="fr">ERREUR: Ne peut pas changer l'information de contact (échec de génération d'identifiant).</value>
         <value xml:lang="hi-IN">त्रुटि: संपर्क जानकारी नहीं बदल पाएँ (क्रमांक उत्पन्न करने में असफल)|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće promijeniti informacije o kontaktu (greška pri generiranju Id-a).</value>
         <value xml:lang="it">ERRORE: Non è possibile cambiare informazioni contatto (generazione codice fallito).</value>
         <value xml:lang="ja">エラー: 連絡情報を変更できません (ID生成失敗)。</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden aangepast (fout bij genereren ID).</value>
@@ -344,6 +392,7 @@
         <value xml:lang="es">Error: No se puede cambiar la información de contacto: ${errMessage}.</value>
         <value xml:lang="fr">ERREUR : Ne peut pas changer l'information de contact (échec à la lecture du but de contact) : ${errMessage.</value>
         <value xml:lang="hi-IN">त्रुटि: संपर्क जानकारी नहीं बदल पाएँ (पठन उद्देश्य असफल): ${errMessage}|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće promijeniti informacije o kontaktu (neuspješno čitanje svrhe): ${errMessage}.</value>
         <value xml:lang="it">ERRORE: Non è possibile cambiare informazioni contatto (errore di lettura): ${errMessage}.</value>
         <value xml:lang="ja">エラー: 連絡情報を変更できません (目的読み込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden aangepast (leesfout): ${errMessage}.</value>
@@ -360,6 +409,7 @@
         <value xml:lang="es">Error: No se ha podido cambiar la información de contato: ${errMessage}.</value>
         <value xml:lang="fr">ERREUR : Ne peut pas changer l'information de contact (erreur d'écriture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">त्रुटि: संपर्क जानकारी बदल नहीं पाएँ (लिखने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće promijeniti podatke za kontakt (neuspješno pisanje): ${errMessage}.</value>
         <value xml:lang="it">ERRORE: Non è possibile cambiare informazioni contatto (errore di scrittura): ${errMessage}.</value>
         <value xml:lang="ja">エラー: 連絡情報を変更できません (書き込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden aangepast (schrijffout): ${errMessage}.</value>
@@ -376,6 +426,7 @@
         <value xml:lang="es">Error: No se ha podido creat la información de contacto (fallo de generación de código).</value>
         <value xml:lang="fr">ERREUR: Impossible de créer l'information de contact (échec de génération d'identifiant).</value>
         <value xml:lang="hi-IN">त्रुटि: संपर्क जानकारी नहीं बना पाएँ (क्रमांक उत्पन्न करने में असफल)|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće stvoriti podatke za kontakt (greška pri generiranju Id-a).</value>
         <value xml:lang="it">ERRORE: Non è possibile creare informazioni contatto (generazione codice fallito).</value>
         <value xml:lang="ja">エラー: 連絡情報を変更できません (ID生成失敗)。</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden aangemaakt (fout bij genereren ID).</value>
@@ -392,6 +443,7 @@
         <value xml:lang="es">No se ha podido crear la información de contacto (error de escritura): ${errMessage}.</value>
         <value xml:lang="fr">Impossible de créer l'information de contact (erreur d'écriture): ${errMessage}.</value>
         <value xml:lang="hi-IN">संपर्क जानकारी नहीं बना पाएँ (लिखने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće stvoriti podatke za kontakt (neuspješno pisanje): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile creare informazioni contatto (scrittura fallita): ${errMessage}.</value>
         <value xml:lang="ja">連絡情報を作成できません (書き込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden aangemaakt (schrijffout): ${errMessage}.</value>
@@ -408,6 +460,7 @@
         <value xml:lang="es">No se ha podido crear nuevo propósito, ya existe uno de este tipo.</value>
         <value xml:lang="fr">Impossible de créer le nouveau but, un but avec ce type existe déjà.</value>
         <value xml:lang="hi-IN">नया उद्देश्य नहीं बन पाएँ, इस प्रकार का उद्देश्य पहले से ही मौजूद है|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće stvoriti novu svrhu, svrha te vrste već postoji.</value>
         <value xml:lang="it">Non è possibile creare un nuovo scopop, uno scopo con questo tipo esiste già.</value>
         <value xml:lang="ja">新しい目的を作成できません、目的はすでに存在します。</value>
         <value xml:lang="nl">Fout: Doel kan niet worden aangemaakt, een doel van het opgegeven soort bestaat al.</value>
@@ -424,6 +477,7 @@
         <value xml:lang="es">No se ha podido borrar la información de contacto (mec. de contacto no encontrado).</value>
         <value xml:lang="fr">Impossible de supprimer l'information de contact (coordonnée de l'acteur non trouvé)</value>
         <value xml:lang="hi-IN">संपर्क जानकारी को नष्ट नहीं कर पाएँ (पार्टी संपर्क तंत्र नहीं मिला)|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće izbrisati informacije o kontaktu (kontakt meh. stranke nije pronađen).</value>
         <value xml:lang="it">Non cancellare informazioni contatto (contatto cliente non trovato).</value>
         <value xml:lang="ja">連絡情報を削除できません (取引先連絡方法が見つかりません)。</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden verwijderd (realtie contact mechanisme niet gevonden).</value>
@@ -440,6 +494,7 @@
         <value xml:lang="es">Las informaciones de contacto no se pueden borrar (error de lectura): ${errMessage}</value>
         <value xml:lang="fr">Impossible de supprimer l'information de contact (erreur de lecture): ${errMessage}.</value>
         <value xml:lang="hi-IN">संपर्क जानकारी को नष्ट नहीं कर पाएँ (पढ़ने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće izbrisati informacije o kontaktu (čitanje nije uspjelo): ${errMessage}.</value>
         <value xml:lang="it">Non cancellare informazioni contatto (lettura fallita): ${errMessage}.</value>
         <value xml:lang="ja">連絡情報を削除できません (読み込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden verwijderd (leesfout): ${errMessage}.</value>
@@ -455,6 +510,7 @@
         <value xml:lang="en">Could not delete contact info (write failure).</value>
         <value xml:lang="fr">Impossible de supprimer l'information de contact (erreur d'écriture.</value>
         <value xml:lang="hi-IN">संपर्क जानकारी को नष्ट नहीं कर पाएँ (लिखने में असफल)|</value>
+        <value xml:lang="hr">Nije moguće izbrisati podatke o kontaktu (neuspješno pisanje).</value>
         <value xml:lang="it">Non cancellare informazioni contatto (scrittura fallita).</value>
         <value xml:lang="ja">連絡情報を削除できません (書き込み失敗)。</value>
         <value xml:lang="nl">Fout: Contactinformatie kan niet worden verwijderd (schrijffout).</value>
@@ -470,6 +526,7 @@
         <value xml:lang="en">Could not delete purpose from contact mechanism (record not found).</value>
         <value xml:lang="fr">Impossible de supprimer le but de la coordonnée (enregistrement  non trouvé).</value>
         <value xml:lang="hi-IN">संपर्क तंत्र से उद्देश्य नहीं हटा पाएँ(रिकॉर्ड नहीं मिला)|</value>
+        <value xml:lang="hr">Nije moguće izbrisati svrhu iz kontakt mehanizma (zapis nije pronađen).</value>
         <value xml:lang="it">Non è possibile cancellare lo scopo del contatto (record non trovato).</value>
         <value xml:lang="ja">連絡方法から目的を削除できません (レコードが見つかりません)。</value>
         <value xml:lang="nl">Fout: Doel kan niet van contactinformatie worden verwijderd (record niet gevonden).</value>
@@ -485,6 +542,7 @@
         <value xml:lang="en">Could not delete purpose from contact mechanism (read failure): ${errMessage}.</value>
         <value xml:lang="fr">Impossible de supprimer le but de la coordonnée (erreur de lecture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">संपर्क तंत्र से उद्देश्य नहीं हटा पाएँ (पढ़ने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće izbrisati svrhu iz kontakt mehanizma (greška čitanja): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile cancellare lo scopo del contatto (lettura fallita): ${errMessage}.</value>
         <value xml:lang="ja">連絡方法から目的を削除できません (読み込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">Fout: Doel kan niet van contactinformatie worden verwijderd (leesfout): ${errMessage}.</value>
@@ -500,6 +558,7 @@
         <value xml:lang="en">Could not delete purpose from contact mechanism (write failure): ${errMessage}.</value>
         <value xml:lang="fr">Impossible de supprimer le but de la coordonnée (erreur d'écriture): ${errMessage}.</value>
         <value xml:lang="hi-IN">संपर्क तंत्र से उद्देश्य नहीं हटा पाएँ (लिखने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće izbrisati svrhu iz kontakt mehanizma (neuspješno pisanje): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile cancellare lo scopo del contatto (scrittura fallita): ${errMessage}.</value>
         <value xml:lang="ja">連絡方法から目的を削除できません (書き込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">Fout: Doel kan niet van contactinformatie worden verwijderd (schrijffout): ${errMessage}.</value>
@@ -516,6 +575,7 @@
         <value xml:lang="es">ERROR: No se encontró la información del contacto (error de lectura).</value>
         <value xml:lang="fr">ERREUR: Ne peut pas trouver l'information de contact spécifiée (erreur de lecture).</value>
         <value xml:lang="hi-IN">त्रुटि: निर्दिष्ट संपर्क जानकारी नहीं मिली(पढ़ने में त्रुटि)|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće pronaći navedene podatke za kontakt (pogreška čitanja).</value>
         <value xml:lang="it">ERRORE: Non è possibile cambiare informazioni contatto (errore di lettura).</value>
         <value xml:lang="ja">エラー: 指定した連絡方法が見つかりません (読み込み失敗)。</value>
         <value xml:lang="nl">Fout: Kan opgegeven contactinformatie niet vinden (leesfout).</value>
@@ -531,6 +591,7 @@
         <value xml:lang="en">Could not update this contact mech as a POSTAL_ADDRESS the specified contact mech is a ${contactMechTypeId}.</value>
         <value xml:lang="fr">Impossible de mettre à jour cette coordonnée en tant qu'adresse postale, la coordonnée est un ${contactMechTypeId}.</value>
         <value xml:lang="hi-IN">संपर्क तंत्र को POSTAL_ADDRESS के रूप में अद्यतन(update) नहीं कर पाएँ निर्दिष्ट संपर्क तंत्र एक ${contactMechTypeId} है|</value>
+        <value xml:lang="hr">Nije moguće ažurirati ovaj kontaktni mehanizam kao 'Poštanska adresa', navedeni kontaktni mehanizam je ${contactMechTypeId}.</value>
         <value xml:lang="it">Non è possibile aggiornare questo contatto con un POSTAL_ADDRESS specificato sul contatto ${contactMechTypeId}.</value>
         <value xml:lang="ja">POSTAL_ADDRESS としてこの連絡方法を更新することができません。指定した連絡方法は ${contactMechTypeId}.</value>
         <value xml:lang="nl">Fout: Kan opgegeven contactmechanisme niet aanpassen als POSTAL_ADDRESS, het opgegeven contactmechanisme is een ${contactMechTypeId}.</value>
@@ -546,6 +607,7 @@
         <value xml:lang="en">Could not update this contact mech as a TELECOM_NUMBER the specified contact mech is a ${contactMechTypeId}.</value>
         <value xml:lang="fr">Impossible de mettre à jour cette coordonnée en tant que n° de tél. la coordonée spécifiée est un ${contactMechTypeId}.</value>
         <value xml:lang="hi-IN">संपर्क तंत्र को TELECOM_NUMBER के रूप में अद्यतन(update) नहीं कर पाएँ निर्दिष्ट संपर्क तंत्र एक ${contactMechTypeId} है|</value>
+        <value xml:lang="hr">Nije moguće ažurirati ovaj kontaktni mehanizam kao 'Telefonski broj', navedeni kontaktni mehanizam je ${contactMechTypeId}.</value>
         <value xml:lang="it">Non è possibile aggiornare questo contatto con un TELECOM_NUMBER specificato sul contatto ${contactMechTypeId}.</value>
         <value xml:lang="ja">TELECOM_NUMBER としてこの連絡方法を更新することができません。指定した連絡方法は ${contactMechTypeId}.</value>
         <value xml:lang="nl">Fout: Kan opgegeven contactmechanisme niet aanpassen als TELECOM_NUMBER, het opgegeven contactmechanisme is een ${contactMechTypeId}.</value>
@@ -562,6 +624,7 @@
         <value xml:lang="es">no se realizaron cambios</value>
         <value xml:lang="fr">Aucunes modifications apportées, pas demise à jour de la coordonnée.</value>
         <value xml:lang="hi-IN">कोई परिवर्तन नहीं किया, संपर्क तंत्र को अद्यतन(update) नहीं किया|</value>
+        <value xml:lang="hr">Nema promjena, ne ažurira se kontakt mehanizam.</value>
         <value xml:lang="it">Nessuna modifica possibile, non aggiornabile il contatto.</value>
         <value xml:lang="ja">変更されていないため連絡方法を更新しません。</value>
         <value xml:lang="nl">Fout: Geen wijzigingen gedaan, contactmechanisme niet aangepast.</value>
@@ -578,6 +641,7 @@
         <value xml:lang="es">El servicio no debe ser usado para dirección postal, use el servicio de actualización de dirección postal</value>
         <value xml:lang="fr">Ce service (createContactMech) ne devrait pas être employé pour le type de coordonnée POSTAL_ADDRESS, utiliser plutôt le service createPostalAddress.</value>
         <value xml:lang="hi-IN">ContactMechs प्रकार POSTAL_ADDRESS के लिए यह सेवा (createContactMech) उपयोग नहीं होना चाहिए, createPostalAddress सेवा का उपयोग करें|</value>
+        <value xml:lang="hr">Ovaj servis (createContactMech) ne bi se trebao koristiti za ContactMechove tipa POSTAL_ADDRESS, koristite servis createPostalAddress.</value>
         <value xml:lang="it">Questo servizio (createContactMech) non dovrebbe essere usato per il tipo POSTAL_ADDRESS ContactMechs, usare il servizio createPostalAddress.</value>
         <value xml:lang="ja">このサービス (createContactMech) は POSTAL_ADDRESS の種類の連絡方法に対して使用できません。createPostalAddressサービスを使用してください。</value>
         <value xml:lang="nl">Fout: Deze service (createContactMech) mag niet gebruikt worden voor de soort POSTAL_ADDRESS, gebruik de createPostalAddress service.</value>
@@ -594,6 +658,7 @@
         <value xml:lang="es">El servicio no debe ser usado para números telefónicos, use el servicio de actualización de teléfono</value>
         <value xml:lang="fr">Ce service (createContactMech) ne devrait pas être employé pour le type de coordonnée TELECOM_NUMBER, utiliser le service createTelecomNumber.</value>
         <value xml:lang="hi-IN">ContactMechs प्रकार TELECOM_NUMBER के लिए यह सेवा (createContactMech) उपयोग नहीं होना चाहिए, createTelecomNumber सेवा का उपयोग करें|</value>
+        <value xml:lang="hr">Ovaj servis (createContactMech) ne bi se trebao koristiti za ContactMechove tipa TELECOM_NUMBER, koristite servis createTelecomNumber.</value>
         <value xml:lang="it">Questo servizio (createContactMech) non dovrebbe essere usato per il tipo TELECOM_NUMBER ContactMechs, usare il servizio createTelecomNumber.</value>
         <value xml:lang="ja">このサービス (createContactMech) は TELECOM_NUMBER の種類の連絡方法に対して使用できません。createTelecomNumberサービスを使用してください。</value>
         <value xml:lang="nl">Fout: Deze service (createContactMech) mag niet gebruikt worden voor de soort TELECOM_NUMBER, gebruik de createTelecomNumber service.</value>
@@ -610,6 +675,7 @@
         <value xml:lang="es">El servicio no debe ser usado para dirección postal, use el servicio de actualización de dirección postal</value>
         <value xml:lang="fr">Ce service (updateContactMech) ne devrait pas être employé pour le type de coordonnée POSTAL_ADDRESS, utiliser le serviceupdatePostalAddress.</value>
         <value xml:lang="hi-IN">ContactMechs प्रकार POSTAL_ADDRESS के लिए यह सेवा (updateContactMech) उपयोग नहीं होना चाहिए, updatePostalAddress सेवा का उपयोग करें|</value>
+        <value xml:lang="hr">Ovaj servis (updateContactMech) ne bi se trebao koristiti za ContactMechove tipa POSTAL_ADDRESS, koristite servis updatePostalAddress.</value>
         <value xml:lang="it">Questo servizio (updateContactMech) non dovrebbe essere usato per il tipo POSTAL_ADDRESS ContactMechs, usare il servizio updatePostalAddress.</value>
         <value xml:lang="ja">このサービス (updateContactMech) は POSTAL_ADDRESS の種類の連絡方法に対して使用できません。updatePostalAddressサービスを使用してください。</value>
         <value xml:lang="nl">Fout: Deze service (updateContactMech) mag niet gebruikt worden voor de soort POSTAL_ADDRESS, gebruik de updatePostalAddress service.</value>
@@ -626,6 +692,7 @@
         <value xml:lang="es">El servicio no debe ser usado para números telefónicos, use el servicio de actualización de teléfono</value>
         <value xml:lang="fr">Ce service (updateContactMech) ne devrait pas être employé pour le type de coordonnée TELECOM_NUMBER, utiliser le serviceupdateTelecomNumber.</value>
         <value xml:lang="hi-IN">ContactMechs प्रकार TELECOM_NUMBER के लिए यह सेवा (updateContactMech) उपयोग नहीं होना चाहिए, updateTelecomNumber सेवा का उपयोग करें|</value>
+        <value xml:lang="hr">Ovaj servis (updateContactMech) ne bi se trebao koristiti za ContactMechove tipa TELECOM_NUMBER, koristite servis updateTelecomNumber.</value>
         <value xml:lang="it">Questo servizio (updateContactMech) non dovrebbe essere usato per il tipo TELECOM_NUMBER ContactMechs, usare il servizio updateTelecomNumber.</value>
         <value xml:lang="ja">このサービス (updateContactMech) は TELECOM_NUMBER の種類の連絡方法に対して使用できません。updateTelecomNumberサービスを使用してください。</value>
         <value xml:lang="nl">Fout: Deze service (updateContactMech) mag niet gebruikt worden voor de soort TELECOM_NUMBER, gebruik de updateTelecomNumber service.</value>
@@ -642,6 +709,7 @@
         <value xml:lang="es">ERROR: Error al generar nuevo código de participante</value>
         <value xml:lang="fr">ERREUR: Echec lors de la génération d'un nouvelle identifiant acteur</value>
         <value xml:lang="hi-IN">त्रुटि: नया पार्टी क्रमांक बनाने में असफल</value>
+        <value xml:lang="hr">GREŠKA: Generiranje novog Id-a sudionika nije uspjelo</value>
         <value xml:lang="it">ERRORE: Fallita generazione nuovo codice soggetto</value>
         <value xml:lang="ja">エラー: 新規取引先IDの生成に失敗しました</value>
         <value xml:lang="nl">Fout: Relatie ID kan niet worden gegenereerd.</value>
@@ -659,6 +727,7 @@
         <value xml:lang="es">El código no puede empezar con un dígito, los códigos numericos están reservados para ser autogenerados.</value>
         <value xml:lang="fr">L'identifiant spécifié pour l'acteur ne peut démarrer par un chiffre, cela est réservé aux identifiants générés automatiquement</value>
         <value xml:lang="hi-IN">निर्दिष्ट पार्टी क्रमांक एक अंक के साथ शुरू नहीं कर सकते ऑटो उत्पन्न क्रमांको के लिए अंकीय क्रमांक आरक्षित हैं|</value>
+        <value xml:lang="hr">Navedeni Id sudionika ne može biti broj, numerički Id-ovi rezervirani su za automatski generirane Id-ove</value>
         <value xml:lang="it">Codice soggetto specificato non può iniziare con un numero, codice numerici sono riservati per codici generati automaticamente</value>
         <value xml:lang="ja">取引先IDに数字は指定できません。数字のIDは自動生成用に予約されています</value>
         <value xml:lang="nl">Opgegeven relatie ID kan niet beginnen met een nummer, genummerde ID's zijn gereserveerd voor automatisch gegenereerde ID's.</value>
@@ -676,6 +745,7 @@
         <value xml:lang="es">No se puede crear las relación.</value>
         <value xml:lang="fr">Impossible de créer la relation à l'acteur, partyIdFrom n'est pas dans le rôle spécifié.</value>
         <value xml:lang="hi-IN">पार्टी का रिश्ता नहीं बना सकते, partyIdFrom निर्दिष्ट भूमिका में नहीं है|</value>
+        <value xml:lang="hr">Nije moguće stvoriti odnos ssudionika, partyIdFrom nije u navedenoj ulozi.</value>
         <value xml:lang="it">Non è possibile creare il rapporto soggetto, partyIdFrom non è specificato il ruolo.</value>
         <value xml:lang="ja">取引先の関係を作成できません。取引先ID(元)が指定したロールにありません。</value>
         <value xml:lang="nl">Kan relatie niet aanmaken, partyIdFrom heeft niet de aangegeven rol.</value>
@@ -692,6 +762,7 @@
         <value xml:lang="es">No se puede crear las relación.</value>
         <value xml:lang="fr">Impossible de créer la relation à l'acteur, partyIdTo n'est pas dans le rôle spécifié.</value>
         <value xml:lang="hi-IN">पार्टी का रिश्ता नहीं बना सकते, partyIdTo निर्दिष्ट भूमिका में नहीं है|</value>
+        <value xml:lang="hr">Nije moguće stvoriti odnos sudionika, partyIdTo nije u navedenoj ulozi.</value>
         <value xml:lang="it">Non è possibile creare il rapporto soggetto, partyIdTo non è specificato il ruolo.</value>
         <value xml:lang="ja">取引先の関係を作成できません。取引先ID(先)が指定したロールにありません。</value>
         <value xml:lang="nl">Kan relatie niet aanmaken, partyIdTo heeft niet de aangegeven rol.</value>
@@ -708,6 +779,7 @@
         <value xml:lang="es">No se puede crear las relación, el código del participante no puede estar vacio</value>
         <value xml:lang="fr">Impossible de créer la relation à l'acteur, partyIdTo ne peut pas être nul.</value>
         <value xml:lang="hi-IN">पार्टी का रिश्ता नहीं बना सकते, partyIdTo null नहीं हो सकता|</value>
+        <value xml:lang="hr">Nije moguće stvoriti odnos sudionika, partyIdTo ne može biti null.</value>
         <value xml:lang="it">Non è possibile creare il rapporto soggetto, partyIdTo non può essere nullo.</value>
         <value xml:lang="ja">取引先の関係を作成できません。取引先ID(先)は空にできません。</value>
         <value xml:lang="nl">Kan relatie niet aanmaken, partyIdTo mag niet leeg zijn.</value>
@@ -724,6 +796,7 @@
         <value xml:lang="es">No se puede crear la relación: ya existe en el sistema.</value>
         <value xml:lang="fr">Impossible de créer la relation à l'acteur : existe déjà.</value>
         <value xml:lang="hi-IN">पार्टी का रिश्ता नहीं बना पाएँ: पहले से ही मौजूद है|</value>
+        <value xml:lang="hr">Nije moguće stvoriti odnos sudionika: već postoji.</value>
         <value xml:lang="it">Non è possibile creare il rapporto soggetto: già esistente.</value>
         <value xml:lang="ja">取引先の関係を作成できません。すでに存在します。</value>
         <value xml:lang="nl">Kan relatie niet aanmaken, deze bestaat al.</value>
@@ -740,6 +813,7 @@
         <value xml:lang="es">No se puede crear la relación(error de lectura): ${errMessage}</value>
         <value xml:lang="fr">Impossible de créer le rôle de l'acteur (erreur de lecture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">पार्टी की भूमिका तैयार नहीं कर पाएँ (पढ़ने में असफल): ${errMessage}.</value>
+        <value xml:lang="hr">Nije moguće stvoriti ulogu sudionika (čitanje nije uspjelo): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile creare ruolo soggetto (lettura fallita): ${errMessage}.</value>
         <value xml:lang="ja">取引先の関係を作成できません (読み込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">De relatierol kan niet worden aangemaakt (leesfout): ${errMessage}.</value>
@@ -756,6 +830,7 @@
         <value xml:lang="es">No se puede crear la relación(error de escritura): ${errMessage}</value>
         <value xml:lang="fr">Impossible de créer la relation à l'acteur (erreur d'écriture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">पार्टी का रिश्ता नहीं बना पाएँ (लिखने में असफल): ${errMessage}.</value>
+        <value xml:lang="hr">Nije moguće stvoriti odnos sudionika (neuspješno pisanje): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile creare il rapporto soggetto (scrittura fallita): ${errMessage}.</value>
         <value xml:lang="ja">取引先の関係を作成できません (書き込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">De relatierol kan niet worden aangemaakt (schrijffout): ${errMessage}.</value>
@@ -772,6 +847,7 @@
         <value xml:lang="es">No se puede actualizar las relaciones.</value>
         <value xml:lang="fr">Impossible de mettre à jour la relation à l'acteur (relation non trouvée).</value>
         <value xml:lang="hi-IN">पार्टी के रिश्ते को अद्यतन(update) नहीं कर पाएँ (रिश्ता नहीं मिला)|</value>
+        <value xml:lang="hr">Nije moguće ažurirati odnos sudionika (odnos nije pronađen).</value>
         <value xml:lang="it">Non è possibile aggiornare rapporto soggetto (rapporto non trovato).</value>
         <value xml:lang="ja">取引先の関係を更新できません (関係が見つかりません)。</value>
         <value xml:lang="nl">De relatie kan niet worden aangepast (relatie niet gevonden).</value>
@@ -788,6 +864,7 @@
         <value xml:lang="es">No se puede actualizar las relaciones(error de lectura): ${errMessage}</value>
         <value xml:lang="fr">Impossible de mettre à jour la relation de l'acteur (erreur de lecture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">पार्टी के रिश्ते को अद्यतन(update) नहीं कर पाएँ (पढ़ने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće ažurirati odnos sudionika (čitanje nije uspjelo): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile aggiornare il rapporto soggetto (lettura fallita): ${errMessage}.</value>
         <value xml:lang="ja">取引先の関係を更新できません (読み込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">De relatie kan niet worden aangepast (leesfout): ${errMessage}.</value>
@@ -804,6 +881,7 @@
         <value xml:lang="es">No se puede actualizar las relaciones(error de escritura): ${errMessage}</value>
         <value xml:lang="fr">Impossible de mettre à jour la relation de l'acteur (erreur d'écriture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">पार्टी के रिश्ते को अद्यतन(update) नहीं कर पाएँ (लिखने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće ažurirati odnos sudionika (neuspješno pisanje): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile aggiornare il rapporto soggetto (scrittura fallita): ${errMessage}.</value>
         <value xml:lang="ja">取引先の関係を更新できません (書き込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">De relatie kan niet worden aangepast (schrijffout): ${errMessage}.</value>
@@ -819,6 +897,7 @@
         <value xml:lang="en">could not create party role exists</value>
         <value xml:lang="fr">Impossible de créer le rôle de l'acteur : il existe déjà</value>
         <value xml:lang="hi-IN">party role exists नहीं बना पाएँ</value>
+        <value xml:lang="hr">nije moguće stvoriti, uloga sudionika postoji</value>
         <value xml:lang="it">Non è possibile creare un ruolo soggetto già esistente</value>
         <value xml:lang="ja">取引先ロールを作成できません。存在します。</value>
         <value xml:lang="nl">De relatierol kan niet worden aangemaakt (relatierol bestaat al).</value>
@@ -830,6 +909,7 @@
     </property>
     <property key="PartyRoleAssociationRequired">
         <value xml:lang="en">Party id: ${partyId} should be in role: ${roleDescription}</value>
+    <value xml:lang="hr">Id sudionika: ${partyId} trebao bi biti u ulozi: ${roleDescription}</value>
     </property>
     <property key="partyroleservices.could_not_create_party_role_read">
         <value xml:lang="de">Akteur Rolle kann nicht erstellt werden (Lesefehler).</value>
@@ -837,6 +917,7 @@
         <value xml:lang="es">No se puede crear el rol (error de lectura).</value>
         <value xml:lang="fr">Impossible de créer le rôle de l'acteur (erreur de lecture)</value>
         <value xml:lang="hi-IN">party role read नहीं बना पाएँ</value>
+        <value xml:lang="hr">nije moguće stvoriti ulogu sudionika (neuspješno čitanje)</value>
         <value xml:lang="it">Non è possibile leggere il ruolo soggetto</value>
         <value xml:lang="ja">取引先ロールを作成できません (読み込み失敗)。</value>
         <value xml:lang="nl">De relatierol kan niet worden aangemaakt (leesfout).</value>
@@ -852,6 +933,7 @@
         <value xml:lang="es">No se puede crear el rol (error de escritura).</value>
         <value xml:lang="fr">Impossible de créer le rôle de l'acteur (erreur d'écriture)</value>
         <value xml:lang="hi-IN">party role write नहीं बना पाएँ</value>
+        <value xml:lang="hr">nije moguće stvoriti ulogu sudionika (neuspješno pisanje)</value>
         <value xml:lang="it">Non è possibile scrivere il ruolo soggetto</value>
         <value xml:lang="ja">取引先ロールを作成できません (書き込み失敗)。</value>
         <value xml:lang="nl">De relatierol kan niet worden aangemaakt (schrijffout).</value>
@@ -867,6 +949,7 @@
         <value xml:lang="es">No se ha podido borrar el rol. Rol no encontrado.</value>
         <value xml:lang="fr">Impossible de supprimer le rôle de l'acteur : non trouvé</value>
         <value xml:lang="hi-IN">नष्ट नहीं कर पाएँ पार्टी भूमिका नहीं मिली</value>
+        <value xml:lang="hr">nije moguće izbrisati ulogu sudionika (uloga nije pronađena)</value>
         <value xml:lang="it">Non è possibile cancellare il ruolo soggetto non trovato</value>
         <value xml:lang="ja">取引先ロールを削除できません。見つかりません。</value>
         <value xml:lang="nl">De relatierol kan niet worden verwijderd (relatierol niet gevonden).</value>
@@ -881,6 +964,7 @@
         <value xml:lang="en">could not delete party role read</value>
         <value xml:lang="es">El rol no se puede borrar (error de lectura).</value>
         <value xml:lang="fr">Impossible de supprimer le rôle de l'acteur (erreur de lecture)</value>
+        <value xml:lang="hr">nije moguće izbrisati ulogu sudionika (neuspješno čitanje)</value>
         <value xml:lang="it">Non è possibile leggere il ruolo soggetto da cancellare</value>
         <value xml:lang="ja">取引先ロールを削除できません (読み込み失敗)。</value>
         <value xml:lang="nl">De relatierol kan niet worden verwijderd (leesfout).</value>
@@ -895,6 +979,7 @@
         <value xml:lang="en">could not delete party role write</value>
         <value xml:lang="es">El rol no se puede borrar (error de escritura).</value>
         <value xml:lang="fr">Impossible de supprimer le rôle de l'acteur (erreur d'écriture)t</value>
+        <value xml:lang="hr">nije moguće izbrisati ulogu sudionika (neuspješno pisanje)</value>
         <value xml:lang="it">Non è possibile scrivere il ruolo soggetto da cancellare</value>
         <value xml:lang="ja">取引先ロールを削除できません (書き込み失敗)。</value>
         <value xml:lang="nl">De relatierol kan niet worden verwijderd (schrijffout).</value>
@@ -910,6 +995,7 @@
         <value xml:lang="es">Nombre y Apellido no pueden estár vacios</value>
         <value xml:lang="fr">Les prénom et nom ne peuvent être vides.</value>
         <value xml:lang="hi-IN">दोनों 'अंतिमनाम' और 'प्रथमनाम' खाली नहीं हो सकते|</value>
+        <value xml:lang="hr">I 'prezime' i 'ime' ne mogu oboje biti prazni.</value>
         <value xml:lang="it">Entrambi 'cognome' e 'nome' non possono essere vuoti.</value>
         <value xml:lang="ja">姓(LN)と名(FN)の両方とも空にできません。</value>
         <value xml:lang="nl">Voornaam en achternaam mogen niet leeg zijn.</value>
@@ -926,6 +1012,7 @@
         <value xml:lang="es">El código especificado se encuentra en uso.</value>
         <value xml:lang="fr">Impossible de créer, un(e) affilié(e), l'acteur spécifié existe déjà.</value>
         <value xml:lang="hi-IN">नहीं बना सकते, निर्दिष्ट पार्टी क्रमांक के साथ एक संबद्ध पहले से ही मौजूद है|</value>
+        <value xml:lang="hr">Nije moguće stvoriti, suradnik s navedenim Id-om sudionika već postoji.</value>
         <value xml:lang="it">Non è possibile creare, un'affiliato con il codice soggetto specificato già esistente.</value>
         <value xml:lang="ja">作成できません。指定した取引先IDのアフェリエイトはすでに存在します。</value>
         <value xml:lang="nl">De affiliate kan niet worden aangemaakt, er bestaat al een affiliate met de ogpegeven relatie ID.</value>
@@ -942,6 +1029,7 @@
         <value xml:lang="es">No se pudo crear afiliado, el código del participante no puede empezar con un dígito, los códigos numericos están reservados para ser autogenerados.</value>
         <value xml:lang="fr">Impossible de créer l'affilié(e), la réf. d'acteur ne peut pas commencer par un chiffre, les identifiants numériques sont réservés aux identifiants générés automatiquement.</value>
         <value xml:lang="hi-IN">संबद्ध नहीं बना सकते, निर्दिष्ट पार्टी क्रमांक एक अंक के साथ शुरू नहीं कर सकते ऑटो उत्पन्न क्रमांको के लिए अंकीय क्रमांक आरक्षित हैं|</value>
+        <value xml:lang="hr">Nije moguće stvoriti suradnika, navedeni Id sudionika ne može biti broj, numerički Id-ovi rezervirani su za automatski generirane Id-ove.</value>
         <value xml:lang="it">Non è possibile creare affiliato, codice soggetto specificato non può iniziare con un numero, codici numerici sono riservati per la generazione-automatica di codici.</value>
         <value xml:lang="ja">アフェリエイトを作成できません。取引先IDに数字は指定できません。数字のIDは自動生成用に予約されています。</value>
         <value xml:lang="nl">De affiliate kan niet worden aangemaakt, de opgegeven relatie kan niet beginnen met een nummer, genummerde ID's zijn gereserveerd voor automatisch gegenereerde ID's.</value>
@@ -958,6 +1046,7 @@
         <value xml:lang="es">ERROR: No se pudo crear afiliado (la generación del código fallo)</value>
         <value xml:lang="fr">ERREUR : Impossible de créer l'affilié(e) (échec de génération d'identifiant).</value>
         <value xml:lang="hi-IN">त्रुटि: संबद्ध नहीं बना पाएँ (क्रमांक उत्पन्न करने में असफल)|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće stvoriti suradnika (greška pri generiranju Id-a).</value>
         <value xml:lang="it">ERRORE: Non è possibile creare affiliato (generazione codice fallita).</value>
         <value xml:lang="ja">エラー: アフェリエイトを作成できません (ID生成失敗)。</value>
         <value xml:lang="nl">Fout: De affiliate kan niet worden aangemaakt (fout bij genereren ID).</value>
@@ -974,6 +1063,7 @@
         <value xml:lang="es">No se puede crear afiliación, no se encontro la entidad participante.</value>
         <value xml:lang="fr">Impossible de créer l'affilié(e); aucune entité acteur trouvée.</value>
         <value xml:lang="hi-IN">संबद्ध नहीं बना सकते, कोई पार्टी इकाई(entity) नहीं मिली|</value>
+        <value xml:lang="hr">Nije moguće stvoriti suradnika; nije pronađen entitet sudionika.</value>
         <value xml:lang="it">Non è possibile creare affiliato; nessun entità soggetto trovata.</value>
         <value xml:lang="ja">エラー: アフェリエイトを作成できません。取引先エンティティが見つかりません。</value>
         <value xml:lang="nl">De affiliate kan niet worden aangemaakt, geen relatie entiteit gevonden.</value>
@@ -990,6 +1080,7 @@
         <value xml:lang="es">No se puede crear un grupo participante, el código está en uso</value>
         <value xml:lang="fr">Impossible de créer ce groupe d'acteur. Un groupe d'acteur avec la même réf. existe déjà.</value>
         <value xml:lang="hi-IN">पार्टी समूह नहीं बना सकते, निर्दिष्ट पार्टी क्रमांक के साथ एक पार्टी समूह पहले से ही मौजूद है|</value>
+        <value xml:lang="hr">Nije moguće stvoriti pravnu osobu, pravna osoba s navedenim Id-om sudionika već postoji.</value>
         <value xml:lang="it">Non è possibile creare gruppo soggetto, un gruppo soggetto con il codice soggetto specificato esiste già.</value>
         <value xml:lang="ja">取引先グループを作成できません。指定した取引先IDの取引先グループはすでに存在します。</value>
         <value xml:lang="nl">De relatiegroep kan niet worden aangemaakt, er bestaat al een relatiegroep met de opgegeven ID.</value>
@@ -1006,6 +1097,7 @@
         <value xml:lang="es">No se puede crear al grupo participante, el código está en uso por un participante.</value>
         <value xml:lang="fr">Impossible de créer le groupe d'acteur, un acteur avec l'identifiant d'acteur spécifié existe déjà et n'est pas de type PARTY_GROUP, ou un enfant du type PARTY_GROUP.</value>
         <value xml:lang="hi-IN">पार्टी समूह नहीं बना सकते, निर्दिष्ट पार्टी क्रमांक के साथ एक पार्टी पहले से ही मौजूद है और PARTY_GROUP प्रकार की पार्टी नहीं है या PARTY_GROUP प्रकार का वंशज नहीं है|</value>
+        <value xml:lang="hr">Nije moguće stvoriti pravnu osobu, sudionik s navedenim Id-om sudionika već postoji i nije tipa PARTY_GROUP ili nasljeđuje tip PARTY_GROUP.</value>
         <value xml:lang="it">Non è possibile creare gruppo soggetto, un soggetto con il codice soggetto specificato esiste già e non è un tipo soggetto PARTY_GROUP, o un figlio del tipo PARTY_GROUP.</value>
         <value xml:lang="ja">取引先グループを作成できません。指定した取引先IDの取引先はすでに存在しますが、取引先が PARTY_GROUP 種類ではないか、PARTY_GROUP 種類の下位(子)ではありません。</value>
         <value xml:lang="nl">De relatiegroep kan niet worden aangemaakt, een relatie met de opgegeven relatie ID bestaat al en is niet van het type PARTY_GROUP of een afgeleide daarvan.</value>
@@ -1022,6 +1114,7 @@
         <value xml:lang="es">No se puede eliminar al participante, la operación no ha sido implementada</value>
         <value xml:lang="fr">Impossible de supprimer l'acteur, opération non encore implémentée.</value>
         <value xml:lang="hi-IN">पार्टी को नष्ट नहीं कर सकते, आपरेशन अभी तक लागू नहीं किया है|</value>
+        <value xml:lang="hr">Nije moguće izbrisati sudionika, operacija još nije implementirana.</value>
         <value xml:lang="it">Non è possibile cancellare soggetto, operazione non ancora implementata.</value>
         <value xml:lang="ja">取引先を削除できません。機能はまだ実装されていません。</value>
         <value xml:lang="nl">De relatie kan niet worden verwijderd, deze operatie is niet geïmplementeerd.</value>
@@ -1038,6 +1131,7 @@
         <value xml:lang="es">No se pudo obtener la entidad participante: ${errMessage}</value>
         <value xml:lang="fr">Impossible d'obtenir des entités d'acteur (erreur de lecture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">पार्टी इकाईयाँ नहीं मिली (पढ़ने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće dobiti entitete sudionika (čitanje nije uspjelo): ${errMessage}.</value>
         <value xml:lang="it">Non possibile leggere l'entità Party (lettura fallita): ${errMessage}.</value>
         <value xml:lang="ja">取引先エンティティを取得できません (読み込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">De relatie entiteiten kunnen niet worden opgehaald (leesfout: ${errMessage}.</value>
@@ -1054,6 +1148,7 @@
         <value xml:lang="es">No se pudo agregar información del afiliado: ${errMessage}</value>
         <value xml:lang="fr">Impossible d'ajouter l'information de filiale (erreur d'écriture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">संबद्ध जानकारी नहीं जोड़ पाएँ (लिखने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće dodati informacije o suradniku (neuspješno pisanje): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile aggiungere informazione affiliato (scrittura fallita): ${errMessage}.</value>
         <value xml:lang="ja">アフェリエイト情報を追加できません (書き込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">De affiliate informatie kan niet worden aangemaakt (schrijffout): ${errMessage}.</value>
@@ -1070,6 +1165,7 @@
         <value xml:lang="es">No se pudo crear grupo de participantes, el código no puede empezar con un dígito, los códigos numericos están reservados para ser autogenerados</value>
         <value xml:lang="fr">Impossible de créer le groupe d'acteur, L'identifiant spécifié pour l'acteur ne peut démarrer par un chiffre, cela est réservé aux identifiants générés automatiquement.</value>
         <value xml:lang="hi-IN">पार्टी समूह नहीं बना सकते, निर्दिष्ट पार्टी क्रमांक एक अंक के साथ शुरू नहीं कर सकते ऑटो उत्पन्न क्रमांको के लिए अंकीय क्रमांक आरक्षित हैं|</value>
+        <value xml:lang="hr">Nije moguće stvoriti pravnu osobu, navedeni Id sudionika ne može biti broj, numerički Id-ovi rezervirani su za automatski generirane Id-ove.</value>
         <value xml:lang="it">Non è possibile creare il gruppo soggetto, specificato codice soggetto non può iniziare con un numero, codici numerici sono riservati per la generazione-autotica di codici.</value>
         <value xml:lang="ja">取引先グループを作成できません。取引先IDに数字は指定できません。数字のIDは自動生成用に予約されています。</value>
         <value xml:lang="nl">De relatiegroep kan niet worden aangemaakt, de opgegeven relatie kan niet beginnen met een nummer, genummerde ID's zijn gereserveerd voor automatisch gegenereerde ID's.</value>
@@ -1086,6 +1182,7 @@
         <value xml:lang="es">ERROR: no se pudo crear el grupo participante (error de generación de código)</value>
         <value xml:lang="fr">ERREUR : Impossible de créer le groupe d'acteur (échec de génération d'identifiant).</value>
         <value xml:lang="hi-IN">त्रुटि: पार्टी समूह नहीं बना पाएँ (क्रमांक उत्पन्न करने में असफल)|</value>
+        <value xml:lang="hr">GREŠKA: Nije moguće stvoriti pravnu osobu (greška pri generiranju Id-a).</value>
         <value xml:lang="it">ERRORE: Non è possibile creare il gruppo soggetto (generazione codice fallita).</value>
         <value xml:lang="ja">エラー: 取引先グループを作成できません (ID生成失敗)。</value>
         <value xml:lang="nl">Fout: De relatiegroep kan niet worden aangemaakt (fout bij genereren ID).</value>
@@ -1102,6 +1199,7 @@
         <value xml:lang="es">No se pudo actualizar la información del afiliado: ${errMessage}</value>
         <value xml:lang="fr">Impossible de mettre à jour l'information de filiale (filiale non trouvée).</value>
         <value xml:lang="hi-IN">संबद्ध जानकारी का अद्यतन(update) नहीं कर पाएँ (सहबद्ध नहीं मिला)|</value>
+        <value xml:lang="hr">Nije moguće ažurirati podatke o suradniku (suradnik nije pronađen).</value>
         <value xml:lang="it">Non è possibile aggiornare informazione affiliato (affiliato non trovato).</value>
         <value xml:lang="ja">アフェリエイト情報を更新できません (アフェリエイトが見つかりません)。</value>
         <value xml:lang="nl">De affiliate informatie kan niet worden aangepast (affiliate niet gevonden).</value>
@@ -1118,6 +1216,7 @@
         <value xml:lang="es">No se pudo actualizar la información del afiliado: ${errMessage}</value>
         <value xml:lang="fr">Impossible de mettre à jour l'information de filiale (erreur de lecture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">संबद्ध जानकारी का अद्यतन(update) नहीं कर पाएँ (पढ़ने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće ažurirati podatke o suradniku (čitanje nije uspjelo): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile aggiornare informazione affiliato (lettura fallita): ${errMessage}.</value>
         <value xml:lang="ja">アフェリエイト情報を更新できません (読み込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">De affiliate informatie kan niet worden aangepast (leesfout): ${errMessage}.</value>
@@ -1134,6 +1233,7 @@
         <value xml:lang="es">No se pudo actualizar la información del afiliado: ${errMessage}</value>
         <value xml:lang="fr">Impossible de mettre à jour l'information de filiale (erreur d'écriture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">संबद्ध जानकारी का अद्यतन(update) नहीं कर पाएँ (लिखने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće ažurirati podatke o suradniku (neuspješno pisanje): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile aggiornare informazione affiliato (scrittura fallita): ${errMessage}.</value>
         <value xml:lang="ja">アフェリエイト情報を更新できません (書き込み失敗): ${errMessage}.</value>
         <value xml:lang="nl">De affiliate informatie kan niet worden aangepast (schrijffout): ${errMessage}.</value>
@@ -1150,6 +1250,7 @@
         <value xml:lang="es">No se pudo actualizar la información del participante (no se encontro el participante)</value>
         <value xml:lang="fr">Impossible de mettre à jour l'information d'acteur ou de groupe d'acteur (acteur ou partyGroup non trouvé).</value>
         <value xml:lang="hi-IN">पार्टी या पार्टी समूह जानकारी का अद्यतन(update) नहीं कर पाएँ (पार्टी या पार्टी समूह नहीं मिला)|</value>
+        <value xml:lang="hr">Nije moguće ažurirati informacije o sudioniku ili pravnoj osobi (sudionik nije pronađen).</value>
         <value xml:lang="it">Non è possibile aggiornare soggetto o informazione gruppo soggetto (soggetto o gruppo soggetto non trovato).</value>
         <value xml:lang="ja">取引先または取引先グループ情報を更新できません (取引先または取引先グループが見つかりません)。</value>
         <value xml:lang="nl">De relatie of relatiegroep informatie kan niet worden aangepast (relatie of relatiegroep niet gevonden)</value>
@@ -1166,6 +1267,7 @@
         <value xml:lang="es">No se pudo actualizar la información del participante(error de lectura): ${errMessage}</value>
         <value xml:lang="fr">Impossible de mettre à jour l'information d'acteur ou de groupe d'acteur (erreur de lecture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">पार्टी या पार्टी समूह जानकारी का अद्यतन(update) नहीं कर पाएँ (पढ़ने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće ažurirati informacije o sudioniku ili grupi (čitanje nije uspjelo): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile aggiornare informazione gruppo soggetto (lettura fallita): ${errMessage}.</value>
         <value xml:lang="ja">取引先または取引先グループ情報を更新できません (読み込み失敗): ${errMessage}。</value>
         <value xml:lang="nl">De relatie of relatiegroep kan niet worden aangepast (leesfout): ${errMessage}.</value>
@@ -1182,6 +1284,7 @@
         <value xml:lang="es">No se pudo actualizar la información del participante(error de escritura): ${errMessage}</value>
         <value xml:lang="fr">Impossible de mettre à jour l'information d'acteur ou de groupe d'acteur (erreur d'écriture) : ${errMessage}.</value>
         <value xml:lang="hi-IN">पार्टी या पार्टी समूह जानकारी का अद्यतन(update) नहीं कर पाएँ (लिखने में असफल): ${errMessage}|</value>
+        <value xml:lang="hr">Nije moguće ažurirati informacije o sudioniku ili grupi (neuspješno pisanje): ${errMessage}.</value>
         <value xml:lang="it">Non è possibile aggiornare soggetto o informazione gruppo soggetto (scrittura fallita): ${errMessage}.</value>
         <value xml:lang="ja">取引先または取引先グループ情報を更新できません (書き込み失敗): ${errMessage}。</value>
         <value xml:lang="nl">De relatie of relatiegroep kan niet worden aangepast (schrijffout): ${errMessage}.</value>
@@ -1198,6 +1301,7 @@
         <value xml:lang="es">Error al crear grupo de participantes:  ${errMessage}</value>
         <value xml:lang="fr">Une erreur de source de données s'est produite en ajoutant le groupe d'acteur : ${errMessage}.</value>
         <value xml:lang="hi-IN">पार्टी समूह जोड़ते समय डेटा स्रोत(source) में त्रुटि आ गयी: ${errMessage}|</value>
+        <value xml:lang="hr">Došlo je do pogreške izvora podataka prilikom dodavanja pravne osobe: ${errMessage}.</value>
         <value xml:lang="it">Errore successo sorgente dati durante l'aggiunta del gruppo soggetto: ${errMessage}.</value>
         <value xml:lang="ja">取引先グループの追加時にデータソースでエラーが発生しました: ${errMessage}。</value>
         <value xml:lang="nl">Er is een databron fout opgetreden tijdens het toevoegen aan de relatiegroep: ${errMessage}.</value>
@@ -1214,6 +1318,7 @@
         <value xml:lang="es">Participante no encontrado; no se puede crear un nuevo grupo de participantes</value>
         <value xml:lang="fr">Le type d'acteur avec l'identifiant PARTY_GROUP n'a pas été trouvé dans la base de données, impossible de créer le nouveau groupe d'acteur.</value>
         <value xml:lang="hi-IN">डेटाबेस में पार्टी प्रकार क्रमांक PARTY_GROUP के साथ नहीं मिला, नया पार्टी समूह नहीं बना सकते|</value>
+        <value xml:lang="hr">Vrsta sudionika s Id-om PARTY_GROUP nije pronađena u bazi podataka, ne može se stvoriti nova pravna osoba.</value>
         <value xml:lang="it">Il tipo soggetto con codice PARTY_GROUP non è stato trovato nel database, non è possibile creare un nuovo grupop soggetto.</value>
         <value xml:lang="ja">PARTY_GROUP IDの取引先種類がデータベースに見つかりません。新規取引先グループを作成できません。</value>
         <value xml:lang="nl">De relatiesoort met ID PARTY_GROUP is niet gevonden in de database, kan geen nieuwe relatiegroep aanmaken.</value>
@@ -1230,6 +1335,7 @@
         <value xml:lang="es">Problema al asociar la nota con el participante: ${errMessage}</value>
         <value xml:lang="fr">Problème en associant la note avec l'acteur "${errMessage".</value>
         <value xml:lang="hi-IN">पार्टी के साथ नोट जोड़ने में समस्या "${errMessage}"|</value>
+        <value xml:lang="hr">Problem pri povezivanju napomene sa sudionikom "${errMessage}".</value>
         <value xml:lang="it">Problema associazione nota con soggetto "${errMessage}".</value>
         <value xml:lang="ja">取引先に連絡の関連付け時にエラー: ${errMessage}。</value>
         <value xml:lang="nl">Probleem bij het koppelen van de notitie aan de relatie "${errMessage}".</value>
@@ -1246,6 +1352,7 @@
         <value xml:lang="es">Problema al crear la nota</value>
         <value xml:lang="fr">Le problème à la création de la note, aucune référence n'a été retournée.</value>
         <value xml:lang="hi-IN">नोट बनाने समस्या, कोई नोटक्रमांक नहीं लौटा|</value>
+        <value xml:lang="hr">Problem pri stvaranju napomene, Id napomene nije vraćen.</value>
         <value xml:lang="it">Problema nella creazione della nota, nessun noteId restituita.</value>
         <value xml:lang="ja">連絡の作成時にエラー。連絡IDが戻されませんでした。</value>
         <value xml:lang="nl">Probleem bij het aanmaken van de notitie, geen notitie ID ontvangen.</value>
@@ -1262,6 +1369,7 @@
         <value xml:lang="es">El campo email no puede estar vacío</value>
         <value xml:lang="fr">Le paramètre requis couriel ne peut pas être vide.</value>
         <value xml:lang="hi-IN">आवश्यक मानक 'ईमेल' खाली नहीं हो सकता|</value>
+        <value xml:lang="hr">Obavezni parametar 'email' ne može biti prazan.</value>
         <value xml:lang="it">Parametro richiesto 'email' non può essere vuoto.</value>
         <value xml:lang="ja">必須項目'Eメール'は空にできません。</value>
         <value xml:lang="nl">Verplicht veld 'email' is leeg.</value>
@@ -1276,6 +1384,7 @@
         <value xml:lang="de">Der Akteur ${0} ist nicht vom Typ PARTYGROUP</value>
         <value xml:lang="en">The party ${0} is not a PARTYGROUP type party</value>
         <value xml:lang="fr">L`acteur ${0} n'est pas du type groupe.</value>
+        <value xml:lang="hr">Sudionik ${0} nije sudionik tipa 'Pravna osoba'</value>
         <value xml:lang="ja">取引先 ${0} の種類が取引先グループではありません</value>
         <value xml:lang="nl">De relatie ${0} is not van het soort PARTYGROUP</value>
         <value xml:lang="zh">会员${0}不是会员组（PARTYGROUP）类型的会员</value>
@@ -1285,6 +1394,7 @@
         <value xml:lang="de">Der Akteur ${0} ist nicht vom Typ PERSON</value>
         <value xml:lang="en">The party ${0} is not a PERSON type party</value>
         <value xml:lang="fr">L`acteur ${0} n'est pas du type personne.</value>
+        <value xml:lang="hr">Sudionik ${0} nije sudionik tipa OSOBA</value>
         <value xml:lang="ja">取引先 ${0} の種類が個人ではありません</value>
         <value xml:lang="nl">De relatie ${0} is niet van het soort PERSON</value>
         <value xml:lang="zh">会员${0}不是人员（PERSON）类型的会员</value>
@@ -1296,6 +1406,7 @@
         <value xml:lang="es">No se pudo añadir la información de la persona (error en la escritura): ${0}</value>
         <value xml:lang="fr">Ajout d`information sur la personne impossible (échec en écriture): ${0}</value>
         <value xml:lang="hi-IN">व्यक्ति की जानकारी नहीं जोड़ पाएँ (लिखने में असफल): ${0}</value>
+        <value xml:lang="hr">Nije moguće dodati informacije o osobi (neuspješno pisanje): ${0}</value>
         <value xml:lang="it">Non è possibile aggiungere informazioni sulla persona (fallita scrittura): ${0}</value>
         <value xml:lang="ja">個人情報を追加できません (書き込み失敗): ${0}。</value>
         <value xml:lang="nl">De persoonsinformatie kan niet worden toegevoegd (schrijffout): ${0}</value>
@@ -1313,6 +1424,7 @@
         <value xml:lang="es">No se puede crear persona, un participante con ese código ya existe y no es de tipo PERSONA</value>
         <value xml:lang="fr">Il n'est pas possible de créer cette personne, un acteur avec le même identifiant existe et il n'est pas du type personne.</value>
         <value xml:lang="hi-IN">व्यक्ति नहीं बना सकते, निर्दिष्ट पार्टी क्रमांक के साथ एक पार्टी पहले से ही मौजूद है और PERSON प्रकार की पार्टी नहीं है</value>
+        <value xml:lang="hr">Nije moguće stvoriti osobu, sudionik s navedenim Id-om sudionika već postoji i nije sudionik tipa PERSON</value>
         <value xml:lang="it">Non è possibile creare persona, un soggetto con il codice soggetto specificato esiste già e non è un soggetto di tipo PERSONA</value>
         <value xml:lang="ja">個人を作成できません。指定した取引先IDの取引先はすでに存在しますが、取引先の種類が PERSON ではありません。</value>
         <value xml:lang="nl">De persoon kan niet worden aangemaakt, een relatie met de opgegeven relatie ID bestaat al en is niet van het soort PERSON.</value>
@@ -1330,6 +1442,7 @@
         <value xml:lang="es">No se puede crear persona, ya existe el código</value>
         <value xml:lang="fr">Il n'est pas possible de créer cette personne, un acteur avec l'identifiant spécifié existe déja.</value>
         <value xml:lang="hi-IN">व्यक्ति नहीं बना सकते, निर्दिष्ट पार्टी क्रमांक के साथ एक पार्टी पहले से ही मौजूद है</value>
+        <value xml:lang="hr">Nije moguće stvoriti osobu, osoba s navedenim Id-om sudionika već postoji</value>
         <value xml:lang="it">Non è possibile creare una persona, una persona con il codice soggetto specificato già esistente</value>
         <value xml:lang="ja">個人を作成できません。指定した取引先IDの個人はすでに存在します。</value>
         <value xml:lang="nl">Kan de persoon niet aanmaken. Er bestaat al een persoon met de opgegeven relatie ID.</value>
@@ -1347,6 +1460,7 @@
         <value xml:lang="es">No se pudo actualizar la información de la persona</value>
         <value xml:lang="fr">Mise à jour d'information personne impossible (personne non trouvé)</value>
         <value xml:lang="hi-IN">व्यक्ति की जानकारी अद्यतन(update) नहीं कर पाएँ (व्यक्ति नहीं मिला)</value>
+        <value xml:lang="hr">Nije moguće ažurirati podatke o osobi (osoba nije pronađena)</value>
         <value xml:lang="it">Non è possibile aggiornare informazioni sulla persona (persona non trovata)</value>
         <value xml:lang="ja">個人情報を更新できません (個人が見つかりません)。</value>
         <value xml:lang="nl">De persoonsgegevens zijn niet aangepast (persoon niet gevonden).</value>
@@ -1364,6 +1478,7 @@
         <value xml:lang="es">No se pudo actualizar la información de la persona(error de lectura): ${0}</value>
         <value xml:lang="fr">Mise à jour d`information personne impossible (échec lecture): ${0}</value>
         <value xml:lang="hi-IN">व्यक्ति की जानकारी अद्यतन(update) नहीं कर पाएँ (पढ़ने में असफल): ${0}</value>
+        <value xml:lang="hr">Nije moguće ažurirati podatke o osobi (čitanje nije uspjelo): ${0}</value>
         <value xml:lang="it">Non è possibile aggiornare informazioni sulla persona (fallita lettura): ${0}</value>
         <value xml:lang="ja">個人情報を更新できません (読み込み失敗): ${0}</value>
         <value xml:lang="nl">De persoonsgegevens kunnen niet worden aangepast (read failure): ${0}</value>
@@ -1381,6 +1496,7 @@
         <value xml:lang="es">Actualización finalizada correctamente</value>
         <value xml:lang="fr">Personne mise à jour avec succès.</value>
         <value xml:lang="hi-IN">व्यक्ति सफलतापूर्वक नवीनीकृत हो गया है|</value>
+        <value xml:lang="hr">Osoba je uspješno ažurirana.</value>
         <value xml:lang="it">Persona aggiornata con successo.</value>
         <value xml:lang="ja">個人が正しく更新されました。</value>
         <value xml:lang="nl">De persoonsgegevens zijn aangepast.</value>
@@ -1398,6 +1514,7 @@
         <value xml:lang="es">No se pudo actualizar la información de la persona(error de escritura): ${0}</value>
         <value xml:lang="fr">Mise à jour d`information sur la personne impossible (échec en écriture): ${0}</value>
         <value xml:lang="hi-IN">व्यक्ति की जानकारी अद्यतन(update) नहीं कर पाएँ (लिखने में असफल): ${0}</value>
+        <value xml:lang="hr">Nije moguće ažurirati podatke o osobi (neuspješno pisanje): ${0}</value>
         <value xml:lang="it">Non è possibile aggiornare informazioni sulla persona (fallita scrittura): ${0}</value>
         <value xml:lang="ja">個人情報を更新できません (書き込み失敗): ${0}</value>
         <value xml:lang="nl">De persoonsgegevens kunnen niet worden aangepast (schrijffout): ${0}</value>

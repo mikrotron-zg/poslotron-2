@@ -25,6 +25,7 @@
         <value xml:lang="en">Duplicate</value>
         <value xml:lang="es">Duplicado</value>
         <value xml:lang="fr">Dupliquée</value>
+        <value xml:lang="hr">Duplikat</value>
         <value xml:lang="it">Duplicato</value>
         <value xml:lang="ja">コピー</value>
         <value xml:lang="nl">Duplicaat</value>
@@ -42,6 +43,7 @@
         <value xml:lang="en">Fixed</value>
         <value xml:lang="es">Resuelto</value>
         <value xml:lang="fr">Corrigée</value>
+        <value xml:lang="hr">Popravljeno</value>
         <value xml:lang="it">Risolto</value>
         <value xml:lang="ja">修正済</value>
         <value xml:lang="nl">Gefixt</value>
@@ -59,6 +61,7 @@
         <value xml:lang="en">Implemented</value>
         <value xml:lang="es">Implementado</value>
         <value xml:lang="fr">Implémentée</value>
+        <value xml:lang="hr">Provedeno</value>
         <value xml:lang="it">Implementato</value>
         <value xml:lang="ja">実装済</value>
         <value xml:lang="nl">Geimplementeerd</value>
@@ -76,6 +79,7 @@
         <value xml:lang="en">Rejected</value>
         <value xml:lang="es">Rechazado</value>
         <value xml:lang="fr">Rejetée</value>
+        <value xml:lang="hr">Odbijeno</value>
         <value xml:lang="it">Rifiutato</value>
         <value xml:lang="ja">否認</value>
         <value xml:lang="nl">Afgewezen</value>
@@ -93,6 +97,7 @@
         <value xml:lang="en">Won't Fix</value>
         <value xml:lang="es">No se resuelve</value>
         <value xml:lang="fr">Non corrigée</value>
+        <value xml:lang="hr">Neće biti popravljeno</value>
         <value xml:lang="it">Non verra fissato</value>
         <value xml:lang="ja">修正しない</value>
         <value xml:lang="nl">Wordt niet gefixt</value>
@@ -110,6 +115,7 @@
         <value xml:lang="en">Works For Me</value>
         <value xml:lang="es">Me funciona</value>
         <value xml:lang="fr">Fonctionne pour moi</value>
+        <value xml:lang="hr">Funkcionira</value>
         <value xml:lang="it">Per me funziona</value>
         <value xml:lang="ja">私の作業</value>
         <value xml:lang="nl">Het werkt voor mij</value>
@@ -127,6 +133,7 @@
         <value xml:lang="en">Request For Bug Fix</value>
         <value xml:lang="es">Petición de corregir error</value>
         <value xml:lang="fr">Correction d'erreur</value>
+        <value xml:lang="hr">Zahtjev za ispravak buga</value>
         <value xml:lang="it">Richiesta di bug fix</value>
         <value xml:lang="ja">不具合修正に対するリクエスト</value>
         <value xml:lang="nl">Bug fix</value>
@@ -144,6 +151,7 @@
         <value xml:lang="en">Request For Catalog</value>
         <value xml:lang="es">Petición de catálogo</value>
         <value xml:lang="fr">Demande catalogue</value>
+        <value xml:lang="hr">Zahtjev za katalog</value>
         <value xml:lang="it">Richiesta di catalogo</value>
         <value xml:lang="ja">カタログに対するリクエスト</value>
         <value xml:lang="nl">Verzoek - Catalogus</value>
@@ -161,6 +169,7 @@
         <value xml:lang="en">Request For Feature</value>
         <value xml:lang="es">Petición de característica</value>
         <value xml:lang="fr">Demande de caractéristique</value>
+        <value xml:lang="hr">Zahtjev za funkcionalnost</value>
         <value xml:lang="it">Richiesta di caratteristica</value>
         <value xml:lang="ja">機能に対するリクエスト</value>
         <value xml:lang="nl">Verzoek - Feature</value>
@@ -178,6 +187,7 @@
         <value xml:lang="en">Request For Information</value>
         <value xml:lang="es">Petición de información</value>
         <value xml:lang="fr">Demande d'information</value>
+        <value xml:lang="hr">Zahtjev za informaciju</value>
         <value xml:lang="it">Richiesta di informazione</value>
         <value xml:lang="ja">情報に対するリクエスト</value>
         <value xml:lang="nl">Verzoek - Informatie</value>
@@ -195,6 +205,7 @@
         <value xml:lang="en">Request For Proposal</value>
         <value xml:lang="es">Petición de propuesta</value>
         <value xml:lang="fr">Proposition</value>
+        <value xml:lang="hr">Zahtjev za prijedlog</value>
         <value xml:lang="it">Richiesta di proposta</value>
         <value xml:lang="ja">提案に対するリクエスト</value>
         <value xml:lang="nl">Verzoek - Offerte/Voorstel</value>
@@ -213,6 +224,7 @@
         <value xml:lang="en">Request For Purchase Quote</value>
         <value xml:lang="es">Petición de presupuesto de compra</value>
         <value xml:lang="fr">Demande de devis pour achat</value>
+        <value xml:lang="hr">Zahtjev za ponudu za kupnju</value>
         <value xml:lang="it">Richiesta Di Preventivo Acquisto</value>
         <value xml:lang="ja">購入見積に対するリクエスト</value>
         <value xml:lang="nl">Verzoek - Quote inkoop</value>
@@ -230,6 +242,7 @@
         <value xml:lang="en">Request For Quote</value>
         <value xml:lang="es">Petición de presupuesto</value>
         <value xml:lang="fr">Demande de devis</value>
+        <value xml:lang="hr">Zahtjev za ponudu</value>
         <value xml:lang="it">Richiesta di preventivo</value>
         <value xml:lang="ja">見積に対するリクエスト</value>
         <value xml:lang="nl">Verzoek - Quote verkoop</value>
@@ -247,6 +260,7 @@
         <value xml:lang="en">Request For Support</value>
         <value xml:lang="es">Petición de ayuda</value>
         <value xml:lang="fr">Demande de support</value>
+        <value xml:lang="hr">Zahtjev za podršku</value>
         <value xml:lang="it">Richiesta di supporto</value>
         <value xml:lang="ja">サポートに対するリクエスト</value>
         <value xml:lang="nl">Verzoek - Support/Ondersteuning</value>
@@ -264,6 +278,7 @@
         <value xml:lang="en">Additional Feature</value>
         <value xml:lang="es">Característica adicional</value>
         <value xml:lang="fr">Caractéristique additionnelle</value>
+        <value xml:lang="hr">Dodatna značajka</value>
         <value xml:lang="it">Caratteristica aggiuntiva</value>
         <value xml:lang="ja">追加機能</value>
         <value xml:lang="nl">Extra feature</value>
@@ -281,6 +296,7 @@
         <value xml:lang="en">Discount</value>
         <value xml:lang="es">Descuento</value>
         <value xml:lang="fr">Remise</value>
+        <value xml:lang="hr">Popust</value>
         <value xml:lang="it">Sconto</value>
         <value xml:lang="ja">割引</value>
         <value xml:lang="nl">Korting</value>
@@ -298,6 +314,7 @@
         <value xml:lang="en">Fee</value>
         <value xml:lang="es">Tasa</value>
         <value xml:lang="fr">Honoraires</value>
+        <value xml:lang="hr">Honorar</value>
         <value xml:lang="it">Tassa</value>
         <value xml:lang="ja">手数料</value>
         <value xml:lang="nl">Bedrag</value>
@@ -315,6 +332,7 @@
         <value xml:lang="en">Miscellaneous Charges</value>
         <value xml:lang="es">Gastos diversos</value>
         <value xml:lang="fr">Frais divers</value>
+        <value xml:lang="hr">Razni troškovi</value>
         <value xml:lang="it">Ricarico vario</value>
         <value xml:lang="ja">その他費用</value>
         <value xml:lang="nl">Diverse kosten</value>
@@ -332,6 +350,7 @@
         <value xml:lang="en">Marketing Package Adjustment</value>
         <value xml:lang="es">Ajuste de paquete de marketing</value>
         <value xml:lang="fr">Offre marketing (ajustement)</value>
+        <value xml:lang="hr">Prilagodbe marketinškog paketa</value>
         <value xml:lang="it">Aggiustamento paccho di vendita</value>
         <value xml:lang="ja">パッケージ/セット販売調整</value>
         <value xml:lang="nl">Aut. aanp. Marketing Pakket</value>
@@ -349,6 +368,7 @@
         <value xml:lang="en">Promotion</value>
         <value xml:lang="es">Promoción</value>
         <value xml:lang="fr">Promotion</value>
+        <value xml:lang="hr">Promocija</value>
         <value xml:lang="it">Promozione</value>
         <value xml:lang="ja">プロモーション</value>
         <value xml:lang="nl">Promo</value>
@@ -366,6 +386,7 @@
         <value xml:lang="en">Replacement</value>
         <value xml:lang="es">Reemplazo</value>
         <value xml:lang="fr">Remplacement</value>
+        <value xml:lang="hr">Zamjena</value>
         <value xml:lang="it">Sostituzione</value>
         <value xml:lang="ja">交換</value>
         <value xml:lang="nl">Vervanging</value>
@@ -383,6 +404,7 @@
         <value xml:lang="en">Sales Tax</value>
         <value xml:lang="es">Impuestos de venta</value>
         <value xml:lang="fr">Taxes de vente</value>
+        <value xml:lang="hr">Porez</value>
         <value xml:lang="it">Tassa di vendita</value>
         <value xml:lang="ja">消費税</value>
         <value xml:lang="nl">BTW</value>
@@ -400,6 +422,7 @@
         <value xml:lang="en">Shipping and Handling</value>
         <value xml:lang="es">Envío y seguimiento</value>
         <value xml:lang="fr">Port et emballage</value>
+        <value xml:lang="hr">Pakiranje i isporuka</value>
         <value xml:lang="it">Spesa di spedizione e imballaggio</value>
         <value xml:lang="ja">配送および取扱手数料</value>
         <value xml:lang="nl">Vracht</value>
@@ -417,6 +440,7 @@
         <value xml:lang="en">Surcharge</value>
         <value xml:lang="es">Recargo</value>
         <value xml:lang="fr">Supplément</value>
+        <value xml:lang="hr">Doplata</value>
         <value xml:lang="it">Sovraccarico</value>
         <value xml:lang="ja">追加料金</value>
         <value xml:lang="nl">Toeslag</value>
@@ -431,6 +455,7 @@
     <property key="OrderAdjustmentType.description.VAT_TAX">
         <value xml:lang="de">MwSt</value>
         <value xml:lang="en">VAT</value>
+        <value xml:lang="hr">PDV</value>
         <value xml:lang="nl">BTW</value>
     </property>
     <property key="OrderAdjustmentType.description.WARRANTY_ADJUSTMENT">
@@ -439,6 +464,7 @@
         <value xml:lang="en">Warranty</value>
         <value xml:lang="es">Garantía</value>
         <value xml:lang="fr">Garantie</value>
+        <value xml:lang="hr">Garancija</value>
         <value xml:lang="it">Garanzia</value>
         <value xml:lang="ja">保証</value>
         <value xml:lang="nl">Garantie</value>
@@ -456,6 +482,7 @@
         <value xml:lang="en">Denylist Address</value>
         <value xml:lang="es">Dirección bloqueada</value>
         <value xml:lang="fr">Mettre l'adresse en liste noire</value>
+        <value xml:lang="hr">Denylist adresa</value>
         <value xml:lang="it">Indirizzo denylist</value>
         <value xml:lang="ja">ブラックリスト住所</value>
         <value xml:lang="nl">Denylist - Adres</value>
@@ -471,6 +498,7 @@
         <value xml:lang="en">Denylist Credit Card</value>
         <value xml:lang="es">Tarjeta de crédito bloqueada</value>
         <value xml:lang="fr">Mettre la carte de crédit en liste noire</value>
+        <value xml:lang="hr">Denylist kreditne kartice</value>
         <value xml:lang="it">Denylist carta di credito</value>
         <value xml:lang="ja">ブラックリストクレジットカード</value>
         <value xml:lang="nl">Denylist - Kredietkaart</value>
@@ -486,6 +514,7 @@
         <value xml:lang="en">Denylist Email</value>
         <value xml:lang="es">Email bloqueado</value>
         <value xml:lang="fr">Mettre l'addresse de courriel en liste noire</value>
+        <value xml:lang="hr">Popis e-maila za odbijanje</value>
         <value xml:lang="it">Email denylist</value>
         <value xml:lang="ja">ブラックリストEメール</value>
         <value xml:lang="nl">Denylist - Email</value>
@@ -501,6 +530,7 @@
         <value xml:lang="en">Denylist Phone</value>
         <value xml:lang="es">Teléfono bloqueado</value>
         <value xml:lang="fr">Mettre le n° de téléphone en liste noire</value>
+        <value xml:lang="hr">Denylist telefon</value>
         <value xml:lang="it">Telefono denylist</value>
         <value xml:lang="ja">ブラックリスト電話番号</value>
         <value xml:lang="nl">Denylist - Telefoon</value>
@@ -516,6 +546,7 @@
         <value xml:lang="en">Image URL</value>
         <value xml:lang="es">URL de Imagen</value>
         <value xml:lang="fr">URL d'image</value>
+        <value xml:lang="hr">URL slike</value>
         <value xml:lang="it">URL immagine</value>
         <value xml:lang="ja">画像URL</value>
         <value xml:lang="nl">URL afbeelding</value>
@@ -530,6 +561,7 @@
         <value xml:lang="en">BULK_ORDER_ITEM</value>
         <value xml:lang="es">Ítem a granel</value>
         <value xml:lang="fr">Vrac</value>
+        <value xml:lang="hr">Stavka skupne narudžbe</value>
         <value xml:lang="it">Riga ordine bulk</value>
         <value xml:lang="ja">バルク注文アイテム</value>
         <value xml:lang="nl">Bulkorder - item</value>
@@ -544,6 +576,7 @@
         <value xml:lang="en">PRODUCT_ORDER_ITEM</value>
         <value xml:lang="es">Ítem de pedido</value>
         <value xml:lang="fr">Article</value>
+        <value xml:lang="hr">Artikl</value>
         <value xml:lang="it">Prodotto riga ordine</value>
         <value xml:lang="ja">製品注文アイテム</value>
         <value xml:lang="nl">Product</value>
@@ -558,6 +591,7 @@
         <value xml:lang="en">RENTAL_ORDER_ITEM</value>
         <value xml:lang="es">Ítem de alquiler</value>
         <value xml:lang="fr">Location</value>
+        <value xml:lang="hr">Najam</value>
         <value xml:lang="it">Riga ordine di affitto</value>
         <value xml:lang="ja">レンタル注文アイテム</value>
         <value xml:lang="nl">Huur/Verhuur</value>
@@ -572,6 +606,7 @@
         <value xml:lang="en">WORK_ORDER_ITEM</value>
         <value xml:lang="es">Ítem de trabajo</value>
         <value xml:lang="fr">Tâche</value>
+        <value xml:lang="hr">Rad</value>
         <value xml:lang="it">Riga ordine di lavoro</value>
         <value xml:lang="ja">作業注文アイテム</value>
         <value xml:lang="nl">Arbeid</value>
@@ -587,6 +622,7 @@
         <value xml:lang="en">Purchase Order</value>
         <value xml:lang="es">Pedido de Compra</value>
         <value xml:lang="fr">Achats</value>
+        <value xml:lang="hr">Narudžbenica</value>
         <value xml:lang="it">Ordine di acquisto</value>
         <value xml:lang="ja">購買注文</value>
         <value xml:lang="nl">Inkooporder</value>
@@ -604,6 +640,7 @@
         <value xml:lang="en">Sales Order</value>
         <value xml:lang="es">Pedido de Venta</value>
         <value xml:lang="fr">Ventes</value>
+        <value xml:lang="hr">Narudžba</value>
         <value xml:lang="it">Ordine di vendita</value>
         <value xml:lang="ja">販売注文</value>
         <value xml:lang="nl">Verkooporder</value>
@@ -620,6 +657,7 @@
         <value xml:lang="en">WORK_ORDER</value>
         <value xml:lang="es">Pedido de Trabajo</value>
         <value xml:lang="fr">Tâche</value>
+        <value xml:lang="hr">Radni nalog</value>
         <value xml:lang="it">Ordine di lavoro</value>
         <value xml:lang="ja">作業注文</value>
         <value xml:lang="nl">Werkopdracht</value>
@@ -635,6 +673,7 @@
         <value xml:lang="en">Other</value>
         <value xml:lang="es">Otros</value>
         <value xml:lang="fr">Autres</value>
+        <value xml:lang="hr">Ostalo</value>
         <value xml:lang="it">Altro</value>
         <value xml:lang="ja">その他</value>
         <value xml:lang="nl">Quote - Overig</value>
@@ -652,6 +691,7 @@
         <value xml:lang="en">Product</value>
         <value xml:lang="es">Producto</value>
         <value xml:lang="fr">Produit</value>
+        <value xml:lang="hr">Proizvod</value>
         <value xml:lang="it">Prodotto</value>
         <value xml:lang="ja">製品</value>
         <value xml:lang="nl">Quote - Product</value>
@@ -669,6 +709,7 @@
         <value xml:lang="en">Proposal</value>
         <value xml:lang="es">Propuesta</value>
         <value xml:lang="fr">Proposition</value>
+        <value xml:lang="hr">Prijedlog</value>
         <value xml:lang="it">Proposta</value>
         <value xml:lang="ja">提案</value>
         <value xml:lang="nl">Voorstel - Verkoop</value>
@@ -685,6 +726,7 @@
         <value xml:lang="en">PROPOSAL_PURCHASE</value>
         <value xml:lang="es">Propuesta de compra</value>
         <value xml:lang="fr">Proposition d'achat</value>
+        <value xml:lang="hr">Prodajni prijedlog</value>
         <value xml:lang="it">Proposta di acquisto</value>
         <value xml:lang="ja">提案購入</value>
         <value xml:lang="nl">Voorstel - Inkoop</value>
@@ -699,6 +741,7 @@
         <value xml:lang="en">Product Purchase</value>
         <value xml:lang="es">Presupuesto Compra de producto</value>
         <value xml:lang="fr">Achat</value>
+        <value xml:lang="hr">Nabava proizvoda</value>
         <value xml:lang="it">Prodotto acquistato</value>
         <value xml:lang="ja">製品購入</value>
         <value xml:lang="nl">Quote - Inkoop</value>
@@ -716,6 +759,7 @@
         <value xml:lang="en">Customer Requirement</value>
         <value xml:lang="es">Requisito de cliente</value>
         <value xml:lang="fr">Besoin client</value>
+        <value xml:lang="hr">Zahtjev kupaca</value>
         <value xml:lang="it">Fabbisogno cliente</value>
         <value xml:lang="ja">顧客要求</value>
         <value xml:lang="nl">Requirement - Klant</value>
@@ -733,6 +777,7 @@
         <value xml:lang="en">Internal Requirement</value>
         <value xml:lang="es">Requisito interno</value>
         <value xml:lang="fr">Besoin interne</value>
+        <value xml:lang="hr">Interni zahtjev</value>
         <value xml:lang="it">Fabbisogno interno</value>
         <value xml:lang="ja">内部要求</value>
         <value xml:lang="nl">Requirement - Intern</value>
@@ -749,6 +794,7 @@
         <value xml:lang="en">MRP_PRO_PROD_ORDER</value>
         <value xml:lang="es">Requisito de producción según MRP</value>
         <value xml:lang="fr">Besoins du cycle de production proposé au processus MRP</value>
+        <value xml:lang="hr">Zahtjev za planiranje proizvodnje MRP</value>
         <value xml:lang="it">Fabbisogno ciclo produzione proposto dal processo MRP</value>
         <value xml:lang="ja">MRP製品注文</value>
         <value xml:lang="nl">MRP - Productie-order</value>
@@ -763,6 +809,7 @@
         <value xml:lang="en">MRP_PRO_PURCH_ORDER</value>
         <value xml:lang="es">Requisito de compra según MRP</value>
         <value xml:lang="fr">Besoins d'achat proposé au processus MRP</value>
+        <value xml:lang="hr">Zahtjev za nabavu prema MRP planiranju proizvodnje</value>
         <value xml:lang="it">Fabbisogno ordine acquisto proposto dal processo MRP</value>
         <value xml:lang="ja">MRP購買注文</value>
         <value xml:lang="nl">MRP - Inkooporder</value>
@@ -778,6 +825,7 @@
         <value xml:lang="en">Product Requirement</value>
         <value xml:lang="es">Requisito de producto</value>
         <value xml:lang="fr">Besoin en produit</value>
+        <value xml:lang="hr">Zahtjev proizvoda</value>
         <value xml:lang="it">Fabbisogno prodotto</value>
         <value xml:lang="ja">製品要求</value>
         <value xml:lang="nl">Requirement - Product</value>
@@ -795,6 +843,7 @@
         <value xml:lang="en">Work Requirement</value>
         <value xml:lang="es">Requisito de trabajo</value>
         <value xml:lang="fr">Besoin de production</value>
+        <value xml:lang="hr">Radni uvjet</value>
         <value xml:lang="it">Fabbisogno lavoro</value>
         <value xml:lang="ja">作業要求</value>
         <value xml:lang="nl">Requirement - Arbeid</value>
@@ -811,6 +860,7 @@
         <value xml:lang="de">Retoure Zusatzmerkmal</value>
         <value xml:lang="en">Return Additional Feature</value>
         <value xml:lang="fr">Caractéristique additionnelle de retour</value>
+        <value xml:lang="hr">Dodatna značajka povrata</value>
         <value xml:lang="it">Caratteristiche aggiuntive sul reso</value>
         <value xml:lang="ja">返品-追加機能</value>
         <value xml:lang="nl">Retour - Extra feature</value>
@@ -823,6 +873,7 @@
         <value xml:lang="ar">إرجاع الخصم</value>
         <value xml:lang="de">Retourenrabatt</value>
         <value xml:lang="en">Return Discount</value>
+        <value xml:lang="hr">Popust na povrat</value>
         <value xml:lang="it">Sconto sul reso</value>
         <value xml:lang="ja">返品-割引</value>
         <value xml:lang="nl">Retour - Korting</value>
@@ -835,6 +886,7 @@
         <value xml:lang="ar">إرجاع الرسوم</value>
         <value xml:lang="de">Retourengebühr</value>
         <value xml:lang="en">Return Fee</value>
+        <value xml:lang="hr">Naknada za povrat</value>
         <value xml:lang="it">Commissioni sul reso</value>
         <value xml:lang="ja">返品-手数料</value>
         <value xml:lang="nl">Retour - Bedrag</value>
@@ -847,6 +899,7 @@
         <value xml:lang="ar">تعديل يدوي للمسترجع</value>
         <value xml:lang="de">Retoure manuelle Anpassung</value>
         <value xml:lang="en">Return Manual Adjustment</value>
+        <value xml:lang="hr">Ručno podešavanje povrata</value>
         <value xml:lang="it">Aggiustamento manuale sul reso</value>
         <value xml:lang="ja">返品-手動調整</value>
         <value xml:lang="nl">Retour - Handm. aanpassing</value>
@@ -859,6 +912,7 @@
         <value xml:lang="ar">مصاريف متفرقة للمسترجع</value>
         <value xml:lang="de">Retoure sonstige Gebühren</value>
         <value xml:lang="en">Return Miscellaneous Charges</value>
+        <value xml:lang="hr">Vraćanje raznih troškova</value>
         <value xml:lang="it">Ricarichi vari sul reso</value>
         <value xml:lang="ja">返品-その他費用</value>
         <value xml:lang="nl">Retour - Diverse kosten</value>
@@ -871,6 +925,7 @@
         <value xml:lang="ar">تعديل عرض تسويق المسترجع</value>
         <value xml:lang="de">Retoure Marketing Packet Anpassung</value>
         <value xml:lang="en">Return Marketing Package Adjustment</value>
+        <value xml:lang="hr">Prilagodba povrata marketinškog paketa</value>
         <value xml:lang="it">Aggiustamento pacco di vendita sul reso</value>
         <value xml:lang="ja">返品-パッケージ/セット販売調整</value>
         <value xml:lang="nl">Retour - Marketing Product</value>
@@ -883,6 +938,7 @@
         <value xml:lang="ar">إرجاع الترويج</value>
         <value xml:lang="de">Retoure Aktion</value>
         <value xml:lang="en">Return Promotion</value>
+        <value xml:lang="hr">Povrat akcije</value>
         <value xml:lang="it">Promozione reso</value>
         <value xml:lang="ja">返品-プロモーション</value>
         <value xml:lang="nl">Retour - Promo</value>
@@ -895,6 +951,7 @@
         <value xml:lang="ar">إرجاع بالبدل</value>
         <value xml:lang="de">Retoure Ersatz</value>
         <value xml:lang="en">Return Replacement</value>
+        <value xml:lang="hr">Povrat zamjene</value>
         <value xml:lang="it">Reso in sostituzione</value>
         <value xml:lang="ja">返品-交換</value>
         <value xml:lang="nl">Retour - Vervanging</value>
@@ -908,6 +965,7 @@
         <value xml:lang="de">Retoure MwSt.</value>
         <value xml:lang="en">Return Sales Tax</value>
         <value xml:lang="fr">Taxe de vente sur retour</value>
+        <value xml:lang="hr">Povrat poreza</value>
         <value xml:lang="it">Tasse di vendita sul reso</value>
         <value xml:lang="ja">返品-消費税</value>
         <value xml:lang="nl">Retour - BTW</value>
@@ -921,6 +979,7 @@
         <value xml:lang="de">Retoure Versandkosten</value>
         <value xml:lang="en">Return Shipping and Handling</value>
         <value xml:lang="fr">Transport sur retour</value>
+        <value xml:lang="hr">Pakiranje i dostava povrata</value>
         <value xml:lang="it">Spese di trasporto sul reso</value>
         <value xml:lang="ja">返品-配送および取扱手数料</value>
         <value xml:lang="nl">Retour - Vracht</value>
@@ -934,6 +993,7 @@
         <value xml:lang="de">Retoure Zuschlag</value>
         <value xml:lang="en">Return Surcharge</value>
         <value xml:lang="fr">Supplément sur retour</value>
+        <value xml:lang="hr">Doplata za povrat</value>
         <value xml:lang="it">Spese supplementari sul reso</value>
         <value xml:lang="ja">返品-追加料金</value>
         <value xml:lang="nl">Retour - Toeslag</value>
@@ -947,6 +1007,7 @@
         <value xml:lang="de">Retoure Garantie</value>
         <value xml:lang="en">Return Warranty</value>
         <value xml:lang="fr">Garantie sur retour</value>
+        <value xml:lang="hr">Jamstvo za povrat</value>
         <value xml:lang="it">Garanzia sul reso</value>
         <value xml:lang="ja">返品-保証</value>
         <value xml:lang="nl">Retour - Garantie</value>
@@ -961,6 +1022,7 @@
         <value xml:lang="en">COD Payment Rejected</value>
         <value xml:lang="es">Pago acordado rechazado a la entrega</value>
         <value xml:lang="fr">COD paiement rejeté</value>
+        <value xml:lang="hr">Plaćanje pouzećem odbijeno</value>
         <value xml:lang="it">Pagmento contrassegno rifiutato</value>
         <value xml:lang="ja">代金引換配送支払拒否</value>
         <value xml:lang="pt-BR">Pagamento mediante recebimento rejeitado</value>
@@ -976,6 +1038,7 @@
         <value xml:lang="en">Defective Item</value>
         <value xml:lang="es">Producto defectuoso</value>
         <value xml:lang="fr">Défectueux</value>
+        <value xml:lang="hr">Neispravan proizvod</value>
         <value xml:lang="it">Prodotto difettoso</value>
         <value xml:lang="ja">欠陥</value>
         <value xml:lang="pt-BR">Produto defeituoso</value>
@@ -991,6 +1054,7 @@
         <value xml:lang="en">Digital Fulfillment Failed</value>
         <value xml:lang="es">Error de entrega via electrónica</value>
         <value xml:lang="fr">Erreur de chargement de fichier </value>
+        <value xml:lang="hr">Digitalna isporuka nije uspjela</value>
         <value xml:lang="it">Soddisfazione digitale fallita</value>
         <value xml:lang="ja">データ執行失敗</value>
         <value xml:lang="pt-BR">Falha no processamento eletrônico</value>
@@ -1006,6 +1070,7 @@
         <value xml:lang="en">Mis-Shipped Item</value>
         <value xml:lang="es">Ítem mal enviado</value>
         <value xml:lang="fr">Ligne d'expédition manquante</value>
+        <value xml:lang="hr">Pogrešno isporučen artikl</value>
         <value xml:lang="it">Prodotto non-spedito</value>
         <value xml:lang="ja">誤発送</value>
         <value xml:lang="pt-BR">Item enviado errado</value>
@@ -1022,6 +1087,7 @@
         <value xml:lang="en">Did Not Want Item</value>
         <value xml:lang="es">No quiere el ítem</value>
         <value xml:lang="fr">Non demandé</value>
+        <value xml:lang="hr">Neželjeni proizvod</value>
         <value xml:lang="it">Prodotto non voluto</value>
         <value xml:lang="ja">不要</value>
         <value xml:lang="nl">Retour - Niet gewenst</value>
@@ -1038,6 +1104,7 @@
         <value xml:lang="de">Umtausch Größe</value>
         <value xml:lang="en">Size Exchange</value>
         <value xml:lang="fr">Mauvaise taille, échange</value>
+        <value xml:lang="hr">Razmjena veličina</value>
         <value xml:lang="it">Cambio taglia</value>
         <value xml:lang="ja">サイズ交換</value>
         <value xml:lang="pt-BR">Troca de tamanho</value>
@@ -1051,6 +1118,7 @@
         <value xml:lang="en">Store Credit</value>
         <value xml:lang="es">Crédito de la tienda</value>
         <value xml:lang="fr">Avoir</value>
+        <value xml:lang="hr">Kredit trgovine</value>
         <value xml:lang="it">Credito negozio</value>
         <value xml:lang="ja">店舗信用</value>
         <value xml:lang="nl">Retour - Krediet</value>
@@ -1067,6 +1135,7 @@
         <value xml:lang="en">Cross-Ship Replacement</value>
         <value xml:lang="es">Reemplazo en la entrega</value>
         <value xml:lang="fr">Remplacement à la livraison </value>
+        <value xml:lang="hr">Zamjena s povratom</value>
         <value xml:lang="it">Sostituzione cross-ship</value>
         <value xml:lang="ja">代替品を発送</value>
         <value xml:lang="pt-BR">Troca mediante outro pagamento</value>
@@ -1083,6 +1152,7 @@
         <value xml:lang="en">Refund</value>
         <value xml:lang="es">Reembolso/Devolución</value>
         <value xml:lang="fr">Remboursement</value>
+        <value xml:lang="hr">Povrat novca</value>
         <value xml:lang="it">Rimborsato</value>
         <value xml:lang="ja">返金</value>
         <value xml:lang="nl">Retour - Terugstorting</value>
@@ -1100,6 +1170,7 @@
         <value xml:lang="en">Repair Replacement</value>
         <value xml:lang="es">Reemplazo de reparación</value>
         <value xml:lang="fr">Réparation</value>
+        <value xml:lang="hr">Zamjena za proizvod na popravku</value>
         <value xml:lang="it">Riparato sostituito</value>
         <value xml:lang="ja">修理交換</value>
         <value xml:lang="pt-BR">Produto sobressalente</value>
@@ -1115,6 +1186,7 @@
         <value xml:lang="en">Replacement</value>
         <value xml:lang="es">Reemplazo</value>
         <value xml:lang="fr">Remplacement</value>
+        <value xml:lang="hr">Zamjena</value>
         <value xml:lang="it">Sostituito</value>
         <value xml:lang="ja">交換</value>
         <value xml:lang="pt-BR">Substituto</value>
@@ -1131,6 +1203,7 @@
         <value xml:lang="en">Automatic Re-Orders</value>
         <value xml:lang="es">Volver a pedir automáticamente</value>
         <value xml:lang="fr">Commander automatiquement un produit déjà commandé</value>
+        <value xml:lang="hr">Automatske ponovne narudžbe</value>
         <value xml:lang="it">Ri-ordini automatici</value>
         <value xml:lang="ja">自動再注文</value>
         <value xml:lang="pt-BR">Refazer pedido automaticamente</value>
@@ -1147,6 +1220,7 @@
         <value xml:lang="en">Frequent Purchases</value>
         <value xml:lang="es">Compras frecuentes</value>
         <value xml:lang="fr">Achats fréquents</value>
+        <value xml:lang="hr">Česte kupnje</value>
         <value xml:lang="it">Acquisti frequenti</value>
         <value xml:lang="ja">頻繁に購入</value>
         <value xml:lang="pt-BR">Compras frequentes</value>
@@ -1163,6 +1237,7 @@
         <value xml:lang="en">Gift Registry</value>
         <value xml:lang="es">Lista de regalos</value>
         <value xml:lang="fr">Liste de cadeaux</value>
+        <value xml:lang="hr">Popis darova</value>
         <value xml:lang="it">Registro omaggi</value>
         <value xml:lang="ja">ギフト登録</value>
         <value xml:lang="pt-BR">Lista de presentes</value>
@@ -1179,6 +1254,7 @@
         <value xml:lang="en">Special Purpose</value>
         <value xml:lang="es">Casos especiales</value>
         <value xml:lang="fr">Occasions spéciales</value>
+        <value xml:lang="hr">Posebna namjena</value>
         <value xml:lang="it">Funzione speciale</value>
         <value xml:lang="ja">特別な目的</value>
         <value xml:lang="pt-BR">Propósito especial</value>
@@ -1195,6 +1271,7 @@
         <value xml:lang="en">Wish List</value>
         <value xml:lang="es">Lista de deseos</value>
         <value xml:lang="fr">Liste de souhaits</value>
+        <value xml:lang="hr">Popis želja</value>
         <value xml:lang="it">Lista dei desideri</value>
         <value xml:lang="ja">購入予定一覧</value>
         <value xml:lang="pt-BR">Lista de desejos</value>
@@ -1211,6 +1288,7 @@
         <value xml:lang="en">Delivers</value>
         <value xml:lang="es">Entrega</value>
         <value xml:lang="fr">Livraisons</value>
+        <value xml:lang="hr">Isporučuje</value>
         <value xml:lang="it">Consegna</value>
         <value xml:lang="ja">配送</value>
         <value xml:lang="pt-BR">Entrega</value>
@@ -1227,6 +1305,7 @@
         <value xml:lang="en">Deploys</value>
         <value xml:lang="es">Utiliza</value>
         <value xml:lang="fr">Déployements</value>
+        <value xml:lang="hr">Raspoređuje</value>
         <value xml:lang="it">Distribuisci</value>
         <value xml:lang="ja">配置</value>
         <value xml:lang="pt-BR">Utiliza</value>
@@ -1243,6 +1322,7 @@
         <value xml:lang="en">Fixes</value>
         <value xml:lang="es">Arregla</value>
         <value xml:lang="fr">Corrections</value>
+        <value xml:lang="hr">Popravlja</value>
         <value xml:lang="it">Fissa</value>
         <value xml:lang="ja">修正</value>
         <value xml:lang="pt-BR">Conserta</value>
@@ -1259,6 +1339,7 @@
         <value xml:lang="en">Implements</value>
         <value xml:lang="es">Implementa</value>
         <value xml:lang="fr">Implémentations</value>
+        <value xml:lang="hr">Implementira</value>
         <value xml:lang="it">Implementa</value>
         <value xml:lang="ja">実装</value>
         <value xml:lang="pt-BR">Implementa</value>
@@ -1275,6 +1356,7 @@
         <value xml:lang="en">Tests</value>
         <value xml:lang="es">Prueba</value>
         <value xml:lang="fr">Tests</value>
+        <value xml:lang="hr">Testira</value>
         <value xml:lang="it">Testa</value>
         <value xml:lang="ja">テスト</value>
         <value xml:lang="pt-BR">Testa</value>
