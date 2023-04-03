@@ -32,8 +32,8 @@ under the License.
         <dimension name="width" value="100"/>
     </size>
     <size name="large">
-        <dimension name="height" value="200"/>
-        <dimension name="width" value="200"/>
+        <dimension name="height" value="800"/>
+        <dimension name="width" value="800"/>
     </size>
     <size name="detail">
         <dimension name="height" value="600"/>
