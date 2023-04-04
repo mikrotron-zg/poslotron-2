@@ -25,6 +25,7 @@ under the License.
 <div id="microcart">
   <#if (shoppingCartSize > 0)>
     <p id="microCartNotEmpty">
+      <span class="bi-basket3-fill text-primary h3"></span>&nbsp;
       ${uiLabelMap.EcommerceCartHas}
       <strong id="microCartQuantity">
         ${shoppingCart.getTotalQuantity()}
@@ -40,7 +41,7 @@ under the License.
     </p>
     <span id="microCartEmpty" style="display:none">${uiLabelMap.OrderShoppingCartEmpty}</span>
   <#else>
-    <p>${uiLabelMap.OrderShoppingCartEmpty}</p>
+    <p><span class="bi-basket3 text-secondary h3"></span>&nbsp;${uiLabelMap.OrderShoppingCartEmpty}</p>
   </#if>
   <ul class="list-inline">
     <li class="list-inline-item">
