@@ -108,6 +108,7 @@ ${variantInfoJavaScript!}
             </div>
           </#if>
           <div class="product-id-price">
+            <#assign conversion_rate = 7.5345>
             <p class="font-italic">ID:${product.productId!}</p>
             <!--<dl>
             <dt></dt>
@@ -122,6 +123,7 @@ ${variantInfoJavaScript!}
               <#if price.listPrice?? && price.price?? && price.price?double < price.listPrice?double>
                 <!--<p>${uiLabelMap.ProductListPrice}: <span class="basePrice"><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed/></span></p>-->
                 <span class="basePrice text-muted"><del><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed/></del></span>
+                <span class="basePrice text-muted">(<del><@ofbizCurrency amount=price.listPrice*conversion_rate isoCode="HRK"/></del>)</span>
               </#if>
               <h5>
                 <#if price.isSale?? && price.isSale>
@@ -134,13 +136,19 @@ ${variantInfoJavaScript!}
                 <#if (price.price?default(0) > 0 && "N" == product.requireAmount?default("N"))>
                     <!--${uiLabelMap.OrderYourPrice}: <#if "Y" = product.isVirtual!> ${uiLabelMap.CommonFrom}</#if>-->
                     <span class="${priceStyle}"><@ofbizCurrency amount=price.price isoCode=price.currencyUsed/></span>
+                    <span class="small text-muted">(<@ofbizCurrency amount=price.price*conversion_rate isoCode="HRK"/>)</span>
                 </#if>
               </h5>
               <#if price.listPrice?? && price.price?? && price.price?double < price.listPrice?double>
                 <#assign priceSaved = price.listPrice?double - price.price?double>
                 <#assign percentSaved = (priceSaved?double / price.listPrice?double) * 100>
                 <p class="text-muted">
-                  ${uiLabelMap.OrderSave}: <span class="basePrice"><@ofbizCurrency amount=priceSaved isoCode=price.currencyUsed/> (${percentSaved?int}%)</span>
+                  ${uiLabelMap.OrderSave}: 
+                  <span class="basePrice">
+                    <@ofbizCurrency amount=priceSaved isoCode=price.currencyUsed/>&nbsp;
+                    (<@ofbizCurrency amount=priceSaved*conversion_rate isoCode="HRK"/>) 
+                    (${percentSaved?int}%)
+                  </span>
                 </p>
               </#if>
             </#if>
