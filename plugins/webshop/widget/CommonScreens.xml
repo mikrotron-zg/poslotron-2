@@ -51,8 +51,8 @@ under the License.
                 </entity-and>
                 <set field="layoutSettings.javaScripts[]" value="/common/js/util/miscAjaxFunctions.js" global="true" />
                 <set field="bodyStyle" value="${groovy:
-                        if(sections?.get(&quot;left-column&quot;) &amp;&amp; sections?.get(&quot;right-column&quot;)) &quot;col-lg-6&quot;
-                        else if (sections?.get(&quot;left-column&quot;) || sections?.get(&quot;right-column&quot;)) &quot;col-lg-9&quot;
+                        if(sections?.get(&quot;left-column&quot;) &amp;&amp; sections?.get(&quot;right-column&quot;)) &quot;col-lg-8&quot;
+                        else if (sections?.get(&quot;left-column&quot;) || sections?.get(&quot;right-column&quot;)) &quot;col-lg-10&quot;
                         else &quot;col-lg-12&quot;
                 }"/>
             </actions>
@@ -75,7 +75,7 @@ under the License.
                                         <not><if-empty-section section-name="left-column"/></not>
                                     </condition>
                                     <widgets>
-                                        <container id="div1" style="col-lg-3 order-lg-1 order-2">
+                                        <container id="div1" style="col-lg-2 order-lg-1 order-2">
                                             <decorator-section-include name="left-column"/>
                                         </container>
                                     </widgets>
@@ -92,7 +92,7 @@ under the License.
                                         </not>
                                     </condition>
                                     <widgets>
-                                        <container id="div2" style="col-lg-3 order-lg-3 order-3">
+                                        <container id="div2" style="col-lg-2 order-lg-3 order-3">
                                             <decorator-section-include name="right-column"/>
                                         </container>
                                     </widgets>
