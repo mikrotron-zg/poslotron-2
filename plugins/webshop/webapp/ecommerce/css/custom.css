@@ -32,15 +32,8 @@ a.btn-primary {
     color:white!important;
 }
 
-a.btn-outline-secondary {
-    color:#f07c00;
-    border-color:#f07c00;
-}
-
-a.btn-outline-secondary:hover {
-    color:white;
-    background-color:#f07c00;
-    border-color:#f07c00;
+.border-primary {
+    border: 1px solid #f07c00;
 }
 
 #ecom-mainarea{

@@ -205,10 +205,10 @@ ${variantInfoJavaScript!}
                     <input type="hidden" name="clearSearch" value="N"/>
                     <input type="hidden" name="mainSubmitted" value="Y"/>
                     <div class="input-group">
-                      <input type="text" class="form-control form-control-sm" name="quantity" value="1"/>
+                      <input type="text" class="form-control form-control-sm border-primary" name="quantity" value="1"/>
                       <div class="input-group-append">
                         <a href="javascript:document.the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}form.submit()" 
-                          class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderAddToCart}</a>
+                          class="btn btn-outline-primary btn-sm">${uiLabelMap.OrderAddToCart}</a>
                       </div>
                     </div>
                     <#if mainProducts?has_content>
