@@ -239,3 +239,5 @@ context.product = product
 context.categoryId = categoryId
 context.productReviews = reviews
 context.sizeProductFeatureAndAppls = sizeProductFeatureAndAppls
+// available quantity is displayed in product summary page
+context.totalAvailableToPromise = totalAvailableToPromise;

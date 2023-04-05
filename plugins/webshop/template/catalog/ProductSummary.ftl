@@ -228,6 +228,11 @@ ${variantInfoJavaScript!}
                   </div>
                 </form>
                 <#--<a href="javascript:document.addToCompare${requestAttributes.listIndex!}form.submit()" class="btn btn-link btn-sm">${uiLabelMap.ProductAddToCompare}</a>-->
+                <#if totalAvailableToPromise?exists && (0.00 < totalAvailableToPromise?double)>
+                  <div class="text-info">${uiLabelMap.ProductQuantityOnHand}: ${totalAvailableToPromise?string.number}</div>
+                <#else>
+                  <span class="text-danger">${uiLabelMap.FacilityNoItemsAvailableToShip}</span>
+                </#if>
                 <#if prodCatMem?? && prodCatMem.quantity?? && 0.00 < prodCatMem.quantity?double>
                   <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform" style="margin: 0;">
                     <input type="hidden" name="add_product_id" value="${prodCatMem.productId!}"/>
