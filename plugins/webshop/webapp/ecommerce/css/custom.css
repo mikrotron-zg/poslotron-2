@@ -75,13 +75,14 @@ a.btn-primary {
     -webkit-box-orient: vertical;
 }
 
+.card-footer {
+    background:none;
+    border:none;
+}
+
 .products-card .card-title a {
     min-height:5.5rem;
     white-space: normal;
-}
-
-.product-id-price {
-    min-height:7rem;
 }
 
 .gallery {

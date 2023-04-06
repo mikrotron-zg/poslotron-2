@@ -1,56 +1,58 @@
 <#--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+  http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
-    -->
-  ${virtualJavaScript!}
-  <script type="application/javascript">
-    function displayProductVirtualId(variantId, virtualProductId, pForm) {
-        if(variantId){
-            pForm.product_id.value = variantId;
-        }else{
-            pForm.product_id.value = '';
-            variantId = '';
-        }
-        var elem = document.getElementById('product_id_display');
-        var txt = document.createTextNode(variantId);
-        if(elem.hasChildNodes()) {
-            elem.replaceChild(txt, elem.firstChild);
-        } else {
-            elem.appendChild(txt);
-        }
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
 
-        var priceElem = document.getElementById('variant_price_display');
-        var price = getVariantPrice(variantId);
-        var priceTxt = null;
-        if(price){
-            priceTxt = document.createTextNode(price);
-        }else{
-            priceTxt = document.createTextNode('');
-        }
-
-        if(priceElem.hasChildNodes()) {
-            priceElem.replaceChild(priceTxt, priceElem.firstChild);
-        } else {
-            priceElem.appendChild(priceTxt);
-        }
+${virtualJavaScript!}
+<script type="application/javascript">
+  function displayProductVirtualId(variantId, virtualProductId, pForm) {
+    if(variantId){
+      pForm.product_id.value = variantId;
+    }else{
+      pForm.product_id.value = '';
+      variantId = '';
     }
+    var elem = document.getElementById('product_id_display');
+    var txt = document.createTextNode(variantId);
+    if(elem.hasChildNodes()) {
+      elem.replaceChild(txt, elem.firstChild);
+    } else {
+      elem.appendChild(txt);
+    }
+
+    var priceElem = document.getElementById('variant_price_display');
+    var price = getVariantPrice(variantId);
+    var priceTxt = null;
+    if(price){
+      priceTxt = document.createTextNode(price);
+    }else{
+      priceTxt = document.createTextNode('');
+    }
+
+    if(priceElem.hasChildNodes()) {
+      priceElem.replaceChild(priceTxt, priceElem.firstChild);
+    } else {
+      priceElem.appendChild(priceTxt);
+    }
+  }
 </script>
 ${screens.render("component://order/widget/ordermgr/OrderEntryCatalogScreens.xml#productvariantjs")}
 ${variantInfoJavaScript!}
+
 <#if product??>
   <#-- variable setup -->
   <#if "Y" == backendPath?default("N")>
@@ -78,6 +80,7 @@ ${variantInfoJavaScript!}
       </a>
       <div class="card-body">
         <h4 class="card-title"><a href="${productUrl}" class="btn btn-link">${productContentWrapper.get("PRODUCT_NAME", "html")!}</a></h4>
+      
         <div class="card-text">
           <div class="card-text-fixed-height text-secondary">
             ${productContentWrapper.get("DESCRIPTION", "html")!}
@@ -90,177 +93,127 @@ ${variantInfoJavaScript!}
           <#if request.getAttribute("highlightLabel")??>
           <p><strong>${request.getAttribute("highlightLabel")}</strong></p>
           </#if>
+        </div>
+      </div>
+      <div class="card-footer">
+        <#assign conversion_rate = 7.5345>
+        <p class="font-italic">ID:${product.productId!}</p>
 
-          <#-- example of showing a certain type of feature with the product -->
-          <#if sizeProductFeatureAndAppls?has_content>
-            <div>
-              <#if (sizeProductFeatureAndAppls?size == 1)>
-                <p>${uiLabelMap.OrderSizeAvailableSingle}:</p>
-              <#else>
-                ${uiLabelMap.OrderSizeAvailableMultiple}:
-              </#if>
-              <div>
-                <#list sizeProductFeatureAndAppls as sizeProductFeatureAndAppl>
-                  ${sizeProductFeatureAndAppl.abbrev?default(sizeProductFeatureAndAppl.description?default(sizeProductFeatureAndAppl.productFeatureId))}
-                  <#if sizeProductFeatureAndAppl_has_next>,</#if>
-                </#list>
-              </div>
-            </div>
+        <#if totalPrice??>
+          <p>${uiLabelMap.ProductAggregatedPrice}: <span class="basePrice"><@ofbizCurrency amount=totalPrice isoCode=totalPrice.currencyUsed/></span></p>
+        <#else>
+          <#if price.competitivePrice?? && price.price?? && price.price?double < price.competitivePrice?double>
+            ${uiLabelMap.ProductCompareAtPrice}: <span class="basePrice"><@ofbizCurrency amount=price.competitivePrice isoCode=price.currencyUsed/></span>
           </#if>
-          <div class="product-id-price">
-            <#assign conversion_rate = 7.5345>
-            <p class="font-italic">ID:${product.productId!}</p>
-            <!--<dl>
-            <dt></dt>
-            <dd></dd>
-            </dl>-->
-            <#if totalPrice??>
-              <p>${uiLabelMap.ProductAggregatedPrice}: <span class="basePrice"><@ofbizCurrency amount=totalPrice isoCode=totalPrice.currencyUsed/></span></p>
+          <#if price.listPrice?? && price.price?? && price.price?double < price.listPrice?double>
+            <!--<p>${uiLabelMap.ProductListPrice}: <span class="basePrice"><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed/></span></p>-->
+            <span class="basePrice text-muted"><del><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed/></del></span>
+            <span class="basePrice text-muted">(<del><@ofbizCurrency amount=price.listPrice*conversion_rate isoCode="HRK"/></del>)</span>
+          </#if>
+          <h5>
+            <#if price.isSale?? && price.isSale>
+              <p class="badge badge-info">${uiLabelMap.OrderOnSale}!</p>
+              <#assign priceStyle = "salePrice">
             <#else>
-              <#if price.competitivePrice?? && price.price?? && price.price?double < price.competitivePrice?double>
-                ${uiLabelMap.ProductCompareAtPrice}: <span class="basePrice"><@ofbizCurrency amount=price.competitivePrice isoCode=price.currencyUsed/></span>
-              </#if>
-              <#if price.listPrice?? && price.price?? && price.price?double < price.listPrice?double>
-                <!--<p>${uiLabelMap.ProductListPrice}: <span class="basePrice"><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed/></span></p>-->
-                <span class="basePrice text-muted"><del><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed/></del></span>
-                <span class="basePrice text-muted">(<del><@ofbizCurrency amount=price.listPrice*conversion_rate isoCode="HRK"/></del>)</span>
-              </#if>
-              <h5>
-                <#if price.isSale?? && price.isSale>
-                  <p class="badge badge-info">${uiLabelMap.OrderOnSale}!</p>
-                  <#assign priceStyle = "salePrice">
-                <#else>
-                  <#assign priceStyle = "regularPrice">
-                </#if>
-
-                <#if (price.price?default(0) > 0 && "N" == product.requireAmount?default("N"))>
-                    <!--${uiLabelMap.OrderYourPrice}: <#if "Y" = product.isVirtual!> ${uiLabelMap.CommonFrom}</#if>-->
-                    <span class="${priceStyle}"><@ofbizCurrency amount=price.price isoCode=price.currencyUsed/></span>
-                    <span class="small text-muted">(<@ofbizCurrency amount=price.price*conversion_rate isoCode="HRK"/>)</span>
-                </#if>
-              </h5>
-              <#if price.listPrice?? && price.price?? && price.price?double < price.listPrice?double>
-                <#assign priceSaved = price.listPrice?double - price.price?double>
-                <#assign percentSaved = (priceSaved?double / price.listPrice?double) * 100>
-                <p class="text-muted">
-                  ${uiLabelMap.OrderSave}: 
-                  <span class="basePrice">
-                    <@ofbizCurrency amount=priceSaved isoCode=price.currencyUsed/>&nbsp;
-                    (<@ofbizCurrency amount=priceSaved*conversion_rate isoCode="HRK"/>) 
-                    (${percentSaved?int}%)
-                  </span>
-                </p>
-              </#if>
+              <#assign priceStyle = "regularPrice">
             </#if>
-
-            <#-- show price details ("showPriceDetails" field can be set in the screen definition) -->
-            <#if (showPriceDetails?? && "Y" == showPriceDetails?default("N"))>
-              <#if price.orderItemPriceInfos??>
-                <#list price.orderItemPriceInfos as orderItemPriceInfo>
-                  <div>${orderItemPriceInfo.description!}</div>
-                </#list>
-              </#if>
+            <#if (price.price?default(0) > 0 && "N" == product.requireAmount?default("N"))>
+                <!--${uiLabelMap.OrderYourPrice}: <#if "Y" = product.isVirtual!> ${uiLabelMap.CommonFrom}</#if>-->
+                <span class="${priceStyle}"><@ofbizCurrency amount=price.price isoCode=price.currencyUsed/></span>
+                <span class="small text-muted">(<@ofbizCurrency amount=price.price*conversion_rate isoCode="HRK"/>)</span>
             </#if>
-            </div>
-              <#if averageRating?? && (averageRating?double > 0) && numRatings?? && (numRatings?long > 2)>
-                <div>${uiLabelMap.OrderAverageRating}: ${averageRating} (${uiLabelMap.CommonFrom} ${numRatings} ${uiLabelMap.OrderRatings})</div>
-              </#if>
-              <form method="post" action="<@ofbizUrl secure="${request.isSecure()?string}">addToCompare</@ofbizUrl>" name="addToCompare${requestAttributes.listIndex!}form">
-                <input type="hidden" name="productId" value="${product.productId}"/>
+          </h5>
+          <#if price.listPrice?? && price.price?? && price.price?double < price.listPrice?double>
+            <#assign priceSaved = price.listPrice?double - price.price?double>
+            <#assign percentSaved = (priceSaved?double / price.listPrice?double) * 100>
+            <p class="text-muted">
+              ${uiLabelMap.OrderSave}: 
+              <span class="basePrice">
+                <@ofbizCurrency amount=priceSaved isoCode=price.currencyUsed/>&nbsp;
+                (<@ofbizCurrency amount=priceSaved*conversion_rate isoCode="HRK"/>) 
+                (${percentSaved?int}%)
+              </span>
+            </p>
+          </#if>
+        </#if>
+
+        <div class="productbuy">
+          <#-- check to see if introductionDate hasn't passed yet -->
+          <#if product.introductionDate?? && nowTimestamp.before(product.introductionDate)>
+            <div style="color: red;">${uiLabelMap.ProductNotYetAvailable}</div>
+          <#-- check to see if salesDiscontinuationDate has passed -->
+          <#elseif product.salesDiscontinuationDate?? && nowTimestamp.after(product.salesDiscontinuationDate)>
+            <div style="color: red;">${uiLabelMap.ProductNoLongerAvailable}</div>
+          <#-- check to see if it is a rental item; will enter parameters on the detail screen-->
+          <#elseif "ASSET_USAGE" == product.productTypeId!>
+            <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderMakeBooking}...</a>
+          <#-- check to see if it is an aggregated or configurable product; will enter parameters on the detail screen-->
+          <#elseif "AGGREGATED" == product.productTypeId! || "AGGREGATED_SERVICE" == product.productTypeId!>
+            <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderConfigure}...</a>
+          <#-- check to see if the product is a virtual product -->
+          <#elseif product.isVirtual?? && "Y" == product.isVirtual>
+            <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderChooseVariations}...</a>
+          <#-- check to see if the product requires an amount -->
+          <#elseif product.requireAmount?? && "Y" == product.requireAmount>
+            <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderChooseAmount}...</a>
+          <#elseif "ASSET_USAGE_OUT_IN" == product.productTypeId!>
+            <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderRent}...</a>
+          <#else>
+            <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}form" style="margin: 0;">
+              <div class="form-group">
+                <input type="hidden" name="add_product_id" value="${product.productId}"/>
+                <input type="hidden" name="clearSearch" value="N"/>
                 <input type="hidden" name="mainSubmitted" value="Y"/>
-              </form>
-            </div>
-            <div id="${productDetailId}" style="display:none;">
-              <img src="<@ofbizContentUrl>${contentPathPrefix!}${largeImageUrl}</@ofbizContentUrl>" alt="Large Image"/>
-              ${uiLabelMap.ProductProductId} ${product.productId!}
-              ${uiLabelMap.ProductProductName} ${productContentWrapper.get("PRODUCT_NAME", "html")!}
-              ${uiLabelMap.CommonDescription} ${productContentWrapper.get("DESCRIPTION", "html")!}
-            </div>
-
-            <div class="productbuy">
-              <#-- check to see if introductionDate hasn't passed yet -->
-              <#if product.introductionDate?? && nowTimestamp.before(product.introductionDate)>
-                <div style="color: red;">${uiLabelMap.ProductNotYetAvailable}</div>
-              <#-- check to see if salesDiscontinuationDate has passed -->
-              <#elseif product.salesDiscontinuationDate?? && nowTimestamp.after(product.salesDiscontinuationDate)>
-                <div style="color: red;">${uiLabelMap.ProductNoLongerAvailable}</div>
-              <#-- check to see if it is a rental item; will enter parameters on the detail screen-->
-              <#elseif "ASSET_USAGE" == product.productTypeId!>
-                <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderMakeBooking}...</a>
-              <#-- check to see if it is an aggregated or configurable product; will enter parameters on the detail screen-->
-              <#elseif "AGGREGATED" == product.productTypeId! || "AGGREGATED_SERVICE" == product.productTypeId!>
-                <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderConfigure}...</a>
-              <#-- check to see if the product is a virtual product -->
-              <#elseif product.isVirtual?? && "Y" == product.isVirtual>
-                <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderChooseVariations}...</a>
-              <#-- check to see if the product requires an amount -->
-              <#elseif product.requireAmount?? && "Y" == product.requireAmount>
-                <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderChooseAmount}...</a>
-              <#elseif "ASSET_USAGE_OUT_IN" == product.productTypeId!>
-                <a href="${productUrl}" class="btn btn-outline-secondary btn-sm">${uiLabelMap.OrderRent}...</a>
-              <#else>
-                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}form" style="margin: 0;">
-                  <div class="form-group">
-                    <input type="hidden" name="add_product_id" value="${product.productId}"/>
-                    <input type="hidden" name="clearSearch" value="N"/>
-                    <input type="hidden" name="mainSubmitted" value="Y"/>
-                    <div class="input-group">
-                      <input type="text" class="form-control form-control-sm border-primary" name="quantity" value="1"/>
-                      <div class="input-group-append">
-                        <a href="javascript:document.the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}form.submit()" 
-                          class="btn btn-outline-primary btn-sm">${uiLabelMap.OrderAddToCart}</a>
-                      </div>
-                    </div>
-                    <#if mainProducts?has_content>
-                      <input type="hidden" name="product_id" value=""/>
-                      <select name="productVariantId" onchange="javascript:variantUomSelection(this);" style="width: 100%;">
-                        <option value="">${uiLabelMap.CommonSelect} ${uiLabelMap.ProductUnitOfMeasure}</option>
-                        <#list mainProducts as mainProduct>
-                          <option value="${mainProduct.productId}">${mainProduct.uomDesc} : ${mainProduct.piecesIncluded}</option>
-                        </#list>
-                      </select>
-                      <div class="variant-price" style="display: inline-block;">
-                        <input type="hidden" name="product_id_bak" value="${product.productId}"/>
-                        <strong><span class="product_id_display"> </span></strong>
-                        <strong><span class="variant_price_display"> </span></strong>
-                      </div>
-                    </#if>
+                <div class="input-group">
+                  <input type="text" class="form-control form-control-sm border-primary" name="quantity" value="1"/>
+                  <div class="input-group-append">
+                    <a href="javascript:document.the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}form.submit()" 
+                      class="btn btn-outline-primary btn-sm">${uiLabelMap.OrderAddToCart}</a>
                   </div>
+                </div>
+                <#if mainProducts?has_content>
+                  <input type="hidden" name="product_id" value=""/>
+                  <select name="productVariantId" onchange="javascript:variantUomSelection(this);" style="width: 100%;">
+                    <option value="">${uiLabelMap.CommonSelect} ${uiLabelMap.ProductUnitOfMeasure}</option>
+                    <#list mainProducts as mainProduct>
+                      <option value="${mainProduct.productId}">${mainProduct.uomDesc} : ${mainProduct.piecesIncluded}</option>
+                    </#list>
+                  </select>
+                  <div class="variant-price" style="display: inline-block;">
+                    <input type="hidden" name="product_id_bak" value="${product.productId}"/>
+                    <strong><span class="product_id_display"> </span></strong>
+                    <strong><span class="variant_price_display"> </span></strong>
+                  </div>
+                </#if>
+              </div>
+            </form>
+            <#if totalAvailableToPromise?exists && (0.00 < totalAvailableToPromise?double)>
+              <div class="text-info">${uiLabelMap.ProductQuantityOnHand}: ${totalAvailableToPromise?string.number}</div>
+            <#else>
+              <span class="text-danger">${uiLabelMap.FacilityNoItemsAvailableToShip}</span>
+            </#if>
+            <#if prodCatMem?? && prodCatMem.quantity?? && 0.00 < prodCatMem.quantity?double>
+              <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform" style="margin: 0;">
+                <input type="hidden" name="add_product_id" value="${prodCatMem.productId!}"/>
+                <input type="hidden" name="quantity" value="${prodCatMem.quantity!}"/>
+                <input type="hidden" name="clearSearch" value="N"/>
+                <input type="hidden" name="mainSubmitted" value="Y"/>
+                <a href="javascript:document.the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform.submit()" class="btn btn-outline-secondary btn-sm">${uiLabelMap.CommonAddDefault}(${prodCatMem.quantity?string.number}) ${uiLabelMap.OrderToCart}</a>
+              </form>
+              <#assign productCategory = delegator.findOne("ProductCategory", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("productCategoryId", prodCatMem.productCategoryId), false)/>
+              <#if productCategory.productCategoryTypeId != "BEST_SELL_CATEGORY">
+                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform" style="margin: 0;">
+                  <input type="hidden" name="add_product_id" value="${prodCatMem.productId!}"/>
+                  <input type="hidden" name="quantity" value="${prodCatMem.quantity!}"/>
+                  <input type="hidden" name="clearSearch" value="N"/>
+                  <input type="hidden" name="mainSubmitted" value="Y"/>
+                  <a href="javascript:document.the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform.submit()" class="btn btn-outline-secondary btn-sm">${uiLabelMap.CommonAddDefault}(${prodCatMem.quantity?string.number}) ${uiLabelMap.OrderToCart}</a>
                 </form>
-                <#--<a href="javascript:document.addToCompare${requestAttributes.listIndex!}form.submit()" class="btn btn-link btn-sm">${uiLabelMap.ProductAddToCompare}</a>-->
-                <#if totalAvailableToPromise?exists && (0.00 < totalAvailableToPromise?double)>
-                  <div class="text-info">${uiLabelMap.ProductQuantityOnHand}: ${totalAvailableToPromise?string.number}</div>
-                <#else>
-                  <span class="text-danger">${uiLabelMap.FacilityNoItemsAvailableToShip}</span>
-                </#if>
-                <#if prodCatMem?? && prodCatMem.quantity?? && 0.00 < prodCatMem.quantity?double>
-                  <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform" style="margin: 0;">
-                    <input type="hidden" name="add_product_id" value="${prodCatMem.productId!}"/>
-                    <input type="hidden" name="quantity" value="${prodCatMem.quantity!}"/>
-                    <input type="hidden" name="clearSearch" value="N"/>
-                    <input type="hidden" name="mainSubmitted" value="Y"/>
-                    <a href="javascript:document.the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform.submit()" class="btn btn-outline-secondary btn-sm">${uiLabelMap.CommonAddDefault}(${prodCatMem.quantity?string.number}) ${uiLabelMap.OrderToCart}</a>
-                  </form>
-                  <#assign productCategory = delegator.findOne("ProductCategory", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("productCategoryId", prodCatMem.productCategoryId), false)/>
-                  <#if productCategory.productCategoryTypeId != "BEST_SELL_CATEGORY">
-                    <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform" style="margin: 0;">
-                      <input type="hidden" name="add_product_id" value="${prodCatMem.productId!}"/>
-                      <input type="hidden" name="quantity" value="${prodCatMem.quantity!}"/>
-                      <input type="hidden" name="clearSearch" value="N"/>
-                      <input type="hidden" name="mainSubmitted" value="Y"/>
-                      <a href="javascript:document.the${requestAttributes.formNamePrefix!}${requestAttributes.listIndex!}defaultform.submit()" class="btn btn-outline-secondary btn-sm">${uiLabelMap.CommonAddDefault}(${prodCatMem.quantity?string.number}) ${uiLabelMap.OrderToCart}</a>
-                    </form>
-                  </#if>
-                </#if>
               </#if>
-            </div>
-          </div>
+            </#if>
+          </#if>
         </div>
       </div>
     </div>
   </div>
-<#else>
-  &nbsp;${uiLabelMap.ProductErrorProductNotFound}.<br />
 </#if>
-
-
