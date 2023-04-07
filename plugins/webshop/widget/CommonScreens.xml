@@ -124,25 +124,25 @@ under the License.
                     <include-screen name="keywordsearchbox" location="component://ecommerce/widget/CatalogScreens.xml"/>
                     <!--include-screen name="sidedeepcategory" location="component://ecommerce/widget/CatalogScreens.xml"/-->
                     <include-screen name="productCategories" location="component://ecommerce/widget/CatalogScreens.xml"/>
-                    <include-screen name="LayeredNavBar" location="component://ecommerce/widget/CatalogScreens.xml"/>
+                    <!--<include-screen name="LayeredNavBar" location="component://ecommerce/widget/CatalogScreens.xml"/>
                     <include-screen name="minireorderprods" location="component://ecommerce/widget/CatalogScreens.xml"/>
                     <include-screen name="signupforcontactlist" location="component://ecommerce/widget/EmailContactListScreens.xml"/>
                     <include-screen name="minipoll" location="component://ecommerce/widget/ContentScreens.xml"/>
                     <include-screen name="forums" location="component://ecommerce/widget/ForumScreens.xml"/>
                     <include-screen name="content_categories" location="component://ecommerce/widget/ContentScreens.xml"/>
-                    <include-screen name="blogs" location="component://ecommerce/widget/blog/BlogScreens.xml"/>
+                    <include-screen name="blogs" location="component://ecommerce/widget/blog/BlogScreens.xml"/>-->
             </widgets>
         </section>
     </screen>
     <screen name="rightbar">
         <section>
             <widgets>
-                    <include-screen name="language"/>
+                    <!--<include-screen name="language"/>-->
                     <include-screen name="minicart" location="component://ecommerce/widget/CartScreens.xml"/>
-                    <include-screen name="compareproductslist" location="component://ecommerce/widget/CatalogScreens.xml"/>
+                    <!--<include-screen name="compareproductslist" location="component://ecommerce/widget/CatalogScreens.xml"/>
                     <include-screen name="minipromotext" location="component://ecommerce/widget/CartScreens.xml"/>
                     <include-screen name="miniassocprods" location="component://ecommerce/widget/CatalogScreens.xml"/>
-                    <include-screen name="factoids" location="component://ecommerce/widget/ContentScreens.xml"/>
+                    <include-screen name="factoids" location="component://ecommerce/widget/ContentScreens.xml"/>-->
                     <include-screen name="minilastviewedcategories" location="component://ecommerce/widget/CatalogScreens.xml"/>
                     <include-screen name="minilastviewedproducts" location="component://ecommerce/widget/CatalogScreens.xml"/>
                     <include-screen name="minilastproductsearches" location="component://ecommerce/widget/CatalogScreens.xml"/>
