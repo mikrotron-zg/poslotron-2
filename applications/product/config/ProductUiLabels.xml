@@ -22715,6 +22715,11 @@
         <value xml:lang="zh">哪里</value>
         <value xml:lang="zh-TW">哪裡</value>
     </property>
+    <property key="ProductKeywordMustInclude">
+        <value xml:lang="de">Muss enthalten</value>
+        <value xml:lang="en">Must contain</value>
+        <value xml:lang="hr">Mora uključivati</value>
+    </property>
     <property key="ProductKeywords">
         <value xml:lang="cs">Klíčová slova</value>
         <value xml:lang="de">Stichwörter</value>
