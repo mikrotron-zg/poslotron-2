@@ -179,3 +179,19 @@ button.jGrowl-close {
     width: 100%;
     max-width: 100%;
 }
+
+.cart-notification {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+}
+ 
+.cart-notification .badge {
+    position: absolute;
+    top: 20px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: #6f6f6f;
+    color: white;
+}

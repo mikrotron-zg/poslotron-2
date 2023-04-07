@@ -25,60 +25,37 @@ under the License.
 <div id="microcart">
   <#if (shoppingCartSize > 0)>
     <p id="microCartNotEmpty">
-      <span class="bi-basket3-fill text-primary h3"></span>&nbsp;
-      ${uiLabelMap.EcommerceCartHas}
-      <strong id="microCartQuantity">
-        ${shoppingCart.getTotalQuantity()}
-      </strong>
-      <#if shoppingCart.getTotalQuantity() == 1>
-        ${uiLabelMap.OrderItem}
-      <#else>
-        ${uiLabelMap.OrderItems}
-      </#if>,
-      <strong id="microCartTotal">
+      <a href="<@ofbizUrl>view/showcart</@ofbizUrl>" class="cart-notification">
+        <span class="bi-basket3-fill text-primary h2"></span>
+        <span class="badge">${shoppingCart.getTotalQuantity()}</span>
+      </a>
+      &nbsp;
+      <span id="microCartTotal" class="text-primary h4">
         <@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/>
-      </strong>
+        <span class="text-muted h6">
+          (<@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal()*7.5345 isoCode="HRK"/>)
+        </span>
+      </span>
     </p>
     <span id="microCartEmpty" style="display:none">${uiLabelMap.OrderShoppingCartEmpty}</span>
   <#else>
-    <p><span class="bi-basket3 text-secondary h3"></span>&nbsp;${uiLabelMap.OrderShoppingCartEmpty}</p>
+    <p><span class="bi-basket3 text-secondary h3"></span>&nbsp;&nbsp;${uiLabelMap.OrderShoppingCartEmpty}</p>
   </#if>
+  <span class="text-muted small">Fiksni tečaj konverzije: 1€ = 7,53450kn</span>
   <ul class="list-inline">
     <li class="list-inline-item">
-      <a href="<@ofbizUrl>view/showcart</@ofbizUrl>">[${uiLabelMap.OrderViewCart}]</a>
+      <a href="<@ofbizUrl>view/showcart</@ofbizUrl>">${uiLabelMap.OrderViewCart}</a>
     </li>
     <#if (shoppingCartSize > 0)>
-      <#if !initialLocaleComplete?? || initialLocaleComplete?length == 2 >
-        <#if initialLocaleComplete?? && initialLocaleComplete?length == 2  && "fr" == initialLocaleComplete>
-          <#assign initialLocaleComplete = "fr_FR"><#-- same idea can be used with other default locale -->
-        <#else>
-          <#assign initialLocaleComplete = "en_US">
-        </#if>
-      </#if>
-      <li class="list-inline-item" id="quickCheckoutEnabled">
-        <a href="<@ofbizUrl>quickcheckout</@ofbizUrl>">[${uiLabelMap.OrderCheckoutQuick}]</a>
+      <li class="list-inline-item">
+        <a href="<@ofbizUrl>checkoutoptions</@ofbizUrl>">${uiLabelMap.OrderCheckoutQuick}</a>
       </li>
-      <li class="list-inline-item disabled" id="quickCheckoutDisabled" style="display:none">
-        [${uiLabelMap.OrderCheckoutQuick}]
+      <li class="list-inline-item">
+        <a href="<@ofbizUrl>createCustRequestFromCart</@ofbizUrl>">${uiLabelMap.OrderCreateCustRequestFromCart}</a>
       </li>
-      <li class="list-inline-item" id="onePageCheckoutEnabled">
-        <a href="<@ofbizUrl>onePageCheckout</@ofbizUrl>">[${uiLabelMap.EcommerceOnePageCheckout}]</a>
-      </li>
-      <li class="list-inline-item disabled" id="onePageCheckoutDisabled" style="display:none">
-        [${uiLabelMap.EcommerceOnePageCheckout}]
-      </li>
-      <#if shoppingCart?has_content && (shoppingCart.getGrandTotal() > 0)>
-        <li class="list-inline-item" id="microCartPayPalCheckout">
-          <a href="<@ofbizUrl>setPayPalCheckout</@ofbizUrl>">
-            <img src="https://www.paypal.com/${initialLocaleComplete}/i/btn/btn_xpressCheckout.gif"
-                alt="[PayPal Express Checkout]"
-                onError="this.onerror=null;this.src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'"/>
-          </a>
-        </li>
-      </#if>
     <#else>
-      <li class="list-inline-item disabled">[${uiLabelMap.OrderCheckoutQuick}]</li>
-      <li class="list-inline-item disabled">[${uiLabelMap.EcommerceOnePageCheckout}]</li>
+      <li class="list-inline-item disabled text-muted">${uiLabelMap.OrderCheckoutQuick}</li>
+      <li class="list-inline-item disabled text-muted">${uiLabelMap.OrderCreateCustRequestFromCart}</li>
     </#if>
   </ul>
 </div>
