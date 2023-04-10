@@ -42,9 +42,9 @@ under the License.
         </div>
     </div>
     <div class="card-body">
-      <ul class="list-unstyled">
+      <ul class="list-group list-group-flush">
         <#list lastViewedProducts[0..limit] as productId>
-          <li>
+          <li class="list-group-item">
             ${setRequestAttribute("miniProdQuantity", "1")}
             ${setRequestAttribute("optProductId", productId)}
             ${setRequestAttribute("miniProdFormName", "lastviewed" + productId_index + "form")}

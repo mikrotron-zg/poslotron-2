@@ -28,34 +28,38 @@ under the License.
   <div id="minilastviewedcategories" class="card">
     <div class="card-header">
       ${uiLabelMap.EcommerceLastCategories}
-      <a href="<@ofbizUrl>clearLastViewed</@ofbizUrl>" class="float-right">[${uiLabelMap.CommonClear}]</a>
+      <div class="float-right">
+        <h6>
+          <a href="<@ofbizUrl>clearLastViewed</@ofbizUrl>" class="badge badge-lg badge-secondary">
+            ${uiLabelMap.CommonClear}
+          </a>
+        </h6>
+      </div>
     </div>
     <div class="card-body">
-      <ul class="browsecategorylist">
+      <ul class="list-group list-group-flush">
         <#list lastViewedCategories[0..limit] as categoryId>
           <#assign category = delegator.findOne("ProductCategory",
               Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("productCategoryId", categoryId), true)!>
           <#if category?has_content>
-            <li class="browsecategorytext">
-              <#if catContentWrappers?? && catContentWrappers[category.productCategoryId]?? &&
-                  catContentWrappers[category.productCategoryId].get("CATEGORY_NAME", "html")??>
-                <a href="<@ofbizCatalogAltUrl productCategoryId=categoryId/>"
-                    class="browsecategorybutton">
-                  ${catContentWrappers[category.productCategoryId].get("CATEGORY_NAME", "html")}
-                </a>
-              <#elseif catContentWrappers?? && catContentWrappers[category.productCategoryId]?? &&
-                  catContentWrappers[category.productCategoryId].get("DESCRIPTION", "html")??>
-                <a href="<@ofbizCatalogAltUrl productCategoryId=categoryId/>"
-                    class="browsecategorybutton">
-                  ${catContentWrappers[category.productCategoryId].get("DESCRIPTION", "html")}
-                </a>
-              <#else>
-                <a href="<@ofbizCatalogAltUrl productCategoryId=categoryId/>"
-                    class="browsecategorybutton">
-                  ${category.description?default(categoryId)!}
-                </a>
-              </#if>
-            </li>
+            <#if catContentWrappers?? && catContentWrappers[category.productCategoryId]?? &&
+                catContentWrappers[category.productCategoryId].get("CATEGORY_NAME", "html")??>
+              <a href="<@ofbizCatalogAltUrl productCategoryId=categoryId/>"
+                  class="list-group-item">
+                ${catContentWrappers[category.productCategoryId].get("CATEGORY_NAME", "html")}
+              </a>
+            <#elseif catContentWrappers?? && catContentWrappers[category.productCategoryId]?? &&
+                catContentWrappers[category.productCategoryId].get("DESCRIPTION", "html")??>
+              <a href="<@ofbizCatalogAltUrl productCategoryId=categoryId/>"
+                  class="list-group-item">
+                ${catContentWrappers[category.productCategoryId].get("DESCRIPTION", "html")}
+              </a>
+            <#else>
+              <a href="<@ofbizCatalogAltUrl productCategoryId=categoryId/>"
+                  class="list-group-item">
+                ${category.description?default(categoryId)!}
+              </a>
+            </#if>
           </#if>
         </#list>
       </ul>
