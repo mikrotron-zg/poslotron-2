@@ -20,21 +20,27 @@ under the License.
   <a href="<@ofbizCatalogAltUrl productId=miniProduct.productId/>" class="linktext">
     ${miniProductContentWrapper.get("PRODUCT_NAME", "html")?default("No Name Available")}
   </a>
-  <ul class="list-unstyled">
+  <ul class="list-unstyled mb-3">
     <li>
-      ${miniProduct.productId}
+      <span class="text-muted font-italic">${miniProduct.productId}</span>
       <#if (priceResult.price?default(0) > 0 && "N" == miniProduct.requireAmount?default("N"))>
         <#if "Y" = miniProduct.isVirtual!>
           ${uiLabelMap.CommonFrom}
         </#if>
         <#if totalPrice??>
             ${uiLabelMap.ProductAggregatedPrice}:
-            <span class='basePrice'>
+            <span class="basePrice">
               <@ofbizCurrency amount=totalPrice isoCode=priceResult.currencyUsed/>
+            </span>
+            <span class="text-muted">
+              &nbsp;(<@ofbizCurrency amount=totalPrice*7.5345 isoCode="HRK"/>)
             </span>
         <#else>
           <span class="<#if priceResult.isSale>salePrice<#else>normalPrice</#if>">
           <@ofbizCurrency amount=price isoCode=priceResult.currencyUsed/></span>
+          <span class="text-muted">
+            &nbsp;(<@ofbizCurrency amount=price*7.5345 isoCode="HRK"/>)
+          </span>
         </#if>
       </#if>
     </li>
@@ -82,9 +88,9 @@ under the License.
               <input type="hidden" name="VIEW_SIZE" value="${requestParameters.VIEW_SIZE}"/>
             </#if>
             <input type="hidden" name="clearSearch" value="N"/>
-            <a href="javascript:document.${miniProdFormName}.submit()" class="buttons">
+            <a href="javascript:document.${miniProdFormName}.submit()" class="badge badge-primary">
               <span style="white-space: nowrap;">
-                ${uiLabelMap.CommonAdd} ${miniProdQuantity} ${uiLabelMap.OrderToCart}
+                ${uiLabelMap.CommonAdd} <#--${miniProdQuantity}--> ${uiLabelMap.OrderToCart}
               </span>
             </a>
           </fieldset>

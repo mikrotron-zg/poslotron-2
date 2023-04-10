@@ -29,18 +29,20 @@ under the License.
     <div class="card-header">
         ${uiLabelMap.EcommerceLastProducts}
         <div class="float-right">
-          <a href="<@ofbizUrl>clearLastViewed</@ofbizUrl>">
-            [${uiLabelMap.CommonClear}]
-          </a>
-          <#if (lastViewedProducts?size > maxToShow)>
-              <a href="<@ofbizUrl>lastviewedproducts</@ofbizUrl>">
-                [${uiLabelMap.CommonMore}]
-              </a>
-          </#if>
+          <h6>
+            <a href="<@ofbizUrl>clearLastViewed</@ofbizUrl>" class="badge badge-lg badge-secondary">
+              ${uiLabelMap.CommonClear}
+            </a>
+            <#if (lastViewedProducts?size > maxToShow)>
+                <a href="<@ofbizUrl>lastviewedproducts</@ofbizUrl>" class="badge badge-lg badge-secondary">
+                  ${uiLabelMap.CommonMore}
+                </a>
+            </#if>
+          </h6>
         </div>
     </div>
     <div class="card-body">
-      <ul>
+      <ul class="list-unstyled">
         <#list lastViewedProducts[0..limit] as productId>
           <li>
             ${setRequestAttribute("miniProdQuantity", "1")}
