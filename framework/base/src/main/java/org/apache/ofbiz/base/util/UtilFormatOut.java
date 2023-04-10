@@ -124,7 +124,7 @@ public final class UtilFormatOut {
      * @return A String with the formatted price
      */
     public static String formatCurrency(double price, String isoCode, Locale locale, int maximumFractionDigits) {
-    	String retValue = "";
+        String retValue = "";
         com.ibm.icu.text.NumberFormat nf = com.ibm.icu.text.NumberFormat.getCurrencyInstance(locale);
         if (isoCode != null && isoCode.length() > 1) {
             nf.setCurrency(com.ibm.icu.util.Currency.getInstance(isoCode));
@@ -137,14 +137,14 @@ public final class UtilFormatOut {
             nf.setMaximumFractionDigits(maximumFractionDigits);
         }
         retValue = nf.format(price);
-    	if (locale.toString().equals("hr")) {
-    		if (isoCode.toString().equals("EUR")) {
-    			return retValue.replace(isoCode.toString(), "€");
-    		}
-    		if (isoCode.toString().equals("HRK")) {
-    			return retValue.replace(isoCode.toString(), "kn");
-    		}
-    	}
+        if (locale.toString().equals("hr")) {
+            if (isoCode.toString().equals("EUR")) {
+                return retValue.replace(isoCode.toString(), "€");
+            }
+            if (isoCode.toString().equals("HRK")) {
+                return retValue.replace(isoCode.toString(), "kn");
+            }
+        }
         return retValue;
     }
 
