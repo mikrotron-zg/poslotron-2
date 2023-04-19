@@ -26,32 +26,43 @@ under the License.
 
 <div id="minicart" class="card">
   <div class="card-header">
-  ${uiLabelMap.OrderCartSummary}
+    ${uiLabelMap.OrderCartSummary}
+    <#if (shoppingCartSize > 0)>
+      <div class="float-right">
+        <h6>
+          <a href="<@ofbizUrl>view/showcart</@ofbizUrl>" class="badge badge-lg badge-secondary">
+            ${uiLabelMap.CommonEdit}
+          </a>
+        </h6>
+      </div>
+    </#if>
   </div>
   <div class="card-body">
   <#if (shoppingCartSize > 0)>
-    <#if hidetoplinks?default("N") != "Y">
-      <ul>
-        <li><a href="<@ofbizUrl>view/showcart</@ofbizUrl>" class="button">${uiLabelMap.OrderViewCart}</a></li>
-        <li><a href="<@ofbizUrl>checkoutoptions</@ofbizUrl>" class="button">${uiLabelMap.OrderCheckout}</a></li>
-        <li><a href="<@ofbizUrl>quickcheckout</@ofbizUrl>" class="button">${uiLabelMap.OrderCheckoutQuick}</a></li>
-        <li><a href="<@ofbizUrl>onePageCheckout</@ofbizUrl>" class="button">${uiLabelMap.EcommerceOnePageCheckout}</a></li>
-      </ul>
-    </#if>
     <table class="table">
       <thead>
-      <tr>
-        <th>${uiLabelMap.OrderQty}</th>
-        <th>${uiLabelMap.OrderItem}</th>
-        <th>${uiLabelMap.CommonSubtotal}</th>
-      </tr>
+        <tr>
+          <th>${uiLabelMap.OrderQty}</th>
+          <th>${uiLabelMap.OrderItem}</th>
+          <th>${uiLabelMap.CommonSubtotal}</th>
+        </tr>
       </thead>
       <tfoot>
-      <tr>
-        <td colspan="3">
-        ${uiLabelMap.OrderTotal}: <@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/>
-        </td>
-      </tr>
+        <tr>
+          <td colspan="3">
+            <span class="font-weight-bold float-right">
+              ${uiLabelMap.OrderTotal}: <@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/>
+            </span>
+            <br/>
+            <span class="text-muted float-right">
+              (<@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal()*7.5345 isoCode="HRK"/>)
+            </span>
+            <br/>
+            <span class="text-muted small float-right">
+              Fiksni tečaj konverzije: 1€ = 7,53450kn
+            </span>
+          </td>
+        </tr>
       </tfoot>
       <tbody>
         <#list shoppingCart.items() as cartLine>
@@ -76,14 +87,7 @@ under the License.
         </#list>
       </tbody>
     </table>
-    <#if hidebottomlinks?default("N") != "Y">
-      <ul>
-        <li><a href="<@ofbizUrl>view/showcart</@ofbizUrl>" class="button">${uiLabelMap.OrderViewCart}</a></li>
-        <li><a href="<@ofbizUrl>checkoutoptions</@ofbizUrl>" class="button">${uiLabelMap.OrderCheckout}</a></li>
-        <li><a href="<@ofbizUrl>quickcheckout</@ofbizUrl>" class="button">${uiLabelMap.OrderCheckoutQuick}</a></li>
-        <li><a href="<@ofbizUrl>onePageCheckout</@ofbizUrl>" class="button">${uiLabelMap.EcommerceOnePageCheckout}</a></li>
-      </ul>
-    </#if>
+    <a href="<@ofbizUrl>checkoutoptions</@ofbizUrl>" class="btn btn-outline-primary float-right">${uiLabelMap.OrderCheckoutQuick}</a>
   <#else>
     <p>${uiLabelMap.OrderShoppingCartEmpty}</p>
   </#if>
