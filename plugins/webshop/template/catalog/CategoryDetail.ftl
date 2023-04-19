@@ -138,7 +138,7 @@
           </#if>
           class="productsummary-container<#if (numCol?int > 1)> matrix</#if>">
 
-            <div class="row row-eq-height col-eq-width">
+            <div class="row row-eq-height">
               <#list productCategoryMembers as productCategoryMember>
                 <#if (numCol?int == 1)>
                   ${setRequestAttribute("optProductId", productCategoryMember.productId)}

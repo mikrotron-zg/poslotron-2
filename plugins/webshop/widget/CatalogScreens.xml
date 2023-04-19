@@ -216,6 +216,7 @@ under the License.
             <actions>
                 <set field="productsummaryScreen" value="component://ecommerce/widget/CatalogScreens.xml#productsummary"/>
                 <set field="productCategoryLinkScreen" value="component://ecommerce/widget/CatalogScreens.xml#ProductCategoryLink"/>
+                <set field="parameters.VIEW_SIZE" from-field="parameters.VIEW_SIZE" default-value="20"/>
 
                 <script location="component://order/groovyScripts/entry/catalog/CategoryDetail.groovy"/>
 
