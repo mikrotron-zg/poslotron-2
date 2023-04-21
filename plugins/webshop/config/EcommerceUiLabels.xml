@@ -5509,4 +5509,12 @@
         <value xml:lang="nl">Bedankt dat u contact met ons opnam.</value>
         <value xml:lang="zh">感谢您与我们联系！</value>
     </property>
+    <property key="EcommerceContact">
+        <value xml:lang="en">Contact</value>
+        <value xml:lang="hr">Kontakt</value>
+    </property>
+    <property key="EcommerceFAQ">
+        <value xml:lang="en">FAQ</value>
+        <value xml:lang="hr">FAQ</value>
+    </property>
 </resource>

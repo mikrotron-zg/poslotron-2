@@ -76,48 +76,53 @@ $(document).ready(function() {
   </button>
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
-      <#if userLogin?has_content && userLogin.userLoginId != "anonymous">
+      <li class="nav-item">
+        <a class="nav-link" href="<@ofbizUrl>main</@ofbizUrl>"><span class="bi-house-fill h5"></span>&nbsp;${uiLabelMap.CommonMain}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<@ofbizUrl>advancedsearch</@ofbizUrl>"><span class="bi-search h5"></span>&nbsp;${uiLabelMap.CommonSearch}</a>
+      </li>
+      <#if !userLogin?has_content || userLogin.userLoginId == "anonymous">
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>logout</@ofbizUrl>">${uiLabelMap.CommonLogout}</a>
+          <a class="nav-link" href="<@ofbizUrl>${checkLoginUrl}</@ofbizUrl>"><span class="bi-person-fill-check h5"></span>&nbsp;${uiLabelMap.CommonLogin}</a>
         </li>
-      <#else>
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>${checkLoginUrl}</@ofbizUrl>">${uiLabelMap.CommonLogin}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>newcustomer</@ofbizUrl>">${uiLabelMap.EcommerceRegister}</a>
+          <a class="nav-link" href="<@ofbizUrl>newcustomer</@ofbizUrl>"><span class="bi-person-fill-add h5"></span>&nbsp;${uiLabelMap.EcommerceRegister}</a>
         </li>
       </#if>
       <li class="nav-item">
-        <#if userLogin?has_content && userLogin.userLoginId != "anonymous">
-          <a class="nav-link" href="<@ofbizUrl>contactus</@ofbizUrl>">${uiLabelMap.CommonContactUs}</a>
-        <#else>
-          <a class="nav-link" href="<@ofbizUrl>AnonContactus</@ofbizUrl>">${uiLabelMap.CommonContactUs}</a>
-        </#if>
+        <a class="nav-link" href="<@ofbizUrl>faq</@ofbizUrl>"><span class="bi-question-circle-fill h5"></span>&nbsp;${uiLabelMap.EcommerceFAQ}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<@ofbizUrl>main</@ofbizUrl>">${uiLabelMap.CommonMain}</a>
+        <#if userLogin?has_content && userLogin.userLoginId != "anonymous">
+          <a class="nav-link" href="<@ofbizUrl>contactus</@ofbizUrl>"><span class="bi-envelope-fill h5"></span>&nbsp;${uiLabelMap.EcommerceContact}</a>
+        <#else>
+          <a class="nav-link" href="<@ofbizUrl>AnonContactus</@ofbizUrl>"><span class="bi-envelope-fill h5"></span>&nbsp;${uiLabelMap.EcommerceContact}</a>
+        </#if>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <#if !userLogin?has_content || (userLogin.userLoginId)! != "anonymous">
+      <#if userLogin?has_content && (userLogin.userLoginId)! != "anonymous">
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>viewprofile</@ofbizUrl>">${uiLabelMap.CommonProfile}</a>
+          <a class="nav-link" href="<@ofbizUrl>viewprofile</@ofbizUrl>"><span class="bi-person-lines-fill h5"></span>&nbsp;${uiLabelMap.CommonProfile}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>messagelist</@ofbizUrl>">${uiLabelMap.CommonMessages}</a>
+          <a class="nav-link" href="<@ofbizUrl>messagelist</@ofbizUrl>"><span class="bi-envelope-at-fill h5"></span>&nbsp;${uiLabelMap.CommonMessages}</a>
         </li>
-        <li class="nav-item">
+        <#--<li class="nav-item">
           <a class="nav-link" href="<@ofbizUrl>ListQuotes</@ofbizUrl>">${uiLabelMap.OrderOrderQuotes}</a>
-        </li>
+        </li>-->
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>ListRequests</@ofbizUrl>">${uiLabelMap.OrderRequests}</a>
+          <a class="nav-link" href="<@ofbizUrl>ListRequests</@ofbizUrl>"><span class="bi-file-earmark-text-fill h5"></span>&nbsp;${uiLabelMap.OrderRequests}</a>
         </li>
-        <li class="nav-item">
+        <#--<li class="nav-item">
           <a class="nav-link" href="<@ofbizUrl>editShoppingList</@ofbizUrl>">${uiLabelMap.EcommerceShoppingLists}</a>
+        </li>-->
+        <li class="nav-item">
+          <a class="nav-link" href="<@ofbizUrl>orderhistory</@ofbizUrl>"><span class="bi-clock-history h5"></span>&nbsp;${uiLabelMap.EcommerceOrderHistory}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<@ofbizUrl>orderhistory</@ofbizUrl>">${uiLabelMap.EcommerceOrderHistory}</a>
+          <a class="nav-link" href="<@ofbizUrl>logout</@ofbizUrl>"><span class="bi-person-fill-x h5"></span>&nbsp;${uiLabelMap.CommonLogout}</a>
         </li>
       </#if>
       <#if catalogQuickaddUse>
