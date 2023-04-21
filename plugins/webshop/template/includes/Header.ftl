@@ -125,6 +125,9 @@ $(document).ready(function() {
           <a class="nav-link" href="<@ofbizUrl>logout</@ofbizUrl>"><span class="bi-person-fill-x h5"></span>&nbsp;${uiLabelMap.CommonLogout}</a>
         </li>
       </#if>
+      <li>
+        ${screens.render("component://ecommerce/widget/CommonScreens.xml#microlanguage")}
+      </li>
       <#if catalogQuickaddUse>
         <li class="nav-item"><a class="nav-link" href="<@ofbizUrl>quickadd</@ofbizUrl>">${uiLabelMap.CommonQuickAdd}</a></li>
       </#if>

@@ -310,6 +310,13 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="microlanguage">
+        <section>
+            <widgets>
+                <platform-specific><html><html-template location="component://ecommerce/template/includes/MicroLanguage.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
 
     <!-- Top Level Screens -->
     <screen name="main">
