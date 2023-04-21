@@ -115,7 +115,8 @@ input[type=number] {
 }
 
 .footer-block {
-    background: #f8f9fa;
+    color: #6f6f6f;
+    background: #f0f0f0;
 }
 
 .cart-image {

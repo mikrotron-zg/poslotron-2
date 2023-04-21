@@ -20,24 +20,16 @@ under the License.
 <#assign nowTimestamp = Static["org.apache.ofbiz.base.util.UtilDateTime"].nowTimestamp()>
 
 <div class="footer-block">
-<div class="d-flex justify-content-between">
-  <div class="p-2">
-    <a href="//jigsaw.w3.org/css-validator/">
-      <img style="border:0;width:88px;height:31px" src="<@ofbizContentUrl>/images/vcss.gif</@ofbizContentUrl>" alt="Valid CSS!"/>
-    </a>
-    <a href="//validator.w3.org/check?uri=referer">
-      <img src="<@ofbizContentUrl>/images/valid-xhtml10.png</@ofbizContentUrl>" alt="Valid XHTML 1.0!"/>
-    </a>
-  </div>
   <div class="p-2 text-center">
-    <a href="//ofbiz.apache.org">${uiLabelMap.EcommerceAboutUs}</a>
-    <div>Copyright &copy; 2001-${nowTimestamp?string("yyyy")} The Apache Software Foundation -
-      <a href="//www.apache.org">www.apache.org</a>
-    </div>
+    <a href="<@ofbizUrl>aboutus</@ofbizUrl>">${uiLabelMap.EcommerceAboutUs}</a> - 
+    <a href="<@ofbizUrl>policies</@ofbizUrl>">${uiLabelMap.EcommerceSeeStorePoliciesHere}</a>
+    <div>Poslotron 2.0 by <a href="http://www.mikrotron.hr">Mikrotron</a></div>
     <div>Powered by <a href="//ofbiz.apache.org">Apache OFBiz</a></div>
+    <hr style="height:1px;border-width:0;color:#C0C0C0;background-color:#C0C0C0;">
+    <div class="small">
+        Naziv tvrtke: MIKROTRON društvo s ograničenom odgovornošću za trgovinu i usluge • Skraćeni naziv: MIKROTRON d.o.o. • 
+        Sudski registar: Trgovački sud u Zagrebu • MBS: 080923147 • MB: 4251717 • Temeljni kapital: 20.000,00 kn uplaćen u cijelosti • 
+        Uprava društva: Josip Almaši, Tomislav Preksavec • OIB: 43227166836 • Poslovni račun kod: Privredna banka d.d. Zagreb • IBAN: HR8023400091110675464
+      </div>
   </div>
-  <div class="p-2">
-    <div><a href="<@ofbizUrl>policies</@ofbizUrl>">${uiLabelMap.EcommerceSeeStorePoliciesHere}</a></div>
-  </div>
-</div>
 </div>
