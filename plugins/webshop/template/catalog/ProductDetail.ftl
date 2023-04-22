@@ -311,8 +311,6 @@ ${variantInfoJavaScript!}
     </div>
   </#if>
 
-  <hr/>
-
   <div class="card-body">
     <div class="row">
       <div class="col-lg-4">
@@ -359,9 +357,10 @@ ${variantInfoJavaScript!}
           <#assign productLargeImageUrl = firstLargeImage />
         </#if>
         <#if productLargeImageUrl?string?has_content>
+          <#--FIXME: this pop-up does not work-->
           <a href="javascript:popupDetail();">
             <img id="detailImage" src="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>"
-                name="mainImage" vspace="5" hspace="5" class="cssImgXLarge" alt=""/>
+                name="mainImage" vspace="5" hspace="5" class="cssImgXLarge img-fluid" alt=""/>
           </a>
           <input type="hidden" id="originalImage" name="originalImage"
               value="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>"/>
@@ -370,7 +369,7 @@ ${variantInfoJavaScript!}
           <img id="detailImage" src="/images/defaultImage.jpg" name="mainImage" alt=""/>
         </#if>
       </div>
-      <div id="additionalImageBox">
+      <#--<div id="additionalImageBox">
         <#if productAdditionalImage1?string?has_content>
           <div class="additionalImage">
             <a href="javascript:void(0);"
@@ -407,13 +406,15 @@ ${variantInfoJavaScript!}
             </a>
           </div>
         </#if>
-      </div>
+      </div>-->
     </#if>
     </div>
-    <div class="col-lg-8">
+
+    <div class="col-lg-8 text-secondary">
       <h2>${productContentWrapper.get("PRODUCT_NAME", "html")!}</h2>
+      <hr>
       <p>${productContentWrapper.get("DESCRIPTION", "html")!}</p>
-      <p>${product.productId!}</p>
+      <p class="font-italic">ID: ${product.productId!}</p>
       <#-- example of showing a certain type of feature with the product -->
       <#if sizeProductFeatureAndAppls?has_content>
         <div>
