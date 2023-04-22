@@ -25,7 +25,7 @@ under the License.
     <a href="<@ofbizUrl>policies</@ofbizUrl>">${uiLabelMap.EcommerceSeeStorePoliciesHere}</a>
     <div>Poslotron 2.0 by <a href="http://www.mikrotron.hr">Mikrotron</a></div>
     <div>Powered by <a href="//ofbiz.apache.org">Apache OFBiz</a></div>
-    <hr style="height:1px;border-width:0;color:#C0C0C0;background-color:#C0C0C0;">
+    <hr>
     <div class="small">
         Naziv tvrtke: MIKROTRON društvo s ograničenom odgovornošću za trgovinu i usluge • Skraćeni naziv: MIKROTRON d.o.o. • 
         Sudski registar: Trgovački sud u Zagrebu • MBS: 080923147 • MB: 4251717 • Temeljni kapital: 20.000,00 kn uplaćen u cijelosti • 

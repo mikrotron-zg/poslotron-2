@@ -32,6 +32,13 @@ a.btn-primary {
     color:white!important;
 }
 
+hr {
+    color:#6f6f6f;
+    background-color:#6f6f6f;
+    height:1px;
+    border-width:0;
+}
+
 .border-primary {
     border: 1px solid #f07c00;
 }
