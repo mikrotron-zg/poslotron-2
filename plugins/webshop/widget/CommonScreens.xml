@@ -420,6 +420,29 @@ under the License.
         </section>
     </screen>
 
+    <screen name="aboutus">
+        <section>
+            <actions>
+                <set field="partyId" value="10000"/>
+                <set field="parameters.partyId" value="10000"/>
+                <script location="component://order/groovyScripts/order/CompanyHeader.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="left-column">
+                        <include-screen name="leftbar"/>
+                    </decorator-section>
+                    <decorator-section name="body">
+                      <platform-specific><html><html-template location="component://ecommerce/template/content/AboutUs.ftl"/></html></platform-specific>
+                    </decorator-section>
+                    <decorator-section name="right-column">
+                        <include-screen name="rightbar"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
     <screen name="policies">
         <section>
             <widgets>
