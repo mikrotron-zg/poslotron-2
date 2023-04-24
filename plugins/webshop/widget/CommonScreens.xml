@@ -447,9 +447,16 @@ under the License.
         <section>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="left-column">
+                        <include-screen name="leftbar"/>
+                    </decorator-section>
                     <decorator-section name="body">
-                        <sub-content content-id="WebStoreCONTENT" map-key="policies"/>
-                        <sub-content content-id="WebStoreCONTENT" map-key="policies2"/>
+                        <platform-specific><html><html-template location="component://ecommerce/template/content/Policies.ftl"/></html></platform-specific>
+                        <!--<sub-content content-id="WebStoreCONTENT" map-key="policies"/>
+                        <sub-content content-id="WebStoreCONTENT" map-key="policies2"/>-->
+                    </decorator-section>
+                    <decorator-section name="right-column">
+                        <include-screen name="rightbar"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
