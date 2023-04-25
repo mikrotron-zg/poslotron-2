@@ -16,11 +16,13 @@ under the License.
 
 <div class="card">
   <div class="card-header">
-    <#if (locale == "hr")>
-      Opći uvjeti poslovanja
-    <#else>
-      Store policies
-    </#if>
+    <b>
+      <#if (locale == "hr")>
+        Opći uvjeti poslovanja
+      <#else>
+        Store policies
+      </#if>
+    </b>
   </div>
 
   <div class="card-body text-secondary">
@@ -48,7 +50,7 @@ under the License.
             <a href="#privacy"><li class="mb-1">Privacy Statement</li></a>
           </ol>
       </#if>
-  </div>
+    </div>
     <ul class="list-group list-group-flush">
       <li id="general" class="list-group-item">
         <#if (locale == "hr")>
@@ -166,7 +168,7 @@ under the License.
           <p>
             Nakon izdavanja narudžbe, roba po narudžbi je rezervirana. Ukoliko ste naručili robu koju trenutno nemamo 
             na skladištu ili u količini većoj nego što je trenutno raspoloživa, kontaktirati ćemo Vas kako bi se 
-            dogovorili o roku i načinu isporuke. Narudžbenica je važeća sedam dana, nakon toga ćemo ju stornirati 
+            dogovorili o roku i načinu isporuke. Narudžbenica je važeća 14 dana, nakon toga ćemo ju stornirati 
             bez prethodne obavijesti. Ako ne želite da se to dogodi, molimo Vas da nas kontaktirate prije
             isteka gore navedenog roka. Skladište se razdužuje kada primimo uplatu i izdamo račun. 
           </p>
@@ -175,7 +177,7 @@ under the License.
           <p>
             After placing the order, the ordered goods are reserved. If you have ordered goods that we do not currently have
             in stock or in a larger quantity than is currently available, we will contact you to agree on the delivery date 
-            and method. The purchase order is valid for seven days, after which we will cancel it without prior notice. 
+            and method. The purchase order is valid for 14 days, after which we will cancel it without prior notice. 
             If you do not want this to happen, please contact us before the above deadline expires. The goods are 
             discharged from the warehouse when we receive the payment and issue an invoice.
           </p>
