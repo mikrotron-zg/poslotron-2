@@ -5517,4 +5517,8 @@
         <value xml:lang="en">FAQ</value>
         <value xml:lang="hr">FAQ</value>
     </property>
+    <property key="EcommerceFaqFull">
+        <value xml:lang="en">Frequently Asked Questions</value>
+        <value xml:lang="hr">Česta pitanja</value>
+    </property>
 </resource>
