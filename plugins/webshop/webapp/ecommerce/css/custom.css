@@ -33,10 +33,18 @@ a.btn-primary {
 }
 
 hr {
-    color:#6f6f6f;
-    background-color:#6f6f6f;
+    background-color:#c0c0c0;
     height:1px;
-    border-width:0;
+    border: none;
+}
+
+#detailImage {
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+}
+
+.modal {
+    text-align: center;
 }
 
 .border-primary {

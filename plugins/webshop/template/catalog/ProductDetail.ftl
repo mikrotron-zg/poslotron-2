@@ -354,16 +354,35 @@ ${variantInfoJavaScript!}
             <#assign productLargeImageUrl = productContentWrapper.get("LARGE_IMAGE_URL", "url")! />
             <#-- remove the next two lines to always display the virtual image first (virtual images must exist) -->
             <#if firstLargeImage?has_content>
-            <#assign productLargeImageUrl = firstLargeImage />
+              <#assign productLargeImageUrl = firstLargeImage />
             </#if>
             <#if productLargeImageUrl?string?has_content>
-            <#--FIXME: this pop-up does not work-->
-            <a href="javascript:popupDetail();">
-            <img id="detailImage" src="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>"
-            name="mainImage" vspace="5" hspace="5" class="cssImgXLarge img-fluid" alt=""/>
-            </a>
-            <input type="hidden" id="originalImage" name="originalImage"
-            value="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>"/>
+              <img id="detailImage" src="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>"
+                data-toggle="modal" data-target="#imageModal" 
+                name="mainImage" vspace="5" hspace="5" class="cssImgXLarge img-fluid" alt=""/>
+              <#-- Modal pop-up for image -->
+              <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header text-secondary">
+                      <div class="modal-title w-100">
+                        <h6>${productContentWrapper.get("PRODUCT_NAME", "html")!}</h6>
+                        <span class="font-italic small">ID: ${product.productId!}</span>
+                      </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">
+                            x
+                          </span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    <img src="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>" 
+                      class="w-100"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </#if>
             <#if !productLargeImageUrl?string?has_content>
             <img id="detailImage" src="/images/defaultImage.jpg" name="mainImage" alt=""/>
