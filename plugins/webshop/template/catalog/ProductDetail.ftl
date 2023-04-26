@@ -385,7 +385,7 @@ ${variantInfoJavaScript!}
               </div>
             </#if>
             <#if !productLargeImageUrl?string?has_content>
-            <img id="detailImage" src="/images/defaultImage.jpg" name="mainImage" alt=""/>
+            <img id="defaultDetailImage" src="/images/defaultImage.jpg" name="mainImage" alt=""/>
             </#if>
           </div>
           <#--<div id="additionalImageBox">
@@ -617,11 +617,10 @@ ${variantInfoJavaScript!}
         </#list>
         <div>&nbsp;</div>
       </#if>
-      <#-- FIXME: not working -->
-      <#if (availableInventory??) && (availableInventory > 0)>
-        <div class="text-info">${uiLabelMap.ProductQuantityOnHand}: ${availableInventory?string.number}</div>
+      <#if (productATP??) && (productATP > 0)>
+        <div class="text-info">${uiLabelMap.ProductQuantityOnHand}: ${productATP?string.number}</div>
       <#else>
-        <span class="text-danger">${uiLabelMap.FacilityNoItemsAvailableToShip} - ne radi!</span>
+        <span class="text-danger">${uiLabelMap.FacilityNoItemsAvailableToShip}</span>
       </#if>
       <div id="addItemForm">
         <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform" style="margin: 0;">
@@ -922,7 +921,7 @@ ${variantInfoJavaScript!}
   </div>
 
   <#-- Any attributes/etc may go here -->
-  <hr>
+
   <#-- Product Reviews -->
   <#--<div id="reviews">
     <h4>${uiLabelMap.OrderCustomerReviews}:</h4>
@@ -965,6 +964,7 @@ ${variantInfoJavaScript!}
       <#local targetRequest = targetRequestName />
     </#if>
     <#if assocProducts?has_content>
+      <hr>
       <h5 class="text-secondary">
         ${beforeName!}
         <#if "Y" == showName>${productContentWrapper.get("PRODUCT_NAME", "html")!}</#if>${afterName!}

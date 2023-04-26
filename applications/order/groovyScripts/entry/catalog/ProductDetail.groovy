@@ -222,6 +222,7 @@ if (product) {
 
         resultOutput = runService('getInventoryAvailableByFacility', [productId : productId, facilityId : facilityId, useCache : false])
         totalAvailableToPromise = resultOutput.availableToPromiseTotal
+		context.productATP = totalAvailableToPromise
         if (totalAvailableToPromise) {
             productFacility = from("ProductFacility").where("productId", productId, "facilityId", facilityId).cache(true).queryOne()
             context.daysToShip = productFacility?.daysToShip
