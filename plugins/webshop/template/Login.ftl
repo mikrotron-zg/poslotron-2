@@ -86,7 +86,7 @@ under the License.
     <div class="card-header">
       <h3>${uiLabelMap.CommonRegistered}</h3>
     </div>
-    <div class="card-block p-1 m-2">
+    <div class="card-block p-1 m-2 text-secondary">
       <form method="post" action="<@ofbizUrl>login</@ofbizUrl>" name="loginform">
         <div class="form-group">
           <label for="userName">${uiLabelMap.CommonUsername}</label>
@@ -102,9 +102,9 @@ under the License.
         <div class="form-group">
           <input type="submit" class="btn btn-primary btn-block " value="${uiLabelMap.CommonLogin}"/>
         </div>
-        <div class="form-group">
-          <label for="newcustomer_submit">${uiLabelMap.CommonMayCreateNewAccountHere}:
-            <a href="<@ofbizUrl>newcustomer</@ofbizUrl>">${uiLabelMap.CommonMayCreate}</a>
+        <div class="form-group text-center pt-2">
+          <label for="newcustomer_submit">${uiLabelMap.CommonMayCreateNewAccountHere}:<br>
+            <a href="<@ofbizUrl>newcustomer</@ofbizUrl>">${uiLabelMap.EcommerceRegister}</a>
           </label>
         </div>
       </form>
