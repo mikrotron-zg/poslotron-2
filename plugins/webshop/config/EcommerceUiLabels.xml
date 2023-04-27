@@ -5521,4 +5521,15 @@
         <value xml:lang="en">Frequently Asked Questions</value>
         <value xml:lang="hr">Česta pitanja</value>
     </property>
+    <property key="EcommerceCaptchaMissingError">
+        <value xml:lang="en">Verify code captcha is missing or wrong</value>
+        <value xml:lang="fr">Vérifier le code captcha, il est absent ou erroné</value>
+        <value xml:lang="hr">Captcha kod je pogrešan ili nedostaje</value>
+        <value xml:lang="it">Verifica il codice captcha, è mancante o errato</value>
+        <value xml:lang="ja">確認コードキャプチャが正しくありません</value>
+        <value xml:lang="th">รหัสตัวเลขที่ท่านกรอกมีข้อผิดพลาด</value>
+        <value xml:lang="vi">Mã ảnh xác nhận bị thiếu hoặc bị sai</value>
+        <value xml:lang="zh">缺少验证码或验证码错误</value>
+        <value xml:lang="zh-TW">沒有驗證碼或是錯誤</value>
+    </property>
 </resource>

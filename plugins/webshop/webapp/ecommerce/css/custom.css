@@ -32,6 +32,10 @@ a.btn-primary {
     color:white!important;
 }
 
+textarea {
+    resize: none;
+}
+
 hr {
     background-color:#c0c0c0;
     height:1px;
