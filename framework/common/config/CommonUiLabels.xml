@@ -27,7 +27,7 @@
         <value xml:lang="es-MX">Compras</value>
         <value xml:lang="fr">Comptabilité fournisseurs</value>
         <value xml:lang="hi-IN">लेखा देय</value>
-        <value xml:lang="hr">Računovodstvo - ulazni računi</value>
+        <value xml:lang="hr">Ulazni računi</value>
         <value xml:lang="it">AP</value>
         <value xml:lang="ja">買掛(AP)</value>
         <value xml:lang="nl">Schulden</value>
@@ -46,7 +46,7 @@
         <value xml:lang="es-MX">Ventas</value>
         <value xml:lang="fr">Comptabilité clients</value>
         <value xml:lang="hi-IN">लेखा प्राप्य</value>
-        <value xml:lang="hr">Računovodstvo - izlazni računi</value>
+        <value xml:lang="hr">Izlazni računi</value>
         <value xml:lang="it">AR</value>
         <value xml:lang="ja">売掛(AR)</value>
         <value xml:lang="nl">Vorderingen</value>
@@ -7811,7 +7811,7 @@
         <value xml:lang="es">Nº</value>
         <value xml:lang="fr">N°</value>
         <value xml:lang="hi-IN">नं.</value>
-        <value xml:lang="hr">Br.</value>
+        <value xml:lang="hr">br.</value>
         <value xml:lang="it">n°</value>
         <value xml:lang="ja">No</value>
         <value xml:lang="nl">#</value>

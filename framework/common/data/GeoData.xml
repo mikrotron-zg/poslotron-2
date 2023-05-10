@@ -102,7 +102,7 @@ under the License.
     <Geo abbreviation="COK" geoCode="CK" geoId="COK" geoName="Cook Islands" geoSecCode="184" geoTypeId="COUNTRY"/>
     <Geo abbreviation="CRI" geoCode="CR" geoId="CRI" geoName="Costa Rica" geoSecCode="188" geoTypeId="COUNTRY"/>
     <Geo abbreviation="CIV" geoCode="CI" geoId="CIV" geoName="Cote D&apos;ivoire" geoSecCode="384" geoTypeId="COUNTRY"/>
-    <Geo abbreviation="HRV" geoCode="HR" geoId="HRV" geoName="Croatia (local Name: Hrvatska)" geoSecCode="191" geoTypeId="COUNTRY"/>
+    <Geo abbreviation="HRV" geoCode="HR" geoId="HRV" geoName="Hrvatska" geoSecCode="191" geoTypeId="COUNTRY"/>
     <Geo abbreviation="CUB" geoCode="CU" geoId="CUB" geoName="Cuba" geoSecCode="192" geoTypeId="COUNTRY"/>
     <Geo abbreviation="CUW" geoCode="CW" geoId="CUW" geoName="Curaçao" geoSecCode="531" geoTypeId="COUNTRY"/>
     <Geo abbreviation="CYP" geoCode="CY" geoId="CYP" geoName="Cyprus" geoSecCode="196" geoTypeId="COUNTRY"/>
