@@ -26,7 +26,7 @@ under the License.
           margin-top="10mm" margin-bottom="10mm"
           margin-left="15mm" margin-right="5mm">
         <#-- main body -->
-        <fo:region-body margin-top="70mm" margin-bottom="10mm"/>
+        <fo:region-body margin-top="65mm" margin-bottom="10mm"/>
         <#-- the header -->
         <fo:region-before extent="30mm"/>
         <#-- the footer -->
