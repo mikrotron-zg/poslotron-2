@@ -70,7 +70,7 @@ under the License.
                                     <widgets>
                                         <platform-specific>
                                             <xsl-fo>
-                                                <html-template location="component://order/template/order/OrderReportHeaderInfo.fo.ftl" />
+                                                <html-template location="component://ecommerce/template/order/OrderReportHeaderInfo.fo.ftl" />
                                             </xsl-fo>
                                         </platform-specific>
                                     </widgets>
