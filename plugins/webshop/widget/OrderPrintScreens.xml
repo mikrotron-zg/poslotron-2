@@ -88,7 +88,7 @@ under the License.
                                         <!-- order items and totals -->
                                         <platform-specific>
                                             <xsl-fo>
-                                                <html-template location="component://order/template/order/OrderReportBody.fo.ftl" />
+                                                <html-template location="component://ecommerce/template/order/OrderReportBody.fo.ftl" />
                                             </xsl-fo>
                                         </platform-specific>
                                         <!-- return policies and notes are shown in the last page
