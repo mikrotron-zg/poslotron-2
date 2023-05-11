@@ -64,7 +64,7 @@ under the License.
                   <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
                   <fo:block>
                       <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
-                      ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName!}</#if> ${postalAddress.postalCode!}
+                      ${postalAddress.postalCode!} ${postalAddress.city}
                   </fo:block>
                   <fo:block>
                       <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
