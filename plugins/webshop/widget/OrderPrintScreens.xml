@@ -183,7 +183,19 @@ under the License.
                     <decorator-section name="topLeft">
                         <section>
                             <widgets>
-                                <include-screen name="CompanyLogo" location="component://order/widget/ordermgr/OrderPrintScreens.xml"/>
+                                <include-screen name="CompanyLogo" location="component://ecommerce/widget/OrderPrintScreens.xml"/>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                    <!-- at the top right of every page we put the shipment information -->
+                    <decorator-section name="topRight">
+                        <section>
+                            <widgets>
+                                <platform-specific>
+                                    <xsl-fo>
+                                        <html-template location="component://ecommerce/template/order/ShipGroupsHeaderInfo.fo.ftl" />
+                                    </xsl-fo>
+                                </platform-specific>
                             </widgets>
                         </section>
                     </decorator-section>
@@ -191,7 +203,7 @@ under the License.
                         <section>
                             <widgets>
                                 <platform-specific>
-                                    <xsl-fo><html-template location="component://order/template/order/ShipGroups.fo.ftl"/></xsl-fo>
+                                    <xsl-fo><html-template location="component://ecommerce/template/order/ShipGroups.fo.ftl"/></xsl-fo>
                                 </platform-specific>
                             </widgets>
                         </section>
