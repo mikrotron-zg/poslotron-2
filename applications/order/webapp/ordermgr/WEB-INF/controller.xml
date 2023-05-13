@@ -2108,7 +2108,7 @@ under the License.
 
     <view-map name="FindQuote" type="screen" page="component://order/widget/ordermgr/QuoteScreens.xml#FindQuote"/>
     <view-map name="ViewQuote" type="screen" page="component://order/widget/ordermgr/QuoteScreens.xml#ViewQuote"/>
-    <view-map name="QuoteReport" type="screenfop" page="component://order/widget/ordermgr/QuoteScreens.xml#QuoteReport" content-type="application/pdf" encoding="none"/>
+    <view-map name="QuoteReport" type="screenfop" page="component://ecommerce/widget/QuoteScreens.xml#QuoteReport" content-type="application/pdf" encoding="none"/>
     <view-map name="EditQuote" type="screen" page="component://order/widget/ordermgr/QuoteScreens.xml#EditQuote"/>
     <view-map name="ListQuoteRoles" type="screen" page="component://order/widget/ordermgr/QuoteScreens.xml#ListQuoteRoles"/>
     <view-map name="EditQuoteRole" type="screen" page="component://order/widget/ordermgr/QuoteScreens.xml#EditQuoteRole"/>

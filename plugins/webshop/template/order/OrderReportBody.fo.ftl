@@ -196,6 +196,7 @@ under the License.
                     <fo:table-row>
                         <fo:table-cell number-columns-spanned="2"><fo:block></fo:block></fo:table-cell>
                         <fo:table-cell number-columns-spanned="3" padding-top="8pt" text-align="right">
+                            <#-- FIXME this should be formated in Groovy script -->
                             <#assign grandTotalCentsFormated="0000000012345">
                             <fo:block>
                                 <fo:instream-foreign-object>
