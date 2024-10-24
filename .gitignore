@@ -39,3 +39,4 @@ desktop.ini
 node_modules/
 /docs/asciidoc/images/
 themes/common-theme/webapp/images/products
+dev-tools/
