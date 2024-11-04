@@ -23,41 +23,54 @@
     <property key="HumanResRequiredFieldMissingTrainingClassTypeId">
         <value xml:lang="de">benötigter Eintrag fehlt: Weiterbildungsklasse Typ ID.</value>
         <value xml:lang="en">Required Field Missing : Training Class Type Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste obuke.</value>
     </property>
     <property key="HRRequiredFieldMissingDescription">
         <value xml:lang="en">Required Field Missing : Description.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Opis.</value>
     </property>
     <property key="HRRequiredFieldMissingEmployeePartyId">
         <value xml:lang="en">Required Field Missing : Employee Party Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje : Id zaposlenika.</value>
     </property>
     <property key="HRRequiredFieldMissingEmployeeRoleTypeId">
         <value xml:lang="en">Required Field Missing : Employee Role Type Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste uloge zaposlenika.</value>
     </property>
     <property key="HRRequiredFieldMissingPartyId">
         <value xml:lang="en">Required Field Missing : Party Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id sudionika.</value>
     </property>
     <property key="HRRequiredFieldMissingPartyQualTypeId">
         <value xml:lang="en">Required Field Missing : Party Qual Type Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste kvalifikacije sudionika.</value>
     </property>
     <property key="HRRequiredFieldMissingPeriodTypeId">
         <value xml:lang="en">Required Field Missing : Period Type Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste razdoblja.</value>
     </property>
     <property key="HRRequiredFieldMissingPostalAddContactMechPurpTypeId">
         <value xml:lang="en">Required Field Missing : Postal Address Contact Mech Purpose.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Svrha kontakt mehanizma poštanska adresa.</value>
     </property>
     <property key="HRRequiredFieldMissingPrefReviewID">
         <value xml:lang="en">Required Field Missing : Pref Review Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id pref recenzije.</value>
     </property>
     <property key="HRRequiredFieldMissingTrainingClassTypeId">
         <value xml:lang="en">Required Field Missing : Training Class Type Id.</value>
+    <value xml:lang="hr">Nedostaje obavezno polje: Id vrste obuke.</value>
     </property>
     <property key="HumanResHolidayNameMissing">
         <value xml:lang="en">The Holiday Name is missing.</value>
+    <value xml:lang="hr">Nedostaje naziv praznika.</value>
     </property>
     <property key="HumanResFromDateMissing">
         <value xml:lang="en">The FromDate is missing</value>
+    <value xml:lang="hr">Nedostaje Od datuma</value>
     </property>
     <property key="HumanResFromDateAlreadyExist">
         <value xml:lang="en">This FromDate : ${parameters.estimatedStartDate} already exist.</value>
+    <value xml:lang="hr">Ovaj datum početka: ${parameters.estimatedStartDate} već postoji.</value>
     </property>
 </resource>

@@ -23,6 +23,7 @@
         <value xml:lang="de">Doppelter Primärschlüssel. Der Primärschlüssel existiert bereits.</value>
         <value xml:lang="en">Duplicate Key. The Key already exist.</value>
         <value xml:lang="fr">Clé dupliquée. Cette valeur est déjà présente.</value>
+        <value xml:lang="hr">Duplicirani ključ. Ključ već postoji.</value>
         <value xml:lang="ja">重複キー。キーはすでに存在します。</value>
         <value xml:lang="ru">Ключ дубликат. Ключ уже существует.</value>
         <value xml:lang="vi">Khóa đã tồn tại và bị trùng.</value>
@@ -35,6 +36,7 @@
         <value xml:lang="es">Un error evita que el documento sea completamente analizado</value>
         <value xml:lang="fr">Une erreur empêche que le document soit entièrement analysé</value>
         <value xml:lang="hi-IN">त्रुटि दस्तावेज़ को पूरी तरह पार्स करने से रोक रही है</value>
+        <value xml:lang="hr">Pogreška sprječava potpunu analizu dokumenta</value>
         <value xml:lang="it">Errore previene il documento da essere completamente parsato</value>
         <value xml:lang="ja">文書の解析時にエラーが発生しました</value>
         <value xml:lang="nl">Een fout verhinderd het volledig parsen van het document</value>
@@ -50,6 +52,7 @@
         <value xml:lang="es">Se produjeron errores durante el análisis</value>
         <value xml:lang="fr">Des erreurs sont survenues lors de l'analyse</value>
         <value xml:lang="hi-IN">पार्सिंग के दौरान त्रुटियाँ हुई</value>
+        <value xml:lang="hr">Došlo je do grešaka tijekom analize</value>
         <value xml:lang="it">Errore accaduti durante il parsing</value>
         <value xml:lang="ja">解析中にエラーが発生しました</value>
         <value xml:lang="nl">Er zijn fouten opgetreden tijdens het parsen</value>
@@ -65,6 +68,7 @@
         <value xml:lang="es">Ocurrió un error durante la lectura</value>
         <value xml:lang="fr">Une erreur est survenue lors de la lecture</value>
         <value xml:lang="hi-IN">पढ़ने के दौरान एक त्रुटि हो रही है</value>
+        <value xml:lang="hr">Došlo je do pogreške tijekom čitanja</value>
         <value xml:lang="it">E' successo un'errore durante la lettura</value>
         <value xml:lang="ja">読込中にエラーが発生しました</value>
         <value xml:lang="nl">Er is een fout opgetreden tijdens het lezen</value>
@@ -80,6 +84,7 @@
         <value xml:lang="es">El factor de escala final es nulo</value>
         <value xml:lang="fr">Le facteur final de redimensionnement est nul</value>
         <value xml:lang="hi-IN">अंतिम पैमाने पहलू null है</value>
+        <value xml:lang="hr">Konačno mjerilo je null</value>
         <value xml:lang="it">Fattore di scala finale è nullo</value>
         <value xml:lang="ja">最終的なスケールが空です</value>
         <value xml:lang="nl">De definitieve schaalfactor is leeg</value>
@@ -95,6 +100,7 @@
         <value xml:lang="es">El factor de escala de altura es nulo</value>
         <value xml:lang="fr">Le ratio 'hauteur' de redimensionnement est nul</value>
         <value xml:lang="hi-IN">ऊँचाई पैमाने पहलू null है</value>
+        <value xml:lang="hr">Mjerilo visine je null</value>
         <value xml:lang="it">Fattore di scala altezza è nullo</value>
         <value xml:lang="ja">高さのスケールが空です</value>
         <value xml:lang="nl">Schaalfactor hoogte is leeg</value>
@@ -110,6 +116,7 @@
         <value xml:lang="es">La entrada es nula</value>
         <value xml:lang="fr">La valeur saisie est nulle</value>
         <value xml:lang="hi-IN">इनपुट null है</value>
+        <value xml:lang="hr">Unos je null</value>
         <value xml:lang="it">Input è nullo</value>
         <value xml:lang="ja">入力が空です</value>
         <value xml:lang="nl">De ingave is leeg</value>
@@ -125,6 +132,7 @@
         <value xml:lang="es">Una dimensión por defecto es nula</value>
         <value xml:lang="fr">Une des dimensions par défaut est nulle</value>
         <value xml:lang="hi-IN">एक डिफ़ॉल्ट आयाम null है</value>
+        <value xml:lang="hr">Jedna zadana dimenzija je nula</value>
         <value xml:lang="it">Dimensione uno di default è nullo</value>
         <value xml:lang="ja">デフォルトの次元が空です</value>
         <value xml:lang="nl">Een standaad dimensie is leeg</value>
@@ -140,6 +148,7 @@
         <value xml:lang="es">No se ha establecido el elemento raíz</value>
         <value xml:lang="fr">L'élement racine n'a pas pu être chargé</value>
         <value xml:lang="hi-IN">रूट तत्व निर्धारित नहीं किया गया है</value>
+        <value xml:lang="hr">Korijenski element nije postavljen</value>
         <value xml:lang="it">Elemento root non è stato impostato</value>
         <value xml:lang="ja">ルート要素が設定されていません</value>
         <value xml:lang="nl">Root element is niet ingesteld</value>
@@ -155,6 +164,7 @@
         <value xml:lang="es">Tipo de imagen en buffer desconocido</value>
         <value xml:lang="fr">Le type d'image bufferisée est inconnu</value>
         <value xml:lang="hi-IN">buffered छवि का अज्ञात प्रकार</value>
+        <value xml:lang="hr">Nepoznata vrsta slike u međuspremniku</value>
         <value xml:lang="it">Tipo di immagine sconosciuta bufferizzata</value>
         <value xml:lang="ja">イメージタイプが不明です</value>
         <value xml:lang="nl">Onbekend gebufferde afbeeldingsoort</value>
@@ -170,6 +180,7 @@
         <value xml:lang="es">El factor de escala de anchura es nulo</value>
         <value xml:lang="fr">Le ratio 'largeur' de redimensionnement est nul</value>
         <value xml:lang="hi-IN">चौड़ाई पैमाने कारक(Width scale factor) null है</value>
+        <value xml:lang="hr">Mjerilo širine je null</value>
         <value xml:lang="it">Fattore di scala altezza è nullo</value>
         <value xml:lang="ja">幅のスケールが空です</value>
         <value xml:lang="nl">Schaalfactor breedte is leeg</value>

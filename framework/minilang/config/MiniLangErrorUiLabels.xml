@@ -24,6 +24,7 @@
         <value xml:lang="en">Error trying to begin transaction, could not process method</value>
         <value xml:lang="es">Error trying to begin transaction, could not process method</value>
         <value xml:lang="fr">La transaction ne peut débuter, une erreur est survenue</value>
+        <value xml:lang="hr">Pogreška pri pokušaju pokretanja transakcije, nije moguće obraditi metodu</value>
         <value xml:lang="it">Errore provando a iniziare una transazione, non è possibile eseguire il metodo</value>
         <value xml:lang="ja">トランザクションの開始時にエラー、メソッドを処理できません</value>
         <value xml:lang="ro">Eroare la incercarea de a initia o</value>
@@ -37,6 +38,7 @@
         <value xml:lang="en">Error running the simple-method</value>
         <value xml:lang="es">Error running the simple-method</value>
         <value xml:lang="fr">Erreur pendant la simple-method</value>
+        <value xml:lang="hr">Pogreška pri pokretanju jednostavne metode</value>
         <value xml:lang="it">Errore nell'esecuzione del metodo-semplice</value>
         <value xml:lang="ja">シンプルメソッド実行時エラー</value>
         <value xml:lang="ro">Eroare in executia metodei-simple</value>
@@ -47,6 +49,7 @@
     </property>
     <property key="simpleMethod.error_show_service_name">
         <value xml:lang="en">calling service ${serviceName} in ${methodName}</value>
+        <value xml:lang="hr">pozivanje servisa ${serviceName} u ${methodName}</value>
         <value xml:lang="it">eseguendo il servizio ${serviceName} in ${methodName}</value>
         <value xml:lang="ja">サービス ${serviceName} を ${methodName} で呼び出し</value>
         <value xml:lang="zh">在${methodName}中调用服务${serviceName} </value>
@@ -57,6 +60,7 @@
         <value xml:lang="en">You must be logged in to complete the [${shortDescription}] process</value>
         <value xml:lang="es">You must be logged in to complete the [${shortDescription}] process</value>
         <value xml:lang="fr">Vous devez être connecté pour pouvoir achever le process ${shortDescription}</value>
+        <value xml:lang="hr">Morate biti prijavljeni da biste dovršili postupak [${shortDescription}].</value>
         <value xml:lang="it">Tu devi essere autenticato per completare il processo ${shortDescription}</value>
         <value xml:lang="ja">[${shortDescription}] プロセスの完了にはログインが必要です</value>
         <value xml:lang="ro">Trebbie sa fii autentificat pentru a putea completa procesul ${shortDescription}</value>

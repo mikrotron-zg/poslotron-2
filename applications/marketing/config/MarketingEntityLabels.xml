@@ -23,6 +23,7 @@
         <value xml:lang="en">Announcement</value>
         <value xml:lang="es">Anuncio</value>
         <value xml:lang="fr">Annonce</value>
+        <value xml:lang="hr">Najava</value>
         <value xml:lang="it">Annunci</value>
         <value xml:lang="ja">告知</value>
         <value xml:lang="nl">Aankondiging</value>
@@ -37,6 +38,7 @@
         <value xml:lang="en">Marketing</value>
         <value xml:lang="es">Marketing</value>
         <value xml:lang="fr">Marketing</value>
+        <value xml:lang="hr">Marketing</value>
         <value xml:lang="it">Vendite</value>
         <value xml:lang="ja">マーケティング</value>
         <value xml:lang="nl">Marketing</value>
@@ -51,6 +53,7 @@
         <value xml:lang="en">Newsletter</value>
         <value xml:lang="es">Carta de información</value>
         <value xml:lang="fr">Lettre d'information</value>
+        <value xml:lang="hr">Bilten</value>
         <value xml:lang="it">Newsletter</value>
         <value xml:lang="ja">ニュースレター</value>
         <value xml:lang="nl">Nieuwsbrief</value>
@@ -65,6 +68,7 @@
         <value xml:lang="en">Market Segment</value>
         <value xml:lang="es">Segmento de marketing</value>
         <value xml:lang="fr">Segment de marché</value>
+        <value xml:lang="hr">Tržišni segment</value>
         <value xml:lang="it">Segmento di Mercato</value>
         <value xml:lang="ja">市場セグメント</value>
         <value xml:lang="nl">Marktsegment</value>
@@ -79,6 +83,7 @@
         <value xml:lang="en">Sales Segment</value>
         <value xml:lang="es">Segmento de ventas</value>
         <value xml:lang="fr">Segment de vente</value>
+        <value xml:lang="hr">Segment prodaje</value>
         <value xml:lang="it">Segmento di Vendita</value>
         <value xml:lang="ja">販売セグメント</value>
         <value xml:lang="nl">Salessegment</value>
@@ -92,6 +97,7 @@
     <property key="TrackingCodeType.description.ACCESS">
         <value xml:lang="en">Access Code</value>
         <value xml:lang="fr">Code d'accès</value>
+        <value xml:lang="hr">Pristupni kod</value>
         <value xml:lang="it">Codice di accesso</value>
         <value xml:lang="ja">アクセスコード</value>
         <value xml:lang="pt-BR">Código de acesso</value>
@@ -103,6 +109,7 @@
         <value xml:lang="en">External</value>
         <value xml:lang="es">Externo</value>
         <value xml:lang="fr">Externe</value>
+        <value xml:lang="hr">Vanjski</value>
         <value xml:lang="it">Esterno</value>
         <value xml:lang="ja">外部</value>
         <value xml:lang="nl">Extern</value>
@@ -117,6 +124,7 @@
         <value xml:lang="en">Internal</value>
         <value xml:lang="es">Interno</value>
         <value xml:lang="fr">Interne</value>
+        <value xml:lang="hr">Unutarnji</value>
         <value xml:lang="it">Interno</value>
         <value xml:lang="ja">内部</value>
         <value xml:lang="nl">Intern</value>
@@ -131,6 +139,7 @@
         <value xml:lang="en">Partner Managed</value>
         <value xml:lang="es">Partner</value>
         <value xml:lang="fr">Géré par un tiers</value>
+        <value xml:lang="hr">Pod upravljanjem partnera</value>
         <value xml:lang="it">Gestito da un Partner</value>
         <value xml:lang="ja">パートナー</value>
         <value xml:lang="nl">Partner</value>

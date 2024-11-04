@@ -24,6 +24,7 @@
         <value xml:lang="en">Entity</value>
         <value xml:lang="es">Entidad</value>
         <value xml:lang="fr">Entité</value>
+        <value xml:lang="hr">Entitet</value>
         <value xml:lang="it">Entità</value>
         <value xml:lang="ja">エンティティ</value>
         <value xml:lang="ro">Entitate</value>
@@ -37,6 +38,7 @@
         <value xml:lang="en">Event</value>
         <value xml:lang="es">Evento</value>
         <value xml:lang="fr">Evènement</value>
+        <value xml:lang="hr">Događaj</value>
         <value xml:lang="it">Evento</value>
         <value xml:lang="ja">イベント</value>
         <value xml:lang="ro">Eveniment</value>
@@ -50,6 +52,7 @@
         <value xml:lang="en">Request</value>
         <value xml:lang="es">Petición</value>
         <value xml:lang="fr">Requête</value>
+        <value xml:lang="hr">Zahtjev</value>
         <value xml:lang="it">Richiesta</value>
         <value xml:lang="ja">リクエスト</value>
         <value xml:lang="ro">Cerere</value>
@@ -63,6 +66,7 @@
         <value xml:lang="en">Service</value>
         <value xml:lang="es">Servicio</value>
         <value xml:lang="fr">Service</value>
+        <value xml:lang="hr">Servis</value>
         <value xml:lang="it">Servizio</value>
         <value xml:lang="ja">サービス</value>
         <value xml:lang="ro">Serviciu</value>
@@ -76,6 +80,7 @@
         <value xml:lang="en">View</value>
         <value xml:lang="es">Vista</value>
         <value xml:lang="fr">Vue</value>
+        <value xml:lang="hr">Pogled</value>
         <value xml:lang="it">Vista</value>
         <value xml:lang="ja">表示</value>
         <value xml:lang="ro">Afisare</value>

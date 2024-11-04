@@ -23,6 +23,7 @@
         <value xml:lang="de">Erzeuge öffentliche Nachricht</value>
         <value xml:lang="en">Create Public Message</value>
         <value xml:lang="fr">Créer un message public</value>
+        <value xml:lang="hr">Napravite javnu poruku</value>
         <value xml:lang="it">Crea messaggio pubblico</value>
         <value xml:lang="ja">公開メッセージを作成</value>
         <value xml:lang="nl">Nieuw publiek bericht aanmaken</value>
@@ -35,6 +36,7 @@
         <value xml:lang="de">Datum Info erzeugt</value>
         <value xml:lang="en">Date info created</value>
         <value xml:lang="fr">Date de création</value>
+        <value xml:lang="hr">Podaci o datumu izrade</value>
         <value xml:lang="it">Data di creazione</value>
         <value xml:lang="ja">作成日付情報</value>
         <value xml:lang="nl">Datum info gegenereerd</value>
@@ -47,6 +49,7 @@
         <value xml:lang="de">Datum Letzte Änderung</value>
         <value xml:lang="en">Date Last Changed</value>
         <value xml:lang="fr">Dernière date de changement</value>
+        <value xml:lang="hr">Datum zadnje promjene</value>
         <value xml:lang="it">Data ultimo cambiamento</value>
         <value xml:lang="ja">最終更新日</value>
         <value xml:lang="nl">Datum laatste verandering</value>
@@ -59,6 +62,7 @@
         <value xml:lang="de">Systemnachricht</value>
         <value xml:lang="en">System Info Note</value>
         <value xml:lang="fr">Message d'information système</value>
+        <value xml:lang="hr">Napomena o sustavu</value>
         <value xml:lang="it">Messaggio di sistema</value>
         <value xml:lang="ja">システム情報連絡</value>
         <value xml:lang="nl">Systeembericht</value>
@@ -71,6 +75,7 @@
         <value xml:lang="de">Systemnachricht für Benutzer:</value>
         <value xml:lang="en">System Info note for user:</value>
         <value xml:lang="fr">Message d'information système pour l'utilisateur :</value>
+        <value xml:lang="hr">Napomena o sustavu za korisnika:</value>
         <value xml:lang="it">Messaggio di sistema per l'utente:</value>
         <value xml:lang="ja">システム情報連絡 ユーザ:</value>
         <value xml:lang="nl">Systeembericht voor gebruiker</value>
@@ -83,6 +88,7 @@
         <value xml:lang="de">System Information Status</value>
         <value xml:lang="en">System Info Status</value>
         <value xml:lang="fr">Message d'information d'état</value>
+        <value xml:lang="hr">Status informacije o sustavu</value>
         <value xml:lang="it">Stato messaggi di sistema</value>
         <value xml:lang="ja">システム情報ステータス</value>
         <value xml:lang="nl">Systeem info status</value>
@@ -95,6 +101,7 @@
         <value xml:lang="de">System Information Status für Benutzer:</value>
         <value xml:lang="en">System Info status for user:</value>
         <value xml:lang="fr">Message d'information d'état pour l'utilisateur :</value>
+        <value xml:lang="hr">Status informacije o sustavu za korisnika:</value>
         <value xml:lang="it">Stato messaggi di sistema per l'utente:</value>
         <value xml:lang="ja">システム情報ステータス ユーザ:</value>
         <value xml:lang="nl">Systeem info status voor gebruiker</value>

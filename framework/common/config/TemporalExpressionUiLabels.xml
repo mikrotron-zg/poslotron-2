@@ -24,6 +24,7 @@
         <value xml:lang="en">Temporal Expression</value>
         <value xml:lang="es">Expresión temporal</value>
         <value xml:lang="fr">Expression temporelle</value>
+        <value xml:lang="hr">Vremenski izraz</value>
         <value xml:lang="it">Espressione temporale</value>
         <value xml:lang="ja">時間表現</value>
         <value xml:lang="pt-BR">Expressão temporal</value>
@@ -35,6 +36,7 @@
         <value xml:lang="en">Expression Collections</value>
         <value xml:lang="es">Colección de expresiones</value>
         <value xml:lang="fr">Collections d'expression</value>
+        <value xml:lang="hr">Zbirke izraza</value>
         <value xml:lang="it">Collezione espressioni</value>
         <value xml:lang="ja">表現集合</value>
         <value xml:lang="pt-BR">Coleções de Expressões</value>
@@ -46,6 +48,7 @@
         <value xml:lang="en">Exclude</value>
         <value xml:lang="es">Excluir</value>
         <value xml:lang="fr">Exclure</value>
+        <value xml:lang="hr">Isključi</value>
         <value xml:lang="it">Escludi</value>
         <value xml:lang="ja">除く</value>
         <value xml:lang="pt-BR">Excluir</value>
@@ -57,6 +60,7 @@
         <value xml:lang="en">Find Temporal Expression</value>
         <value xml:lang="es">Buscar expresión temporal</value>
         <value xml:lang="fr">Rechercher une expression temporelle</value>
+        <value xml:lang="hr">Pronađi vremenski izraz</value>
         <value xml:lang="it">Ricerca espressione temporale</value>
         <value xml:lang="ja">時間表現を検索</value>
         <value xml:lang="pt-BR">Encontrar uma expressão temporal</value>
@@ -68,6 +72,7 @@
         <value xml:lang="en">Frequency Count</value>
         <value xml:lang="es">Número de ocurrencias</value>
         <value xml:lang="fr">Nombre d'occurrences</value>
+        <value xml:lang="hr">Brojanje frekvencije</value>
         <value xml:lang="it">Frequenza conteggio</value>
         <value xml:lang="ja">頻度件数</value>
         <value xml:lang="pt-BR">Contagem de Freqüência</value>
@@ -79,6 +84,7 @@
         <value xml:lang="en">Frequency Type</value>
         <value xml:lang="es">Tipo de frecuencia</value>
         <value xml:lang="fr">Type de fréquence</value>
+        <value xml:lang="hr">Vrsta frekvencije</value>
         <value xml:lang="it">Tipo frequenza</value>
         <value xml:lang="ja">頻度種類</value>
         <value xml:lang="pt-BR">Tipo de Frequência</value>
@@ -90,6 +96,7 @@
         <value xml:lang="en">Expression ID</value>
         <value xml:lang="es">Id de la expresión</value>
         <value xml:lang="fr">Réf. d'expression</value>
+        <value xml:lang="hr">Id izraza</value>
         <value xml:lang="it">Espressione</value>
         <value xml:lang="ja">表現ID</value>
         <value xml:lang="pt-BR">Id de Expressão</value>
@@ -101,6 +108,7 @@
         <value xml:lang="en">Include</value>
         <value xml:lang="es">Incluye</value>
         <value xml:lang="fr">Inclure</value>
+        <value xml:lang="hr">Uključi</value>
         <value xml:lang="it">Includi</value>
         <value xml:lang="ja">含む</value>
         <value xml:lang="pt-BR">Incluir</value>
@@ -112,6 +120,7 @@
         <value xml:lang="en">Temporal Expression Maintenance</value>
         <value xml:lang="es">Mantenimiento de expresiones temporales</value>
         <value xml:lang="fr">maintenance d'expression temporelle</value>
+        <value xml:lang="hr">Održavanje vremenskog izraza</value>
         <value xml:lang="it">Gestione espressioni temporali</value>
         <value xml:lang="ja">時間表現メンテナンス</value>
         <value xml:lang="pt-BR">Manutenção Expressão Temporal</value>
@@ -123,6 +132,7 @@
         <value xml:lang="en">Occurrence</value>
         <value xml:lang="es">Ocurrencia</value>
         <value xml:lang="fr">Occurrence</value>
+        <value xml:lang="hr">Pojava</value>
         <value xml:lang="it">Occorrenze</value>
         <value xml:lang="ja">繰り返し</value>
         <value xml:lang="pt-BR">Ocorrência</value>
@@ -134,6 +144,7 @@
         <value xml:lang="en">hh:mm:ss</value>
         <value xml:lang="es">hh:mm:ss</value>
         <value xml:lang="fr">hh:mm:ss</value>
+        <value xml:lang="hr">hh:mm:ss</value>
         <value xml:lang="it">hh:mm:ss</value>
         <value xml:lang="ja">hh:mm:ss</value>
         <value xml:lang="pt-BR">hh:mm:ss</value>
@@ -145,6 +156,7 @@
         <value xml:lang="en">Expression Type</value>
         <value xml:lang="es">Tipo de expresión</value>
         <value xml:lang="fr">Type d'expression</value>
+        <value xml:lang="hr">Vrsta izraza</value>
         <value xml:lang="it">Tipo espressione</value>
         <value xml:lang="ja">表現種類</value>
         <value xml:lang="pt-BR">Tipo de Expressão</value>
@@ -156,6 +168,7 @@
         <value xml:lang="en">Date Range</value>
         <value xml:lang="es">Intervalo de fechas</value>
         <value xml:lang="fr">Intervalle entre 2 dates</value>
+        <value xml:lang="hr">Raspon datuma</value>
         <value xml:lang="it">Intervallo di date</value>
         <value xml:lang="ja">日付範囲</value>
         <value xml:lang="pt-BR">Período</value>
@@ -167,6 +180,7 @@
         <value xml:lang="en">Day In Month</value>
         <value xml:lang="es">Día del mes</value>
         <value xml:lang="fr">Jour du mois</value>
+        <value xml:lang="hr">Dan u mjesecu</value>
         <value xml:lang="it">Giorno nel mese</value>
         <value xml:lang="ja">月の日にち</value>
         <value xml:lang="pt-BR">Dia do Mês</value>
@@ -178,6 +192,7 @@
         <value xml:lang="en">Day Of Month Range</value>
         <value xml:lang="es">Intervalo de días del mes</value>
         <value xml:lang="fr">Intervalle entre 2 jours du mois</value>
+        <value xml:lang="hr">Raspon dana u mjesecu</value>
         <value xml:lang="it">Giorno del mese nell'intervallo</value>
         <value xml:lang="ja">月の日にち範囲</value>
         <value xml:lang="pt-BR">Intervalo de dias do mês</value>
@@ -189,6 +204,7 @@
         <value xml:lang="en">Day Of Week Range</value>
         <value xml:lang="es">Intervalo de días de la semana</value>
         <value xml:lang="fr">Intervalle entre 2 jour de la semaine</value>
+        <value xml:lang="hr">Raspon dana u tjednu</value>
         <value xml:lang="it">Giorno della settimana nell'intervallo</value>
         <value xml:lang="ja">週の日にち範囲</value>
         <value xml:lang="pt-BR">Intervalo de dias da semana</value>
@@ -200,6 +216,7 @@
         <value xml:lang="en">Difference</value>
         <value xml:lang="es">Diferencia</value>
         <value xml:lang="fr">Différence</value>
+        <value xml:lang="hr">Razlika</value>
         <value xml:lang="it">Differenze</value>
         <value xml:lang="ja">差分</value>
         <value xml:lang="pt-BR">Diferença</value>
@@ -211,6 +228,7 @@
         <value xml:lang="en">Frequency</value>
         <value xml:lang="es">Frecuencia</value>
         <value xml:lang="fr">Fréquence</value>
+        <value xml:lang="hr">Frekvencija</value>
         <value xml:lang="it">Frequenza</value>
         <value xml:lang="ja">頻度</value>
         <value xml:lang="pt-BR">Frequência</value>
@@ -221,6 +239,7 @@
         <value xml:lang="de">Stundenauswahl</value>
         <value xml:lang="en">Hour Range</value>
         <value xml:lang="es">Intervalo de horas</value>
+        <value xml:lang="hr">Raspon sati</value>
         <value xml:lang="ja">時の範囲</value>
         <value xml:lang="pt-BR">Intervalo de Hora</value>
         <value xml:lang="zh">小时范围</value>
@@ -231,6 +250,7 @@
         <value xml:lang="en">Intersection</value>
         <value xml:lang="es">Intersección</value>
         <value xml:lang="fr">Intersection</value>
+        <value xml:lang="hr">Presjek</value>
         <value xml:lang="it">Intersezione</value>
         <value xml:lang="ja">交点</value>
         <value xml:lang="pt-BR">Intersecção</value>
@@ -241,6 +261,7 @@
         <value xml:lang="de">Minutenauswahl</value>
         <value xml:lang="en">Minute Range</value>
         <value xml:lang="es">Intervalo de minutos</value>
+        <value xml:lang="hr">Raspon minuta</value>
         <value xml:lang="ja">分の範囲</value>
         <value xml:lang="pt-BR">Intervalo de Minutos</value>
         <value xml:lang="zh">分钟范围</value>
@@ -251,6 +272,7 @@
         <value xml:lang="en">Month Range</value>
         <value xml:lang="es">Intervalo de meses</value>
         <value xml:lang="fr">Intervalle entre 2 mois</value>
+        <value xml:lang="hr">Raspon mjeseci</value>
         <value xml:lang="it">Intervallo di mese</value>
         <value xml:lang="ja">月の範囲</value>
         <value xml:lang="pt-BR">Intervalo de Meses</value>
@@ -261,6 +283,7 @@
         <value xml:lang="de">Ersetzung</value>
         <value xml:lang="en">Substitution</value>
         <value xml:lang="es">Sustitución</value>
+        <value xml:lang="hr">Zamjena</value>
         <value xml:lang="ja">代用</value>
         <value xml:lang="pt-BR">Substituição</value>
         <value xml:lang="zh">替换</value>
@@ -271,6 +294,7 @@
         <value xml:lang="en">Union</value>
         <value xml:lang="es">Unión</value>
         <value xml:lang="fr">Union</value>
+        <value xml:lang="hr">Unija</value>
         <value xml:lang="it">Unione</value>
         <value xml:lang="ja">結合</value>
         <value xml:lang="pt-BR">União</value>
