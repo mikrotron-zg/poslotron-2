@@ -31,7 +31,7 @@ under the License.
         <!-- enable/disable
           1. if enable, the product seo url will be /category-name-product-name-product-id.html
           2. if disable, the product seo url will be /product-name-product-id.html -->
-        <category-url-suffix>.html</category-url-suffix>
+        <!--<category-url-suffix>.html</category-url-suffix>-->
         <!-- suffix to add to the product seo url -->
     </category-url>
 
