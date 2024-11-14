@@ -22,26 +22,26 @@ under the License.
       <#if defaultFontFamily?has_content>font-family="${defaultFontFamily}"</#if>>
     <fo:layout-master-set>
       <fo:simple-page-master master-name="main-page"
-          page-width="8.5in" page-height="11in"
-          margin-top="0.4in" margin-bottom="0.4in"
-          margin-left="0.6in" margin-right="0.4in">
+          page-width="210mm" page-height="297mm"
+          margin-top="10mm" margin-bottom="10mm"
+          margin-left="15mm" margin-right="5mm">
         <#-- main body -->
-        <fo:region-body margin-top="1.5in" margin-bottom="0.4in"/>
+        <fo:region-body margin-top="65mm" margin-bottom="10mm"/>
         <#-- the header -->
-        <fo:region-before extent="1.2in"/>
+        <fo:region-before extent="30mm"/>
         <#-- the footer -->
-        <fo:region-after extent="0.4in"/>
+        <fo:region-after extent="0mm"/>
       </fo:simple-page-master>
       <fo:simple-page-master master-name="main-page-landscape"
-          page-width="11in" page-height="8.5in"
-          margin-top="0.4in" margin-bottom="0.4in"
-          margin-left="0.6in" margin-right="0.4in">
+          page-width="297mm" page-height="210mm"
+          margin-top="10mm" margin-bottom="10mm"
+          margin-left="15mm" margin-right="5mm">
         <#-- main body -->
-        <fo:region-body margin-top="1.2in" margin-bottom="0.4in"/>
+        <fo:region-body margin-top="30mm" margin-bottom="10mm"/>
         <#-- the header -->
-        <fo:region-before extent="1.2in"/>
+        <fo:region-before extent="30mm"/>
         <#-- the footer -->
-        <fo:region-after extent="0.4in"/>
+        <fo:region-after extent="0mm"/>
       </fo:simple-page-master>
     </fo:layout-master-set>
 
@@ -78,7 +78,7 @@ under the License.
 
       <#-- the footer -->
       <fo:static-content flow-name="xsl-region-after">
-        <fo:block font-size="10pt" text-align="center" space-before="10pt">
+        <fo:block font-size="8pt" text-align="center" space-before="10pt">
           ${uiLabelMap.CommonPage}
           <fo:page-number/> ${uiLabelMap.CommonOf}
           <fo:page-number-citation ref-id="theEnd"/>
