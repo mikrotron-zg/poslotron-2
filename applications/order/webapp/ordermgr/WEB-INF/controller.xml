@@ -2184,7 +2184,7 @@ under the License.
     <!-- PDFs  -->
     <view-map name="OrderPDF" type="screenfop" page="component://ecommerce/widget/OrderPrintScreens.xml#OrderPDF" content-type="application/pdf" encoding="none"/>
     <view-map name="ReturnPDF" type="screenfop" page="component://order/widget/ordermgr/OrderPrintScreens.xml#ReturnPDF" content-type="application/pdf" encoding="none"/>
-    <view-map name="ShipGroupsPDF" type="screenfop" page="component://order/widget/ordermgr/OrderPrintScreens.xml#ShipGroupsPDF" content-type="application/pdf" encoding="none"/>
+    <view-map name="ShipGroupsPDF" type="screenfop" page="component://ecommerce/widget/OrderPrintScreens.xml#ShipGroupsPDF" content-type="application/pdf" encoding="none"/>
     <view-map name="OrderPickSheetPDF" type="screenfop" page="component://product/widget/facility/FacilityScreens.xml#PrintPickSheets.fo" content-type="application/pdf" encoding="none"/>
 
     <view-map name="SendConfirmationMail" type="screen" page="component://order/widget/ordermgr/OrderViewScreens.xml#SendOrderConfirmation"/>
