@@ -157,6 +157,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
      * @param locale
      * @param macro
      */
+    @SuppressWarnings("unused")
     private void executeMacro(Appendable writer, Locale locale, String macro) {
         ftlWriter.processFtlString(writer, locale, macro);
     }

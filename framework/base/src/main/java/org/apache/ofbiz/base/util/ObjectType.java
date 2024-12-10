@@ -330,6 +330,11 @@ public class ObjectType {
         }
 
         if (converter != null) {
+            // numeric types : replace everything that's not in [:IsAlnum:] or [:IsPunct:] classes by an empty string
+            if (obj instanceof String && Number.class.isAssignableFrom((targetClass))) {
+                obj = ((String) obj).replaceAll("[^\\p{IsAlnum}\\p{IsPunct}]", "");
+            }
+
             if (converter instanceof LocalizedConverter) {
                 LocalizedConverter<Object, Object> localizedConverter = UtilGenerics.cast(converter);
                 if (timeZone == null) {

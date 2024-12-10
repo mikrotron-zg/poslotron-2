@@ -316,8 +316,12 @@ public class FlexibleStringExpanderTests {
         fseTest("UEL integration: missing", "${noList[0]}", testMap, null, null, "", null, false);
         fseTest("Escaped expression", "This is an \\${escaped} expression", testMap, "This is an ${escaped} expression", false);
         fseTest("Escaped(groovy) expression", "This is an \\${groovy:escaped} expression", testMap, "This is an ${groovy:escaped} expression", false);
+        fseTest("Bracket en groovy", "This is a groovy ${groovy: if (true) {return 'bracket'}} expression", testMap,
+                "This is a groovy bracket expression", false);
+        fseTest("Bracket en groovy again", "This is a groovy ${groovy: if (true) {if (true) {return 'with 2 brackets'}}} expression", testMap,
+                "This is a groovy with 2 brackets expression", false);
 
-        // TODO: Find a better way to setup or handle the big decimal value. If new ones are not instanciated in the test
+        // TODO: Find a better way to setup or handle the big decimal value. If new ones are not instantiated in the test
         // it fails because of the comparison between object pointers..
         fseTest("nested UEL integration(return BigDecimal)", "${a${'moun'}t}", testMap, null, LOCALE_TO_TEST,
                 "1,234,567.89", new BigDecimal("1234567.89"), false);

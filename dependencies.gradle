@@ -49,8 +49,8 @@ dependencies {
     implementation 'org.apache.geronimo.components:geronimo-transaction:3.1.5' // 4.0.0 does not compile
     implementation 'org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1.1'
     implementation 'org.apache.httpcomponents:httpclient-cache:4.5.14'
-    implementation 'org.apache.logging.log4j:log4j-api:2.20.0' // the API of log4j 2
-    implementation 'org.apache.logging.log4j:log4j-core:2.20.0' // Somehow needed by Buildbot to compile OFBizDynamicThresholdFilter.java
+    implementation 'org.apache.logging.log4j:log4j-api:2.24.2' // the API of log4j 2
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.2' // Somehow needed by Buildbot to compile OFBizDynamicThresholdFilter.java
     implementation 'org.apache.poi:poi:4.1.2' // poi-ooxml-schemas-5.0.0.pom'. Received status code 401 from server
     implementation 'org.apache.pdfbox:pdfbox:2.0.31' // 3.0.1 does not compile
     implementation 'org.apache.shiro:shiro-core:1.13.0'
@@ -61,8 +61,8 @@ dependencies {
     implementation 'org.apache.tika:tika-parsers:2.5.0'
     implementation 'org.apache.tika:tika-parser-pdf-module:2.5.0'
     implementation 'org.apache.cxf:cxf-rt-frontend-jaxrs:3.5.6' // 4.0.3 does not compile
-    implementation 'org.apache.tomcat:tomcat-catalina-ha:9.0.91' // Remember to change the version number (9 now) in javadoc block if needed.
-    implementation 'org.apache.tomcat:tomcat-jasper:9.0.91'
+    implementation 'org.apache.tomcat:tomcat-catalina-ha:9.0.97' // Remember to change the version number (9 now) in javadoc block if needed.
+    implementation 'org.apache.tomcat:tomcat-jasper:9.0.97'
     implementation 'org.apache.axis2:axis2-kernel:1.8.2'
     implementation 'org.apache.xmlgraphics:batik-anim:1.17'
     implementation 'org.apache.xmlgraphics:batik-util:1.17'
@@ -101,11 +101,11 @@ dependencies {
     runtimeOnly 'org.apache.derby:derby:10.14.2.0' // 10.17.1.0 does not compile
     runtimeOnly 'org.postgresql:postgresql:42.7.4'
     runtimeOnly 'org.apache.geronimo.specs:geronimo-jaxrpc_1.1_spec:2.1'
-    runtimeOnly 'org.apache.logging.log4j:log4j-1.2-api:2.20.0' // for external jars using the old log4j1.2: routes logging to log4j 2
-    runtimeOnly 'org.apache.logging.log4j:log4j-jul:2.20.0' // for external jars using the java.util.logging: routes logging to log4j 2
-    runtimeOnly 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0' // for external jars using slf4j: routes logging to log4j 2
-    runtimeOnly 'org.apache.logging.log4j:log4j-web:2.20.0' //???
-    runtimeOnly 'org.apache.logging.log4j:log4j-jcl:2.20.0' // need to constrain to version to avoid classpath conflict (ReflectionUtil)
+    runtimeOnly 'org.apache.logging.log4j:log4j-1.2-api:2.24.2' // for external jars using the old log4j1.2: routes logging to log4j 2
+    runtimeOnly 'org.apache.logging.log4j:log4j-jul:2.24.2' // for external jars using the java.util.logging: routes logging to log4j 2
+    runtimeOnly 'org.apache.logging.log4j:log4j-slf4j-impl:2.24.2' // for external jars using slf4j: routes logging to log4j 2
+    runtimeOnly 'org.apache.logging.log4j:log4j-web:2.24.2' //???
+    runtimeOnly 'org.apache.logging.log4j:log4j-jcl:2.24.2' // need to constrain to version to avoid classpath conflict (ReflectionUtil)
 
     // specify last codenarc version for java 17 compliance
     codenarc('org.codenarc:CodeNarc:3.4.0')

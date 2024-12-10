@@ -41,10 +41,8 @@ import org.apache.logging.log4j.ThreadContext;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.GenericValue;
-import org.apache.ofbiz.security.SecurityUtil;
-
-
-
+import org.apache.ofbiz.security.SecuredFreemarker;
+import org.apache.ofbiz.security.SecuredUpload;
 
 /**
  * A Filter used to specify an allowlist of allowed paths to the OFBiz application.
@@ -130,6 +128,10 @@ public class ControlFilter extends HttpFilter {
                                : Arrays.stream(paths.split(":")).collect(Collectors.toSet());
     }
 
+    private static boolean isSolrTest() {
+        return !GenericValue.getStackTraceAsString().contains("ControlFilterTests")
+                && null == System.getProperty("SolrDispatchFilter");
+    }
     /**
      * Makes allowed paths pass through while redirecting the others to a fix location.
      */
@@ -158,9 +160,7 @@ public class ControlFilter extends HttpFilter {
 
             GenericValue userLogin = (GenericValue) session.getAttribute("userLogin");
             if (!LoginWorker.hasBasePermission(userLogin, req)) { // Allows UEL and FlexibleString (OFBIZ-12602)
-                if (!GenericValue.getStackTraceAsString().contains("ControlFilterTests")
-                        && null == System.getProperty("SolrDispatchFilter") // Allows Solr tests
-                        && SecurityUtil.containsFreemarkerInterpolation(req, resp, uri)) {
+                if (isSolrTest() && SecuredFreemarker.containsFreemarkerInterpolation(req, resp, uri)) {
                     return;
                 }
             }
@@ -169,7 +169,9 @@ public class ControlFilter extends HttpFilter {
             String queryString = req.getQueryString();
             if (queryString != null) {
                 queryString = URLDecoder.decode(queryString, "UTF-8");
-                if (UtilValidate.isUrl(queryString)) {
+                if (UtilValidate.isUrl(queryString)
+                        || !SecuredUpload.isValidText(queryString.toLowerCase(), SecuredUpload.getallowedTokens(), true)
+                        && isSolrTest()) {
                     Debug.logError("For security reason this URL is not accepted", MODULE);
                     throw new RuntimeException("For security reason this URL is not accepted");
                 }
