@@ -563,7 +563,7 @@ Map addTaxOnInvoice() {
         addTaxMap.itemAmountList << totalAmount
         addTaxMap.itemPriceList << it.amount
         addTaxMap.itemQuantityList << it.quantity
-        addTaxMap.itemShippingList << 0
+        addTaxMap.itemShippingList << BigDecimal.ZERO
     }
     if (!addTaxMap.itemProductList) {
         return error(label('AccountingUiLabels', 'AccountingTaxProductIdCannotCalculate'))
