@@ -464,20 +464,28 @@ public final class MacroFormRenderer implements FormStringRenderer {
             }
         }
         String formId = FormRenderer.getCurrentContainerId(modelForm, context);
-        List<ModelForm.UpdateArea> updateAreas = modelForm.getOnSubmitUpdateAreas();
+        List<ModelForm.UpdateArea> updateAreas = new LinkedList<>();
+        List<ModelForm.UpdateArea> onSubmitUpdateAreas = modelForm.getOnSubmitUpdateAreas();
+        if (UtilValidate.isNotEmpty(onSubmitUpdateAreas)) {
+            updateAreas.addAll(onSubmitUpdateAreas);
+        }
+
+        // Retrieve on click event for submit field
+        List<ModelForm.UpdateArea> onClickUpdateAreas = modelFormField.getOnClickUpdateAreas();
+        if (UtilValidate.isNotEmpty(onClickUpdateAreas)) {
+            updateAreas.addAll(onClickUpdateAreas);
+        }
+
         // This is here for backwards compatibility. Use on-event-update-area
         // elements instead.
         String backgroundSubmitRefreshTarget = submitField.getBackgroundSubmitRefreshTarget(context);
         ModelForm.UpdateArea jwtCallback = ModelForm.UpdateArea.fromJwtToken(context);
         if (UtilValidate.isNotEmpty(backgroundSubmitRefreshTarget)) {
-            if (updateAreas == null) {
-                updateAreas = new LinkedList<>();
-            }
             updateAreas.add(new ModelForm.UpdateArea("submit", formId, backgroundSubmitRefreshTarget));
         }
 
         // In context a callback is present and no other update area to call after the submit, so trigger it.
-        if (UtilValidate.isEmpty(updateAreas) && jwtCallback != null) {
+        if (UtilValidate.isEmpty(updateAreas) && jwtCallback != null && !submitField.getPropagateCallback()) {
             updateAreas = UtilMisc.toList(jwtCallback);
         }
         boolean ajaxEnabled = UtilValidate.isNotEmpty(updateAreas) && this.javaScriptEnabled;
