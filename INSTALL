@@ -12,7 +12,7 @@ environment variable.
 
 Warning: on Windows don't put OFBiz in a directory with space/s in the path.
 
-https://adoptopenjdk.net/[JDK download]
+for JDK download : https://adoptopenjdk.net/
 
 
 Quick start
@@ -69,6 +69,8 @@ _______________________________________________________________________________
 
     If you are interested by the ecommerce plugins get to:
     https://localhost:8443/ecomseo
+
+    Note that if you use one or several plugins all must be of the same version than the framework.
 
 Going further
 To complete your installation and use OFBiz please read README.adoc
