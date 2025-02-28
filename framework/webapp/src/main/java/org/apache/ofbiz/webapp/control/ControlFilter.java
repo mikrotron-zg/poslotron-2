@@ -187,13 +187,10 @@ public class ControlFilter extends HttpFilter {
 
             // Allows UEL and FlexibleString (OFBIZ-12602). Also allows SolrTest to pass. No need to check these URLs
             GenericValue userLogin = (GenericValue) session.getAttribute("userLogin");
-            if (!LoginWorker.hasBasePermission(userLogin, req) || isSolrTest()) {
-                return;
-            }
-
-            // Reject Freemarker interpolation in URL
-            if (SecuredFreemarker.containsFreemarkerInterpolation(req, resp, uri)) {
-                return;
+            if (!LoginWorker.hasBasePermission(userLogin, req)) { // Allows UEL and FlexibleString (OFBIZ-12602)
+                if (isSolrTest() && SecuredFreemarker.containsFreemarkerInterpolation(req, resp, uri)) { // Reject Freemarker interpolation in URL
+                    return;
+                }
             }
 
             // Reject insecure URLs
