@@ -136,8 +136,7 @@ public class ControlFilter extends HttpFilter {
     }
 
     private static boolean isSolrTest() {
-        return !GenericValue.getStackTraceAsString().contains("ControlFilterTests")
-                && null == System.getProperty("SolrDispatchFilter");
+        return null != System.getProperty("SolrDispatchFilter");
     }
 
     /**
