@@ -204,7 +204,7 @@ public class ControlFilter extends HttpFilter {
             }
             if (queryString != null) {
                 queryString = URLDecoder.decode(queryString, "UTF-8");
-                if (UtilValidate.isUrlInString(queryString)
+                if (UtilValidate.isUrl(queryString)
                         || !SecuredUpload.isValidText(queryString.toLowerCase(), ALLOWEDTOKENS, true)) {
                     Debug.logError("For security reason this URL is not accepted", MODULE);
                     throw new RuntimeException("For security reason this URL is not accepted");
