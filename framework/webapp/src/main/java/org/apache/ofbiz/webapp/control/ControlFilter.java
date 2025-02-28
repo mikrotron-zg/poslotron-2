@@ -182,14 +182,21 @@ public class ControlFilter extends HttpFilter {
             String uriWithContext = StringEscapeUtils.unescapeHtml4(URLDecoder.decode(req.getRequestURI(), "UTF-8"));
             String uri = uriWithContext.substring(context.length());
 
+
+            //// Block with several steps for rejecting wrong URLs, allowing specific ones
+
+            // Allows UEL and FlexibleString (OFBIZ-12602). Also allows SolrTest to pass. No need to check these URLs
             GenericValue userLogin = (GenericValue) session.getAttribute("userLogin");
-            if (!LoginWorker.hasBasePermission(userLogin, req)) { // Allows UEL and FlexibleString (OFBIZ-12602)
-                if (isSolrTest() && SecuredFreemarker.containsFreemarkerInterpolation(req, resp, uri)) {
-                    return;
-                }
+            if (!LoginWorker.hasBasePermission(userLogin, req) || isSolrTest()) {
+                return;
             }
 
-            // Reject wrong URLs
+            // Reject Freemarker interpolation in URL
+            if (SecuredFreemarker.containsFreemarkerInterpolation(req, resp, uri)) {
+                return;
+            }
+
+            // Reject insecure URLs
             String queryString = null;
             try {
                 queryString = new URI(uriWithContext).getQuery();
@@ -198,12 +205,10 @@ public class ControlFilter extends HttpFilter {
                 Debug.logError("Weird URI: " + e, MODULE);
                 throw new RuntimeException(e);
             }
-
             if (queryString != null) {
                 queryString = URLDecoder.decode(queryString, "UTF-8");
-                if (UtilValidate.isUrl(queryString)
-                        || !SecuredUpload.isValidText(queryString.toLowerCase(), ALLOWEDTOKENS, true)
-                                && isSolrTest()) {
+                if (UtilValidate.isUrlInString(queryString)
+                        || !SecuredUpload.isValidText(queryString.toLowerCase(), ALLOWEDTOKENS, true)) {
                     Debug.logError("For security reason this URL is not accepted", MODULE);
                     throw new RuntimeException("For security reason this URL is not accepted");
                 }
