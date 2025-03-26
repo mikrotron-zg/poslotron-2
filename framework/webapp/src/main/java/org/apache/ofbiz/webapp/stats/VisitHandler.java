@@ -137,7 +137,7 @@ public class VisitHandler {
                             Locale initialLocaleObj = (Locale) session.getAttribute("_CLIENT_LOCALE_");
                             String initialRequest = (String) session.getAttribute("_CLIENT_REQUEST_");
                             String initialReferrer = (String) session.getAttribute("_CLIENT_REFERER_");
-                            if (!UtilValidate.isUrlInString(initialReferrer)) {
+                            if (!UtilValidate.isUrl(initialReferrer)) {
                                 initialReferrer = "Not an URL";
                             }
                             String initialUserAgent = (String) session.getAttribute("_CLIENT_USER_AGENT_");
