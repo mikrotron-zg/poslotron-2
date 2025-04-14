@@ -67,7 +67,7 @@ import org.apache.ofbiz.security.SecuredUpload;
  *     non matching request paths are redirected, or an error code is returned,
  *     according to the setup of redirectPath and errorCode
  *   - redirectPath: if the path requested is not in the allowedPaths, or forceRedirectAll is set to Y,
- *     specifies the the path to which the request is redirected to;
+ *     specifies the path to which the request is redirected to;
  *   - errorCode: the error code set in the response if the path requested is not in the allowedPaths
  *     and redirectPath is not set; defaults to 403
  *
@@ -140,10 +140,6 @@ public class ControlFilter extends HttpFilter {
                                : Arrays.stream(paths.split(":")).collect(Collectors.toSet());
     }
 
-    private static boolean isSolrTest() {
-        return null != System.getProperty("SolrDispatchFilter");
-    }
-
     /**
      * Sends an HTTP response redirecting to {@code redirectPath}.
      * @param resp The response to send
@@ -176,7 +172,7 @@ public class ControlFilter extends HttpFilter {
         boolean isEntityImport = req.getRequestURI().equals("/webtools/control/entityImport");
         boolean isProgramExport = req.getRequestURI().equals("/webtools/control/ProgramExport");
 
-        if (!(isSolrTest() || isControlFilterTests() || isEntityImport || isProgramExport)) {
+        if (!(isControlFilterTests() || isEntityImport || isProgramExport)) {
             // Prevents stream exploitation
             UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
             Map<String, Object> parameters = UtilHttp.getParameterMap(req);
@@ -227,10 +223,10 @@ public class ControlFilter extends HttpFilter {
 
             //// Block with several steps for rejecting wrong URLs, allowing specific ones
 
-            // Allows UEL and FlexibleString (OFBIZ-12602). Also allows SolrTest to pass. No need to check these URLs
+            // Allows UEL and FlexibleString (OFBIZ-12602).
             GenericValue userLogin = (GenericValue) session.getAttribute("userLogin");
             if (!LoginWorker.hasBasePermission(userLogin, req)) { // Allows UEL and FlexibleString (OFBIZ-12602)
-                if (isSolrTest() && SecuredFreemarker.containsFreemarkerInterpolation(req, resp, uri)) { // Reject Freemarker interpolation in URL
+                if (SecuredFreemarker.containsFreemarkerInterpolation(req, resp, uri)) { // Reject Freemarker interpolation in URL
                     return;
                 }
             }
