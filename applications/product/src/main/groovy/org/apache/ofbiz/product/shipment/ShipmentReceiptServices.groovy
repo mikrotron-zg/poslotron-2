@@ -170,7 +170,8 @@ Map receiveInventoryProduct () {
         serviceInMap.inventoryItemId = currentInventoryItemId
         run service: 'balanceInventoryItems', with: serviceInMap
 
-        successMessageList << "Received ${parameters.quantityAccepted} of ${parameters.productId} in inventory item ${currentInventoryItemId}."
+        successMessageList << "Received ${parameters.quantityAccepted} of ${parameters.productId}"
+                .concat(" in inventory item ${currentInventoryItemId}.") as String
     }
     // return the last inventory item received
     result.inventoryItemId = currentInventoryItemId
