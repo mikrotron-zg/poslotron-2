@@ -106,46 +106,35 @@ Map issueProductionRunTask() {
  *Issues the Inventory for a Production Run Task Component
  */
 Map issueProductionRunTaskComponent() {
-    GenericValue workEffort = from('WorkEffort').where('workEffortId', parameters.workEffortId).queryOne()
-    GenericValue productionRun = from('WorkEffort').where('workEffortId', workEffort.workEffortParentId).queryOne()
+    GenericValue workEffort = from('WorkEffort').where(workEffortId: parameters.workEffortId).queryOne()
+    GenericValue productionRun = from('WorkEffort').where(workEffortId: workEffort.workEffortParentId).queryOne()
     if (['PRUN_CANCELLED', 'PRUN_CLOSED'].contains(productionRun.currentStatusId)) {
-        return error(UtilProperties.getMessage('ManufacturingUiLabels',
-                'ManufacturingAddProdCompInCompCanStatusError', locale))
+        return error(label('ManufacturingUiLabels', 'ManufacturingAddProdCompInCompCanStatusError'))
     }
     String productId = parameters.productId
     GenericValue workEffortGoodStandard = null
     BigDecimal estimatedQuantity = parameters.quantity ?: 0.0
     if (parameters.fromDate) {
-        workEffortGoodStandard = from('WorkEffortGoodStandard')
-                .where('workEffortId', parameters.workEffortId,
-                        'productId', parameters.productId,
-                        'fromDate', parameters.fromDate,
-                        'workEffortGoodStdTypeId', 'PRUNT_PROD_NEEDED')
-                .queryOne()
-        productId = workEffortGoodStandard.productId
-        if (!parameters.quantity) {
-            estimatedQuantity = workEffortGoodStandard.estimatedQuantity
-        }
+        Map wegsPk = [workEffortId: parameters.workEffortId,
+                      productId: productId,
+                      fromDate: parameters.fromDate,
+                      workEffortGoodStdTypeId: 'PRUNT_PROD_NEEDED']
+        workEffortGoodStandard = from('WorkEffortGoodStandard').where(wegsPk).queryOne()
+        estimatedQuantity = estimatedQuantity ?: workEffortGoodStandard?.estimatedQuantity
 
-        if (!productId) {
-            Map serviceResult = run service: 'createWorkEffortGoodStandard', with: [workEffortId: parameters.workEffortId,
-                                                                                    productId: parameters.productId,
-                                                                                    workEffortGoodStdTypeId: 'PRUNT_PROD_NEEDED',
-                                                                                    fromDate: parameters.fromDate,
-                                                                                    estimatedQuantity: estimatedQuantity,
-                                                                                    statusId: 'WEGS_CREATED']
-            if (ServiceUtil.isError(serviceResult)) {
-                return serviceResult
-            }
+        if (!workEffortGoodStandard) {
+            run service: 'createWorkEffortGoodStandard', with: [*: wegsPk,
+                                                                estimatedQuantity: estimatedQuantity,
+                                                                statusId: 'WEGS_CREATED']
             // if the task is in completed status we want to make WEIA for the added product as well
             if (workEffort.currentStatusId == 'PRUN_COMPLETED') {
-                productId = parameters.productId
+                workEffortGoodStandard = from('WorkEffortGoodStandard').where(wegsPk).queryOne()
             }
         }
 
         // kind of like the inventory reservation routine, find InventoryItems to issue from,
         // but instead of doing the reservation just create an issuance and an inventory item detail for the change
-        if (productId) {
+        if (workEffortGoodStandard) {
             String orderBy = '+datetimeReceived'
             nowTimestamp = UtilDateTime.nowTimestamp()
 
@@ -213,75 +202,55 @@ Map issueProductionRunTaskComponent() {
                     Map paramMap = [productId: productId,
                                     internalName: product ? product.internalName : '',
                                     parameters: parameters]
-                    return ServiceUtil.returnError((UtilProperties.getMessage('ManufacturingUiLabels',
-                            'ManufacturingMaterialsNotAvailable', paramMap, parameters.locale)))
+                    return ServiceUtil.returnError(label('ManufacturingUiLabels', 'ManufacturingMaterialsNotAvailable', paramMap))
                 }
                 if (lastNonSerInventoryItem) {
-                    Map serviceResult = run service: 'assignInventoryToWorkEffort', with: [workEffortId: parameters.workEffortId,
-                                                                                           inventoryItemId: lastNonSerInventoryItem.inventoryItemId,
-                                                                                           quantity: parameters.quantityNotIssued]
-                    if (ServiceUtil.isError(serviceResult)) {
-                        return serviceResult
-                    }
+                    run service: 'assignInventoryToWorkEffort', with: [workEffortId: parameters.workEffortId,
+                                                                       inventoryItemId: lastNonSerInventoryItem.inventoryItemId,
+                                                                       quantity: parameters.quantityNotIssued]
 
                     // subtract from quantityNotIssued from the availableToPromise and quantityOnHand of existing inventory item
                     // instead of updating InventoryItem, add an InventoryItemDetail
-                    serviceResult = run service: 'createInventoryItemDetail', with: [inventoryItemId: lastNonSerInventoryItem.inventoryItemId,
-                                                                                     workEffortId: parameters.workEffortId,
-                                                                                     availableToPromiseDiff: -parameters.quantityNotIssued,
-                                                                                     quantityOnHandDiff: -parameters.quantityNotIssued,
-                                                                                     reasonEnumId: parameters.reasonEnumId,
-                                                                                     description: parameters.description]
-                    if (ServiceUtil.isError(serviceResult)) {
-                        return error(ServiceUtil.getErrorMessage(serviceResult))
-                    }
-                    serviceResult = run service: 'balanceInventoryItems', with: [inventoryItemId: lastNonSerInventoryItem.inventoryItemId]
-                    if (ServiceUtil.isError(serviceResult)) {
-                        return error(ServiceUtil.getErrorMessage(serviceResult))
-                    }
+                    run service: 'createInventoryItemDetail', with: [inventoryItemId: lastNonSerInventoryItem.inventoryItemId,
+                                                                     workEffortId: parameters.workEffortId,
+                                                                     availableToPromiseDiff: -parameters.quantityNotIssued,
+                                                                     quantityOnHandDiff: -parameters.quantityNotIssued,
+                                                                     reasonEnumId: parameters.reasonEnumId,
+                                                                     description: parameters.description]
+                    run service: 'balanceInventoryItems', with: [inventoryItemId: lastNonSerInventoryItem.inventoryItemId]
                 } else {
                     // no non-ser inv item, create a non-ser InventoryItem with availableToPromise = -quantityNotIssued
                     Map serviceResult = run service: 'createInventoryItem', with: [productId: productId,
                                                                                    facilityId: workEffort.facilityId,
                                                                                    inventoryItemTypeId: 'NON_SERIAL_INV_ITEM']
-                    if (ServiceUtil.isError(serviceResult)) {
-                        return serviceResult
-                    }
                     String inventoryItemId = serviceResult.inventoryItemId
-                    serviceResult = run service: 'assignInventoryToWorkEffort', with: [workEffortId: workEffort.workEffortId,
-                                                                                       inventoryItemId: inventoryItemId,
-                                                                                       quantity: parameters.quantityNotIssued]
-                    if (ServiceUtil.isError(serviceResult)) {
-                        return serviceResult
-                    }
+                    run service: 'assignInventoryToWorkEffort', with: [workEffortId: workEffort.workEffortId,
+                                                                       inventoryItemId: inventoryItemId,
+                                                                       quantity: parameters.quantityNotIssued]
 
                     // also create a detail record with the quantities
-                    serviceResult = run service: 'createInventoryItemDetail',
+                    run service: 'createInventoryItemDetail',
                             with: [workEffortId: workEffort.workEffortId,
                                    inventoryItemId: inventoryItemId,
                                    availableToPromiseDiff: -parameters.quantityNotIssued,
                                    quantityOnHandDiff: -parameters.quantityNotIssued,
                                    reasonEnumId: parameters.reasonEnumId,
                                    description: parameters.description]
-                    if (ServiceUtil.isError(serviceResult)) {
-                        return serviceResult
-                    }
                     parameters.quantityNotIssued = 0.0
                 }
             }
-            if (workEffortGoodStandard) {
-                BigDecimal totalIssuance = 0.0
-                from('WorkEffortAndInventoryAssign')
-                        .where('workEffortId', workEffortGoodStandard.workEffortId,
-                                'productId', workEffortGoodStandard.productId)
-                        .queryList()
-                        .each { issuance ->
-                            totalIssuance += issuance.quantity
-                        }
-                if (workEffortGoodStandard.estimatedQuantity <= totalIssuance) {
-                    workEffortGoodStandard.statusId = 'WEGS_COMPLETED'
-                    workEffortGoodStandard.store()
-                }
+
+            BigDecimal totalIssuance = 0.0
+            from('WorkEffortAndInventoryAssign')
+                    .where(workEffortId: workEffortGoodStandard.workEffortId,
+                            productId: workEffortGoodStandard.productId)
+                    .queryList()
+                    .each { issuance ->
+                        totalIssuance += issuance.quantity
+                    }
+            if (workEffortGoodStandard.estimatedQuantity <= totalIssuance) {
+                workEffortGoodStandard.statusId = 'WEGS_COMPLETED'
+                workEffortGoodStandard.store()
             }
         }
     }
