@@ -176,7 +176,8 @@ public final class UtilHttp {
         String requestURI = req.getRequestURI();
         if (params.isEmpty() && null != requestURI) {
             try {
-                List<NameValuePair> nameValuePairs = URLEncodedUtils.parse(new URI(URLDecoder.decode(requestURI, "UTF-8")),
+                List<NameValuePair> nameValuePairs = URLEncodedUtils.parse(
+                        new URI(UtilHttp.encodeBlanks(URLDecoder.decode(requestURI, "UTF-8"))),
                         Charset.forName("UTF-8"));
                 for (NameValuePair element : nameValuePairs) {
                     params.put(element.getName(), element.getValue());

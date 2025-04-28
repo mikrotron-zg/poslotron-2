@@ -43,6 +43,7 @@ import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.logging.log4j.ThreadContext;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.StringUtil;
+import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilProperties;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.entity.GenericValue;
@@ -178,7 +179,9 @@ public class ControlFilter extends HttpFilter {
         } else if (req.getAttribute(FORWARDED_FROM_SERVLET) == null
                 && !allowedPaths.isEmpty()) {
             // Get the request URI without the webapp mount point.
-            String uriWithContext = StringEscapeUtils.unescapeHtml4(URLDecoder.decode(req.getRequestURI(), "UTF-8"));
+            String uriWithContext = UtilHttp.encodeBlanks(
+                    StringEscapeUtils.unescapeHtml4(
+                            URLDecoder.decode(req.getRequestURI(), "UTF-8")));
             String uri = uriWithContext.substring(context.length());
 
 

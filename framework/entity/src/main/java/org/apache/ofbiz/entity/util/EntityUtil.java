@@ -37,6 +37,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import org.apache.ofbiz.base.util.Debug;
+import org.apache.ofbiz.base.util.UtilCodec;
 import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilMisc;
@@ -572,7 +573,7 @@ public final class EntityUtil {
     }
 
     /**
-     * For a entityName return the primary keys path that identify it
+     * For a entityName return the primary keys url path that identify it
      * like entityName/pkValue1/pkValue2/../pkValueN
      * @param delegator
      * @param entityName
@@ -584,7 +585,7 @@ public final class EntityUtil {
     }
 
     /**
-     * For a entityName return the primary keys path that identify it
+     * For a entityName return the primary keys url path that identify it
      * like entityName/pkValue1/pkValue2/../pkValueN
      * @param gv
      * @return
@@ -592,7 +593,7 @@ public final class EntityUtil {
     public static String entityToPath(GenericValue gv) {
         StringBuilder path = new StringBuilder(gv.getEntityName());
         for (String pkName : gv.getModelEntity().getPkFieldNames()) {
-            path.append("/").append(gv.getString(pkName));
+            path.append("/").append(UtilCodec.encodeUrl(gv.getString(pkName)));
         }
         return path.toString();
     }
@@ -619,7 +620,7 @@ public final class EntityUtil {
         }
         Map<String, Object> pkValuesMap = new HashMap<>();
         for (String pkName : modelEntity.getPkFieldNames()) {
-            pkValuesMap.put(pkName, pkValues.removeFirst());
+            pkValuesMap.put(pkName, UtilCodec.getDecoder("url").decode(pkValues.removeFirst()));
         }
         return pkValuesMap;
     }
