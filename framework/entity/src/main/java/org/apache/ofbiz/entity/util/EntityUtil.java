@@ -592,8 +592,11 @@ public final class EntityUtil {
      */
     public static String entityToPath(GenericValue gv) {
         StringBuilder path = new StringBuilder(gv.getEntityName());
-        for (String pkName : gv.getModelEntity().getPkFieldNames()) {
-            path.append("/").append(UtilCodec.encodeUrl(gv.getString(pkName)));
+        List<String> pkFieldNames = gv.getModelEntity().getPkFieldNames();
+        if (pkFieldNames.stream().noneMatch(pkName -> gv.get(pkName) == null)) {
+            for (String pkName : pkFieldNames) {
+                path.append("/").append(UtilCodec.encodeUrl(gv.getString(pkName)));
+            }
         }
         return path.toString();
     }
