@@ -24,7 +24,7 @@ if (sessionStorage.getItem("SetTimeZoneFromBrowser") === null || sessionStorage.
         importLibrary(["/common/js/plugins/moment-timezone/moment-timezone-with-data.min.js"], function(){
             var timezone = moment.tz.guess();
             $.ajax({
-                url: "SetTimeZoneFromBrowser",
+        url: "/common-js/control/SetTimeZoneFromBrowser",
                 type: "POST",
                 async: false,
                 data: "localeName=" + timezone,
