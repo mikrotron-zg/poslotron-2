@@ -33,7 +33,7 @@ dependencies {
     implementation 'com.rometools:rome:2.1.0'
     implementation 'com.thoughtworks.xstream:xstream:1.4.20'
     implementation 'commons-cli:commons-cli:1.5.0' // with 1.6.0, 2 tests of OfbizStartupUnitTests don't pass
-    implementation 'commons-fileupload:commons-fileupload:1.5'
+    implementation 'commons-fileupload:commons-fileupload:1.6.0'
     implementation 'commons-net:commons-net:3.10.0'
     implementation 'commons-validator:commons-validator:1.8.0'
     implementation 'de.odysseus.juel:juel-impl:2.2.7'
@@ -61,8 +61,8 @@ dependencies {
     implementation 'org.apache.tika:tika-parsers:2.5.0'
     implementation 'org.apache.tika:tika-parser-pdf-module:2.5.0'
     implementation 'org.apache.cxf:cxf-rt-frontend-jaxrs:3.5.6' // 4.0.3 does not compile
-    implementation 'org.apache.tomcat:tomcat-catalina-ha:9.0.97' // Remember to change the version number (9 now) in javadoc block if needed.
-    implementation 'org.apache.tomcat:tomcat-jasper:9.0.97'
+    implementation 'org.apache.tomcat:tomcat-catalina-ha:9.0.107' // Remember to change the version number (9 now) in javadoc block if needed.
+    implementation 'org.apache.tomcat:tomcat-jasper:9.0.107'
     implementation 'org.apache.axis2:axis2-kernel:1.8.2'
     implementation 'org.apache.xmlgraphics:batik-anim:1.17'
     implementation 'org.apache.xmlgraphics:batik-util:1.17'
@@ -70,7 +70,7 @@ dependencies {
     implementation 'org.apache.xmlgraphics:fop:2.3' // NOTE: since 2.4 dependencies are messed up. See https://github.com/moqui/moqui-fop/blob/master/build.gradle
     implementation 'org.clojure:clojure:1.11.1'
     implementation 'org.codehaus.groovy:groovy-all:3.0.21'
-    implementation 'org.freemarker:freemarker:2.3.34-SNAPSHOT' // Remember to change the version number in FreeMarkerWorker class when upgrading. See OFBIZ-10019 if >= 2.4
+    implementation 'org.freemarker:freemarker:2.3.34' // Remember to change the version number in FreeMarkerWorker class when upgrading. See OFBIZ-10019 if >= 2.4
 
     implementation 'org.owasp.esapi:esapi:2.5.3.1'
     implementation 'org.cyberneko:html:1.9.8'

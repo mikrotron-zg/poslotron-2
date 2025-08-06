@@ -20,6 +20,7 @@ package org.apache.ofbiz.base.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -134,6 +135,20 @@ public final class StringUtil {
             }
         }
         return splitList;
+    }
+
+    /**
+     * Splits a String on a String Separator into a List of Strings.
+     * @param str the String to split
+     * @param separator the String Separator to split the str String
+     * @return a list of Strings or null if one of the parameters is null
+     */
+    public static List<String> splitWithStringSeparator(String str, String separator) {
+        if (str == null || separator == null) {
+            return null;
+        }
+
+        return Arrays.asList(str.split(separator));
     }
 
     /**

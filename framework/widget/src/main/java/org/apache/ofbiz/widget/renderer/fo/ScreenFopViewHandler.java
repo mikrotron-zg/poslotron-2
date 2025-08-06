@@ -108,6 +108,7 @@ public class ScreenFopViewHandler extends AbstractViewHandler {
             // this is the object used to render forms from their definitions
             screens.getContext().put("formStringRenderer", formStringRenderer);
             screens.getContext().put("simpleEncoder", UtilCodec.getEncoder(modelTheme.getEncoder(getName())));
+            screens.getContext().put("screens", screens);
             screens.render(page);
         } catch (IOException | GeneralException | SAXException | ParserConfigurationException | TemplateException e) {
             renderError("Problems with the response writer/output stream", e, "[Not Yet Rendered]", request, response, context);
@@ -138,7 +139,7 @@ public class ScreenFopViewHandler extends AbstractViewHandler {
                 ? ApacheFopWorker.getAllowEditContentDefault() : (String) context.get("allowEditContent"));
         boolean allowEditAnnotations = Boolean.parseBoolean(UtilValidate.isEmpty(context.get("allowEditAnnotations"))
                 ? ApacheFopWorker.getAllowEditAnnotationsDefault() : (String) context.get("allowEditAnnotations"));
-        if (UtilValidate.isNotEmpty(userPassword) || UtilValidate.isNotEmpty(ownerPassword) || !allowPrint || !allowCopyContent || allowEditContent
+        if (UtilValidate.isNotEmpty(userPassword) || UtilValidate.isNotEmpty(ownerPassword) || !allowPrint || !allowCopyContent || !allowEditContent
                 || !allowEditAnnotations) {
             int encryptionLength = 128;
             try {

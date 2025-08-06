@@ -605,7 +605,7 @@ Map cancelReturnItems() {
  * Cancel the associated OrderItems of the replacement order, if any.
  */
 Map cancelReplacementOrderItems() {
-    GenericValue returnItem = from('ReturnItems').where(parameters).queryOne()
+    GenericValue returnItem = from('ReturnItem').where(parameters).queryOne()
     if (returnItem.returnTypeId == 'RTN_REPLACE'
             || returnItem.returnTypeId == 'RTN_CSREPLACE'
             || returnItem.returnTypeId == 'RTN_REPAIR_REPLACE') {

@@ -154,4 +154,4 @@ under the License.
 
 <#macro makeHiddenFormLinkForm actionUrl name parameters targetWindow></#macro>
 <#macro makeHiddenFormLinkAnchor linkStyle hiddenFormName event action imgSrc description confirmation><td>${description!}</td></#macro>
-<#macro makeHyperlinkString linkStyle hiddenFormName event action imgSrc title targetParameters alternate linkUrl targetWindow description confirmation uniqueItemName="" height="" width="" id=""></#macro>
+<#macro makeHyperlinkString hiddenFormName imgSrc imgTitle title alternate linkUrl description text="" linkStyle="" event="" action="" targetParameters="" targetWindow="" confirmation="" uniqueItemName="" height="" width="" id=""></#macro>

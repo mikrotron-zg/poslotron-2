@@ -22,12 +22,12 @@ GRADLE_OFBIZ_PATH="$OFBIZ_HOME/gradle"
 GRADLE_WRAPPER_OFBIZ_PATH="$GRADLE_OFBIZ_PATH/wrapper"
 
 # version and uri to download the wrapper
-RELEASE="6.5.1"
+RELEASE="7.6.0"
 GRADLE_WRAPPER_URI="https://github.com/gradle/gradle/raw/v$RELEASE/gradle/wrapper/"
 
 # checksum to verify the downloaded file
-SHASUM_GRADLE_WRAPPER_FILES="33b0acb4572934fc1dd7d5880c65036724974e06  gradle/wrapper/gradle-wrapper.jar
-b76cfc82d574180f435b4bd9d4b0f29a3c32294b  gradle/wrapper/gradle-wrapper.properties
+SHASUM_GRADLE_WRAPPER_FILES="d99b3fab4e678237951d90da6814fc9eb17b97ca  gradle/wrapper/gradle-wrapper.jar
+18dac96b55dcedc3e8049f9ef03d1242c5da20fe  gradle/wrapper/gradle-wrapper.properties
 67bc176bca816684cf5218570a931f57d5f2b423  gradlew"
 
 GRADLE_WRAPPER_JAR="gradle-wrapper.jar"
