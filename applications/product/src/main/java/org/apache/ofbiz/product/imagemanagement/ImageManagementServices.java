@@ -87,6 +87,7 @@ public class ImageManagementServices {
         Locale locale = (Locale) context.get("locale");
 
         if (UtilValidate.isNotEmpty(uploadFileName)) {
+            Debug.logInfo("================== This is about file: " + uploadFileName +" ==================", MODULE);
             String imageServerPath = FlexibleStringExpander.expandString(EntityUtilProperties.getPropertyValue("catalog",
                     "image.management.path", delegator), context);
             String imageServerUrl = FlexibleStringExpander.expandString(EntityUtilProperties.getPropertyValue("catalog",
@@ -182,7 +183,7 @@ public class ImageManagementServices {
                 }
             }
             // Scale Image in different sizes
-            if (UtilValidate.isNotEmpty(imageResize)) {
+            else {
                 fileToCheck = imageServerPath + "/" + productId + "/" + imageName;
                 File fileOriginal = new File(fileToCheck);
                 fileOriginal = checkExistsImage(fileOriginal);
