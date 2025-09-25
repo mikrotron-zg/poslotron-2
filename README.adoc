@@ -189,18 +189,8 @@ In case of problems visit our link:#further-reading[Further reading section].
 
 
 [CAUTION]
-====
-In production never use the credentials contained in demo data. Not only the admin credentials, but all of them.
-
-Also we recommend to not use Windows Server in production because we are not supporting specific Windows related security issues.
-====
-
-* If you want to use AJP on a non localhost OFBiz instance, you need to set the value of allowedRequestAttributesPattern
-in framework/catalina/ofbiz-component.xml
-
-
 You can find more information about security in OFBiz at
-https://ofbiz.apache.org/security.html[the official security page]
+https://ofbiz.apache.org/security.html[the site security page]
 
 
 [[build-system-syntax]]
