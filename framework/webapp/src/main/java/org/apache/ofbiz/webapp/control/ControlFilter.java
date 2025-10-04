@@ -25,7 +25,9 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -164,6 +166,35 @@ public class ControlFilter extends HttpFilter {
     public void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain) throws IOException, ServletException {
         String context = req.getContextPath();
         HttpSession session = req.getSession();
+
+        // Prevents stream exploitation
+        Map<String, Object> parameters = UtilHttp.getParameterMap(req);
+        boolean reject = false;
+        if (!parameters.isEmpty()) {
+            for (String key : parameters.keySet()) {
+                Object object = parameters.get(key);
+                if (object.getClass().equals(String.class)) {
+                    String val = (String) object;
+                    if (val.contains("<")) {
+                        reject = true;
+                    }
+                } else {
+                    @SuppressWarnings("unchecked")
+                    LinkedList<String> vals = (LinkedList<String>) parameters.get(key);
+                    for (String aVal : vals) {
+                        if (aVal.contains("<")) {
+                            reject = true;
+                        }
+                    }
+                }
+            }
+            if (reject) {
+                Debug.logError("For security reason this URL is not accepted", MODULE);
+                throw new RuntimeException("For security reason this URL is not accepted");
+            }
+        }
+
+
 
         // Check if we are told to redirect everything.
         if (redirectAll) {
