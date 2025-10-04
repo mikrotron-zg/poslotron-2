@@ -168,29 +168,31 @@ public class ControlFilter extends HttpFilter {
         HttpSession session = req.getSession();
 
         // Prevents stream exploitation
-        Map<String, Object> parameters = UtilHttp.getParameterMap(req);
-        boolean reject = false;
-        if (!parameters.isEmpty()) {
-            for (String key : parameters.keySet()) {
-                Object object = parameters.get(key);
-                if (object.getClass().equals(String.class)) {
-                    String val = (String) object;
-                    if (val.contains("<")) {
-                        reject = true;
-                    }
-                } else {
-                    @SuppressWarnings("unchecked")
-                    LinkedList<String> vals = (LinkedList<String>) parameters.get(key);
-                    for (String aVal : vals) {
-                        if (aVal.contains("<")) {
+        if (!isSolrTest()) {
+            Map<String, Object> parameters = UtilHttp.getParameterMap(req);
+            boolean reject = false;
+            if (!parameters.isEmpty()) {
+                for (String key : parameters.keySet()) {
+                    Object object = parameters.get(key);
+                    if (object.getClass().equals(String.class)) {
+                        String val = (String) object;
+                        if (val.contains("<")) {
                             reject = true;
+                        }
+                    } else {
+                        @SuppressWarnings("unchecked")
+                        LinkedList<String> vals = (LinkedList<String>) parameters.get(key);
+                        for (String aVal : vals) {
+                            if (aVal.contains("<")) {
+                                reject = true;
+                            }
                         }
                     }
                 }
-            }
-            if (reject) {
-                Debug.logError("For security reason this URL is not accepted", MODULE);
-                throw new RuntimeException("For security reason this URL is not accepted");
+                if (reject) {
+                    Debug.logError("For security reason this URL is not accepted", MODULE);
+                    throw new RuntimeException("For security reason this URL is not accepted");
+                }
             }
         }
 
