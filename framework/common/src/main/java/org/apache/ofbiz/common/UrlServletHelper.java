@@ -50,6 +50,9 @@ public final class UrlServletHelper {
     public static void setRequestAttributes(ServletRequest request, Delegator delegator, ServletContext servletContext) {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         // check if multi tenant is enabled
+        if (delegator == null) {
+            delegator = WebAppUtil.getDelegator(servletContext);
+        }
         boolean useMultitenant = EntityUtil.isMultiTenantEnabled();
         if (useMultitenant) {
             // get tenant delegator by domain name

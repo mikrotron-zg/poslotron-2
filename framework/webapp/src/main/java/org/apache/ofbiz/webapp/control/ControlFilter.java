@@ -24,8 +24,8 @@ import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -45,9 +45,11 @@ import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.logging.log4j.ThreadContext;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.StringUtil;
+import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilProperties;
 import org.apache.ofbiz.base.util.UtilValidate;
+import org.apache.ofbiz.common.UrlServletHelper;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.security.SecuredFreemarker;
 import org.apache.ofbiz.security.SecuredUpload;
@@ -169,34 +171,32 @@ public class ControlFilter extends HttpFilter {
 
         // Prevents stream exploitation
         if (!isSolrTest()) {
+            UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
             Map<String, Object> parameters = UtilHttp.getParameterMap(req);
             boolean reject = false;
             if (!parameters.isEmpty()) {
                 for (String key : parameters.keySet()) {
                     Object object = parameters.get(key);
-                    if (object.getClass().equals(String.class)) {
-                        String val = (String) object;
-                        if (val.contains("<")) {
+                    if (object.getClass().equals(String.class)
+                            || object instanceof Collection) {
+                        try {
+                            List<String> toCheck = object.getClass().equals(String.class)
+                                    ? List.of((String) object)
+                                            : UtilGenerics.checkCollection(object, String.class);
+                            reject = toCheck.stream()
+                                    .anyMatch(val -> val.contains("<"));
+                        } catch (IllegalArgumentException e) {
+                            Debug.logWarning(e, MODULE);
                             reject = true;
                         }
-                    } else {
-                        @SuppressWarnings("unchecked")
-                        LinkedList<String> vals = (LinkedList<String>) parameters.get(key);
-                        for (String aVal : vals) {
-                            if (aVal.contains("<")) {
-                                reject = true;
-                            }
-                        }
                     }
-                }
-                if (reject) {
-                    Debug.logError("For security reason this URL is not accepted", MODULE);
-                    throw new RuntimeException("For security reason this URL is not accepted");
+                    if (reject) {
+                        Debug.logError("For security reason this URL is not accepted", MODULE);
+                        throw new RuntimeException("For security reason this URL is not accepted");
+                    }
                 }
             }
         }
-
-
 
         // Check if we are told to redirect everything.
         if (redirectAll) {
