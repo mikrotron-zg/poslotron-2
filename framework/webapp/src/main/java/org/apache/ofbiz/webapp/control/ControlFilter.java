@@ -174,11 +174,10 @@ public class ControlFilter extends HttpFilter {
         String context = req.getContextPath();
         HttpSession session = req.getSession();
 
-        // Prevents stream exploitation
-        if (!isSolrTest()) {
-            if (!isControlFilterTests()) {
-                UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
-            }
+        if (!(isSolrTest() || isControlFilterTests())) {
+            // Prevents stream exploitation
+            UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
+            UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
             Map<String, Object> parameters = UtilHttp.getParameterMap(req);
             boolean reject = false;
             if (!parameters.isEmpty()) {
@@ -197,10 +196,10 @@ public class ControlFilter extends HttpFilter {
                             reject = true;
                         }
                     }
-                    if (reject) {
-                        Debug.logError("For security reason this URL is not accepted", MODULE);
-                        throw new RuntimeException("For security reason this URL is not accepted");
-                    }
+                }
+                if (reject) {
+                    Debug.logError("For security reason this URL is not accepted", MODULE);
+                    throw new RuntimeException("For security reason this URL is not accepted");
                 }
             }
         }

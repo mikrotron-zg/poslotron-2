@@ -58,7 +58,7 @@ public class ControlFilterTests {
 
     @Test
     public void filterWithExactAllowedPath() throws Exception {
-        System.setProperty("ControlFilterTests", "runsAfterControlFilter");
+        System.setProperty("ControlFilterTests", "bypassPreventsStreamExploitation");
         when(config.getInitParameter("redirectPath")).thenReturn("/foo");
         when(config.getInitParameter("allowedPaths")).thenReturn("/foo:/bar");
         when(req.getRequestURI()).thenReturn("/servlet/bar");
@@ -72,7 +72,7 @@ public class ControlFilterTests {
 
     @Test
     public void filterWithAllowedSubPath() throws Exception {
-        System.setProperty("ControlFilterTests", "runsAfterControlFilter");
+        System.setProperty("ControlFilterTests", "bypassPreventsStreamExploitation");
         when(config.getInitParameter("redirectPath")).thenReturn("/foo");
         when(config.getInitParameter("allowedPaths")).thenReturn("/foo:/bar");
         when(req.getRequestURI()).thenReturn("/servlet/bar/baz");
@@ -86,7 +86,7 @@ public class ControlFilterTests {
 
     @Test
     public void filterWithRedirection() throws Exception {
-        System.setProperty("ControlFilterTests", "runsAfterControlFilter");
+        System.setProperty("ControlFilterTests", "bypassPreventsStreamExploitation");
         when(config.getInitParameter("redirectPath")).thenReturn("/foo");
         when(config.getInitParameter("allowedPaths")).thenReturn("/bar:/baz");
         when(req.getRequestURI()).thenReturn("/missing/path");
@@ -99,7 +99,7 @@ public class ControlFilterTests {
 
     @Test
     public void filterWithURIredirection() throws Exception {
-        System.setProperty("ControlFilterTests", "runsAfterControlFilter");
+        System.setProperty("ControlFilterTests", "bypassPreventsStreamExploitation");
         when(config.getInitParameter("redirectPath")).thenReturn("http://example.org/foo");
         when(config.getInitParameter("allowedPaths")).thenReturn("/foo:/bar");
         when(req.getRequestURI()).thenReturn("/baz");
@@ -112,7 +112,7 @@ public class ControlFilterTests {
 
     @Test
     public void bailsOutWithVariousErrorCodes() throws Exception {
-        System.setProperty("ControlFilterTests", "runsAfterControlFilter");
+        System.setProperty("ControlFilterTests", "bypassPreventsStreamExploitation");
         when(config.getInitParameter("allowedPaths")).thenReturn("/foo");
         when(req.getRequestURI()).thenReturn("/baz");
 
@@ -143,7 +143,7 @@ public class ControlFilterTests {
 
     @Test
     public void redirectAllAllowed() throws Exception {
-        System.setProperty("ControlFilterTests", "runsAfterControlFilter");
+        System.setProperty("ControlFilterTests", "bypassPreventsStreamExploitation");
         when(config.getInitParameter("redirectPath")).thenReturn("/bar");
         when(config.getInitParameter("forceRedirectAll")).thenReturn("Y");
         when(config.getInitParameter("allowedPaths")).thenReturn("/foo");
@@ -157,7 +157,7 @@ public class ControlFilterTests {
 
     @Test
     public void redirectAllNotAllowed() throws Exception {
-        System.setProperty("ControlFilterTests", "runsAfterControlFilter");
+        System.setProperty("ControlFilterTests", "bypassPreventsStreamExploitation");
         when(config.getInitParameter("redirectPath")).thenReturn("/bar");
         when(config.getInitParameter("forceRedirectAll")).thenReturn("Y");
         when(config.getInitParameter("allowedPaths")).thenReturn("/foo");
@@ -171,7 +171,7 @@ public class ControlFilterTests {
 
     @Test
     public void redirectAllRecursive() throws Exception {
-        System.setProperty("ControlFilterTests", "runsAfterControlFilter");
+        System.setProperty("ControlFilterTests", "bypassPreventsStreamExploitation");
         when(config.getInitParameter("redirectPath")).thenReturn("/foo");
         when(config.getInitParameter("forceRedirectAll")).thenReturn("Y");
         when(config.getInitParameter("allowedPaths")).thenReturn("/foo");
