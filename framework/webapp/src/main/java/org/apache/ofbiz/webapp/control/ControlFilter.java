@@ -177,7 +177,6 @@ public class ControlFilter extends HttpFilter {
         if (!(isSolrTest() || isControlFilterTests())) {
             // Prevents stream exploitation
             UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
-            UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
             Map<String, Object> parameters = UtilHttp.getParameterMap(req);
             boolean reject = false;
             if (!parameters.isEmpty()) {
