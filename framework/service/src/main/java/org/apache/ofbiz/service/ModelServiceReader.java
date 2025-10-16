@@ -498,6 +498,14 @@ public final class ModelServiceReader implements Serializable {
         def.setOptional(true);
         def.setInternal(true);
         service.addParam(def);
+        // errorMessageMap
+        def = new ModelParam();
+        def.setName(ModelService.ERROR_MESSAGE_MAP);
+        def.setType("java.util.Map");
+        def.setMode(ModelService.OUT_PARAM);
+        def.setOptional(true);
+        def.setInternal(true);
+        service.addParam(def);
         // successMessage
         def = new ModelParam();
         def.setName(ModelService.SUCCESS_MESSAGE);
