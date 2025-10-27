@@ -173,8 +173,9 @@ public class ControlFilter extends HttpFilter {
     public void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain) throws IOException, ServletException {
         String context = req.getContextPath();
         HttpSession session = req.getSession();
+        boolean isEntityImport = req.getRequestURI().equals("/webtools/control/entityImport");
 
-        if (!(isSolrTest() || isControlFilterTests())) {
+        if (!(isSolrTest() || isControlFilterTests() || isEntityImport)) {
             // Prevents stream exploitation
             UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
             Map<String, Object> parameters = UtilHttp.getParameterMap(req);
