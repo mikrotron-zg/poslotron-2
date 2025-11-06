@@ -24,8 +24,10 @@ import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,9 +45,11 @@ import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.logging.log4j.ThreadContext;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.StringUtil;
+import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilProperties;
 import org.apache.ofbiz.base.util.UtilValidate;
+import org.apache.ofbiz.common.UrlServletHelper;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.security.SecuredFreemarker;
 import org.apache.ofbiz.security.SecuredUpload;
@@ -156,6 +160,11 @@ public class ControlFilter extends HttpFilter {
         return UtilValidate.isNotEmpty(allowedTokens) ? StringUtil.split(allowedTokens, ",") : new ArrayList<>();
     }
 
+    private static boolean isControlFilterTests() {
+        return null != System.getProperty("ControlFilterTests");
+    }
+
+
     /**
      * Makes allowed paths pass through while redirecting the others to a fix location.
      * Reject wrong URLs
@@ -164,6 +173,37 @@ public class ControlFilter extends HttpFilter {
     public void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain) throws IOException, ServletException {
         String context = req.getContextPath();
         HttpSession session = req.getSession();
+        boolean isEntityImport = req.getRequestURI().equals("/webtools/control/entityImport");
+        boolean isProgramExport = req.getRequestURI().equals("/webtools/control/ProgramExport");
+
+        if (!(isSolrTest() || isControlFilterTests() || isEntityImport || isProgramExport)) {
+            // Prevents stream exploitation
+            UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
+            Map<String, Object> parameters = UtilHttp.getParameterMap(req);
+            boolean reject = false;
+            if (!parameters.isEmpty()) {
+                for (String key : parameters.keySet()) {
+                    Object object = parameters.get(key);
+                    if (object.getClass().equals(String.class)
+                            || object instanceof Collection) {
+                        try {
+                            List<String> toCheck = object.getClass().equals(String.class)
+                                    ? List.of((String) object)
+                                            : UtilGenerics.checkCollection(object, String.class);
+                            reject = toCheck.stream()
+                                    .anyMatch(val -> val.contains("<"));
+                        } catch (IllegalArgumentException e) {
+                            Debug.logWarning(e, MODULE);
+                            reject = true;
+                        }
+                    }
+                }
+                if (reject) {
+                    Debug.logError("For security reason this URL is not accepted", MODULE);
+                    throw new RuntimeException("For security reason this URL is not accepted");
+                }
+            }
+        }
 
         // Check if we are told to redirect everything.
         if (redirectAll) {

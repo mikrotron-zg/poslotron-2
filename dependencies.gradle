@@ -17,6 +17,7 @@
  * under the License.
  */
 dependencies {
+    implementation 'com.drewnoakes:metadata-extractor:2.19.0'
     implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8'
     implementation 'com.google.zxing:core:3.5.3'
     implementation 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2'
@@ -61,8 +62,8 @@ dependencies {
     implementation 'org.apache.tika:tika-parsers:2.5.0'
     implementation 'org.apache.tika:tika-parser-pdf-module:2.5.0'
     implementation 'org.apache.cxf:cxf-rt-frontend-jaxrs:3.5.6' // 4.0.3 does not compile
-    implementation 'org.apache.tomcat:tomcat-catalina-ha:9.0.107' // Remember to change the version number (9 now) in javadoc block if needed.
-    implementation 'org.apache.tomcat:tomcat-jasper:9.0.107'
+    implementation 'org.apache.tomcat:tomcat-catalina-ha:9.0.110' // Remember to change the version number (9 now) in javadoc block if needed.
+    implementation 'org.apache.tomcat:tomcat-jasper:9.0.110'
     implementation 'org.apache.axis2:axis2-kernel:1.8.2'
     implementation 'org.apache.xmlgraphics:batik-anim:1.17'
     implementation 'org.apache.xmlgraphics:batik-util:1.17'
