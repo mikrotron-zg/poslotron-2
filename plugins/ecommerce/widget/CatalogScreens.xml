@@ -216,7 +216,8 @@ under the License.
             <actions>
                 <set field="productsummaryScreen" value="component://ecommerce/widget/CatalogScreens.xml#productsummary"/>
                 <set field="productCategoryLinkScreen" value="component://ecommerce/widget/CatalogScreens.xml#ProductCategoryLink"/>
-                
+                <set field="parameters.VIEW_SIZE" from-field="parameters.VIEW_SIZE" default-value="12"/>
+
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/entry/catalog/CategoryDetail.groovy"/>
 
                 <entity-and entity-name="ProductCategoryLink" list="productCategoryLinks" use-cache="true" filter-by-date="true">
@@ -443,7 +444,7 @@ under the License.
                 <set field="productsummaryScreen" value="component://ecommerce/widget/CatalogScreens.xml#productsummary"/>
 
                 <set field="titleProperty" value="PageTitleSearchResults"/>
-                <set field="parameters.VIEW_SIZE" from-field="parameters.VIEW_SIZE" default-value="10"/>
+                <set field="parameters.VIEW_SIZE" from-field="parameters.VIEW_SIZE" default-value="20"/>
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/entry/catalog/KeywordSearch.groovy"/>
             </actions>
             <widgets>
@@ -470,7 +471,7 @@ under the License.
                 <set field="productsummaryScreen" value="component://ecommerce/widget/CatalogScreens.xml#productsummary"/>
 
                 <set field="titleProperty" value="PageTitleTagResults"/>
-                <set field="parameters.VIEW_SIZE" from-field="parameters.VIEW_SIZE" default-value="10"/>
+                <set field="parameters.VIEW_SIZE" from-field="parameters.VIEW_SIZE" default-value="20"/>
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/entry/catalog/KeywordSearch.groovy"/>
             </actions>
             <widgets>
