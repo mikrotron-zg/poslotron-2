@@ -217,3 +217,9 @@ button.jGrowl-close {
     background: #6f6f6f;
     color: white;
 }
+
+.required-field:after {
+    content:" *";
+    color: red;
+    display: inline;
+  }

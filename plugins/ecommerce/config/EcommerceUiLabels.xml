@@ -5622,4 +5622,28 @@
         <value xml:lang="zh">缺少验证码或验证码错误</value>
         <value xml:lang="zh-TW">沒有驗證碼或是錯誤</value>
     </property>
+    <property key="TelecomForShippingNote">
+        <value xml:lang="en">If you intend to choose delivery by one of the delivery services, please enter your mobile phone number to facilitate and speed up delivery. Thank you!</value>
+        <value xml:lang="hr">Ukoliko namjeravate odabrati dostavu nekom od dostavnih službi, molimo da unesete broj mobitela kako bi olakšali i ubrzali dostavu. Hvala!</value>
+    </property>
+    <property key="TermsOfUse">
+        <value xml:lang="en">Terms of Use</value>
+        <value xml:lang="hr">Opći uvjeti</value>
+    </property>
+    <property key="GdprInfo">
+        <value xml:lang="en">You can read the Terms of Use and the Privacy Statement</value>
+        <value xml:lang="hr">Opće uvjete poslovanja i Izjavu o privatnosti možete pročitati</value>
+    </property>
+    <property key="GdprNote">
+        <value xml:lang="en">In order to complete the registration process, you must accept the Terms of Use and Privacy Statement.</value>
+        <value xml:lang="hr">Kako bi dovršili postupak registracije, potrebno je da prihvatite navedene Uvjete korištenja i Izjavu o privatnosti.</value>
+    </property>
+    <property key="GdprAccept">
+        <value xml:lang="en">I accept the Terms of Use and Privacy Statement and consent to the collection and processing of personal data in accordance with the Privacy Statement.</value>
+        <value xml:lang="hr">Prihvaćam Opće uvjete poslovanja i dajem privolu za prikupljanje i obradu osobnih podataka u skladu s Izjavom o privatnosti </value>
+    </property>
+    <property key="AtThisLink">
+        <value xml:lang="en">at this link</value>
+        <value xml:lang="hr">na ovom linku</value>
+    </property>
 </resource>
