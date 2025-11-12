@@ -114,7 +114,7 @@ under the License.
                         <fo:block>Uprava društva:</fo:block>
                     </fo:list-item-label>
                     <fo:list-item-body start-indent="body-start()">
-                        <fo:block>Josip Almaši, Tomislav Preksavec</fo:block>
+                        <fo:block>Tomislav Preksavec</fo:block>
                     </fo:list-item-body>
                 </fo:list-item>
                 <fo:list-item>
@@ -127,7 +127,7 @@ under the License.
                 </fo:list-item>
                 <fo:list-item>
                     <fo:list-item-label>
-                        <fo:block>Temeljni kapital 2.654,46 € uplaćen u cijelosti</fo:block>
+                        <fo:block>Temeljni kapital 2.650,00 € uplaćen u cijelosti</fo:block>
                     </fo:list-item-label>
                     <fo:list-item-body start-indent="body-start()">
                         <fo:block></fo:block>

@@ -28,8 +28,8 @@ under the License.
     <hr>
     <div class="small">
         Naziv tvrtke: MIKROTRON društvo s ograničenom odgovornošću za trgovinu i usluge • Skraćeni naziv: MIKROTRON d.o.o. • 
-        Sudski registar: Trgovački sud u Zagrebu • MBS: 080923147 • MB: 4251717 • Temeljni kapital: 2.654,46 € uplaćen u cijelosti • 
-        Uprava društva: Josip Almaši, Tomislav Preksavec • OIB: 43227166836 • Poslovni račun kod: Privredna banka d.d. Zagreb • IBAN: HR8023400091110675464
+        Sudski registar: Trgovački sud u Zagrebu • MBS: 080923147 • MB: 4251717 • Temeljni kapital: 2.650,00 € uplaćen u cijelosti • 
+        Uprava društva: Tomislav Preksavec • OIB: 43227166836 • Poslovni račun kod: Privredna banka d.d. Zagreb • IBAN: HR8023400091110675464
   </div>
 </div>
 </div>
