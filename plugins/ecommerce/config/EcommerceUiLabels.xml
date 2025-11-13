@@ -5646,4 +5646,8 @@
         <value xml:lang="en">at this link</value>
         <value xml:lang="hr">na ovom linku</value>
     </property>
+    <property key="ImageDisclaimer">
+        <value xml:lang="en">Image is for illustrative purposes only. Please refer to product description.</value>
+        <value xml:lang="hr">Slika služi samo u ilustrativne svrhe. Za točne specifikacije pogledajte opis proizvoda.</value>
+    </property>
 </resource>

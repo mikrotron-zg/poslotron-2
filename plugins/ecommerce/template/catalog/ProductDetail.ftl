@@ -368,7 +368,7 @@ ${variantInfoJavaScript!}
                     <div class="modal-header text-secondary">
                       <div class="modal-title w-100">
                         <h6>${productContentWrapper.get("PRODUCT_NAME", "html")!}</h6>
-                        <span class="font-italic small">ID: ${product.productId!}</span>
+                        <span class="small">ID: ${product.productId!}</span>
                       </div>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">
@@ -379,6 +379,11 @@ ${variantInfoJavaScript!}
                     <div class="modal-body">
                     <img src="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>" 
                       class="w-100"/>
+                    </div>
+                    <div class="modal-footer text-secondary">
+                      <div class="text-center w-100">
+                        <span class="font-italic small">${uiLabelMap.ImageDisclaimer}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
