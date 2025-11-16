@@ -85,6 +85,12 @@ will generally always be reserved for the logo at the top of the page.
     <a href='<@ofbizUrl>checkLogin/main</@ofbizUrl>'>${uiLabelMap.CommonLoginHere}</a>
   </h6>
 </div>
+<div class="d-flex justify-content-center">
+    <h6>
+      ${uiLabelMap.RegisterCompany}
+      <a href='<@ofbizUrl>newcompany</@ofbizUrl>'>${uiLabelMap.AtThisLink}</a>
+    </h6>
+</div>
 
 <#macro fieldErrors fieldName>
   <#if errorMessageList?has_content>
@@ -251,7 +257,7 @@ will generally always be reserved for the logo at the top of the page.
         <div class="form-check">
             <input type="checkbox" name="UNUSEEMAIL" class="form-check-input" id="UNUSEEMAIL" value="on"
                 onclick="setEmailUsername();" onfocus="setLastFocused(this);"/>
-            <label>${uiLabelMap.EcommerceUseEmailAddress}</label>
+            <label for="UNUSEEMAIL">${uiLabelMap.EcommerceUseEmailAddress}</label>
         </div>
       </#if>
 
@@ -317,9 +323,10 @@ will generally always be reserved for the logo at the top of the page.
           <a target="_blank" href='<@ofbizUrl>policies</@ofbizUrl>'>${uiLabelMap.AtThisLink}.</a>
           ${uiLabelMap.GdprNote}
         </div>
-        <div class="font-italic mt-3" style="max-width:600px;">
-          <input type="checkbox" name="PRIVACY" id="PRIVACY" value="on"
-            onclick="hideShowSubmit();" onfocus="setLastFocused(this);">&nbsp;${uiLabelMap.GdprAccept}</input>
+        <div class="form-check font-italic mt-3" style="max-width:600px;">
+          <input type="checkbox" name="PRIVACY" id="PRIVACY" value="on" class="form-check-input"
+            onclick="hideShowSubmit();" onfocus="setLastFocused(this);"/>
+          <label for="PRIVACY">${uiLabelMap.GdprAccept}</label>
         </div>
       </fieldset>
     </div>
