@@ -226,14 +226,14 @@ will generally always be reserved for the logo at the top of the page.
           </thead>
           <tbody>
             <tr>
-              <th scope="row">${uiLabelMap.PartyMobilePhone}</th>
+              <th scope="row" style="vertical-align:middle;">${uiLabelMap.PartyMobilePhone}</th>
               <td>
                 <input type="text" inputmode="tel" name="CUSTOMER_MOBILE_CONTACT" class="form-control form-control-sm"
                   value="${requestParameters.CUSTOMER_MOBILE_CONTACT!}"/>
               </td>
             </tr>
             <tr>
-              <th>${uiLabelMap.PartyHomePhone}</th>
+              <th scope="row" style="vertical-align:middle;">${uiLabelMap.PartyHomePhone}</th>
               <td>
                 <input type="text" inputmode="tel" name="CUSTOMER_HOME_CONTACT" class="form-control form-control-sm"
                   value="${requestParameters.CUSTOMER_HOME_CONTACT!}"/>
