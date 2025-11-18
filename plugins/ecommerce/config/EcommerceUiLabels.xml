@@ -5662,6 +5662,10 @@
         <value xml:lang="en">Company name</value>
         <value xml:lang="hr">Naziv</value>
     </property>
+    <property key="CommonCompanyNameMissing">
+        <value xml:lang="en">Company name missing</value>
+        <value xml:lang="hr">Nedostaje naziv</value>
+    </property>
     <property key="AccountingVatId">
         <value xml:lang="en">VAT ID</value>
         <value xml:lang="hr">OIB</value>
@@ -5673,6 +5677,10 @@
     <property key="ContactPerson">
         <value xml:lang="en">Contact person</value>
         <value xml:lang="hr">Kontakt osoba</value>
+    </property>
+    <property key="ContactPersonMissing">
+        <value xml:lang="en">Contact person missing</value>
+        <value xml:lang="hr">Nedostaje kontakt osoba</value>
     </property>
     <property key="CompanyBillingAddressNote">
         <value xml:lang="en">If the delivery address is different from this address, you will be able to add it at the checkout.</value>
