@@ -51,6 +51,8 @@ if (userInfoMap) {
     } else if (userInfoMap.formatted) {
         requestParameters.USER_FIRST_NAME = userInfoMap.formatted
     }
+    if ( userInfoMap.companyName ) requestParameters.groupName = userInfoMap.groupName;
+    if ( userInfoMap.vatId ) requestParameters.TAX_ID = userInfoMap.TAX_ID;
     requestParameters.CUSTOMER_EMAIL = userInfoMap.email
     requestParameters.preferredUsername = userInfoMap.preferredUsername
     requestParameters.USERNAME = userInfoMap.preferredUsername

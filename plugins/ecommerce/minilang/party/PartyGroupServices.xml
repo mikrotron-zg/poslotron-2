@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Simple-Method" 
+        xsi:schemaLocation="http://ofbiz.apache.org/Simple-Method http://ofbiz.apache.org/dtds/simple-methods.xsd">
+
+    <simple-method method-name="createPartyGroupAndUserLogin" short-description="Creates a PartyGroup and UserLogin" login-required="false">
+        <!-- Set up UserLogin parameters -->
+        <set-service-fields service-name="createUserLogin" map="parameters" to-map="createUlInMap"/>
+        <log level="info" message="Password hint set to: ${createUlInMap.passwordHint}"/>
+
+        <!-- Create PartyGroup first -->
+        <set-service-fields service-name="createPartyGroup" map="parameters" to-map="createPartyGroupCtx"/>
+
+        <!-- Get system user for service calls -->
+        <entity-one entity-name="UserLogin" value-field="systemUserLogin" auto-field-map="false">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
+        <!-- Set system user for PartyGroup creation -->
+        <set field="createPartyGroupCtx.userLogin" from-field="systemUserLogin"/>
+        
+        <call-service service-name="createPartyGroup" in-map-name="createPartyGroupCtx">
+            <result-to-field result-name="partyId" field="createUlInMap.partyId"/>
+        </call-service>
+
+        <!-- Set system user for UserLogin creation -->
+        <set field="createUlInMap.userLogin" from-field="systemUserLogin"/>
+        <set field="createUlInMap.enabled" value="Y"/>
+        
+        <!-- Create UserLogin -->
+        <call-service service-name="createUserLogin" in-map-name="createUlInMap">
+            <result-to-field result-name="userLogin" field="newUserLogin"/>
+        </call-service>
+
+        <!-- Set return values -->
+        <field-to-result field="newUserLogin" result-name="userLogin"/>
+        <field-to-result field="createUlInMap.partyId" result-name="partyId"/>
+    </simple-method>
+
+</simple-methods>

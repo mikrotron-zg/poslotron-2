@@ -5650,4 +5650,32 @@
         <value xml:lang="en">Image is for illustrative purposes only. Please refer to product description.</value>
         <value xml:lang="hr">Slika služi samo u ilustrativne svrhe. Za točne specifikacije pogledajte opis proizvoda.</value>
     </property>
+    <property key="RegisterCompany">
+        <value xml:lang="en">If you wish to register company, you can do it</value>
+        <value xml:lang="hr">Ako želite registrirati pravnu osobu (firmu, obrt, instituciju...), možete to napraviti</value>
+    </property>
+    <property key="CommonCompanyInfo">
+        <value xml:lang="en">Company info</value>
+        <value xml:lang="hr">Podaci o pravnoj osobi</value>
+    </property>
+    <property key="CommonCompanyName">
+        <value xml:lang="en">Company name</value>
+        <value xml:lang="hr">Naziv</value>
+    </property>
+    <property key="AccountingVatId">
+        <value xml:lang="en">VAT ID</value>
+        <value xml:lang="hr">OIB</value>
+    </property>
+    <property key="AccountingVatIdMissing">
+        <value xml:lang="en">VAT ID is missing</value>
+        <value xml:lang="hr">Nedostaje OIB</value>
+    </property>
+    <property key="ContactPerson">
+        <value xml:lang="en">Contact person</value>
+        <value xml:lang="hr">Kontakt osoba</value>
+    </property>
+    <property key="CompanyBillingAddressNote">
+        <value xml:lang="en">If the delivery address is different from this address, you will be able to add it at the checkout.</value>
+        <value xml:lang="hr">Ukoliko se adresa dostave razlikuje od ove adrese, moći ćete ju dodati prilikom zaključivanja narudžbe.</value>
+    </property>
 </resource>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/ServiceDefinition"
+        xsi:schemaLocation="http://ofbiz.apache.org/ServiceDefinition http://ofbiz.apache.org/dtds/services.xsd">
+
+    <service name="createPartyGroupAndUserLogin" engine="simple" 
+             location="component://ecommerce/minilang/party/PartyGroupServices.xml" 
+             invoke="createPartyGroupAndUserLogin" auth="false"
+             default-entity-name="">
+        <description>Create a PartyGroup and UserLogin in a single transaction</description>
+        
+        <!-- Explicitly define all input parameters -->
+        <attribute name="groupName" type="String" mode="IN" optional="false"/>
+        <attribute name="comments" type="String" mode="IN" optional="true"/>
+        
+        <!-- UserLogin fields -->
+        <attribute name="userLoginId" type="String" mode="IN" optional="false"/>
+        <attribute name="currentPassword" type="String" mode="IN" optional="false"/>
+        <attribute name="currentPasswordVerify" type="String" mode="IN" optional="false"/>
+        <attribute name="passwordHint" type="String" mode="IN" optional="true"/>
+        
+        <!-- Output fields -->
+        <attribute name="partyId" type="String" mode="OUT" optional="true"/>
+        <attribute name="userLogin" type="org.apache.ofbiz.entity.GenericValue" mode="OUT" optional="true"/>
+        
+        <!-- Prevent automatic field mapping -->
+        <auto-attributes mode="NONE"/>
+        <override name="*" mode="IN" optional="true"/>
+    </service>
+
+</services>

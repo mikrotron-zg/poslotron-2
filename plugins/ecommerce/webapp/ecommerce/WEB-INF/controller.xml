@@ -995,7 +995,16 @@ under the License.
         <response name="success" type="view" value="main"/>
         <response name="error" type="view" value="newcustomer"/>
     </request-map>
-
+    <request-map uri="newcompany">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="newcompany"/>
+    </request-map>
+    <request-map uri="createcompany">
+        <security https="true" auth="false"/>
+        <event type="simple" path="component://ecommerce/minilang/customer/NewCompany.xml" invoke="createCompany"/>
+        <response name="success" type="view" value="main"/>
+        <response name="error" type="view" value="newcompany"/>
+    </request-map>
     <!-- ======================= Customer Profile Requests ======================= -->
 
     <request-map uri="viewprofile">
@@ -1937,6 +1946,7 @@ under the License.
     <!-- Customer Info Views -->
     <view-map name="survey" type="screen" page="component://ecommerce/widget/CustomerScreens.xml#survey" auth="false"/>
     <view-map name="newcustomer" type="screen" page="component://ecommerce/widget/CustomerScreens.xml#newcustomer" auth="false"/>
+    <view-map name="newcompany" type="screen" page="component://ecommerce/widget/CustomerScreens.xml#newcompany" auth="false"/>
 
     <view-map name="viewprofile" type="screen" page="component://ecommerce/widget/CustomerScreens.xml#viewprofile"/>
     <view-map name="editcontactmech" type="screen" page="component://ecommerce/widget/CustomerScreens.xml#editcontactmech"/>

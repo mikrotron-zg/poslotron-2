@@ -52,6 +52,9 @@ under the License.
     
     <test-suite loader="main" location="testdef/EcommerceTest.xml"/>
     
+    <!-- Custom Services -->
+    <service-resource type="model" loader="main" location="servicedef/services.xml"/>
+    
     <webapp name="ecommerce"
         title="eCommerce"
         server="default-server"

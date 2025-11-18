@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Simple-Method" 
+        xsi:schemaLocation="http://ofbiz.apache.org/Simple-Method http://ofbiz.apache.org/dtds/simple-methods.xsd">
+
+    <simple-method method-name="createCompany" short-description="Create Company" login-required="false">
+        <!-- Get system user for internal service calls -->
+        <entity-one entity-name="UserLogin" value-field="systemUserLogin" auto-field-map="false">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
+        <!-- Get the product store -->
+        <call-class-method class-name="org.apache.ofbiz.product.store.ProductStoreWorker" 
+                         method-name="getProductStore" 
+                         ret-field="productStore">
+            <field field="request" type="javax.servlet.ServletRequest"/>
+        </call-class-method>
+        
+        <!-- Set up timestamp -->
+        <now-timestamp field="nowTimestamp"/>
+        
+        <!-- ========== Create PartyGroup and UserLogin in a single transaction ========== -->
+        <log level="info" message="Starting PartyGroup and UserLogin creation"/>
+        
+        <!-- Create separate contexts for PartyGroup and UserLogin -->
+        <make-value entity-name="PartyGroup" value-field="partyGroupCtx"/>
+        <make-value entity-name="UserLogin" value-field="userLoginCtx"/>
+        
+        <!-- Set PartyGroup fields -->
+        <set field="partyGroupCtx.groupName" from-field="parameters.groupName"/>
+        <if-not-empty field="parameters.CONTACT">
+            <set field="partyGroupCtx.comments" from-field="parameters.CONTACT"/>
+        </if-not-empty>
+        
+        <!-- Set UserLogin fields -->
+        <if-compare field="productStore.usePrimaryEmailUsername" operator="equals" value="Y">
+            <set field="parameters.USERNAME" from-field="parameters.CUSTOMER_EMAIL"/>
+        </if-compare>
+        <set field="userLoginCtx.userLoginId" from-field="parameters.USERNAME"/>
+
+        
+        <!-- Set UserLogin fields -->
+        <set field="userLoginCtx.currentPassword" from-field="parameters.PASSWORD"/>
+        <if-not-empty field="parameters.PASSWORD_HINT">
+            <set field="userLoginCtx.passwordHint" from-field="parameters.PASSWORD_HINT"/>
+        </if-not-empty>
+
+        <!-- Combine contexts for service call -->
+        <set-service-fields map="partyGroupCtx" service-name="createPartyGroupAndUserLogin" to-map="serviceCtx"/>
+        <set-service-fields map="userLoginCtx" service-name="createUserLogin" to-map="serviceCtx"/>
+        <set field="serviceCtx.currentPasswordVerify" from-field="parameters.CONFIRM_PASSWORD"/>
+        
+        <log level="info" message="Calling createPartyGroupAndUserLogin service"/>
+        <call-service service-name="createPartyGroupAndUserLogin" in-map-name="serviceCtx">
+            <result-to-field result-name="partyId" field="partyId"/>
+            <result-to-field result-name="userLogin" field="createdUserLogin"/>
+        </call-service>
+        
+        <log level="info" message="Successfully created PartyGroup with ID: ${partyId} and
+                                    UserLogin with ID: ${createdUserLogin.userLoginId}"/>
+        
+        <!-- Return the results -->
+        <field-to-result field="partyId" result-name="partyId"/>
+        <field-to-result field="createdUserLogin" result-name="userLogin"/>
+        
+        <check-errors/>
+    </simple-method>
+
+</simple-methods>
