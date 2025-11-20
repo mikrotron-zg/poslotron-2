@@ -49,15 +49,6 @@ under the License.
       // document.getElementById('USERNAME').disabled=false;
     }
   }
-  function hideShowUsaStates() {
-    var customerStateElement = document.getElementById('newuserform_stateProvinceGeoId');
-    var customerCountryElement = document.getElementById('newuserform_countryGeoId');
-    if ("USA" == customerCountryElement.value || "UMI" == customerCountryElement.value) {
-      customerStateElement.style.display = "block";
-    } else {
-      customerStateElement.style.display = "none";
-    }
-  }
   //]]>
 </script>
 </#if>
@@ -325,9 +316,3 @@ button actions.
     ${uiLabelMap.CommonSave}
   </a>
 </div>
-
-<script type="application/javascript">
-  //<![CDATA[
-  hideShowUsaStates();
-  //]]>
-</script>

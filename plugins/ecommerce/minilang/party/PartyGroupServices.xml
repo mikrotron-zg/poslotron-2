@@ -28,9 +28,12 @@
         <set field="createUlInMap.enabled" value="Y"/>
         
         <!-- Create UserLogin -->
-        <call-service service-name="createUserLogin" in-map-name="createUlInMap">
-            <result-to-field result-name="userLogin" field="newUserLogin"/>
-        </call-service>
+        <call-service service-name="createUserLogin" in-map-name="createUlInMap"/>
+        
+        <!-- Retrieve the created UserLogin record -->
+        <entity-one entity-name="UserLogin" value-field="newUserLogin">
+            <field-map field-name="userLoginId" from-field="createUlInMap.userLoginId"/>
+        </entity-one>
 
         <!-- Set return values -->
         <field-to-result field="newUserLogin" result-name="userLogin"/>

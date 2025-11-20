@@ -40,7 +40,10 @@ under the License.
 
         <!-- Set up timestamp -->
         <now-timestamp field="nowTimestamp"/>
-        
+
+        <!-- Set roleTypeId to CUSTOMER -->
+        <set value="CUSTOMER" field="parameters.roleTypeId"/>
+
         <!-- ========== Create PartyGroup and UserLogin in a single transaction ========== -->
         <log level="info" message="Starting PartyGroup and UserLogin creation"/>
         
@@ -112,7 +115,23 @@ under the License.
             <property-to-field field="tempErrorMessage" resource="PartyUiLabels" property="PartyPasswordMatchError"/>
             <string-to-list string="${tempErrorMessage}" message-field="CONFIRM_PASSWORD" list="error_list"/>
         </if-compare-field>
-        
+
+        <!-- Validate username -->
+        <if-compare operator="not-equals" field="parameters.UNUSEEMAIL" value="on">
+            <if>
+                <condition>
+                    <not>
+                        <if-regexp field="parameters.USERNAME" expr="^[.a-zA-Z0-9_-]+$"></if-regexp>
+                    </not>
+                </condition>
+                <then>
+                    <add-error>
+                        <fail-property resource="PartyUiLabels" property="NotValidUserName"/>
+                    </add-error>
+                </then>
+            </if>
+        </if-compare>
+
         <!-- Check if username already exists -->
         <if-not-empty field="userLoginCtx.userLoginId">
             <set from-field="userLoginCtx.userLoginId" field="userLoginExistsMap.userLoginId"/>
@@ -137,15 +156,58 @@ under the License.
             org.apache.ofbiz.common.login.LoginServices.checkNewPassword(newUserLogin, null, password, passwordVerify, passwordHint, error_list, true, locale)
         </script>-->
 
+        <!-- Create the email address -->
+        <call-map-processor in-map-name="parameters" out-map-name="emailContext">
+            <simple-map-processor name="newEmail">
+                <process field="roleTypeId"><copy/></process>
+                <process field="CUSTOMER_EMAIL">
+                    <copy to-field="emailAddress"/>
+                    <not-empty><fail-property resource="PartyUiLabels" property="PartyEmailAddressMissingError"/></not-empty>
+                    <validate-method method="isEmail"><fail-property resource="PartyUiLabels" property="PartyEmailAddressNotFormattedCorrectly"/></validate-method>
+                </process>
+            </simple-map-processor>
+        </call-map-processor>
+
+        <!-- create the PartyDataSource entry to track where this info came from... -->
+        <make-value entity-name="PartyDataSource" value-field="partyDataSource"/>
+        <set value="ECOMMERCE_SITE" field="partyDataSource.dataSourceId"/>
+        <set from-field="nowStamp" field="partyDataSource.fromDate"/>
+        <set value="Y" field="partyDataSource.isCreate"/>
+        <!-- get the visit from the session to get the visitId -->
+        <session-to-field field="visit"/>
+        <set from-field="visit.visitId" field="partyDataSource.visitId"/>
+
+        <!-- Create the Postal Address -->
+        <call-map-processor in-map-name="parameters" out-map-name="addressContext">
+            <simple-map-processor name="newPartyGroup">
+                <process field="groupName"><copy to-field="toName"/></process>
+                <process field="roleTypeId"><copy/></process>
+                <process field="CONTACT">
+                    <copy to-field="attnName"/>
+                    <not-empty><fail-property resource="EcommerceUiLabels" property="ContactPersonMissing"/></not-empty>
+                </process>
+                <process field="CUSTOMER_ADDRESS1">
+                    <copy to-field="address1"/>
+                    <not-empty><fail-property resource="PartyUiLabels" property="PartyAddressLine1MissingError"/></not-empty>
+                </process>
+                <process field="CUSTOMER_ADDRESS2"><copy to-field="address2"/></process>
+                <process field="CUSTOMER_CITY">
+                    <copy to-field="city"/>
+                    <not-empty><fail-property resource="PartyUiLabels" property="PartyCityMissing"/></not-empty>
+                </process>
+                <process field="CUSTOMER_POSTAL_CODE">
+                    <copy to-field="postalCode"/>
+                    <not-empty><fail-property resource="PartyUiLabels" property="PartyZipCodeMissing"/></not-empty>
+                </process>
+                <process field="CUSTOMER_COUNTRY">
+                    <copy to-field="countryGeoId"/>
+                    <not-empty><fail-property resource="PartyUiLabels" property="PartyCountryMissing"/></not-empty>
+                </process>
+            </simple-map-processor>
+        </call-map-processor>
+
         <!-- now that everything is validated & setup, check to see if there are errors, then call the services -->
         <check-errors/>
-
-        <!-- Copy validated fields to partyGroupCtx for service call
-        <make-value entity-name="PartyGroup" value-field="partyGroupCtx"/>
-        <set field="partyGroupCtx.groupName" from-field="partyValidationCtx.groupName"/>
-        <if-not-empty field="parameters.CONTACT">
-            <set field="partyGroupCtx.comments" from-field="partyValidationCtx.comments"/>
-        </if-not-empty>-->
 
         <!-- Copy validated fields to userLoginCtx for service call -->
         <make-value entity-name="UserLogin" value-field="userLoginCtx"/>
@@ -155,22 +217,56 @@ under the License.
             <set field="userLoginCtx.passwordHint" from-field="validationCtx.passwordHint"/>
         </if-not-empty>
 
-
-
         <!-- Combine contexts for service call -->
         <set-service-fields map="partyGroupCtx" service-name="createPartyGroupAndUserLogin" to-map="serviceCtx"/>
         <set-service-fields map="userLoginCtx" service-name="createUserLogin" to-map="serviceCtx"/>
         <set field="serviceCtx.currentPasswordVerify" from-field="parameters.CONFIRM_PASSWORD"/>
-        
+
+        <!-- Create PartyGroup and UserLogin -->
         <log level="info" message="Calling createPartyGroupAndUserLogin service"/>
         <call-service service-name="createPartyGroupAndUserLogin" in-map-name="serviceCtx">
             <result-to-field result-name="partyId" field="partyId"/>
             <result-to-field result-name="userLogin" field="createdUserLogin"/>
         </call-service>
         
-        <log level="info" message="Successfully created PartyGroup with ID: ${partyId} and
-                                    UserLogin with ID: ${createdUserLogin.userLoginId}"/>
-        
+        <log level="info" message="Successfully created PartyGroup with ID: ${partyId} and UserLogin with ID: ${createdUserLogin.userLoginId}"/>
+
+        <set-current-user-login value-field="createdUserLogin"/>
+
+        <!-- now that we have the partyId, put it where it needs to go... -->
+        <set from-field="partyId" field="partyDataSource.partyId"/>
+        <set from-field="partyId" field="partyGroupCtx.partyId"/>
+        <set from-field="partyId" field="userLoginCtx.partyId"/>
+        <set from-field="partyId" field="partyRoleContext.partyId"/>
+        <set from-field="partyId" field="addressContext.partyId"/>
+        <set from-field="partyId" field="workPhoneContext.partyId"/>
+        <set from-field="partyId" field="mobilePhoneContext.partyId"/>
+        <set from-field="partyId" field="emailContext.partyId"/>
+
+        <!-- Create the PartyRole -->
+        <set from-field="parameters.roleTypeId" field="partyRoleContext.roleTypeId"/>
+        <call-service service-name="createPartyRole" in-map-name="partyRoleContext" include-user-login="true"/>
+
+        <!-- Create the email address -->
+        <call-service service-name="createPartyEmailAddress" in-map-name="emailContext">
+            <result-to-field result-name="contactMechId" field="emailPurposeContext.contactMechId"/>
+        </call-service>
+        <set from-field="partyId" field="emailPurposeContext.partyId"/>
+        <set value="PRIMARY_EMAIL" field="emailPurposeContext.contactMechPurposeTypeId"/>
+        <call-service service-name="createPartyContactMechPurpose" in-map-name="emailPurposeContext"/>
+
+        <!-- Create the postal address -->
+        <call-service service-name="createPartyPostalAddress" in-map-name="addressContext">
+            <result-to-field result-name="contactMechId" field="addressPurposeContext.contactMechId"/>
+        </call-service>
+        <set from-field="partyId" field="addressPurposeContext.partyId"/>
+        <!-- create the shipping location -->
+        <set value="SHIPPING_LOCATION" field="addressPurposeContext.contactMechPurposeTypeId"/>
+        <call-service service-name="createPartyContactMechPurpose" in-map-name="addressPurposeContext"/>
+        <!-- also consider this address the general correspondence address -->
+        <set value="GENERAL_LOCATION" field="addressPurposeContext.contactMechPurposeTypeId"/>
+        <call-service service-name="createPartyContactMechPurpose" in-map-name="addressPurposeContext"/>
+
     </simple-method>
 
 </simple-methods>
