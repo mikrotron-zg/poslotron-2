@@ -54,7 +54,7 @@ under the License.
                                 <td colspan="7" valign="top" class="label"> &gt;&gt; ${orderItem.itemDescription}</td>
                             <#else>
                                 <td colspan="7">
-                                    <div class="order-item-description">
+                                    <div style="font-weight: bold; font-size: 1.2em;">
                                         <#if orderItem.supplierProductId?has_content>
                                             ${orderItem.supplierProductId} - ${orderItem.itemDescription!}
                                         <#elseif productId??>
