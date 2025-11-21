@@ -35,6 +35,11 @@ under the License.
             <field field="request" type="javax.servlet.ServletRequest"/>
         </call-class-method>
 
+        <set from-field="productStore.allowPassword" field="allowPassword"/>
+        <if-empty field="allowPassword">
+            <set field="allowPassword" value="Y"/>
+        </if-empty>
+
         <property-to-field resource="security" property="username.lowercase" default="false" field="username_lowercase"/>
         <property-to-field resource="security" property="password.lowercase" default="false" field="password_lowercase"/>
 
@@ -64,6 +69,11 @@ under the License.
                     <copy to-field="comments"/>
                     <not-empty>
                         <fail-property resource="EcommerceUiLabels" property="ContactPersonMissing"/>
+                    </not-empty>
+                </process>
+                <process field="TAX_ID">
+                    <not-empty>
+                        <fail-property resource="AccountingUiLabels" property="AccountingVatIdMissing"/>
                     </not-empty>
                 </process>
             </simple-map-processor>
@@ -168,15 +178,6 @@ under the License.
             </simple-map-processor>
         </call-map-processor>
 
-        <!-- create the PartyDataSource entry to track where this info came from... -->
-        <make-value entity-name="PartyDataSource" value-field="partyDataSource"/>
-        <set value="ECOMMERCE_SITE" field="partyDataSource.dataSourceId"/>
-        <set from-field="nowStamp" field="partyDataSource.fromDate"/>
-        <set value="Y" field="partyDataSource.isCreate"/>
-        <!-- get the visit from the session to get the visitId -->
-        <session-to-field field="visit"/>
-        <set from-field="visit.visitId" field="partyDataSource.visitId"/>
-
         <!-- Create the Postal Address -->
         <call-map-processor in-map-name="parameters" out-map-name="addressContext">
             <simple-map-processor name="newPartyGroup">
@@ -205,6 +206,36 @@ under the License.
                 </process>
             </simple-map-processor>
         </call-map-processor>
+
+        <!-- Create the Mobile Phone -->
+        <if-not-empty field="parameters.CUSTOMER_MOBILE_CONTACT">
+            <call-map-processor in-map-name="parameters" out-map-name="mobilePhoneContext">
+                <simple-map-processor name="newTelecomNumber">
+                    <process field="roleTypeId"><copy/></process>
+                    <process field="CUSTOMER_MOBILE_CONTACT"><copy to-field="contactNumber"/></process>
+                </simple-map-processor>
+            </call-map-processor>
+        </if-not-empty>
+
+        <!-- Create the Work Phone -->
+        <if-not-empty field="parameters.CUSTOMER_WORK_CONTACT">
+            <call-map-processor in-map-name="parameters" out-map-name="workPhoneContext">
+                <simple-map-processor name="newTelecomNumber">
+                    <process field="roleTypeId"><copy/></process>
+                    <process field="CUSTOMER_WORK_CONTACT"><copy to-field="contactNumber"/></process>
+                    <process field="CUSTOMER_WORK_EXT"><copy to-field="extension"/></process>
+                </simple-map-processor>
+            </call-map-processor>
+        </if-not-empty>
+
+        <!-- create the PartyDataSource entry to track where this info came from... -->
+        <make-value entity-name="PartyDataSource" value-field="partyDataSource"/>
+        <set value="ECOMMERCE_SITE" field="partyDataSource.dataSourceId"/>
+        <set from-field="nowStamp" field="partyDataSource.fromDate"/>
+        <set value="Y" field="partyDataSource.isCreate"/>
+        <!-- get the visit from the session to get the visitId -->
+        <session-to-field field="visit"/>
+        <set from-field="visit.visitId" field="partyDataSource.visitId"/>
 
         <!-- now that everything is validated & setup, check to see if there are errors, then call the services -->
         <check-errors/>
@@ -267,6 +298,75 @@ under the License.
         <set value="GENERAL_LOCATION" field="addressPurposeContext.contactMechPurposeTypeId"/>
         <call-service service-name="createPartyContactMechPurpose" in-map-name="addressPurposeContext"/>
 
+        <!-- Create the work phone -->
+        <if-not-empty field="parameters.CUSTOMER_WORK_CONTACT">
+            <call-service service-name="createPartyTelecomNumber" in-map-name="workPhoneContext">
+                <result-to-field result-name="contactMechId" field="workPhonePurposeContext.contactMechId"/>
+            </call-service>
+            <set from-field="partyId" field="workPhonePurposeContext.partyId"/>
+            <set value="PHONE_WORK" field="workPhonePurposeContext.contactMechPurposeTypeId"/>
+            <call-service service-name="createPartyContactMechPurpose" in-map-name="workPhonePurposeContext"/>
+        </if-not-empty>
+
+        <!-- Create the mobile phone -->
+        <if-not-empty field="parameters.CUSTOMER_MOBILE_CONTACT">
+            <call-service service-name="createPartyTelecomNumber" in-map-name="mobilePhoneContext">
+                <result-to-field result-name="contactMechId" field="mobilePhonePurposeContext.contactMechId"/>
+            </call-service>
+            <set from-field="partyId" field="mobilePhonePurposeContext.partyId"/>
+            <set value="PHONE_MOBILE" field="mobilePhonePurposeContext.contactMechPurposeTypeId"/>
+            <call-service service-name="createPartyContactMechPurpose" in-map-name="mobilePhonePurposeContext"/>
+        </if-not-empty>
+
+        <!-- Create tax info -->
+        <set field="whatever.taxAuthGeoId" from-field="parameters.CUSTOMER_COUNTRY"/>
+        <find-by-and entity-name="TaxAuthority" list="taxAuthorities" map="whatever" />
+        <first-from-list entry="taxAuthority" list="taxAuthorities"/>
+
+        <entity-one entity-name="UserLogin" value-field="userLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <set field="partyTaxAuthInfo.userLogin" from-field="userLogin"/>
+        <set field="partyTaxAuthInfo.taxAuthPartyId" from-field="taxAuthority.taxAuthPartyId"/>
+        <set field="partyTaxAuthInfo.partyId" from-field="partyId"/>
+        <set field="partyTaxAuthInfo.taxAuthGeoId" from-field="parameters.CUSTOMER_COUNTRY"/>
+        <set field="partyTaxAuthInfo.partyTaxId" from-field="parameters.TAX_ID"/>
+
+        <set-service-fields service-name="createPartyTaxAuthInfo" map="partyTaxAuthInfo" to-map="createPartyTaxAuthInfoMap"/>
+        <call-service service-name="createPartyTaxAuthInfo" in-map-name="partyTaxAuthInfo"/>
+
+        <!-- now finished, log in the user and set the cart's partyId to that of the newly created customer ... -->
+        <if-compare field="allowPassword" operator="equals" value="Y">
+            <script>groovy:
+                org.apache.ofbiz.webapp.control.LoginWorker.doBasicLogin(createdUserLogin, request, response)
+                org.apache.ofbiz.webapp.control.LoginWorker.autoLoginSet(request, response)
+                session = request.getSession()
+                cart = session.getAttribute("shoppingCart")
+                if (cart != null) {
+                cart.setOrderPartyId(partyId)
+                }
+            </script>
+        </if-compare>
+
+        <!-- Associated to Product Store -->
+        <entity-one entity-name="UserLogin" value-field="userLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <set field="createProductStoreRoleMap.userLogin" from-field="userLogin"/>
+        <set field="createProductStoreRoleMap.partyId" from-field="partyId"/>
+        <set field="createProductStoreRoleMap.roleTypeId" from-field="parameters.roleTypeId"/>
+        <set field="createProductStoreRoleMap.productStoreId" from-field="parameters.emailProductStoreId"/>
+        <call-service service-name="createProductStoreRole" in-map-name="createProductStoreRoleMap"/>
+
+        <!-- security for manage profile  -->
+        <set field="securityParams.userLoginId" from-field="createdUserLogin.userLoginId"/>
+        <set field="securityParams.groupId" value="ECOMMERCE_CUSTOMER"/>
+        <set field="securityParams.userLogin" from-field="userLogin"/>
+        <call-service service-name="addUserLoginToSecurityGroup" in-map-name="securityParams"/>
+
+        <!-- tell the control servlet that we just logged in the user... -->
+        <set value="TRUE" field="_LOGIN_PASSED_"/>
+        <field-to-request field="_LOGIN_PASSED_"/>
     </simple-method>
 
 </simple-methods>
