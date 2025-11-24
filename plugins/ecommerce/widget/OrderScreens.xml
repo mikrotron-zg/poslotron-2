@@ -264,7 +264,7 @@ under the License.
     <screen name="checkoutshippingaddress">
         <section>
             <actions>
-                <set field="MainColumnStyle" value="rightonly"/>
+                <set field="MainColumnStyle" value="center"/>
 
                 <set field="titleProperty" value="PageTitleCheckoutOptions"/>
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/entry/CheckoutShippingAddress.groovy"/>
@@ -274,9 +274,6 @@ under the License.
                     <decorator-section name="body">
                         <platform-specific><html><html-template multi-block="true" location="component://ecommerce/template/order/CheckoutShippingAddress.ftl"/></html></platform-specific>
                     </decorator-section>
-                    <decorator-section name="right-column">
-                        <include-screen name="rightbar" location="component://ecommerce/widget/CommonScreens.xml"/>
-                    </decorator-section>
                 </decorator-screen>
             </widgets>
         </section>
@@ -285,7 +282,7 @@ under the License.
     <screen name="checkoutshippingoptions">
         <section>
             <actions>
-                <set field="MainColumnStyle" value="rightonly"/>
+                <set field="MainColumnStyle" value="center"/>
 
                 <set field="titleProperty" value="PageTitleCheckoutOptions"/>
                 <script location="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/order/CheckoutShippingOptions.groovy"/>
@@ -294,9 +291,6 @@ under the License.
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific><html><html-template multi-block="true" location="component://ecommerce/template/order/CheckoutShippingOptions.ftl"/></html></platform-specific>
-                    </decorator-section>
-                    <decorator-section name="right-column">
-                        <include-screen name="rightbar" location="component://ecommerce/widget/CommonScreens.xml"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
@@ -654,7 +648,7 @@ under the License.
     <screen name="checkoutpayment">
         <section>
             <actions>
-                <set field="MainColumnStyle" value="rightonly"/>
+                <set field="MainColumnStyle" value="center"/>
 
                 <set field="titleProperty" value="PageTitleCheckoutOptions"/>
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/entry/CheckoutPayment.groovy"/>
@@ -664,9 +658,6 @@ under the License.
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific><html><html-template multi-block="true" location="component://ecommerce/template/order/CheckoutPayment.ftl"/></html></platform-specific>
-                    </decorator-section>
-                    <decorator-section name="right-column">
-                        <include-screen name="rightbar" location="component://ecommerce/widget/CommonScreens.xml"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
