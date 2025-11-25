@@ -49,7 +49,7 @@ under the License.
     </strong>
   </div>
   <div class="card-body">
-  <table class="table table-responsive-sm">
+  <table class="table table-sm table-responsive-sm">
     <thead class="thead-light">
       <tr>
         <th>${uiLabelMap.OrderProduct}</th>
@@ -65,8 +65,8 @@ under the License.
           <th>${uiLabelMap.OrderQtyOrdered}</th>
         </#if>
           <th class="amount">${uiLabelMap.EcommerceUnitPrice}</th>
-          <th class="amount">${uiLabelMap.OrderAdjustments}</th>
-          <th class="amount">${uiLabelMap.CommonSubtotal}</th>
+          <#--<th class="amount">${uiLabelMap.OrderAdjustments}</th>-->
+          <th class="amount" colspan="2">${uiLabelMap.CommonSubtotal}</th>
         <#if "Y" == maySelectItems?default("N") && "PLACING_CUSTOMER" == roleTypeId!>
           <th colspan="3"></th>
         </#if>
@@ -75,7 +75,8 @@ under the License.
     <tfoot>
       <tr>
         <th colspan="7">${uiLabelMap.CommonSubtotal}</th>
-        <td class="amount"><@ofbizCurrency amount=orderSubTotal isoCode=currencyUomId/></td>
+        <#-- TODO: add tax rate, currently 25%, shouldn't be hardcoded -->
+        <td class="amount"><@ofbizCurrency amount=orderSubTotal*1.25 isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
@@ -91,18 +92,19 @@ under the License.
       </#list>
       <tr>
         <th colspan="7">${uiLabelMap.OrderShippingAndHandling}</th>
-        <td class="amount"><@ofbizCurrency amount=orderShippingTotal isoCode=currencyUomId/></td>
+        <#-- TODO: add tax rate, currently 25%, shouldn't be hardcoded -->
+        <td class="amount"><@ofbizCurrency amount=orderShippingTotal*1.25 isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
       </tr>
-      <tr>
+      <#--<tr>
         <th colspan="7">${uiLabelMap.OrderSalesTax}</th>
         <td class="amount"><@ofbizCurrency amount=orderTaxTotal isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
-      </tr>
+      </tr>-->
       <tr>
         <td colspan="3"></td>
         <#if "Y" == maySelectItems?default("N")>
@@ -113,8 +115,8 @@ under the License.
         </#if>
       </tr>
       <tr>
-        <th colspan="7">${uiLabelMap.OrderGrandTotal}</th>
-        <td class="amount">
+        <th colspan="7" class="text-primary">${uiLabelMap.OrderGrandTotal}</th>
+        <td class="amount text-primary font-weight-bold">
           <@ofbizCurrency amount=orderGrandTotal isoCode=currencyUomId/>
         </td>
         <#if "Y" == maySelectItems?default("N")>
@@ -171,11 +173,11 @@ under the License.
                   [${uiLabelMap.CommonQuantity}
                   : ${product.quantityIncluded!} ${((quantityUom.abbreviation)?default(product.quantityUomId))!}]
                 </#if>
-                <#if (product.productWeight?? && product.productWeight != 0) || product.weightUomId?has_content>
+                <#--<#if (product.productWeight?? && product.productWeight != 0) || product.weightUomId?has_content>
                   <#assign weightUom = product.getRelatedOne("WeightUom", true)!/>
                   [${uiLabelMap.CommonWeight}
                   : ${product.productWeight!} ${((weightUom.abbreviation)?default(product.weightUomId))!}]
-                </#if>
+                </#if>-->
                 <#if (product.productHeight?? && product.productHeight != 0) || product.heightUomId?has_content>
                   <#assign heightUom = product.getRelatedOne("HeightUom", true)!/>
                   [${uiLabelMap.CommonHeight}
@@ -232,12 +234,13 @@ under the License.
               </td>
             </#if>
             <td class="amount">
-              <@ofbizCurrency amount=orderItem.unitPrice isoCode=currencyUomId/>
+              <#-- TODO: add tax rate, currently 25%, shouldn't be hardcoded -->
+              <@ofbizCurrency amount=orderItem.unitPrice*1.25 isoCode=currencyUomId/>
             </td>
-            <td class="amount">
+            <#--<td class="amount">
               <@ofbizCurrency amount=localOrderReadHelper.getOrderItemAdjustmentsTotal(orderItem) isoCode=currencyUomId/>
-            </td>
-            <td class="amount">
+            </td>-->
+            <td class="amount" colspan="2">
               <#if workEfforts??>
                   <@ofbizCurrency amount=localOrderReadHelper.getOrderItemTotal(orderItem)*rentalQuantity isoCode=currencyUomId/>
                 <#else>
@@ -288,7 +291,7 @@ under the License.
           </#if>
         </#if>
         <#-- now show adjustment details per line item -->
-        <#assign itemAdjustments = localOrderReadHelper.getOrderItemAdjustments(orderItem)>
+        <#--<#assign itemAdjustments = localOrderReadHelper.getOrderItemAdjustments(orderItem)>
         <#list itemAdjustments as orderItemAdjustment>
           <tr>
             <td>
@@ -324,9 +327,9 @@ under the License.
               <td colspan="3"></td>
             </#if>
           </tr>
-        </#list>
+        </#list>-->
         <#-- show the order item ship group info -->
-        <#assign orderItemShipGroupAssocs = orderItem.getRelated("OrderItemShipGroupAssoc", null, null, false)!>
+        <#--<#assign orderItemShipGroupAssocs = orderItem.getRelated("OrderItemShipGroupAssoc", null, null, false)!>
         <#if orderItemShipGroupAssocs?has_content>
           <#list orderItemShipGroupAssocs as shipGroupAssoc>
             <#assign shipGroup = shipGroupAssoc.getRelatedOne("OrderItemShipGroup", false)!>
@@ -341,7 +344,7 @@ under the License.
               <td colspan="${numColumns - 2}"></td>
             </tr>
           </#list>
-        </#if>
+        </#if>-->
       </#list>
       <#if orderItems?size == 0 || !orderItems?has_content>
       <tr>

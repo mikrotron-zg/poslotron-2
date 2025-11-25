@@ -198,6 +198,7 @@ if (orderHeader) {
     context.orderShippingTotal = orderShippingTotal
     context.orderTaxTotal = orderTaxTotal
     context.orderGrandTotal = OrderReadHelper.getOrderGrandTotal(orderItems, orderAdjustments)
+    context.orderGrandTotalCents = (context.orderGrandTotal*100).intValue(); // need this for 2D barcode only
     context.placingCustomerPerson = placingCustomerPerson
 
     context.billingAccount = billingAccount

@@ -37,11 +37,12 @@ under the License.
           <a href="<@ofbizUrl fullPath="true">orderstatus?orderId=${orderHeader.orderId}</@ofbizUrl>"
               class="btn btn-sm">${orderHeader.orderId}</a>
         </#if>
-        ${uiLabelMap.CommonInformation}
+        <#-- CHECKME: this does not work, insufficient permissions? -->
+        <#--${uiLabelMap.CommonInformation}
         <#if (orderHeader.orderId)??>
           ${externalOrder!} [ <a href="<@ofbizUrl fullPath="true">order.pdf?orderId=${(orderHeader.orderId)!}</@ofbizUrl>"
               target="_BLANK" class="btn btn-sm">PDF</a> ]
-        </#if>
+        </#if>-->
         </strong>
       </div>
       <div class="card-body">
@@ -95,22 +96,21 @@ under the License.
             <#if !paymentMethod?has_content && paymentMethodType?has_content>
               <li>
                 <#if "EXT_OFFLINE" == paymentMethodType.paymentMethodTypeId>
-                  ${uiLabelMap.AccountingOfflinePayment}
+                  <strong>${uiLabelMap.AccountingOfflinePayment}</strong><br><br>
                   <#if orderHeader?has_content && paymentAddress?has_content>
-                    ${uiLabelMap.OrderSendPaymentTo}:
-                    <#if paymentAddress.toName?has_content>${paymentAddress.toName}</#if>
+                    ${uiLabelMap.OrderSendPaymentTo}:<br>
+                    <#if paymentAddress.toName?has_content>${paymentAddress.toName}</#if><br>
                     <#if paymentAddress.attnName?has_content>
                       ${uiLabelMap.PartyAddrAttnName}  : ${paymentAddress.attnName}
                     </#if>
-                    ${paymentAddress.address1}
+                    ${paymentAddress.address1}<br>
                     <#if paymentAddress.address2?has_content>${paymentAddress.address2}</#if>
                     <#assign paymentStateGeo = (delegator.findOne("Geo", {"geoId", paymentAddress.stateProvinceGeoId!}, false))! />
-                    ${paymentAddress.city}
-                    <#if paymentStateGeo?has_content>, ${paymentStateGeo.geoName!}</#if>
-                    ${paymentAddress.postalCode!}
+                    ${paymentAddress.postalCode!} ${paymentAddress.city}<br>
+                    <#--<#if paymentStateGeo?has_content>, ${paymentStateGeo.geoName!}</#if>-->
                     <#assign paymentCountryGeo = (delegator.findOne("Geo", {"geoId", paymentAddress.countryGeoId!}, false))! />
-                    <#if paymentCountryGeo?has_content>${paymentCountryGeo.geoName!}</#if>
-                    ${uiLabelMap.EcommerceBeSureToIncludeYourOrderNb}
+                    <#if paymentCountryGeo?has_content>${paymentCountryGeo.geoName!}</#if><br>
+                    <em>${uiLabelMap.EcommerceBeSureToIncludeYourOrderNb}</em>
                   </#if>
                 <#else>
                   <#assign outputted = true>
@@ -239,6 +239,10 @@ under the License.
               </li>
             </#if>
           </ul>
+          <#if (orderHeader.orderId)?exists && paymentMethodType.paymentMethodTypeId == "EXT_OFFLINE">
+            <span class="text-muted text-xs">*** 2D barkod za plaćanje ***</span><br>
+            <#include "../includes/barcode2d.ftl">
+          </#if>
         </div>
       </#if>
     </div>
@@ -264,8 +268,11 @@ under the License.
             <li>
               <ul class="list-unstyled">
                 <li>
-                  ${uiLabelMap.OrderDestination} [${groupNumber}]
-                  <#if shippingAddress.toName?has_content>${uiLabelMap.CommonTo}: ${shippingAddress.toName}</#if>
+                  <#--${uiLabelMap.OrderDestination} [${groupNumber}]-->
+                  <#if shippingAddress.toName?has_content>
+                    <#--${uiLabelMap.CommonTo}: -->
+                    <strong>${shippingAddress.toName}</strong>
+                  </#if>
                 </li>
                 <li>
                   <#if shippingAddress.attnName?has_content>
@@ -294,7 +301,7 @@ under the License.
           <li>
             <ul class="list-unstyled">
               <li>
-                ${uiLabelMap.OrderMethod}:
+                <br>${uiLabelMap.OrderMethod}:<br>
                 <#if orderHeader?has_content>
                   <#assign shipmentMethodType = shipGroup.getRelatedOne("ShipmentMethodType", false)!>
                   <#assign carrierPartyId = shipGroup.carrierPartyId!>
@@ -302,8 +309,8 @@ under the License.
                   <#assign shipmentMethodType = cart.getShipmentMethodType(groupIdx)!>
                   <#assign carrierPartyId = cart.getCarrierPartyId(groupIdx)!>
                 </#if>
-                <#if carrierPartyId?? && carrierPartyId != "_NA_">${carrierPartyId!}</#if>
-                ${(shipmentMethodType.description)?default("N/A")}
+                <#--<#if carrierPartyId?? && carrierPartyId != "_NA_">${carrierPartyId!}</#if>-->
+                <strong>${(shipmentMethodType.description)?default("N/A")}</strong>
               </li>
               <li>
                 <#if shippingAccount??>${uiLabelMap.AccountingUseAccount}: ${shippingAccount}</#if>
@@ -333,7 +340,7 @@ under the License.
             </li>
           </#if>
           <#-- splitting preference -->
-          <#if orderHeader?has_content>
+          <#--<#if orderHeader?has_content>
             <#assign maySplit = shipGroup.maySplit?default("N")>
           <#else>
             <#assign maySplit = cart.getMaySplit(groupIdx)?default("N")>
@@ -342,7 +349,7 @@ under the License.
             ${uiLabelMap.OrderSplittingPreference}:
             <#if "N" == maySplit?default("N")>${uiLabelMap.OrderPleaseWaitUntilBeforeShipping}.</#if>
             <#if "Y" == maySplit?default("N")>${uiLabelMap.OrderPleaseShipItemsBecomeAvailable}.</#if>
-          </li>
+          </li>-->
           <#-- shipping instructions -->
           <#if orderHeader?has_content>
             <#assign shippingInstructions = shipGroup.shippingInstructions!>
@@ -351,7 +358,8 @@ under the License.
           </#if>
           <#if shippingInstructions?has_content>
             <li>
-              ${uiLabelMap.OrderInstructions} ${shippingInstructions}
+              <br>${uiLabelMap.OrderInstructions}:<br>
+                <em>${shippingInstructions}</em>
             </li>
           </#if>
           <#-- gift settings -->
