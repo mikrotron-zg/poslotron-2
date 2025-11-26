@@ -22,7 +22,7 @@ under the License.
       <strong>${uiLabelMap.EcommerceRequestHistory}</strong>
     </div>
     <div class="col-12 col-sm-12 col-lg-12 card-body" >
-        <table class="table table-responsive">
+        <table class="table table-responsive-sm">
             <thead class="thead-light">
             <tr>
                 <th>

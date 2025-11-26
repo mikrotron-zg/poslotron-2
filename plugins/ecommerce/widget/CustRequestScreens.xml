@@ -35,7 +35,7 @@ under the License.
     <screen name="ListRequests">
         <section>
             <actions>
-                <set field="MainColumnStyle" value="rightonly"/>
+                <set field="MainColumnStyle" value="center"/>
 
                 <set field="titleProperty" value="PageTitleListRequests"/>
                 <!--<set field="headerItem" value="Shopping List"/>-->
@@ -53,9 +53,6 @@ under the License.
                         <platform-specific>
                             <html><html-template location="component://ecommerce/template/request/RequestList.ftl"/></html>
                         </platform-specific>
-                    </decorator-section>
-                    <decorator-section name="right-column">
-                        <include-screen name="rightbar" location="component://ecommerce/widget/CommonScreens.xml"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
