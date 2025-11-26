@@ -27,15 +27,12 @@ under the License.
     <div class="card">
       <div class="card-header">
         <strong>
-        <#if "Y" == maySelectItems?default("N") && "Y" == returnLink?default("N") && "ORDER_COMPLETED" == (orderHeader.statusId)! && "PLACING_CUSTOMER" == roleTypeId!>
-          <a href="<@ofbizUrl fullPath="true">makeReturn?orderId=${orderHeader.orderId}</@ofbizUrl>"
-              class="submenutextright">${uiLabelMap.OrderRequestReturn}</a>
-        </#if>
-        ${uiLabelMap.OrderOrder}
+          ${uiLabelMap.OrderOrder}
+        </strong>
         <#if orderHeader?has_content>
-          ${uiLabelMap.CommonNbr}
-          <a href="<@ofbizUrl fullPath="true">orderstatus?orderId=${orderHeader.orderId}</@ofbizUrl>"
-              class="btn btn-sm">${orderHeader.orderId}</a>
+          <a href="<@ofbizUrl fullPath="true">orderstatus?orderId=${orderHeader.orderId}</@ofbizUrl>">
+            ${orderHeader.orderId}
+          </a>
         </#if>
         <#-- CHECKME: this does not work, insufficient permissions? -->
         <#--${uiLabelMap.CommonInformation}
@@ -43,7 +40,6 @@ under the License.
           ${externalOrder!} [ <a href="<@ofbizUrl fullPath="true">order.pdf?orderId=${(orderHeader.orderId)!}</@ofbizUrl>"
               target="_BLANK" class="btn btn-sm">PDF</a> ]
         </#if>-->
-        </strong>
       </div>
       <div class="card-body">
         <#-- placing customer information -->
@@ -114,7 +110,7 @@ under the License.
                   </#if>
                 <#else>
                   <#assign outputted = true>
-                  ${uiLabelMap.AccountingPaymentVia} ${paymentMethodType.get("description",locale)}
+                  <strong>${paymentMethodType.get("description",locale)}</strong>
                 </#if>
               </li>
             </#if>
@@ -317,39 +313,6 @@ under the License.
               </li>
             </ul>
           </li>
-          <#-- tracking number -->
-          <#if trackingNumber?has_content || orderShipmentInfoSummaryList?has_content>
-            <li>
-              ${uiLabelMap.OrderTrackingNumber}
-              <#-- TODO: add links to UPS/FEDEX/etc based on carrier partyId  -->
-              <#if shipGroup.trackingNumber?has_content>
-                ${shipGroup.trackingNumber}
-              </#if>
-              <#if orderShipmentInfoSummaryList?has_content>
-                <#list orderShipmentInfoSummaryList as orderShipmentInfoSummary>
-                  <#if (orderShipmentInfoSummaryList?size > 1)>${orderShipmentInfoSummary.shipmentPackageSeqId}: </#if>
-                  Code: ${orderShipmentInfoSummary.trackingCode?default("[Not Yet Known]")}
-                  <#if orderShipmentInfoSummary.boxNumber?has_content>
-                    ${uiLabelMap.OrderBoxNumber}${orderShipmentInfoSummary.boxNumber}
-                  </#if>
-                  <#if orderShipmentInfoSummary.carrierPartyId?has_content>
-                    (${uiLabelMap.ProductCarrier}: ${orderShipmentInfoSummary.carrierPartyId})
-                  </#if>
-                </#list>
-              </#if>
-            </li>
-          </#if>
-          <#-- splitting preference -->
-          <#--<#if orderHeader?has_content>
-            <#assign maySplit = shipGroup.maySplit?default("N")>
-          <#else>
-            <#assign maySplit = cart.getMaySplit(groupIdx)?default("N")>
-          </#if>
-          <li>
-            ${uiLabelMap.OrderSplittingPreference}:
-            <#if "N" == maySplit?default("N")>${uiLabelMap.OrderPleaseWaitUntilBeforeShipping}.</#if>
-            <#if "Y" == maySplit?default("N")>${uiLabelMap.OrderPleaseShipItemsBecomeAvailable}.</#if>
-          </li>-->
           <#-- shipping instructions -->
           <#if orderHeader?has_content>
             <#assign shippingInstructions = shipGroup.shippingInstructions!>

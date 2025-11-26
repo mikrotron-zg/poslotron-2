@@ -40,11 +40,6 @@ under the License.
     ${uiLabelMap.OrderOrderItems}
     <#if "Y" == maySelectItems?default("N") && "PLACING_CUSTOMER" == roleTypeId!>
       <#assign numColumns = 11>
-      <a href="javascript:document.addCommonToCartForm.add_all.value='true';document.addCommonToCartForm.submit()"
-          class="btn btn-sm float-right">${uiLabelMap.OrderAddAllToCart}</a>
-      <a href="javascript:document.addCommonToCartForm.add_all.value='false';document.addCommonToCartForm.submit()"
-          class="btn btn-sm float-right">${uiLabelMap.OrderAddCheckedToCart}</a>
-      <button form="sendMeThisEveryMonthForm" class="btn btn-sm float-right" type="submit">${uiLabelMap.OrderSendMeThisEveryMonth}</button>
     </#if>
     </strong>
   </div>
@@ -256,7 +251,7 @@ under the License.
             </#if>
           </#if>
         </tr>
-        <#-- now cancel reason and comment field -->
+        <#-- now cancel reason and comment field
         <#if "Y" == maySelectItems?default("N") && (orderHeader.statusId != "ORDER_SENT" && orderItem.statusId != "ITEM_COMPLETED" && orderItem.statusId != "ITEM_CANCELLED" && pickedQty == 0)>
           <tr>
             <td class="row"><label class="col-sm-3 col-form-label">${uiLabelMap.OrderReturnReason}</label>
@@ -276,7 +271,7 @@ under the License.
               <input type="hidden" name="orderItemSeqId" value="${orderItem.orderItemSeqId}"/>
             </td>
           </tr>
-        </#if>
+        </#if>-->
         <#-- show info from workeffort if it was a rental item -->
         <#if "RENTAL_ORDER_ITEM" == orderItem.orderItemTypeId>
           <#if workEffortSave??>
@@ -356,6 +351,15 @@ under the License.
       </tr>
     </tbody>
   </table>
+  <div class="card-footer">
+    <#if "Y" == maySelectItems?default("N") && "PLACING_CUSTOMER" == roleTypeId!>
+      <a href="javascript:document.addCommonToCartForm.add_all.value='true';document.addCommonToCartForm.submit()"
+      class="btn btn-secondary btn-sm mt-2">${uiLabelMap.OrderAddAllToCart}</a>
+      &nbsp;
+      <a href="javascript:document.addCommonToCartForm.add_all.value='false';document.addCommonToCartForm.submit()"
+      class="btn btn-secondary btn-sm mt-2">${uiLabelMap.OrderAddCheckedToCart}</a>
+    </#if>
+  </div>
     <#if "Y" == maySelectItems?default("N") >
         </form>
      </#if>

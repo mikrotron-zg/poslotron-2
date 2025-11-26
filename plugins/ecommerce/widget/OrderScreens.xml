@@ -367,7 +367,7 @@ under the License.
     <screen name="orderstatus">
         <section>
             <actions>
-                <set field="MainColumnStyle" value="rightonly"/>
+                <set field="MainColumnStyle" value="center"/>
 
                 <set field="maySelectItems" value="Y"/>
                 <set field="titleProperty" value="PageTitleOrderStatus"/>
@@ -377,9 +377,6 @@ under the License.
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific><html><html-template location="component://ecommerce/template/order/OrderStatus.ftl"/></html></platform-specific>
-                    </decorator-section>
-                    <decorator-section name="right-column">
-                        <include-screen name="rightbar" location="component://ecommerce/widget/CommonScreens.xml"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

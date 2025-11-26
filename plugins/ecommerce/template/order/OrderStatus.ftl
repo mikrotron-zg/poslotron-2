@@ -16,10 +16,13 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<#if orderHeader?has_content>
-    ${screens.render("component://ecommerce/widget/OrderScreens.xml#orderheader")}
-    <br />
-    ${screens.render("component://ecommerce/widget/OrderScreens.xml#orderitems")}
-<#else>
-  <h3>${uiLabelMap.OrderSpecifiedNotFound}.</h3>
-</#if>
+<div class="container" style="max-width: 1000px;">
+    <#if orderHeader?has_content>
+        ${screens.render("component://ecommerce/widget/OrderScreens.xml#orderheader")}
+        <br />
+        ${screens.render("component://ecommerce/widget/OrderScreens.xml#orderitems")}
+    <#else>
+      <h3>${uiLabelMap.OrderSpecifiedNotFound}.</h3>
+    </#if>
+</div>
+
