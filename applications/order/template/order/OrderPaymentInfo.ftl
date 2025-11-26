@@ -552,6 +552,15 @@ under the License.
             </td>
             <td>&nbsp;</td>
           </tr>
+        <#elseif paymentMethodType.paymentMethodTypeId == "EXT_OFFLINE" && currentStatus.statusId != "ORDER_CANCELLED">
+          <tr><td colspan="4"><hr /></td></tr>
+          <tr>
+            <td width="30%">&nbsp;</td>
+            <td>
+              <#include "/ecommerce/template/includes/barcode2d.ftl">
+            </td>
+            <td>&nbsp;</td>
+          </tr>
         </#if>
    <#else>
     <tr>

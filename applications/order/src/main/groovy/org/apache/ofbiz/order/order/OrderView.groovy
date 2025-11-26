@@ -127,6 +127,7 @@ if (orderHeader) {
 
     grandTotal = orderReadHelper.getOrderGrandTotal()
     context.grandTotal = grandTotal
+    context.orderGrandTotalCents = (grandTotal*100).intValue() // need this for 2D barcode only
 
     orderItemList = orderReadHelper.getOrderItems()
     // Retrieve all non-promo items that aren't cancelled
