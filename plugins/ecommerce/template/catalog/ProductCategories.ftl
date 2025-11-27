@@ -217,6 +217,6 @@
   <div class="card-header">
     ${uiLabelMap.ProductCategories}
   </div>
-  <div class="card-body" id="tree">
+  <div class="card-body overflow-auto" id="tree">
   </div>
 </div>
