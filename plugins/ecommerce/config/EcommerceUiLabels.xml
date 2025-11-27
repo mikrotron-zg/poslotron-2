@@ -3229,7 +3229,7 @@
         <value xml:lang="es">Recalcular carro</value>
         <value xml:lang="fr">Recalculer le panier</value>
         <value xml:lang="hi-IN">टोकरी कि गणना फिर करें</value>
-        <value xml:lang="hr">Preračunaj košaricu</value>
+        <value xml:lang="hr">Preračunaj košaru</value>
         <value xml:lang="it">Ricalcola</value>
         <value xml:lang="ja">買い物かごを再計算</value>
         <value xml:lang="nl">Bereken winkelwagen</value>
@@ -4147,7 +4147,7 @@
         <value xml:lang="es">Para pedir genere una petición desde el carro de compra</value>
         <value xml:lang="fr">pour créer une commande faites une demande depuis le panier</value>
         <value xml:lang="hi-IN">कोट उत्पन्न करने के लिए आग्रह</value>
-        <value xml:lang="hr">Za narudžbu napravite zahtjev iz košare</value>
+        <value xml:lang="hr">je nužna ukoliko želite napraviti zahtjev za ponudu</value>
         <value xml:lang="it">Per creare una richesta di preventivo per il carrello</value>
         <value xml:lang="ja">買い物かごから注文を作成する</value>
         <value xml:lang="nl">om een offerte aan te vragen</value>
@@ -4648,7 +4648,7 @@
         <value xml:lang="es">Su Carro de la Compra está vacío</value>
         <value xml:lang="fr">Votre panier est vide</value>
         <value xml:lang="hi-IN">आपकी ख़रीदारी टोकरी ख़ाली है</value>
-        <value xml:lang="hr">Vaša košarica je prazna</value>
+        <value xml:lang="hr">Vaša košara je prazna</value>
         <value xml:lang="it">Il tuo carrello è vuoto</value>
         <value xml:lang="ja">買い物かごは何も入っていません</value>
         <value xml:lang="nl">Uw winkelwagen is leeg</value>
@@ -5479,7 +5479,7 @@
         <value xml:lang="es">Carro de la Compra</value>
         <value xml:lang="fr">Panier</value>
         <value xml:lang="hi-IN">खरीदारी टोकरी</value>
-        <value xml:lang="hr">Košarica</value>
+        <value xml:lang="hr">Košara</value>
         <value xml:lang="it">Carrello</value>
         <value xml:lang="ja">買い物かご</value>
         <value xml:lang="nl">Winkelwagen</value>
