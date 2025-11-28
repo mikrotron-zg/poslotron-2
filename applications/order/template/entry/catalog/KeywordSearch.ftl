@@ -17,9 +17,9 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<h1>${uiLabelMap.ProductProductSearch}, <span class="h2">${uiLabelMap.ProductYouSearchedFor}:</span></h1>
+<h2>${uiLabelMap.ProductProductSearch}<#--, <span class="h2">${uiLabelMap.ProductYouSearchedFor}:</span>--></h2>
 <br />
-<ul>
+<#--<ul>
 <#list searchConstraintStrings as searchConstraintString>
     <li><a href="<@ofbizUrl>keywordsearch?removeConstraint=${searchConstraintString_index}&amp;clearSearch=N</@ofbizUrl>" class="buttontext">X</a>&nbsp;${searchConstraintString}</li>
 </#list>
@@ -28,24 +28,24 @@ under the License.
 <div>${uiLabelMap.CommonSortedBy}: ${searchSortOrderString}</div>
 <br />
 <div><a href="<@ofbizUrl>advancedsearch?SEARCH_CATEGORY_ID=${(requestParameters.SEARCH_CATEGORY_ID)!}</@ofbizUrl>" class="buttontext">${uiLabelMap.CommonRefineSearch}</a></div>
-
+-->
 <#if !productIds?has_content>
-  <h2>&nbsp;${uiLabelMap.ProductNoResultsFound}.</h2>
+  <h4>${uiLabelMap.ProductNoResultsFound}.</h4><br>
 </#if>
 
 <#if productIds?has_content>
     <#macro paginationControls>
-            <div class="product-prevnext">
+            <div class="product-prevnext d-flex flex-row-reverse mb-3">
                 <#-- Start Page Select Drop-Down -->
                 <#assign viewIndexMax = Static["java.lang.Math"].ceil((listSize)?double / viewSize?double)>
-                <select name="pageSelect" onchange="window.location=this[this.selectedIndex].value;">
+                <#--<select name="pageSelect" onchange="window.location=this[this.selectedIndex].value;">
                   <option value="#">${uiLabelMap.CommonPage} ${viewIndex?int + 1} ${uiLabelMap.CommonOf} ${viewIndexMax}</option>
                   <#list 1..viewIndexMax as curViewNum>
                     <option value="<@ofbizUrl>keywordsearch/~VIEW_SIZE=${viewSize}/~VIEW_INDEX=${curViewNum?int - 1}/~clearSearch=N</@ofbizUrl>">${uiLabelMap.CommonGotoPage} ${curViewNum}</option>
                   </#list>
-                </select>
+                </select>-->
                 <#-- End Page Select Drop-Down -->
-                <b>
+                <span class="">
                 <#if (viewIndex?int > 0)>
                   <a href="<@ofbizUrl>keywordsearch/~VIEW_SIZE=${viewSize}/~VIEW_INDEX=${viewIndex - 1}/~clearSearch=N</@ofbizUrl>" class="buttontext">${uiLabelMap.CommonPrevious}</a> |
                 </#if>
@@ -55,7 +55,7 @@ under the License.
                 <#if highIndex?int < listSize?int>
                   | <a href="<@ofbizUrl>keywordsearch/~VIEW_SIZE=${viewSize}/~VIEW_INDEX=${viewIndex+1}/~clearSearch=N</@ofbizUrl>" class="buttontext">${uiLabelMap.CommonNext}</a>
                 </#if>
-                </b>
+                </span>
             </div>
     </#macro>
 

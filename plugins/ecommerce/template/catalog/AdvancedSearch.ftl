@@ -25,7 +25,7 @@ under the License.
   <div class="card-body">
     <form id="advtokeywordsearchform" method="post" action="<@ofbizUrl>keywordsearch</@ofbizUrl>">
       <fieldset>
-        <input type="hidden" name="VIEW_SIZE" value="10"/>
+        <input type="hidden" name="VIEW_SIZE" value="20"/>
         <input type="hidden" name="PAGING" value="Y"/>
         <input type="hidden" name="SEARCH_CATALOG_ID" value="${currentCatalogId}"/>
       <#if searchCategory?has_content>
@@ -52,17 +52,18 @@ under the License.
         <div class="row">
           <label class="col-form-label col-sm-3 pt-0">${uiLabelMap.ProductKeywords}</label>
           <div class="col-sm-6">
-          <input type="text" class="form-control form-control-sm" name="SEARCH_STRING" id="SEARCH_STRING" size="20"
-              value="${requestParameters.SEARCH_STRING?if_exists}"/>
-          <div class="form-check">
-            <input type="radio" class="form-check-input" name="SEARCH_OPERATOR" id="SEARCH_OPERATOR_ANY"
-                value="OR" <#if "OR" == searchOperator>checked="checked"</#if>/>
-            <label class="form-check-label" for="SEARCH_OPERATOR_ANY">${uiLabelMap.CommonAny}</label>
-          <div>
-          <div class="form-check">
-            <input type="radio" class="form-check-input" name="SEARCH_OPERATOR" id="SEARCH_OPERATOR_ALL"
-                value="AND" <#if "AND" == searchOperator>checked="checked"</#if>/>
-            <label class="form-check-label" for="SEARCH_OPERATOR_ALL">${uiLabelMap.CommonAll}</label>
+            <input type="text" class="form-control form-control-sm mb-2" name="SEARCH_STRING" id="SEARCH_STRING" size="20"
+                value="${requestParameters.SEARCH_STRING?if_exists}"/>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" name="SEARCH_OPERATOR" id="SEARCH_OPERATOR_ANY"
+                  value="OR" <#if "OR" == searchOperator>checked="checked"</#if>/>
+              <label class="form-check-label" for="SEARCH_OPERATOR_ANY">${uiLabelMap.AnyKeywordMatch}</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" name="SEARCH_OPERATOR" id="SEARCH_OPERATOR_ALL"
+                  value="AND" <#if "AND" == searchOperator>checked="checked"</#if>/>
+              <label class="form-check-label" for="SEARCH_OPERATOR_ALL">${uiLabelMap.AllKeywordMatch}</label>
+            </div>
           </div>
         </div>
       </fieldset>
@@ -89,13 +90,13 @@ under the License.
         <div class="row">
           <label for="sortOrder" class="col-sm-3 col-form-label pt-0">${uiLabelMap.ProductSortedBy}</label>
           <div class="col-sm-6">
-            <select name="sortOrder" id="sortOrder" class="form-control form-control-sm">
+            <select name="sortOrder" id="sortOrder" class="form-control form-control-sm mb-2">
               <option value="SortKeywordRelevancy">${uiLabelMap.ProductKeywordRelevancy}</option>
               <option value="SortProductField:productName">${uiLabelMap.ProductProductName}</option>
-              <option value="SortProductField:totalQuantityOrdered">${uiLabelMap.ProductPopularityByOrders}</option>
+              <#--<option value="SortProductField:totalQuantityOrdered">${uiLabelMap.ProductPopularityByOrders}</option>
               <option value="SortProductField:totalTimesViewed">${uiLabelMap.ProductPopularityByViews}</option>
               <option value="SortProductField:averageCustomerRating">${uiLabelMap.ProductCustomerRating}</option>
-              <option value="SortProductPrice:LIST_PRICE">${uiLabelMap.ProductListPrice}</option>
+              <option value="SortProductPrice:LIST_PRICE">${uiLabelMap.ProductListPrice}</option>-->
               <option value="SortProductPrice:DEFAULT_PRICE">${uiLabelMap.ProductDefaultPrice}</option>
               <#if productFeatureTypes?? && productFeatureTypes?has_content>
                 <#list productFeatureTypes as productFeatureType>
@@ -116,7 +117,7 @@ under the License.
           </div>
         </div>
       </fieldset>
-      <#if searchConstraintStrings?has_content>
+      <#--<#if searchConstraintStrings?has_content>
         <div>
           <div class="row">
             <label class="col-sm-3">${uiLabelMap.ProductLastSearch}</label>
@@ -141,42 +142,10 @@ under the License.
             </div>
           </div>
         </div>
-      </#if>
-        <div>
-          <input type="submit" name="submit" class="btn btn-outline-secondary" value="${uiLabelMap.CommonFind}"/>
+      </#if>-->
+        <div class="d-flex flex-row-reverse">
+          <input type="submit" name="submit" class="btn btn-primary" value="${uiLabelMap.CommonFind}"/>
         </div>
-
-      <#if searchOptionsHistoryList?has_content>
-      <div class="card m-3">
-        <div class="card-header">
-          <strong>${uiLabelMap.OrderLastSearches}...</strong>
-        </div>
-        <div class="card-body">
-          <div>
-            <a href="<@ofbizUrl>clearSearchOptionsHistoryList</@ofbizUrl>" class="button">
-              ${uiLabelMap.OrderClearSearchHistory}
-            </a>
-            <h4>${uiLabelMap.OrderClearSearchHistoryNote}</h4>
-          </div>
-          <#list searchOptionsHistoryList as searchOptions>
-          <#-- searchOptions type is ProductSearchSession.ProductSearchOptions -->
-            <div>
-              <p>${uiLabelMap.EcommerceSearchNumber}${searchOptions_index + 1}</p>
-              <a href="<@ofbizUrl>setCurrentSearchFromHistoryAndSearch?searchHistoryIndex=${searchOptions_index}&amp;clearSearch=N</@ofbizUrl>"
-                 class="button">${uiLabelMap.CommonSearch}</a>
-              <a href="<@ofbizUrl>setCurrentSearchFromHistory?searchHistoryIndex=${searchOptions_index}</@ofbizUrl>"
-                 class="button">${uiLabelMap.CommonRefine}</a>
-            </div>
-            <#assign constraintStrings = searchOptions.searchGetConstraintStrings(false, delegator, locale)>
-            <#list constraintStrings as constraintString>
-              <p> - ${constraintString}</p>
-            </#list>
-            <#if searchOptions_has_next>
-            </#if>
-          </#list>
-        </div>
-        </div>
-      </#if>
       </fieldset>
     </form>
   </div>

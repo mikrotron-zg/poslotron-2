@@ -16,6 +16,18 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#catalogInput').on('input', function() {
+      var inputVal = $(this).val().replace(/\s+/g, '');
+      if (inputVal.length > 2) {
+        $('#searchButton').prop('disabled', false);
+      } else {
+        $('#searchButton').prop('disabled', true);
+      }
+    });
+  });
+</script>
 
 <div id="keywordsearchbox" class="card">
   <div class="card-header">
@@ -27,9 +39,11 @@ under the License.
         <input type="hidden" name="VIEW_SIZE" value="20" />
         <input type="hidden" name="PAGING" value="Y" />
         <div class="input-group">
-          <input type="text" name="SEARCH_STRING" size="14" class="form-control" id="catalogInput" maxlength="50" value="${requestParameters.SEARCH_STRING!}" />
+          <input type="text" name="SEARCH_STRING" size="14" class="form-control" id="catalogInput"
+            maxlength="25" value="${requestParameters.SEARCH_STRING!}" placeholder="${uiLabelMap.ProductSearchCatalogInputPlaceholder}"/>
           <div class="input-group-append">
-            <button type="submit" class="btn btn-outline-secondary" value="${uiLabelMap.CommonFind}">
+            <button type="submit" id="searchButton" class="btn btn-outline-secondary" value="${uiLabelMap.CommonFind}"
+              <#if !requestParameters.SEARCH_STRING?exists>disabled</#if>>
               <span class="bi bi-search"></span>
             </button>
           </div>
@@ -50,7 +64,7 @@ under the License.
       <#else>
         <input type="hidden" name="SEARCH_CATEGORY_ID" value="${searchCategoryId!}" />
       </#if>
-      <div class="form-group">
+      <#--<div class="form-group">
         ${uiLabelMap.ProductKeywordMustInclude}:<br>
         <div class="form-check-inline">
           <input type="radio" class="form-check-input" name="SEARCH_OPERATOR" id="SEARCH_OPERATOR_OR" value="OR" <#if "OR" == searchOperator>checked="checked"</#if> />
@@ -60,7 +74,7 @@ under the License.
           <input type="radio" class="form-check-input" name="SEARCH_OPERATOR" id="SEARCH_OPERATOR_AND" value="AND" <#if "AND" == searchOperator>checked="checked"</#if> />
           <label class="form-check-label" for="SEARCH_OPERATOR_AND">${uiLabelMap.CommonAll}</label>
         </div>
-      </div>
+      </div>-->
     </form>
     <form name="advancedsearchform" id="keywordsearchbox_advancedsearchform" method="post" action="<@ofbizUrl>advancedsearch</@ofbizUrl>">
       <#if 0 &lt; otherSearchProdCatalogCategories?size>

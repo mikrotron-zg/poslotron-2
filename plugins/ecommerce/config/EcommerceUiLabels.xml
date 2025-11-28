@@ -5690,4 +5690,16 @@
         <value xml:lang="en">* lowest price during the 30-day period prior to the special sale</value>
         <value xml:lang="hr">* najniža cijena tijekom razdoblja od 30 dana prije provođenja posebnog oblika prodaje</value>
     </property>
+    <property key="AnyKeywordMatch">
+        <value xml:lang="en">Any keyword matches</value>
+        <value xml:lang="hr">Bilo koja ključna riječ odgovara</value>
+    </property>
+    <property key="AllKeywordMatch">
+        <value xml:lang="en">All keywords match</value>
+        <value xml:lang="hr">Sve ključne riječi odgovaraju</value>
+    </property>
+    <property key="ProductSearchCatalogInputPlaceholder">
+        <value xml:lang="en">Enter min 3 letters</value>
+        <value xml:lang="hr">Upišite min. 3 slova</value>
+    </property>
 </resource>
