@@ -5686,4 +5686,8 @@
         <value xml:lang="en">If the delivery address is different from this address, you will be able to add it at the checkout.</value>
         <value xml:lang="hr">Ukoliko se adresa dostave razlikuje od ove adrese, moći ćete ju dodati prilikom zaključivanja narudžbe.</value>
     </property>
+    <property key="LowestPrice30Days">
+        <value xml:lang="en">* lowest price during the 30-day period prior to the special sale</value>
+        <value xml:lang="hr">* najniža cijena tijekom razdoblja od 30 dana prije provođenja posebnog oblika prodaje</value>
+    </property>
 </resource>

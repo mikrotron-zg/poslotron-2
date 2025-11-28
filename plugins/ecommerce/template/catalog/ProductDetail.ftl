@@ -461,7 +461,6 @@ ${variantInfoJavaScript!}
               - if price < defaultPrice and defaultPrice < listPrice, show default
               - if isSale show price with salePrice style and print "On Sale!"
       -->
-      <#assign conversion_rate = 7.5345>
       <#if price.competitivePrice?? && price.price?? && price.price &lt; price.competitivePrice>
         <div>${uiLabelMap.ProductCompareAtPrice}:
           <span class="basePrice">
@@ -470,12 +469,11 @@ ${variantInfoJavaScript!}
         </div>
       </#if>
       <#if price.listPrice?? && price.price?? && price.price &lt; price.listPrice>
-        <div>
-          <h5 class="text-muted">
-            <del><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed /></del>
-            &nbsp;
-            <span class="small"><del>(<@ofbizCurrency amount=price.listPrice*conversion_rate isoCode="HRK" />)</del></span>
+        <div class="text-muted mb-1">
+          <h5 class="mb-0">
+            <del><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed /></del>*
           </h5>
+          <small>${uiLabelMap.LowestPrice30Days}</small>
         </div>
       </#if>
       <#if price.listPrice?? && price.defaultPrice?? && price.price?? &&
@@ -540,8 +538,7 @@ ${variantInfoJavaScript!}
         <p>
           ${uiLabelMap.OrderSave}:
           <span class="basePrice">
-            <@ofbizCurrency amount=priceSaved isoCode=price.currencyUsed />
-            (<@ofbizCurrency amount=priceSaved*conversion_rate isoCode="HRK" />) - 
+            <@ofbizCurrency amount=priceSaved isoCode=price.currencyUsed /> -
             ${percentSaved?int}%
           </span>
         </p>
@@ -568,13 +565,13 @@ ${variantInfoJavaScript!}
           ${product.quantityIncluded!} ${((quantityUom.abbreviation)?default(product.quantityUomId))!}
         </div>
       </#if>
-      <#if (product.shippingWeight?? && product.shippingWeight != 0) || product.weightUomId?has_content>
+      <#--<#if (product.shippingWeight?? && product.shippingWeight != 0) || product.weightUomId?has_content>
         <#assign weightUom = product.getRelatedOne("WeightUom", true)! />
         <p class="text-secondary">
           ${uiLabelMap.ProductShippingWeight}:
           ${product.shippingWeight!} ${((weightUom.abbreviation)?default(product.weightUomId))!}
         </p>
-      </#if>
+      </#if>-->
       <#if (product.productHeight?? && product.productHeight != 0) || product.heightUomId?has_content>
         <#assign heightUom = product.getRelatedOne("HeightUom", true)! />
         <div>
