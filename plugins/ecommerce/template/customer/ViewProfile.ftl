@@ -18,33 +18,6 @@ under the License.
 -->
 
 <#if party??>
-  <div class="d-flex justify-content-between">
-    <div class="p-2">
-      <h2>${uiLabelMap.PartyTheProfileOf}
-        <#if person??>
-        ${person.personalTitle!}
-        ${person.firstName!}
-        ${person.middleName!}
-        ${person.lastName!}
-        ${person.suffix!}
-        <#else>
-          <#-- TODO: should be party group name -->
-          <#--"${uiLabelMap.PartyNewUser}"-->
-        </#if>
-      </h2>
-    </div>
-    <div class="p-2">
-      <#if showOld>
-        <a href="<@ofbizUrl>viewprofile</@ofbizUrl>" class="btn btn-outline-secondary">${uiLabelMap.PartyHideOld}</a>
-      <#else>
-        <a href="<@ofbizUrl>viewprofile?SHOW_OLD=true</@ofbizUrl>" class="btn btn-outline-secondary">${uiLabelMap.PartyShowOld}</a>
-      </#if>
-      <#if "Y" == (productStore.enableDigProdUpload)!>
-        <a href="<@ofbizUrl>digitalproductlist</@ofbizUrl>" class="btn btn-secondary-outline">${uiLabelMap.EcommerceDigitalProductUpload}</a>
-      </#if>
-    </div>
-  </div>
-
   <#if person??>
     <div class="card">
       <div class="card-header">
@@ -65,11 +38,8 @@ under the License.
           <dl class="row">
             <dt class="col-lg-2">${uiLabelMap.PartyName}</dt>
             <dd class="col-lg-10">
-              ${person.personalTitle!}
               ${person.firstName!}
-              ${person.middleName!}
               ${person.lastName!}
-              ${person.suffix!}
             </dd>
             <#if person.nickname?has_content>
               <dt class="col-lg-2">${uiLabelMap.PartyNickName}</dt>
@@ -141,7 +111,7 @@ under the License.
       <div class="card-header">
         <div class="row">
           <div class="col-lg-3"><strong>${uiLabelMap.PartyContactInformation}</strong></div>
-          <div class="col-lg-9 text-right"><a href="<@ofbizUrl>editcontactmech</@ofbizUrl>" class="card-link">${uiLabelMap.CommonCreate}</a></div>
+          <#--<div class="col-lg-9 text-right"><a href="<@ofbizUrl>editcontactmech</@ofbizUrl>" class="card-link">${uiLabelMap.CommonCreate}</a></div>-->
         </div>
       </div>
 
@@ -161,16 +131,16 @@ under the License.
             <#assign partyContactMech = partyContactMechValueMap.partyContactMech! />
               <tbody>
               <tr>
-                <td>
+                <th>
                   ${contactMechType.get("description",locale)}
-                </td>
+                </th>
                 <td>
                   <#list partyContactMechValueMap.partyContactMechPurposes! as partyContactMechPurpose>
                     <#assign contactMechPurposeType = partyContactMechPurpose.getRelatedOne("ContactMechPurposeType", true) />
                       <#if contactMechPurposeType??>
-                        ${contactMechPurposeType.get("description",locale)}
+                        <em>${contactMechPurposeType.get("description",locale)}</em>
                         <#if "SHIPPING_LOCATION" == contactMechPurposeType.contactMechPurposeTypeId && (profiledefs.defaultShipAddr)?default("") == contactMech.contactMechId>
-                          <label>${uiLabelMap.EcommerceIsDefault}</label>
+                          <span class="font-weight-bold">(${uiLabelMap.EcommerceIsDefault})</span>
                         <#elseif "SHIPPING_LOCATION" == contactMechPurposeType.contactMechPurposeTypeId>
                           <form name="defaultShippingAddressForm" method="post" action="<@ofbizUrl>setprofiledefault/viewprofile</@ofbizUrl>">
                             <input type="hidden" name="productStoreId" value="${productStoreId}" />
@@ -179,14 +149,15 @@ under the License.
                             <input type="submit" value="${uiLabelMap.EcommerceSetDefault}" class="btn btn-outline-secondary" />
                           </form>
                         </#if>
+                        <br>
                       <#else>
                         ${uiLabelMap.PartyPurposeTypeNotFound}: "${partyContactMechPurpose.contactMechPurposeTypeId}"
                       </#if>
-                      <#if partyContactMechPurpose.thruDate??>(${uiLabelMap.CommonExpire}:${partyContactMechPurpose.thruDate.toString()})</#if>
+                      <#--<#if partyContactMechPurpose.thruDate??>(${uiLabelMap.CommonExpire}:${partyContactMechPurpose.thruDate.toString()})</#if>-->
                   </#list>
                   <#if contactMech.contactMechTypeId! = "POSTAL_ADDRESS">
                     <#assign postalAddress = partyContactMechValueMap.postalAddress! />
-                    <div>
+                    <div class="mt-2 font-weight-bold">
                       <#if postalAddress??>
                         <#if postalAddress.toName?has_content>${uiLabelMap.CommonTo}: ${postalAddress.toName}<br /></#if>
                         <#if postalAddress.attnName?has_content>${uiLabelMap.PartyAddrAttnName}: ${postalAddress.attnName}<br /></#if>
@@ -210,6 +181,7 @@ under the License.
                     <#assign telecomNumber = partyContactMechValueMap.telecomNumber!>
                     <div>
                     <#if telecomNumber??>
+                      <strong>
                       ${telecomNumber.countryCode!}
                       <#if telecomNumber.areaCode?has_content>${telecomNumber.areaCode}-</#if>${telecomNumber.contactNumber!}
                       <#if partyContactMech.extension?has_content>ext&nbsp;${partyContactMech.extension}</#if>
@@ -217,13 +189,15 @@ under the License.
                         <a target="_blank" href="${uiLabelMap.CommonLookupAnywhoLink}" class="linktext">${uiLabelMap.CommonLookupAnywho}</a>
                         <a target="_blank" href="${uiLabelMap.CommonLookupWhitepagesTelNumberLink}" class="linktext">${uiLabelMap.CommonLookupWhitepages}</a>
                       </#if>
+                      </strong>
                     <#else>
                       ${uiLabelMap.PartyPhoneNumberInfoNotFound}.
                     </#if>
                     </div>
                   <#elseif contactMech.contactMechTypeId! = "EMAIL_ADDRESS">
-                      ${contactMech.infoString}
-                      <a href="mailto:${contactMech.infoString}" class="linktext">(${uiLabelMap.PartySendEmail})</a>
+                    <div>
+                      <strong>${contactMech.infoString}</strong>
+                    </div>
                   <#elseif contactMech.contactMechTypeId! = "WEB_ADDRESS">
                     <div>
                       ${contactMech.infoString}
@@ -234,14 +208,14 @@ under the License.
                   <#else>
                     ${contactMech.infoString!}
                   </#if>
-                  <div>(${uiLabelMap.CommonUpdated}:&nbsp;${partyContactMech.fromDate.toString()})</div>
-                  <#if partyContactMech.thruDate??><div>${uiLabelMap.CommonDelete}:&nbsp;${partyContactMech.thruDate.toString()}</div></#if>
+                    <#--<div>(${uiLabelMap.CommonUpdated}:&nbsp;${partyContactMech.fromDate.toString()})</div>
+                  <#if partyContactMech.thruDate??><div>${uiLabelMap.CommonDelete}:&nbsp;${partyContactMech.thruDate.toString()}</div></#if>-->
                 </td>
                 <td>
                   <form name= "deleteContactMech_${contactMech.contactMechId}" method= "post" action= "<@ofbizUrl>deleteContactMech</@ofbizUrl>">
                     <input type= "hidden" name= "contactMechId" value= "${contactMech.contactMechId}"/>
                     <a href="<@ofbizUrl>editcontactmech?contactMechId=${contactMech.contactMechId}</@ofbizUrl>" class="btn btn-outline-secondary">${uiLabelMap.CommonUpdate}</a>
-                    <a href='javascript:document.deleteContactMech_${contactMech.contactMechId}.submit()' class='btn btn-outline-secondary'>${uiLabelMap.CommonExpire}</a>
+                    <#--<a href='javascript:document.deleteContactMech_${contactMech.contactMechId}.submit()' class='btn btn-outline-secondary'>${uiLabelMap.CommonExpire}</a>-->
                   </form>
                 </td>
               </tr>
@@ -258,10 +232,10 @@ under the License.
     <div class="card">
       <div class="card-header">
         <div class="row">
-          <div class="col-lg-3">
-            <strong>${uiLabelMap.CommonUsername} &amp; ${uiLabelMap.CommonPassword}</strong>
+          <div class="col">
+            <strong>${uiLabelMap.CommonUsername}</strong>
           </div>
-          <div class="col-lg-9 text-right">
+          <div class="col text-right">
             <a href="<@ofbizUrl>passwordChange</@ofbizUrl>">${uiLabelMap.PartyChangePassword}</a>
           </div>
         </div>

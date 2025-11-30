@@ -17,13 +17,13 @@ specific language governing permissions and limitations
 under the License.
 -->
 <#if canNotView>
-<h3>${uiLabelMap.PartyContactInfoNotBelongToYou}.</h3>
+<h4>${uiLabelMap.PartyContactInfoNotBelongToYou}.</h4>
 <a href="<@ofbizUrl>${donePage}</@ofbizUrl>" class="btn btn-outline-secondary">${uiLabelMap.CommonBack}</a>
 <#else>
   <#if !contactMech??>
   <#-- When creating a new contact mech, first select the type, then actually create -->
     <#if !requestParameters.preContactMechTypeId?? && !preContactMechTypeId??>
-    <h2>${uiLabelMap.PartyCreateNewContactInfo}</h2>
+    <h3>${uiLabelMap.PartyCreateNewContactInfo}</h3>
     <form method="post" class="form-inline" action='<@ofbizUrl>editcontactmechnosave</@ofbizUrl>' name="createcontactmechform">
             <label class="mr-2">${uiLabelMap.PartySelectContactType}:</label>
               <select name="preContactMechTypeId" class="form-control custom-select mr-2">
@@ -41,7 +41,7 @@ under the License.
 
   <#if contactMechTypeId??>
     <#if !contactMech??>
-    <h2>${uiLabelMap.PartyCreateNewContactInfo}</h2>
+    <h3>${uiLabelMap.PartyCreateNewContactInfo}</h3>
     <a href='<@ofbizUrl>${donePage}</@ofbizUrl>' class="btn btn-outline-secondary">${uiLabelMap.CommonGoBack}</a>
     <a href="javascript:document.editcontactmechform.submit()" class="btn btn-outline-secondary">${uiLabelMap.CommonSave}</a>
     <table width="90%" border="0" cellpadding="2" cellspacing="0">
@@ -60,12 +60,10 @@ under the License.
         <input type='hidden' name='paymentMethodId' value='${paymentMethodId}'/>
       </#if>
     <#else>
-      <h2>${uiLabelMap.PartyEditContactInfo}</h2>
-      <a href="<@ofbizUrl>${donePage}</@ofbizUrl>" class="btn btn-outline-secondary">${uiLabelMap.CommonGoBack}</a>
-      <a href="javascript:document.editcontactmechform.submit()" class="btn btn-outline-secondary">${uiLabelMap.CommonSave}</a>
+      <h3>${uiLabelMap.PartyEditContactInfo}</h3>
       <p class="my-2"><strong>${uiLabelMap.PartyContactPurposes}</strong></p>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 font-italic">
             <#list partyContactMechPurposes! as partyContactMechPurpose>
               <#assign contactMechPurposeType = partyContactMechPurpose.getRelatedOne("ContactMechPurposeType", true) />
                   <form name="expirePartyContactMechPurpose_${partyContactMechPurpose.contactMechPurposeTypeId}" class="my-2"
@@ -77,7 +75,7 @@ under the License.
                         <#else>
                         ${uiLabelMap.PartyPurposeTypeNotFound}: "${partyContactMechPurpose.contactMechPurposeTypeId}"
                         </#if>
-                        (${uiLabelMap.CommonSince}:${partyContactMechPurpose.fromDate.toString()})
+                        <#--(${uiLabelMap.CommonSince}:${partyContactMechPurpose.fromDate.toString()})-->
                         <#if partyContactMechPurpose.thruDate??>(${uiLabelMap.CommonExpires}
                           :${partyContactMechPurpose.thruDate.toString()})</#if>
                       </label>
@@ -94,17 +92,17 @@ under the License.
             <#if purposeTypes?has_content>
                   <form method="post" class="form-inline" action='<@ofbizUrl>createPartyContactMechPurpose</@ofbizUrl>'
                         name='newpurposeform'>
-                      <input type="hidden" name="contactMechId" value="${contactMechId}"/>
-                      <input type="hidden" name="useValues" value="true"/>
-                      <select name='contactMechPurposeTypeId' class="custom-select form-control">
-                        <option>${uiLabelMap.CommonSelect}</option>
-                        <#list purposeTypes as contactMechPurposeType>
-                          <option value='${contactMechPurposeType.contactMechPurposeTypeId}'>
-                            ${contactMechPurposeType.get("description",locale)}
-                          </option>
-                        </#list>
-                      </select>
-                    <a href='javascript:document.newpurposeform.submit()' class="btn btn-outline-secondary">${uiLabelMap.PartyAddPurpose}</a>
+                    <input type="hidden" name="contactMechId" value="${contactMechId}"/>
+                    <input type="hidden" name="useValues" value="true"/>
+                    <select name='contactMechPurposeTypeId' class="custom-select form-control mb-3 mr-2" >
+                      <option>${uiLabelMap.CommonSelect}</option>
+                      <#list purposeTypes as contactMechPurposeType>
+                        <option value='${contactMechPurposeType.contactMechPurposeTypeId}'>
+                          ${contactMechPurposeType.get("description",locale)}
+                        </option>
+                      </#list>
+                    </select>
+                    <a href='javascript:document.newpurposeform.submit()' class="btn btn-outline-secondary mb-3">${uiLabelMap.PartyAddPurpose}</a>
                   </form>
             </#if>
           </div>
@@ -163,7 +161,7 @@ under the License.
                  value="${postalAddressData.postalCode!}"/>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-2">
         <div class="col-sm-6">
           <label class="my-2">${uiLabelMap.CommonCountry}</label>
           <select name="countryGeoId" class="custom-select form-control" id="editcontactmechform_countryGeoId">
@@ -186,32 +184,30 @@ under the License.
     <div class="form-group">
       <label class="my-2">${uiLabelMap.PartyPhoneNumber}</label>
       <div class="row">
-        <div class="col-sm-2">
-          <input type="text" class="form-control" name="countryCode"
+        <div class="col-sm-1 mb-2">
+          <input type="text" class="form-control" name="countryCode" style="max-width: 75px;"
               value="${telecomNumberData.countryCode!}" placeholder="${uiLabelMap.CommonCountryCode}"/>
         </div>
-        <label class="my-2">-</label>
-        <div class="col-sm-2">
-          <input type="text" class="form-control" name="areaCode"
+        <div class="col-sm-1 mb-2">
+          <input type="text" class="form-control" name="areaCode" style="max-width: 75px;"
               value="${telecomNumberData.areaCode!}" placeholder="${uiLabelMap.PartyAreaCode}"/>
         </div>
-        <label class="my-2">-</label>
-        <div class="col-sm-2">
+        <div class="col-sm-2 mb-2">
           <input type="text" class="form-control" name="contactNumber"
               value="${telecomNumberData.contactNumber!}" placeholder="${uiLabelMap.PartyContactNumber}"/>
         </div>
-        <label class="my-2">-</label>
+        <#--<label class="my-2">-</label>
         <div class="col-sm-2">
           <input type="text" class="form-control"
               name="extension" value="${partyContactMechData.extension!}" placeholder="${uiLabelMap.PartyExtension}"/>
-        </div>
+        </div>-->
       </div>
     </div>
     <#elseif contactMechTypeId = "EMAIL_ADDRESS">
       <div class="row">
         <div class="col-sm-6">
           <label class="my-2">${uiLabelMap.PartyEmailAddress}</label >
-          <input type="text" class="form-control" name="emailAddress"
+          <input type="text" class="form-control mb-2" name="emailAddress"
               value="<#if tryEntity>${contactMech.infoString!}<#else>${requestParameters.emailAddress!}</#if>"/>
         </div>
       </div>
@@ -224,23 +220,9 @@ under the License.
         </div>
       </div>
     </#if>
-    <div class="row">
-      <div class="col-sm-6">
-        <label class="my-2">${uiLabelMap.PartyAllowSolicitation}?</label>
-        <select name="allowSolicitation" class=" form-control custom-select mb-2">
-          <#if ("Y" == ((partyContactMechData.allowSolicitation)!""))>
-            <option value="Y">${uiLabelMap.CommonY}</option></#if>
-          <#if ("N" == ((partyContactMechData.allowSolicitation)!""))>
-            <option value="N">${uiLabelMap.CommonN}</option></#if>
-          <option></option>
-          <option value="Y">${uiLabelMap.CommonY}</option>
-          <option value="N">${uiLabelMap.CommonN}</option>
-        </select>
-      </div>
-    </div>
   </form>
   <a href="<@ofbizUrl>${donePage}</@ofbizUrl>" class="btn btn-outline-secondary mr-1">${uiLabelMap.CommonGoBack}</a>
-  <a href="javascript:document.editcontactmechform.submit()" class="btn btn-outline-secondary">${uiLabelMap.CommonSave}</a>
+  <a href="javascript:document.editcontactmechform.submit()" class="btn btn-outline-primary">${uiLabelMap.CommonSave}</a>
   <#else>
     <a href="<@ofbizUrl>${donePage}</@ofbizUrl>" class="btn btn-outline-secondary mt-2">${uiLabelMap.CommonGoBack}</a>
   </#if>

@@ -21,10 +21,6 @@ under the License.
     <h3>${uiLabelMap.PartyChangePassword}</h3>
   </div>
   <div class="card-body">
-    <a id="CommonGoBack1" href="<@ofbizUrl>${donePage}</@ofbizUrl>" class="btn btn-outline-secondary">${uiLabelMap.CommonGoBack}</a>
-    <a id="CommonSave1" href="javascript:document.getElementById('changepasswordform').submit()" class="btn btn-outline-secondary">
-    ${uiLabelMap.CommonSave}
-    </a>
     <form id="changepasswordform" method="post" action="<@ofbizUrl>updatePassword/${donePage}</@ofbizUrl>">
         <#if !parameters.TOKEN?has_content>
           <label class="mt-4 asteriskInput" for="currentPassword">${uiLabelMap.PartyOldPassword}</label>
@@ -59,7 +55,7 @@ under the License.
         </div>
     </form>
     <a href="<@ofbizUrl>${donePage}</@ofbizUrl>" class="btn btn-outline-secondary">${uiLabelMap.CommonGoBack}</a>
-    <a href="javascript:document.getElementById('changepasswordform').submit()" class="btn btn-outline-secondary">
+    <a href="javascript:document.getElementById('changepasswordform').submit()" class="btn btn-outline-primary">
       ${uiLabelMap.CommonSave}
     </a>
   </div>
