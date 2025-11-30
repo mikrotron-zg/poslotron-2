@@ -223,3 +223,68 @@ button.jGrowl-close {
     color: red;
     display: inline;
   }
+
+/*set Jgrowl css here to avoid side effect with other class*/
+.jGrowl-notification .jGrowl-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: #f0f0f0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    border: none;
+    background: none;
+}
+
+.errorMessageJGrowl {
+    background: rgba(240, 124, 0, .95);
+    opacity: 0.9;
+    border: none;
+    color: #f0f0f0;
+    font-size: 1.3em;
+    font-weight: 500;
+    padding: 2rem;
+    line-height: 1.5em;
+    max-width: 600px;
+    word-wrap: break-word;
+    box-shadow: 0 0 50px 0 rgba(82, 63, 105, .15);
+    text-overflow: ellipsis;
+    font-family: 'Quicksand', sans-serif !important;
+
+}
+
+.eventMessageJGrowl {
+    background: rgba(111, 111, 111, .8);
+    border: none;
+    color: #f0f0f0;
+    font-size: 1.2em;
+    font-weight: 500;
+    padding: 2rem;
+    line-height: 1.5em;
+    max-width: 500px;
+    word-wrap: break-word;
+    box-shadow: 0 0 50px 0 rgba(82, 63, 105, .15);
+    text-overflow: ellipsis;
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+@media screen and (max-width: 600px) {
+  .eventMessageJGrowl {
+    max-width: 275px;
+    min-height: 150px;
+  }
+  .errorMessageJGrowl {
+    max-width: 300px;
+    min-height: 175px;
+  }
+}
+
+.closeAllJGrowl {
+    min-width: 350px;
+    padding: 5px 5px 5px 50px;
+    border: 1px solid #f0f0f0;
+}
+
+.content-messages p {
+    display: none;
+}
