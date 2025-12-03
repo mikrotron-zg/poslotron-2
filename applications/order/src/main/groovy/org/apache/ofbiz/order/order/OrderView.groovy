@@ -128,6 +128,7 @@ if (orderHeader) {
     grandTotal = orderReadHelper.getOrderGrandTotal()
     context.grandTotal = grandTotal
     context.orderGrandTotalCents = (grandTotal*100).intValue() // need this for 2D barcode only
+    context.grandTotalCentsFormated = (context.grandTotal*100).intValue().toString().padLeft(15, '0'); // needed for barcode4j pdf417 code
 
     orderItemList = orderReadHelper.getOrderItems()
     // Retrieve all non-promo items that aren't cancelled

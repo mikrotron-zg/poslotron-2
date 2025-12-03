@@ -47,17 +47,19 @@ under the License.
                     <#assign remainingQuantity = (orderItem.quantity?default(0) - orderItem.cancelQuantity?default(0))>
                     <#assign itemAdjustment = Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemAdjustmentsTotal(orderItem, orderAdjustments, true, false, false)>
                     <#assign internalImageUrl = Static["org.apache.ofbiz.product.imagemanagement.ImageManagementHelper"].getInternalImageUrl(request, productId!)!>
+                    <#-- FIXME: should be implemented in Groovy script -->
+                    <#assign pdv = 1.25>
                     <fo:table-row>
                         <fo:table-cell>
                             <fo:block>
                                 <#if orderItem.supplierProductId?has_content>
-                                    ${orderItem.supplierProductId} - ${orderItem.itemDescription!}
+                                    ${orderItem.supplierProductId} - <#noescape>${orderItem.itemDescription!}</#noescape>
                                 <#elseif productId??>
-                                    ${orderItem.productId?default("N/A")} - ${orderItem.itemDescription!}
+                                    ${orderItem.productId?default("N/A")} - <#noescape>${orderItem.itemDescription!}</#noescape>
                                 <#elseif orderItemType??>
-                                    ${orderItemType.get("description",locale)} - ${orderItem.itemDescription!}
+                                    ${orderItemType.get("description",locale)} - <#noescape>${orderItem.itemDescription!}</#noescape>
                                 <#else>
-                                    ${orderItem.itemDescription!}
+                                    <#noescape>${orderItem.itemDescription!}</#noescape>
                                 </#if>
                             </fo:block>
                         </fo:table-cell>
@@ -74,12 +76,12 @@ under the License.
                             <fo:block>${remainingQuantity}</fo:block>
                         </fo:table-cell>
                         <fo:table-cell text-align="right">
-                            <fo:block><@ofbizCurrency amount=orderItem.unitPrice isoCode=currencyUomId/></fo:block>
+                            <fo:block><@ofbizCurrency amount=orderItem.unitPrice*pdv isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
                         <fo:table-cell text-align="right">
                             <fo:block>
                                 <#if orderItem.statusId != "ITEM_CANCELLED">
-                                    <@ofbizCurrency amount=Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments) isoCode=currencyUomId/>
+                                    <@ofbizCurrency amount=Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)*pdv isoCode=currencyUomId/>
                                 <#else>
                                     <@ofbizCurrency amount=0.00 isoCode=currencyUomId/>
                                 </#if>
@@ -126,7 +128,7 @@ under the License.
                         <fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderItemsSubTotal}</fo:block>
                     </fo:table-cell>
                     <fo:table-cell border-top-style="solid" border-top-width="thin" padding-top="4pt" text-align="right">
-                        <fo:block><@ofbizCurrency amount=orderSubTotal isoCode=currencyUomId/></fo:block>
+                        <fo:block><@ofbizCurrency amount=orderSubTotal*pdv isoCode=currencyUomId/></fo:block>
                     </fo:table-cell>
                 </fo:table-row>
                 <#-- <#if otherAdjAmount != 0>
@@ -149,7 +151,7 @@ under the License.
                             <fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderTotalShippingAndHandling}</fo:block>
                         </fo:table-cell>
                         <fo:table-cell text-align="right">
-                            <fo:block><@ofbizCurrency amount=shippingAmount isoCode=currencyUomId/></fo:block>
+                            <fo:block><@ofbizCurrency amount=shippingAmount*pdv isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                 </#if>
@@ -173,31 +175,13 @@ under the License.
                             <fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderTotalDue}</fo:block>
                         </fo:table-cell>
                         <fo:table-cell text-align="right" background-color="#EEEEEE">
-                            <#-- FIXME: temporary workaround for taxes included in price -->
-                            <#assign grandTotal = orderSubTotal + shippingAmount>
                             <fo:block font-family="NotoSans-Bold"><@ofbizCurrency amount=grandTotal isoCode=currencyUomId/></fo:block>
-                        </fo:table-cell>
-                    </fo:table-row>
-                    <fo:table-row>
-                        <fo:table-cell number-columns-spanned="4"><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell text-align="right">
-                        <fo:block font-size="8pt">(<@ofbizCurrency amount=grandTotal*7.5345 isoCode="HRK"/>)</fo:block>
-                        </fo:table-cell>
-                    </fo:table-row>
-                    <fo:table-row>
-                        <fo:table-cell number-columns-spanned="2"><fo:block></fo:block></fo:table-cell>
-                        <fo:table-cell number-columns-spanned="3" text-align="right">
-                        <fo:block font-size="8pt" font-family="NotoSans-Italic">
-                            Fiksni tečaj konverzije 1€ = 7,5345kn
-                        </fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                     <#-- Payment 2D barcode -->
                     <fo:table-row>
                         <fo:table-cell number-columns-spanned="2"><fo:block></fo:block></fo:table-cell>
                         <fo:table-cell number-columns-spanned="3" padding-top="8pt" text-align="right">
-                            <#-- FIXME this should be formated in Groovy script -->
-                            <#assign grandTotalCentsFormated="0000000012345">
                             <fo:block>
                                 <fo:instream-foreign-object>
                                     <barcode:barcode xmlns:barcode="http://barcode4j.krysalis.org/ns" 
@@ -211,6 +195,9 @@ under the License.
                             </fo:block>
                             <fo:block font-size="8pt">
                                 ********** 2D barkod za plaćanje ***********
+                            </fo:block>
+                            <fo:block text-align="right" font-size="11pt" margin-right="10pt">
+                                OVO NIJE FISKALIZIRANI RAČUN
                             </fo:block>
                         </fo:table-cell>
                     </fo:table-row>
