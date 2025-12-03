@@ -25,6 +25,7 @@ under the License.
         <actions>
             <set field="quoteTypeId[]" value="OTHER_QUOTE"/>
             <set field="quoteTypeId[]" value="PROPOSAL"/>
+            <set field="parameters.productStoreId" value="10010"/>
         </actions>
         <auto-fields-entity entity-name="Quote" default-field-type="find"/>
         <field name="quoteId" title="${uiLabelMap.OrderOrderQuoteId}"></field>
@@ -148,7 +149,8 @@ under the License.
             </drop-down>
         </field>
         <field name="productStoreId" title="${uiLabelMap.ProductProductStore}">
-            <drop-down allow-empty="false">
+            <!-- FIXME: set default product store from properties file -->
+            <drop-down allow-empty="true" no-current-selected-key="10010">
                 <entity-options description="${storeName}" entity-name="ProductStore" key-field-name="productStoreId">
                     <entity-order-by field-name="storeName"/>
                 </entity-options>

@@ -34,6 +34,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilMisc;
+import org.apache.ofbiz.base.util.UtilProperties;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.common.geo.GeoWorker;
 import org.apache.ofbiz.entity.Delegator;
@@ -90,6 +91,11 @@ public final class ProductStoreWorker {
                 // might be nice to do this, but not needed and has a problem with dependencies: setSessionProductStore(productStoreId, httpRequest);
                 return productStoreId;
             }
+        }
+        // Fallback to default product store ID from properties (for back office scenarios)
+        String defaultProductStoreId = UtilProperties.getPropertyValue("general", "productStore.default.id");
+        if (UtilValidate.isNotEmpty(defaultProductStoreId)) {
+            return defaultProductStoreId;
         }
         return null;
     }
