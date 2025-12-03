@@ -638,7 +638,7 @@ under the License.
                 <get-related-one relation-name="CreatedByUserLogin" value-field="order" to-value-field="createdByUserLogin" />
                 <set field="partyIdTo" from-field="createdByUserLogin.partyId"/><!-- store partyId to answer -->
             </actions>
-            <widgets>
+            <!--<widgets>
                 <screenlet title="${uiLabelMap.PartyAllCommunicationEvents}" name="orderCommunicationEvent" collapsible="true">
                     <include-form location="component://order/widget/ordermgr/OrderForms.xml" name="createNewOrderConversation"/>
                     <horizontal-separator/>
@@ -646,7 +646,7 @@ under the License.
                         <section>
                             <actions>
                                 <set field="communicationEventId" from-field="commEvent.communicationEventId"/>
-                                <set field="partyIdTo" from-field="commEvent.partyIdFrom"/><!-- store partyId to answer -->
+                                <set field="partyIdTo" from-field="commEvent.partyIdFrom"/>
                             </actions>
                             <widgets>
                                 <include-screen name="ConversationThread" location="component://party/widget/partymgr/CommunicationEventScreens.xml"/>
@@ -654,7 +654,7 @@ under the License.
                         </section>
                     </iterate-section>
                 </screenlet>
-            </widgets>
+            </widgets>-->
         </section>
     </screen>
     <screen name="CreateNewOrderMessage">
