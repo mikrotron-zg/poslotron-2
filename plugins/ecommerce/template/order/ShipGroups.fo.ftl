@@ -51,16 +51,16 @@ under the License.
         </fo:table-cell>
       </fo:table-row>
       <fo:table-row>
-        <fo:table-cell><fo:block font-family="NotoSans-Bold">${uiLabelMap.ProductShipmentMethod}</fo:block></fo:table-cell>
-        <fo:table-cell><#if data.carrierShipmentMethod??><fo:block>${data.carrierShipmentMethod.partyId} ${data.shipmentMethodType.description}</fo:block></#if></fo:table-cell>
+        <fo:table-cell><fo:block font-family="NotoSans-Bold">${uiLabelMap.ProductShipmentMethod}:</fo:block></fo:table-cell>
+        <fo:table-cell><#if data.carrierShipmentMethod??><fo:block>${data.shipmentMethodType.description}</fo:block></#if></fo:table-cell>
       </fo:table-row>
       <fo:table-row>
-        <fo:table-cell><fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderShipBeforeDate}</fo:block></fo:table-cell>
-        <fo:table-cell><fo:block>${shipGroup.shipByDate?default("----")}</fo:block></fo:table-cell>
+        <fo:table-cell><fo:block></fo:block></fo:table-cell>
+        <fo:table-cell><fo:block></fo:block></fo:table-cell>
       </fo:table-row>
       <fo:table-row>
-        <fo:table-cell><fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderShipAfterDate}</fo:block></fo:table-cell>
-        <fo:table-cell><fo:block>${shipGroup.shipAfterDate?default("----")}</fo:block></fo:table-cell>
+        <fo:table-cell><fo:block></fo:block></fo:table-cell>
+        <fo:table-cell><fo:block></fo:block></fo:table-cell>
       </fo:table-row>
     </fo:table-body>
   </fo:table>
