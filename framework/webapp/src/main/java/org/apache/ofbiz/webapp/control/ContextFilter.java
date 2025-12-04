@@ -90,6 +90,14 @@ public class ContextFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        // Force UTF-8 encoding to properly handle special characters like čćž
+        // This MUST be done before ANY request processing, including getSession()
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (Exception e) {
+            Debug.logWarning("Could not set UTF-8 encoding: " + e.getMessage(), MODULE);
+        }
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
@@ -108,10 +116,6 @@ public class ContextFilter implements Filter {
 
         // set the server root url
         httpRequest.setAttribute("_SERVER_ROOT_URL_", UtilHttp.getServerRootUrl(httpRequest));
-
-        if (request.getCharacterEncoding() == null) {
-            request.setCharacterEncoding(defaultCharacterEncoding);
-        }
 
         WebAppUtil.setAttributesFromRequestBody(request);
 

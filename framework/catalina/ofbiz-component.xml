@@ -74,6 +74,7 @@ under the License.
             <property name="scheme" value="http"/>
             <property name="secure" value="false"/>
             <property name="URIEncoding" value="UTF-8"/>
+            <property name="useBodyEncodingForURI" value="true"/>
             <property name="xpoweredBy" value="false"/>
             <!-- AJP/13 connector attributes -->
             <!-- Despite OFBIZ-11407, allowedRequestAttributesPattern is commented out because of OFBIZ-12558
@@ -122,6 +123,7 @@ under the License.
             <property name="scheme" value="http"/>
             <property name="secure" value="false"/>
             <property name="URIEncoding" value="UTF-8"/>
+            <property name="useBodyEncodingForURI" value="true"/>
             <property name="xpoweredBy" value="false"/>
             <property name="compression" value="on"/>
             <property name="compressibleMimeType" value="text/html,text/xml,text/plain,text/css,application/javascript,application/json"/>
@@ -153,6 +155,7 @@ under the License.
             <property name="secure" value="true"/>
             <property name="SSLEnabled" value="true"/>
             <property name="URIEncoding" value="UTF-8"/>
+            <property name="useBodyEncodingForURI" value="true"/>
             <property name="xpoweredBy" value="false"/>
             <property name="compression" value="on"/>
             <property name="compressibleMimeType" value="text/html,text/xml,text/plain,text/css,application/javascript,application/json"/>

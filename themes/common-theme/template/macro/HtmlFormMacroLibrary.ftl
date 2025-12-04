@@ -310,7 +310,7 @@ under the License.
 <#macro renderSingleFormFieldTitle></#macro>
 
 <#macro renderFormOpen linkUrl formType name viewIndexField viewSizeField viewIndex viewSize targetWindow="" containerId="" containerStyle="" autocomplete="" useRowSubmit="" focusFieldName="" hasRequiredField="" csrfNameValue="">
-  <form method="post" action="${linkUrl}"<#if formType=="upload"> enctype="multipart/form-data"</#if><#if targetWindow?has_content> target="${targetWindow}"</#if><#if containerId?has_content> id="${containerId}"</#if> <#if focusFieldName?has_content> data-focus-field="${focusFieldName}"</#if> class="<#if containerStyle?has_content>${containerStyle}<#else>basic-form</#if><#if hasRequiredField?has_content> requireValidation</#if>" onsubmit="javascript:submitFormDisableSubmits(this)"<#if autocomplete?has_content> autocomplete="${autocomplete}"</#if> name="${name}"><#lt/>
+  <form method="post" action="${linkUrl}" accept-charset="UTF-8"<#if formType=="upload"> enctype="multipart/form-data"</#if><#if targetWindow?has_content> target="${targetWindow}"</#if><#if containerId?has_content> id="${containerId}"</#if> <#if focusFieldName?has_content> data-focus-field="${focusFieldName}"</#if> class="<#if containerStyle?has_content>${containerStyle}<#else>basic-form</#if><#if hasRequiredField?has_content> requireValidation</#if>" onsubmit="javascript:submitFormDisableSubmits(this)"<#if autocomplete?has_content> autocomplete="${autocomplete}"</#if> name="${name}"><#lt/>
     <#if csrfNameValue?has_content>
       <#assign result = csrfNameValue?matches(r"(\w+) (\w+)")>
       <#if result>
