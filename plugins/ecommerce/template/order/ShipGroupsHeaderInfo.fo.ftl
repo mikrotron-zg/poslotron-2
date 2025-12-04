@@ -20,7 +20,6 @@ under the License.
   <#list shipGroups as shipGroup>
     <fo:table table-layout="fixed" margin-top="30mm">
       <fo:table-column column-width="50mm"/>
-      <fo:table-column column-width="40mm"/>
       <fo:table-body>
         <fo:table-row>
           <fo:table-cell>
@@ -28,29 +27,11 @@ under the License.
               ${uiLabelMap.OrderShipGroup} ${shipGroup.orderId}
             </fo:block>
           </fo:table-cell>
-          <fo:table-cell>
-            <fo:block text-align="right">
-              <fo:instream-foreign-object>
-                <barcode:barcode xmlns:barcode="http://barcode4j.krysalis.org/ns" message="${shipGroup.orderId}">
-                  <barcode:code128><barcode:height>8mm</barcode:height></barcode:code128>
-                </barcode:barcode>
-              </fo:instream-foreign-object>
-            </fo:block>
-            </fo:table-cell>
         </fo:table-row>
         <fo:table-row>
           <fo:table-cell>
             <fo:block font-size="12pt">
               ${uiLabelMap.FacilityShipping} ${shipGroup.shipGroupSeqId}
-            </fo:block>
-          </fo:table-cell>
-          <fo:table-cell>
-            <fo:block text-align="right">
-              <fo:instream-foreign-object>
-                <barcode:barcode xmlns:barcode="http://barcode4j.krysalis.org/ns" message="${shipGroup.shipGroupSeqId}">
-                  <barcode:code128><barcode:height>8mm</barcode:height></barcode:code128>
-                </barcode:barcode>
-              </fo:instream-foreign-object>
             </fo:block>
           </fo:table-cell>
         </fo:table-row>
