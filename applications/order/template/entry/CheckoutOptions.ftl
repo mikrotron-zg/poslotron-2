@@ -148,7 +148,7 @@ function submitForm(form, mode, value) {
             </div>
         </div>
       </td>
-      <td bgcolor="white" width="1">&nbsp;&nbsp;</td>
+      <td width="1">&nbsp;&nbsp;</td>
       <td height="100%">
         <div class="screenlet" style="height: 100%;">
             <div class="screenlet-title-bar">
@@ -283,7 +283,7 @@ function submitForm(form, mode, value) {
         </div>
 
       </td>
-      <td bgcolor="white" width="1">&nbsp;&nbsp;</td>
+      <td width="1">&nbsp;&nbsp;</td>
       <td height="100%">
           <#-- Payment Method Selection -->
 
@@ -510,10 +510,10 @@ function submitForm(form, mode, value) {
 <table width="100%">
   <tr valign="top">
     <td>
-      &nbsp;<a href="javascript:submitForm(document.checkoutInfoForm, 'CS', '');" class="buttontextbig">${uiLabelMap.OrderBacktoShoppingCart}</a>
+      <h3><a class="buttontext" href="javascript:submitForm(document.checkoutInfoForm, 'CS', '');" class="buttontextbig">${uiLabelMap.OrderBacktoShoppingCart}</a></h3>
     </td>
     <td align="right">
-      <a href="javascript:submitForm(document.checkoutInfoForm, 'DN', '');" class="buttontextbig">${uiLabelMap.OrderContinueToFinalOrderReview}</a>
+      <h3><a class="buttontext" href="javascript:submitForm(document.checkoutInfoForm, 'DN', '');" class="buttontextbig">${uiLabelMap.OrderContinueToFinalOrderReview}</a></h3>
     </td>
   </tr>
 </table>

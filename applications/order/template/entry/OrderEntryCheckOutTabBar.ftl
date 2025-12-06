@@ -33,9 +33,9 @@ under the License.
       </li>
 
       <#if "N" == isLastStep>
-        <li><a href="javascript:document.checkoutsetupform.submit();">${uiLabelMap.CommonContinue}</a></li>
+        <li><a class="buttontext" href="javascript:document.checkoutsetupform.submit();">${uiLabelMap.CommonContinue}</a></li>
       <#else>
-        <li><a href="<@ofbizUrl>processorder</@ofbizUrl>">${uiLabelMap.OrderCreateOrder}</a></li>
+        <li class="h3"><a class="buttontext" href="<@ofbizUrl>processorder</@ofbizUrl>">${uiLabelMap.OrderCreateOrder}</a></li>
       </#if>
 
       <#list checkoutSteps?reverse as checkoutStep>
@@ -43,7 +43,7 @@ under the License.
         <#if "N" == checkoutStep.enabled>
             <li><span class="disabled">${stepUiLabel}</span></li>
         <#else>
-            <li><a href="<@ofbizUrl>${checkoutStep.uri}</@ofbizUrl>">${stepUiLabel}</a></li>
+            <li><a class="buttontext" href="<@ofbizUrl>${checkoutStep.uri}</@ofbizUrl>">${stepUiLabel}</a></li>
         </#if>
       </#list>
     </ul>
