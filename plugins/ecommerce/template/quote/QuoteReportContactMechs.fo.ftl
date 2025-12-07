@@ -24,7 +24,7 @@ under the License.
       <fo:table-row>
         <fo:table-cell>
           <fo:block>
-            <fo:block>${uiLabelMap.OrderAddress}: </fo:block>
+            <fo:block>${uiLabelMap.PartyAddrToName}: </fo:block>
             <#if quote.partyId??>
               <#assign quotePartyNameResult = dispatcher.runSync("getPartyNameForDate", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("partyId", quote.partyId, "compareDate", quote.issueDate, "userLogin", userLogin))/>
               <fo:block font-family="NotoSans-Bold">
@@ -46,12 +46,21 @@ under the License.
           </fo:block>
         </fo:table-cell>
       </fo:table-row>
+      <#if partyTaxInfo??>
+      <fo:table-row>
+        <fo:table-cell>
+          <fo:block>
+              <fo:block margin-top="1mm">${uiLabelMap.PartyTaxId}: ${partyTaxInfo.partyTaxId}</fo:block>
+          </fo:block>
+        </fo:table-cell>
+      </fo:table-row>
+      </#if>
     </fo:table-body>
   </fo:table>
 
-  <fo:table table-layout="fixed" font-size="9pt" border-spacing="3pt" space-before="5mm" space-after="10mm">
+  <fo:table table-layout="fixed" font-size="9pt" border-spacing="3pt" space-before="5mm" space-after="5mm">
     <fo:table-column column-width="35mm"/>
-    <fo:table-column column-width="100mm"/>
+    <fo:table-column column-width="120mm"/>
     <fo:table-body>
       <fo:table-row>
         <fo:table-cell><fo:block>${uiLabelMap.OrderOrderQuoteName}:</fo:block></fo:table-cell>
