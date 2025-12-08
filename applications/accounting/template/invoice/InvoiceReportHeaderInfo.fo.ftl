@@ -23,15 +23,22 @@ under the License.
 <fo:table-body>
 <fo:table-row>
   <fo:table-cell>
-     <fo:block number-columns-spanned="2" font-weight="bold">${invoice.getRelatedOne("InvoiceType", false).get("description",locale)}</fo:block>
+     <#--<fo:block number-columns-spanned="2" font-weight="bold">${invoice.getRelatedOne("InvoiceType", false).get("description",locale)}</fo:block>-->
+     <fo:block font-size="14pt" font-family="NotoSans-Bold">Obračun:</fo:block>
+  </fo:table-cell>
+  <fo:table-cell>
+     <fo:block font-size="14pt" font-family="NotoSans-Bold">${invoice.invoiceId}</fo:block>
   </fo:table-cell>
 </fo:table-row>
 
 <fo:table-row>
   <fo:table-cell><fo:block>${uiLabelMap.AccountingInvoiceDateAbbr}:</fo:block></fo:table-cell>
-  <fo:table-cell><fo:block>${invoiceDate!}</fo:block></fo:table-cell>
+  <fo:table-cell><fo:block>
+  ${invoiceDateFormatted!}
+</fo:block></fo:table-cell>
 </fo:table-row>
 
+<#--
 <fo:table-row>
   <fo:table-cell><fo:block>${uiLabelMap.AccountingCustNr}:</fo:block></fo:table-cell>
   <fo:table-cell><fo:block><#if billToParty?has_content>${billToParty.partyId}</#if></fo:block></fo:table-cell>
@@ -48,10 +55,12 @@ under the License.
   </fo:table-row>
 </#if>
 
-<!--fo:table-row>
+<fo:table-row>
   <fo:table-cell><fo:block>${uiLabelMap.CommonStatus}</fo:block></fo:table-cell>
   <fo:table-cell><fo:block font-weight="bold">${invoiceStatus.get("description",locale)}</fo:block></fo:table-cell>
-</fo:table-row-->
+</fo:table-row>
+-->
+
 </fo:table-body>
 </fo:table>
 </#escape>

@@ -19,6 +19,7 @@
 package org.apache.ofbiz.accounting.invoice
 
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 import org.apache.ofbiz.base.util.UtilNumber
 
@@ -146,11 +147,17 @@ if (invoice) {
         context.editInvoice = true
     }
 
-    // format the date
+    // format the date with user's locale but fixed pattern for PDF
     if (invoice.invoiceDate) {
+        def dateFormat = new SimpleDateFormat("dd. MMMM yyyy.", locale)
+        invoiceDateFormatted = dateFormat.format(invoice.invoiceDate)
+        context.invoiceDateFormatted = invoiceDateFormatted
+        
+        // Keep original format for any other uses
         invoiceDate = DateFormat.getDateInstance(DateFormat.LONG).format(invoice.invoiceDate)
         context.invoiceDate = invoiceDate
     } else {
         context.invoiceDate = 'N/A'
+        context.invoiceDateFormatted = null
     }
 }
