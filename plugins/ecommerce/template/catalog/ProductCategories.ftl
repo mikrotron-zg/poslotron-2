@@ -40,8 +40,7 @@
           "title": unescapeHtmlText(
               "<#if root.categoryName??>${root.categoryName?js_string}<#elseif root.categoryDescription??>${root.categoryDescription?js_string}<#else>${root.productCategoryId?js_string}</#if>"),
           "attr": {
-            "href": "javascript: void(0);",
-            "onClick": "callDocument('${root.productCategoryId}', '${root.parentCategoryId}')",
+            "href": "<@ofbizUrl>category/${root.productCategoryId}</@ofbizUrl>",
             "class": "${root.cssClass!}"
           }
         },
@@ -84,6 +83,11 @@
             "plugins": ["themes", "json_data", "cookies"],
             "json_data": {
               "data": rawdata
+            }
+          }).on("select_node.jstree", function(e, data) {
+            // Navigate to the category URL when a node is selected
+            if (data.node.a_attr.href && data.node.a_attr.href !== 'javascript: void(0);') {
+              window.location.href = data.node.a_attr.href;
             }
           });
         });
