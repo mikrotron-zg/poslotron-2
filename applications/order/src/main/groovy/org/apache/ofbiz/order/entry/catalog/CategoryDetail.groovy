@@ -104,3 +104,15 @@ if (members) {
 
 CategoryContentWrapper categoryContentWrapper = new CategoryContentWrapper(productCategory, request)
 context.put('categoryContentWrapper', categoryContentWrapper)
+
+subcategories = [];
+parentProductCategoryRollups = productCategory.getRelated("ParentProductCategoryRollup")
+parentProductCategoryRollups.each { productCategoryRollup ->
+    curCategory = productCategoryRollup.getRelatedOne("CurrentProductCategory");
+    categoryContentWrapper = new CategoryContentWrapper(curCategory, request);
+    subcategories.add([
+        productCategory: curCategory,
+        wrapper: categoryContentWrapper
+    ]);
+}
+context.put("subcategories",  subcategories);

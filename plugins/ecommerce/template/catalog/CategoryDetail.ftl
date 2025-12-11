@@ -95,6 +95,16 @@
         <#--<#if "Y" == searchInCategory?default("Y")>
         <a href="<@ofbizUrl>advancedsearch?SEARCH_CATEGORY_ID=${productCategory.productCategoryId}</@ofbizUrl>" class="buttontext">${uiLabelMap.ProductSearchInCategory}</a>
         </#if>-->
+        <#if subcategories.size() != 0>
+            <h6>${uiLabelMap.ProductSubCats}</h6>
+            <hr>
+            <#list subcategories as curCategory>
+                <a href="<@ofbizUrl>category/${curCategory.productCategory.productCategoryId}</@ofbizUrl>"
+                class="buttontext" style="display: inline-block; padding:0.5rem;">
+                    ${curCategory.wrapper.get("CATEGORY_NAME", "html")?if_exists}
+                </a>
+            </#list>
+        </#if>
         <#assign longDescription = categoryContentWrapper.get("LONG_DESCRIPTION", "html")!/>
         <#assign categoryImageUrl = categoryContentWrapper.get("CATEGORY_IMAGE_URL", "url")!/>
         <#if categoryImageUrl?string?has_content || longDescription?has_content>
@@ -158,9 +168,6 @@
 
             </div>
 
-            <#if (numCol?int > 1)>
-
-            </#if>
           </div>
           <#if paginateEcommerceStyle??>
             <@paginationControls/>
