@@ -35,6 +35,8 @@
             },
             success: function(msg) {
                 jQuery('#div3').html(msg);
+                // Scroll to top after content loads
+                jQuery(window).scrollTop(0);
             }
         });
      }
