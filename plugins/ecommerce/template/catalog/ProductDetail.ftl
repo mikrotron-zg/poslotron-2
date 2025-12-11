@@ -770,7 +770,7 @@ ${variantInfoJavaScript!}
                         <input name="quantity" class="form-control form-control-sm border-primary" id="quantity" value="1" type="number"/>
                         <div class="input-group-append">
                           <a href="javascript:addItem()" id="addToCart" name="addToCart"
-                          class="btn btn-outline-primary btn-sm">${uiLabelMap.OrderAddToCart}</a>
+                          class="btn btn-primary btn-sm">${uiLabelMap.OrderAddToCart}</a>
                         </div>
                       </div>
                     </div>
