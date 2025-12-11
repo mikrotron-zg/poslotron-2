@@ -99,7 +99,7 @@
             <h6>${uiLabelMap.ProductSubCats}</h6>
             <hr>
             <#list subcategories as curCategory>
-                <a href="<@ofbizUrl>category/${curCategory.productCategory.productCategoryId}</@ofbizUrl>"
+                <a href="<@ofbizUrl>category?category_id=${curCategory.productCategory.productCategoryId}</@ofbizUrl>"
                 class="buttontext" style="display: inline-block; padding:0.5rem;">
                     ${curCategory.wrapper.get("CATEGORY_NAME", "html")?if_exists}
                 </a>

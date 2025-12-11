@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<!-- MODIFIED BreadCrumbs.ftl - Testing if this template is being used -->
 <div class="breadcrumbs">
 <#assign isDefaultTheme = !layoutSettings.VT_FTR_TMPLT_LOC?contains("multiflex")>
 <#if isDefaultTheme>
@@ -33,7 +34,7 @@ under the License.
          <#if catContentWrappers?? && catContentWrappers[crumb]??>
             <#if !isDefaultTheme>         
               <li>
-                 <a href="<@ofbizCatalogUrl currentCategoryId=crumb previousCategoryId=previousCategoryId!""/>" class="<#if crumb_has_next>linktext<#else>buttontextdisabled</#if>">
+                 <a href="<@ofbizUrl>category?category_id=${crumb}</@ofbizUrl>" class="<#if crumb_has_next>linktext<#else>buttontextdisabled</#if>">
                    <#if catContentWrappers[crumb].get("CATEGORY_NAME", "html")??>
                      ${catContentWrappers[crumb].get("CATEGORY_NAME", "html")}
                    <#elseif catContentWrappers[crumb].get("DESCRIPTION", "html")??>
@@ -44,7 +45,7 @@ under the License.
                  </a>
               </li>
             <#else>  
-               <a href="<@ofbizCatalogUrl currentCategoryId=crumb previousCategoryId=previousCategoryId!""/>" class="<#if crumb_has_next>linktext<#else>buttontextdisabled</#if>">
+               <a href="<@ofbizUrl>category?category_id=${crumb}</@ofbizUrl>" class="<#if crumb_has_next>linktext<#else>buttontextdisabled</#if>">
                  <#if catContentWrappers[crumb].get("CATEGORY_NAME", "html")??>
                    ${catContentWrappers[crumb].get("CATEGORY_NAME", "html")}
                  <#elseif catContentWrappers[crumb].get("DESCRIPTION", "html")??>

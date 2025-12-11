@@ -40,7 +40,7 @@
           "title": unescapeHtmlText(
               "<#if root.categoryName??>${root.categoryName?js_string}<#elseif root.categoryDescription??>${root.categoryDescription?js_string}<#else>${root.productCategoryId?js_string}</#if>"),
           "attr": {
-            "href": "<@ofbizUrl>category/${root.productCategoryId}</@ofbizUrl>",
+            "href": "<@ofbizUrl>category?category_id=${root.productCategoryId}</@ofbizUrl>",
             "class": "${root.cssClass!}"
           }
         },
