@@ -1437,6 +1437,7 @@ public class ShoppingCartEvents {
         LocalDispatcher dispatcher = (LocalDispatcher) request.getAttribute("dispatcher");
         HttpSession session = request.getSession();
         GenericValue userLogin = (GenericValue) session.getAttribute("userLogin");
+        Locale locale = UtilHttp.getLocale(request);
 
         String quoteId = request.getParameter("quoteId");
 
@@ -1445,6 +1446,7 @@ public class ShoppingCartEvents {
             Map<String, Object> outMap = dispatcher.runSync("loadCartFromQuote",
                     UtilMisc.<String, Object>toMap("quoteId", quoteId,
                             "applyQuoteAdjustments", "true",
+                            "locale", locale,
                             "userLogin", userLogin));
             if (ServiceUtil.isError(outMap)) {
                 String errorMessage = ServiceUtil.getErrorMessage(outMap);

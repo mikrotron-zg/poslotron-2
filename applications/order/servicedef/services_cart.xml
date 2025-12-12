@@ -109,6 +109,7 @@ under the License.
         <description>Create a ShoppingCart Object based on an existing quote. If applyQuoteAdjustments is set to false then standard cart adjustments are generated.</description>
         <attribute name="quoteId" type="String" mode="IN" optional="false"/>
         <attribute name="applyQuoteAdjustments" type="String" mode="IN" optional="true"/>
+        <attribute name="locale" type="java.util.Locale" mode="IN" optional="true"/>
         <attribute name="shoppingCart" type="org.apache.ofbiz.order.shoppingcart.ShoppingCart" mode="OUT" optional="false"/>
     </service>
     <service name="loadCartFromShoppingList" engine="java" auth="true"
