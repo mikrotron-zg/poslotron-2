@@ -459,7 +459,7 @@ under the License.
         <auto-fields-service service-name="createPartyTaxAuthInfo"/>
         <field name="partyId"><hidden/></field>
         <field name="taxAuthGeoId">
-            <drop-down allow-empty="false">
+            <drop-down allow-empty="false" no-current-selected-key="HRV">
                 <entity-options entity-name="Geo" key-field-name="geoId" description="${uiLabelMap.CommonCountry}: [${geoId}] ${geoName}">
                     <entity-constraint name="geoTypeId" value="COUNTRY"/>
                     <entity-order-by field-name="geoId"/>
@@ -488,7 +488,7 @@ under the License.
         </field>
         <field name="taxAuthPartyId" required-field="true"><lookup target-form-name="LookupPartyName"/></field>
         <field name="isExempt">
-            <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
+            <drop-down allow-empty="false" no-current-selected-key="N"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
         </field>
         <field name="isNexus">
             <drop-down allow-empty="false" no-current-selected-key="Y"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
