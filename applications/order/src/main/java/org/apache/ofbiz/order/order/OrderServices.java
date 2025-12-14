@@ -2986,7 +2986,7 @@ public class OrderServices {
         } catch (GenericEntityException e) {
             Debug.logError(e, "Problem getting ProductStore", MODULE);
         }
-        
+
         locale = PartyWorker.findPartyLastLocale(fromPartyId, delegator);
         if (locale == null && productStore != null) {
             String localeString = productStore.getString("defaultLocaleString");
