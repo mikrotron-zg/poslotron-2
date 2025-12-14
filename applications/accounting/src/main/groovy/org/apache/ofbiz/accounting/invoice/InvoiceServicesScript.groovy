@@ -203,6 +203,7 @@ Map copyInvoice() {
     List<GenericValue> invoiceItems = serviceResult.invoiceItems
     invoice.invoiceTypeId = parameters.invoiceTypeId ?: invoice.invoiceTypeId
     serviceResult = run service: 'createInvoice', with: [*: invoice.getAllFields(),
+                                                         statusId: 'INVOICE_IN_PROCESS',
                                                          invoiceId: null]
     String newInvoiceId = serviceResult.invoiceId
     invoiceItems.each {

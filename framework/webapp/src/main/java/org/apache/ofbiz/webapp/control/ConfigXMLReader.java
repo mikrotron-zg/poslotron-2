@@ -404,7 +404,8 @@ public final class ConfigXMLReader {
         }
 
         /**
-         * XXX: Keep it for backward compatibility until moving everything to 鈥榞etRequestMapMultiMap鈥�.  @return the request map map
+         * XXX: Keep it for backward compatibility until moving everything to getRequestMapMultiMap.
+         *   @return the request map
          */
         public Map<String, RequestMap> getRequestMapMap() {
             return new MultivaluedMapContextAdapter<>(getRequestMapMultiMap());
