@@ -121,6 +121,34 @@ under the License.
       font-weight: bold;
     }
 
+    table.emailTable {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    div.screenlet table.emailTable {
+      margin: 10px 0;
+    }
+
+    table.emailTable th,
+    table.emailTable td {
+      border-bottom: 1px solid #999999;
+      padding: 4px;
+      vertical-align: top;
+      box-sizing: border-box;
+    }
+
+    table.emailTable thead th {
+      font-weight: bold;
+    }
+
+    .amount {
+      text-align: right;
+      white-space: nowrap;
+    }
+
     .clearBoth {
       clear: both;
     }
@@ -133,9 +161,9 @@ under the License.
   <#if !isDemoStore?? || isDemoStore><p>${uiLabelMap.OrderDemoFrontNote}.</p></#if>
   <#if note??><p>${note}</p></#if>
   <#if orderHeader??>
-  ${screens.render("component://ecommerce/widget/OrderScreens.xml#orderheader")}
+  ${screens.render("component://ecommerce/widget/EmailOrderScreens.xml#orderheaderEmail")}
   <br/>
-  ${screens.render("component://ecommerce/widget/OrderScreens.xml#orderitems")}
+  ${screens.render("component://ecommerce/widget/EmailOrderScreens.xml#orderitemsEmail")}
   <#else>
   <h1>Order not found with ID [${orderId!}], or not allowed to view.</h1>
   </#if>

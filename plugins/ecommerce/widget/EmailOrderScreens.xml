@@ -21,6 +21,22 @@ under the License.
 <screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://ofbiz.apache.org/Widget-Screen" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
 
+    <screen name="orderheaderEmail">
+        <section>
+            <widgets>
+                <platform-specific><html><html-template location="component://ecommerce/template/email/OrderHeaderEmail.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
+
+    <screen name="orderitemsEmail">
+        <section>
+            <widgets>
+                <platform-specific><html><html-template location="component://ecommerce/template/email/OrderItemsEmail.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
+
     <screen name="OrderConfirmNoticePdf">
         <section>
             <actions>
@@ -30,7 +46,7 @@ under the License.
                 <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="title" from-field="uiLabelMap.PageTitleOrderConfirmationNotice"/>
-                <set field="baseEcommerceSecureUrl" value="${baseSecureUrl}/ecommerce"/>
+                <set field="baseEcommerceSecureUrl" value="${baseSecureUrl}"/>
                 <set field="title" value="Order"/>
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/order/OrderView.groovy"/>
             </actions>
@@ -49,7 +65,7 @@ under the License.
                         <section>
                             <widgets>
                                 <platform-specific>
-                                    <xsl-fo><html-template location="component://order/template/order/OrderReportHeaderInfo.fo.ftl"/></xsl-fo>
+                                    <xsl-fo><html-template location="component://ecommerce/template/order/OrderReportHeaderInfo.fo.ftl"/></xsl-fo>
                                 </platform-specific>
                             </widgets>
                         </section>
@@ -59,15 +75,15 @@ under the License.
                             <widgets>
                                 <!-- the contach mechanisms, terms, payment and shipping methods are shown in the first page -->
                                 <platform-specific>
-                                    <xsl-fo><html-template location="component://order/template/order/orderReportContactMechs.fo.ftl"/></xsl-fo>
+                                    <xsl-fo><html-template location="component://ecommerce/template/order/orderReportContactMechs.fo.ftl"/></xsl-fo>
                                 </platform-specific>
                                 <!-- order items and totals -->
                                 <platform-specific>
-                                    <xsl-fo><html-template location="component://order/template/order/OrderReportBody.fo.ftl"/></xsl-fo>
+                                    <xsl-fo><html-template location="component://ecommerce/template/order/OrderReportBody.fo.ftl"/></xsl-fo>
                                 </platform-specific>
                                 <!-- return policies and notes are shown in the last page -->
                                 <platform-specific>
-                                    <xsl-fo><html-template location="component://order/template/order/OrderReportConditions.fo.ftl"/></xsl-fo>
+                                    <xsl-fo><html-template location="component://ecommerce/template/order/OrderReportConditions.fo.ftl"/></xsl-fo>
                                 </platform-specific>
                             </widgets>
                         </section>
@@ -85,7 +101,7 @@ under the License.
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="title" from-field="uiLabelMap.PageTitleOrderConfirmationNotice"/>
-                <set field="baseEcommerceSecureUrl" value="${baseSecureUrl}/ecommerce"/>
+                <set field="baseEcommerceSecureUrl" value="${baseSecureUrl}"/>
                 <set field="allowAnonymousView" value="Y"/>  <!-- this field will instruction OrderStatus.groovy to allow an anonymous order to be viewed by anybody, so the email confirmation screen will work -->
                 <script location="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/order/OrderStatus.groovy"/>
             </actions>
