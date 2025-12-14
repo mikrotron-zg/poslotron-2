@@ -106,9 +106,9 @@ $(document).ready(function() {
         <li class="nav-item">
           <a class="nav-link" href="<@ofbizUrl>viewprofile</@ofbizUrl>"><span class="bi-person-lines-fill h5"></span>&nbsp;${uiLabelMap.CommonProfile}</a>
         </li>
-        <li class="nav-item">
+        <#--<li class="nav-item">
           <a class="nav-link" href="<@ofbizUrl>messagelist</@ofbizUrl>"><span class="bi-envelope-at-fill h5"></span>&nbsp;${uiLabelMap.CommonMessages}</a>
-        </li>
+        </li>-->
         <#--<li class="nav-item">
           <a class="nav-link" href="<@ofbizUrl>ListQuotes</@ofbizUrl>">${uiLabelMap.OrderOrderQuotes}</a>
         </li>-->
