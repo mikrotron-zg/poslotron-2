@@ -2987,6 +2987,28 @@
         <value xml:lang="zh">查找实体时出现问题</value>
         <value xml:lang="zh-TW">查詢資料實體時出現問題</value>
     </property>
+    <property key="OrderCustRequestNotFound">
+        <value xml:lang="de">Kundenanfrage nicht gefunden</value>
+        <value xml:lang="en">Customer Request not found</value>
+        <value xml:lang="fr">Demande client non trouvée</value>
+        <value xml:lang="hr">Zahtjev kupca nije pronađen</value>
+        <value xml:lang="it">Richiesta cliente non trovata</value>
+        <value xml:lang="ja">顧客リクエストが見つかりません</value>
+        <value xml:lang="nl">Klantverzoek niet gevonden</value>
+        <value xml:lang="pt-BR">Solicitação de cliente não encontrada</value>
+        <value xml:lang="zh">未找到客户请求</value>
+    </property>
+    <property key="OrderCustRequestWithoutProductStore">
+        <value xml:lang="de">Kundenanfrage ohne Produkt-Store</value>
+        <value xml:lang="en">Customer Request without Product Store</value>
+        <value xml:lang="fr">Demande client sans boutique de produits</value>
+        <value xml:lang="hr">Zahtjev kupca bez prodavaonice proizvoda</value>
+        <value xml:lang="it">Richiesta cliente senza negozio prodotti</value>
+        <value xml:lang="ja">製品ストアなしの顧客リクエスト</value>
+        <value xml:lang="nl">Klantverzoek zonder productwinkel</value>
+        <value xml:lang="pt-BR">Solicitação de cliente sem loja de produtos</value>
+        <value xml:lang="zh">没有产品商店的客户请求</value>
+    </property>
     <property key="OrderProblemWithEntityLookupSeeErrorLog">
         <value xml:lang="ar">مشكلة بكيان الإستطلاع, شاهد سجل الأخطاء</value>
         <value xml:lang="de">Problem beim Lesen der Datenbank, siehe Error-Log</value>

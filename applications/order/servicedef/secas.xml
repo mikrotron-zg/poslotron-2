@@ -186,6 +186,9 @@ under the License.
     <eca service="sendOrderBackorderNotification" event="commit">
         <action service="createOrderNotificationLog" mode="sync"/>
     </eca>
+    <eca service="sendCustRequestConfirmation" event="commit">
+        <action service="createOrderNotificationLog" mode="sync"/>
+    </eca>
     <eca service="sendOrderPayRetryNotification" event="commit">
         <action service="createOrderNotificationLog" mode="sync"/>
     </eca>
@@ -324,6 +327,10 @@ under the License.
         <condition field-name="communicationEventId" operator="is-not-empty"/>
         <condition field-name="custRequestId" operator="is-not-empty"/>
         <action service="updateCommunicationEvent" mode="sync"/>
+    </eca>
+    <eca service="createCustRequestFromCart" event="commit">
+        <condition field-name="custRequestId" operator="is-not-empty"/>
+        <action service="sendCustRequestConfirmation" mode="async" persist="true"/>
     </eca>
     
     <eca service="updateCustRequest" event="commit">

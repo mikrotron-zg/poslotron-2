@@ -2707,6 +2707,13 @@ public class OrderServices {
         return sendOrderNotificationScreen(ctx, context, "PRDS_ODR_PAYRETRY");
     }
 
+    /**
+     * Service to email a customer with customer request confirmation
+     */
+    public static Map<String, Object> sendCustRequestConfirmation(DispatchContext ctx, Map<String, ? extends Object> context) {
+        return sendCustRequestNotificationScreen(ctx, context, "PRDS_CUST_REQ_CONF");
+    }
+
     protected static Map<String, Object> sendOrderNotificationScreen(DispatchContext dctx, Map<String, ? extends Object> context, String emailType) {
         LocalDispatcher dispatcher = dctx.getDispatcher();
         Delegator delegator = dctx.getDelegator();
@@ -2871,6 +2878,176 @@ public class OrderServices {
         }
         if (UtilValidate.isNotEmpty(orderId)) {
             sendResp.put("orderId", orderId);
+        }
+        return sendResp;
+    }
+
+    protected static Map<String, Object> sendCustRequestNotificationScreen(DispatchContext dctx, Map<String, ? extends Object> context, String emailType) {
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        Delegator delegator = dctx.getDelegator();
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        String custRequestId = (String) context.get("custRequestId");
+        String sendTo = (String) context.get("sendTo");
+        String sendCc = (String) context.get("sendCc");
+        String sendBcc = (String) context.get("sendBcc");
+        String note = (String) context.get("note");
+        String screenUri = (String) context.get("screenUri");
+        GenericValue temporaryAnonymousUserLogin = (GenericValue) context.get("temporaryAnonymousUserLogin");
+        Locale localePar = (Locale) context.get("locale");
+        if (userLogin == null) {
+            // this may happen during anonymous checkout, try to the special case user
+            userLogin = temporaryAnonymousUserLogin;
+        }
+
+        // prepare the customer request information
+        Map<String, Object> sendMap = new HashMap<>();
+
+        // get the customer request
+        GenericValue custRequest = null;
+        try {
+            custRequest = EntityQuery.use(delegator).from("CustRequest").where("custRequestId", custRequestId).queryOne();
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Problem getting CustRequest", MODULE);
+        }
+
+        if (custRequest == null) {
+            return ServiceUtil.returnFailure(UtilProperties.getMessage(RESOURCE,
+                    "OrderCustRequestNotFound", UtilMisc.toMap("custRequestId", custRequestId), localePar));
+        }
+
+        // Only send email to registered customers
+        String fromPartyId = custRequest.getString("fromPartyId");
+        if (UtilValidate.isEmpty(fromPartyId)) {
+            Debug.logInfo("Customer request is not from a registered party; skipping email [" + custRequestId + "]", MODULE);
+            return ServiceUtil.returnSuccess("Email not sent - request not from registered customer");
+        }
+
+        // get the product store from the customer request
+        String productStoreId = custRequest.getString("productStoreId");
+        if (UtilValidate.isEmpty(productStoreId)) {
+            return ServiceUtil.returnFailure(UtilProperties.getMessage(RESOURCE,
+                    "OrderCustRequestWithoutProductStore", UtilMisc.toMap("custRequestId", custRequestId), localePar));
+        }
+
+        GenericValue productStoreEmail = null;
+        try {
+            productStoreEmail = EntityQuery.use(delegator).from("ProductStoreEmailSetting").where("productStoreId",
+                    productStoreId, "emailType", emailType).queryOne();
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Problem getting the ProductStoreEmailSetting for productStoreId=" + productStoreId + " and "
+                    + "emailType=" + emailType, MODULE);
+        }
+        if (productStoreEmail == null) {
+            Debug.logInfo("No ProductStoreEmailSetting found for productStoreId=" + productStoreId + " and emailType=" + emailType + 
+                    "; skipping email [" + custRequestId + "]", MODULE);
+            return ServiceUtil.returnSuccess("Email not sent - no email configuration found");
+        }
+
+        // the override screenUri
+        if (UtilValidate.isEmpty(screenUri)) {
+            sendMap.put("bodyScreenUri", productStoreEmail.getString("bodyScreenLocation"));
+        } else {
+            sendMap.put("bodyScreenUri", screenUri);
+        }
+
+        // website
+        sendMap.put("webSiteId", custRequest.get("webSiteId"));
+
+        // get the email address for the party
+        String emailString = null;
+        try {
+            GenericValue party = EntityQuery.use(delegator).from("Party").where("partyId", fromPartyId).queryOne();
+            if (party != null) {
+                Collection<GenericValue> contactMechs = ContactHelper.getContactMechByPurpose(party, "PRIMARY_EMAIL", false);
+                if (UtilValidate.isNotEmpty(contactMechs)) {
+                    GenericValue contactMech = contactMechs.iterator().next();
+                    emailString = contactMech.getString("infoString");
+                }
+            }
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Problem getting email address for party: " + fromPartyId, MODULE);
+        }
+
+        if (UtilValidate.isEmpty(emailString)) {
+            Debug.logInfo("Registered customer is not setup to receive emails; no address found [" + custRequestId + "]", MODULE);
+            return ServiceUtil.returnSuccess("Email not sent - no email address for customer");
+        }
+
+        // where to get the locale... from party's UserLogin.lastLocale,
+        // or if not available then from ProductStore.defaultLocaleString
+        // or if not available then the system Locale
+        Locale locale = null;
+        GenericValue productStore = null;
+        try {
+            productStore = EntityQuery.use(delegator).from("ProductStore").where("productStoreId", productStoreId).queryOne();
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Problem getting ProductStore", MODULE);
+        }
+        
+        locale = PartyWorker.findPartyLastLocale(fromPartyId, delegator);
+        if (locale == null && productStore != null) {
+            String localeString = productStore.getString("defaultLocaleString");
+            if (UtilValidate.isNotEmpty(localeString)) {
+                locale = UtilMisc.parseLocale(localeString);
+            }
+        }
+        if (locale == null) {
+            locale = Locale.getDefault();
+        }
+
+        Map<String, Object> bodyParameters = UtilMisc.<String, Object>toMap("custRequestId", custRequestId, "userLogin",
+                userLogin, "locale", locale);
+        bodyParameters.put("partyId", fromPartyId);
+        bodyParameters.put("note", note);
+        bodyParameters.put("custRequest", custRequest);
+        sendMap.put("bodyParameters", bodyParameters);
+        sendMap.put("userLogin", userLogin);
+
+        String subjectString = productStoreEmail.getString("subject");
+        if (UtilValidate.isNotEmpty(subjectString)) {
+            // Replace ${custRequestId} placeholder with actual value
+            subjectString = subjectString.replace("${custRequestId}", custRequestId);
+        }
+        sendMap.put("subject", subjectString);
+
+        sendMap.put("contentType", productStoreEmail.get("contentType"));
+        sendMap.put("sendFrom", productStoreEmail.get("fromAddress"));
+        sendMap.put("sendCc", productStoreEmail.get("ccAddress"));
+        sendMap.put("sendBcc", productStoreEmail.get("bccAddress"));
+        if ((sendTo != null) && UtilValidate.isEmail(sendTo)) {
+            sendMap.put("sendTo", sendTo);
+        } else {
+            sendMap.put("sendTo", emailString);
+        }
+        if ((sendCc != null) && UtilValidate.isEmail(sendCc)) {
+            sendMap.put("sendCc", sendCc);
+        } else {
+            sendMap.put("sendCc", productStoreEmail.get("ccAddress"));
+        }
+
+        if ((sendBcc != null) && UtilValidate.isEmailList(sendBcc)) {
+            sendMap.put("sendBcc", sendBcc);
+        }
+
+        // send the notification
+        Map<String, Object> sendResp = null;
+        try {
+            sendResp = dispatcher.runSync("sendMailFromScreen", sendMap);
+            if (ServiceUtil.isError(sendResp)) {
+                return ServiceUtil.returnError(ServiceUtil.getErrorMessage(sendResp));
+            }
+        } catch (GenericServiceException e) {
+            Debug.logError(e, MODULE);
+            return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
+                    "OrderServiceExceptionSeeLogs", locale));
+        }
+
+        // check for errors
+        if (sendResp != null && ServiceUtil.isSuccess(sendResp)) {
+            sendResp.put("emailType", emailType);
+        }
+        if (UtilValidate.isNotEmpty(custRequestId)) {
+            sendResp.put("custRequestId", custRequestId);
         }
         return sendResp;
     }

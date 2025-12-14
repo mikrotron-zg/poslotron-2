@@ -4133,6 +4133,50 @@
         <value xml:lang="zh">客户请求状态列表</value>
         <value xml:lang="zh-TW">請求狀態清單</value>
     </property>
+    <property key="OrderCustRequestConfirmation">
+        <value xml:lang="de">Bestätigung der Kundenanfrage</value>
+        <value xml:lang="en">Customer Request Confirmation</value>
+        <value xml:lang="fr">Confirmation de la demande client</value>
+        <value xml:lang="hr">Potvrda zahtjeva</value>
+        <value xml:lang="it">Conferma richiesta cliente</value>
+        <value xml:lang="ja">顧客リクエスト確認</value>
+        <value xml:lang="nl">Bevestiging klantverzoek</value>
+        <value xml:lang="pt-BR">Confirmação de solicitação de cliente</value>
+        <value xml:lang="zh">客户请求确认</value>
+    </property>
+    <property key="OrderCustRequestConfirmationIntro">
+        <value xml:lang="de">Vielen Dank für Ihre Anfrage. Wir haben Ihre Anfrage erhalten und werden sie so schnell wie möglich bearbeiten.</value>
+        <value xml:lang="en">Thank you for your request. We have received your request and will process it as soon as possible.</value>
+        <value xml:lang="fr">Merci pour votre demande. Nous l'avons reçue et la traiterons dès que possible.</value>
+        <value xml:lang="hr">Hvala na vašem zahtjevu. Primili smo vaš zahtjev i obraditi ćemo ga što je prije moguće.</value>
+        <value xml:lang="it">Grazie per la tua richiesta. Abbiamo ricevuto la tua richiesta e la elaboreremo il prima possibile.</value>
+        <value xml:lang="ja">リクエストありがとうございます。リクエストを受け取りましたので、可能な限り迅速に処理いたします。</value>
+        <value xml:lang="nl">Bedankt voor uw aanvraag. We hebben uw aanvraag ontvangen en zullen deze zo snel mogelijk verwerken.</value>
+        <value xml:lang="pt-BR">Obrigado por sua solicitação. Recebemos sua solicitação e a processaremos o mais rápido possível.</value>
+        <value xml:lang="zh">感谢您的请求。我们已收到您的请求，并将尽快处理。</value>
+    </property>
+    <property key="OrderCustRequestConfirmationOutro">
+        <value xml:lang="de">Wir werden Sie über den Fortschritt Ihrer Anfrage informieren. Bei Fragen können Sie sich jederzeit an uns wenden.</value>
+        <value xml:lang="en">We will keep you informed about the progress of your request. If you have any questions, please feel free to contact us.</value>
+        <value xml:lang="fr">Nous vous tiendrons informé de l'avancement de votre demande. Si vous avez des questions, n'hésitez pas à nous contacter.</value>
+        <value xml:lang="hr">Obavijestit ćemo vas o napretku vašeg zahtjeva. Ako imate bilo kakvih pitanja, slobodno nas kontaktirajte.</value>
+        <value xml:lang="it">Vi terremo informati sullo stato di avanzamento della vostra richiesta. Se avete domande, non esitate a contattarci.</value>
+        <value xml:lang="ja">リクエストの進捗についてお知らせいたします。ご質問がある場合は、お気軽にお問い合わせください。</value>
+        <value xml:lang="nl">We houden u op de hoogte van de voortgang van uw aanvraag. Als u vragen heeft, neem dan gerust contact met ons op.</value>
+        <value xml:lang="pt-BR">Manteremos você informado sobre o progresso da sua solicitação. Se você tiver alguma dúvida, sinta-se à vontade para nos contatar.</value>
+        <value xml:lang="zh">我们将随时通知您请求的进度。如果您有任何问题，请随时与我们联系。</value>
+    </property>
+    <property key="OrderCustRequestEmailFooter">
+        <value xml:lang="de">Mit freundlichen Grüßen, Ihr Team</value>
+        <value xml:lang="en">Best regards, Your Team</value>
+        <value xml:lang="fr">Cordialement, Votre équipe</value>
+        <value xml:lang="hr">Lijep pozdrav, Vaš tim</value>
+        <value xml:lang="it">Cordiali saluti, Il tuo team</value>
+        <value xml:lang="ja">敬具、あなたのチームより</value>
+        <value xml:lang="nl">Met vriendelijke groet, Uw team</value>
+        <value xml:lang="pt-BR">Atenciosamente, Sua equipe</value>
+        <value xml:lang="zh">此致敬礼，您的团队</value>
+    </property>
     <property key="OrderCustomer">
         <value xml:lang="ar">عميل</value>
         <value xml:lang="de">Kunde</value>

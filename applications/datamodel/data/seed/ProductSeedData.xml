@@ -401,6 +401,7 @@ under the License.
     <Enumeration description="Quote Created" enumCode="QUO_CREATED" enumId="PRDS_QUO_CREATED" enumTypeId="PRDS_EMAIL" sequenceId="14"/>
     <Enumeration description="Quote Confirmation" enumCode="QUO_CONFIRM" enumId="PRDS_QUO_CONFIRM" enumTypeId="PRDS_EMAIL" sequenceId="15"/>
     <Enumeration description="Shipment Complete" enumCode="SHP_COMPLETE" enumId="PRDS_ODR_SHIP_COMPLT" enumTypeId="PRDS_EMAIL" sequenceId="16"/>
+    <Enumeration description="Customer Request Confirmation" enumCode="CUST_REQ_CONFIRM" enumId="PRDS_CUST_REQ_CONF" enumTypeId="PRDS_EMAIL" sequenceId="17"/>
 
     <EnumerationType description="Facility Location Type" enumTypeId="FACLOC_TYPE" hasTable="N"/>
     <Enumeration description="Pick/Primary" enumCode="PICKLOC" enumId="FLT_PICKLOC" enumTypeId="FACLOC_TYPE" sequenceId="01"/>
