@@ -2882,7 +2882,8 @@ public class OrderServices {
         return sendResp;
     }
 
-    protected static Map<String, Object> sendCustRequestNotificationScreen(DispatchContext dctx, Map<String, ? extends Object> context, String emailType) {
+    protected static Map<String, Object> sendCustRequestNotificationScreen(
+            DispatchContext dctx, Map<String, ? extends Object> context, String emailType) {
         LocalDispatcher dispatcher = dctx.getDispatcher();
         Delegator delegator = dctx.getDelegator();
         GenericValue userLogin = (GenericValue) context.get("userLogin");
@@ -2938,8 +2939,9 @@ public class OrderServices {
                     + "emailType=" + emailType, MODULE);
         }
         if (productStoreEmail == null) {
-            Debug.logInfo("No ProductStoreEmailSetting found for productStoreId=" + productStoreId + " and emailType=" + emailType + 
-                    "; skipping email [" + custRequestId + "]", MODULE);
+            Debug.logInfo("No ProductStoreEmailSetting found for productStoreId=" + productStoreId
+                    + " and emailType=" + emailType
+                    + "; skipping email [" + custRequestId + "]", MODULE);
             return ServiceUtil.returnSuccess("Email not sent - no email configuration found");
         }
 
@@ -2965,7 +2967,8 @@ public class OrderServices {
                 }
             }
         } catch (GenericEntityException e) {
-            Debug.logError(e, "Problem getting email address for party: " + fromPartyId, MODULE);
+            Debug.logError(e, "Problem getting email address for party: " + fromPartyId,
+                    MODULE);
         }
 
         if (UtilValidate.isEmpty(emailString)) {
