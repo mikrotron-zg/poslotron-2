@@ -3627,6 +3627,10 @@
         <value xml:lang="zh-CN">为报价建立请求</value>
         <value xml:lang="zh-TW">為報價建立請求</value>
     </property>
+    <property key="OrderCreateCustRequestSuccessInfoMessage">
+        <value xml:lang="en">The quote request has been sent successfully.</value>
+        <value xml:lang="hr">Zahtjev za ponudu uspješno je poslan.</value>
+    </property>
     <property key="OrderCreated">
         <value xml:lang="ar">مخلق</value>
         <value xml:lang="de">Erstellt</value>

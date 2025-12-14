@@ -1613,6 +1613,8 @@ public class ShoppingCartEvents {
             return "error";
         }
         request.setAttribute("custRequestId", custRequestId);
+        Locale locale = UtilHttp.getLocale(request);
+        request.setAttribute("_EVENT_MESSAGE_", UtilProperties.getMessage("OrderUiLabels", "OrderCreateCustRequestSuccessInfoMessage", locale));
         if (destroyCart != null && "Y".equals(destroyCart)) {
             destroyCart(request, response);
         }

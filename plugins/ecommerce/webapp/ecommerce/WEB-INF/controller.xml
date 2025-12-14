@@ -1569,7 +1569,7 @@ under the License.
     <request-map uri="createCustRequestFromCart">
         <security https="true" auth="true"/>
         <event type="java" path="org.apache.ofbiz.order.shoppingcart.ShoppingCartEvents" invoke="createCustRequestFromCart"/>
-        <response name="success" type="request" value="showcart"/>
+        <response name="success" type="request" value="ListRequests"/>
         <response name="error" type="request" value="showcart"/>
     </request-map>
     <request-map uri="createCustRequestFromShoppingList">
