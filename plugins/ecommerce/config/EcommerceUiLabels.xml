@@ -5594,7 +5594,7 @@
     </property>
     <property key="ThankYouForContactingUs">
         <value xml:lang="en">Thank You for contacting us.</value>
-        <value xml:lang="hr">Hvala što ste nas kontaktirali.</value>
+        <value xml:lang="hr">Vaša poruka je poslana, hvala što ste nas kontaktirali.</value>
         <value xml:lang="nl">Bedankt dat u contact met ons opnam.</value>
         <value xml:lang="ro">Vă mulțumim că ne-ați contactat.</value>
         <value xml:lang="zh">感谢您与我们联系！</value>

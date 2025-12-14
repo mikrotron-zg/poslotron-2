@@ -1310,8 +1310,8 @@ under the License.
     </request-map>
     <request-map uri="contactsubmit">
         <security https="true" auth="true"/>
-        <event type="service" invoke="createCommunicationEventWithoutPermission"/>
-        <response name="success" type="view" value="contactus"/>
+        <event type="groovy" path="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/customer/ContactEvents.groovy" invoke="submitContact"/>
+        <response name="success" type="view" value="main"/>
         <response name="error" type="view" value="contactus"/>
     </request-map>
     <request-map uri="submitAnonContact">
