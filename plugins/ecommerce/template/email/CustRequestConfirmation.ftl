@@ -85,12 +85,7 @@ under the License.
     
     <div class="value">
         <span class="label">${uiLabelMap.OrderCustRequestDate!'Request Date'}:</span>
-        <#if custRequest.custRequestDate?has_content>
-            <#assign date = custRequest.custRequestDate?datetime("yyyy-MM-dd HH:mm:ss.SSS")>
-            ${date?string("dd.MM.yyyy.")}
-        <#else>
-            ${custRequest.custRequestDate!}
-        </#if>
+        ${custRequest.custRequestDate!?string("dd.MM.yyyy.")!'-'}
     </div>
     
     <#--<#if custRequest.custRequestName?has_content>
