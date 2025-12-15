@@ -17,8 +17,6 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<#escape x as x?xml>
-
 <html>
 <head>
     <title>${uiLabelMap.OrderCustRequestConfirmation!'Customer Request Confirmation'}</title>
@@ -120,5 +118,3 @@ under the License.
 
 </body>
 </html>
-
-</#escape>

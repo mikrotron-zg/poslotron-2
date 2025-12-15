@@ -3010,7 +3010,14 @@ public class OrderServices {
         }
         sendMap.put("subject", subjectString);
 
-        sendMap.put("contentType", productStoreEmail.get("contentType"));
+        // Ensure HTML content type with UTF-8 encoding
+        String contentType = productStoreEmail.getString("contentType");
+        if (UtilValidate.isEmpty(contentType)) {
+            contentType = "text/html; charset=UTF-8";
+        } else if (!contentType.contains("charset")) {
+            contentType = contentType + "; charset=UTF-8";
+        }
+        sendMap.put("contentType", contentType);
         sendMap.put("sendFrom", productStoreEmail.get("fromAddress"));
         sendMap.put("sendCc", productStoreEmail.get("ccAddress"));
         sendMap.put("sendBcc", productStoreEmail.get("bccAddress"));
@@ -3045,9 +3052,17 @@ public class OrderServices {
         // check for errors
         if (sendResp != null && ServiceUtil.isSuccess(sendResp)) {
             sendResp.put("emailType", emailType);
-        }
-        if (UtilValidate.isNotEmpty(custRequestId)) {
-            sendResp.put("custRequestId", custRequestId);
+            if (UtilValidate.isNotEmpty(custRequestId)) {
+                sendResp.put("custRequestId", custRequestId);
+            }
+        } else {
+            // Always return a success map to prevent retries
+            Map<String, Object> result = ServiceUtil.returnSuccess();
+            result.put("emailType", emailType);
+            if (UtilValidate.isNotEmpty(custRequestId)) {
+                result.put("custRequestId", custRequestId);
+            }
+            return result;
         }
         return sendResp;
     }
