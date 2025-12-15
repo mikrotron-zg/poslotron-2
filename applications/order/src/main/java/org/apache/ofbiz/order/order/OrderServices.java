@@ -2952,9 +2952,6 @@ public class OrderServices {
             sendMap.put("bodyScreenUri", screenUri);
         }
 
-        // website
-        sendMap.put("webSiteId", custRequest.get("webSiteId"));
-
         // get the email address for the party
         String emailString = null;
         try {

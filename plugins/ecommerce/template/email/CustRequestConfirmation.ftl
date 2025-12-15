@@ -21,7 +21,7 @@ under the License.
 
 <html>
 <head>
-    <title>${uiLabelMap.OrderCustRequestConfirmation}</title>
+    <title>${uiLabelMap.OrderCustRequestConfirmation!'Customer Request Confirmation'}</title>
     <style type="text/css">
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -69,53 +69,53 @@ under the License.
 <body>
 
 <div class="header">
-    <h2>${uiLabelMap.OrderCustRequestConfirmation}</h2>
+    <h2>${uiLabelMap.OrderCustRequestConfirmation!'Customer Request Confirmation'}</h2>
 </div>
 
 <div class="content">
-    <p>${uiLabelMap.OrderCustRequestConfirmationIntro}</p>
+    <p>${uiLabelMap.OrderCustRequestConfirmationIntro!'Thank you for your request. We have received your request and will process it as soon as possible.'}</p>
     
     <div class="value">
-        <span class="label">${uiLabelMap.OrderCustRequestId}:</span>
+        <span class="label">${uiLabelMap.OrderCustRequestId!'Customer Request ID'}:</span>
         ${custRequestId!}
     </div>
     
     <div class="value">
-        <span class="label">${uiLabelMap.CommonStatus}:</span>
+        <span class="label">${uiLabelMap.CommonStatus!'Status'}:</span>
         ${custRequest.statusId!}
     </div>
     
     <div class="value">
-        <span class="label">${uiLabelMap.OrderCustRequestDate}:</span>
+        <span class="label">${uiLabelMap.OrderCustRequestDate!'Request Date'}:</span>
         ${custRequest.custRequestDate!}
     </div>
     
     <#if custRequest.custRequestName?has_content>
     <div class="value">
-        <span class="label">${uiLabelMap.OrderCustRequestName}:</span>
+        <span class="label">${uiLabelMap.OrderCustRequestName!'Request Name'}:</span>
         ${custRequest.custRequestName!}
     </div>
     </#if>
     
     <#if custRequest.description?has_content>
     <div class="value">
-        <span class="label">${uiLabelMap.CommonDescription}:</span>
+        <span class="label">${uiLabelMap.CommonDescription!'Description'}:</span>
         ${custRequest.description!}
     </div>
     </#if>
 
     <#if note?has_content>
     <div class="value">
-        <span class="label">${uiLabelMap.CommonNote}:</span>
+        <span class="label">${uiLabelMap.CommonNote!'Note'}:</span>
         ${note!}
     </div>
     </#if>
 
-    <p>${uiLabelMap.OrderCustRequestConfirmationOutro}</p>
+    <p>${uiLabelMap.OrderCustRequestConfirmationOutro!'We will keep you informed about the progress of your request. If you have any questions, please feel free to contact us.'}</p>
 </div>
 
 <div class="footer">
-    <p>${uiLabelMap.OrderCustRequestEmailFooter}</p>
+    <p>${uiLabelMap.OrderCustRequestEmailFooter!'Best regards, Your Team'}</p>
 </div>
 
 </body>
