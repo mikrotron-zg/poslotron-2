@@ -33,6 +33,11 @@ under the License.
                     <field-map field-name="custRequestId"/>
                 </entity-one>
                 
+                <!-- Get status item for description -->
+                <entity-one entity-name="StatusItem" value-field="statusItem" auto-field-map="false">
+                    <field-map field-name="statusId" from-field="custRequest.statusId"/>
+                </entity-one>
+                
                 <!-- Set up uiLabelMap for localization -->
                 <property-map resource="OrderUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>

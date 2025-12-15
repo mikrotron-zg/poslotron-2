@@ -80,15 +80,20 @@ under the License.
     
     <div class="value">
         <span class="label">${uiLabelMap.CommonStatus!'Status'}:</span>
-        ${custRequest.statusId!}
+        ${(statusItem.get("description", locale))?default(custRequest.statusId!)}
     </div>
     
     <div class="value">
         <span class="label">${uiLabelMap.OrderCustRequestDate!'Request Date'}:</span>
-        ${custRequest.custRequestDate!}
+        <#if custRequest.custRequestDate?has_content>
+            <#assign date = custRequest.custRequestDate?datetime("yyyy-MM-dd HH:mm:ss.SSS")>
+            ${date?string("dd.MM.yyyy.")}
+        <#else>
+            ${custRequest.custRequestDate!}
+        </#if>
     </div>
     
-    <#if custRequest.custRequestName?has_content>
+    <#--<#if custRequest.custRequestName?has_content>
     <div class="value">
         <span class="label">${uiLabelMap.OrderCustRequestName!'Request Name'}:</span>
         ${custRequest.custRequestName!}
@@ -107,7 +112,7 @@ under the License.
         <span class="label">${uiLabelMap.CommonNote!'Note'}:</span>
         ${note!}
     </div>
-    </#if>
+    </#if>-->
 
     <p>${uiLabelMap.OrderCustRequestConfirmationOutro!'We will keep you informed about the progress of your request. If you have any questions, please feel free to contact us.'}</p>
 </div>
