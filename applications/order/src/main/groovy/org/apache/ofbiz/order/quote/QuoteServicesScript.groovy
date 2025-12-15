@@ -601,15 +601,36 @@ Map createQuoteFromCustRequest() {
     Map serviceResult = run service: 'createQuote', with: createQuoteInMap
     String quoteId = serviceResult.quoteId
 
-    exprdCond = [
-            EntityCondition.makeCondition('custRequestId', custRequest.custRequestId),
-            EntityCondition.makeCondition('statusId', EntityOperator.NOT_EQUAL, 'CRQ_CANCELLED'),
-            EntityCondition.makeCondition('statusId', EntityOperator.NOT_EQUAL, 'CRQ_REJECTED')
-    ]
-    List custRequestItems = from('CustRequestItem').where(exprdCond).queryList()
+    // Get all customer request items
+    List custRequestItems = from('CustRequestItem').where('custRequestId', custRequest.custRequestId).queryList()
+    
+    if (custRequestItems.isEmpty()) {
+        return error("No items found in customer request")
+    }
 
     custRequestItems.each { GenericValue custRequestItem ->
-        run service: 'createQuoteItem', with: [*:custRequestItem, quoteId: quoteId]
+        // Combine description and story for comments
+        def comments = custRequestItem.story
+        if (custRequestItem.description) {
+            comments = comments ? "${custRequestItem.description}\n${comments}" : custRequestItem.description
+        }
+        
+        Map itemResult = run service: 'createQuoteItem', with: [
+            quoteId: quoteId,
+            productId: custRequestItem.productId,
+            quantity: custRequestItem.quantity,
+            selectedAmount: custRequestItem.selectedAmount,
+            reservStart: custRequestItem.reservStart,
+            reservLength: custRequestItem.reservLength,
+            reservPersons: custRequestItem.reservPersons,
+            configId: custRequestItem.configId,
+            comments: comments,
+            custRequestId: custRequestItem.custRequestId,
+            custRequestItemSeqId: custRequestItem.custRequestItemSeqId
+        ]
+        if (ServiceUtil.isError(itemResult)) {
+            return itemResult
+        }
     }
 
     // Roles
