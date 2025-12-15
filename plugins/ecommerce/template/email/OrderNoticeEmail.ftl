@@ -156,16 +156,18 @@ under the License.
 </head>
 
 <body>
-  <#-- custom logo or text can be inserted here -->
-  <h1>${title!}</h1>
-  <#if !isDemoStore?? || isDemoStore><p>${uiLabelMap.OrderDemoFrontNote}.</p></#if>
-  <#if note??><p>${note}</p></#if>
-  <#if orderHeader??>
-  ${screens.render("component://ecommerce/widget/EmailOrderScreens.xml#orderheaderEmail")}
-  <br/>
-  ${screens.render("component://ecommerce/widget/EmailOrderScreens.xml#orderitemsEmail")}
-  <#else>
-  <h1>Order not found with ID [${orderId!}], or not allowed to view.</h1>
-  </#if>
+  <div style="margin: 1em;">
+    <#-- custom logo or text can be inserted here
+    <h1>${title!}</h1>
+    <#if !isDemoStore?? || isDemoStore><p>${uiLabelMap.OrderDemoFrontNote}.</p></#if>
+    <#if note??><p>${note}</p></#if>-->
+    <#if orderHeader??>
+    ${screens.render("component://ecommerce/widget/EmailOrderScreens.xml#orderheaderEmail")}
+    <br/>
+    ${screens.render("component://ecommerce/widget/EmailOrderScreens.xml#orderitemsEmail")}
+    <#else>
+    <h1>Order not found with ID [${orderId!}], or not allowed to view.</h1>
+    </#if>
+  </div>
 </body>
 </html>

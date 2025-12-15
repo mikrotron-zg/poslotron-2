@@ -6,7 +6,7 @@
     <#if orderHeader?has_content>
       <li>
         ${uiLabelMap.OrderOrder}:
-        <a href="<@ofbizUrl fullPath="true">orderstatus?orderId=${orderHeader.orderId}</@ofbizUrl>">${orderHeader.orderId}</a>
+        <strong>${orderHeader.orderId}</strong>
       </li>
     </#if>
 
@@ -118,37 +118,40 @@
         </ul>
       </#if>
 
-      <li>
-          <ul>
-              <li>
-                  <br>${uiLabelMap.OrderMethod}:<br>
-                  <#if orderHeader?has_content>
-                      <#assign shipmentMethodType = shipGroup.getRelatedOne("ShipmentMethodType", false)!>
-                      <#assign carrierPartyId = shipGroup.carrierPartyId!>
-                  <#else>
-                      <#assign shipmentMethodType = cart.getShipmentMethodType(groupIdx)!>
-                      <#assign carrierPartyId = cart.getCarrierPartyId(groupIdx)!>
-                  </#if>
-                  <#--<#if carrierPartyId?? && carrierPartyId != "_NA_">${carrierPartyId!}</#if>-->
-                  <strong>${(shipmentMethodType.description)?default("N/A")}</strong>
-              </li>
-              <li>
-                  <#if shippingAccount??>${uiLabelMap.AccountingUseAccount}: ${shippingAccount}</#if>
-              </li>
-          </ul>
-      </li>
-      <#-- shipping instructions -->
-      <#if orderHeader?has_content>
-          <#assign shippingInstructions = shipGroup.shippingInstructions!>
-      <#else>
-          <#assign shippingInstructions =  cart.getShippingInstructions(groupIdx)!>
-      </#if>
-      <#if shippingInstructions?has_content>
+
+      <ul>
           <li>
+              <br>${uiLabelMap.OrderMethod}:<br>
+              <#if orderHeader?has_content>
+                  <#assign shipmentMethodType = shipGroup.getRelatedOne("ShipmentMethodType", false)!>
+                  <#assign carrierPartyId = shipGroup.carrierPartyId!>
+              <#else>
+                  <#assign shipmentMethodType = cart.getShipmentMethodType(groupIdx)!>
+                  <#assign carrierPartyId = cart.getCarrierPartyId(groupIdx)!>
+              </#if>
+              <#--<#if carrierPartyId?? && carrierPartyId != "_NA_">${carrierPartyId!}</#if>-->
+              <strong>${(shipmentMethodType.description)?default("N/A")}</strong>
+          </li>
+          <#if shippingAccount??>
+            <li>
+                ${uiLabelMap.AccountingUseAccount}: ${shippingAccount}
+            </li>
+          </#if>
+          <#-- shipping instructions -->
+          <#if orderHeader?has_content>
+            <#assign shippingInstructions = shipGroup.shippingInstructions!>
+          <#else>
+            <#assign shippingInstructions =  cart.getShippingInstructions(groupIdx)!>
+          </#if>
+          <#if shippingInstructions?has_content>
+            <li>
               <br>${uiLabelMap.OrderInstructions}:<br>
               <em>${shippingInstructions}</em>
-          </li>
-      </#if>
+            </li>
+          </#if>
+      </ul>
+
+
       <#assign groupIdx = groupIdx + 1>
     </#list>
   </div>
