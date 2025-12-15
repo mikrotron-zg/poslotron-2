@@ -415,12 +415,18 @@ public final class UtilHttp {
                         // if the string contains only an URL beginning by http or ftp => no change to keep special chars
                         if (UtilValidate.isValidUrl(s) && (s.indexOf("://") == 4 || s.indexOf("://") == 3)) {
                             params = params + s + " ";
-                        } else if (UtilValidate.isUrl(s) && !s.isEmpty()) {
+                        } else if (UtilValidate.urlInString(s) && !s.isEmpty()) {
                             // if the string contains not only an URL => concatenate possible canonicalized before and after, w/o changing the URL
-                            String url = extractUrls(s).get(0); // There should be only 1 URL in a block, makes no sense else
-                            int start = s.indexOf(url);
-                            String after = (String) s.subSequence(start + url.length(), s.length());
-                            params = params + canonicalizeParameter((String) s.subSequence(0, start)) + url + canonicalizeParameter(after) + " ";
+                            List<String> urls = extractUrls(s);
+                            if (!urls.isEmpty()) {
+                                String url = urls.get(0); // There should be only 1 URL in a block, makes no sense else
+                                int start = s.indexOf(url);
+                                String after = (String) s.subSequence(start + url.length(), s.length());
+                                params = params + canonicalizeParameter((String) s.subSequence(0, start)) + url + canonicalizeParameter(after) + " ";
+                            } else {
+                                // No valid URL found despite urlInString() returning true, just canonicalize the whole string
+                                params = params + canonicalizeParameter(s) + " ";
+                            }
                         } else {
                             // Simple string to canonicalize
                             params = params + canonicalizeParameter(s) + " ";
