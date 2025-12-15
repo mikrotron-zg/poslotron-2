@@ -39,7 +39,7 @@ under the License.
             </actions>
             <widgets>
                 <platform-specific>
-                    <html><html-template location="component://ecommerce/template/email/CustRequestConfirmation.ftl" encoding="UTF-8"/></html>
+                    <html><html-template location="component://ecommerce/template/email/CustRequestConfirmation.ftl"/></html>
                 </platform-specific>
             </widgets>
         </section>

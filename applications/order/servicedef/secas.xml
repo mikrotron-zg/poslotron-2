@@ -186,9 +186,6 @@ under the License.
     <eca service="sendOrderBackorderNotification" event="commit">
         <action service="createOrderNotificationLog" mode="sync"/>
     </eca>
-    <eca service="sendCustRequestConfirmation" event="commit">
-        <action service="createOrderNotificationLog" mode="sync"/>
-    </eca>
     <eca service="sendOrderPayRetryNotification" event="commit">
         <action service="createOrderNotificationLog" mode="sync"/>
     </eca>
