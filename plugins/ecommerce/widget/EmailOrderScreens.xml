@@ -73,17 +73,13 @@ under the License.
                     <decorator-section name="body">
                         <section>
                             <widgets>
-                                <!-- the contach mechanisms, terms, payment and shipping methods are shown in the first page -->
+                                <!-- the contact mechanisms, terms, payment and shipping methods are shown in the first page -->
                                 <platform-specific>
-                                    <xsl-fo><html-template location="component://ecommerce/template/order/orderReportContactMechs.fo.ftl"/></xsl-fo>
+                                    <xsl-fo><html-template location="component://ecommerce/template/order/OrderReportContactMechs.fo.ftl"/></xsl-fo>
                                 </platform-specific>
                                 <!-- order items and totals -->
                                 <platform-specific>
                                     <xsl-fo><html-template location="component://ecommerce/template/order/OrderReportBody.fo.ftl"/></xsl-fo>
-                                </platform-specific>
-                                <!-- return policies and notes are shown in the last page -->
-                                <platform-specific>
-                                    <xsl-fo><html-template location="component://ecommerce/template/order/OrderReportConditions.fo.ftl"/></xsl-fo>
                                 </platform-specific>
                             </widgets>
                         </section>
