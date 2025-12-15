@@ -20,9 +20,9 @@ under the License.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head></head>
 <body>
-  <p>The information filled by the person on contact us page is as follows:</p>
-  <p>${uiLabelMap.CommonName}: ${parameters.firstName!} ${parameters.lastName!}</p>
-  <p>${uiLabelMap.CommonEmail}: ${parameters.email!}</p>
-  <p>${uiLabelMap.CommonMessage}: ${parameters.message!}</p>
+  <p><strong>${uiLabelMap.CommonName}:</strong> ${parameters.firstName!} ${parameters.lastName!}</p>
+  <p><strong>${uiLabelMap.CommonEmail}:</strong> ${parameters.email!}</p>
+  <p><strong>${uiLabelMap.EcommerceSubject}:</strong> ${parameters.subject!}</p>
+  <p><strong>${uiLabelMap.CommonMessage}:</strong></p><p><em>${parameters.message!}</em></p>
 </body>
 </html>
