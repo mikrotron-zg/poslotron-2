@@ -24,6 +24,7 @@ under the License.
         header-row-style="header-row" default-table-style="basic-table">
         <actions>
             <set field="quoteTypeId[]" value="OTHER_QUOTE"/>
+            <set field="quoteTypeId[]" value="PRODUCT_QUOTE"/>
             <set field="quoteTypeId[]" value="PROPOSAL"/>
             <set field="parameters.productStoreId" value="10010"/>
         </actions>
