@@ -278,12 +278,12 @@ public class ShoppingCartItem implements java.io.Serializable {
                                String prodCatalogId, Locale locale,
                                String itemType, ShoppingCart.ShoppingCartItemGroup itemGroup, LocalDispatcher dispatcher) {
         this(product, additionalProductFeatureAndAppls, attributes, prodCatalogId, null, locale, itemType, itemGroup, null);
-        String productName = ProductContentWrapper.getProductContentAsText(product, "PRODUCT_NAME", this.locale, dispatcher, "html");
+        String productName = ProductContentWrapper.getProductContentAsText(product, "PRODUCT_NAME", this.locale, dispatcher, "plain");
         // if the productName is null or empty, see if there is an associated virtual product and get the productName of that product
         if (UtilValidate.isEmpty(productName)) {
             GenericValue parentProduct = this.getParentProduct();
             if (parentProduct != null) {
-                productName = ProductContentWrapper.getProductContentAsText(parentProduct, "PRODUCT_NAME", this.locale, dispatcher, "html");
+                productName = ProductContentWrapper.getProductContentAsText(parentProduct, "PRODUCT_NAME", this.locale, dispatcher, "plain");
             }
         }
 
@@ -1046,7 +1046,7 @@ public class ShoppingCartItem implements java.io.Serializable {
         }
 
         if (UtilValidate.isEmpty(itemDescription)) {
-            itemDescription = ProductContentWrapper.getProductContentAsText(product, "PRODUCT_NAME", locale, dispatcher, "html");
+            itemDescription = ProductContentWrapper.getProductContentAsText(product, "PRODUCT_NAME", locale, dispatcher, "plain");
         }
 
         return itemDescription;
@@ -2150,12 +2150,12 @@ public class ShoppingCartItem implements java.io.Serializable {
         }
         GenericValue product = getProduct();
         if (product != null) {
-            String productName = ProductContentWrapper.getProductContentAsText(product, "PRODUCT_NAME", this.locale, dispatcher, "html");
+            String productName = ProductContentWrapper.getProductContentAsText(product, "PRODUCT_NAME", this.locale, dispatcher, "plain");
             // if the productName is null or empty, see if there is an associated virtual product and get the productName of that product
             if (UtilValidate.isEmpty(productName)) {
                 GenericValue parentProduct = this.getParentProduct();
                 if (parentProduct != null) {
-                    productName = ProductContentWrapper.getProductContentAsText(parentProduct, "PRODUCT_NAME", this.locale, dispatcher, "html");
+                    productName = ProductContentWrapper.getProductContentAsText(parentProduct, "PRODUCT_NAME", this.locale, dispatcher, "plain");
                 }
             }
             if (productName == null) {
@@ -2173,13 +2173,13 @@ public class ShoppingCartItem implements java.io.Serializable {
         GenericValue product = getProduct();
 
         if (product != null) {
-            String description = ProductContentWrapper.getProductContentAsText(product, "DESCRIPTION", this.locale, dispatcher, "html");
+            String description = ProductContentWrapper.getProductContentAsText(product, "DESCRIPTION", this.locale, dispatcher, "plain");
 
             // if the description is null or empty, see if there is an associated virtual product and get the description of that product
             if (UtilValidate.isEmpty(description)) {
                 GenericValue parentProduct = this.getParentProduct();
                 if (parentProduct != null) {
-                    description = ProductContentWrapper.getProductContentAsText(parentProduct, "DESCRIPTION", this.locale, dispatcher, "html");
+                    description = ProductContentWrapper.getProductContentAsText(parentProduct, "DESCRIPTION", this.locale, dispatcher, "plain");
                 }
             }
 
