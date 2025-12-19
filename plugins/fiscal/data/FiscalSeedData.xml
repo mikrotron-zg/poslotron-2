@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <!-- ======================================== -->
+    <!-- FiscalStore Seed Data Template -->
+    <!-- ======================================== -->
+    <FiscalStore fiscalStoreId="WEB_SHOP"
+                 fiscalStoreLabel="1"
+                 description="DIYkits Web Shop"
+                 fromDate="2025-12-01 00:00:00.000"
+                 thruDate=""/>
+
+    <!-- ======================================== -->
+    <!-- FiscalServiceApi Seed Data Template -->
+    <!-- ======================================== -->
+    <FiscalServiceApi fiscalServiceApiId="SOLO_API"
+                      apiEndpointUrl="https://api.solo.com.hr"/>
+
+    <!-- ======================================== -->
+    <!-- FiscalService Seed Data Template -->
+    <!-- ======================================== -->
+    <FiscalService fiscalServiceId="MER"
+                   serviceName="Moj e-račun"
+                   description="B2B/B2G fiscal service"
+                   provider="Elektronički računi d.o.o."
+                   providerTaxNumber="42889250808"
+                   providerAddress="Ulica Simona Gregorčiča 8 - 10000 Zagreb - Hrvatska "
+                   providerUrl="https://kreirajapp.moj-eracun.hr/login"
+                   fromDate="2019-06-01 00:00:00.000"
+                   thruDate=""/>
+    <FiscalService fiscalServiceId="SOLO"
+                   fiscalServiceApiId="SOLO_API"
+                   serviceName="Solo"
+                   description="B2C fiscal service"
+                   provider="COAX d.o.o."
+                   providerTaxNumber="21248839327"
+                   providerAddress="Jadranska avenija 6/21 – 10 000 Zagreb – HR"
+                   providerUrl="https://solo.com.hr"
+                   fromDate="2025-12-01 00:00:00.000"
+                   thruDate=""/>
+    
+    <!-- ======================================== -->
+    <!-- FiscalServiceApiCommand Seed Data Template -->
+    <!-- ======================================== -->
+    <FiscalServiceApiCommand fiscalServiceApiCommandId="CREATE_INVOICE"
+                             fiscalServiceApiId="SOLO_API"
+                             httpMethod="POST"
+                             apiCommand="/racun"
+                             description="Create new fiscal invoice"/>
+    
+    <!-- ======================================== -->
+    <!-- FiscalPaymentTerminal Seed Data Template -->
+    <!-- ======================================== -->
+    <FiscalPaymentTerminal fiscalPaymentTerminalId="1"
+                           fiscalStoreId="WEB_SHOP"
+                           fiscalServiceId="SOLO"
+                           fiscalPaymentTerminalLabel="1"
+                           description="B2C terminal"
+                           lastInvoiceNumber="0"
+                           fromDate="2025-12-01 00:00:00.000"
+                           thruDate=""/>
+    <FiscalPaymentTerminal fiscalPaymentTerminalId="2"
+                           fiscalStoreId="WEB_SHOP"
+                           fiscalServiceId="MER"
+                           fiscalPaymentTerminalLabel="2"
+                           description="B2B/B2G terminal"
+                           lastInvoiceNumber="0"
+                           fromDate="2025-12-01 00:00:00.000"
+                           thruDate=""/>
+
+    <!-- ======================================== -->
+    <!-- FiscalInvoiceType Seed Data Template -->
+    <!-- ======================================== -->
+    <FiscalInvoiceType fiscalInvoiceTypeId="B2C_INVOICE"
+                       fiscalPaymentTerminalId="1"
+                       description="B2C invoice type"/>
+    <FiscalInvoiceType fiscalInvoiceTypeId="B2B_INVOICE"
+                       fiscalPaymentTerminalId="2"
+                       description="B2B/B2G invoice type"/>
+    <!-- ======================================== -->
+    <!-- FiscalPaymentType Seed Data Template -->
+    <!-- ======================================== -->
+    <FiscalPaymentType fiscalPaymentTypeId="1"
+                       fiscalServiceApiId="SOLO_API"
+                       apiPaymentTypeName="Transakcijski račun"
+                       apiPaymentTypeValue="1"
+                       description="Bank transfer"/>
+    
+    <!-- ======================================== -->
+    <!-- FiscalCustomerType Seed Data Template -->
+    <!-- ======================================== -->
+    <FiscalCustomerType fiscalCustomerTypeId="B2C_CUSTOMER"
+                        fiscalServiceApiId="SOLO_API"
+                        apiCustomerTypeName="Fizička osoba"
+                        apiCustomerTypeValue="1"
+                        description="Individual"/>
+    <FiscalCustomerType fiscalCustomerTypeId="B2B_CUSTOMER"
+                        fiscalServiceApiId="SOLO_API"
+                        apiCustomerTypeName="Poslovni subjekt"
+                        apiCustomerTypeValue="2"
+                        description="Company"/>
+    <FiscalCustomerType fiscalCustomerTypeId="B2G_CUSTOMER"
+                        fiscalServiceApiId="SOLO_API"
+                        apiCustomerTypeName="Država i javna nabava"
+                        apiCustomerTypeValue="3"
+                        description="State and public purchase"/>
+    <FiscalCustomerType fiscalCustomerTypeId="EU_CUSTOMER"
+                        fiscalServiceApiId="SOLO_API"
+                        apiCustomerTypeName="Unutar EU"
+                        apiCustomerTypeValue="4"
+                        description="EU customer"/>
+    <FiscalCustomerType fiscalCustomerTypeId="NON_EU_CUSTOMER"
+                        fiscalServiceApiId="SOLO_API"
+                        apiCustomerTypeName="Ostatak svijeta"
+                        apiCustomerTypeValue="5"
+                        description="Non EU customer"/>
+
+</entity-engine-xml>

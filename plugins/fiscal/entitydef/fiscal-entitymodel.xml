@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/entitymodel.xsd">
+  <!-- ========================================================= -->
+  <!-- ======================== Defaults ======================= -->
+  <!-- ========================================================= -->
+  <title>Entity of an Apache OFBiz Component</title>
+  <description>None</description>
+  <version>1.0</version>
+
+  <entity entity-name="FiscalStore" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Store">
+    <field name="fiscalStoreId" type="id"/>
+    <field name="fiscalStoreLabel" type="long-varchar"/>
+    <field name="description" type="long-varchar"/>
+    <field name="fromDate" type="date-time"/>
+    <field name="thruDate" type="date-time"/>
+    <prim-key field="fiscalStoreId"/>
+  </entity>
+
+  <entity entity-name="FiscalPaymentTerminal" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Payment Terminal">
+    <field name="fiscalPaymentTerminalId" type="id"/>
+    <field name="fiscalStoreId" type="id"/>
+    <field name="fiscalServiceId" type="id"/>
+    <field name="fiscalPaymentTerminalLabel" type="long-varchar"/>
+    <field name="description" type="long-varchar"/>
+    <field name="lastInvoiceNumber" type="long-varchar"/>
+    <field name="fromDate" type="date-time"/>
+    <field name="thruDate" type="date-time"/>
+    <prim-key field="fiscalPaymentTerminalId"/>
+    <relation type="one" fk-name="FC_PAYM_TERM_FC_STOR" rel-entity-name="FiscalStore">
+      <key-map field-name="fiscalStoreId"/>
+    </relation>
+    <relation type="one" fk-name="FC_PAYM_TERM_FC_SERV" rel-entity-name="FiscalService">
+      <key-map field-name="fiscalServiceId"/>
+    </relation>
+  </entity>
+
+  <entity entity-name="FiscalService" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Service">
+    <field name="fiscalServiceId" type="id"/>
+    <field name="fiscalServiceApiId" type="id"/>
+    <field name="serviceName" type="long-varchar"/>
+    <field name="description" type="long-varchar"/>
+    <field name="provider" type="long-varchar"/>
+    <field name="providerTaxNumber" type="long-varchar"/>
+    <field name="providerAddress" type="long-varchar"/>
+    <field name="providerUrl" type="long-varchar"/>
+    <field name="fromDate" type="date-time"/>
+    <field name="thruDate" type="date-time"/>
+    <prim-key field="fiscalServiceId"/>
+    <relation type="one" fk-name="FC_SERV_FC_SERV_API" rel-entity-name="FiscalServiceApi">
+      <key-map field-name="fiscalServiceApiId"/>
+    </relation>
+  </entity>
+
+  <entity entity-name="FiscalInvoiceType" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Invoice Type">
+    <field name="fiscalInvoiceTypeId" type="id"/>
+    <field name="fiscalPaymentTerminalId" type="id"/>
+    <field name="description" type="long-varchar"/>
+    <prim-key field="fiscalInvoiceTypeId"/>
+    <relation type="one" fk-name="FC_INV_TYPE_FC_PAYM_TERM" rel-entity-name="FiscalPaymentTerminal">
+      <key-map field-name="fiscalPaymentTerminalId"/>
+    </relation>
+  </entity>
+
+  <entity entity-name="FiscalServiceApi" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Service Api">
+    <field name="fiscalServiceApiId" type="id"/>
+    <field name="apiEndpointUrl" type="long-varchar"/>
+    <field name="apiToken" type="long-varchar"/>
+    <prim-key field="fiscalServiceApiId"/>
+  </entity>
+
+  <entity entity-name="FiscalServiceApiCommand" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Service Api Command">
+    <field name="fiscalServiceApiCommandId" type="id"/>
+    <field name="fiscalServiceApiId" type="id"/>
+    <field name="httpMethod" type="long-varchar"/>
+    <field name="apiCommand" type="long-varchar"/>
+    <field name="description" type="long-varchar"/>
+    <prim-key field="fiscalServiceApiCommandId"/>
+    <relation type="one" fk-name="FC_SERV_API_COMM_FC_SERV_API" rel-entity-name="FiscalServiceApi">
+      <key-map field-name="fiscalServiceApiId"/>
+    </relation>
+  </entity>
+
+  <entity entity-name="FiscalServiceApiRequest" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Service Api Request">
+    <field name="fiscalServiceApiRequestId" type="id"/>
+    <field name="fiscalServiceApiId" type="id"/>
+    <field name="invoiceId" type="id"/>
+    <field name="requestRawText" type="very-long"/>
+    <prim-key field="fiscalServiceApiRequestId"/>
+    <relation type="one" fk-name="FC_SERV_API_REQU_FC_SERV_API" rel-entity-name="FiscalServiceApi">
+      <key-map field-name="fiscalServiceApiId"/>
+    </relation>
+    <relation type="one" fk-name="FC_SERV_API_REQU_INV" rel-entity-name="Invoice">
+      <key-map field-name="invoiceId"/>
+    </relation>
+  </entity>
+
+  <entity entity-name="FiscalServiceApiResponse" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Service Api Response">
+    <field name="fiscalServiceApiResponseId" type="id"/>
+    <field name="fiscalServiceApiId" type="id"/>
+    <field name="invoiceId" type="id"/>
+    <field name="responseRawText" type="very-long"/>
+    <prim-key field="fiscalServiceApiResponseId"/>
+    <relation type="one" fk-name="FC_SERV_API_RESP_FC_SERV_API" rel-entity-name="FiscalServiceApi">
+      <key-map field-name="fiscalServiceApiId"/>
+    </relation>
+    <relation type="one" fk-name="FC_SERV_API_RESP_INV" rel-entity-name="Invoice">
+      <key-map field-name="invoiceId"/>
+    </relation>
+  </entity>
+
+  <entity entity-name="FiscalPaymentType" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Payment Type">
+    <field name="fiscalPaymentTypeId" type="id"/>
+    <field name="fiscalServiceApiId" type="id"/>
+    <field name="apiPaymentTypeName" type="long-varchar"/>
+    <field name="apiPaymentTypeValue" type="long-varchar"/>
+    <field name="description" type="long-varchar"/>
+    <prim-key field="fiscalPaymentTypeId"/>
+    <relation type="one" fk-name="FC_PAYM_TYPE_FC_SERV_API" rel-entity-name="FiscalServiceApi">
+      <key-map field-name="fiscalServiceApiId"/>
+    </relation>
+  </entity>
+
+  <entity entity-name="FiscalCustomerType" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Customer Type">
+    <field name="fiscalCustomerTypeId" type="id"/>
+    <field name="fiscalServiceApiId" type="id"/>
+    <field name="apiCustomerTypeName" type="long-varchar"/>
+    <field name="apiCustomerTypeValue" type="long-varchar"/>
+    <field name="description" type="long-varchar"/>
+    <prim-key field="fiscalCustomerTypeId"/>
+    <relation type="one" fk-name="FC_CUST_TYPE_FC_SERV_API" rel-entity-name="FiscalServiceApi">
+      <key-map field-name="fiscalServiceApiId"/>
+    </relation>
+  </entity>
+
+  <entity entity-name="FiscalInvoice" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Invoice">
+    <field name="fiscalInvoiceId" type="id"/>
+    <field name="invoiceId" type="id"/>
+    <field name="orderId" type="id"/>
+    <field name="fiscalPaymentTerminalId" type="id"/>
+    <field name="fiscalInvoiceIdExternal" type="long-varchar"/>
+    <field name="fiscalInvoiceNumber" type="long-varchar"/>
+    <field name="fiscalInvoiceDate" type="date-time"/>
+    <field name="amount" type="currency-amount"/>
+    <prim-key field="fiscalInvoiceId"/>
+    <relation type="one" fk-name="FC_INV_INV" rel-entity-name="Invoice">
+      <key-map field-name="invoiceId"/>
+    </relation>
+    <relation type="one" fk-name="FC_INV_ORDE" rel-entity-name="OrderHeader">
+      <key-map field-name="orderId"/>
+    </relation>
+    <relation type="one" fk-name="FC_INV_FC_PAYM_TERM" rel-entity-name="FiscalPaymentTerminal">
+      <key-map field-name="fiscalPaymentTerminalId"/>
+    </relation>
+  </entity>
+
+</entitymodel>
