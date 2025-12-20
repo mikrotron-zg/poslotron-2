@@ -135,6 +135,12 @@ under the License.
     </screen>
     <screen name="orderpaymentinfo">
         <section>
+            <actions>
+                <entity-condition entity-name="PartyTaxAuthInfo" list="partyTaxAuthInfoList">
+                    <condition-expr field-name="partyId" from-field="partyId"/>
+                </entity-condition>
+                <set field="partyTaxId" from-field="partyTaxAuthInfoList[0].partyTaxId" default-value=""/>
+            </actions>
             <widgets>
                 <platform-specific>
                     <html><html-template location="component://order/template/order/OrderPaymentInfo.ftl"/></html>

@@ -543,15 +543,50 @@ under the License.
         <#if invoices?has_content>
           <tr><td colspan="4"><hr /></td></tr>
           <tr>
-            <td>&nbsp;<span class="label">${uiLabelMap.OrderInvoices}</span></td>
+            <td>&nbsp;<span class="label">${uiLabelMap.OrderReceipt}</span></td>
             <td>
               <#list invoices as invoice>
                 <div>${uiLabelMap.CommonNbr}<a href="<@ofbizUrl controlPath="/accounting/control">viewInvoice?invoiceId=${invoice}</@ofbizUrl>" class="buttontext">${invoice}</a>
-                (<a target="_BLANK" href="<@ofbizUrl controlPath="/accounting/control">invoice.pdf?invoiceId=${invoice}</@ofbizUrl>" class="buttontext">${uiLabelMap.CommonPdf}</a>)</div>
+                <a target="_BLANK" href="<@ofbizUrl controlPath="/accounting/control">invoice.pdf?invoiceId=${invoice}</@ofbizUrl>" class="buttontext">${uiLabelMap.OrderReceipt} (${uiLabelMap.CommonPdf})</a></div>
               </#list>
             </td>
             <td>&nbsp;</td>
           </tr>
+          <tr><td colspan="4"><hr /></td></tr>
+          <#if partyTaxId?has_content>
+            <#assign fiscalInvoiceType = "B2B">
+            <tr>
+              <td>&nbsp;<span class="label">${uiLabelMap.PartyTaxId}</span></td>
+              <td>${partyTaxId}</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr><td colspan="4"><hr /></td></tr>
+          <#else>
+            <#assign fiscalInvoiceType = "B2C">
+          </#if>
+          <#if fiscalInvoices?has_content>
+            <#-- TODO: Fiscal invoice PDF button -->
+          <#else>
+
+            <tr>
+              <td>&nbsp;<span class="label">${uiLabelMap.OrderFiscalInvoice}</span></td>
+                <td>
+                  <#list invoices as invoice>
+                    <a class="buttontext newFiscalInvoice" href="javascript:void(0);" data-invoice="${invoice}">${uiLabelMap.OrderCreateFiscalInvoice}</a>
+                    &nbsp;${uiLabelMap.CommonFor} <span style="text-transform: lowercase;">${uiLabelMap.OrderReceipt}</span><strong> ${invoice}</strong>
+                  </#list>
+                  <script type="application/javascript">
+                    jQuery(".newFiscalInvoice").click(function(){
+                      var invoiceId = jQuery(this).data("invoice");
+                      jQuery("#newFiscalInvoiceForm input[name='invoiceId']").val(invoiceId);
+                      jQuery("#displayInvoiceId").text(invoiceId);
+                      jQuery("#newFiscalInvoiceForm").dialog("open");
+                    });
+                  </script>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+          </#if>
         <#elseif paymentMethodType.paymentMethodTypeId == "EXT_OFFLINE" && currentStatus.statusId != "ORDER_CANCELLED">
           <tr><td colspan="4"><hr /></td></tr>
           <tr>
@@ -621,5 +656,6 @@ under the License.
 </#if>
 </#if>
 </table>
+<#include "/fiscal/template/order/NewFiscalInvoice.ftl">
 </div>
 </div>

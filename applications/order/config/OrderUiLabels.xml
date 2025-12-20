@@ -5780,6 +5780,18 @@
         <value xml:lang="zh-CN">发票</value>
         <value xml:lang="zh-TW">發票</value>
     </property>
+    <property key="OrderReceipt">
+        <value xml:lang="en">Receipt</value>
+        <value xml:lang="hr">Obračun</value>
+    </property>
+    <property key="OrderFiscalInvoice">
+        <value xml:lang="en">Fiscal invoice</value>
+        <value xml:lang="hr">Fiskalni račun</value>
+    </property>
+    <property key="OrderCreateFiscalInvoice">
+        <value xml:lang="en">Create fiscal invoice</value>
+        <value xml:lang="hr">Stvori fiskalni račun</value>
+    </property>
     <property key="OrderIsAPromotionalItem">
         <value xml:lang="de">Ist ein Aktionsartikel</value>
         <value xml:lang="en">Is A Promotional Item</value>
