@@ -16,7 +16,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
 <div id="newFiscalInvoiceForm" class="popup" style="display: none;">
   <form id="addFiscalInvoice" name="addFiscalInvoice" method="post" action="addFiscalInvoice" style="font-size:1.2em;">
     <input type="hidden" name="orderId" value="${orderId!}"/>
@@ -26,7 +25,7 @@ under the License.
     <input type="hidden" name="invoiceId" value=""/>
     <#if partyTaxId?has_content> <#-- e-racun -->
       <div class="form-row">
-        Kupac ima OIB: <strong>${partyTaxId!}</strong>, generirati će se podaci za e-račun.
+        ${uiLabelMap.FiscalB2BInfoMessage}
       </div>
       <hr/>
       <div class="form-row">
@@ -34,7 +33,7 @@ under the License.
       </div>
     <#else> <#-- Solo API -->
       <div class="form-row">
-        Kupac nema OIB, generirati će se podaci za Solo API.
+        ${uiLabelMap.FiscalB2CInfoMessage}
       </div>
     </#if>
     <div class="form-row">

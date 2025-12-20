@@ -554,7 +554,7 @@ under the License.
           </tr>
           <tr><td colspan="4"><hr /></td></tr>
           <#if partyTaxId?has_content>
-            <#assign fiscalInvoiceType = "B2B">
+            <#assign fiscalInvoiceType = "B2B_INVOICE">
             <tr>
               <td>&nbsp;<span class="label">${uiLabelMap.PartyTaxId}</span></td>
               <td>${partyTaxId}</td>
@@ -562,12 +562,11 @@ under the License.
             </tr>
             <tr><td colspan="4"><hr /></td></tr>
           <#else>
-            <#assign fiscalInvoiceType = "B2C">
+            <#assign fiscalInvoiceType = "B2C_INVOICE">
           </#if>
           <#if fiscalInvoices?has_content>
             <#-- TODO: Fiscal invoice PDF button -->
           <#else>
-
             <tr>
               <td>&nbsp;<span class="label">${uiLabelMap.OrderFiscalInvoice}</span></td>
                 <td>

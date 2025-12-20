@@ -72,6 +72,12 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="orderlist"/>
     </request-map>
+    <request-map uri="addFiscalInvoice">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="addFiscalInvoice"/>
+        <response name="success" type="view" value="orderview"/>
+        <response name="error" type="view" value="orderview"/>
+    </request-map>
     <request-map uri="confirmationmailedit">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="SendConfirmationMail"/>

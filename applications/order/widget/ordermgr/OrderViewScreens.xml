@@ -136,6 +136,7 @@ under the License.
     <screen name="orderpaymentinfo">
         <section>
             <actions>
+                <property-map resource="FiscalUiLabels" map-name="uiLabelMap" global="true"/>
                 <entity-condition entity-name="PartyTaxAuthInfo" list="partyTaxAuthInfoList">
                     <condition-expr field-name="partyId" from-field="partyId"/>
                 </entity-condition>
