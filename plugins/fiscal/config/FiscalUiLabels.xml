@@ -27,4 +27,8 @@
         <value xml:lang="en">Customer does not have OIB, generating Solo API data.</value>
         <value xml:lang="hr">Kupac nema OIB, generirati će se podaci za Solo API.</value>
     </property>
+    <property key="FiscalIssueInvoice">
+        <value xml:lang="en">Issue invoice</value>
+        <value xml:lang="hr">Izdavanje računa</value>
+    </property>
 </resource>

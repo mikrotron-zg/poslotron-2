@@ -27,9 +27,10 @@ under the License.
       <div class="form-row">
         ${uiLabelMap.FiscalB2BInfoMessage}
       </div>
-      <hr/>
+      <hr/><br/>
       <div class="form-row">
-        ${orderId!} -- ${partyId!} -- <span id="displayInvoiceId"></span> -- ${partyTaxId!}
+        <label for="poNumber">${uiLabelMap.OrderPurchaseOrderNumber}</label>
+        <div class="form-field"><input type="text" name="poNumber" id="poNumber" value="" size="50" maxlength="255" /></div>
       </div>
     <#else> <#-- Solo API -->
       <div class="form-row">
@@ -37,7 +38,7 @@ under the License.
       </div>
     </#if>
     <div class="form-row">
-      <input id="submitAddFiscalInvoice" type="button" value="${uiLabelMap.CommonCreate}" class="large-button" style="display:none"/>
+      <input id="submitAddFiscalInvoice" type="button" value="${uiLabelMap.FiscalIssueInvoice}" class="large-button" style="display:none"/>
       <form action="">
         <input class="popup_closebox buttontext large-button" type="button" value="${uiLabelMap.CommonClose}" style="display:none"/>
       </form>
@@ -58,14 +59,25 @@ under the License.
   </form>
 </div>
 
+<#assign fiscalIssueInvoiceLabel = StringUtil.wrapString(uiLabelMap.FiscalIssueInvoice) />
 <script type="application/javascript">
   jQuery(document).ready( function() {
     jQuery("#newFiscalInvoiceForm").dialog({autoOpen: false, modal: true, width: 500,
       buttons: {
-      '${uiLabelMap.CommonSubmit}': function() {
+      '${fiscalIssueInvoiceLabel}': function() {
+        var dialog = jQuery(this);
         var addFiscalInvoice = jQuery("#addFiscalInvoice");
-        jQuery("<p>${uiLabelMap.CommonUpdatingData}</p>").insertBefore(addFiscalInvoice);
-    addFiscalInvoice.submit();
+        var buttons = dialog.dialog('option', 'buttons');
+        
+        // Disable all buttons
+        dialog.dialog('option', 'buttons', {});
+        dialog.find('.ui-dialog-buttonpane button').prop('disabled', true);
+        
+        // Show loading message
+        jQuery("<p style='text-align: center;'><img src='/images/ajax-loader.gif' alt='Loading...'/> ${uiLabelMap.CommonUpdatingData}</p>").insertBefore(addFiscalInvoice);
+        
+        // Submit form
+        addFiscalInvoice.submit();
       },
       '${uiLabelMap.CommonClose}': function() {
         jQuery(this).dialog('close');

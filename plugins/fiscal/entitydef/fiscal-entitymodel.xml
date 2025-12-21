@@ -118,6 +118,7 @@ under the License.
     <field name="fiscalServiceApiResponseId" type="id"/>
     <field name="fiscalServiceApiId" type="id"/>
     <field name="invoiceId" type="id"/>
+    <field name="status" type="long-varchar"/>
     <field name="responseRawText" type="very-long"/>
     <prim-key field="fiscalServiceApiResponseId"/>
     <relation type="one" fk-name="FC_SERV_API_RESP_FC_SERV_API" rel-entity-name="FiscalServiceApi">
@@ -161,6 +162,7 @@ under the License.
     <field name="fiscalInvoiceNumber" type="long-varchar"/>
     <field name="fiscalInvoiceDate" type="date-time"/>
     <field name="amount" type="currency-amount"/>
+    <field name="poNumber" type="long-varchar"/>
     <prim-key field="fiscalInvoiceId"/>
     <relation type="one" fk-name="FC_INV_INV" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>
