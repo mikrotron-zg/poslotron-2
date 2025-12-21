@@ -18,13 +18,13 @@ under the License.
 -->
 <#escape x as x?xml>
 <fo:table table-layout="fixed" width="100%">
-<fo:table-column column-width="1.5in"/>
-<fo:table-column column-width="2.5in"/>
+<fo:table-column column-width="30mm"/>
+<fo:table-column column-width="50mm"/>
 <fo:table-body>
 <fo:table-row>
   <fo:table-cell>
      <#--<fo:block number-columns-spanned="2" font-weight="bold">${invoice.getRelatedOne("InvoiceType", false).get("description",locale)}</fo:block>-->
-     <fo:block font-size="14pt" font-family="NotoSans-Bold">Obračun:</fo:block>
+     <fo:block font-size="14pt" font-family="NotoSans-Bold">${uiLabelMap.OrderReceipt}</fo:block>
   </fo:table-cell>
   <fo:table-cell>
      <fo:block font-size="14pt" font-family="NotoSans-Bold">${invoice.invoiceId}</fo:block>
@@ -37,6 +37,45 @@ under the License.
   ${invoiceDateFormatted!}
 </fo:block></fo:table-cell>
 </fo:table-row>
+
+<#assign fiscalInvoices = delegator.findByAnd("FiscalInvoice", {"invoiceId": invoice.invoiceId}, null, false)!>
+<#assign fiscalInvoice = fiscalInvoices?first!>
+<#if fiscalInvoice?has_content>
+    <#-- Format fiscal invoice date -->
+    <#if fiscalInvoice.fiscalInvoiceDate?has_content>
+        <#assign fiscalInvoiceDateFormatted = fiscalInvoice.fiscalInvoiceDate?string("dd.MM.yyyy")>
+    </#if>
+    <fo:table-row height="12pt">
+        <fo:table-cell number-columns-spanned="2"><fo:block/></fo:table-cell>
+    </fo:table-row>
+    <fo:table-row height="12pt" border-top-style="solid" border-top-width="thin" border-top-color="gray">
+        <fo:table-cell number-columns-spanned="2"><fo:block/></fo:table-cell>
+    </fo:table-row>
+    <fo:table-row>
+        <fo:table-cell number-columns-spanned="2"><fo:block font-size="12pt" font-family="NotoSans-Bold">Fiskalni račun</fo:block></fo:table-cell>
+    </fo:table-row>
+    <fo:table-row height="12pt">
+        <fo:table-cell number-columns-spanned="2"><fo:block/></fo:table-cell>
+    </fo:table-row>
+    <fo:table-row font-size="11pt">
+      <fo:table-cell><fo:block>${uiLabelMap.CommonNumber}:</fo:block></fo:table-cell>
+      <fo:table-cell><fo:block font-family="NotoSans-Bold">
+      ${fiscalInvoice.fiscalInvoiceNumber}
+    </fo:block></fo:table-cell>
+    </fo:table-row>
+    <fo:table-row font-size="11pt">
+        <fo:table-cell><fo:block>${uiLabelMap.AccountingInvoiceDateAbbr}:</fo:block></fo:table-cell>
+        <fo:table-cell><fo:block>
+            ${fiscalInvoiceDateFormatted!}
+        </fo:block></fo:table-cell>
+    </fo:table-row>
+    <fo:table-row font-size="11pt">
+      <fo:table-cell><fo:block>${uiLabelMap.OrderPurchaseOrder}:</fo:block></fo:table-cell>
+      <fo:table-cell><fo:block>
+      ${fiscalInvoice.poNumber!}
+    </fo:block></fo:table-cell>
+    </fo:table-row>
+</#if>
 
 <#--
 <fo:table-row>

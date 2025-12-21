@@ -564,15 +564,24 @@ under the License.
           <#else>
             <#assign fiscalInvoiceType = "B2C_INVOICE">
           </#if>
-          <#if fiscalInvoices?has_content>
-            <#-- TODO: Fiscal invoice PDF button -->
-          <#else>
             <tr>
               <td>&nbsp;<span class="label">${uiLabelMap.OrderFiscalInvoice}</span></td>
                 <td>
                   <#list invoices as invoice>
-                    <a class="buttontext newFiscalInvoice" href="javascript:void(0);" data-invoice="${invoice}">${uiLabelMap.OrderCreateFiscalInvoice}</a>
-                    &nbsp;${uiLabelMap.CommonFor} <span style="text-transform: lowercase;">${uiLabelMap.OrderReceipt}</span><strong> ${invoice}</strong>
+                    <#-- Check if fiscal invoice exists for this invoice -->
+                    <#assign fiscalInvoices = delegator.findByAnd("FiscalInvoice", {"invoiceId": invoice}, null, false)!>
+                    <#assign fiscalInvoice = fiscalInvoices?first!>
+                    <#if fiscalInvoice?has_content>
+                      <#-- Fiscal invoice exists -->
+                      <#if fiscalInvoice.fiscalInvoiceIdExternal?has_content>
+                        <#-- TODO: External fiscal invoice download button -->
+                      <#else>
+                        <a target="_BLANK" href="<@ofbizUrl controlPath="/accounting/control">invoice.pdf?invoiceId=${invoice}</@ofbizUrl>" class="buttontext">${fiscalInvoice.fiscalInvoiceNumber} (${uiLabelMap.CommonPdf})</a></div>
+                      </#if>
+                    <#else>
+                      <a class="buttontext newFiscalInvoice" href="javascript:void(0);" data-invoice="${invoice}">${uiLabelMap.OrderCreateFiscalInvoice}</a>
+                    </#if>
+                    &nbsp;${uiLabelMap.CommonFor} <span style="text-transform: lowercase;">${uiLabelMap.OrderReceipt}</span><strong> ${invoice}</strong><br/>
                   </#list>
                   <script type="application/javascript">
                     jQuery(".newFiscalInvoice").click(function(){
@@ -585,7 +594,6 @@ under the License.
                 </td>
                 <td>&nbsp;</td>
             </tr>
-          </#if>
         <#elseif paymentMethodType.paymentMethodTypeId == "EXT_OFFLINE" && currentStatus.statusId != "ORDER_CANCELLED">
           <tr><td colspan="4"><hr /></td></tr>
           <tr>
