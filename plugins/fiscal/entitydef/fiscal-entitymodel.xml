@@ -116,16 +116,12 @@ under the License.
 
   <entity entity-name="FiscalServiceApiResponse" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Service Api Response">
     <field name="fiscalServiceApiResponseId" type="id"/>
-    <field name="fiscalServiceApiId" type="id"/>
-    <field name="invoiceId" type="id"/>
+    <field name="fiscalServiceApiRequestId" type="id"/>
     <field name="status" type="long-varchar"/>
     <field name="responseRawText" type="very-long"/>
     <prim-key field="fiscalServiceApiResponseId"/>
-    <relation type="one" fk-name="FC_SERV_API_RESP_FC_SERV_API" rel-entity-name="FiscalServiceApi">
-      <key-map field-name="fiscalServiceApiId"/>
-    </relation>
-    <relation type="one" fk-name="FC_SERV_API_RESP_INV" rel-entity-name="Invoice">
-      <key-map field-name="invoiceId"/>
+    <relation type="one" fk-name="FC_SRV_API_RES_FC_SRV_API_REQ" rel-entity-name="FiscalServiceApiRequest">
+      <key-map field-name="fiscalServiceApiRequestId"/>
     </relation>
   </entity>
 
@@ -163,6 +159,7 @@ under the License.
     <field name="fiscalInvoiceDate" type="date-time"/>
     <field name="amount" type="currency-amount"/>
     <field name="poNumber" type="long-varchar"/>
+    <field name="isPayed" type="indicator"/>
     <prim-key field="fiscalInvoiceId"/>
     <relation type="one" fk-name="FC_INV_INV" rel-entity-name="Invoice">
       <key-map field-name="invoiceId"/>

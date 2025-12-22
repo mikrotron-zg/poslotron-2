@@ -29,6 +29,7 @@ under the License.
         <attribute name="fiscalInvoiceType" type="String" mode="IN" optional="false"/>
         <attribute name="invoiceId" type="String" mode="IN" optional="false"/>
         <attribute name="poNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="isPayed" type="String" mode="IN" optional="true"/>
         <attribute name="fiscalPaymentTerminalId" type="String" mode="IN" optional="true"/>
         <attribute name="fiscalInvoiceId" type="String" mode="OUT" optional="false"/>
         <attribute name="fiscalInvoiceNumber" type="String" mode="OUT" optional="true"/>

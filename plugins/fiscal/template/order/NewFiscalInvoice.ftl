@@ -25,16 +25,24 @@ under the License.
     <input type="hidden" name="invoiceId" value=""/>
     <#if partyTaxId?has_content> <#-- e-racun -->
       <div class="form-row">
-        ${uiLabelMap.FiscalB2BInfoMessage}
+        <strong>${uiLabelMap.FiscalB2BInfoMessage}</strong>
       </div>
       <hr/><br/>
       <div class="form-row">
         <label for="poNumber">${uiLabelMap.OrderPurchaseOrderNumber}</label>
         <div class="form-field"><input type="text" name="poNumber" id="poNumber" value="" size="50" maxlength="255" /></div>
       </div>
+      <br/>
+      <div class="form-row">
+        <div class="form-field">
+          <input type="hidden" name="isPayed" value="Y"/>
+          <input type="checkbox" id="isPayed" checked="checked" onclick="this.form.isPayed.value = this.checked ? 'Y' : 'N'" />
+          <label for="isPayed" style="display: inline; margin-left: 5px;">${uiLabelMap.AccountingInvoicePaid}</label>
+        </div>
+      </div>
     <#else> <#-- Solo API -->
       <div class="form-row">
-        ${uiLabelMap.FiscalB2CInfoMessage}
+        <strong>${uiLabelMap.FiscalB2CInfoMessage}</strong>
       </div>
     </#if>
     <div class="form-row">

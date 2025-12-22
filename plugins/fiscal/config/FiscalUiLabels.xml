@@ -31,4 +31,8 @@
         <value xml:lang="en">Issue invoice</value>
         <value xml:lang="hr">Izdavanje računa</value>
     </property>
+    <property key="FiscalIsPayed">
+        <value xml:lang="en">Is payed</value>
+        <value xml:lang="hr">Plaćeno</value>
+    </property>
 </resource>

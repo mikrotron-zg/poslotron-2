@@ -109,7 +109,8 @@ public class FiscalInvoiceServices {
         String invoiceId = (String) context.get("invoiceId");
         String fiscalInvoiceType = (String) context.get("fiscalInvoiceType");
         String poNumber = (String) context.get("poNumber");
-        
+        String isPayed = (String) context.get("isPayed");
+
         // Calculate invoice total using InvoiceWorker
         BigDecimal amount = InvoiceWorker.getInvoiceTotal(delegator, invoiceId);
         
@@ -191,6 +192,7 @@ public class FiscalInvoiceServices {
         fiscalInvoice.set("fiscalInvoiceDate", UtilDateTime.nowTimestamp());
         fiscalInvoice.set("amount", amount);
         fiscalInvoice.set("poNumber", poNumber);
+        fiscalInvoice.set("isPayed", isPayed);
         fiscalInvoice.create();
         
         // Update the terminal's last invoice number with only the sequential number

@@ -75,6 +75,16 @@ under the License.
       ${fiscalInvoice.poNumber!}
     </fo:block></fo:table-cell>
     </fo:table-row>
+    <fo:table-row>
+      <fo:table-cell><fo:block>${uiLabelMap.AccountingInvoicePaid}:</fo:block></fo:table-cell>
+      <fo:table-cell><fo:block>
+      <#if fiscalInvoice.isPayed?has_content && fiscalInvoice.isPayed =="Y">
+          ${uiLabelMap.CommonYes}
+      <#else>
+          ${uiLabelMap.CommonNo}
+      </#if>
+    </fo:block></fo:table-cell>
+    </fo:table-row>
 </#if>
 
 <#--
