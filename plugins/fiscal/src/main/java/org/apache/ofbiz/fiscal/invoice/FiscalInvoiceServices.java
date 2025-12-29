@@ -18,14 +18,20 @@
  */
 package org.apache.ofbiz.fiscal.invoice;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.TimeZone;
+import org.apache.ofbiz.base.lang.JSON;
 
 import org.apache.ofbiz.accounting.invoice.InvoiceWorker;
 import org.apache.ofbiz.base.util.Debug;
@@ -307,15 +313,220 @@ public class FiscalInvoiceServices {
         // Log the generated request
         Debug.logInfo("Generated fiscal invoice request: " + apiRequest, MODULE);
         
-        // TODO: Send request to external API and process response
-        // This will be implemented in the next step
+        // Get the CREATE_INVOICE command details
+        GenericValue fiscalServiceApiCommand = EntityQuery.use(delegator)
+                .from("FiscalServiceApiCommand")
+                .where("fiscalServiceApiId", fiscalServiceApiId, "fiscalServiceApiCommandId", "CREATE_INVOICE")
+                .queryOne();
         
-        // For now, return a placeholder response
+        if (fiscalServiceApiCommand == null) {
+            return ServiceUtil.returnError("CREATE_INVOICE command not found for fiscal service API");
+        }
+        
+        String httpMethod = fiscalServiceApiCommand.getString("httpMethod");
+        String apiCommand = fiscalServiceApiCommand.getString("apiCommand");
+        String apiEndpointUrl = fiscalServiceApi.getString("apiEndpointUrl");
+        
+        // Combine base URL and command to get the full endpoint URL
+        String fullApiUrl = apiEndpointUrl + apiCommand;
+        Debug.logInfo("Using API endpoint URL: " + fullApiUrl, MODULE);
+        
+        if (UtilValidate.isEmpty(apiEndpointUrl)) {
+            return ServiceUtil.returnError("API endpoint URL is missing for fiscal service API");
+        }
+        if (UtilValidate.isEmpty(apiCommand)) {
+            return ServiceUtil.returnError("API command is missing for fiscal service API command");
+        }
+        
+        // Send request to external API and process response
+        Map<String, Object> apiResponse;
+        try {
+            // Currently only POST is supported, but we check the method from command
+            if (!"POST".equals(httpMethod)) {
+                return ServiceUtil.returnError("Only POST method is supported for CREATE_INVOICE command");
+            }
+            apiResponse = sendFiscalInvoiceRequest(fullApiUrl, apiRequest);
+        } catch (Exception e) {
+            Debug.logError("Error sending fiscal invoice request: " + e.getMessage(), MODULE);
+            return ServiceUtil.returnError("Failed to send fiscal invoice request: " + e.getMessage());
+        }
+        
+        // Save response to database
+        String fiscalServiceApiRequestId = fiscalServiceApiRequest.getString("fiscalServiceApiRequestId");
+        GenericValue fiscalServiceApiResponse = delegator.makeValue("FiscalServiceApiResponse");
+        fiscalServiceApiResponse.set("fiscalServiceApiResponseId", delegator.getNextSeqId("FiscalServiceApiResponse"));
+        fiscalServiceApiResponse.set("fiscalServiceApiRequestId", fiscalServiceApiRequestId);
+        fiscalServiceApiResponse.set("status", String.valueOf(apiResponse.get("responseCode")));
+        fiscalServiceApiResponse.set("responseRawText", apiResponse.get("responseText"));
+        fiscalServiceApiResponse.create();
+        
+        Debug.logInfo("Saved fiscal API response to database with ID: " + fiscalServiceApiResponse.getString("fiscalServiceApiResponseId"), MODULE);
+        
+        // Process the response
+        Integer responseCode = (Integer) apiResponse.get("responseCode");
+        String responseText = (String) apiResponse.get("responseText");
+        
+        if (responseCode == null || responseCode < 200 || responseCode >= 300) {
+            return ServiceUtil.returnError("API request failed with status " + responseCode + ": " + responseText);
+        }
+        
+        // Parse JSON response to extract invoice details
         Map<String, Object> result = ServiceUtil.returnSuccess();
-        result.put("fiscalInvoiceId", "B2C_PLACEHOLDER_" + System.currentTimeMillis());
-        result.put("fiscalInvoiceIdExternal", "EXTERNAL_API_PLACEHOLDER");
+        try {
+            // Use OFBiz's JSON utilities to parse the response
+            JSON jsonResponse = JSON.from(responseText);
+            @SuppressWarnings("unchecked")
+            Map<String, Object> responseMap = jsonResponse.toObject(Map.class);
+            
+            // Check the status field - 0 means success, anything else is an error
+            Integer status = (Integer) responseMap.get("status");
+            if (status == null || status != 0) {
+                String errorMessage = (String) responseMap.get("message");
+                if (UtilValidate.isEmpty(errorMessage)) {
+                    errorMessage = "Unknown API error";
+                }
+                String errorMsg = "Fiscal API error (status " + status + "): " + errorMessage;
+                Debug.logError(errorMsg, MODULE);
+                return ServiceUtil.returnError(errorMsg);
+            }
+            
+            // Extract values from the racun object if it exists
+            Map<String, Object> racunData = null;
+            if (responseMap.containsKey("racun")) {
+                Object racunObj = responseMap.get("racun");
+                if (racunObj instanceof Map) {
+                    @SuppressWarnings("unchecked")
+                    Map<String, Object> racunMap = (Map<String, Object>) racunObj;
+                    racunData = racunMap;
+                } else {
+                    racunData = responseMap;
+                }
+            } else {
+                racunData = responseMap;
+            }
+            
+            String fiscalInvoiceIdExternal = (String) racunData.get("id");
+            String fiscalInvoiceNumber = (String) racunData.get("broj_racuna");
+            String fiscalInvoicePdfExternal = (String) racunData.get("pdf");
+            String fiscalInvoiceZki = (String) racunData.get("zki");
+            String fiscalInvoiceJir = (String) racunData.get("jir");
+            String datumRacuna = (String) racunData.get("datum_racuna");
+            String brutoSuma = (String) racunData.get("bruto_suma");
+            
+            if (UtilValidate.isNotEmpty(fiscalInvoiceIdExternal)) {
+                // Create FiscalInvoice record
+                GenericValue fiscalInvoice = delegator.makeValue("FiscalInvoice");
+                fiscalInvoice.set("fiscalInvoiceId", delegator.getNextSeqId("FiscalInvoice"));
+                fiscalInvoice.set("invoiceId", invoiceId);
+                fiscalInvoice.set("orderId", orderId);
+                fiscalInvoice.set("fiscalPaymentTerminalId", fiscalPaymentTerminalId);
+                fiscalInvoice.set("fiscalInvoiceIdExternal", fiscalInvoiceIdExternal);
+                fiscalInvoice.set("fiscalInvoiceNumber", fiscalInvoiceNumber);
+                fiscalInvoice.set("fiscalInvoicePdfExternal", fiscalInvoicePdfExternal);
+                fiscalInvoice.set("zki", fiscalInvoiceZki);
+                fiscalInvoice.set("jir", fiscalInvoiceJir);
+                // Parse and set the invoice date from API response
+                if (UtilValidate.isNotEmpty(datumRacuna)) {
+                    try {
+                        // Expected format: "dd.MM.yyyy HH:mm:ss"
+                        Timestamp fiscalDate = UtilDateTime.stringToTimeStamp(datumRacuna, "dd.MM.yyyy HH:mm:ss", TimeZone.getDefault(), null);
+                        if (fiscalDate != null) {
+                            fiscalInvoice.set("fiscalInvoiceDate", fiscalDate);
+                        } else {
+                            fiscalInvoice.set("fiscalInvoiceDate", UtilDateTime.nowTimestamp());
+                        }
+                    } catch (Exception e) {
+                        Debug.logWarning("Failed to parse datum_racuna '" + datumRacuna + "', using current time", MODULE);
+                        fiscalInvoice.set("fiscalInvoiceDate", UtilDateTime.nowTimestamp());
+                    }
+                } else {
+                    fiscalInvoice.set("fiscalInvoiceDate", UtilDateTime.nowTimestamp());
+                }
+                // Parse and set the amount from API response
+                BigDecimal fiscalAmount = amount; // Default to calculated amount
+                if (UtilValidate.isNotEmpty(brutoSuma)) {
+                    try {
+                        // Replace comma with dot for decimal parsing
+                        String brutoSumaFormatted = brutoSuma.replace(',', '.');
+                        fiscalAmount = new BigDecimal(brutoSumaFormatted);
+                    } catch (NumberFormatException e) {
+                        Debug.logWarning("Failed to parse bruto_suma '" + brutoSuma + "', using calculated amount", MODULE);
+                        fiscalAmount = amount;
+                    }
+                }
+                fiscalInvoice.set("amount", fiscalAmount);
+                fiscalInvoice.set("isPayed", "Y".equals(isPayed) ? "Y" : "N");
+                fiscalInvoice.create();
+                
+                result.put("fiscalInvoiceId", fiscalInvoice.getString("fiscalInvoiceId"));
+                result.put("fiscalInvoiceNumber", fiscalInvoiceNumber);
+                result.put("fiscalInvoiceIdExternal", fiscalInvoiceIdExternal);
+                
+                Debug.logInfo("Successfully created fiscal invoice with external ID: " + fiscalInvoiceIdExternal, MODULE);
+            } else {
+                return ServiceUtil.returnError("Failed to extract invoice ID from API response");
+            }
+        } catch (Exception e) {
+            Debug.logError("Error processing API response: " + e.getMessage(), MODULE);
+            return ServiceUtil.returnError("Failed to process API response: " + e.getMessage());
+        }
         
         return result;
+    }
+    
+    /**
+     * Send HTTP POST request to Solo API and return response
+     */
+    private static Map<String, Object> sendFiscalInvoiceRequest(String apiEndpointUrl, String requestData) 
+            throws Exception {
+        
+        URL url = new URL(apiEndpointUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        
+        try {
+            // Set up the connection
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            connection.setConnectTimeout(30000); // 30 seconds timeout
+            connection.setReadTimeout(30000); // 30 seconds timeout
+            
+            // Send the request
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = requestData.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+            
+            // Get the response
+            int responseCode = connection.getResponseCode();
+            BufferedReader reader;
+            
+            if (responseCode >= 200 && responseCode < 300) {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            } else {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+            }
+            
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+            
+            Map<String, Object> result = new java.util.HashMap<>();
+            result.put("responseCode", responseCode);
+            result.put("responseText", response.toString());
+            
+            Debug.logInfo("API Response Code: " + responseCode, MODULE);
+            Debug.logInfo("API Response: " + response.toString(), MODULE);
+            
+            return result;
+            
+        } finally {
+            connection.disconnect();
+        }
     }
     
     /**
@@ -336,6 +547,83 @@ public class FiscalInvoiceServices {
                 .where("invoiceId", invoiceId)
                 .queryList();
         
+        // Get invoice to retrieve party information
+        GenericValue invoiceRecord = EntityQuery.use(delegator)
+                .from("Invoice")
+                .where("invoiceId", invoiceId)
+                .queryOne();
+        
+        if (invoiceRecord == null) {
+            Debug.logError("Invoice not found: " + invoiceId, MODULE);
+            return null;
+        }
+        
+        // Get customer party information
+        String partyId = invoiceRecord.getString("partyId");
+        String kupacNaziv = "";
+        String kupacAdresa = "";
+        
+        if (UtilValidate.isNotEmpty(partyId)) {
+            // Get party name - check if it's a Person or PartyGroup
+            GenericValue party = EntityQuery.use(delegator)
+                    .from("Party")
+                    .where("partyId", partyId)
+                    .queryOne();
+            
+            if (party != null) {
+                String partyTypeId = party.getString("partyTypeId");
+                
+                if ("PERSON".equals(partyTypeId)) {
+                    // Get person name
+                    GenericValue person = EntityQuery.use(delegator)
+                            .from("Person")
+                            .where("partyId", partyId)
+                            .queryOne();
+                    
+                    if (person != null) {
+                        String firstName = person.getString("firstName");
+                        String lastName = person.getString("lastName");
+                        
+                        if (UtilValidate.isNotEmpty(firstName) && UtilValidate.isNotEmpty(lastName)) {
+                            kupacNaziv = firstName + " " + lastName;
+                        } else if (UtilValidate.isNotEmpty(lastName)) {
+                            kupacNaziv = lastName;
+                        } else if (UtilValidate.isNotEmpty(firstName)) {
+                            kupacNaziv = firstName;
+                        }
+                    }
+                } else if ("PARTY_GROUP".equals(partyTypeId)) {
+                    // Get party group name
+                    GenericValue partyGroup = EntityQuery.use(delegator)
+                            .from("PartyGroup")
+                            .where("partyId", partyId)
+                            .queryOne();
+                    
+                    if (partyGroup != null) {
+                        kupacNaziv = partyGroup.getString("groupName");
+                    }
+                }
+            }
+            
+            // Get party postal address - use billing address
+            GenericValue billingAddress = InvoiceWorker.getBillToAddress(invoiceRecord);
+            if (billingAddress != null) {
+                StringBuilder address = new StringBuilder();
+                if (UtilValidate.isNotEmpty(billingAddress.getString("address1"))) {
+                    address.append(billingAddress.getString("address1"));
+                }
+                if (UtilValidate.isNotEmpty(billingAddress.getString("postalCode"))) {
+                    if (address.length() > 0) address.append(", ");
+                    address.append(billingAddress.getString("postalCode"));
+                }
+                if (UtilValidate.isNotEmpty(billingAddress.getString("city"))) {
+                    if (address.length() > 0) address.append(" ");
+                    address.append(billingAddress.getString("city"));
+                }
+                kupacAdresa = address.toString();
+            }
+        }
+        
         if (UtilValidate.isEmpty(invoiceItems)) {
             Debug.logError("No invoice items found for invoice: " + invoiceId, MODULE);
             return null;
@@ -349,8 +637,17 @@ public class FiscalInvoiceServices {
         requestBuilder.append("&tip_usluge=1"); // Constant service type
         requestBuilder.append("&tip_racuna=4"); // No type
         requestBuilder.append("&tip_kupca=1"); // B2C type
-        requestBuilder.append("&nacin_placanja=1"); // Transaction account
         
+        // Add customer information if available
+        if (UtilValidate.isNotEmpty(kupacNaziv)) {
+            requestBuilder.append("&kupac_naziv=").append(URLEncoder.encode(kupacNaziv, StandardCharsets.UTF_8));
+        }
+        if (UtilValidate.isNotEmpty(kupacAdresa)) {
+            requestBuilder.append("&kupac_adresa=").append(URLEncoder.encode(kupacAdresa, StandardCharsets.UTF_8));
+        }
+        requestBuilder.append("&nacin_placanja=1"); // Transaction account
+        requestBuilder.append("&rok_placanja=").append(java.time.LocalDate.now().toString());
+
         // Process invoice items
         int itemIndex = 1;
         Debug.logInfo("Total invoice items found: " + invoiceItems.size(), MODULE);
@@ -377,10 +674,7 @@ public class FiscalInvoiceServices {
             if (quantity == null || amount == null) {
                 continue;
             }
-            
-            // Calculate net price (amount is already net in OFBiz)
-            BigDecimal netPrice = amount.divide(quantity, 2, RoundingMode.HALF_UP);
-            
+
             // Handle shipping charges with default description
             if ("ITM_SHIPPING_CHARGES".equals(invoiceItemTypeId)) {
                 description = "Troškovi dostave";
@@ -409,7 +703,7 @@ public class FiscalInvoiceServices {
             requestBuilder.append("&usluga=").append(itemIndex);
             requestBuilder.append("&opis_usluge_").append(itemIndex).append("=").append(URLEncoder.encode(description, StandardCharsets.UTF_8));
             requestBuilder.append("&kolicina_").append(itemIndex).append("=").append(quantity.setScale(4, RoundingMode.HALF_UP).toString().replace('.', ','));
-            requestBuilder.append("&cijena_").append(itemIndex).append("=").append(netPrice.setScale(2, RoundingMode.HALF_UP).toString().replace('.', ','));
+            requestBuilder.append("&cijena_").append(itemIndex).append("=").append(amount.setScale(2, RoundingMode.HALF_UP).toString().replace('.', ','));
             requestBuilder.append("&porez_stopa_").append(itemIndex).append("=25"); // Constant VAT rate
             requestBuilder.append("&popust_").append(itemIndex).append("=0"); // No discount for now
             requestBuilder.append("&jed_mjera_").append(itemIndex).append("=1"); // 1 = -
@@ -419,7 +713,7 @@ public class FiscalInvoiceServices {
         
         // Add other constant parameters
         requestBuilder.append("&jezik_racuna=1"); // Croatian
-        requestBuilder.append("&valuta_racuna=1"); // EUR
+        requestBuilder.append("&valuta_racuna=14"); // EUR (numeric ID)
         requestBuilder.append("&tecaj=1"); // EUR to EUR rate
         
         // Add optional parameters
