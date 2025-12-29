@@ -645,7 +645,12 @@ public class FiscalInvoiceServices {
         if (UtilValidate.isNotEmpty(kupacAdresa)) {
             requestBuilder.append("&kupac_adresa=").append(URLEncoder.encode(kupacAdresa, StandardCharsets.UTF_8));
         }
-        requestBuilder.append("&nacin_placanja=1"); // Transaction account
+        // For testing purposes: use payment method 3 if current date is before 2026-01-01
+        if (java.time.LocalDate.now().isBefore(java.time.LocalDate.of(2026, 1, 1))) {
+            requestBuilder.append("&nacin_placanja=3"); // Test payment method
+        } else {
+            requestBuilder.append("&nacin_placanja=1"); // Transaction account
+        }
         requestBuilder.append("&rok_placanja=").append(java.time.LocalDate.now().toString());
 
         // Process invoice items

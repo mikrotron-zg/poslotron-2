@@ -574,7 +574,11 @@ under the License.
                     <#if fiscalInvoice?has_content>
                       <#-- Fiscal invoice exists -->
                       <#if fiscalInvoice.fiscalInvoiceIdExternal?has_content>
-                        <#-- TODO: External fiscal invoice download button -->
+                        <#if fiscalInvoice.fiscalInvoicePdfExternal?has_content>
+                          <a target="_BLANK" href="${fiscalInvoice.fiscalInvoicePdfExternal}" class="buttontext">${fiscalInvoice.fiscalInvoiceNumber} (${uiLabelMap.CommonPdf})</a>
+                        <#else>
+                          ${fiscalInvoice.fiscalInvoiceNumber}
+                        </#if>
                       <#else>
                         <a target="_BLANK" href="<@ofbizUrl controlPath="/accounting/control">invoice.pdf?invoiceId=${invoice}</@ofbizUrl>" class="buttontext">${fiscalInvoice.fiscalInvoiceNumber} (${uiLabelMap.CommonPdf})</a></div>
                       </#if>
