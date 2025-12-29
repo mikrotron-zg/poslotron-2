@@ -668,9 +668,9 @@ public class FiscalInvoiceServices {
 
             // Skip VAT tax items and other tax-related items
             if ("ITM_VAT_TAX".equals(invoiceItemTypeId)
-                || "ITM_SALES_TAX".equals(invoiceItemTypeId)
-                || invoiceItemTypeId != null && invoiceItemTypeId.contains("TAX")
-                || description != null && (description.contains("PDV") || description.contains("VAT") || description.contains("porez"))) {
+                    || "ITM_SALES_TAX".equals(invoiceItemTypeId)
+                    || invoiceItemTypeId != null && invoiceItemTypeId.contains("TAX")
+                    || description != null && (description.contains("PDV") || description.contains("VAT") || description.contains("porez"))) {
                 Debug.logInfo("Skipping tax item: " + invoiceItemTypeId + " with description: " + description, MODULE);
                 continue;
             }
@@ -707,7 +707,8 @@ public class FiscalInvoiceServices {
             // Add item parameters
             requestBuilder.append("&usluga=").append(itemIndex);
             requestBuilder.append("&opis_usluge_").append(itemIndex).append("=").append(URLEncoder.encode(description, StandardCharsets.UTF_8));
-            requestBuilder.append("&kolicina_").append(itemIndex).append("=").append(quantity.setScale(4, RoundingMode.HALF_UP).toString().replace('.', ','));
+            requestBuilder.append("&kolicina_").append(itemIndex).append("=")
+                    .append(quantity.setScale(4, RoundingMode.HALF_UP).toString().replace('.', ','));
             requestBuilder.append("&cijena_").append(itemIndex).append("=")
                     .append(amount.setScale(2, RoundingMode.HALF_UP).toString().replace('.', ','));
             requestBuilder.append("&porez_stopa_").append(itemIndex).append("=25"); // Constant VAT rate
