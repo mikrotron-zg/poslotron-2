@@ -294,6 +294,16 @@ public class FiscalInvoiceServices {
             return ServiceUtil.returnError("Failed to generate fiscal invoice request");
         }
         
+        // Save request to FiscalServiceApiRequest entity
+        GenericValue fiscalServiceApiRequest = delegator.makeValue("FiscalServiceApiRequest");
+        fiscalServiceApiRequest.set("fiscalServiceApiRequestId", delegator.getNextSeqId("FiscalServiceApiRequest"));
+        fiscalServiceApiRequest.set("fiscalServiceApiId", fiscalServiceApiId);
+        fiscalServiceApiRequest.set("invoiceId", invoiceId);
+        fiscalServiceApiRequest.set("requestRawText", apiRequest);
+        fiscalServiceApiRequest.create();
+        
+        Debug.logInfo("Saved fiscal API request to database with ID: " + fiscalServiceApiRequest.getString("fiscalServiceApiRequestId"), MODULE);
+        
         // Log the generated request
         Debug.logInfo("Generated fiscal invoice request: " + apiRequest, MODULE);
         
