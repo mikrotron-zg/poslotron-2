@@ -40,8 +40,8 @@ under the License.
       <br/>
       <div class="form-row">
         <div class="form-field">
-          <input type="hidden" name="isPayed" value="Y"/>
-          <input type="checkbox" id="isPayed" checked="checked" onclick="this.form.isPayed.value = this.checked ? 'Y' : 'N'" />
+          <input type="hidden" name="isPayed" id="isPayedHidden" value="Y"/>
+          <input type="checkbox" id="isPayed" checked="checked" onchange="document.getElementById('isPayedHidden').value = this.checked ? 'Y' : 'N'" />
           <label for="isPayed" style="display: inline; margin-left: 5px;">${uiLabelMap.AccountingInvoicePaid}</label>
         </div>
       </div>
@@ -76,6 +76,11 @@ under the License.
         var dialog = jQuery(this);
         var addFiscalInvoice = jQuery("#addFiscalInvoice");
         var buttons = dialog.dialog('option', 'buttons');
+        
+        // Ensure isPayed value is set correctly before submission
+        var isPayedCheckbox = jQuery("#isPayed");
+        var isPayedHidden = jQuery("#isPayedHidden");
+        isPayedHidden.val(isPayedCheckbox.prop('checked') ? 'Y' : 'N');
         
         // Disable all buttons
         dialog.dialog('option', 'buttons', {});
