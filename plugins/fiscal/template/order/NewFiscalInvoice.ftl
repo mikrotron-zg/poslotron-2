@@ -32,6 +32,11 @@ under the License.
         <label for="poNumber">${uiLabelMap.OrderPurchaseOrderNumber}</label>
         <div class="form-field"><input type="text" name="poNumber" id="poNumber" value="" size="50" maxlength="255" /></div>
       </div>
+    <#else> <#-- Solo API -->
+      <div class="form-row">
+        <strong>${uiLabelMap.FiscalB2CInfoMessage}</strong>
+      </div>
+    </#if>
       <br/>
       <div class="form-row">
         <div class="form-field">
@@ -40,12 +45,7 @@ under the License.
           <label for="isPayed" style="display: inline; margin-left: 5px;">${uiLabelMap.AccountingInvoicePaid}</label>
         </div>
       </div>
-    <#else> <#-- Solo API -->
       <div class="form-row">
-        <strong>${uiLabelMap.FiscalB2CInfoMessage}</strong>
-      </div>
-    </#if>
-    <div class="form-row">
       <input id="submitAddFiscalInvoice" type="button" value="${uiLabelMap.FiscalIssueInvoice}" class="large-button" style="display:none"/>
       <form action="">
         <input class="popup_closebox buttontext large-button" type="button" value="${uiLabelMap.CommonClose}" style="display:none"/>

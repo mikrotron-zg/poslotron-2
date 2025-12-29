@@ -19,7 +19,11 @@
 package org.apache.ofbiz.fiscal.invoice;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -208,7 +212,7 @@ public class FiscalInvoiceServices {
     }
     
     /**
-     * Process B2C fiscal invoice - placeholder for external API call
+     * Process B2C fiscal invoice - external API call
      */
     private static Map<String, Object> processB2CFiscalInvoice(Delegator delegator, Map<String, Object> context, GenericValue invoice) 
             throws GenericEntityException {
@@ -261,41 +265,40 @@ public class FiscalInvoiceServices {
             return ServiceUtil.returnError("Fiscal store not found: " + fiscalStoreId);
         }
         
-        // Generate next invoice number
-        String lastInvoiceNumber = fiscalPaymentTerminal.getString("lastInvoiceNumber");
-        Long nextInvoiceNumber = 1L;
+        // Get fiscal service and API details
+        String fiscalServiceId = fiscalPaymentTerminal.getString("fiscalServiceId");
+        GenericValue fiscalService = EntityQuery.use(delegator)
+                .from("FiscalService")
+                .where("fiscalServiceId", fiscalServiceId)
+                .queryOne();
         
-        if (UtilValidate.isNotEmpty(lastInvoiceNumber)) {
-            try {
-                nextInvoiceNumber = Long.parseLong(lastInvoiceNumber) + 1;
-            } catch (NumberFormatException e) {
-                Debug.logWarning("Invalid lastInvoiceNumber format, starting from 1", MODULE);
-            }
+        if (fiscalService == null) {
+            return ServiceUtil.returnError("Fiscal service not found: " + fiscalServiceId);
         }
         
-        // Build fiscal invoice number with format: nextInvoiceNumber-fiscalStoreLabel-fiscalPaymentTerminalLabel
-        String fiscalStoreLabel = fiscalStore.getString("fiscalStoreLabel");
-        String fiscalPaymentTerminalLabel = fiscalPaymentTerminal.getString("fiscalPaymentTerminalLabel");
+        String fiscalServiceApiId = fiscalService.getString("fiscalServiceApiId");
+        GenericValue fiscalServiceApi = EntityQuery.use(delegator)
+                .from("FiscalServiceApi")
+                .where("fiscalServiceApiId", fiscalServiceApiId)
+                .queryOne();
         
-        StringBuilder fiscalInvoiceNumberBuilder = new StringBuilder();
-        fiscalInvoiceNumberBuilder.append(nextInvoiceNumber.toString());
-        if (UtilValidate.isNotEmpty(fiscalStoreLabel)) {
-            fiscalInvoiceNumberBuilder.append("-").append(fiscalStoreLabel);
-        }
-        if (UtilValidate.isNotEmpty(fiscalPaymentTerminalLabel)) {
-            fiscalInvoiceNumberBuilder.append("-").append(fiscalPaymentTerminalLabel);
+        if (fiscalServiceApi == null) {
+            return ServiceUtil.returnError("Fiscal service API not found: " + fiscalServiceApiId);
         }
         
-        String fiscalInvoiceNumber = fiscalInvoiceNumberBuilder.toString();
+        // Generate API request
+        String isPayed = (String) context.get("isPayed");
+        String apiRequest = generateFiscalInvoiceRequest(delegator, invoiceId, orderId, isPayed, fiscalServiceApi);
         
-        // TODO: Implement B2C fiscal invoice processing
-        // This should involve:
-        // 1. Prepare data for external API call
-        // 2. Call external fiscal service API using fiscalPaymentTerminalId
-        // 3. Process response and create FiscalInvoice record
-        // 4. Handle API errors and retries
+        if (apiRequest == null) {
+            return ServiceUtil.returnError("Failed to generate fiscal invoice request");
+        }
         
-        Debug.logInfo("B2C fiscal invoice processing not yet implemented - placeholder for order: " + orderId, MODULE);
+        // Log the generated request
+        Debug.logInfo("Generated fiscal invoice request: " + apiRequest, MODULE);
+        
+        // TODO: Send request to external API and process response
+        // This will be implemented in the next step
         
         // For now, return a placeholder response
         Map<String, Object> result = ServiceUtil.returnSuccess();
@@ -303,5 +306,124 @@ public class FiscalInvoiceServices {
         result.put("fiscalInvoiceIdExternal", "EXTERNAL_API_PLACEHOLDER");
         
         return result;
+    }
+    
+    /**
+     * Generate fiscal invoice API request string for Solo API
+     */
+    private static String generateFiscalInvoiceRequest(Delegator delegator, String invoiceId, String orderId, String isPayed, GenericValue fiscalServiceApi) 
+            throws GenericEntityException {
+        
+        String apiToken = fiscalServiceApi.getString("apiToken");
+        if (UtilValidate.isEmpty(apiToken)) {
+            Debug.logError("API token is missing for fiscal service API", MODULE);
+            return null;
+        }
+        
+        // Get invoice items, excluding VAT tax items
+        List<GenericValue> invoiceItems = EntityQuery.use(delegator)
+                .from("InvoiceItem")
+                .where("invoiceId", invoiceId)
+                .queryList();
+        
+        if (UtilValidate.isEmpty(invoiceItems)) {
+            Debug.logError("No invoice items found for invoice: " + invoiceId, MODULE);
+            return null;
+        }
+        
+        // Build request parameters
+        StringBuilder requestBuilder = new StringBuilder();
+        
+        // Required parameters
+        requestBuilder.append("token=").append(apiToken);
+        requestBuilder.append("&tip_usluge=1"); // Constant service type
+        requestBuilder.append("&tip_racuna=4"); // No type
+        requestBuilder.append("&tip_kupca=1"); // B2C type
+        requestBuilder.append("&nacin_placanja=1"); // Transaction account
+        
+        // Process invoice items
+        int itemIndex = 1;
+        Debug.logInfo("Total invoice items found: " + invoiceItems.size(), MODULE);
+        
+        for (GenericValue item : invoiceItems) {
+            String invoiceItemTypeId = item.getString("invoiceItemTypeId");
+            String description = item.getString("description");
+            BigDecimal quantity = item.getBigDecimal("quantity");
+            BigDecimal amount = item.getBigDecimal("amount");
+            
+            Debug.logInfo("Processing invoice item: type=" + invoiceItemTypeId + ", description=" + description + 
+                         ", quantity=" + quantity + ", amount=" + amount, MODULE);
+            
+            // Skip VAT tax items and other tax-related items
+            if ("ITM_VAT_TAX".equals(invoiceItemTypeId) || 
+                "ITM_SALES_TAX".equals(invoiceItemTypeId) ||
+                invoiceItemTypeId != null && invoiceItemTypeId.contains("TAX") ||
+                description != null && (description.contains("PDV") || description.contains("VAT") || description.contains("porez"))) {
+                Debug.logInfo("Skipping tax item: " + invoiceItemTypeId + " with description: " + description, MODULE);
+                continue;
+            }
+            
+            // Skip items with no quantity or amount
+            if (quantity == null || amount == null) {
+                continue;
+            }
+            
+            // Calculate net price (amount is already net in OFBiz)
+            BigDecimal netPrice = amount.divide(quantity, 2, RoundingMode.HALF_UP);
+            
+            // Handle shipping charges with default description
+            if ("ITM_SHIPPING_CHARGES".equals(invoiceItemTypeId)) {
+                description = "Troškovi dostave";
+            }
+            
+            // Use description from product if not available
+            if (UtilValidate.isEmpty(description)) {
+                String productId = item.getString("productId");
+                if (UtilValidate.isNotEmpty(productId)) {
+                    GenericValue product = EntityQuery.use(delegator)
+                            .from("Product")
+                            .where("productId", productId)
+                            .queryOne();
+                    if (product != null) {
+                        description = product.getString("productName");
+                    }
+                }
+            }
+            
+            // Fallback description if still empty
+            if (UtilValidate.isEmpty(description)) {
+                description = "Proizvod/Usluga";
+            }
+            
+            // Add item parameters
+            requestBuilder.append("&usluga=").append(itemIndex);
+            requestBuilder.append("&opis_usluge_").append(itemIndex).append("=").append(URLEncoder.encode(description, StandardCharsets.UTF_8));
+            requestBuilder.append("&kolicina_").append(itemIndex).append("=").append(quantity.setScale(4, RoundingMode.HALF_UP).toString().replace('.', ','));
+            requestBuilder.append("&cijena_").append(itemIndex).append("=").append(netPrice.setScale(2, RoundingMode.HALF_UP).toString().replace('.', ','));
+            requestBuilder.append("&porez_stopa_").append(itemIndex).append("=25"); // Constant VAT rate
+            requestBuilder.append("&popust_").append(itemIndex).append("=0"); // No discount for now
+            requestBuilder.append("&jed_mjera_").append(itemIndex).append("=1"); // 1 = -
+            
+            itemIndex++;
+        }
+        
+        // Add other constant parameters
+        requestBuilder.append("&jezik_racuna=1"); // Croatian
+        requestBuilder.append("&valuta_racuna=1"); // EUR
+        requestBuilder.append("&tecaj=1"); // EUR to EUR rate
+        
+        // Add optional parameters
+        if (UtilValidate.isNotEmpty(orderId)) {
+            requestBuilder.append("&napomene=").append(URLEncoder.encode("Narudžba " + orderId, StandardCharsets.UTF_8));
+        }
+        
+        // Add status based on isPayed field
+        if ("Y".equals(isPayed)) {
+            requestBuilder.append("&status=5"); // Paid
+        } else {
+            requestBuilder.append("&status=1"); // Open
+        }
+        
+        return requestBuilder.toString();
     }
 }
