@@ -3413,7 +3413,7 @@
         <value xml:lang="en">Invoice Shipping and Handling (Sales)</value>
         <value xml:lang="fr">Frais d'expédition facturés (ventes)</value>
         <value xml:lang="hi-IN">चालान शिपिंग और हैंडलिंग</value>
-        <value xml:lang="hr">Pakiranje i isporuka</value>
+        <value xml:lang="hr">Troškovi dostave</value>
         <value xml:lang="it">Fattura Spese di Spedizione e Imballaggio</value>
         <value xml:lang="ja">請求 配送および取扱手数料</value>
         <value xml:lang="nl">VerkoopFactuur - Vracht</value>
@@ -3647,7 +3647,7 @@
         <value xml:lang="en">Invoice Item Shipping and Handling (Sales)</value>
         <value xml:lang="fr">Frais d'expédition sur ligne de facturation (ventes)</value>
         <value xml:lang="hi-IN">चालान मद शिपिंग और हैंडलिंग</value>
-        <value xml:lang="hr">Pakiranje i isporuka</value>
+        <value xml:lang="hr">Troškovi dostave</value>
         <value xml:lang="it">Fattura Riga Spese di Spedizione e Imballaggio</value>
         <value xml:lang="ja">請求 アイテム配送および取扱手数料</value>
         <value xml:lang="nl">VerkoopFactuurregel - Vracht</value>

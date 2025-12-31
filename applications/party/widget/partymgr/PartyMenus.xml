@@ -48,7 +48,7 @@
                 <parameter param-name="create_new" value="Y"/>
              </link>
          </menu-item>
-         <menu-item name="newPartyGroup" title="${uiLabelMap.CommonNew} ${uiLabelMap.CommonGroup}">
+         <menu-item name="newPartyGroup" title="${uiLabelMap.PartyCreateNewPartyGroup}">
              <condition>
                  <or>
                      <if-has-permission permission="PARTYMGR" action="_CREATE"/>

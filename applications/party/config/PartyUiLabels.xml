@@ -611,7 +611,7 @@
         <value xml:lang="es">Nombre del grupo</value>
         <value xml:lang="fr">Nom du groupe d'acteurs</value>
         <value xml:lang="hi-IN">समूह का नाम</value>
-        <value xml:lang="hr">Naziv grupe</value>
+        <value xml:lang="hr">Naziv</value>
         <value xml:lang="it">Nome gruppo</value>
         <value xml:lang="ja">グループ名称</value>
         <value xml:lang="nl">Groepnaam</value>
@@ -631,7 +631,7 @@
         <value xml:lang="es">Nombre local del grupo</value>
         <value xml:lang="fr">Nom de groupe local</value>
         <value xml:lang="hi-IN">स्थानीय समूह का नाम</value>
-        <value xml:lang="hr">Naziv grupe (lokalno)</value>
+        <value xml:lang="hr">Naziv (lokalno)</value>
         <value xml:lang="it">Nome gruppo locale</value>
         <value xml:lang="ja">グループ名称(現地)</value>
         <value xml:lang="nl">Groepnaam lokaal</value>
@@ -2522,7 +2522,7 @@
         <value xml:lang="es">Editar información del grupo</value>
         <value xml:lang="fr">Modifier l'information du groupe</value>
         <value xml:lang="hi-IN">समूह की जानकारी संपादित करें</value>
-        <value xml:lang="hr">Uredi informacije o grupi</value>
+        <value xml:lang="hr">Uredi informacije o poslovnom subjektu</value>
         <value xml:lang="it">Aggiorna Informazioni Gruppo</value>
         <value xml:lang="ja">グループ情報を編集</value>
         <value xml:lang="nl">Groepinfo wijzigen</value>
@@ -6111,7 +6111,7 @@
         <value xml:lang="es">Crear nuevo grupo de clasificación</value>
         <value xml:lang="fr">Créer une nouvelle classification</value>
         <value xml:lang="hi-IN">पार्टी का नया वर्गीकरण समूह बनाएँ</value>
-        <value xml:lang="hr">Stvori novu grupu klasifikacija sudionika</value>
+        <value xml:lang="hr">Nova grupa klasifikacije sudionika</value>
         <value xml:lang="it">Nuovo gruppo classificazione soggetti</value>
         <value xml:lang="ja">新規取引先分類グループを作成</value>
         <value xml:lang="nl">Nieuw kenmerkgroep voor relatie</value>
@@ -6130,7 +6130,7 @@
         <value xml:lang="es">Nuevo grupo de participantes</value>
         <value xml:lang="fr">Créer un nouveau groupe d'acteurs</value>
         <value xml:lang="hi-IN">पार्टी का नया समूह बनाएँ</value>
-        <value xml:lang="hr">Stvori novu pravnu osobu</value>
+        <value xml:lang="hr">Novi poslovni subjekt</value>
         <value xml:lang="it">Creare nuovo gruppo soggetto</value>
         <value xml:lang="ja">新規取引先グループ/法人を作成</value>
         <value xml:lang="nl">Nieuwe relatiegroep</value>
@@ -6150,7 +6150,7 @@
         <value xml:lang="es">Nueva persona</value>
         <value xml:lang="fr">Créer une nouvelle personne</value>
         <value xml:lang="hi-IN">नई व्यक्ति(Person) बनाएँ</value>
-        <value xml:lang="hr">Stvori novu fizičku osobu</value>
+        <value xml:lang="hr">Nova osoba</value>
         <value xml:lang="it">Creare nuova persona</value>
         <value xml:lang="ja">新規個人を作成</value>
         <value xml:lang="nl">Nieuw contactpersoon</value>
@@ -7602,7 +7602,7 @@
         <value xml:lang="es">Nombre del grupo</value>
         <value xml:lang="fr">Nom du groupe</value>
         <value xml:lang="hi-IN">समूह का नाम</value>
-        <value xml:lang="hr">Naziv grupe</value>
+        <value xml:lang="hr">Naziv</value>
         <value xml:lang="it">Nome gruppo</value>
         <value xml:lang="ja">グループ名称</value>
         <value xml:lang="nl">Groepnaam</value>
@@ -7622,7 +7622,7 @@
         <value xml:lang="es">Falta nombre del grupo</value>
         <value xml:lang="fr">Nom du groupe absent</value>
         <value xml:lang="hi-IN">समूह का नाम गायब है</value>
-        <value xml:lang="hr">Nedostaje naziv grupe</value>
+        <value xml:lang="hr">Nedostaje naziv</value>
         <value xml:lang="it">Nome gruppo mancante</value>
         <value xml:lang="ja">グループ名称が正しくありません</value>
         <value xml:lang="nl">Groepnaam ontbreekt</value>
@@ -10915,7 +10915,7 @@
         <value xml:lang="es">Nombre del grupo</value>
         <value xml:lang="fr">Nom du groupe d'acteurs</value>
         <value xml:lang="hi-IN">पार्टी समूह का नाम</value>
-        <value xml:lang="hr">Naziv pravne osobe</value>
+        <value xml:lang="hr">Naziv</value>
         <value xml:lang="it">Nome gruppo soggetti</value>
         <value xml:lang="ja">取引先グループ名称</value>
         <value xml:lang="nl">Naam relatiegroep</value>
