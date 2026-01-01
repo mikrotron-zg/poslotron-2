@@ -75,6 +75,34 @@ under the License.
                 </fo:list-item>
             </fo:list-block>
         </#if>
+        <#if (sendingPartyTaxId!) == "43227166836">
+            <fo:list-block provisional-distance-between-starts=".5in">
+                <fo:list-item>
+                    <fo:list-item-label>
+                        <fo:block>Uprava društva: Tomislav Preksavec</fo:block>
+                    </fo:list-item-label>
+                    <fo:list-item-body start-indent="body-start()">
+                        <fo:block></fo:block>
+                    </fo:list-item-body>
+                </fo:list-item>
+                <fo:list-item>
+                    <fo:list-item-label>
+                        <fo:block>MBS 080923147 Trgovački sud u Zagrebu</fo:block>
+                    </fo:list-item-label>
+                    <fo:list-item-body start-indent="body-start()">
+                        <fo:block></fo:block>
+                    </fo:list-item-body>
+                </fo:list-item>
+                <fo:list-item>
+                    <fo:list-item-label>
+                        <fo:block>Temeljni kapital 2.650,00 € uplaćen u cijelosti</fo:block>
+                    </fo:list-item-label>
+                    <fo:list-item-body start-indent="body-start()">
+                        <fo:block></fo:block>
+                    </fo:list-item-body>
+                </fo:list-item>
+            </fo:list-block>
+        </#if>
     </#if>
 </fo:block>
 </#escape>
