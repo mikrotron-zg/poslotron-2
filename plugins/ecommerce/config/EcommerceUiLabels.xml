@@ -886,20 +886,20 @@
     <value xml:lang="ro">Acest website folosește cookie-uri</value>
     </property>
     <property key="EcommerceCookieConsentMessage">
-        <value xml:lang="en">We use cookies to provide our services. By using this website, you agree to this.</value>
-        <value xml:lang="hr">Koristimo kolačiće za pružanje naših usluga. Korištenjem ove web stranice pristajete na njihovu upotrebu.</value>
+        <value xml:lang="en">We value your privacy, we only use functional cookies necessary for basic website functions. We do not use cookies for tracking or advertising. You can find out more about our privacy policy</value>
+        <value xml:lang="hr">Cijenimo Vašu privatnost, koristimo samo funkcionalne kolačiće (engl. cookies) potrebne za osnovne funkcije web stranice. Ne koristimo kolačiće za praćenje ili oglašavanje. Više o politici privatnosti možete doznati</value>
         <value xml:lang="nl">Wij gebruiken cookies om onze diensten te leveren. Door gebruik te maken van deze webshop, gaat u hiermee accoord.</value>
     <value xml:lang="ro">Folosim cookie-uri pentru functionarea serviciilor noastre. Prin utilizarea acestui website, sunteți de acord cu acest lucru.</value>
     </property>
     <property key="EcommerceCookieConsentMoreLinkLabel">
-        <value xml:lang="en">More</value>
-        <value xml:lang="hr">Više</value>
+        <value xml:lang="en">here.</value>
+        <value xml:lang="hr">ovdje.</value>
         <value xml:lang="nl">Meer..</value>
     <value xml:lang="ro">Mai mult</value>
     </property>
     <property key="EcommerceCookieConsentAcceptButtonLabel">
-        <value xml:lang="en">Accept</value>
-        <value xml:lang="hr">Prihvati</value>
+        <value xml:lang="en">OK</value>
+        <value xml:lang="hr">OK</value>
         <value xml:lang="nl">Accepteren</value>
     <value xml:lang="ro">Acceptă</value>
     </property>

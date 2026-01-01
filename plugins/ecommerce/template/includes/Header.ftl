@@ -22,7 +22,7 @@ $(document).ready(function() {
     jQuery('body').bsgdprcookies({
         title: '${uiLabelMap.EcommerceCookieConsentTitle}',
         message: '${uiLabelMap.EcommerceCookieConsentMessage}',
-        moreLink: '/ecommerce/control/CookiePolicy',
+        moreLink: '/policies#privacy',
         moreLinkLabel: ' ${uiLabelMap.EcommerceCookieConsentMoreLinkLabel}',
         acceptButtonLabel: '${uiLabelMap.EcommerceCookieConsentAcceptButtonLabel}',
         advancedButtonLabel: '${uiLabelMap.EcommerceCookieConsentAdvancedButtonLabel}',
