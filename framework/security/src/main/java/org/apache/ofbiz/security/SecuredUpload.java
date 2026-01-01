@@ -124,6 +124,8 @@ public class SecuredUpload {
     private static final Integer MAXLINELENGTH = UtilProperties.getPropertyAsInteger("security", "maxLineLength", 0);
     private static final Boolean ALLOWSTRINGCONCATENATIONINUPLOADEDFILES =
             UtilProperties.getPropertyAsBoolean("security", "allowStringConcatenationInUploadedFiles", false);
+    private static final Boolean IMAGE_SANITIZE_ENABLED =
+            UtilProperties.getPropertyAsBoolean("security", "image.sanitize.enabled", true);
 
     // "(" and ")" for duplicates files
     private static final String FILENAMEVALIDCHARACTERS_DUPLICATES =
@@ -447,21 +449,30 @@ public class SecuredUpload {
                 int originalWidth = originalImage.getWidth(null);
                 int originalHeight = originalImage.getHeight(null);
 
-                // Resize the image by removing 1px on Width and Height
-                Image resizedImage = originalImage.getScaledInstance(originalWidth - 1, originalHeight - 1, Image.SCALE_SMOOTH);
+                BufferedImage imageToWrite;
+                
+                // Only sanitize if enabled in configuration
+                if (IMAGE_SANITIZE_ENABLED) {
+                    // Resize the image by removing 1px on Width and Height
+                    Image resizedImage = originalImage.getScaledInstance(originalWidth - 1, originalHeight - 1, Image.SCALE_SMOOTH);
 
-                // Resize the resized image by adding 1px on Width and Height - In fact set image to is initial size
-                Image initialSizedImage = resizedImage.getScaledInstance(originalWidth, originalHeight, Image.SCALE_SMOOTH);
+                    // Resize the resized image by adding 1px on Width and Height - In fact set image to is initial size
+                    Image initialSizedImage = resizedImage.getScaledInstance(originalWidth, originalHeight, Image.SCALE_SMOOTH);
 
-                // Save image by overwriting the provided source file content
-                int type = originalImage.getTransparency() == Transparency.OPAQUE ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
-                BufferedImage sanitizedImage = new BufferedImage(initialSizedImage.getWidth(null), initialSizedImage.getHeight(null), type);
-                Graphics bg = sanitizedImage.getGraphics();
-                bg.drawImage(initialSizedImage, 0, 0, null);
-                bg.dispose();
+                    // Save image by overwriting the provided source file content
+                    int type = originalImage.getTransparency() == Transparency.OPAQUE ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
+                    BufferedImage sanitizedImage = new BufferedImage(initialSizedImage.getWidth(null), initialSizedImage.getHeight(null), type);
+                    Graphics bg = sanitizedImage.getGraphics();
+                    bg.drawImage(initialSizedImage, 0, 0, null);
+                    bg.dispose();
+                    imageToWrite = sanitizedImage;
+                } else {
+                    // If sanitization is disabled, use original image to preserve quality
+                    imageToWrite = originalImage;
+                }
 
                 if (!fallbackOnApacheCommonsImaging) {
-                    ImageIO.write(sanitizedImage, formatName, fos);
+                    ImageIO.write(imageToWrite, formatName, fos);
                 } else {
                     ImageParser<?> imageParser;
                     // Handle only formats for which Apache Commons Imaging can successfully write (YES in Write column of the reference link)
@@ -482,7 +493,7 @@ public class SecuredUpload {
                     default:
                         throw new IOException("Format of the original image " + fileName + " is not supported for write operation !");
                     }
-                    imageParser.writeImage(sanitizedImage, fos, null);
+                    imageParser.writeImage(imageToWrite, fos, null);
                 }
                 // Set state flag
                 safeState = true;
