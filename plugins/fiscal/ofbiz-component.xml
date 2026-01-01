@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ofbiz-component name="fiscal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/ofbiz-component.xsd">
-    <resource-loader name="main" type="component"/>
-
     <!-- Dependencies on other components -->
     <depends-on component-name="order"/>
     <depends-on component-name="accounting"/>
+    
+    <resource-loader name="main" type="component"/>
 
     <entity-resource type="model" reader-name="main" loader="main" location="entitydef/fiscal-entitymodel.xml"/>
-    <service-resource type="model" reader-name="main" loader="main" location="servicedef/services.xml"/>
-    
     <!-- Load entity seed data -->
     <entity-resource type="data" reader-name="seed" loader="main" location="data/AdditionalGoodIdentificationTypeData.xml"/>
     <entity-resource type="data" reader-name="seed" loader="main" location="data/FiscalSeedData.xml"/>
+
+    <service-resource type="model" loader="main" location="servicedef/services.xml"/>
 
 </ofbiz-component>
