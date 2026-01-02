@@ -52,13 +52,13 @@ under the License.
           <h4>Može keš?</h4>
           <p>NE MOŽE!</p>
           <p>
-            Fiskalizacija, hvala, ne treba. Iako smo na tržnici, nemamo ni dućan ni blagajnu, nego samo ured.
+            Iako smo na tržnici, nemamo ni dućan ni blagajnu, nego samo ured.
             Ako nam baš banete na vrata, vjerojatno na pametnom telefonu imate nešto manje pametno mobilno
             bankarstvo pa sve možemo riješiti na licu mjesta: mi napravimo ponudu/narudžbu, vi napravite
-            uplatu i pošaljete potvrdu, mi izdamo račun i robu - i svi sretni i zadovoljni.
+            uplatu i pošaljete potvrdu (ili napravite instant plaćanje), mi izdamo račun i robu - i svi sretni i zadovoljni.
           <p>
           </p>
-            Ako baš hoćete hardcore verziju, imate preko puta RBA, na ćošku PBZ, malo dalje ZABA, još malo
+            Ako baš hoćete hardcore verziju, u blizini je PBZ, malo dalje ZABA, još malo
             dalje pošta: pokažete im narudžbenicu koju isprintamo i iskeširate se na šalteru.
           </p>
         </li>
@@ -76,7 +76,7 @@ under the License.
         <#else>
           <h4>How do I pay?</h4>
           <p>
-            Paypal, or wire transfer. Just select appropriate payment method during checkout process. Order PDF
+            Wire transfer is the only option right now, we're working on some improvements in this area. Order PDF
             available after checkout contains all the data required for wire transfer - our bank routing number and IBAN.
           </p>
         </#if>
@@ -131,7 +131,9 @@ under the License.
           <p>
             Nama je u stvari svejedno, nakon što se registrirate kao pravna osoba, popunite košaru i kliknete na 
             <b>Napravi narudžbu</b>, možete napraviti uplatu prema toj narudžbi i mi ćemo vam izdati račun na 
-            firmu (onaj čuveni <b>R1</b> koji već godinama ne postoji, ali svi ga tako zovemo).
+            firmu (onaj čuveni <b>R1</b> koji već godinama ne postoji, ali svi ga tako zovemo). <strong>Od 1.1.2026. za
+            poslovne subjekte izdaju se samo e-računi, ovo vrijedi ne samo za firme i institucije/ustanove, nego i
+            za obrte.</strong>
           </p>
           <p>
             Ako procedura u vašoj firmi/ustanovi/instituciji zahtjeva ponudu, onda nakon što natovarite košaricu
@@ -150,18 +152,15 @@ under the License.
             Izračunata cijena prikazuje se kada u narudžbi izaberete adresu dostave. Okvirno, cijene isporuke su:
             <ul class="pl-lg-5">
               <li><b>HP</b>: od 3,40 € naviše</li>
-              <li><b>DPD</b>: od 4,50 € naviše</li>
-              <li><b>GLS</b>: od 8,50 € naviše</li>
+              <li><b>DPD</b>: od 5,00 € naviše</li>
             </ul>
           </p>
           <p>
-            Za uplate vidljive na našem računu (ili ako pošaljete potvrdu na email) do 12 sati
-            pošiljku predajemo na dostavu do kraja dana. Ne brinite ako ste zakasnili, u 99%
-            slučajeva i za uplate iza 12 sati isporuka kreće isti dan :) Rokovi isporuke su:
+            Za uplate vidljive na našem računu (ili ako pošaljete potvrdu na email) do 11 sati
+            pošiljku predajemo na dostavu do kraja dana. Rokovi isporuke su:
             <ul class="pl-lg-5">
-              <li><b>HP</b>: 4-8 radnih dana</li>
+              <li><b>HP</b>: 4-8 radnih dana (ovo je manje-više lutrija, neki put je to 1-2 dana, neki put 3-4 tjedna)</li>
               <li><b>DPD</b>: 2-3 radna dana</li>
-              <li><b>GLS</b>: 1-2 radna dana</li>
             </ul>
           </p>
           <p>
@@ -179,8 +178,7 @@ under the License.
           <h4>What are shipping prices and terms?</h4>
           <p>
             Shipping prices are calculated automatically when you make an order. At this moment, shipping by post is the only option,
-            but this should be updated shortly. Your order will be sent as a registered letter if under 2 kg, or as an international
-            package if over 2 kg.
+            but this should be updated shortly. Your order will be sent as a registered letter if under 1 kg, this is currently the only option.
           </p>
           <p>
             Currently we ship to EU countries only. All EU countries are supported. EU is divided into 4 zones, and shipping may last 
@@ -216,7 +214,7 @@ under the License.
           <p>
             Vaši osnovni podaci trebaju nam za izdavanje računa, dostavu i da Vas možemo kontaktirati ako nešto
             ne možemo isporučiti odmah ili u slučaju bilo kakvih drugih problema. Ne brinite, vaše podatke čuvamo
-            kao oko u glavi, ne dijelimo ih ni sa kime i pristupiti im možemo samo mi. Ako ste i dalje zabrinuti,
+            kao oko u glavi, ne dijelimo ih ni sa kime (osim dostavne službe i knjigovodstva) i pristupiti im možemo samo mi. Ako ste i dalje zabrinuti,
             provjerite našu <a href="<@ofbizUrl>policies</@ofbizUrl>#privacy">Izjavu o privatnosti</a>.
           </p>
         <#else>
@@ -224,7 +222,7 @@ under the License.
           <p>
             We need your basic data for invoicing, delivery and to be able to contact you if we cannot deliver 
             some product immediately or in case of any other problems. Don't worry, we keep your data safe, we don't 
-            share it with anyone and only we can access it. If you are still concerned, please check our 
+            share it with anyone accept for delivery service and accounting and only we can access it. If you are still concerned, please check our
             <a href="<@ofbizUrl>policies</@ofbizUrl>#privacy">Privacy Statement</a>.
           </p>
         </#if>

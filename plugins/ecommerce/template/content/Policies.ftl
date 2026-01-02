@@ -130,9 +130,8 @@ under the License.
             Uplate prema narudžbi ili ponudi primamo u eurima (EUR) isključivo na žiro račun: <br>
             <b>IBAN HR8023400091110675464</b><br>
             otvoren kod Privredne banke Zagreb. Plaćanje možete izvršiti općom uplatnicom, internet
-            ili mobilnim bankarstvom, kao i putem servisa za plaćanje (npr. PayPal ili Aircash). Sva 
-            plaćanja su jednokratna, plaćanje nije moguće u ratama. Uplate u gotovini ili karticama 
-            nismo u mogućnosti primiti.
+            ili mobilnim bankarstvom. Sva plaćanja su jednokratna, plaćanje nije moguće u ratama.
+            Uplate u gotovini ili karticama nismo u mogućnosti primiti.
           </p>
           <p>
             Proizvode isporučujemo po zaprimljenoj uplati. Ako naručenu robu preuzimate osobno u našem uredu,
@@ -148,8 +147,8 @@ under the License.
           <p>
             We accept payments according to the order or offer in euros (EUR) exclusively to the company bank account:<br>
             <b>IBAN HR8023400091110675464</b><br>
-            at Privredna banka Zagreb. You can make the payment by general money order, internet or mobile banking, as via 
-            a payment service (e.g. PayPal or Aircash). All payments are one-time, payment in installments is not possible. 
+            at Privredna banka Zagreb. You can make the payment by general money order, internet or mobile banking.
+            All payments are one-time, payment in installments is not possible.
             We are unable to accept cash or card payments.
           </p>
           <p>
@@ -192,8 +191,8 @@ under the License.
             nikakav razlog, a za ostvarivanje prava na povrat robe u zamjenu za novac potrebno je poslati obavijest 
             o povratu robe na e-mail <a href="mailto:diykits.shop@mikrotron.hr">diykits.shop@mikrotron.hr</a> i neoštećeni proizvod 
             poslati na našu adresu u originalnom pakiranju i sa svom opremom i dokumentacijom s kojim je proizvod bio 
-            originalno isporučen. Troškove pošiljke u slučaju povrata i zamjene snosi kupac. Mikrotron će izvršiti 
-            povrat uplate (uključujući i originalne troškove isporuke) nakon zaprimanja i provjere vraćenog proizvoda.
+            originalno isporučen. Troškove pošiljke u slučaju povrata snosi kupac. Mikrotron će izvršiti
+            povrat uplate u visini originalno uplaćene vrijednosti robe nakon zaprimanja i provjere vraćenog proizvoda.
           </p>
         <#else>
           <h4>5. Returns</h4>
@@ -203,36 +202,38 @@ under the License.
             return of the goods, and to exercise the right to return the goods in exchange for money, it is necessary 
             to send a notification about the return of the goods to e-mail <a href="mailto:diykits.shop@mikrotron.hr">diykits.shop@mikrotron.hr</a>
             and send the undamaged product to our address in the original packaging and with all equipment and the 
-            documentation with which the product was originally delivered. Shipping costs in case of returns and exchanges 
-            are borne by the buyer. Mikrotron will issue a refund (including original shipping costs) upon receipt and 
-            inspection of the returned product.
+            documentation with which the product was originally delivered. Shipping costs in case of returns
+            are borne by the buyer. Mikrotron will refund the payment in the amount of the originally paid value of the
+            goods after receiving and checking the returned product.
           </p>
         </#if>
       </li>
       <li id="complaints" class="list-group-item">
         <#if (locale == "hr")>
-          <h4>6. Reklamacije, garancija i servis</h4>
+          <h4>6. Reklamacije, jamstvo i servis</h4>
           <p>
             Reklamacije primamo telefonom (<a href="tel:38517999194">+385 (0)1 7999 194</a>) i mailom 
-            (<a href="mailto:diykits.shop@mikrotron.hr">diykits.shop@mikrotron.hr</a>). Kako bi smo ubrzali postupak, molimo pripremite broj
+            (<a href="mailto:diykits.shop@mikrotron.hr">diykits.shop@mikrotron.hr</a>). Kako bi ubrzali postupak, molimo pripremite broj
             narudžbenice ili računa prije javljanja. U slučaju da je pošiljka oštećena u transportu, a oštećenja su vidljiva
-            pri preuzimanju, i molimo Vas da oštećenu pošiljku ne preuzimate. Za elektroničke komponente, sklopove i kitove 
-            namjenjene samogradnji nema jamstvenog roka, tj. garancija važi samo za prvu uporabu. Ukoliko prilikom
-            prve uporabe ustanovite da je uređaj neispravan, javite nam se na neki od gore navedenih načina kako bi dogovorili
-            zamjenu za ispravan uređaj. Mikrotron u pravilu ne vrši servisiranje elektroničkih komponenti. Iznimke su moguće -
-            kontaktirajte nas mailom ili telefonom.
+            pri preuzimanju, molimo Vas da oštećenu pošiljku ne preuzimate već da dostavljača tražite da pošiljku vrati. Zakonski jamstveni rok u
+            EU je dvije godine od datuma isporuke. Ukoliko
+            ustanovite da je uređaj neispravan, javite nam se na neki od gore navedenih načina kako bi dogovorili povrat uređaja. Vraćeni
+            uređaj zaprimiti ćemo na servis da ustanovimo kvar. Ako je moguć popravak uređaja, i to je brža opcija, uređaj ćemo Vam vratiti
+            nakon popravka, u suprotnom ćemo ga zamjeniti za novi proizvod. <em>Jamstvo neće biti priznato u slučaju nepravilnog korištenja i ugradnje,
+            te fizičkih, kemijskih ili električkih oštećenja uređaja.</em>
           </p>
         <#else>
-          <h4>6. Complaints, Warranty and Service</h4>
+          <h4>6. Complaints, warranty and service</h4>
           <p>
-            We accept complaints by phone (<a href="tel:38517999194">+385 (0)1 7999 194</a>) and by email 
-            (<a href="mailto:diykits.shop@mikrotron.hr">diykits.shop@mikrotron.hr</a>). In order to speed up the process, please prepare the purchase 
-            order number or invoice number before contacting us. In the event that the shipment is damaged during transport, and the 
-            damage is visible upon pickup, please do not pick up the damaged shipment. There is no warranty period for electronic 
-            components, assemblies and kits intended for self-assembly, i.e. the warranty is only valid for the first use. 
-            If during the first use you find that the device is defective, contact us in one of the above-mentioned ways in order to 
-            arrange a replacement for a correct device. As a rule, Mikrotron does not service electronic components. 
-            Exceptions are possible - contact us by email or phone.
+            We accept complaints by phone (<a href="tel:38517999194">+385 (0)1 7999 194</a>) and by email
+            (<a href="mailto:diykits.shop@mikrotron.hr">diykits.shop@mikrotron.hr</a>). To speed up the process, please have the
+            order or invoice number ready before contacting us. In the event that the shipment is damaged in transport and the damage is visible
+            upon receipt, please do not accept the damaged shipment but ask the delivery person to return the shipment. The legal warranty period in the
+            EU is two years from the date of delivery. If
+            you find that the device is defective, contact us in one of the ways listed above to arrange the return of the device. We will receive the returned
+            device for service to determine the fault. If it is possible to repair the device, and it is a faster option, we will return the device to you
+            after repair, otherwise we will replace it with a new product. The warranty will not be recognized in case of improper use and installation,
+            and physical, chemical or electrical damage to the device.</em>
           </p>
         </#if>
       </li>
@@ -244,7 +245,8 @@ under the License.
             prikupljaju za potrebe korištenja web trgovine i sastavni je dio <b>Općih
             uvjeta poslovanja</b>. Mikrotron prikuplja osobne podatke o korisnicima
             web trgovine u svrhu izdavanja dokumenata vezanih uz proces prodaje
-            (narudžbenica i račun) i u svrhu isporuke robe.
+            (narudžbenica i račun), isporuke robe, vođenja zakonom propisanih
+            računovodstvenih evidencija i izvještaja i rješavanja tehničkih problema.
           </p>
           <p>
             Osobnim podacima pristupa se isključivo preko enkriptiranih komunikacijskih
@@ -288,10 +290,12 @@ under the License.
             2018. godine i nadzornom tijelu unutar EU-a.
           </p>
           <p id="cookies">
-            Mikrotron web trgovina koristi tzv. 'kolačiće' (eng. cookies) za osiguravanje
+            Mikrotron web trgovina koristi tzv. 'kolačiće' (eng. cookies) samo za osiguravanje
             pune funkcionalnosti, ukoliko isključite korištenje 'kolačića' u Vašem web
             pregledniku, web trgovina neće biti u stanju funkcionirati kako je
             predviđeno te ju nećete moći koristiti za naručivanje roba i usluga.
+            Ne koristimo 'kolačiće' za praćenje posjetitelja web stranice, kao niti
+            za reklamne svrhe.
             U sklopu web trgovine postoje linkovi koji vode na druge web stranice,
             Mikrotron ne odgovara za sadržaj i pravila privatnosti tih stranica.
           </p>
@@ -309,7 +313,7 @@ under the License.
             This statement addresses privacy of personal data collected and processed in
             use of this web shop and is an integral part of Terms and Conditions. Mikrotron
             collects web shop users personal data needed for the implementation of the online
-            sales process and shipping of the purchased goods.
+            sales process, shipping of the purchased goods, accounting purposes and technical support.
           </p>
           <p>
             Personal data is accessed only via encrypted chanells (HTTPS). User's sole
@@ -356,7 +360,8 @@ under the License.
             Mikrotron web shop uses cookies for the full web shop functionality - if
             you turn of cookies in your web browser, web shop will not have full
             functionality and you might not be able to complete an order in the web
-            shop. Web shop may contain links to the other web sites, Mikrotron is in 
+            shop. We don't use cookies for tracking and advertising purposes.
+            Web shop may contain links to the other web sites, Mikrotron is in
             no way responsible for those site's content and privacy policy.
           </p>
           <p>
