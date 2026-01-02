@@ -450,7 +450,7 @@ public class SecuredUpload {
                 int originalHeight = originalImage.getHeight(null);
 
                 BufferedImage imageToWrite;
-                
+
                 // Only sanitize if enabled in configuration
                 if (IMAGE_SANITIZE_ENABLED) {
                     // Resize the image by removing 1px on Width and Height
