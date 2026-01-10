@@ -28,7 +28,7 @@
     </li>
 
     <#if orderHeader?has_content>
-      <li>${uiLabelMap.CommonDate}: ${orderHeader.orderDate.toString()}</li>
+      <li>${uiLabelMap.CommonDate}: ${orderHeader.orderDate?string("dd. MMMM yyyy.")}</li>
     </#if>
   </ul>
 </div>
