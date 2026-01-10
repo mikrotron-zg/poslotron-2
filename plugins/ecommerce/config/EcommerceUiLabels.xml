@@ -886,8 +886,8 @@
     <value xml:lang="ro">Acest website folosește cookie-uri</value>
     </property>
     <property key="EcommerceCookieConsentMessage">
-        <value xml:lang="en">We value your privacy, we only use functional cookies necessary for basic website functions. We do not use cookies for tracking or advertising. You can find out more about our privacy policy</value>
-        <value xml:lang="hr">Cijenimo Vašu privatnost, koristimo samo funkcionalne kolačiće (engl. cookies) potrebne za osnovne funkcije web stranice. Ne koristimo kolačiće za praćenje ili oglašavanje. Više o politici privatnosti možete doznati</value>
+        <value xml:lang="en">We value your privacy, we only use necessary cookies for basic website functions. We do not use cookies for tracking or advertising. You can find out more about our privacy policy</value>
+        <value xml:lang="hr">Cijenimo Vašu privatnost, koristimo samo nužne kolačiće (engl. cookies) potrebne za osnovne funkcije web stranice. Ne koristimo kolačiće za praćenje ili oglašavanje. Više o politici privatnosti možete doznati</value>
         <value xml:lang="nl">Wij gebruiken cookies om onze diensten te leveren. Door gebruik te maken van deze webshop, gaat u hiermee accoord.</value>
     <value xml:lang="ro">Folosim cookie-uri pentru functionarea serviciilor noastre. Prin utilizarea acestui website, sunteți de acord cu acest lucru.</value>
     </property>
