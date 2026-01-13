@@ -21,6 +21,7 @@ package org.apache.ofbiz.base.conversion;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -41,6 +42,48 @@ public class NumberConverters implements ConverterLoader {
         try {
             return nf.parse(str);
         } catch (ParseException e) {
+            // Fallback: Try to parse with a more lenient approach for negative numbers
+            // This addresses known Java bug where some locales (e.g., hr, fi) can't parse
+            // negative numbers with ASCII hyphen-minus due to CLDR locale data expecting
+            // Unicode minus sign (JDK-8189097 and related issues)
+            try {
+                // If the string contains a comma, try to normalize it
+                if (str.contains(",")) {
+                    String normalized = str;
+
+                    // Handle negative numbers by trying locale-specific minus sign first
+                    boolean isNegative = false;
+                    if (normalized.startsWith("-")) {
+                        isNegative = true;
+                        normalized = normalized.substring(1);
+
+                        // Try with locale's expected minus sign
+                        DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(locale);
+                        String withLocaleMinus = dfs.getMinusSign() + normalized;
+                        try {
+                            return nf.parse(withLocaleMinus);
+                        } catch (ParseException e2) {
+                            // Continue with normalization approach
+                        }
+                    }
+
+                    // Remove all dots (thousands separators) and replace commas with dots
+                    normalized = normalized.replace(".", "").replace(',', '.');
+
+                    if (isNegative) {
+                        normalized = "-" + normalized;
+                    }
+
+                    // Try parsing with US locale
+                    NumberFormat nfUs = NumberFormat.getNumberInstance(Locale.US);
+                    if (nfUs instanceof DecimalFormat) {
+                        ((DecimalFormat) nfUs).setParseBigDecimal(true);
+                    }
+                    return nfUs.parse(normalized);
+                }
+            } catch (ParseException e2) {
+                // If fallback fails, continue to throw original exception
+            }
             throw new ConversionException(e);
         }
     }
