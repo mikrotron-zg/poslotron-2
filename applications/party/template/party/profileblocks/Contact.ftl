@@ -21,9 +21,13 @@ under the License.
     <div class="screenlet-title-bar">
       <ul>
         <li class="h3">${uiLabelMap.PartyContactInformation}</li>
-        <#if security.hasEntityPermission("PARTYMGR", "_CREATE", session) || userLogin.partyId == partyId>
-          <li><a href="<@ofbizUrl>editcontactmech?partyId=${partyId}</@ofbizUrl>">${uiLabelMap.CommonCreate}</a></li>
-        </#if>
+        <div class="basic-nav">
+          <ul>
+          <#if security.hasEntityPermission("PARTYMGR", "_CREATE", session) || userLogin.partyId == partyId>
+            <li><a href="<@ofbizUrl>editcontactmech?partyId=${partyId}</@ofbizUrl>">${uiLabelMap.CommonCreate}</a></li>
+          </#if>
+          </ul>
+        </div>
       </ul>
       <br class="clear" />
     </div>

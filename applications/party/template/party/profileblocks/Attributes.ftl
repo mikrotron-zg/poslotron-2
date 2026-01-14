@@ -21,9 +21,13 @@ under the License.
     <div class="screenlet-title-bar">
       <ul>
         <li class="h3">${uiLabelMap.PartyAttributes}</li>
-        <#if security.hasEntityPermission("PARTYMGR", "_CREATE", session)>
-          <li><a href="<@ofbizUrl>editPartyAttribute?partyId=${party.partyId!}&amp;CANCEL_PAGE=${DONE_PAGE!}</@ofbizUrl>">${uiLabelMap.CommonCreate}</a></li>
-        </#if>
+        <div class="basic-nav">
+          <ul>
+          <#if security.hasEntityPermission("PARTYMGR", "_CREATE", session)>
+            <li><a href="<@ofbizUrl>editPartyAttribute?partyId=${party.partyId!}&amp;CANCEL_PAGE=${DONE_PAGE!}</@ofbizUrl>">${uiLabelMap.CommonCreate}</a></li>
+          </#if>
+          </ul>
+        </div>
       </ul>
       <br class="clear"/>
     </div>
