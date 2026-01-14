@@ -77,7 +77,9 @@ public class NumberConverters implements ConverterLoader {
                     // Try parsing with US locale
                     NumberFormat nfUs = NumberFormat.getNumberInstance(Locale.US);
                     if (nfUs instanceof DecimalFormat) {
+                        // CHECKSTYLE_OFF: ALMOST_ALL
                         ((DecimalFormat) nfUs).setParseBigDecimal(true);
+                        // CHECKSTYLE_ON: ALMOST_ALL
                     }
                     return nfUs.parse(normalized);
                 }
