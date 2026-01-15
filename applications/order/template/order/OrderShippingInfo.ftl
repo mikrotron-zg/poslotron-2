@@ -58,7 +58,7 @@ under the License.
       <ul>
         <#if security.hasEntityPermission("FACILITY", "_CREATE", session) && (("ORDER_APPROVED" == orderHeader.statusId) || ("ORDER_SENT" == orderHeader.statusId))>
           <#-- Special shipment options -->
-          <#if "SALES_ORDER" == orderHeader.orderTypeId && backorderQuantity &lt; 1>
+          <#if "SALES_ORDER" == orderHeader.orderTypeId>
             <li>
             <form name="quickShipOrder" method="post" action="<@ofbizUrl>quickShipOrder</@ofbizUrl>">
               <input type="hidden" name="orderId" value="${orderId}"/>
