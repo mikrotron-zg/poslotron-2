@@ -54,7 +54,7 @@ under the License.
                                 <td colspan="7" valign="top" class="label"> &gt;&gt; ${orderItem.itemDescription}</td>
                             <#else>
                                 <td colspan="7">
-                                    <div style="font-weight: bold; font-size: 1.2em;">
+                                    <div style="font-weight: bold; font-size: 1.3em;">
                                         <#if orderItem.supplierProductId?has_content>
                                             ${orderItem.supplierProductId} - ${orderItem.itemDescription!}
                                         <#elseif productId??>
@@ -89,6 +89,14 @@ under the License.
                                         <a href="<@ofbizUrl controlPath="/catalog/control">EditProduct?productId=${productId}</@ofbizUrl>" class="buttontext" target="_blank">${uiLabelMap.ProductCatalog}</a>
                                         <a href="<@ofbizUrl controlPath="/ecommerce/control">product?product_id=${productId}</@ofbizUrl>" class="buttontext" target="_blank">${uiLabelMap.OrderEcommerce}</a>
                                     </div>
+                                    <#if productId?has_content>
+                                        <#assign product = orderItem.getRelatedOne("Product", true)>
+                                        <#if  product.brandName?has_content>
+                                            <em style="font-size:1.15em;">
+                                                Brand: ${product.brandName}
+                                            </em>
+                                        </#if>
+                                    </#if>
                                 </td>
                             </#if>
                         </tr>
@@ -97,9 +105,6 @@ under the License.
                                 <td colspan="7" valign="top" class="label"> &gt;&gt; ${orderItem.itemDescription}</td>
                             <#else>
                                 <td valign="top">
-                                    <#if productId?has_content>
-                                        <#assign product = orderItem.getRelatedOne("Product", true)>
-                                    </#if>
                                     <#if productId??>
                                         <#-- INVENTORY -->
                                         <#if (orderHeader.statusId != "ORDER_COMPLETED") && availableToPromiseMap?? && quantityOnHandMap?? && availableToPromiseMap.get(productId)?? && quantityOnHandMap.get(productId)??>
