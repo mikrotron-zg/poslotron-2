@@ -35,6 +35,11 @@
     </context-param>
 
     <filter>
+        <display-name>ContextFilter</display-name>
+        <filter-name>ContextFilter</filter-name>
+        <filter-class>org.apache.ofbiz.webapp.control.ContextFilter</filter-class>
+    </filter>
+    <filter>
         <display-name>ControlFilter</display-name>
         <filter-name>ControlFilter</filter-name>
         <filter-class>org.apache.ofbiz.webapp.control.ControlFilter</filter-class>
@@ -44,21 +49,16 @@
         </init-param>
     </filter>
     <filter>
-        <display-name>ContextFilter</display-name>
-        <filter-name>ContextFilter</filter-name>
-        <filter-class>org.apache.ofbiz.webapp.control.ContextFilter</filter-class>
-    </filter>
-    <filter>
         <display-name>SameSiteFilter</display-name>
         <filter-name>SameSiteFilter</filter-name>
         <filter-class>org.apache.ofbiz.webapp.control.SameSiteFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>ControlFilter</filter-name>
+        <filter-name>ContextFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
-        <filter-name>ContextFilter</filter-name>
+        <filter-name>ControlFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
