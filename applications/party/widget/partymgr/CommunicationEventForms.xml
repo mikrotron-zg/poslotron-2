@@ -489,7 +489,7 @@ under the License.
     <form name="ListPartyCommEvents" type="list" target="RemoveCommunicationEventRole" list-name="listIt"
         odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar" sort-field-parameter-name="partyCommEventSortField">
         <actions>
-            <set field="parameters.partyCommEventSortField" from-field="parameters.partyCommEventSortField" default-value="${groovy: 'true'.equals(parameters.all) ? '-entryDate' : 'entryDate'}"/>
+            <set field="parameters.partyCommEventSortField" from-field="parameters.partyCommEventSortField" default-value="-entryDate"/>
             <set field="searchParameters.partyId" from-field="partyId"/>
             <set field="searchParameters.statusId" value="COM_UNKNOWN_PARTY"/>
             <set field="searchParameters.statusId_op" value="notEqual"/>
@@ -538,7 +538,7 @@ under the License.
         <field name="statusId" entry-name="roleStatusId" widget-style="buttontext" widget-area-style="fieldWidth300">
             <display-entity entity-name="StatusItem">
                 <sub-hyperlink target="setCommunicationEventRoleStatus"
-                    description="${groovy: 'COM_ROLE_READ'.equals(roleStatusId) ? 'uiLabelMap.PartyToComplete' : ' '}">
+                    description="${groovy: 'COM_ROLE_READ'.equals(roleStatusId) ? uiLabelMap.PartyToComplete : ' '}">
                     <parameter param-name="communicationEventId"/>
                     <parameter param-name="partyId"/>
                     <parameter param-name="roleTypeId"/>
