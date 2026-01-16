@@ -579,6 +579,9 @@ public class SecuredUpload {
                     } else if (inflater.needsDictionary()) { // Dictionary to be loaded
                         inflater.setDictionary(result);
                         inflater.getAdler();
+                    } else { // nothing to inflate, avoid endless loop
+                        inflater.end();
+                        return true;
                     }
                 }
             }
