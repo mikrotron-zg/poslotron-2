@@ -162,7 +162,7 @@
     <service name="createSimpleTextContent" engine="groovy" location="component://content/src/main/groovy/org/apache/ofbiz/content/content/ContentServicesScript.groovy" invoke="createSimpleTextContent">
         <permission-service service-name="contentManagerPermission" main-action="CREATE"/>
         <auto-attributes mode="IN" entity-name="Content" optional="true"/>
-        <attribute name="text" type="String" mode="IN" optional="false" allow-html="safe">
+        <attribute name="text" type="String" mode="IN" optional="false" allow-html="any">
             <type-validate>
                 <fail-property resource="ContentErrorUiLabels" property="ContentRequiredFieldMissingText"/>
             </type-validate>
@@ -172,7 +172,7 @@
     <service name="updateSimpleTextContent" engine="groovy" location="component://content/src/main/groovy/org/apache/ofbiz/content/content/ContentServicesScript.groovy" invoke="updateSimpleTextContent">
         <permission-service service-name="contentManagerPermission" main-action="UPDATE"/>
         <attribute name="textDataResourceId" type="String" mode="IN" optional="true"/>
-        <attribute name="text" type="String" mode="IN" optional="true" allow-html="safe"/>
+        <attribute name="text" type="String" mode="IN" optional="true" allow-html="any"/>
     </service>
 
     <!-- Util -->
@@ -331,7 +331,7 @@
         <attribute mode="IN" name="forceElectronicText" optional="true" type="String"/>
         <attribute mode="IN" name="displayFailCond" optional="true" type="Boolean"/>
         <attribute mode="INOUT" name="roleTypeList" optional="true" type="List"/>
-        <override name="textData" allow-html="safe"/>
+        <override name="textData" allow-html="any"/>
     </service>
 
     <service name="persistDataResourceAndData" engine="java"

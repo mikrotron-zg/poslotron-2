@@ -418,7 +418,7 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
         <auto-attributes entity-name="Content" include="nonpk" mode="IN" optional="true"/>
-        <attribute name="text" type="String" mode="IN" optional="false" allow-html="safe"/>
+        <attribute name="text" type="String" mode="IN" optional="false" allow-html="any"/>
         <override name="contentId" optional="true"/>
         <override name="fromDate" optional="true"/>
     </service>
@@ -434,7 +434,7 @@ under the License.
         location="component://product/src/main/groovy/org/apache/ofbiz/product/product/product/ProductContentServicesScript.groovy" invoke="createSimpleTextContentForAlternateLocale">
         <auto-attributes mode="IN" entity-name="Content" optional="true"/>
         <attribute name="mainContentId" type="String" mode="IN" optional="false"/>
-        <attribute name="text" type="String" mode="IN" optional="false" allow-html="safe"/>
+        <attribute name="text" type="String" mode="IN" optional="false" allow-html="any"/>
         <override name="localeString" optional="false"/>
         <override name="contentId" mode="INOUT"/>
     </service>
@@ -932,7 +932,7 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
         <auto-attributes entity-name="Content" include="nonpk" mode="IN" optional="true"/>
-        <attribute name="text" type="String" mode="IN" optional="false" allow-html="safe"/>
+        <attribute name="text" type="String" mode="IN" optional="false" allow-html="any"/>
         <override name="contentId" optional="true"/>
         <override name="fromDate" optional="true"/>
     </service>
@@ -1160,7 +1160,7 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
         <auto-attributes mode="IN" entity-name="Content" optional="true"/>
-        <attribute name="text" type="String" mode="IN" optional="false" allow-html="safe"/>
+        <attribute name="text" type="String" mode="IN" optional="false" allow-html="any"/>
         <override name="contentId" optional="true"/>
     </service>
     <service name="updateSimpleTextContentForProductConfigItem" default-entity-name="ProdConfItemContent" engine="group" auth="true">
