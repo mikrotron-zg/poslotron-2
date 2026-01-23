@@ -38,9 +38,25 @@ under the License.
       <#-- Build the password reset URL -->
       <#assign passwordUrl = "${baseUrl}/login?USERNAME=${username}&TOKEN=${tokenParam}&forgotPwdFlag=true&requirePasswordChange=Y&tenantId=${tenantParam}&webSiteId=${siteParam}">
       
-      <form method="post" action="${passwordUrl}" name="loginform" id="loginform" target="_blank">
-        <input type="submit" name="submit" value="${uiLabelMap.ResetPassword}" />
-      </form>
+      <#-- Styled link that looks like a button -->
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center" style="border-radius: 4px; background-color: #007bff;">
+            <a href="${passwordUrl}" target="_blank" style="
+              font-size: 16px;
+              font-family: Arial, sans-serif;
+              color: #ffffff;
+              text-decoration: none;
+              border-radius: 4px;
+              padding: 12px 24px;
+              border: 1px solid #007bff;
+              display: inline-block;
+              font-weight: bold;
+            ">${uiLabelMap.ResetPassword}</a>
+          </td>
+        </tr>
+      </table>
+      <br />
       ${uiLabelMap.SecurityExtLinkOnce}.
   </div>
 </body>
