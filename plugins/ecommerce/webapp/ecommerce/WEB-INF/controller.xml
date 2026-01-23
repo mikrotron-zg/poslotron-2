@@ -1186,7 +1186,7 @@ under the License.
     <request-map uri="updatePassword">
         <security https="true" auth="true"/>
         <event type="simple" path="component://securityext/minilang/login/LoginSimpleEvents.xml" invoke="updatePassword"/>
-        <response name="success" type="view" value="passwordChange"/>
+        <response name="success" type="view" value="main"/>
         <response name="error" type="view" value="passwordChange"/>
     </request-map>
 
