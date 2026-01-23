@@ -27,32 +27,30 @@ under the License.
 <#-- Check if this is a password reset (token in session) -->
 <#assign isPasswordReset = sessionAttributes._PASSWORD_RESET_TOKEN_?has_content/>
 
-<h1>${uiLabelMap.CommonLogin}</h1>
-<br />
-
-<div style="float: center; width: 49%; margin-right: 5px; text-align: center;" class="screenlet">
-    <div class="screenlet-title-bar">
-        <div class="h3">${uiLabelMap.CommonPasswordChange}</div>
+<div class="d-flex justify-content-center">
+  <div class="card p-6">
+    <div class="card-header">
+      <h3>${uiLabelMap.CommonPasswordChange}</h3>
     </div>
-    <div class="screenlet-body" style="text-align: center;">
+    <div class="card-block p-1 m-2">
       <#if isPasswordReset>
         <#-- Password reset form - no current password needed -->
         <form method="post" action="<@ofbizUrl>updatePassword</@ofbizUrl>" name="loginform">
           <input type="hidden" name="USERNAME" value="${username}"/>
           <input type="hidden" name="token" value="${sessionAttributes._PASSWORD_RESET_TOKEN_}"/>
-          <div>
-              ${uiLabelMap.CommonUsername}:&nbsp;${username}
+          <div class="form-group">
+            <label>${uiLabelMap.CommonUsername}: <strong>${username}</strong></label>
           </div>
-          <div>
-              ${uiLabelMap.CommonNewPassword}:&nbsp;
-              <input type="password" class="inputBox" name="newPassword" autocomplete="off" value="" size="20"/>
+          <div class="form-group">
+            <label for="newPassword">${uiLabelMap.CommonNewPassword}</label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" autocomplete="off" value=""/>
           </div>
-          <div>
-              ${uiLabelMap.CommonNewPasswordVerify}:&nbsp;
-              <input type="password" class="inputBox" name="newPasswordVerify" autocomplete="off" value="" size="20"/>
+          <div class="form-group">
+            <label for="newPasswordVerify">${uiLabelMap.CommonNewPasswordVerify}</label>
+            <input type="password" class="form-control" id="newPasswordVerify" name="newPasswordVerify" autocomplete="off" value=""/>
           </div>
-          <div>
-              <input type="submit" class="smallSubmit" value="${uiLabelMap.CommonUpdate}"/>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" value="${uiLabelMap.CommonUpdate}"/>
           </div>
         </form>
       <#else>
@@ -60,32 +58,31 @@ under the License.
         <form method="post" action="<@ofbizUrl>login${previousParams}</@ofbizUrl>" name="loginform">
           <input type="hidden" name="requirePasswordChange" value="Y"/>
           <input type="hidden" name="USERNAME" value="${username}"/>
-          <div>
-              ${uiLabelMap.CommonUsername}:&nbsp;${username}
+          <div class="form-group">
+            <label>${uiLabelMap.CommonUsername}: ${username}</label>
+            <#if autoUserLogin?has_content>
+              <p>(${uiLabelMap.CommonNot} ${autoUserLogin.userLoginId}? <a href="<@ofbizUrl>${autoLogoutUrl}</@ofbizUrl>">${uiLabelMap.CommonClickHere}</a>)</p>
+            </#if>
           </div>
-          <#if autoUserLogin?has_content>
-              <div>
-                  (${uiLabelMap.CommonNot}&nbsp;${autoUserLogin.userLoginId}?&nbsp;<a href="<@ofbizUrl>${autoLogoutUrl}</@ofbizUrl>" class="buttontext">${uiLabelMap.CommonClickHere}</a>)
-              </div>
-          </#if>
-          <div>
-              ${uiLabelMap.CommonPassword}:&nbsp;
-              <input type="password" class="inputBox" name="PASSWORD" autocomplete="off" value="" size="20"/>
+          <div class="form-group">
+            <label for="password">${uiLabelMap.CommonPassword}</label>
+            <input type="password" class="form-control" id="password" name="PASSWORD" autocomplete="off" value=""/>
           </div>
-          <div>
-              ${uiLabelMap.CommonNewPassword}:&nbsp;
-              <input type="password" class="inputBox" name="newPassword" autocomplete="off" value="" size="20"/>
+          <div class="form-group">
+            <label for="newPassword">${uiLabelMap.CommonNewPassword}</label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" autocomplete="off" value=""/>
           </div>
-          <div>
-              ${uiLabelMap.CommonNewPasswordVerify}:&nbsp;
-              <input type="password" class="inputBox" name="newPasswordVerify" autocomplete="off" value="" size="20"/>
+          <div class="form-group">
+            <label for="newPasswordVerify">${uiLabelMap.CommonNewPasswordVerify}</label>
+            <input type="password" class="form-control" id="newPasswordVerify" name="newPasswordVerify" autocomplete="off" value=""/>
           </div>
-          <div>
-              <input type="submit" class="smallSubmit" value="${uiLabelMap.CommonLogin}"/>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" value="${uiLabelMap.CommonLogin}"/>
           </div>
         </form>
       </#if>
     </div>
+  </div>
 </div>
 
 <script type="application/javascript">
