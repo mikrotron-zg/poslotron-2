@@ -17,6 +17,8 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<#setting url_escaping_charset="UTF-8">
+
 <html>
 <head>
 </head>
@@ -26,7 +28,17 @@ under the License.
   
   <br />
   <div>
-      <form method="post" action="<@ofbizUrl fullPath="true" secure="true" webSiteId="${webSiteId!}">passwordChange</@ofbizUrl>?USERNAME=${userLogin.userLoginId!}&TOKEN=${token!}&forgotPwdFlag=true&tenantId=${tenantId!}" name="loginform" id="loginform" target="_blank">
+      <#-- Pre-assign URL-encoded parameters -->
+      <#assign username = userLogin.userLoginId?url('UTF-8')>
+      <#assign tokenParam = token?url('UTF-8')>
+      <#assign tenantParam = (tenantId?url('UTF-8'))!>
+      <#assign siteParam = (webSiteId!'WebStore')?url('UTF-8')>
+      <#assign baseUrl = baseSecureUrl!baseUrl!>
+      
+      <#-- Build the password reset URL -->
+      <#assign passwordUrl = "${baseUrl}/login?USERNAME=${username}&TOKEN=${tokenParam}&forgotPwdFlag=true&requirePasswordChange=Y&tenantId=${tenantParam}&webSiteId=${siteParam}">
+      
+      <form method="post" action="${passwordUrl}" name="loginform" id="loginform" target="_blank">
         <input type="submit" name="submit" value="${uiLabelMap.ResetPassword}" />
       </form>
       ${uiLabelMap.SecurityExtLinkOnce}.

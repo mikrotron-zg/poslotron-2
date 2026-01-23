@@ -412,7 +412,7 @@ public final class LoginWorker {
         } catch (EntityCryptoException e1) {
             Debug.logError(e1.getMessage(), MODULE);
         }
-        if (entityDeCrypto != null && "true".equals(forgotPwdFlag)) {
+        if (entityDeCrypto != null && "true".equals(forgotPwdFlag) && UtilValidate.isNotEmpty(password)) {
             try {
                 Object decryptedPwd = entityDeCrypto.decrypt(KEY_VALUE, ModelField.EncryptMethod.TRUE, password);
                 password = decryptedPwd.toString();
@@ -589,6 +589,16 @@ public final class LoginWorker {
             if (userLogin != null && "Y".equals(userLogin.getString("requirePasswordChange"))) {
                 return "requirePasswordChange";
             }
+
+            // Check if using a token with forgotPwdFlag for password reset
+            boolean isTokenPasswordReset = UtilValidate.isNotEmpty(token) && "true".equals(forgotPwdFlag);
+            if (isTokenPasswordReset) {
+                // Set a session attribute to indicate password change is needed after login
+                session.setAttribute("_PASSWORD_CHANGE_REQUIRED_", "true");
+                // Store the token in session for the password change form
+                session.setAttribute("_PASSWORD_RESET_TOKEN_", token);
+            }
+
             String autoChangePassword = EntityUtilProperties.getPropertyValue("security", "user.auto.change.password.enable", "false", delegator);
             if ("true".equalsIgnoreCase(autoChangePassword)) {
                 if ("requirePasswordChange".equals(autoChangePassword(request, response))) {
@@ -834,6 +844,13 @@ public final class LoginWorker {
 
         // make sure the autoUserLogin is set to the same and that the client cookie has the correct userLoginId
         autoLoginSet(request, response);
+
+        // Check if password change is required (for token-based password reset)
+        if ("true".equals(session.getAttribute("_PASSWORD_CHANGE_REQUIRED_"))) {
+            // Remove the flag so it doesn't trigger again, but keep the token for the form
+            session.removeAttribute("_PASSWORD_CHANGE_REQUIRED_");
+            return "requirePasswordChange";
+        }
 
         return autoLoginCheck(request, response);
     }

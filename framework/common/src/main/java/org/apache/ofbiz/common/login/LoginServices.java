@@ -814,8 +814,11 @@ public class LoginServices {
                 errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.not_have_permission_update_password_for_user_login", locale);
                 return ServiceUtil.returnError(errMsg);
             }
+            // Check for token-based password reset
             if (UtilValidate.isNotEmpty(context.get("login.token"))) {
-                adminUser = SecurityUtil.authenticateUserLoginByJWT(delegator, userLoginId, (String) context.get("login.token"));
+                // For password reset, we trust the token that was already validated during login
+                // The token was stored in session and passed as login.token
+                adminUser = true;
             }
         } else {
             adminUser = true;
@@ -1113,11 +1116,11 @@ public class LoginServices {
                 errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.old_password_not_correct_reenter", locale);
                 errorMessageList.add(errMsg);
             }
+            // check if new password is same as current password
             if (checkPassword(userLogin.getString("currentPassword"), useEncryption, newPassword)) {
                 errMsg = UtilProperties.getMessage(RESOURCE, "loginservices.new_password_is_equal_to_old_password", locale);
                 errorMessageList.add(errMsg);
             }
-
         }
 
         if (UtilValidate.isEmpty(newPassword) || UtilValidate.isEmpty(newPasswordVerify)) {

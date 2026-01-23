@@ -22,14 +22,26 @@ under the License.
         xmlns="http://ofbiz.apache.org/Simple-Method" xsi:schemaLocation="http://ofbiz.apache.org/Simple-Method http://ofbiz.apache.org/dtds/simple-methods.xsd">
     <!-- UserLogin events -->
     <simple-method method-name="updatePassword" short-description="Update Password">
-        <if-has-permission permission="PARTYMGR" action="_CREATE">
+        <!-- Check if this is a password reset (token present) -->
+        <if-not-empty field="parameters.token">
+            <!-- Use token-based password reset processor -->
             <call-map-processor xml-resource="component://securityext/minilang/login/LoginMapProcs.xml"
-                processor-name="adminUpdatePassword" in-map-name="parameters" out-map-name="context"/>
+                processor-name="updatePasswordWithToken" in-map-name="parameters" out-map-name="context"/>
+            <!-- Manually copy token in case map processor doesn't work -->
+            <set field="context.login.token" from="parameters.token"/>
         <else>
-             <call-map-processor xml-resource="component://securityext/minilang/login/LoginMapProcs.xml"
-                processor-name="updatePassword" in-map-name="parameters" out-map-name="context"/>
+            <!-- Use normal password update processor -->
+            <if-has-permission permission="PARTYMGR" action="_CREATE">
+                <call-map-processor xml-resource="component://securityext/minilang/login/LoginMapProcs.xml"
+                    processor-name="adminUpdatePassword" in-map-name="parameters" out-map-name="context"/>
+            <else>
+                 <call-map-processor xml-resource="component://securityext/minilang/login/LoginMapProcs.xml"
+                    processor-name="updatePassword" in-map-name="parameters" out-map-name="context"/>
+            </else>
+            </if-has-permission>
         </else>
-        </if-has-permission>
+        </if-not-empty>
+        
         <check-errors/>
         <call-service service-name="updatePassword" in-map-name="context">
             <default-message resource="SecurityextUiLabels" property="loginmapprocs.password_successfully_updated"/>

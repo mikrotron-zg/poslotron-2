@@ -33,6 +33,18 @@ under the License.
         <process field="requirePasswordChange"><copy/></process>
     </simple-map-processor>
 
+    <simple-map-processor name="updatePasswordWithToken">
+        <process field="token"><copy to-field="login.token"/></process>
+        <process field="newPassword"><copy/><not-empty><fail-property resource="SecurityextUiLabels" property="loginmapprocs.new_password_missing"/></not-empty></process>
+        <process field="newPasswordVerify">
+            <compare-field operator="equals" field="newPassword"><fail-property resource="SecurityextUiLabels" property="loginmapprocs.password_not_equal_verfiy_password"/></compare-field>
+            <not-empty><fail-property resource="SecurityextUiLabels" property="loginmapprocs.new_password_verify_missing"/></not-empty>
+            <copy/></process>
+        <process field="passwordHint"><copy/></process>
+        <process field="userLoginId"><copy/></process>
+        <process field="requirePasswordChange"><copy/></process>
+    </simple-map-processor>
+
     <simple-map-processor name="adminUpdatePassword">
         <process field="newPassword"><copy/><not-empty><fail-property resource="SecurityextUiLabels" property="loginmapprocs.new_password_missing"/></not-empty></process>
         <process field="newPasswordVerify">
