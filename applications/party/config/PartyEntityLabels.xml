@@ -2402,7 +2402,7 @@
         <value xml:lang="es">Proveedor que factura</value>
         <value xml:lang="fr">Fournisseur émetteur de facture</value>
         <value xml:lang="hi-IN">विक्रेता-से-बिल</value>
-        <value xml:lang="hr">Račun od dobavljača</value>
+        <value xml:lang="hr">Račun od prodavača</value>
         <value xml:lang="it">Fatturare dal fornitore</value>
         <value xml:lang="ja">ベンダからの請求先</value>
         <value xml:lang="nl">Zendende partij (leverancier) factuur</value>
@@ -3897,7 +3897,7 @@
         <value xml:lang="es">Envío de proveedor</value>
         <value xml:lang="fr">Vendeur expéditeur</value>
         <value xml:lang="hi-IN">विक्रेता से अपवाहन</value>
-        <value xml:lang="hr">Dostava od dobavljača</value>
+        <value xml:lang="hr">Dostava od prodavača</value>
         <value xml:lang="it">Spedizione dal fornitore</value>
         <value xml:lang="ja">発送元ベンダ</value>
         <value xml:lang="nl">Leverende partij</value>
@@ -4085,7 +4085,7 @@
         <value xml:lang="es">Proveedor</value>
         <value xml:lang="fr">Vendeur</value>
         <value xml:lang="hi-IN">विक्रेता</value>
-        <value xml:lang="hr">Dobavljač</value>
+        <value xml:lang="hr">Prodavač</value>
         <value xml:lang="it">Fornitore</value>
         <value xml:lang="ja">ベンダ</value>
         <value xml:lang="nl">Verkoper</value>
@@ -4812,7 +4812,7 @@
         <value xml:lang="en">Vendor Customer ID</value>
         <value xml:lang="fr">Réf client du vendeur</value>
         <value xml:lang="hi-IN">विक्रेता ग्राहक क्रमांक</value>
-        <value xml:lang="hr">Id kupca dobavljača</value>
+        <value xml:lang="hr">Id kupca prodavača</value>
         <value xml:lang="it">Cliente fornitore</value>
         <value xml:lang="ja">ベンダ顧客ID</value>
         <value xml:lang="nl">Verkoper klant ID</value>

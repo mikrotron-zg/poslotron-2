@@ -3223,7 +3223,7 @@
         <value xml:lang="es">Ver información de vendedor</value>
         <value xml:lang="fr">Affichage info vendeur</value>
         <value xml:lang="hi-IN">विक्रेता पार्टी की जानकारी देखें</value>
-        <value xml:lang="hr">Pregled informacija o dobavljaču</value>
+        <value xml:lang="hr">Pregled informacija o prodavaču</value>
         <value xml:lang="it">Mostra Informazioni Cliente sul Fornitore</value>
         <value xml:lang="ja">ベンダ取引先情報を表示</value>
         <value xml:lang="nl">Info verkopende relatie tonen</value>
@@ -14511,7 +14511,7 @@
         <value xml:lang="es">Información del vendedor</value>
         <value xml:lang="fr">Information sur le vendeur</value>
         <value xml:lang="hi-IN">विक्रेता की जानकारी</value>
-        <value xml:lang="hr">Informacije o dobavljaču</value>
+        <value xml:lang="hr">Informacije o prodavaču</value>
         <value xml:lang="it">Informazione Fornitore</value>
         <value xml:lang="ja">ベンダ情報</value>
         <value xml:lang="nl">Leveranciersinformatie</value>
