@@ -3907,6 +3907,11 @@ public class OrderServices {
             return ServiceUtil.returnError(e.getMessage());
         }
 
+        // ensure cart uses the correct locale for product name resolution
+        if (locale != null && (cart.getLocale() == null || !locale.equals(cart.getLocale()))) {
+            cart.setLocale(locale);
+        }
+
         try {
             //For quantity we should test if we allow to add decimal quantity for this product an productStore :
             // if not and if quantity is in decimal format then return error.

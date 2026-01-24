@@ -2143,6 +2143,7 @@ public class ShoppingCartEvents {
                     appendOrderItemMap.put("amount", amount);
                     appendOrderItemMap.put("itemDesiredDeliveryDate", itemDesiredDeliveryDate);
                     appendOrderItemMap.put("shipGroupSeqId", shipGroupSeqId);
+                    appendOrderItemMap.put("locale", locale);
                     try {
                         Map<String, Object> result = dispatcher.runSync("appendOrderItem", appendOrderItemMap);
                         if (ServiceUtil.isError(result)) {

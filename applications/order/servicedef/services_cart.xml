@@ -101,6 +101,7 @@ under the License.
         <attribute name="skipInventoryChecks" type="Boolean" mode="IN" optional="true"/>
         <attribute name="skipProductChecks" type="Boolean" mode="IN" optional="true"/>
         <attribute name="includePromoItems" type="Boolean" mode="IN" optional="true"/>
+        <attribute name="locale" type="java.util.Locale" mode="IN" optional="true"/>
         <attribute name="shoppingCart" type="org.apache.ofbiz.order.shoppingcart.ShoppingCart" mode="OUT" optional="false"/>
     </service>
 

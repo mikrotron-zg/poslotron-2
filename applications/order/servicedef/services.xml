@@ -496,6 +496,7 @@ under the License.
         <attribute name="itemDesiredDeliveryDate" type="Timestamp" mode="IN" optional="true"/>
         <attribute name="itemAttributesMap" type="Map" mode="IN" optional="true"/>
         <attribute name="calcTax" type="Boolean" mode="IN" optional="true" default-value="true"/>
+        <attribute name="locale" type="java.util.Locale" mode="IN" optional="true"/>
         <attribute name="shoppingCart" type="org.apache.ofbiz.order.shoppingcart.ShoppingCart" mode="OUT" optional="false"/>
     </service>
 
