@@ -159,7 +159,7 @@ under the License.
                     <#assign postalAddress = partyContactMechValueMap.postalAddress! />
                     <div class="mt-2 font-weight-bold">
                       <#if postalAddress??>
-                        <#if postalAddress.toName?has_content>${uiLabelMap.CommonTo}: ${postalAddress.toName}<br /></#if>
+                        <#if postalAddress.toName?has_content>${postalAddress.toName}<br /></#if>
                         <#if postalAddress.attnName?has_content>${uiLabelMap.PartyAddrAttnName}: ${postalAddress.attnName}<br /></#if>
                         ${postalAddress.address1}<br />
                         <#if postalAddress.address2?has_content>${postalAddress.address2}<br /></#if>
@@ -185,10 +185,6 @@ under the License.
                       ${telecomNumber.countryCode!}
                       <#if telecomNumber.areaCode?has_content>${telecomNumber.areaCode}-</#if>${telecomNumber.contactNumber!}
                       <#if partyContactMech.extension?has_content>ext&nbsp;${partyContactMech.extension}</#if>
-                      <#if (!telecomNumber.countryCode?has_content || telecomNumber.countryCode = "011")>
-                        <a target="_blank" href="${uiLabelMap.CommonLookupAnywhoLink}" class="linktext">${uiLabelMap.CommonLookupAnywho}</a>
-                        <a target="_blank" href="${uiLabelMap.CommonLookupWhitepagesTelNumberLink}" class="linktext">${uiLabelMap.CommonLookupWhitepages}</a>
-                      </#if>
                       </strong>
                     <#else>
                       ${uiLabelMap.PartyPhoneNumberInfoNotFound}.
