@@ -109,7 +109,7 @@ under the License.
                         <td>${uiLabelMap.CommonReceived}</td>
                         <td>${uiLabelMap.ProductOpenQuantity}</td>
                         <td>${uiLabelMap.ProductBackOrders}</td>
-                        <#if itemsAvailableToReceive>
+                        <#if itemsAvailableToReceive && !isShipmentReceived>
                             <td>${uiLabelMap.CommonReceive}</td>
                             <td>${uiLabelMap.ProductInventoryItemType}</td>
                             <td colspan="2" align="right">
@@ -127,7 +127,7 @@ under the License.
                         <#assign backOrderedQuantity = orderItemData.backOrderedQuantity?default(0)>
                         <#assign fulfilledReservations = orderItemData.fulfilledReservations>
                         <tr id="orderItemData_tableRow_${rowCount}" valign="middle"<#if alt_row> class="alternate-row"</#if>>
-                            <td>${(product.internalName)!} [${orderItem.productId?default("N/A")}]</div></td>
+                            <td>${(product.internalName)!} [${orderItem.productId?default("N/A")}]</td>
                             <td>
                                 <div>
                                     <#assign upcaLookup = Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("productId", product.productId, "goodIdentificationTypeId", "UPCA")/>
@@ -140,7 +140,7 @@ under the License.
                             <td>${orderItemData.ordered}</td>
                             <td>${orderItemData.cancelled?default(0)}</td>
                             <td>
-                                <div ${(backOrderedQuantity &gt; 0)?string(" errorMessage","")}">
+                                <div class="${(backOrderedQuantity &gt; 0)?string("errorMessage","")}">
                                     ${backOrderedQuantity}
                                 </div>
                             </td>
@@ -155,7 +155,7 @@ under the License.
                                     </#if>
                                 </div>
                             </td>
-                            <#if availableToReceive &gt; 0 >
+                            <#if availableToReceive &gt; 0 && !isShipmentReceived>
                                 <td>
                                     <input type="hidden" name="productId_o_${rowCount}" value="${(product.productId)!}"/>
                                     <input type="hidden" name="facilityId_o_${rowCount}" value="${facilityId}"/>
@@ -202,14 +202,16 @@ under the License.
                         <#assign alt_row = !alt_row>
                     </#list>
                     <#if itemsAvailableToReceive>
-                        <tr>
-                            <td colspan="11" align="right">
-                                <a href="<@ofbizUrl>ReceiveInventoryAgainstPurchaseOrder?shipmentId=${shipmentId}&amp;purchaseOrderId=${orderId}&amp;clearAll=Y</@ofbizUrl>" class="buttontext">${uiLabelMap.CommonClearAll}</a>
-                            </td>
-                            <td align="right">
-                                <a class="smallSubmit" href="javascript:populateQuantities(${rowCount - 1});document.selectAllForm.submit();">${uiLabelMap.ProductReceiveItem}</a>
-                            </td>
-                        </tr>
+                        <#if !isShipmentReceived>
+                            <tr>
+                                <td colspan="11" align="right">
+                                    <a href="<@ofbizUrl>ReceiveInventoryAgainstPurchaseOrder?shipmentId=${shipmentId}&amp;purchaseOrderId=${orderId}&amp;clearAll=Y</@ofbizUrl>" class="buttontext">${uiLabelMap.CommonClearAll}</a>
+                                </td>
+                                <td align="right">
+                                    <a class="smallSubmit" href="javascript:populateQuantities(${rowCount - 1});document.selectAllForm.submit();">${uiLabelMap.ProductReceiveItem}</a>
+                                </td>
+                            </tr>
+                        </#if>
                         <tr>
                             <td colspan="12" align="right">
                                 <input form="orderForceCompletePurchaseOrder" type="submit" value="${uiLabelMap.OrderForceCompletePurchaseOrder}" class="smallSubmit"/>
@@ -226,7 +228,7 @@ under the License.
                 <input type="hidden" name="clearAll" value="Y"/>
             </form>
         </#if>
-        <#if itemsAvailableToReceive && totalReadyToReceive < totalAvailableToReceive>
+        <#if itemsAvailableToReceive && totalReadyToReceive < totalAvailableToReceive && !isShipmentReceived>
             <h3>${uiLabelMap.ProductReceiveInventoryAddProductToReceive}</h3>
             <form name="addProductToReceive" method="post" action="<@ofbizUrl>ReceiveInventoryAgainstPurchaseOrder</@ofbizUrl>">
                 <input type="hidden" name="shipmentId" value="${shipmentId}"/>
