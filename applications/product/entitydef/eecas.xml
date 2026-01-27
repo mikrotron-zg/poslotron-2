@@ -25,6 +25,7 @@ under the License.
         <condition field-name="autoCreateKeywords" operator="not-equals" value="N"/>
         <action service="indexProductKeywords" mode="sync" value-attr="productInstance"/>
     </eca>
+    <!-- Disable auto creating keywords on product update
     <eca entity="Product" operation="store" event="return">
         <condition field-name="autoCreateKeywords" operator="not-equals" value="N"/>
         <action service="indexProductKeywords" mode="sync"/>
@@ -41,6 +42,7 @@ under the License.
     <eca entity="ProductContent" operation="create-store" event="return">
         <action service="indexProductKeywords" mode="sync"/>
     </eca>
+    -->
 
     <!-- inventory related ECAs -->
     <eca entity="InventoryItem" operation="create-store" event="return">
