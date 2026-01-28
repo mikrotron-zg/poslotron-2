@@ -176,7 +176,21 @@ public class ControlFilter extends HttpFilter {
         boolean isEntityImport = req.getRequestURI().equals("/webtools/control/entityImport");
         boolean isProgramExport = req.getRequestURI().equals("/webtools/control/ProgramExport");
 
-        if (!(isSolrTest() || isControlFilterTests() || isEntityImport || isProgramExport)) {
+        // Check if this URI allows HTML content
+        String requestUri = req.getRequestURI();
+        String allowedUrisForHtml = UtilProperties.getPropertyValue("security", "allowedURIsForHtmlContent");
+        boolean allowsHtmlContent = false;
+        if (UtilValidate.isNotEmpty(allowedUrisForHtml)) {
+            List<String> allowedHtmlUris = StringUtil.split(allowedUrisForHtml, ",");
+            for (String allowedUri : allowedHtmlUris) {
+                if (requestUri.contains(allowedUri)) {
+                    allowsHtmlContent = true;
+                    break;
+                }
+            }
+        }
+
+        if (!(isSolrTest() || isControlFilterTests() || isEntityImport || isProgramExport || allowsHtmlContent)) {
             // Prevents stream exploitation
             UrlServletHelper.setRequestAttributes(req, null, req.getServletContext());
             Map<String, Object> parameters = UtilHttp.getParameterMap(req);
