@@ -818,7 +818,9 @@ under the License.
     <request-map uri="createProductAssoc">
         <security https="true" auth="true"/>
         <event type="service" invoke="createProductAssoc"/>
-        <response name="success" type="view" value="EditProductAssoc"/>
+        <response name="success" type="request-redirect" value="EditProductAssoc">
+            <redirect-parameter name="productId"/>
+        </response>
         <response name="error" type="view" value="EditProductAssoc"/>
     </request-map>
     <request-map uri="updateProductAssoc">
