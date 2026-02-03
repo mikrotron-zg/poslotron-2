@@ -288,3 +288,18 @@ button.jGrowl-close {
 .content-messages p {
     display: none;
 }
+
+/* Add icon to links in product long description with target="_blank" */
+#long-description a[target="_blank"]::after {
+    content: " \f1c5";
+    font-family: "bootstrap-icons";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 0.8em;
+    margin-left: 0.2em;
+}

@@ -21,6 +21,9 @@ under the License.
 <#assign productImageList = productImageList! />
 <#-- end variable setup -->
 
+<#-- Include custom functions for fixing link attributes -->
+<#include "../includes/FixLinkAttributes.ftl" />
+
 <#-- virtual product javascript -->
 ${virtualJavaScript!}
 ${virtualVariantJavaScript!}
@@ -437,7 +440,7 @@ ${variantInfoJavaScript!}
     <div class="col-lg-8 text-secondary">
       <h2>${productContentWrapper.get("PRODUCT_NAME", "html")!}</h2>
       <hr>
-      <p>${productContentWrapper.get("DESCRIPTION", "html")!}</p>
+      <p><@fixLinkAttributesBlock content=productContentWrapper.get("DESCRIPTION", "html")! /></p>
       <p class="font-italic">ID: ${product.productId!}</p>
       <#-- example of showing a certain type of feature with the product -->
       <#if sizeProductFeatureAndAppls?has_content>
@@ -915,8 +918,12 @@ ${variantInfoJavaScript!}
 
     <#-- Long description of product -->
     <div id="long-description" class="row mt-4 text-secondary">
-      <div class="col-12">${productContentWrapper.get("LONG_DESCRIPTION", "html")!}</div>
-      <div class="col-12">${productContentWrapper.get("WARNINGS", "html")!}</div>
+      <div class="col-12">
+        <@fixLinkAttributesBlock content=productContentWrapper.get("LONG_DESCRIPTION", "html")! />
+      </div>
+      <div class="col-12">
+        <@fixLinkAttributesBlock content=productContentWrapper.get("WARNINGS", "html")! />
+      </div>
     </div>
 
     <#-- Any attributes/etc may go here -->
