@@ -155,17 +155,10 @@
             <div class="row row-eq-height">
 
               <#list productCategoryMembers as productCategoryMember>
-                <#if (numCol?int == 1)>
                   ${setRequestAttribute("optProductId", productCategoryMember.productId)}
                   ${setRequestAttribute("productCategoryMember", productCategoryMember)}
                   ${setRequestAttribute("listIndex", productCategoryMember_index)}
                   ${screens.render(productsummaryScreen)}
-                <#else>
-                  ${setRequestAttribute("optProductId", productCategoryMember.productId)}
-                  ${setRequestAttribute("productCategoryMember", productCategoryMember)}
-                  ${setRequestAttribute("listIndex", productCategoryMember_index)}
-                  ${screens.render(productsummaryScreen)}
-                </#if>
               </#list>
 
             </div>

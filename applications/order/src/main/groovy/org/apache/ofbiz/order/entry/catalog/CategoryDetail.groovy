@@ -59,7 +59,7 @@ if (productStore) {
 if (context.orderByFields) {
     andMap.put('orderByFields', context.orderByFields)
 } else {
-    andMap.put('orderByFields', ['sequenceNum', 'productId'])
+    andMap.put('orderByFields', ['sequenceNum', '-productId'])
 }
 catResult = runService('getProductCategoryAndLimitedMembers', andMap)
 productCategory = catResult.productCategory
