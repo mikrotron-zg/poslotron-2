@@ -439,6 +439,7 @@ ${variantInfoJavaScript!}
 
     <div class="col-lg-8 text-secondary">
       <h2>${productContentWrapper.get("PRODUCT_NAME", "html")!}</h2>
+      <em>${productContentWrapper.get("BRAND_NAME", "html")!}</em>
       <hr>
       <p><@fixLinkAttributesBlock content=productContentWrapper.get("DESCRIPTION", "html")! /></p>
       <p class="font-italic">ID: ${product.productId!}</p>
