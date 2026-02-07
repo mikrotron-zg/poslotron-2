@@ -110,13 +110,14 @@
         <#assign longDescription = categoryContentWrapper.get("LONG_DESCRIPTION", "html")!/>
         <#assign categoryImageUrl = categoryContentWrapper.get("CATEGORY_IMAGE_URL", "url")!/>
         <#if categoryImageUrl?string?has_content || longDescription?has_content>
-          <div>
+          <div id="long-description">
             <#if categoryImageUrl?string?has_content>
               <#assign height=100/>
               <img src='<@ofbizContentUrl>${categoryImageUrl}</@ofbizContentUrl>' vspace='5' hspace='5' align='left' class='cssImgLarge' />
             </#if>
             <#if longDescription?has_content>
               ${longDescription}
+              <hr/>
             </#if>
           </div>
         </#if>
