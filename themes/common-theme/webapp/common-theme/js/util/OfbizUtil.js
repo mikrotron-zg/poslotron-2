@@ -670,11 +670,15 @@ function ajaxUpdateArea(areaId, target, targetParams) {
 
 function updateArea(areaId, data) {
     // If the area is indicate as embedded why replace the area instead inject into
+    var bindObserversArea = "#" + areaId
     if (/^embedded/.test(areaId)) {
         jQuery("#" + areaId).replaceWith(data);
+        const newContentId = $(data).filter('.embeddedScreen').attr('id');
+        bindObserversArea = "#" + newContentId;
     } else {
         jQuery("#" + areaId).html(data);
     }
+    bindObservers(bindObserversArea);
 }
 
 /** Update multiple areas (HTML container elements).

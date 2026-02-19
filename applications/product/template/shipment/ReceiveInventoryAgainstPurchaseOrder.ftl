@@ -72,27 +72,16 @@ under the License.
     </#if>
 </#if>
 
-<form name="ReceiveInventoryAgainstPurchaseOrder" action="<@ofbizUrl>ReceiveInventoryAgainstPurchaseOrder</@ofbizUrl>">
-  <input type="hidden" name="clearAll" value="Y"/>
   <table class="basic-table" cellspacing="0">
     <tr>
-      <td class="label">${uiLabelMap.ProductShipmentId}</td>
-      <td><input type="text" size="20" name="shipmentId" value="${shipmentId!}"/></td>
-    </tr>
-    <tr>
       <td class="label">${uiLabelMap.ProductOrderId}</td>
-      <td><@htmlTemplate.lookupField value="${orderId!}" formName="ReceiveInventoryAgainstPurchaseOrder" name="purchaseOrderId" id="purchaseOrderId" fieldFormName="LookupOrderHeaderAndShipInfo"/></td>
+      <td>${orderId!}</td>
     </tr>
     <tr>
       <td class="label">${uiLabelMap.ProductOrderShipGroupId}</td>
-      <td><input type="text" size="20" name="shipGroupSeqId" value="${shipGroupSeqId!}"/></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><input type="submit" value="${uiLabelMap.CommonSelect}" class="smallSubmit"/></td>
+      <td>${shipGroupSeqId!}</td>
     </tr>
   </table>
-</form>
 
 <#if shipment??>
     <#if isPurchaseShipment>
@@ -106,6 +95,7 @@ under the License.
                 <input type="hidden" name="facilityId" value="${facilityId}"/>
                 <input type="hidden" name="purchaseOrderId" value="${orderId}"/>
                 <input type="hidden" name="shipmentId" value="${shipmentId}" />
+                <input type="hidden" name="shipGroupSeqId" value="${shipGroupSeqId}" />
                 <input type="hidden" name="_useRowSubmit" value="Y"/>
                 <table cellspacing="0" class="basic-table">
                     <tr class="header-row">
@@ -147,15 +137,15 @@ under the License.
                                     </#if>
                                 </div>
                             </td>
-                            <td>${orderItem.quantity}</td>
-                            <td>${orderItem.cancelQuantity?default(0)}</td>
+                            <td>${orderItemData.ordered}</td>
+                            <td>${orderItemData.cancelled?default(0)}</td>
                             <td>
                                 <div ${(backOrderedQuantity &gt; 0)?string(" errorMessage","")}">
                                     ${backOrderedQuantity}
                                 </div>
                             </td>
                             <td>${totalQuantityReceived}</td>
-                            <td>${orderItem.quantity - orderItem.cancelQuantity?default(0) - totalQuantityReceived}</td>
+                            <td>${orderItemData.ordered - orderItemData.cancelled?default(0) - totalQuantityReceived}</td>
                             <td>
                                 <div>
                                     <#if fulfilledReservations?has_content>
