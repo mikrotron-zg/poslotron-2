@@ -171,7 +171,7 @@ under the License.
                     </fo:table-body>
                 </fo:table>
             </fo:block>
-            <#assign grandTotalQuoteAmountCents = grandTotalQuoteAmount * 100>
+            <#assign grandTotalQuoteAmountCents = (grandTotalQuoteAmount * 100)?round>
             <fo:block text-align="right" font-size="7pt" margin-right="12mm" margin-top="5mm">
                 ************* 2D barkod za plaćanje *************
             </fo:block>
