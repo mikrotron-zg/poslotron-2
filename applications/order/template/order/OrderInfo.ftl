@@ -48,7 +48,7 @@ under the License.
 
             <#if "ORDER_CREATED" == currentStatus.statusId || "ORDER_PROCESSING" == currentStatus.statusId>
               <li><a href="javascript:document.OrderApproveOrder.submit()">${uiLabelMap.OrderApproveOrder}</a>
-              <form class ="basic-form" name="OrderApproveOrder" method="post" action="<@ofbizUrl>changeOrderStatus/orderview</@ofbizUrl>">
+              <form class ="basic-form" name="OrderApproveOrder" method="post" action="<@ofbizUrl>changeOrderStatus</@ofbizUrl>">
                 <input type="hidden" name="statusId" value="ORDER_APPROVED"/>
                 <input type="hidden" name="newStatusId" value="ORDER_APPROVED"/>
                 <input type="hidden" name="setItemStatus" value="Y"/>
@@ -61,7 +61,7 @@ under the License.
               </li>
             <#elseif "ORDER_APPROVED" == currentStatus.statusId>
               <li><a href="javascript:document.OrderHold.submit()">${uiLabelMap.OrderHold}</a>
-              <form class="basic-form" name="OrderHold" method="post" action="<@ofbizUrl>changeOrderStatus/orderview</@ofbizUrl>">
+              <form class="basic-form" name="OrderHold" method="post" action="<@ofbizUrl>changeOrderStatus</@ofbizUrl>">
                 <input type="hidden" name="statusId" value="ORDER_HOLD"/>
                 <input type="hidden" name="workEffortId" value="${workEffortId!}"/>
                 <input type="hidden" name="orderId" value="${orderId!}"/>
@@ -72,7 +72,7 @@ under the License.
               </li>
             <#elseif "ORDER_HOLD" == currentStatus.statusId>
               <li><a href="javascript:document.OrderApproveOrder.submit()">${uiLabelMap.OrderApproveOrder}</a>
-              <form class="basic-form" name="OrderApproveOrder" method="post" action="<@ofbizUrl>changeOrderStatus/orderview</@ofbizUrl>">
+              <form class="basic-form" name="OrderApproveOrder" method="post" action="<@ofbizUrl>changeOrderStatus</@ofbizUrl>">
                 <input type="hidden" name="statusId" value="ORDER_APPROVED"/>
                 <input type="hidden" name="setItemStatus" value="Y"/>
                 <input type="hidden" name="workEffortId" value="${workEffortId!}"/>
@@ -85,7 +85,7 @@ under the License.
             </#if>
             <#if currentStatus.statusId != "ORDER_COMPLETED" && currentStatus.statusId != "ORDER_CANCELLED">
               <li><a href="javascript:document.OrderCancel.submit()">${uiLabelMap.OrderCancelOrder}</a>
-              <form class="basic-form" name="OrderCancel" method="post" action="<@ofbizUrl>changeOrderStatus/orderview</@ofbizUrl>">
+              <form class="basic-form" name="OrderCancel" method="post" action="<@ofbizUrl>changeOrderStatus</@ofbizUrl>">
                 <input type="hidden" name="statusId" value="ORDER_CANCELLED"/>
                 <input type="hidden" name="setItemStatus" value="Y"/>
                 <input type="hidden" name="workEffortId" value="${workEffortId!}"/>
