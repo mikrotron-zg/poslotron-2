@@ -65,14 +65,12 @@ under the License.
         <fo:table-row>
           <fo:table-cell>
             <fo:block margin-top="10mm">
-              <fo:block>${uiLabelMap.PartyAddrToName}: </fo:block>
               <#if partyId??>
+                <fo:block>${uiLabelMap.PartyAddrToName}: </fo:block>
                 <#assign partyNameResult = dispatcher.runSync("getPartyNameForDate", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("partyId", partyId, "compareDate", orderHeader.orderDate?default(""), "userLogin", userLogin))/>
                 <fo:block font-family="NotoSans-Bold">
-                  ${partyNameResult.fullName?default("[${uiLabelMap.OrderPartyNameNotFound}]")}
+                  ${partyNameResult.fullName!}
                 </fo:block>
-              <#else>
-                <fo:block>[${uiLabelMap.OrderPartyNameNotFound}]</fo:block>
               </#if>
             </fo:block>
           </fo:table-cell>
@@ -83,8 +81,6 @@ under the License.
               <#if billingAddress??>
                 ${setContextField("postalAddress", billingAddress)}
                 ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressPdfFormatter")}
-              <#else>
-                <fo:block>[${uiLabelMap.PartyBillingAddressNotFound}]</fo:block>
               </#if>
             </fo:block>
           </fo:table-cell>
