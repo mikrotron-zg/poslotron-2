@@ -82,9 +82,11 @@ under the License.
     <form name="ListQuotes" list-name="listIt" target="" title="" type="list"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar" paginate-target="FindQuote">
           <actions>
+              <set field="defaultOrderBy" value="-quoteId"/>
               <service service-name="performFind" result-map="result" result-map-list="listIt">
                   <field-map field-name="inputFields" from-field="parameters"/>
                   <field-map field-name="entityName" value="Quote"/>
+                  <field-map field-name="orderBy" from-field="defaultOrderBy"/>
                   <field-map field-name="viewIndex" from-field="viewIndex"/>
                   <field-map field-name="viewSize" from-field="viewSize"/>
               </service>
@@ -97,7 +99,13 @@ under the License.
         </field>
         <field name="quoteTypeId" title="${uiLabelMap.OrderOrderQuoteTypeId}"><display-entity entity-name="QuoteType"/></field>
         <field name="statusId" title="${uiLabelMap.CommonStatus}"><display-entity also-hidden="false" entity-name="StatusItem"/></field>
-        <field name="partyId" title="${uiLabelMap.PartyPartyId}"></field>
+        <field name="partyId" title="${uiLabelMap.PartyPartyTo}">
+            <display-entity entity-name="PartyNameView" key-field-name="partyId" description="${firstName} ${middleName} ${lastName} ${groupName}">
+                <sub-hyperlink description="[${partyId}]" target="/partymgr/control/viewprofile" target-type="inter-app">
+                    <parameter param-name="partyId"/>
+                </sub-hyperlink>
+            </display-entity>
+        </field>
         <field name="quoteName" title="${uiLabelMap.OrderOrderQuoteName}"></field>
         <field name="description" title="${uiLabelMap.CommonDescription}"></field>
         <field name="issueDate" title="${uiLabelMap.OrderOrderQuoteIssueDate}"></field>

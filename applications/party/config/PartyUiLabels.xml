@@ -11166,7 +11166,7 @@
         <value xml:lang="es-CL">Participante hasta</value>
         <value xml:lang="fr">à l'acteur</value>
         <value xml:lang="hi-IN">पार्टी को</value>
-        <value xml:lang="hr">Sudionik do</value>
+        <value xml:lang="hr">Za sudionika</value>
         <value xml:lang="it">Soggetto A</value>
         <value xml:lang="ja">取引先(先)</value>
         <value xml:lang="nl">Relatie met</value>
@@ -11183,7 +11183,7 @@
         <value xml:lang="ar">الطرف الى - غير موجود</value>
         <value xml:lang="de">Akteur existiert nicht!</value>
         <value xml:lang="en">Party To does not exist!</value>
-        <value xml:lang="hr">'Sudionik do' ne postoji!</value>
+        <value xml:lang="hr">Sudionik ne postoji!</value>
         <value xml:lang="it">Soggetto A non esiste!</value>
         <value xml:lang="ja">取引先(先)が存在しません!</value>
         <value xml:lang="vi">Tác nhân Đến không tồn tại !</value>

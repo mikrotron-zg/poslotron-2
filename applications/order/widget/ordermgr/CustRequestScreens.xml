@@ -27,6 +27,10 @@ under the License.
                 <set field="titleProperty" value="OrderFindRequests"/>
                 <set field="headerItem" value="request"/>
                 <set field="entityName" value="CustRequest"/>
+                <set field="viewIndex" from-field="parameters.VIEW_INDEX" type="Integer"/>
+                <set field="viewSizeDefaultValue" value="${groovy: modelTheme.getDefaultViewSize()}" type="Integer"/>
+                <set field="viewSize" from-field="parameters.VIEW_SIZE" type="Integer" default-value="${viewSizeDefaultValue}"/>
+                <set field="noConditionFind" value="Y"/>
                 <set field="asm_multipleSelectForm" value="FindRequests"/>
                 <set field="custRequestType.asm_multipleSelect" value="FindRequests_custRequestTypeId"/>
                 <set field="custRequestType.asm_sortable" value="true"/>
