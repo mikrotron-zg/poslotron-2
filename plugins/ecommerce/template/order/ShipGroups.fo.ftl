@@ -32,7 +32,7 @@ under the License.
       <fo:table-row>
         <fo:table-cell number-rows-spanned="4">
           <#assign address = data.address!>
-          <fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderAddress}:</fo:block>
+          <fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderShippingAddress}:</fo:block>
           <fo:block>${address.toName!}</fo:block>
           <#if address.attnName?has_content>
           <fo:block>${uiLabelMap.CommonAttn}: ${address.attnName!}</fo:block>
