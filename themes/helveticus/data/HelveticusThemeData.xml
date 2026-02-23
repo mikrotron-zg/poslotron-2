@@ -23,4 +23,5 @@ under the License.
     <VisualTheme visualThemeId="HELVETICUS_RUBY" visualThemeSetId="BACKOFFICE" description="Helveticus - Ruby"/>
     <VisualTheme visualThemeId="HELVETICUS_EMERALD" visualThemeSetId="BACKOFFICE" description="Helveticus - Emerald"/>
     <VisualTheme visualThemeId="HELVETICUS_AMBER" visualThemeSetId="BACKOFFICE" description="Helveticus - Amber"/>
+    <VisualTheme visualThemeId="HELVETICUS_DARK_ORNG" visualThemeSetId="BACKOFFICE" description="Helveticus Dark - Orange"/>
 </entity-engine-xml>
