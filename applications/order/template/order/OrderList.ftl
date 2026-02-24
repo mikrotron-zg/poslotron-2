@@ -205,7 +205,7 @@ under the License.
               <#assign billFrom = ''/>
             </#if>
             <#assign productStore = orderHeader.getRelatedOne("ProductStore", true)! />
-            <tr>
+            <tr<#if (orderHeader_index % 2) == 1> class="alternate-row"</#if>>
               <td><#if orderHeader.orderDate?has_content>${Static["org.apache.ofbiz.base.util.UtilFormatOut"].formatDateTime(orderHeader.orderDate, "", locale, timeZone)!}</#if></td>
               <td>
                 <a href="<@ofbizUrl>orderview?orderId=${orderHeader.orderId}</@ofbizUrl>" class="buttontext">${orderHeader.orderId}</a>

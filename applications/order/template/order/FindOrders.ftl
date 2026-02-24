@@ -155,7 +155,7 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
     <br class="clear"/>
   </div>
   <#if parameters.hideFields?default("N") != "Y">
-      <div class="ofbiz-form with-left-right-columns">
+      <div class="screenlet-body ofbiz-form with-left-right-columns">
 
           <label for="orderId">${uiLabelMap.OrderOrderId}</label>
           <input id="orderId" type='text' name='orderId'/>
@@ -179,10 +179,10 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
           <input id='correspondingPoId' type='text' name='correspondingPoId' value='${requestParameters.correspondingPoId!}'/>
 
           <label for="correspondingPoId" class="left-column">${uiLabelMap.CommonDateFilter}</label>
-          <div>
+          <span>
               <@htmlTemplate.renderDateTimeField name="minDate" event="" action="" value="${requestParameters.minDate!}" className="" title="Format: yyyy-MM-dd HH:mm:ss.SSS" size="25" maxlength="30" id="minDate1" isDateType=true shortDateInput=false timeDropdownParamName="" defaultDateTimeString="" localizedIconTitle="" timeDropdown="" timeHourName="" classString="" hour1="" hour2="" timeMinutesName="" minutes="" isTwelveHour="" ampmName="" amSelected="" pmSelected="" compositeType="" formName=""/>
               <span class='label'>${uiLabelMap.CommonFrom}</span>
-          </div>
+          </span>
 
           <label for="externalId" class="right-column">${uiLabelMap.OrderExternalId}</label>
           <input id='externalId' type='text' name='externalId'/>
@@ -194,10 +194,14 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
           </div>
 
           <label for="partyId" class="left-column">${uiLabelMap.PartyPartyId}</label>
+          <span>
           <@htmlTemplate.lookupField value='${requestParameters.partyId!}' formName="lookuporder" name="partyId" id="partyId" fieldFormName="LookupPartyName"/>
+          </span>
 
           <label for="userLoginId" class="right-column">${uiLabelMap.CommonUserLoginId}</label>
+          <span>
           <@htmlTemplate.lookupField value='${requestParameters.userLoginId!}' formName="lookuporder" name="userLoginId" id="userLoginId" fieldFormName="LookupUserLoginAndPartyDetails"/>
+          </span>
 
           <label for="roleTypeId" class="left-column">${uiLabelMap.PartyRoleType}</label>
           <select name='roleTypeId' id='roleTypeId' multiple="multiple">
@@ -211,7 +215,9 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
           </select>
 
           <label for="createdBy" class="right-column">${uiLabelMap.CommonCreatedBy}</label>
+          <span>
           <input type='text' id='createdBy' name='createdBy' value='${requestParameters.createdBy!}'/>
+          </span>
 
           <#if goodIdentificationTypes?has_content>
               <label for="goodIdentificationTypeId" class="left-column">${uiLabelMap.ProductGoodIdentificationType}</label>
@@ -231,10 +237,14 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
           </#if>
 
           <label for="productId" class="left-column">${uiLabelMap.ProductProductId}</label>
+          <span>
           <@htmlTemplate.lookupField value='${requestParameters.productId!}' formName="lookuporder" name="productId" id="productId" fieldFormName="LookupProduct"/>
+          </span>
 
           <label for="internalCode" class="right-column">${uiLabelMap.OrderInternalCode}</label>
+          <span>
           <input id='internalCode' type='text' name='internalCode' value='${requestParameters.internalCode!}'/>
+          </span>
 
           <label for="inventoryItemId" class="left-column">${uiLabelMap.ProductInventoryItemId}</label>
           <input id='inventoryItemId' type='text' name='inventoryItemId' value='${requestParameters.inventoryItemId!}'/>
@@ -246,25 +256,29 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
           <input id='softIdentifier' type='text' name='softIdentifier' value='${requestParameters.softIdentifier!}'/>
 
           <label class="left-column">${uiLabelMap.CommonStatus}</label>
-          <div class="full-span-field">
+          <span class="full-span-field">
               <#list orderStatuses as orderStatus>
                   <label>
                       <input type="checkbox" name="orderStatusId" value="${orderStatus.statusId}" <#if currentStatuses?has_content && currentStatuses.contains(orderStatus.statusId)>checked</#if>/>
                       ${orderStatus.get("description", locale)}
                   </label>
               </#list>
-          </div>
+          </span>
 
           <label for="billingAccountId" class="left-column">${uiLabelMap.AccountingBillingAccount}</label>
+          <span>
           <@htmlTemplate.lookupField value='${requestParameters.billingAccountId!}' formName="lookuporder" name="billingAccountId" id="billingAccountId" fieldFormName="LookupBillingAccount"/>
+          </span>
 
           <label for="paymentStatusId">${uiLabelMap.AccountingPaymentStatus}</label>
-          <select id='paymentStatusId' name="paymentStatusId">
-              <option value="">${uiLabelMap.CommonAll}</option>
-              <#list paymentStatusList as paymentStatus>
-                  <option value="${paymentStatus.statusId}">${paymentStatus.get("description", locale)}</option>
-              </#list>
-          </select>
+          <span>
+              <select id='paymentStatusId' name="paymentStatusId">
+                  <option value="">${uiLabelMap.CommonAll}</option>
+                  <#list paymentStatusList as paymentStatus>
+                      <option value="${paymentStatus.statusId}">${paymentStatus.get("description", locale)}</option>
+                  </#list>
+              </select>
+          </span>
 
           <label for="productStoreId" class="left-column">${uiLabelMap.ProductProductStore}</label>
           <select id='productStoreId' name='productStoreId'>
@@ -303,21 +317,23 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
           </select>
 
           <label for="shipmentMethod" class="left-column">${uiLabelMap.OrderSelectShippingMethod}</label>
-          <select id="shipmentMethod" name="shipmentMethod">
-              <#if currentCarrierShipmentMethod?has_content>
-                  <#assign currentShipmentMethodType = currentCarrierShipmentMethod.getRelatedOne("ShipmentMethodType", false)>
-                  <option value="${currentCarrierShipmentMethod.partyId}@${currentCarrierShipmentMethod.shipmentMethodTypeId}">${currentCarrierShipmentMethod.partyId!} ${currentShipmentMethodType.description!}</option>
-                  <option value="${currentCarrierShipmentMethod.partyId}@${currentCarrierShipmentMethod.shipmentMethodTypeId}">---</option>
-              </#if>
-              <option value="">${uiLabelMap.OrderSelectShippingMethod}</option>
-              <#list carrierShipmentMethods as carrierShipmentMethod>
-                  <#assign shipmentMethodType = carrierShipmentMethod.getRelatedOne("ShipmentMethodType", false)>
-                  <option value="${carrierShipmentMethod.partyId}@${carrierShipmentMethod.shipmentMethodTypeId}">${carrierShipmentMethod.partyId!} ${shipmentMethodType.description!}</option>
-              </#list>
-          </select>
+          <span>
+              <select id="shipmentMethod" name="shipmentMethod">
+                  <#if currentCarrierShipmentMethod?has_content>
+                      <#assign currentShipmentMethodType = currentCarrierShipmentMethod.getRelatedOne("ShipmentMethodType", false)>
+                      <option value="${currentCarrierShipmentMethod.partyId}@${currentCarrierShipmentMethod.shipmentMethodTypeId}">${currentCarrierShipmentMethod.partyId!} ${currentShipmentMethodType.description!}</option>
+                      <option value="${currentCarrierShipmentMethod.partyId}@${currentCarrierShipmentMethod.shipmentMethodTypeId}">---</option>
+                  </#if>
+                  <option value="">${uiLabelMap.OrderSelectShippingMethod}</option>
+                  <#list carrierShipmentMethods as carrierShipmentMethod>
+                      <#assign shipmentMethodType = carrierShipmentMethod.getRelatedOne("ShipmentMethodType", false)>
+                      <option value="${carrierShipmentMethod.partyId}@${carrierShipmentMethod.shipmentMethodTypeId}">${carrierShipmentMethod.partyId!} ${shipmentMethodType.description!}</option>
+                  </#list>
+              </select>
+          </span>
 
           <label for="countryGeoId">${uiLabelMap.OrderShipToCountry}</label>
-          <div>
+          <span>
               <select id="countryGeoId" name="countryGeoId">
                   <#if requestParameters.countryGeoId?has_content>
                       <#assign countryGeoId = requestParameters.countryGeoId>
@@ -338,7 +354,7 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
                   <option value="Y">${uiLabelMap.OrderOnlyInclude}</option>
                   <option value="N">${uiLabelMap.OrderDoNotInclude}</option>
               </select>
-          </div>
+          </span>
 
           <label for="hasBackOrders">${uiLabelMap.OrderContainsBackOrders}</label>
           <select id="hasBackOrders" name='hasBackOrders'>
@@ -368,32 +384,23 @@ function paginateOrderList(viewSize, viewIndex, hideFields) {
           <input id="gatewayScoreResult" type='text' name='gatewayScoreResult' value='${requestParameters.gatewayScoreResult!}'/>
 
           <label class="left-column">Filter</label>
-          <div>
+          <span class="full-span-field" style="display: inline-flex;">
               <input type="checkbox" id="filterInventoryProblems" name="filterInventoryProblems" value="Y"
                      <#if "Y" == requestParameters.filterInventoryProblems?default("N")>checked="checked"</#if> />
-              <label for="filterInventoryProblems">${uiLabelMap.OrderFilterOn} ${uiLabelMap.OrderFilterInventoryProblems}</label>
-          </div>
+              <label for="filterInventoryProblems">${uiLabelMap.OrderFilterInventoryProblems}</label>
 
-          <label class="left-column"></label>
-          <div>
               <input type="checkbox" id="filterPartiallyReceivedPOs" name="filterPartiallyReceivedPOs" value="Y"
                      <#if "Y" == requestParameters.filterPartiallyReceivedPOs?default("N")>checked="checked"</#if> />
-              <label for="filterPartiallyReceivedPOs">${uiLabelMap.OrderFilterOn} ${uiLabelMap.OrderFilterPOs} ${uiLabelMap.OrderFilterPartiallyReceivedPOs}</label>
-          </div>
+              <label for="filterPartiallyReceivedPOs">${uiLabelMap.OrderFilterPartiallyReceivedPOs}</label>
 
-          <label class="left-column"></label>
-          <div>
               <input type="checkbox" id="filterPOsOpenPastTheirETA" name="filterPOsOpenPastTheirETA" value="Y"
                      <#if "Y" == requestParameters.filterPOsOpenPastTheirETA?default("N")>checked="checked"</#if> />
-              <label for="filterPOsOpenPastTheirETA">${uiLabelMap.OrderFilterOn} ${uiLabelMap.OrderFilterPOs} ${uiLabelMap.OrderFilterPOsOpenPastTheirETA}</label>
-          </div>
+              <label for="filterPOsOpenPastTheirETA">${uiLabelMap.OrderFilterPOsOpenPastTheirETA}</label>
 
-          <label class="left-column"></label>
-          <div>
               <input type="checkbox" id="filterPOsWithRejectedItems" name="filterPOsWithRejectedItems" value="Y"
                      <#if "Y" == requestParameters.filterPOsWithRejectedItems?default("N")>checked="checked"</#if> />
-              <label for="filterPOsWithRejectedItems">${uiLabelMap.OrderFilterOn} ${uiLabelMap.OrderFilterPOs} ${uiLabelMap.OrderFilterPOsWithRejectedItems}</label>
-          </div>
+              <label for="filterPOsWithRejectedItems">${uiLabelMap.OrderFilterPOsWithRejectedItems}</label>
+          </span>
 
           <input type="hidden" name="showAll" value="Y"/>
           <div class="full-width-center">
