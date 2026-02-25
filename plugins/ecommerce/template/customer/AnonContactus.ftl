@@ -78,7 +78,7 @@ under the License.
           </div>
           <div class="row">
             <div class="col-12 text-right">
-              <input type="submit" value="${uiLabelMap.CommonSubmit}" class="btn btn-outline-primary"/>
+              <input type="submit" value="${uiLabelMap.CommonSend}" class="btn btn-outline-primary"/>
             </div>
           </div>
         </form>

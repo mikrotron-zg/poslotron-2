@@ -3586,6 +3586,10 @@
         <value xml:lang="zh">电子邮件</value>
         <value xml:lang="zh-TW">電子郵件</value>
     </property>
+    <property key="CommonEmailReplayTo">
+        <value xml:lang="en">Replay to</value>
+        <value xml:lang="hr">Odgovori na e-mail</value>
+    </property>
     <property key="CommonEmailAlreadyExist">
         <value xml:lang="ar">البريد الإلكتروني موجود مسبقا</value>
         <value xml:lang="cs">Email již existuje</value>

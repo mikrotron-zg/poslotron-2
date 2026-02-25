@@ -634,7 +634,7 @@ Map sendContactUsEmailToCompany() {
     Map bodyParameters = [partyId: parameters.partyIdTo, email: parameters.emailAddress,
                           firstName: parameters.firstName, lastName: parameters.lastName,
                           postalCode: parameters.postalCode, countryCode: parameters.countryCode,
-                          message: parameters.content]
+                          subject: parameters.subject, message: parameters.content]
 
     if (productStoreEmailSetting.bodyScreenLocation) {
         Map emailParams = [bodyParameters: bodyParameters, userLogin: systemUserLogin]

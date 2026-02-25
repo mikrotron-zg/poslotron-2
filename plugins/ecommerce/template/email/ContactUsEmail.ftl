@@ -24,5 +24,14 @@ under the License.
   <p><strong>${uiLabelMap.CommonEmail}:</strong> ${parameters.email!}</p>
   <p><strong>${uiLabelMap.EcommerceSubject}:</strong> ${parameters.subject!}</p>
   <p><strong>${uiLabelMap.CommonMessage}:</strong></p><p><em>${parameters.message!}</em></p>
+  
+  <hr style="margin-top: 20px; margin-bottom: 10px; color: #666;">
+  <p style="color: #666;">
+    <em>${uiLabelMap.CommonEmailReplayTo}:&nbsp;
+      <a href="mailto:${parameters.email!}?subject=Re: ${parameters.subject!}&body=%0D%0A%0D%0A%5F%5F%5F%5F%5F%0D%0A${uiLabelMap.CommonMessage}:%0D%0A${parameters.message!}">
+        ${parameters.email!}
+      </a>
+    </em>
+  </p>
 </body>
 </html>
