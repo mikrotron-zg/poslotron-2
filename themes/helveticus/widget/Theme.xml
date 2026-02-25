@@ -39,7 +39,7 @@ under the License.
             <screenshot location="/helveticus/images/themeHelveticus_emerald.png"/>
         </visual-theme>
         <visual-theme id="HELVETICUS_DARK_ORNG" display-name="Helveticus Dark - Orange">
-            <description>Helveticus Dark - Orange theme (experimental)</description>
+            <description>${util:label('CommonEntityLabels', 'VisualTheme.description.HELVETICUS_DARK_ORNG', locale)}</description>
             <screenshot location="/helveticus/images/themeHelveticusDark_orange.png"/>
         </visual-theme>
     </visual-themes>

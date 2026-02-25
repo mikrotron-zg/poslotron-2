@@ -23328,42 +23328,46 @@
     <property key="VisualTheme.description.HELVETICUS_AMBER">
         <value xml:lang="en">: a Rainbowstone evolution in orange</value>
         <value xml:lang="fr"> : une évolution de Rainbowstone en orange</value>
-    <value xml:lang="hr">: evolucija Rainbowstonea u narančastoj boji</value>
+        <value xml:lang="hr">: evolucija Rainbowstonea u narančastoj boji</value>
     </property>
     <property key="VisualTheme.description.HELVETICUS_RUBY">
         <value xml:lang="en">: a Rainbowstone evolution in red</value>
         <value xml:lang="fr"> : une évolution de Rainbowstone en rouge</value>
-    <value xml:lang="hr">: evolucija Rainbowstonea u crvenoj boji</value>
+        <value xml:lang="hr">: evolucija Rainbowstonea u crvenoj boji</value>
     </property>
     <property key="VisualTheme.description.HELVETICUS_EMERALD">
         <value xml:lang="en">: a Rainbowstone evolution in green</value>
         <value xml:lang="fr"> : une évolution de Rainbowstone en vert</value>
-    <value xml:lang="hr">: evolucija Rainbowstonea u zelenoj boji</value>
+        <value xml:lang="hr">: evolucija Rainbowstonea u zelenoj boji</value>
     </property>
     <property key="VisualTheme.description.HELVETICUS_SAPHIR">
         <value xml:lang="en">: a Rainbowstone evolution in blue</value>
         <value xml:lang="fr"> : une évolution de Rainbowstone en bleu</value>
-    <value xml:lang="hr">: evolucija Rainbowstonea u plavoj boji</value>
+        <value xml:lang="hr">: evolucija Rainbowstonea u plavoj boji</value>
+    </property>
+        <property key="VisualTheme.description.HELVETICUS_DARK_ORNG">
+        <value xml:lang="en">: a dark version of Helveticus theme</value>
+        <value xml:lang="hr">: tamna verzija Helveticus teme</value>
     </property>
     <property key="VisualTheme.description.RAINBOWSTONE_AMBER">
         <value xml:lang="en">: Rainbowstone theme in orange</value>
         <value xml:lang="fr"> : le thème Rainbowstone en orange</value>
-    <value xml:lang="hr">: Tema Rainbowstone u narančastoj boji</value>
+        <value xml:lang="hr">: Tema Rainbowstone u narančastoj boji</value>
     </property>
     <property key="VisualTheme.description.RAINBOWSTONE_RUBY">
         <value xml:lang="en">: Rainbowstone theme in red</value>
         <value xml:lang="fr"> : le thème Rainbowstone en rouge</value>
-    <value xml:lang="hr">: Tema Rainbowstone u crvenoj boji</value>
+        <value xml:lang="hr">: Tema Rainbowstone u crvenoj boji</value>
     </property>
     <property key="VisualTheme.description.RAINBOWSTONE_EMERALD">
         <value xml:lang="en">: Rainbowstone theme in green</value>
         <value xml:lang="fr"> : le thème Rainbowstone en vert</value>
-    <value xml:lang="hr">: Tema Rainbowstone u zelenoj boji</value>
+        <value xml:lang="hr">: Tema Rainbowstone u zelenoj boji</value>
     </property>
     <property key="VisualTheme.description.RAINBOWSTONE_SAPHIR">
         <value xml:lang="en">: Rainbowstone theme in blue</value>
         <value xml:lang="fr"> : le thème Rainbowstone en bleu</value>
-    <value xml:lang="hr">: Tema Rainbowstone u plavoj boji</value>
+        <value xml:lang="hr">: Tema Rainbowstone u plavoj boji</value>
     </property>
     <property key="VisualTheme.description.TOMAHAWK">
         <value xml:lang="cs">: evoluční verze BlueLight</value>

@@ -17,40 +17,41 @@ specific language governing permissions and limitations
 under the License.
 -->
 <div id="newFiscalInvoiceForm" class="popup" style="display: none;">
-  <form id="addFiscalInvoice" name="addFiscalInvoice" method="post" action="addFiscalInvoice" style="font-size:1.2em;">
+  <form id="addFiscalInvoice" name="addFiscalInvoice" method="post" action="addFiscalInvoice" class="screenlet" style="font-size:1.2em;">
     <input type="hidden" name="orderId" value="${orderId!}"/>
     <input type="hidden" name="partyId" value="${partyId!}"/>
     <input type="hidden" name="partyTaxId" value="${partyTaxId!}"/>
     <input type="hidden" name="fiscalInvoiceType" value="${fiscalInvoiceType!}"/>
     <input type="hidden" name="invoiceId" value=""/>
     <#if partyTaxId?has_content> <#-- e-racun -->
-      <div class="form-row">
-        <strong>${uiLabelMap.FiscalB2BInfoMessage}</strong>
+      <div class="screenlet-title-bar">
+        <ul><li class="h3">${uiLabelMap.FiscalB2BInfoMessage}</li></ul>
+        <br class="clear"/>
       </div>
-      <hr/><br/>
-      <div class="form-row">
+      <div class="screenlet-body">
         <label for="poNumber">${uiLabelMap.OrderPurchaseOrderNumber}</label>
         <div class="form-field"><input type="text" name="poNumber" id="poNumber" value="" size="50" maxlength="255" /></div>
-      </div>
     <#else> <#-- Solo API -->
-      <div class="form-row">
-        <strong>${uiLabelMap.FiscalB2CInfoMessage}</strong>
+      <div class="screenlet-title-bar">
+        <ul><li class="h3">${uiLabelMap.FiscalB2CInfoMessage}</li></ul>
       </div>
+      <div class="screenlet-body">
     </#if>
-      <br/>
-      <div class="form-row">
-        <div class="form-field">
-          <input type="hidden" name="isPayed" id="isPayedHidden" value="Y"/>
-          <input type="checkbox" id="isPayed" checked="checked" onchange="document.getElementById('isPayedHidden').value = this.checked ? 'Y' : 'N'" />
-          <label for="isPayed" style="display: inline; margin-left: 5px;">${uiLabelMap.AccountingInvoicePaid}</label>
+        <br/>
+        <div class="form-row">
+          <div class="form-field">
+            <input type="hidden" name="isPayed" id="isPayedHidden" value="Y"/>
+            <input type="checkbox" id="isPayed" checked="checked" onchange="document.getElementById('isPayedHidden').value = this.checked ? 'Y' : 'N'" />
+            <label for="isPayed" style="display: inline; margin-left: 5px;">${uiLabelMap.AccountingInvoicePaid}</label>
+          </div>
         </div>
       </div>
       <div class="form-row">
-      <input id="submitAddFiscalInvoice" type="button" value="${uiLabelMap.FiscalIssueInvoice}" class="large-button" style="display:none"/>
-      <form action="">
-        <input class="popup_closebox buttontext large-button" type="button" value="${uiLabelMap.CommonClose}" style="display:none"/>
-      </form>
-    </div>
+        <input id="submitAddFiscalInvoice" type="button" value="${uiLabelMap.FiscalIssueInvoice}" class="large-button" style="display:none"/>
+        <form action="">
+          <input class="popup_closebox buttontext large-button" type="button" value="${uiLabelMap.CommonClose}" style="display:none"/>
+        </form>
+      </div>
     <style>
       .large-button {
         padding: 5px 10px !important;
