@@ -1295,7 +1295,7 @@ under the License.
     </request-map>
     <request-map uri="sendmessage">
         <security https="true" auth="true"/>
-        <event type="service" invoke="createCommunicationEventWithoutPermission"/>
+        <event type="groovy" path="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/customer/ContactEvents.groovy" invoke="submitContact"/>
         <response name="success" type="view" value="messagelist"/>
         <response name="error" type="view" value="messagecreate"/>
     </request-map>

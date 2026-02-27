@@ -22,7 +22,33 @@ import org.apache.ofbiz.base.util.UtilHttp
 import org.apache.ofbiz.service.ServiceUtil
 
 def submitContact() {
-    result = dispatcher.runSync("createCommunicationEventWithoutPermission", parameters)
+    def serviceName = "createCommunicationEventWithoutPermission"
+    if (parameters.emailType) {
+        serviceName = "sendContactUsEmailToCompany"
+        if (!parameters.emailAddress) {
+            def userLogin = request.getSession().getAttribute("userLogin")
+            if (userLogin) {
+                def partyId = userLogin.partyId
+                def getPartyEmailResult = dispatcher.runSync("getPartyEmail", [partyId: partyId, userLogin: userLogin])
+                if (getPartyEmailResult && !ServiceUtil.isError(getPartyEmailResult)) {
+                    parameters.emailAddress = getPartyEmailResult.emailAddress
+                }
+                def person = from("Person").where("partyId", partyId).queryOne()
+                if (person) {
+                    parameters.firstName = parameters.firstName ?: person.firstName
+                    parameters.lastName = parameters.lastName ?: person.lastName
+                } else {
+                    def partyGroup = from("PartyGroup").where("partyId", partyId).queryOne()
+                    if (partyGroup) {
+                        parameters.firstName = parameters.firstName ?: partyGroup.groupName
+                        parameters.lastName = parameters.lastName ?: ""
+                    }
+                }
+            }
+        }
+    }
+    
+    result = dispatcher.runSync(serviceName, parameters)
     if (ServiceUtil.isError(result)) {
         request.setAttribute("_ERROR_MESSAGE_", ServiceUtil.getErrorMessage(result))
         return "error"

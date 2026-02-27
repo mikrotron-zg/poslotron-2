@@ -33,7 +33,9 @@ under the License.
           <input type="hidden" name="partyIdFrom" value="${userLogin.partyId}"/>
           <input type="hidden" name="contactMechTypeId" value="WEB_ADDRESS"/>
           <input type="hidden" name="communicationEventTypeId" value="WEB_SITE_COMMUNICATI"/>
+          <input type="hidden" name="emailType" value="CONT_NOTI_EMAIL"/>
           <#if productStore?has_content>
+            <input type="hidden" name="productStoreId" value="${productStore.productStoreId!}"/>
             <input type="hidden" name="partyIdTo" value="${productStore.payToPartyId!}"/>
           </#if>
             <input type="hidden" name="note"
