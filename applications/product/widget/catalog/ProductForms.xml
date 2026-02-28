@@ -1106,13 +1106,13 @@ under the License.
         </field>
         <field name="productIdTo" use-when="productAssoc!=null" title="${uiLabelMap.ProductProductIdTo}" tooltip="${uiLabelMap.ProductRecreateAssociation}"><display/></field>
         <field name="productAssocTypeId" use-when="productAssoc==null" title="${uiLabelMap.ProductAssociationType}">
-            <drop-down>
+            <drop-down no-current-selected-key="PRODUCT_COMPLEMENT">
                 <entity-options description="${description}" entity-name="ProductAssocType">
                     <entity-order-by field-name="description"/>
                 </entity-options>
             </drop-down>
         </field>
-        <field name="productAssocTypeId" use-when="productAssoc!=null" title="${uiLabelMap.ProductAssociationType}" tooltip="${uiLabelMap.ProductRecreateAssociation}"><display/></field>
+        <field name="productAssocTypeId" use-when="productAssoc!=null" title="${uiLabelMap.ProductAssociationType}" tooltip="${uiLabelMap.ProductRecreateAssociation}"><display-entity entity-name="ProductAssocType"/></field>
         <field name="fromDate" use-when="productAssoc==null" tooltip="${uiLabelMap.CommonSetNowEmpty}"><date-time default-value="${nowTimestamp}"/></field>
         <field name="fromDate" use-when="productAssoc!=null" tooltip="${uiLabelMap.ProductRecreateAssociation}"><display type="date-time"/></field>
         <field name="thruDate"><date-time/></field>
