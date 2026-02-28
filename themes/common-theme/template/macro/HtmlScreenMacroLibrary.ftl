@@ -160,7 +160,16 @@ ${menuString}
 ${menuString}
 </ul><br class="clear" /></div>
 </#if>
-<div <#if collapsibleAreaId?has_content> id="${collapsibleAreaId}" <#if collapsed> style="display: none;"</#if></#if><#if padded> class="screenlet-body"<#else> class="screenlet-body no-padding"</#if>>
+<#assign screenletBodyStyle = "" />
+<#if collapsibleAreaId?has_content && collapsed>
+  <#assign screenletBodyStyle = "display: none;" />
+</#if>
+<#if screenletBodyStyle?has_content>
+  <#assign screenletBodyStyle = screenletBodyStyle + " overflow-x: auto;" />
+<#else>
+  <#assign screenletBodyStyle = "overflow-x: auto;" />
+</#if>
+<div <#if collapsibleAreaId?has_content> id="${collapsibleAreaId}"</#if><#if screenletBodyStyle?has_content> style="${screenletBodyStyle}"</#if><#if padded> class="screenlet-body"<#else> class="screenlet-body no-padding"</#if>>
 </#macro>
 <#macro renderScreenletSubWidget></#macro>
 <#macro renderScreenletEnd></div></div></#macro>
