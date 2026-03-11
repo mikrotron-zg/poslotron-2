@@ -834,7 +834,6 @@ public final class InvoiceWorker {
                 quantity = BigDecimal.ONE;
             }
             amount = amount.multiply(quantity);
-            amount = amount.setScale(TAX_DECIMALS, TAX_ROUNDING);
             taxTotal = taxTotal.add(amount);
         }
         return taxTotal.setScale(DECIMALS, ROUNDING);

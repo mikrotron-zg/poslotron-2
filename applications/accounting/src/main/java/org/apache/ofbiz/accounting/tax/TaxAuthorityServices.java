@@ -280,11 +280,9 @@ public class TaxAuthorityServices {
         }
 
         if (orderShippingAmount != null && orderShippingAmount.compareTo(BigDecimal.ZERO) > 0) {
-            for (GenericValue prod : productWeight.keySet()) {
-                List<GenericValue> taxList = getTaxAdjustments(delegator, prod, productStore, payToPartyId, billToPartyId,
-                        taxAuthoritySet, ZERO_BASE, ZERO_BASE, ZERO_BASE, orderShippingAmount, null, productWeight.get(prod));
-                orderAdjustments.addAll(taxList);
-            }
+            List<GenericValue> taxList = getTaxAdjustments(delegator, null, productStore, payToPartyId, billToPartyId,
+                    taxAuthoritySet, ZERO_BASE, ZERO_BASE, ZERO_BASE, orderShippingAmount, null);
+            orderAdjustments.addAll(taxList);
         }
         if (orderPromotionsAmount != null && orderPromotionsAmount.compareTo(BigDecimal.ZERO) != 0) {
             List<GenericValue> taxList = getTaxAdjustments(delegator, null, productStore, payToPartyId, billToPartyId,
