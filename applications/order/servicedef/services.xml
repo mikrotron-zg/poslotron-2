@@ -610,6 +610,13 @@ under the License.
         <attribute name="roleTypeId" type="String" mode="IN"/>
     </service>
 
+    <service name="updateOrderCustomer" engine="java"
+            location="org.apache.ofbiz.order.order.OrderServices" invoke="updateOrderCustomer">
+        <description>Updates the customer on an order, including all customer-facing order roles</description>
+        <attribute name="orderId" type="String" mode="IN"/>
+        <attribute name="partyId" type="String" mode="IN"/>
+    </service>
+
     <service name="createOrderPaymentPreference" default-entity-name="OrderPaymentPreference" engine="entity-auto" invoke="create">
         <description>Creates an order payment preference</description>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>

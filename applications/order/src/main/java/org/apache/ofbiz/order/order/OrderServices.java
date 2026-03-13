@@ -2722,6 +2722,63 @@ public class OrderServices {
     }
 
     /**
+     * Service to update the customer (partyId) on an order, including all customer-facing order roles.
+     * Ensures the new party has the required PartyRole entries before updating.
+     */
+    public static Map<String, Object> updateOrderCustomer(DispatchContext ctx, Map<String, ? extends Object> context) {
+        Delegator delegator = ctx.getDelegator();
+        LocalDispatcher dispatcher = ctx.getDispatcher();
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        String orderId = (String) context.get("orderId");
+        String newPartyId = (String) context.get("partyId");
+
+        String[] roleTypeIds = {"END_USER_CUSTOMER", "SHIP_TO_CUSTOMER", "BILL_TO_CUSTOMER", "PLACING_CUSTOMER", "REQ_TAKER"};
+
+        try {
+            GenericValue orderHeader = EntityQuery.use(delegator).from("OrderHeader").where("orderId", orderId).queryOne();
+            if (orderHeader == null) {
+                return ServiceUtil.returnError("Order " + orderId + " not found.");
+            }
+            String statusId = orderHeader.getString("statusId");
+            if ("ORDER_COMPLETED".equals(statusId) || "ORDER_CANCELLED".equals(statusId)) {
+                return ServiceUtil.returnError("Cannot update customer on a completed or cancelled order.");
+            }
+
+            GenericValue party = EntityQuery.use(delegator).from("Party").where("partyId", newPartyId).queryOne();
+            if (party == null) {
+                return ServiceUtil.returnError("Party " + newPartyId + " not found.");
+            }
+
+            // Ensure the new party has the required PartyRole entries
+            for (String roleTypeId : roleTypeIds) {
+                Map<String, Object> ensureCtx = UtilMisc.toMap("partyId", newPartyId, "roleTypeId", roleTypeId, "userLogin", userLogin);
+                Map<String, Object> ensureResult = dispatcher.runSync("ensurePartyRole", ensureCtx);
+                if (ServiceUtil.isError(ensureResult)) {
+                    return ServiceUtil.returnError("Failed to ensure party role " + roleTypeId + ": " + ServiceUtil.getErrorMessage(ensureResult));
+                }
+            }
+
+            // Update OrderRole for each role type: remove old, add new
+            for (String roleTypeId : roleTypeIds) {
+                List<GenericValue> oldRoles = EntityQuery.use(delegator).from("OrderRole")
+                        .where("orderId", orderId, "roleTypeId", roleTypeId).queryList();
+                for (GenericValue oldRole : oldRoles) {
+                    oldRole.remove();
+                }
+                GenericValue newRole = delegator.makeValue("OrderRole",
+                        UtilMisc.toMap("orderId", orderId, "partyId", newPartyId, "roleTypeId", roleTypeId));
+                delegator.create(newRole);
+            }
+
+        } catch (GenericEntityException | GenericServiceException e) {
+            Debug.logError(e, MODULE);
+            return ServiceUtil.returnError("Error updating order customer: " + e.getMessage());
+        }
+
+        return ServiceUtil.returnSuccess("Order customer updated successfully.");
+    }
+
+    /**
      * Service to email a customer with initial order confirmation
      */
     public static Map<String, Object> sendOrderConfirmNotification(DispatchContext ctx, Map<String, ? extends Object> context) {

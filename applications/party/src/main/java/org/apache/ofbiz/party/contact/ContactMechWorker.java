@@ -252,7 +252,7 @@ public final class ContactMechWorker {
             if (fromDateFieldPresent) {
                 contactMechQuery.filterByDate(date);
             }
-            allEntityContactMechs = contactMechQuery.cache().queryList();
+            allEntityContactMechs = contactMechQuery.queryList();
         } catch (GenericEntityException e) {
             Debug.logWarning(e, MODULE);
         }

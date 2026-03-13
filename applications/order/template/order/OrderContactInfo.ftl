@@ -86,10 +86,10 @@ under the License.
                 &nbsp;<a href="${customerDetailLink}${partyId}${StringUtil.wrapString(externalKeyParam)}" target="partymgr" class="buttontext">(${partyId})</a>
                 <br/>
                 <#if (orderHeader.salesChannelEnumId)?? && orderHeader.salesChannelEnumId != "POS_SALES_CHANNEL">
-                <div>
-                   <a href="<@ofbizUrl>/orderentry?partyId=${partyId}&amp;orderTypeId=${orderHeader.orderTypeId}</@ofbizUrl>" class="buttontext">${uiLabelMap.OrderNewOrder}</a>
-                   <a href="javascript:document.searchOtherOrders.submit()" class="buttontext">${uiLabelMap.OrderOtherOrders}</a>
-                </div>
+                  <div>
+                     <a href="<@ofbizUrl>/orderentry?partyId=${partyId}&amp;orderTypeId=${orderHeader.orderTypeId}</@ofbizUrl>" class="buttontext">${uiLabelMap.OrderNewOrder}</a>
+                     <a href="javascript:document.searchOtherOrders.submit()" class="buttontext">${uiLabelMap.OrderOtherOrders}</a>
+                  </div>
                   <form name="searchOtherOrders" method="post" action="<@ofbizUrl>searchorders</@ofbizUrl>">
                     <input type="hidden" name="lookupFlag" value="Y"/>
                     <input type="hidden" name="hideFields" value="Y"/>
@@ -97,6 +97,16 @@ under the License.
                     <input type="hidden" name="viewIndex" value="1"/>
                     <input type="hidden" name="viewSize" value="20"/>
                   </form>
+                  <#if orderHeader.statusId != "ORDER_COMPLETED" && orderHeader.statusId != "ORDER_CANCELLED">
+                  <form name="customerupdateform" method="post" action="<@ofbizUrl>updateOrderCustomer</@ofbizUrl>">
+                    <input type="hidden" name="orderId" value="${orderId!}" />
+                    <hr/>
+                    <h4 style="margin-top: 0.75em;">Promjena kupca</h4><br/>
+                    <@htmlTemplate.lookupField value='${newPartyId!}' formName="customerupdateform" name="partyId" id="partyId" fieldFormName="LookupCustomerName"/>
+                    &nbsp;
+                    <input type="submit" value="${uiLabelMap.CommonUpdate}" class="smallSubmit" />
+                  </form>
+                  </#if>
                 </#if>
               </#if>
             </div>
