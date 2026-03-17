@@ -47,13 +47,13 @@ under the License.
                     <#list orderItemList as orderItem>
                         <#assign orderItemShipGrpInvResList = orderReadHelper.getOrderItemShipGrpInvResList(orderItem)>
                         <#if "SALES_ORDER" == orderHeader.orderTypeId><#assign pickedQty = orderReadHelper.getItemPickedQuantityBd(orderItem)></#if>
-                        <tr<#if "1" == itemClass> class="alternate-row"</#if>>
+                        <tr<#if "1" == itemClass> class="alternate-row"</#if> valign="bottom">
                             <#assign orderItemType = orderItem.getRelatedOne("OrderItemType", false)!>
                             <#assign productId = orderItem.productId!>
                             <#if productId?? && "shoppingcart.CommentLine" == productId>
                                 <td colspan="7" valign="top" class="label"> &gt;&gt; ${orderItem.itemDescription}</td>
                             <#else>
-                                <td colspan="7">
+                                <td colspan="2">
                                     <div style="font-weight: bold; font-size: 1.3em;">
                                         <#if orderItem.supplierProductId?has_content>
                                             ${orderItem.supplierProductId} - ${orderItem.itemDescription!}
@@ -79,6 +79,17 @@ under the License.
                                             </ul>
                                         </#if>
                                     </div>
+                                    <#if productId?has_content>
+                                        <#assign product = orderItem.getRelatedOne("Product", true)>
+                                        <#if  product.brandName?has_content>
+                                            <em style="font-size:1.15em;">
+                                                Brand: ${product.brandName}
+                                            </em>
+                                        </#if>
+                                    </#if>
+                                </td>
+                                <td colspan="5">
+                                    <span style="font-weight: bold; font-size: 1.3em;">${uiLabelMap.OrderQuantity}: ${orderItem.quantity}</span>
                                     <div style="float:right;">
                                         <#assign downloadContents = EntityQuery.use(delegator).from("OrderItemAndProductContentInfo").where( "orderId", orderItem.orderId!, "orderItemSeqId", orderItem.orderItemSeqId!, "productContentTypeId", "DIGITAL_DOWNLOAD", "statusId", "ITEM_COMPLETED").queryList()!/>
                                         <#if downloadContents?has_content>
@@ -89,14 +100,6 @@ under the License.
                                         <a href="<@ofbizUrl controlPath="/catalog/control">EditProduct?productId=${productId}</@ofbizUrl>" class="buttontext" target="_blank">${uiLabelMap.ProductCatalog}</a>
                                         <a href="<@ofbizUrl controlPath="/ecommerce/control">product?product_id=${productId}</@ofbizUrl>" class="buttontext" target="_blank">${uiLabelMap.OrderEcommerce}</a>
                                     </div>
-                                    <#if productId?has_content>
-                                        <#assign product = orderItem.getRelatedOne("Product", true)>
-                                        <#if  product.brandName?has_content>
-                                            <em style="font-size:1.15em;">
-                                                Brand: ${product.brandName}
-                                            </em>
-                                        </#if>
-                                    </#if>
                                 </td>
                             </#if>
                         </tr>
