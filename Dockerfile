@@ -52,7 +52,7 @@ COPY APACHE2_HEADER build.gradle common.gradle gradle.properties NOTICE settings
 # Build OFBiz while mounting a gradle cache
 RUN --mount=type=cache,id=gradle-cache,sharing=locked,target=/root/.gradle \
     --mount=type=tmpfs,target=runtime/tmp \
-    ["./gradlew", "--console", "plain", "distTar"]
+    ["./gradlew", "--console", "plain", "generateSecretKeys", "distTar"]
 
 ###################################################################################
 
