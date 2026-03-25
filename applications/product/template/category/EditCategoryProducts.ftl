@@ -24,20 +24,26 @@ under the License.
 <div class="screenlet">
     <div class="screenlet-title-bar">
         <#if (listSize > 0)>
-            <div class="boxhead-right">
-                <#if (viewIndex > 1)>
-                    <a href="<@ofbizUrl>EditCategoryProducts?productCategoryId=${productCategoryId!}&amp;VIEW_SIZE=${viewSize}&amp;VIEW_INDEX=${viewIndex-1}&amp;activeOnly=${activeOnly.toString()}</@ofbizUrl>" class="submenutext">${uiLabelMap.CommonPrevious}</a> |
+            <div class="h3" style="float: left;">
+                ${uiLabelMap.PageTitleEditCategoryProducts}
+            </div>
+            <div style="float: right;">
+                <#if (viewIndex > 0)>
+                    <a class="buttontext"
+                      href="<@ofbizUrl>EditCategoryProducts?productCategoryId=${productCategoryId!}&amp;VIEW_SIZE=${viewSize}&amp;VIEW_INDEX=${viewIndex-1}&amp;activeOnly=${activeOnly.toString()}</@ofbizUrl>" class="submenutext">
+                        ${uiLabelMap.CommonPrevious}
+                    </a>
                 </#if>
-                <span class="submenutextinfo">${lowIndex} - ${highIndex} ${uiLabelMap.CommonOf} ${listSize}</span>
+                <span class="h3">${lowIndex} - ${highIndex} ${uiLabelMap.CommonOf} ${listSize}</span>
                 <#if (listSize > highIndex)>
-                    | <a class="lightbuttontext" href="<@ofbizUrl>EditCategoryProducts?productCategoryId=${productCategoryId!}&amp;VIEW_SIZE=${viewSize}&amp;VIEW_INDEX=${viewIndex+1}&amp;activeOnly=${activeOnly.toString()}</@ofbizUrl>" class="submenutextright">${uiLabelMap.CommonNext}</a>
+                    <a class="buttontext"
+                      href="<@ofbizUrl>EditCategoryProducts?productCategoryId=${productCategoryId!}&amp;VIEW_SIZE=${viewSize}&amp;VIEW_INDEX=${viewIndex+1}&amp;activeOnly=${activeOnly.toString()}</@ofbizUrl>" class="submenutextright">
+                        ${uiLabelMap.CommonNext}
+                    </a>
                 </#if>
                 &nbsp;
             </div>
-            <div class="boxhead-left">
-                ${uiLabelMap.PageTitleEditCategoryProducts}
-            </div>
-            <div class="boxhead-fill">&nbsp;</div>
+            <div style="clear: both;">&nbsp;</div>
         </#if>
     </div>
     <div class="screenlet-body">
@@ -46,7 +52,7 @@ under the License.
               <tr class="header-row">
                  <td>${uiLabelMap.ProductProductNameId}</td>
                  <td>${uiLabelMap.CommonFromDateTime}</td>
-                 <td align="center">${uiLabelMap.ProductThruDateTimeSequenceQuantity} ${uiLabelMap.CommonComments}</td>
+                 <td align="center">${uiLabelMap.ProductThruDateTimeSequenceQuantity}</td>
                  <td>&nbsp;</td>
               </tr>
            </table>
@@ -60,7 +66,7 @@ under the License.
                  <tr class="header-row">
                     <td>${uiLabelMap.ProductProductNameId}</td>
                     <td>${uiLabelMap.CommonFromDateTime}</td>
-                    <td align="center">${uiLabelMap.ProductThruDateTimeSequenceQuantity} ${uiLabelMap.CommonComments}</td>
+                    <td align="center">${uiLabelMap.ProductThruDateTimeSequenceQuantity}</td>
                     <td>&nbsp;</td>
                  </tr>
               <#assign rowClass = "2">
@@ -89,8 +95,6 @@ under the License.
                         <@htmlTemplate.renderDateTimeField name="thruDate${suffix}" event="" action="" className="${class!}" title="Format: yyyy-MM-dd HH:mm:ss.SSS" value="${(productCategoryMember.thruDate)!}" size="25" maxlength="30" id="thruDate${suffix}" isDateType=true shortDateInput=false timeDropdownParamName="" defaultDateTimeString="" localizedIconTitle="" timeDropdown="" timeHourName="" classString="" hour1="" hour2="" timeMinutesName="" minutes="" isTwelveHour="" ampmName="" amSelected="" pmSelected="" compositeType="" formName=""/>
                         <input type="text" size="5" name="sequenceNum${suffix}" value="${(productCategoryMember.sequenceNum)!}" />
                         <input type="text" size="5" name="quantity${suffix}" value="${(productCategoryMember.quantity)!}" />
-                        <br />
-                        <textarea name="comments${suffix}" rows="2" cols="40">${(productCategoryMember.comments)!}</textarea>
                     </td>
                     <td align="center">
                       <a href="javascript:document.deleteProductFromCategory_o_${rowCount}.submit()" class="buttontext">${uiLabelMap.CommonDelete}</a>
@@ -102,7 +106,7 @@ under the License.
                   <#else>
                       <#assign rowClass = "2">
                   </#if>
-                  <tr valign="middle">
+                  <tr valign="middle" <#if "2" == rowClass> class="alternate-row"</#if>>
                       <td colspan="4" align="center">
                           <input type="submit" value="${uiLabelMap.CommonUpdate}" style="font-size: x-small;" />
                           <input type="hidden" value="${productCategoryMembers.size()}" name="_rowCount" />
@@ -128,20 +132,23 @@ under the License.
     </div>
     <div class="screenlet-title-bar">
         <#if (listSize > 0)>
-            <div class="boxhead-right">
-                <#if (viewIndex > 1)>
-                    <a href="<@ofbizUrl>EditCategoryProducts?productCategoryId=${productCategoryId!}&amp;VIEW_SIZE=${viewSize}&amp;VIEW_INDEX=${viewIndex-1}&amp;activeOnly=${activeOnly.toString()}</@ofbizUrl>" class="submenutext">${uiLabelMap.CommonPrevious}</a> |
+            <div style="float: right;">
+                <#if (viewIndex > 0)>
+                    <a class="buttontext"
+                    href="<@ofbizUrl>EditCategoryProducts?productCategoryId=${productCategoryId!}&amp;VIEW_SIZE=${viewSize}&amp;VIEW_INDEX=${viewIndex-1}&amp;activeOnly=${activeOnly.toString()}</@ofbizUrl>" class="submenutext">
+                        ${uiLabelMap.CommonPrevious}
+                    </a>
                 </#if>
-                <span class="submenutextinfo">${lowIndex} - ${highIndex} ${uiLabelMap.CommonOf} ${listSize}</span>
+                <span class="h3">${lowIndex} - ${highIndex} ${uiLabelMap.CommonOf} ${listSize}</span>
                 <#if (listSize > highIndex)>
-                    | <a class="lightbuttontext" href="<@ofbizUrl>EditCategoryProducts?productCategoryId=${productCategoryId!}&amp;VIEW_SIZE=${viewSize}&amp;VIEW_INDEX=${viewIndex+1}&amp;activeOnly=${activeOnly.toString()}</@ofbizUrl>" class="submenutextright">${uiLabelMap.CommonNext}</a>
+                    <a class="buttontext"
+                    href="<@ofbizUrl>EditCategoryProducts?productCategoryId=${productCategoryId!}&amp;VIEW_SIZE=${viewSize}&amp;VIEW_INDEX=${viewIndex+1}&amp;activeOnly=${activeOnly.toString()}</@ofbizUrl>" class="submenutextright">
+                        ${uiLabelMap.CommonNext}
+                    </a>
                 </#if>
                 &nbsp;
             </div>
-            <div class="boxhead-left">
-                ${uiLabelMap.PageTitleEditCategoryProducts}
-            </div>
-            <div class="boxhead-fill">&nbsp;</div>
+            <div style="clear: both;">&nbsp;</div>
         </#if>
     </div>
 </div>
