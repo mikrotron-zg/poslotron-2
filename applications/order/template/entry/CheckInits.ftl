@@ -105,7 +105,7 @@ under the License.
           <td class="label"><label>${uiLabelMap.OrderCustomer}</label></td>
           <td valign='middle'>
             <div class='tabletext'>
-              <@htmlTemplate.lookupField value='${thisPartyId!}' formName="salesentryform" name="partyId" id="partyId" fieldFormName="LookupCustomerName"/>
+              <@htmlTemplate.lookupField value='${thisPartyId!}' formName="salesentryform" name="partyId" id="partyId" fieldFormName="LookupPartyName"/>
             </div>
           </td>
         </tr>

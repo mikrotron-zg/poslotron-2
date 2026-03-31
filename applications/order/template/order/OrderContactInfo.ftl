@@ -102,7 +102,7 @@ under the License.
                     <input type="hidden" name="orderId" value="${orderId!}" />
                     <hr/>
                     <h4 style="margin-top: 0.75em;">Promjena kupca</h4><br/>
-                    <@htmlTemplate.lookupField value='${newPartyId!}' formName="customerupdateform" name="partyId" id="partyId" fieldFormName="LookupCustomerName"/>
+                    <@htmlTemplate.lookupField value='${newPartyId!}' formName="customerupdateform" name="partyId" id="partyId" fieldFormName="LookupPartyName"/>
                     &nbsp;
                     <input type="submit" value="${uiLabelMap.CommonUpdate}" class="smallSubmit" />
                   </form>
