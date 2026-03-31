@@ -23,7 +23,7 @@ under the License.
     <simple-method method-name="createCustomer" short-description="Create Customer" login-required="false">
         <set field="require_email" value="true"/>
         <set field="require_phone" value="false"/>
-        <set field="require_login" value="true"/>
+        <set field="require_login" value="false"/>
         <!-- this parameter must be set to true or the createUser method below will use a default password instead of the one entered by user -->
         <set field="create_allow_password" value="true"/>
         <set field="parameters.roleTypeId" value="CUSTOMER"/>

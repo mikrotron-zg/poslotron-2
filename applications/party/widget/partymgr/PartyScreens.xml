@@ -54,7 +54,7 @@ under the License.
                             <widgets>
                                 <screenlet id="FindPartyPanel" title="${uiLabelMap.PartyFindParty}" navigation-menu-name="CreateNewParty"
                                            navigation-form-name="LookupParty" save-collapsed="false" collapsible="true" initially-collapsed="${initialyCollapsed}">
-                                    <include-menu name="CreateNewParty" location="${parameters.newPartyMenuLocation}"/>
+                                    <!--<include-menu name="CreateNewParty" location="${parameters.newPartyMenuLocation}"/>-->
                                     <include-form name="LookupParty" location="component://party/widget/partymgr/PartyForms.xml"/>
                                 </screenlet>
                                 <screenlet title="${uiLabelMap.CommonSearchResults}" navigation-form-name="ListParty">
@@ -731,7 +731,8 @@ under the License.
                 <set field="target" value="createCustomer"/>
                 <set field="displayPassword" value="Y"/>
                 <set field="previousParams" from-field="_PREVIOUS_PARAMS_" from-scope="user"/>
-                <property-to-field field="defaultCountryGeoId" resource="general" property="country.geo.id.default" default="USA"/>
+                <property-to-field field="defaultCountryGeoId" resource="general" property="country.geo.id.default" default="HRV"/>
+                <property-to-field field="defaultProductStoreId" resource="general" property="productStore.default.id"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
@@ -778,6 +779,8 @@ under the License.
                 <set field="displayPassword" value="Y"/>
                 <set field="target" value="createProspect"/>
                 <set field="previousParams" from-field="_PREVIOUS_PARAMS_" from-scope="user"/>
+                <property-to-field field="defaultCountryGeoId" resource="general" property="country.geo.id.default" default="HRV"/>
+                <property-to-field field="defaultProductStoreId" resource="general" property="productStore.default.id"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
@@ -823,6 +826,8 @@ under the License.
                 <set field="displayPassword" value="Y"/>
                 <set field="target" value="createEmployee"/>
                 <set field="previousParams" from-field="_PREVIOUS_PARAMS_" from-scope="user"/>
+                <property-to-field field="defaultCountryGeoId" resource="general" property="country.geo.id.default" default="HRV"/>
+                <property-to-field field="defaultProductStoreId" resource="general" property="productStore.default.id"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">

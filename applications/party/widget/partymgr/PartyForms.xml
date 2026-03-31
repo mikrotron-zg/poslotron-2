@@ -605,20 +605,17 @@ under the License.
     </grid>
 
     <form name="NewUser" type="single" target="${target}${previousParams}"
-        focus-field-name="USER_TITLE" header-row-style="header-row" default-table-style="basic-table">
-        <field name="USER_PARTY_ID" title="${uiLabelMap.PartyPartyId}" tooltip="${uiLabelMap.CommonIdGeneratedIfEmpty}"><text/></field>
+        focus-field-name="USER_FIRST_NAME" header-row-style="header-row" default-table-style="basic-table">
+        <field name="PersonalInfoTitle" title="${uiLabelMap.PartyPersonalInformation}" title-area-style="group-label"><display description=" " also-hidden="false"/></field>
+        <field name="USER_PARTY_ID"><hidden /></field>
         <field name="USE_ADDRESS"><hidden value="${USE_ADDRESS}"/></field>
         <field name="require_email"><hidden value="${require_email}"/></field>
-        <field name="USER_TITLE" title="${uiLabelMap.CommonTitle}"><text size="10" maxlength="30"/></field>
         <field name="USER_FIRST_NAME" title="${uiLabelMap.PartyFirstName}" required-field="true"><text size="30" maxlength="60"/></field>
-        <field name="USER_MIDDLE_NAME" title="${uiLabelMap.PartyMiddleInitial}"><text size="4" maxlength="4"/></field>
         <field name="USER_LAST_NAME" title="${uiLabelMap.PartyLastName}" required-field="true"><text size="30" maxlength="60"/></field>
-        <field name="USER_SUFFIX" title="${uiLabelMap.PartySuffix}"><text size="10" maxlength="30"/></field>
         <field name="ShippingAddressTitle" title="${uiLabelMap.PartyAddressMailingShipping}" title-area-style="group-label"><display description=" " also-hidden="false"/></field>
-        <field name="USER_ADDRESS1" title="${uiLabelMap.CommonAddress1}" required-field="true"><text size="30" maxlength="60"/></field>
-        <field name="USER_ADDRESS2" title="${uiLabelMap.CommonAddress2}"><text size="30" maxlength="60"/></field>
+        <field name="USER_ADDRESS1" title="${uiLabelMap.PartyAddressLine1}" required-field="true"><text size="30" maxlength="60"/></field>
+        <field name="USER_ADDRESS2" title="${uiLabelMap.PartyAddressLine2}"><text size="30" maxlength="60"/></field>
         <field name="USER_CITY" title="${uiLabelMap.CommonCity}" required-field="true"><text size="30" maxlength="60"/></field>
-        <field name="USER_STATE" title="${uiLabelMap.CommonState}" required-field="true"><drop-down allow-empty="false"/></field>
         <field name="USER_POSTAL_CODE" title="${uiLabelMap.CommonZipPostalCode}" required-field="true"><text size="10" maxlength="30"/></field>
         <field name="USER_COUNTRY" title="${uiLabelMap.CommonCountry}" required-field="true">
             <drop-down no-current-selected-key="${defaultCountryGeoId}">
@@ -628,45 +625,14 @@ under the License.
                 </entity-options>
             </drop-down>
         </field>
-        <field name="USER_ADDRESS_ALLOW_SOL" title="${uiLabelMap.PartyContactAllowAddressSolicitation}?">
-            <drop-down allow-empty="true"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down>
-        </field>
-        <field name="HomePhoneTitle" title="${uiLabelMap.PartyHomePhone}" title-area-style="group-label"><display description="${uiLabelMap.PartyPhoneNumberRequired}" also-hidden="false"/></field>
-        <field name="USER_HOME_COUNTRY" title="${uiLabelMap.CommonCountryCode}"><text size="4" maxlength="10"/></field>
-        <field name="USER_HOME_AREA" title="${uiLabelMap.PartyAreaCode}"><text size="4" maxlength="10"/></field>
-        <field name="USER_HOME_CONTACT" title="${uiLabelMap.PartyPhoneNumber}"><text size="15" maxlength="15"/></field>
-        <field name="USER_HOME_EXT" title="${uiLabelMap.PartyContactExt}"><text size="6" maxlength="10"/></field>
-        <field name="USER_HOME_ALLOW_SOL" title="${uiLabelMap.PartyContactAllowSolicitation}?"><drop-down allow-empty="true"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down></field>
-        <field name="WorkPhoneTitle" title="${uiLabelMap.PartyContactWorkPhoneNumber}" title-area-style="group-label"><display description=" " also-hidden="false"/></field>
-        <field name="USER_WORK_COUNTRY" title="${uiLabelMap.CommonCountryCode}"><text size="4" maxlength="10"/></field>
-        <field name="USER_WORK_AREA" title="${uiLabelMap.PartyAreaCode}"><text size="4" maxlength="10"/></field>
-        <field name="USER_WORK_CONTACT" title="${uiLabelMap.PartyPhoneNumber}"><text size="15" maxlength="15"/></field>
-        <field name="USER_WORK_EXT" title="${uiLabelMap.PartyContactExt}"><text size="6" maxlength="10"/></field>
-        <field name="USER_WORK_ALLOW_SOL" title="${uiLabelMap.PartyContactAllowSolicitation}?"><drop-down allow-empty="true"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down></field>
-        <field name="FaxPhoneTitle" title="${uiLabelMap.PartyContactFaxPhoneNumber}" title-area-style="group-label"><display description=" " also-hidden="false"/></field>
-        <field name="USER_FAX_COUNTRY" title="${uiLabelMap.CommonCountryCode}"><text size="4" maxlength="10"/></field>
-        <field name="USER_FAX_AREA" title="${uiLabelMap.PartyAreaCode}"><text size="4" maxlength="10"/></field>
-        <field name="USER_FAX_CONTACT" title="${uiLabelMap.PartyPhoneNumber}"><text size="15" maxlength="15"/></field>
-        <field name="USER_FAX_EXT" title="${uiLabelMap.PartyContactExt}"><text size="6" maxlength="10"/></field>
-        <field name="USER_FAX_ALLOW_SOL" title="${uiLabelMap.PartyContactAllowSolicitation}?"><drop-down allow-empty="true"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down></field>
         <field name="MobilePhoneTitle" title="${uiLabelMap.PartyContactMobilePhoneNumber}" title-area-style="group-label"><display description=" " also-hidden="false"/></field>
-        <field name="USER_MOBILE_COUNTRY" title="${uiLabelMap.CommonCountryCode}"><text size="4" maxlength="10"/></field>
-        <field name="USER_MOBILE_AREA" title="${uiLabelMap.PartyAreaCode}"><text size="4" maxlength="10"/></field>
         <field name="USER_MOBILE_CONTACT" title="${uiLabelMap.PartyPhoneNumber}"><text size="15" maxlength="15"/></field>
-        <field name="USER_MOBILE_ALLOW_SOL" title="${uiLabelMap.PartyContactAllowSolicitation}?"><drop-down allow-empty="true"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down></field>
         <field name="EmailAddressTitle" title="${uiLabelMap.PartyEmailAddress}" title-area-style="group-label"><display description=" " also-hidden="false"/></field>
         <field use-when="require_email!=null" name="USER_EMAIL" title="${uiLabelMap.CommonEmail}" required-field="true"><text size="60" maxlength="250"/></field>
         <field use-when="require_email==null" name="USER_EMAIL" title="${uiLabelMap.CommonEmail}" required-field="true"><text size="60" maxlength="250"/></field>
-        <field name="USER_EMAIL_ALLOW_SOL" title="${uiLabelMap.PartyContactAllowSolicitation}?"><drop-down allow-empty="true"><option key="Y" description="${uiLabelMap.CommonY}"/><option key="N" description="${uiLabelMap.CommonN}"/></drop-down></field>
-        <!-- <field name="USER_ORDER_EMAIL" title="Order Emails (comma separated)" ><text size="60" maxlength="250"/></field> -->
-        <field use-when="displayPassword=='Y'" name="USERNAME" title="${uiLabelMap.CommonUsername}" required-field="true"><text size="30" maxlength="250"/></field>
-        <field use-when="displayPassword=='Y'" name="PASSWORD" title="${uiLabelMap.CommonPassword}" required-field="true"><password size="15" maxlength="250"/></field>
-        <field use-when="displayPassword=='Y'" name="CONFIRM_PASSWORD" title="${uiLabelMap.CommonPassword}" tooltip="* ${uiLabelMap.CommonConfirm}" required-field="true"><password size="15" maxlength="250"/></field>
-        <field use-when="displayPassword!='Y'" name="USERNAME" title="${uiLabelMap.CommonUsername}" tooltip="* ${uiLabelMap.PartyTemporaryPassword}" required-field="true"><text size="30" maxlength="250"/></field>
-        <!--<field name="RequiredNote" title=" "><display description="${uiLabelMap.PartyRequiredNote}" also-hidden="false"/></field> -->
 
         <field name="PRODUCT_STORE_ID" title="Product Store" tooltip="${uiLabelMap.CommonRequired}" widget-style="required">
-            <drop-down>
+            <drop-down no-current-selected-key="${defaultProductStoreId}">
                 <entity-options entity-name="ProductStore" key-field-name="productStoreId" description="${storeName} (${productStoreId})">
                     <entity-order-by field-name="productStoreId"/>
                 </entity-options>
