@@ -631,7 +631,7 @@ under the License.
         <field use-when="require_email!=null" name="USER_EMAIL" title="${uiLabelMap.CommonEmail}" required-field="true"><text size="60" maxlength="250"/></field>
         <field use-when="require_email==null" name="USER_EMAIL" title="${uiLabelMap.CommonEmail}" required-field="true"><text size="60" maxlength="250"/></field>
 
-        <field name="PRODUCT_STORE_ID" title="Product Store" tooltip="${uiLabelMap.CommonRequired}" widget-style="required">
+        <field name="PRODUCT_STORE_ID" title="${uiLabelMap.ProductStore}" tooltip="${uiLabelMap.CommonRequired}" widget-style="required">
             <drop-down no-current-selected-key="${defaultProductStoreId}">
                 <entity-options entity-name="ProductStore" key-field-name="productStoreId" description="${storeName} (${productStoreId})">
                     <entity-order-by field-name="productStoreId"/>

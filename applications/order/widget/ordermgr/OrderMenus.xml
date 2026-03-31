@@ -117,7 +117,7 @@ under the License.
             </condition>
             <link target="EditRequirement"/>
         </menu-item>
-        <menu-item name="NewReturn" title="${uiLabelMap.CommonNew} ${uiLabelMap.CommonReturn}">
+        <menu-item name="NewReturn" title="${uiLabelMap.OrderCreateNewReturn}">
             <condition>
                 <or>
                     <if-has-permission permission="ORDERMGR" action="_CREATE"/>
@@ -125,7 +125,7 @@ under the License.
             </condition>
             <link target="returnMain"/>
         </menu-item>
-        <menu-item name="NewAllocationPlan" title="${uiLabelMap.CommonNew} ${uiLabelMap.OrderAllocationPlan}">
+        <menu-item name="NewAllocationPlan" title="${uiLabelMap.OrderNewAllocationPlan}">
             <condition>
                 <or>
                    <if-has-permission permission="ORDERMGR" action="_CREATE"/>
