@@ -94,9 +94,9 @@ public class PayPalServices {
 
     public static Map<String, Object> setExpressCheckout(DispatchContext dctx, Map<String, ? extends Object> context) {
         ShoppingCart cart = (ShoppingCart) context.get("cart");
-        Locale locale = cart.getLocale();
         if (cart != null ) {
-            if (cart.items().size() <= 0) {
+            Locale locale = cart.getLocale();
+            if (cart.items().isEmpty() {
                 return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE,
                         "AccountingPayPalShoppingCartIsEmpty", locale));
             }
