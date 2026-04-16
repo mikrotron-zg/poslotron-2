@@ -132,10 +132,16 @@ if (invoice) {
 
     orderItemBillings = from('OrderItemBilling').where('invoiceId', invoiceId).orderBy('orderId').queryList()
     orders = new LinkedHashSet()
+    quotes = new LinkedHashSet()
     orderItemBillings.each { orderIb ->
         orders.add(orderIb.orderId)
+        orderItem = from('OrderItem').where('orderId', orderIb.orderId, 'orderItemSeqId', orderIb.orderItemSeqId).queryOne()
+        if (orderItem?.quoteId) {
+            quotes.add(orderItem.quoteId)
+        }
     }
     context.orders = orders
+    context.quotes = quotes
 
     invoiceStatus = invoice.getRelatedOne('StatusItem', false)
     context.invoiceStatus = invoiceStatus

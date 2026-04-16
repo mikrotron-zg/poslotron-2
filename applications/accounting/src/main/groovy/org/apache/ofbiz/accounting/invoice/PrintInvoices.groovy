@@ -104,10 +104,16 @@ invoiceIds.each { invoiceId ->
 
         orderItemBillings = from('OrderItemBilling').where('invoiceId', invoiceId).orderBy('orderId').queryList()
         orders = new LinkedHashSet()
+        quotes = new LinkedHashSet()
         orderItemBillings.each { orderIb ->
             orders.add(orderIb.orderId)
+            orderItem = from('OrderItem').where('orderId', orderIb.orderId, 'orderItemSeqId', orderIb.orderItemSeqId).queryOne()
+            if (orderItem?.quoteId) {
+                quotes.add(orderItem.quoteId)
+            }
         }
         invoicesMap.orders = orders
+        invoicesMap.quotes = quotes
 
         invoiceStatus = invoice.getRelatedOne('StatusItem', false)
         invoicesMap.invoiceStatus = invoiceStatus

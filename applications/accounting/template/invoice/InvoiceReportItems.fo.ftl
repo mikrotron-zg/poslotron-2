@@ -26,12 +26,22 @@ under the License.
         <fo:table-body>
           <fo:table-row>
             <fo:table-cell>
-              <fo:block>${uiLabelMap.CommonOrder}:</fo:block>
+              <fo:block>${uiLabelMap.OrderShipGroup}:</fo:block>
             </fo:table-cell>
             <fo:table-cell>
               <fo:block><#list orders as order>${order} </#list></fo:block>
             </fo:table-cell>
           </fo:table-row>
+          <#if quotes?has_content>
+          <fo:table-row>
+              <fo:table-cell>
+                  <fo:block>${uiLabelMap.OrderOrderQuote}:</fo:block>
+              </fo:table-cell>
+              <fo:table-cell>
+                <fo:block><#list quotes as quote>${quote} </#list></fo:block>
+              </fo:table-cell>
+          </fo:table-row>
+          </#if>
         </fo:table-body>
     </fo:table>
     </#if>
@@ -63,23 +73,19 @@ under the License.
     </#if>
 
     <fo:table table-layout="fixed" width="100%" space-before="0.2in">
+    <fo:table-column column-width="100mm"/>
     <fo:table-column column-width="18mm"/>
-    <fo:table-column column-width="18mm"/>
-    <fo:table-column column-width="85mm"/>
     <fo:table-column column-width="15mm"/>
     <fo:table-column column-width="25mm"/>
     <fo:table-column column-width="25mm"/>
 
     <fo:table-header font-size="9pt">
-      <fo:table-row border-bottom-style="solid" border-bottom-width="thin" border-bottom-color="black">
+      <fo:table-row border-bottom="thin solid grey">
         <fo:table-cell>
-          <fo:block font-family="NotoSans-Bold">Id</fo:block>
+            <fo:block font-family="NotoSans-Bold">${uiLabelMap.CommonDescription}</fo:block>
         </fo:table-cell>
         <fo:table-cell>
-            <fo:block font-family="NotoSans-Bold">KPD/CPA</fo:block>
-        </fo:table-cell>
-        <fo:table-cell>
-          <fo:block font-family="NotoSans-Bold">${uiLabelMap.CommonDescription}</fo:block>
+          <fo:block font-family="NotoSans-Bold">KPD/CPA</fo:block>
         </fo:table-cell>
         <fo:table-cell>
           <fo:block font-family="NotoSans-Bold" text-align="right">${uiLabelMap.CommonQty}</fo:block>
@@ -95,6 +101,7 @@ under the License.
 
 
     <fo:table-body font-size="8pt">
+        <#assign rowColor = "white">
         <#assign currentShipmentId = "">
         <#assign newShipmentId = "">
         <#-- if the item has a description, then use its description.  Otherwise, use the description of the invoiceItemType -->
@@ -117,9 +124,9 @@ under the License.
             <#assign description = Static["org.apache.ofbiz.accounting.invoice.InvoiceWorker"].getInvoiceItemDescription(dispatcher, invoiceItem, locale)>
 
             <#if !isItemAdjustment>
-                <fo:table-row height="14px" space-start=".15in">
+                <fo:table-row height="14px" space-start=".15in" background-color="${rowColor}">
                     <fo:table-cell display-align="center">
-                        <fo:block text-align="left">${invoiceItem.productId!} </fo:block>
+                        <fo:block text-align="left">${description!} [${invoiceItem.productId!}]</fo:block>
                     </fo:table-cell>
                     <fo:table-cell display-align="center">
                         <#if invoiceItem.productId??>
@@ -129,9 +136,6 @@ under the License.
                         <#else>
                             <fo:block text-align="left">N/A</fo:block>
                         </#if>
-                    </fo:table-cell>
-                    <fo:table-cell display-align="center">
-                        <fo:block text-align="left">${description!}</fo:block>
                     </fo:table-cell>
                       <fo:table-cell display-align="center">
                         <fo:block text-align="right"> <#if invoiceItem.quantity??>${invoiceItem.quantity?string.number}</#if> </fo:block>
@@ -143,6 +147,11 @@ under the License.
                         <fo:block> <@ofbizCurrency amount=(Static["org.apache.ofbiz.accounting.invoice.InvoiceWorker"].getInvoiceItemTotal(invoiceItem)) isoCode=invoice.currencyUomId!/> </fo:block>
                     </fo:table-cell>
                 </fo:table-row>
+                <#if "white" == rowColor>
+                    <#assign rowColor = "#D4D0C8">
+                <#else>
+                    <#assign rowColor = "white">
+                </#if>
             <#else>
                 <#-- Shipping -->
                 <#if !(invoiceItem.parentInvoiceId?? && invoiceItem.parentInvoiceItemSeqId??) &&
@@ -150,15 +159,12 @@ under the License.
                   invoiceItem.invoiceItemTypeId == "PITM_SHIP_CHARGES" || 
                   invoiceItem.invoiceItemTypeId == "INV_SHIPPING_CHARGES")>
                     <#assign shipmentCost = Static["org.apache.ofbiz.accounting.invoice.InvoiceWorker"].getInvoiceItemTotal(invoiceItem)>
-                    <fo:table-row height="14px" space-start=".15in">
-                        <fo:table-cell display-align="center">
-                            <fo:block text-align="left">SHPMNT</fo:block>
-                        </fo:table-cell>
-                        <fo:table-cell display-align="center">
-                            <fo:block text-align="left">53.30.00 </fo:block>
-                        </fo:table-cell>
+                    <fo:table-row height="14px" space-start=".15in" background-color="${rowColor}">
                         <fo:table-cell display-align="center">
                             <fo:block text-align="left">${description!}</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell display-align="center">
+                            <fo:block text-align="left">53.30.00</fo:block>
                         </fo:table-cell>
                         <fo:table-cell display-align="center">
                             <fo:block text-align="right">1</fo:block>
@@ -176,7 +182,7 @@ under the License.
 
         <#-- the grand total -->
         <fo:table-row height="14px" border-top-style="solid" border-top-width="thin" border-top-color="black">
-            <fo:table-cell number-columns-spanned="3">
+            <fo:table-cell number-columns-spanned="2">
                 <fo:block/>
             </fo:table-cell>
             <fo:table-cell number-columns-spanned="2">
@@ -192,7 +198,7 @@ under the License.
             <#list vatTaxIds as vatTaxId>
                 <#assign taxRate = delegator.findOne("TaxAuthorityRateProduct", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("taxAuthorityRateSeqId", vatTaxId), true)/>
                 <fo:table-row>
-                    <fo:table-cell number-columns-spanned="3">
+                    <fo:table-cell number-columns-spanned="2">
                         <fo:block/>
                     </fo:table-cell>
                     <fo:table-cell number-columns-spanned="2">
@@ -205,12 +211,12 @@ under the License.
             </#list>
         </#if>
         <fo:table-row height="5mm">
-           <fo:table-cell number-columns-spanned="6">
+           <fo:table-cell number-columns-spanned="5">
               <fo:block/>
            </fo:table-cell>
         </fo:table-row>
         <fo:table-row>
-           <fo:table-cell number-columns-spanned="3">
+           <fo:table-cell number-columns-spanned="2">
               <fo:block/>
            </fo:table-cell>
            <fo:table-cell number-columns-spanned="2">
@@ -221,7 +227,7 @@ under the License.
            </fo:table-cell>
         </fo:table-row>
         <fo:table-row height="7px">
-           <fo:table-cell number-columns-spanned="6">
+           <fo:table-cell number-columns-spanned="5">
               <fo:block/>
            </fo:table-cell>
         </fo:table-row>
