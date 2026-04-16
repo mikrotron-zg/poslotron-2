@@ -54,6 +54,16 @@ under the License.
                 <td width="5%">&nbsp;</td>
                 <td valign="top" width="80%">
                     ${(statusItem.get("description", locale))?default(quote.statusId!)}
+                <#if quote.statusId != "QUO_CREATED">
+                    <#assign createdStatusItem = delegator.findOne("StatusItem", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("statusId", "QUO_CREATED"), true)! />
+                    <#assign statusNewLabel = (createdStatusItem.get("description", locale))!"Created" />
+                    &nbsp;
+                    <form action="<@ofbizUrl>updateQuote</@ofbizUrl>" method="post" style="display:inline;">
+                        <input type="hidden" name="quoteId" value="${quote.quoteId}"/>
+                        <input type="hidden" name="statusId" value="QUO_CREATED"/>
+                        <input type="submit" value="${uiLabelMap.CommonSet} ${uiLabelMap.CommonInto} &quot;${statusNewLabel}&quot;" class="smallSubmit"/>
+                    </form>
+                </#if>
                 </td>
             </tr>
             <#-- party -->

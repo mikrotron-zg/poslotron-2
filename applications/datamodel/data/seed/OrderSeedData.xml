@@ -270,6 +270,9 @@ under the License.
     <StatusValidChange statusId="QUO_CREATED" statusIdTo="QUO_REJECTED" transitionName="Reject Quote"/>
     <StatusValidChange statusId="QUO_APPROVED" statusIdTo="QUO_ORDERED" transitionName="Order Quote"/>
     <StatusValidChange statusId="QUO_APPROVED" statusIdTo="QUO_REJECTED" transitionName="Reject Quote"/>
+    <StatusValidChange statusId="QUO_APPROVED" statusIdTo="QUO_CREATED" transitionName="Reset Quote"/>
+    <StatusValidChange statusId="QUO_ORDERED" statusIdTo="QUO_CREATED" transitionName="Reset Quote"/>
+    <StatusValidChange statusId="QUO_REJECTED" statusIdTo="QUO_CREATED" transitionName="Reset Quote"/>
 
     <!-- Return Adjustment Types-->
     <ReturnAdjustmentType description="Return Promotion" hasTable="N" returnAdjustmentTypeId="RET_PROMOTION_ADJ"/>
