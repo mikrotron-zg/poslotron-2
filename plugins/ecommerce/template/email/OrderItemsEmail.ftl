@@ -1,5 +1,9 @@
 <#if baseEcommerceSecureUrl??><#assign urlPrefix = baseEcommerceSecureUrl/></#if>
 <#assign currencyIso = currencyUomId!((orderHeader.currencyUomId)!"USD")>
+<#assign HALF_UP = Static["java.math.RoundingMode"].HALF_UP>
+<#function round2 amount>
+  <#return Static["java.math.BigDecimal"].valueOf(amount).setScale(2, HALF_UP)>
+</#function>
 
 <div class="screenlet">
   <h3>${uiLabelMap.OrderOrderItems}</h3>
@@ -22,7 +26,7 @@
             <td>${orderItem.productId} - ${orderItem.itemDescription?default("")}</td>
           </#if>
           <td class="amount">${orderItem.quantity?string.number}</td>
-          <td class="amount"><@ofbizCurrency amount=orderItem.unitPrice*1.25 isoCode=currencyIso/></td>
+          <td class="amount"><@ofbizCurrency amount=round2(orderItem.unitPrice*1.25) isoCode=currencyIso/></td>
           <td class="amount">
             <#if workEfforts??>
               <#assign rentalQuantity = 1>
@@ -34,7 +38,7 @@
               </#list>
               <@ofbizCurrency amount=localOrderReadHelper.getOrderItemTotal(orderItem)*rentalQuantity isoCode=currencyIso/>
             <#else>
-              <@ofbizCurrency amount=localOrderReadHelper.getOrderItemTotal(orderItem) isoCode=currencyIso/>
+              <@ofbizCurrency amount=round2(localOrderReadHelper.getOrderItemTotal(orderItem)) isoCode=currencyIso/>
             </#if>
           </td>
         </tr>
@@ -49,7 +53,7 @@
     <tfoot>
       <tr>
         <th colspan="3">${uiLabelMap.CommonSubtotal}</th>
-        <td class="amount"><@ofbizCurrency amount=(orderSubTotal!0)*1.25 isoCode=currencyIso/></td>
+        <td class="amount"><@ofbizCurrency amount=round2((orderSubTotal!0)*1.25) isoCode=currencyIso/></td>
       </tr>
       <#list (headerAdjustmentsToShow![]) as orderHeaderAdjustment>
         <tr>
@@ -59,7 +63,7 @@
       </#list>
       <tr>
         <th colspan="3">${uiLabelMap.OrderShippingAndHandling}</th>
-        <td class="amount"><@ofbizCurrency amount=(orderShippingTotal!0)*1.25 isoCode=currencyIso/></td>
+        <td class="amount"><@ofbizCurrency amount=round2((orderShippingTotal!0)*1.25) isoCode=currencyIso/></td>
       </tr>
       <tr>
         <th colspan="3">${uiLabelMap.OrderGrandTotal}</th>

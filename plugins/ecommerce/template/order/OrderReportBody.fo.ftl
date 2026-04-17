@@ -16,6 +16,11 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<#assign HALF_UP = Static["java.math.RoundingMode"].HALF_UP>
+<#function round2 amount>
+    <#return Static["java.math.BigDecimal"].valueOf(amount).setScale(2, HALF_UP)>
+</#function>
+
 <#escape x as x?xml>
     <#if orderHeader?has_content>
         <fo:table table-layout="fixed" border-spacing="3pt" font-size="9pt">
@@ -76,12 +81,12 @@ under the License.
                             <fo:block>${remainingQuantity}</fo:block>
                         </fo:table-cell>
                         <fo:table-cell text-align="right">
-                            <fo:block><@ofbizCurrency amount=orderItem.unitPrice*pdv isoCode=currencyUomId/></fo:block>
+                            <fo:block><@ofbizCurrency amount=round2(orderItem.unitPrice*pdv) isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
                         <fo:table-cell text-align="right">
                             <fo:block>
                                 <#if orderItem.statusId != "ITEM_CANCELLED">
-                                    <@ofbizCurrency amount=Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)*pdv isoCode=currencyUomId/>
+                                    <@ofbizCurrency amount=round2(Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)*pdv) isoCode=currencyUomId/>
                                 <#else>
                                     <@ofbizCurrency amount=0.00 isoCode=currencyUomId/>
                                 </#if>
@@ -128,7 +133,7 @@ under the License.
                         <fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderItemsSubTotal}</fo:block>
                     </fo:table-cell>
                     <fo:table-cell border-top-style="solid" border-top-width="thin" padding-top="4pt" text-align="right">
-                        <fo:block><@ofbizCurrency amount=orderSubTotal*pdv isoCode=currencyUomId/></fo:block>
+                        <fo:block><@ofbizCurrency amount=round2(orderSubTotal*pdv) isoCode=currencyUomId/></fo:block>
                     </fo:table-cell>
                 </fo:table-row>
                 <#-- <#if otherAdjAmount != 0>
@@ -151,7 +156,7 @@ under the License.
                             <fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderTotalShippingAndHandling}</fo:block>
                         </fo:table-cell>
                         <fo:table-cell text-align="right">
-                            <fo:block><@ofbizCurrency amount=shippingAmount*pdv isoCode=currencyUomId/></fo:block>
+                            <fo:block><@ofbizCurrency amount=round2(shippingAmount*pdv) isoCode=currencyUomId/></fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                 </#if>
