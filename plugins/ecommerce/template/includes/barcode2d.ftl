@@ -91,4 +91,4 @@ under the License.
     </script>
 </head>
 
-<div id="barcode" style="background-color: #dfe0e4; width: fit-content;"></div>
+<div id="barcode" style="background-color: transparent; width: fit-content;"></div>

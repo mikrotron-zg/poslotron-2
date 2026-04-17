@@ -603,7 +603,7 @@ under the License.
           <tr>
             <td width="30%">&nbsp;</td>
             <td>
-              <#include "/ecommerce/template/includes/barcode2d.ftl">
+              <div style="background-color: #dfe0e4; width: fit-content;"><#include "/ecommerce/template/includes/barcode2d.ftl"></div>
             </td>
             <td>&nbsp;</td>
           </tr>
