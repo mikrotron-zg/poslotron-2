@@ -19,6 +19,10 @@
     under the License.
 -->
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+    <property key="FiscalManagerApplication">
+        <value xml:lang="en">Fiscal</value>
+        <value xml:lang="hr">Fiskalizacija</value>
+    </property>
     <property key="FiscalB2BInfoMessage">
         <value xml:lang="en">Customer has OIB generating e-invoice data.</value>
         <value xml:lang="hr">Kupac ima OIB, generirati će se podaci za e-račun.</value>

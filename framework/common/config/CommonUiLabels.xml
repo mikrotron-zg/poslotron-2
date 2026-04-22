@@ -14817,6 +14817,10 @@
         <value xml:lang="zh">财务</value>
         <value xml:lang="zh-TW">財務</value>
     </property>
+    <property key="Fiscal">
+        <value xml:lang="en">Fiscal</value>
+        <value xml:lang="hr">Fiskalizacija</value>
+    </property>
     <property key="FormFieldTitle_acceptButton">
         <value xml:lang="ar">قبول</value>
         <value xml:lang="cs">Přijmout</value>

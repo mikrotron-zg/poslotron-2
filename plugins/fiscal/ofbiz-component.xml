@@ -6,6 +6,7 @@
     <depends-on component-name="accounting"/>
     
     <resource-loader name="main" type="component"/>
+    <classpath type="dir" location="config"/>
 
     <entity-resource type="model" reader-name="main" loader="main" location="entitydef/fiscal-entitymodel.xml"/>
     <!-- Load entity seed data -->
@@ -14,4 +15,11 @@
 
     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
 
+    <webapp name="fiscal"
+        title="Fiscal"
+        position="5"
+        server="default-server"
+        location="webapp/fiscal"
+        base-permission="OFBTOOLS,ACCOUNTING"
+        mount-point="/fiscal"/>
 </ofbiz-component>

@@ -29,7 +29,7 @@ under the License.
     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
     <webapp name="webtools"
         title="WebTools"
-        position="12"
+        position="13"
         server="default-server"
         location="webapp/webtools"
         base-permission="OFBTOOLS,WEBTOOLS"

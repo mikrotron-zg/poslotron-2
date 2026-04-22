@@ -33,7 +33,7 @@ under the License.
 
     <webapp name="humanres"
         title="HR"
-        position="10"
+        position="11"
         description="HumanResourceApplication"
         server="default-server"
         location="webapp/humanres"

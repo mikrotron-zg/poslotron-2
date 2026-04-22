@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Screen" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Screen http://ofbiz.apache.org/dtds/widget-screen.xsd">
+    <screen name="main-decorator">
+        <section>
+            <actions>
+                <property-map resource="FiscalUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="AccountingUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="OrderUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="layoutSettings.companyName" from-field="uiLabelMap.FiscalManagerApplication" global="true"/>
+                <set field="activeApp" value="fiscal" global="true"/>
+                <set field="applicationMenuName" value="FiscalAppBar" global="true"/>
+                <set field="applicationMenuLocation" value="${parameters.mainMenuLocation}" global="true"/>
+                <set field="applicationTitle" from-field="uiLabelMap.FiscalManagerApplication" global="true"/>
+            </actions>
+            <widgets>
+                <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="main">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <label style="h1" text="${uiLabelMap.FiscalManagerApplication}"/>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+</screens>
