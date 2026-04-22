@@ -21,6 +21,9 @@
     </screen>
     <screen name="main">
         <section>
+            <condition>
+                <if-has-permission permission="ACCOUNTING" action="_VIEW"/>
+            </condition>
             <actions>
                 <set field="headerItem" value="main"/>
             </actions>
@@ -31,6 +34,9 @@
                     </decorator-section>
                 </decorator-screen>
             </widgets>
+            <fail-widgets>
+                <label style="h3" text="${uiLabelMap.AccountingViewPermissionError}"/>
+            </fail-widgets>
         </section>
     </screen>
 </screens>
