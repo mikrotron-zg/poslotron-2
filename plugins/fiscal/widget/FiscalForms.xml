@@ -33,4 +33,48 @@
             <submit button-type="button"/>
         </field>
     </form>
+    <grid name="ListFiscalInvoice" list-name="listIt" paginate-target="FindFiscalInvoice" default-entity-name="FiscalInvoiceSearchView"
+        odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar"
+        empty-form-data-message="${uiLabelMap.CommonNoRecordFound}">
+        <actions>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
+                <field-map field-name="inputFields" from-field="parameters"/>
+                <field-map field-name="entityName" value="FiscalInvoiceSearchView"/>
+                <field-map field-name="orderBy" value="-fiscalInvoiceDate"/>
+                <field-map field-name="viewIndex" from-field="viewIndex"/>
+                <field-map field-name="viewSize" from-field="viewSize"/>
+            </service>
+        </actions>
+        <row-actions>
+            <service service-name="getPartyNameForDate" result-map="partyNameFrom">
+                <field-map field-name="partyId" from-field="partyIdFrom"/>
+                <field-map field-name="compareDate" from-field="fiscalInvoiceDate"/>
+                <field-map field-name="lastNameFirst" value="Y"/>
+            </service>
+            <service service-name="getPartyNameForDate" result-map="partyNameTo">
+                <field-map field-name="partyId" from-field="partyId"/>
+                <field-map field-name="compareDate" from-field="fiscalInvoiceDate"/>
+                <field-map field-name="lastNameFirst" value="Y"/>
+            </service>
+            <set field="isPayedDisplay" value="${groovy: 'Y'.equals(isPayed) ? uiLabelMap.CommonYes : ('N'.equals(isPayed) ? uiLabelMap.CommonNo : '')}"/>
+        </row-actions>
+        <field name="fiscalInvoiceNumber" title="${uiLabelMap.FiscalInvoiceNumber}" sort-field="true"><display/></field>
+        <field name="orderId" title="${uiLabelMap.OrderOrderId}" sort-field="true" widget-style="buttontext" widget-area-style="align-center" title-area-style="align-center">
+            <hyperlink description="${orderId}" target="/ordermgr/control/orderview" target-type="inter-app">
+                <parameter param-name="orderId"/>
+            </hyperlink>
+        </field>
+        <field name="partyIdFrom" title="${uiLabelMap.FiscalInvoiceIssuer}" sort-field="true">
+            <display description="${partyNameFrom.fullName} [${partyIdFrom}]"/>
+        </field>
+        <field name="partyIdTo" title="${uiLabelMap.FiscalInvoiceRecipientPartyId}" entry-name="partyId" sort-field="true">
+            <hyperlink description="${partyNameTo.fullName} [${partyId}]" target="/partymgr/control/viewprofile" target-type="inter-app">
+                <parameter param-name="partyId"/>
+            </hyperlink>
+        </field>
+        <field name="fiscalInvoiceDate" title="${uiLabelMap.FiscalInvoiceDate}" sort-field="true" widget-area-style="align-center" title-area-style="align-center"><display type="date"/></field>
+        <field name="amount" title="${uiLabelMap.CommonAmount}" sort-field="true" widget-area-style="align-right" title-area-style="align-right"><display type="currency" currency="${currencyUomId}"/></field>
+        <field name="isPayed" title="${uiLabelMap.FiscalIsPayed}" widget-area-style="align-center" title-area-style="align-center"><display description="${isPayedDisplay}"/></field>
+        <field name="poNumber" title="${uiLabelMap.FiscalPoNumber}"><display/></field>
+    </grid>
 </forms>

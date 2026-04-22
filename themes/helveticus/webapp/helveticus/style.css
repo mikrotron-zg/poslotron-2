@@ -29,3 +29,11 @@
 .trumbowyg-button-pane button {
     color: #000;
 }
+
+/*The custom css for table column alignment*/
+.align-right {
+    text-align: right;
+}
+.align-center {
+    text-align: center;
+}

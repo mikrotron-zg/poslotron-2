@@ -55,6 +55,9 @@
                         <screenlet id="FindFiscalInvoicePanel" title="${uiLabelMap.FiscalFindInvoice}" collapsible="true" navigation-form-name="FindFiscalInvoice">
                             <include-form name="FindFiscalInvoice" location="component://fiscal/widget/FiscalForms.xml"/>
                         </screenlet>
+                        <screenlet title="${uiLabelMap.CommonSearchResults}" navigation-form-name="ListFiscalInvoice">
+                            <include-grid name="ListFiscalInvoice" location="component://fiscal/widget/FiscalForms.xml"/>
+                        </screenlet>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

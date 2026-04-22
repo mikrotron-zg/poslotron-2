@@ -175,4 +175,34 @@ under the License.
     </relation>
   </entity>
 
+  <view-entity entity-name="FiscalInvoiceSearchView" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Invoice Search View">
+    <member-entity entity-alias="FI" entity-name="FiscalInvoice"/>
+    <member-entity entity-alias="INV" entity-name="Invoice" join-from-alias="FI">
+      <key-map field-name="invoiceId"/>
+    </member-entity>
+    <member-entity entity-alias="FPT" entity-name="FiscalPaymentTerminal" join-from-alias="FI">
+      <key-map field-name="fiscalPaymentTerminalId"/>
+    </member-entity>
+    <alias entity-alias="FI" name="fiscalInvoiceId"/>
+    <alias entity-alias="FI" name="invoiceId"/>
+    <alias entity-alias="FI" name="orderId"/>
+    <alias entity-alias="FI" name="fiscalPaymentTerminalId"/>
+    <alias entity-alias="FI" name="fiscalInvoiceNumber"/>
+    <alias entity-alias="FI" name="fiscalInvoiceDate"/>
+    <alias entity-alias="FI" name="amount"/>
+    <alias entity-alias="FI" name="isPayed"/>
+    <alias entity-alias="FI" name="poNumber"/>
+    <alias entity-alias="INV" name="partyIdFrom"/>
+    <alias entity-alias="INV" name="partyId"/>
+    <alias entity-alias="INV" name="currencyUomId"/>
+    <alias entity-alias="FPT" name="fiscalStoreId"/>
+    <alias entity-alias="FPT" name="fiscalPaymentTerminalLabel"/>
+    <view-link entity-alias="FI" rel-entity-alias="INV">
+      <key-map field-name="invoiceId"/>
+    </view-link>
+    <view-link entity-alias="FI" rel-entity-alias="FPT">
+      <key-map field-name="fiscalPaymentTerminalId"/>
+    </view-link>
+  </view-entity>
+
 </entitymodel>

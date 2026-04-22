@@ -31,6 +31,10 @@
         <value xml:lang="en">Invoice Date</value>
         <value xml:lang="hr">Datum računa</value>
     </property>
+    <property key="FiscalInvoiceIssuer">
+        <value xml:lang="en">Issuer</value>
+        <value xml:lang="hr">Izdavatelj</value>
+    </property>
     <property key="FiscalInvoiceNumber">
         <value xml:lang="en">Invoice Number</value>
         <value xml:lang="hr">Broj računa</value>
@@ -62,6 +66,10 @@
     <property key="FiscalIssueInvoice">
         <value xml:lang="en">Issue invoice</value>
         <value xml:lang="hr">Izdavanje računa</value>
+    </property>
+    <property key="FiscalPoNumber">
+        <value xml:lang="en">PO Number</value>
+        <value xml:lang="hr">Broj narudžbenice</value>
     </property>
     <property key="FiscalIsPayed">
         <value xml:lang="en">Is payed</value>
