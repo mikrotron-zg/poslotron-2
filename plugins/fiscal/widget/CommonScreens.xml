@@ -30,7 +30,31 @@
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <label style="h1" text="${uiLabelMap.FiscalManagerApplication}"/>
+                        <screenlet id="FindFiscalInvoicePanel" title="${uiLabelMap.FiscalFindInvoice}" collapsible="true" navigation-form-name="FindFiscalInvoice">
+                            <include-form name="FindFiscalInvoice" location="component://fiscal/widget/FiscalForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+            <fail-widgets>
+                <label style="h3" text="${uiLabelMap.AccountingViewPermissionError}"/>
+            </fail-widgets>
+        </section>
+    </screen>
+    <screen name="FindFiscalInvoice">
+        <section>
+            <condition>
+                <if-has-permission permission="ACCOUNTING" action="_VIEW"/>
+            </condition>
+            <actions>
+                <set field="headerItem" value="main"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet id="FindFiscalInvoicePanel" title="${uiLabelMap.FiscalFindInvoice}" collapsible="true" navigation-form-name="FindFiscalInvoice">
+                            <include-form name="FindFiscalInvoice" location="component://fiscal/widget/FiscalForms.xml"/>
+                        </screenlet>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

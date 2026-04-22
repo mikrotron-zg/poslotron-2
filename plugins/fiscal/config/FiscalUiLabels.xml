@@ -23,6 +23,34 @@
         <value xml:lang="en">Fiscal</value>
         <value xml:lang="hr">Fiskalizacija</value>
     </property>
+    <property key="FiscalFindInvoice">
+        <value xml:lang="en">Find Fiscal Invoice</value>
+        <value xml:lang="hr">Pretraži fiskalne račune</value>
+    </property>
+    <property key="FiscalInvoiceDate">
+        <value xml:lang="en">Invoice Date</value>
+        <value xml:lang="hr">Datum računa</value>
+    </property>
+    <property key="FiscalInvoiceNumber">
+        <value xml:lang="en">Invoice Number</value>
+        <value xml:lang="hr">Broj računa</value>
+    </property>
+    <property key="FiscalInvoiceRecipientPartyId">
+        <value xml:lang="en">Recipient Party ID</value>
+        <value xml:lang="hr">ID primatelja</value>
+    </property>
+    <property key="FiscalInvoiceType">
+        <value xml:lang="en">Invoice Type</value>
+        <value xml:lang="hr">Vrsta računa</value>
+    </property>
+    <property key="FiscalPaymentTerminalLabel">
+        <value xml:lang="en">Payment Terminal Label</value>
+        <value xml:lang="hr">Oznaka naplatnog uređaja</value>
+    </property>
+    <property key="FiscalStoreId">
+        <value xml:lang="en">Fiscal Store</value>
+        <value xml:lang="hr">Fiskalni poslovni prostor</value>
+    </property>
     <property key="FiscalB2BInfoMessage">
         <value xml:lang="en">Customer has OIB generating e-invoice data.</value>
         <value xml:lang="hr">Kupac ima OIB, generirati će se podaci za e-račun.</value>
