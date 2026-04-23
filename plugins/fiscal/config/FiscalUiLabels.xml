@@ -23,9 +23,37 @@
         <value xml:lang="en">Fiscal</value>
         <value xml:lang="hr">Fiskalizacija</value>
     </property>
+    <property key="FiscalDateRange">
+        <value xml:lang="en">Date Range</value>
+        <value xml:lang="hr">Vremenski raspon</value>
+    </property>
+    <property key="FiscalDateRangeLastMonth">
+        <value xml:lang="en">Last month</value>
+        <value xml:lang="hr">Prošli mjesec</value>
+    </property>
+    <property key="FiscalDateRangeLastYear">
+        <value xml:lang="en">Last year</value>
+        <value xml:lang="hr">Prošla godina</value>
+    </property>
+    <property key="FiscalDateRangeThisMonth">
+        <value xml:lang="en">This month</value>
+        <value xml:lang="hr">Ovaj mjesec</value>
+    </property>
+    <property key="FiscalDateRangeThisYear">
+        <value xml:lang="en">This year</value>
+        <value xml:lang="hr">Ova godina</value>
+    </property>
     <property key="FiscalFindInvoice">
         <value xml:lang="en">Find Fiscal Invoice</value>
         <value xml:lang="hr">Pretraži fiskalne račune</value>
+    </property>
+    <property key="FiscalFindInvoicePayment">
+        <value xml:lang="en">Find Invoice Payment</value>
+        <value xml:lang="hr">Pretraži naplate računa</value>
+    </property>
+    <property key="FiscalPayment">
+        <value xml:lang="en">Payment</value>
+        <value xml:lang="hr">Naplata</value>
     </property>
     <property key="FiscalInvoiceDate">
         <value xml:lang="en">Invoice Date</value>

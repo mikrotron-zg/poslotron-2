@@ -21,6 +21,12 @@ under the License.
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/services.xsd">
 
+    <service name="updateFiscalInvoiceIsPayed" engine="java" location="org.apache.ofbiz.fiscal.invoice.FiscalInvoiceServices" invoke="updateFiscalInvoiceIsPayed" auth="true">
+        <description>Update the isPayed flag of a fiscal invoice. Missing (checkbox unchecked) is treated as N.</description>
+        <attribute name="fiscalInvoiceId" type="String" mode="IN" optional="false"/>
+        <attribute name="isPayed" type="String" mode="IN" optional="true"/>
+    </service>
+
     <service name="addFiscalInvoice" engine="java" location="org.apache.ofbiz.fiscal.invoice.FiscalInvoiceServices" invoke="addFiscalInvoice" auth="true">
         <description>Add a fiscal invoice - handles both B2B and B2C cases</description>
         <attribute name="orderId" type="String" mode="IN" optional="false"/>

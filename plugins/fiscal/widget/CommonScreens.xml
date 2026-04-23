@@ -66,4 +66,52 @@
             </fail-widgets>
         </section>
     </screen>
+    <screen name="payment">
+        <section>
+            <condition>
+                <if-has-permission permission="ACCOUNTING" action="_VIEW"/>
+            </condition>
+            <actions>
+                <set field="headerItem" value="payment"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet id="FindFiscalInvoicePaymentPanel" title="${uiLabelMap.FiscalFindInvoicePayment}" collapsible="true" navigation-form-name="FindFiscalInvoicePayment">
+                            <include-form name="FindFiscalInvoicePayment" location="component://fiscal/widget/FiscalForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+            <fail-widgets>
+                <label style="h3" text="${uiLabelMap.AccountingViewPermissionError}"/>
+            </fail-widgets>
+        </section>
+    </screen>
+    <screen name="FindFiscalInvoicePayment">
+        <section>
+            <condition>
+                <if-has-permission permission="ACCOUNTING" action="_VIEW"/>
+            </condition>
+            <actions>
+                <set field="headerItem" value="payment"/>
+                <script location="component://fiscal/src/main/groovy/org/apache/ofbiz/fiscal/invoice/PreparePaymentSearch.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet id="FindFiscalInvoicePaymentPanel" title="${uiLabelMap.FiscalFindInvoicePayment}" collapsible="true" navigation-form-name="FindFiscalInvoicePayment">
+                            <include-form name="FindFiscalInvoicePayment" location="component://fiscal/widget/FiscalForms.xml"/>
+                        </screenlet>
+                        <screenlet title="${uiLabelMap.CommonSearchResults}" navigation-form-name="ListFiscalInvoicePayment">
+                            <include-grid name="ListFiscalInvoicePayment" location="component://fiscal/widget/FiscalForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+            <fail-widgets>
+                <label style="h3" text="${uiLabelMap.AccountingViewPermissionError}"/>
+            </fail-widgets>
+        </section>
+    </screen>
 </screens>

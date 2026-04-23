@@ -52,6 +52,41 @@ public class FiscalInvoiceServices {
     private static final String MODULE = FiscalInvoiceServices.class.getName();
 
     /**
+     * Update the {@code isPayed} flag of a fiscal invoice.
+     *
+     * <p>When the flag is rendered as a checkbox, an unchecked value is not submitted
+     * at all, so {@code isPayed} may be null here. In that case we explicitly store
+     * {@code "N"} so the flag can be toggled off from the UI.</p>
+     */
+    public static Map<String, Object> updateFiscalInvoiceIsPayed(DispatchContext ctx, Map<String, Object> context) {
+        Delegator delegator = ctx.getDelegator();
+        String fiscalInvoiceId = (String) context.get("fiscalInvoiceId");
+        String isPayed = (String) context.get("isPayed");
+        if (!"Y".equals(isPayed)) {
+            isPayed = "N";
+        }
+
+        try {
+            GenericValue fiscalInvoice = EntityQuery.use(delegator)
+                    .from("FiscalInvoice")
+                    .where("fiscalInvoiceId", fiscalInvoiceId)
+                    .queryOne();
+
+            if (fiscalInvoice == null) {
+                return ServiceUtil.returnError("Fiscal invoice not found: " + fiscalInvoiceId);
+            }
+
+            fiscalInvoice.set("isPayed", isPayed);
+            fiscalInvoice.store();
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Error updating fiscal invoice isPayed flag", MODULE);
+            return ServiceUtil.returnError("Error updating fiscal invoice: " + e.getMessage());
+        }
+
+        return ServiceUtil.returnSuccess();
+    }
+
+    /**
      * Add a fiscal invoice - handles both B2B and B2C cases
      * @param ctx the dispatch context
      * @param context the context
