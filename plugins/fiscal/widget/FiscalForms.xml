@@ -62,6 +62,53 @@
             <submit button-type="button"/>
         </field>
     </form>
+    <form name="FiscalReporting" type="single" target="generateFiscalReport">
+        <field name="fiscalInvoiceDate" title="${uiLabelMap.FiscalInvoiceDate}">
+            <date-find type="date"/>
+        </field>
+        <field name="dateRange" title="${uiLabelMap.FiscalDateRange}">
+            <drop-down allow-empty="true" no-current-selected-key="LAST_MONTH">
+                <option key="THIS_MONTH" description="${uiLabelMap.FiscalDateRangeThisMonth}"/>
+                <option key="LAST_MONTH" description="${uiLabelMap.FiscalDateRangeLastMonth}"/>
+                <option key="THIS_YEAR" description="${uiLabelMap.FiscalDateRangeThisYear}"/>
+                <option key="LAST_YEAR" description="${uiLabelMap.FiscalDateRangeLastYear}"/>
+            </drop-down>
+        </field>
+        <field name="fiscalStoreId" title="${uiLabelMap.FiscalStoreId}">
+            <drop-down allow-empty="true">
+                <entity-options entity-name="FiscalStore" key-field-name="fiscalStoreId" description="${fiscalStoreLabel} [${fiscalStoreId}]">
+                    <entity-order-by field-name="fiscalStoreLabel"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="fiscalPaymentTerminalId" title="${uiLabelMap.FiscalPaymentTerminal}">
+            <drop-down allow-empty="true">
+                <entity-options entity-name="FiscalPaymentTerminal" key-field-name="fiscalPaymentTerminalId" description="${fiscalPaymentTerminalLabel} [${fiscalPaymentTerminalId}]">
+                    <entity-order-by field-name="fiscalPaymentTerminalLabel"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="isPayed" title="${uiLabelMap.FiscalIsPayed}">
+            <drop-down allow-empty="true">
+                <option key="Y" description="${uiLabelMap.CommonYes}"/>
+                <option key="N" description="${uiLabelMap.CommonNo}"/>
+            </drop-down>
+        </field>
+        <field name="exportFormat" title="${uiLabelMap.FiscalReportingExportFormat}"
+                event="onchange" action="document.querySelector('[name=csvDelimiter]').disabled=(this.value!=='CSV');">
+            <drop-down no-current-selected-key="CSV">
+                <option key="CSV" description="CSV"/>
+                <option key="PDF" description="PDF"/>
+            </drop-down>
+        </field>
+        <field name="csvDelimiter" title="${uiLabelMap.FiscalReportingCsvDelimiter}"
+                disabled="${groovy: 'PDF'.equals(parameters.exportFormat) ? 'true' : 'false'}">
+            <text size="1" maxlength="1" default-value=";"/>
+        </field>
+        <field name="generateButton" title="${uiLabelMap.FiscalReportingGenerate}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
     <grid name="ListFiscalInvoicePayment" list-name="listIt" target="updateFiscalInvoiceIsPayed" paginate-target="FindFiscalInvoicePayment" default-entity-name="FiscalInvoiceSearchView"
         separate-columns="true"
         odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar"

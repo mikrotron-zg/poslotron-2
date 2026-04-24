@@ -88,6 +88,49 @@
             </fail-widgets>
         </section>
     </screen>
+    <screen name="reporting">
+        <section>
+            <condition>
+                <if-has-permission permission="ACCOUNTING" action="_VIEW"/>
+            </condition>
+            <actions>
+                <set field="headerItem" value="reporting"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <screenlet id="FiscalReportingPanel" title="${uiLabelMap.FiscalReportingParameters}" collapsible="true">
+                            <include-form name="FiscalReporting" location="component://fiscal/widget/FiscalForms.xml"/>
+                        </screenlet>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+            <fail-widgets>
+                <label style="h3" text="${uiLabelMap.AccountingViewPermissionError}"/>
+            </fail-widgets>
+        </section>
+    </screen>
+    <screen name="FiscalReportPdf">
+        <section>
+            <condition>
+                <if-has-permission permission="ACCOUNTING" action="_VIEW"/>
+            </condition>
+            <actions>
+                <property-map resource="FiscalUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <!-- Ensure the PDF uses a font that covers Croatian diacritics (č, ć, ž, š, đ).
+                     FOP's Base14 Helvetica does not, so we inherit the configured NotoSans. -->
+                <property-to-field resource="fop.properties" field="defaultFontFamily"
+                                   property="fop.font.family" default="NotoSans"/>
+                <script location="component://fiscal/src/main/groovy/org/apache/ofbiz/fiscal/invoice/PrepareFiscalReportData.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific>
+                    <xsl-fo><html-template location="component://fiscal/template/reports/FiscalReport.fo.ftl"/></xsl-fo>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
     <screen name="FindFiscalInvoicePayment">
         <section>
             <condition>

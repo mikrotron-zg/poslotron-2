@@ -71,6 +71,10 @@
         <value xml:lang="en">Recipient Party ID</value>
         <value xml:lang="hr">ID primatelja</value>
     </property>
+    <property key="FiscalInvoiceRecipient">
+        <value xml:lang="en">Recipient</value>
+        <value xml:lang="hr">Primatelj</value>
+    </property>
     <property key="FiscalInvoiceType">
         <value xml:lang="en">Invoice Type</value>
         <value xml:lang="hr">Vrsta računa</value>
@@ -102,5 +106,33 @@
     <property key="FiscalIsPayed">
         <value xml:lang="en">Is payed</value>
         <value xml:lang="hr">Plaćeno</value>
+    </property>
+    <property key="FiscalReporting">
+        <value xml:lang="en">Reporting</value>
+        <value xml:lang="hr">Izvještaji</value>
+    </property>
+    <property key="FiscalReportingTitle">
+        <value xml:lang="en">Fiscal Invoices Report</value>
+        <value xml:lang="hr">Izvještaj o fiskalnim računima</value>
+    </property>
+    <property key="FiscalReportingParameters">
+        <value xml:lang="en">Report parameters</value>
+        <value xml:lang="hr">Parametri izvještaja</value>
+    </property>
+    <property key="FiscalReportingGenerate">
+        <value xml:lang="en">Generate</value>
+        <value xml:lang="hr">Generiraj</value>
+    </property>
+    <property key="FiscalReportingExportFormat">
+        <value xml:lang="en">Export format</value>
+        <value xml:lang="hr">Format izvoza</value>
+    </property>
+    <property key="FiscalReportingCsvDelimiter">
+        <value xml:lang="en">CSV delimiter</value>
+        <value xml:lang="hr">CSV razdjelnik</value>
+    </property>
+    <property key="FiscalPaymentTerminal">
+        <value xml:lang="en">Payment Terminal</value>
+        <value xml:lang="hr">Naplatni uređaj</value>
     </property>
 </resource>

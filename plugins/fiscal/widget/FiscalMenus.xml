@@ -6,5 +6,9 @@
             <condition><if-has-permission permission="ACCOUNTING" action="_VIEW"/></condition>
             <link target="payment"/>
         </menu-item>
+        <menu-item name="reporting" title="${uiLabelMap.FiscalReporting}">
+            <condition><if-has-permission permission="ACCOUNTING" action="_VIEW"/></condition>
+            <link target="reporting"/>
+        </menu-item>
     </menu>
 </menus>
