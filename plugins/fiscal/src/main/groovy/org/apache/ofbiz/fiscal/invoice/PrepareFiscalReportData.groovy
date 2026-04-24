@@ -28,6 +28,7 @@ import org.apache.ofbiz.entity.GenericValue
 import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.condition.EntityOperator
 import org.apache.ofbiz.entity.util.EntityQuery
+import org.apache.ofbiz.fiscal.util.FiscalDateRangeResolver
 
 /*
  * Shared data preparation script for the fiscal reporting page.
@@ -60,28 +61,10 @@ List<EntityCondition> conds = []
 Timestamp fromDate = null
 Timestamp thruDate = null
 String dateRange = parameters.dateRange
-if (dateRange) {
-    Timestamp now = UtilDateTime.nowTimestamp()
-    switch (dateRange) {
-        case 'THIS_MONTH':
-            fromDate = UtilDateTime.getMonthStart(now, timeZone, locale)
-            thruDate = UtilDateTime.getMonthEnd(now, timeZone, locale)
-            break
-        case 'LAST_MONTH':
-            fromDate = UtilDateTime.getMonthStart(now, 0, -1, timeZone, locale)
-            thruDate = UtilDateTime.getMonthEnd(fromDate, timeZone, locale)
-            break
-        case 'THIS_YEAR':
-            fromDate = UtilDateTime.getYearStart(now, timeZone, locale)
-            thruDate = UtilDateTime.getYearEnd(now, timeZone, locale)
-            break
-        case 'LAST_YEAR':
-            fromDate = UtilDateTime.getYearStart(now, 0, -1, timeZone, locale)
-            thruDate = UtilDateTime.getYearEnd(fromDate, timeZone, locale)
-            break
-        default:
-            break
-    }
+Map<String, Timestamp> resolvedRange = FiscalDateRangeResolver.resolve(dateRange, timeZone, locale)
+if (resolvedRange) {
+    fromDate = resolvedRange.fromDate
+    thruDate = resolvedRange.thruDate
 } else {
     // date-find widget posts fld0 (from) and fld1 (thru) in ISO format.
     String fld0 = parameters.fiscalInvoiceDate_fld0_value

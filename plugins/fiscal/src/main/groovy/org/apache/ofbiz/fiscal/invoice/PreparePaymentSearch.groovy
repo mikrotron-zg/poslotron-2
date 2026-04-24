@@ -19,7 +19,7 @@
 
 import java.sql.Timestamp
 
-import org.apache.ofbiz.base.util.UtilDateTime
+import org.apache.ofbiz.fiscal.util.FiscalDateRangeResolver
 
 // Build the inputFields map for performFind. Start from request parameters and,
 // if the user picked a "dateRange" option, override the fiscalInvoiceDate range.
@@ -29,39 +29,12 @@ import org.apache.ofbiz.base.util.UtilDateTime
 Map<String, Object> inputFields = [:]
 inputFields.putAll(parameters)
 
-String dateRange = parameters.dateRange
-if (dateRange) {
-    Timestamp now = UtilDateTime.nowTimestamp()
-    Timestamp fromDate = null
-    Timestamp thruDate = null
-
-    switch (dateRange) {
-        case 'THIS_MONTH':
-            fromDate = UtilDateTime.getMonthStart(now, timeZone, locale)
-            thruDate = UtilDateTime.getMonthEnd(now, timeZone, locale)
-            break
-        case 'LAST_MONTH':
-            fromDate = UtilDateTime.getMonthStart(now, 0, -1, timeZone, locale)
-            thruDate = UtilDateTime.getMonthEnd(fromDate, timeZone, locale)
-            break
-        case 'THIS_YEAR':
-            fromDate = UtilDateTime.getYearStart(now, timeZone, locale)
-            thruDate = UtilDateTime.getYearEnd(now, timeZone, locale)
-            break
-        case 'LAST_YEAR':
-            fromDate = UtilDateTime.getYearStart(now, 0, -1, timeZone, locale)
-            thruDate = UtilDateTime.getYearEnd(fromDate, timeZone, locale)
-            break
-        default:
-            break
-    }
-
-    if (fromDate && thruDate) {
-        inputFields.fiscalInvoiceDate_fld0_op = 'greaterThanEqualTo'
-        inputFields.fiscalInvoiceDate_fld0_value = fromDate
-        inputFields.fiscalInvoiceDate_fld1_op = 'lessThanEqualTo'
-        inputFields.fiscalInvoiceDate_fld1_value = thruDate
-    }
+Map<String, Timestamp> range = FiscalDateRangeResolver.resolve(parameters.dateRange as String, timeZone, locale)
+if (range) {
+    inputFields.fiscalInvoiceDate_fld0_op = 'greaterThanEqualTo'
+    inputFields.fiscalInvoiceDate_fld0_value = range.fromDate
+    inputFields.fiscalInvoiceDate_fld1_op = 'lessThanEqualTo'
+    inputFields.fiscalInvoiceDate_fld1_value = range.thruDate
 }
 
 context.paymentSearchFields = inputFields
