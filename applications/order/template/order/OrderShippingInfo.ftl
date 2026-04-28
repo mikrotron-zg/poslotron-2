@@ -653,7 +653,7 @@ under the License.
                     <table>
                       <tr>
                         <td id="instruction">
-                          <label style="font-weight: bold; font-size: 1.15em; color: red;">${shipGroup.shippingInstructions}</label>
+                          <label class="importantText">${shipGroup.shippingInstructions}</label>
                         </td>
                         <td>
                           <a href="javascript:editInstruction('${shipGroup.shipGroupSeqId}');" class="buttontext" id="editInstruction_${shipGroup.shipGroupSeqId}">${uiLabelMap.CommonEdit}</a>
