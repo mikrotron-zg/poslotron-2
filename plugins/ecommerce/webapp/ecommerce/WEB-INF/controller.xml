@@ -1878,6 +1878,14 @@ under the License.
         <response name="userLoginMissing" type="request" value="newcustomer"/>
     </request-map>
 
+    <!-- Sitemap -->
+    <request-map uri="sitemap.xml">
+        <security https="false" auth="false"/>
+        <event type="groovy"
+               path="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/sitemap/SiteMap.groovy"
+               invoke="generate"/>
+        <response name="success" type="none"/>
+    </request-map>
     <!-- End of Request Mappings -->
 
     <!-- View Mappings -->
