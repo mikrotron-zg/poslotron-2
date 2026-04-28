@@ -67,14 +67,24 @@ String generate() {
 
     // -------------------------------------------------
     // PRODUCTS
-    // only active + saleable
+    // only active + saleable + finished goods that are members of at least one category
     // -------------------------------------------------
     Timestamp now = UtilDateTime.nowTimestamp()
+
+    // productIds that are currently a member of at least one category
+    Set<String> categorizedProductIds = EntityQuery.use(delegator)
+            .select("productId")
+            .from("ProductCategoryMember")
+            .filterByDate()
+            .distinct()
+            .queryList()
+            .collect { it.productId } as Set
 
     List<GenericValue> products = EntityQuery.use(delegator)
             .from("Product")
             .where(
                     "isVirtual", "N",
+                    "productTypeId", "FINISHED_GOOD",
                     "salesDiscontinuationDate", null
             )
             .queryList()
@@ -83,6 +93,8 @@ String generate() {
 
         String productId = product.productId
         if (!productId) return
+
+        if (!categorizedProductIds.contains(productId)) return
 
         Timestamp introDate = product.introductionDate
         if (introDate && introDate.after(now)) return
