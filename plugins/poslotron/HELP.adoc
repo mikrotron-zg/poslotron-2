@@ -1,0 +1,7 @@
+= Poslotron
+
+The `poslotron` plugin hosts project-specific customizations (screens, menus,
+forms, services, labels, etc.) layered on top of OFBiz core, so that upstream
+merges remain easy.
+
+See `README.adoc` in the plugin root for conventions and layout.

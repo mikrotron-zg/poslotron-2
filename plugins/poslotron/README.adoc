@@ -1,0 +1,48 @@
+= Poslotron Plugin
+
+== Purpose
+The `poslotron` plugin is the host for project-specific (Poslotron) customizations
+of OFBiz: custom screens, menus, forms, services, ECAs, labels, etc.
+
+It exists to keep our customizations out of the core `applications/` and
+`framework/` trees, so that merges of upstream OFBiz releases stay as small and
+clean as possible.
+
+== Conventions
+Whenever a feature can be implemented as an *extension* of an existing artefact,
+do that instead of editing core files:
+
+* Menus -- add new `menu-item` entries by extending core menus, e.g.:
++
+[source,xml]
+----
+<menu name="OrderAppBar" extends="OrderAppBar"
+      extends-resource="component://order/widget/ordermgr/OrderMenus.xml">
+    <menu-item name="poslotronCustom" title="..."><link target="..."/></menu-item>
+</menu>
+----
+* Screens / Forms -- prefer `extends` + `extends-resource`, or include this
+  plugin's screens via a small core hook rather than rewriting the core screen.
+* Controllers -- use `<include location="component://poslotron/.../controller.xml"/>`
+  in the target webapp's controller (a one-line core change) to expose new
+  request-maps and view-maps from this plugin.
+* Labels -- add new `uiLabel` entries to `config/PoslotronUiLabels.xml` instead
+  of editing core `*UiLabels.xml`.
+* Services / ECAs / Entities -- declare them in this plugin's
+  `servicedef/`, `entitydef/` (use `<extend-entity>` for additional fields on
+  core entities).
+
+== Layout
+* `ofbiz-component.xml` -- component descriptor and webapp mount-point.
+* `widget/` -- screens, menus, forms (typically extending core widgets).
+* `webapp/poslotron/` -- this plugin's own webapp (optional, kept for
+  plugin-specific UI; can be removed if not needed).
+* `entitydef/`, `servicedef/`, `data/`, `config/`, `src/` -- standard OFBiz
+  component locations.
+
+== Goal
+Keep `git diff` against upstream OFBiz limited to:
+
+. Tiny, well-marked hooks in core (controller `<include>`, optional menu/screen
+  extension points).
+. Everything else lives here, in `plugins/poslotron`.
