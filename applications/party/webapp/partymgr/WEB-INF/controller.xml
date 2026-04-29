@@ -24,6 +24,7 @@ under the License.
     <include location="component://common/webcommon/WEB-INF/security-controller.xml"/>
     <include location="component://commonext/webapp/WEB-INF/controller.xml"/>
     <include location="component://content/webapp/content/WEB-INF/controller.xml"/>
+    <include location="component://poslotron/webapp/poslotron/WEB-INF/party-controller-ext.xml"/><!-- poslotron: extensions to Party Manager controller -->
     <description>Party Manager Module Site Configuration File</description>
 
     <handler name="simplecontent" type="view" class="org.apache.ofbiz.content.view.SimpleContentViewHandler"/>

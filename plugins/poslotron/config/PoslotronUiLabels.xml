@@ -18,19 +18,47 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<!-- Keep only English language here because of OFBIZ-13095 -->
+<!-- Croatian-market build: always provide both en and hr values (OFBIZ-13095 intentionally ignored). -->
 
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
     <property key="PoslotronApplication">
         <value xml:lang="en">Poslotron Application</value>
+        <value xml:lang="hr">Poslotron aplikacija</value>
     </property>
     <property key="PoslotronCompanyName">
         <value xml:lang="en">OFBiz: Poslotron</value>
+        <value xml:lang="hr">OFBiz: Poslotron</value>
     </property>
     <property key="PoslotronCompanySubtitle">
         <value xml:lang="en">Part of the Apache OFBiz Family of Open Source Software</value>
+        <value xml:lang="hr">Dio Apache OFBiz obitelji softvera otvorenog koda</value>
     </property>
     <property key="PoslotronViewPermissionError">
         <value xml:lang="en">You are not allowed to view this page.</value>
+        <value xml:lang="hr">Nemate dopuštenje za pregled ove stranice.</value>
+    </property>
+    <property key="PoslotronPartySuppliers">
+        <value xml:lang="en">Suppliers</value>
+        <value xml:lang="hr">Dobavljači</value>
+    </property>
+    <property key="PoslotronPartySuppliersDescription">
+        <value xml:lang="en">List of parties with the SUPPLIER role.</value>
+        <value xml:lang="hr">Popis sudionika u ulozi DOBAVLJAČ.</value>
+    </property>
+    <property key="PoslotronWebPage">
+        <value xml:lang="en">Web page</value>
+        <value xml:lang="hr">Web stranica</value>
+    </property>
+    <property key="PoslotronSendEmail">
+        <value xml:lang="en">Send e-mail</value>
+        <value xml:lang="hr">Pošalji e-poštu</value>
+    </property>
+    <property key="PoslotronProductsSupplied">
+        <value xml:lang="en">Products</value>
+        <value xml:lang="hr">Proizvodi</value>
+    </property>
+    <property key="PoslotronOutOfStockProducts">
+        <value xml:lang="en">Out of stock (QOH=0)</value>
+        <value xml:lang="hr">Bez zalihe (QOH=0)</value>
     </property>
 </resource>

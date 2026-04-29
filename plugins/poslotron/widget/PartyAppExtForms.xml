@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<!--
+    Poslotron extensions: Forms used by the Party Manager screens added in
+    PartyAppExtScreens.xml.
+-->
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+    <!--
+        Simplified party lookup for the Suppliers screen. Suppliers are always
+        PartyGroup parties whose main role is SUPPLIER, so the only inputs the
+        user needs are Party Id and Group Name. Both fields are optional; an
+        empty submit lists every supplier (handled in FindSuppliers.groovy).
+    -->
+    <form name="LookupSupplier" type="single" target="findSuppliers" focus-field-name="partyId">
+        <field name="partyId" title="${uiLabelMap.PartyPartyId}"><text size="20"/></field>
+        <field name="groupName" title="${uiLabelMap.PartyGroupName}"><text size="30"/></field>
+
+        <field name="searchButton" widget-style="search"><submit/></field>
+    </form>
+
+    <!--
+        Minimal supplier results grid. Columns can be appended as needs grow.
+        Data is fetched by FindSuppliers.groovy from the PartyRoleAndPartyDetail
+        view entity, which always exposes groupName for stable ordering.
+        Empty form fields are tolerated (= "list all suppliers").
+    -->
+    <grid name="ListSupplier" list-name="suppliers"
+          odd-row-style="alternate-row" header-row-style="header-row-2"
+          default-table-style="basic-table hover-bar">
+        <actions>
+            <script location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/party/FindSuppliers.groovy"/>
+        </actions>
+        <field name="partyId" title="${uiLabelMap.PartyPartyId}" sort-field="true" widget-style="buttontext">
+            <hyperlink description="${partyId}" target="viewprofile">
+                <parameter param-name="partyId"/>
+            </hyperlink>
+        </field>
+        <field name="name" title="${uiLabelMap.PartyName}" sort-field="true">
+            <display description="${groupName}"/>
+        </field>
+        <!--
+            Product roll-ups for this supplier. Both counts are computed in
+            FindSuppliers.groovy from SupplierProduct (filterByDate) and
+            InventoryItem (sum of quantityOnHandTotal per productId).
+        -->
+        <field name="productCount" title="${uiLabelMap.PoslotronProductsSupplied}" sort-field="true">
+            <display description="${productCount}"/>
+        </field>
+        <field name="zeroQohCount" title="${uiLabelMap.PoslotronOutOfStockProducts}" sort-field="true">
+            <display description="${zeroQohCount}"/>
+        </field>
+        <field name="createdDate" sort-field="true">
+            <display type="date"/>
+        </field>
+        <!--
+            Action columns. The HTML for these is built in FindSuppliers.groovy
+            (which HTML-encodes the dynamic URL/email/label parts to neutralize
+            XSS in stored values). encode-output="false" disables the form
+            widget's automatic HTML encoding of the `description` value so the
+            anchor markup is rendered verbatim, giving us the
+            target="_blank" / rel="nofollow noreferrer noopener" attributes
+            that the OFBiz <hyperlink> element does not expose. Empty string
+            when the supplier has no PRIMARY_WEB_URL / PRIMARY_EMAIL on file.
+        -->
+        <field name="webPageHtml" title="${uiLabelMap.PoslotronWebPage}" encode-output="false">
+            <display description="${webPageHtml}"/>
+        </field>
+        <field name="emailHtml" title="${uiLabelMap.PoslotronSendEmail}" encode-output="false">
+            <display description="${emailHtml}"/>
+        </field>
+    </grid>
+
+</forms>
