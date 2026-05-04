@@ -62,7 +62,9 @@ import org.apache.ofbiz.base.location.FlexibleLocation;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.FileUtil;
 import org.apache.ofbiz.base.util.GeneralException;
+import org.apache.ofbiz.base.util.StringUtil;
 import org.apache.ofbiz.base.util.UtilCodec;
+import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilIO;
@@ -867,8 +869,6 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
 
             // FTL template
             if ("FTL".equals(dataTemplateTypeId)) {
-                throw new GeneralException("Error rendering template: FTL template type is no longer supported for data resources.");
-                /*
                 try {
                     // get the template data for rendering
                     String templateText = getDataResourceText(dataResource, targetMimeTypeId, locale, templateContext, delegator, cache);
@@ -878,7 +878,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
                         StringBuffer newTemplateText = new StringBuffer(templateText);
                         String webAnalyticsCode = "<script type=\"application/javascript\">";
                         for (GenericValue webAnalytic : webAnalytics) {
-                            StringWrapper wrapString = StringUtil.wrapString((String) webAnalytic.get("webAnalyticsCode"));
+                            StringUtil.StringWrapper wrapString = StringUtil.wrapString((String) webAnalytic.get("webAnalyticsCode"));
                             webAnalyticsCode += wrapString.toString();
                         }
                         webAnalyticsCode += "</script>";
@@ -888,24 +888,18 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
 
                     // render the FTL template
                     boolean useTemplateCache = cache && !UtilProperties.getPropertyAsBoolean("content", "disable.ftl.template.cache", false);
-                    //Do not use dataResource.lastUpdatedStamp for dataResource template caching as it may use ftl file or electronicText
-                    // If dataResource using ftl file use nowTimestamp to avoid freemarker caching
-                    Timestamp lastUpdatedStamp = UtilDateTime.nowTimestamp();
-                    //If dataResource is type of ELECTRONIC_TEXT then only use the lastUpdatedStamp of electronicText entity for freemarker caching
-                    if ("ELECTRONIC_TEXT".equals(dataResource.getString("dataResourceTypeId"))) {
-                        GenericValue electronicText = dataResource.getRelatedOne("ElectronicText", true);
-                        if (electronicText != null) {
-                            lastUpdatedStamp = electronicText.getTimestamp("lastUpdatedStamp");
-                        }
+                    if ("ELECTRONIC_TEXT".equals(dataResource.getString("dataResourceTypeId"))
+                            || "SHORT_TEXT".equalsIgnoreCase(dataResource.getString("dataResourceTypeId"))
+                            || "LINK".equalsIgnoreCase(dataResource.getString("dataResourceTypeId"))) {
+                        throw new GeneralException("Error rendering template: FreeMarker templates are no longer supported for "
+                                + dataResource.getString("dataResourceTypeId") + " data resources.");
                     }
 
                     FreeMarkerWorker.renderTemplateFromString("delegator:" + delegator.getDelegatorName() + ":DataResource:"
-                            + dataResourceId, templateText, templateContext, out, lastUpdatedStamp.getTime(), useTemplateCache);
+                            + dataResourceId, templateText, templateContext, out, UtilDateTime.nowTimestamp().getTime(), useTemplateCache);
                 } catch (TemplateException e) {
                     throw new GeneralException("Error rendering FTL template", e);
                 }
-                */
-
             } else if ("XSLT".equals(dataTemplateTypeId)) {
                 File targetFileLocation = new File(System.getProperty("ofbiz.home") + "/runtime/tempfiles/docbook.css");
                 String defaultVisualThemeId = EntityUtilProperties.getPropertyValue("general", "VISUAL_THEME", delegator);
