@@ -28,6 +28,23 @@ under the License.
         <description>
             Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
         </description>
-    </service> 
-    
+    </service>
+
+    <!--
+        Quick-add product wrapper. Creates the Product via createProduct and,
+        when a non-empty price is supplied, follows up with createProductPrice
+        using fixed constants (DEFAULT_PRICE / PURCHASE / EUR / _NA_ /
+        taxInPrice=Y). productId is returned so the catalog-controller-ext
+        request-map can redirect to EditProduct on success.
+    -->
+    <service name="poslotronQuickCreateProduct" engine="groovy"
+            location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/product/QuickAddProduct.groovy"
+            invoke="quickCreateProduct" auth="true">
+        <description>Quick-add product: create Product (+ optional default ProductPrice in EUR).</description>
+        <implements service="interfaceProduct"/>
+        <auto-attributes entity-name="Product" include="pk" mode="INOUT" optional="true"/>
+        <attribute name="price" type="BigDecimal" mode="IN" optional="true"/>
+        <attribute name="idValue" type="String" mode="IN" optional="true"/>
+    </service>
+
 </services>

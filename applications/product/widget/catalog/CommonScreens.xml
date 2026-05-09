@@ -29,6 +29,7 @@ under the License.
                 <property-map resource="WorkEffortUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="AccountingUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="PoslotronUiLabels" map-name="uiLabelMap" global="true"/><!-- poslotron: expose plugin labels app-wide -->
 
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.ProductCatalogCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.ProductCompanySubtitle" global="true"/>

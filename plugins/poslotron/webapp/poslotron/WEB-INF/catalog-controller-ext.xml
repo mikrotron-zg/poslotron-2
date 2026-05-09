@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<!--
+    Poslotron extensions for the Catalog Manager (catalog) webapp controller.
+
+    This file is included from
+        applications/product/webapp/catalog/WEB-INF/controller.xml
+    via a single <include/> line, so that all our request- and view-maps
+    extending the Catalog app live here in the plugin (not in core).
+-->
+<site-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Site-Conf"
+        xsi:schemaLocation="http://ofbiz.apache.org/Site-Conf http://ofbiz.apache.org/dtds/site-conf.xsd">
+
+    <description>Poslotron extensions to Catalog Manager controller</description>
+
+    <!-- ===== Quick add product ===== -->
+    <request-map uri="quickAddProduct">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="quickAddProduct"/>
+    </request-map>
+
+    <!--
+        Form submission target. Runs the wrapper service which creates the
+        Product and (optionally) the default EUR price; on success we send
+        the user straight to EditProduct for the new productId so they can
+        carry on filling in details.
+    -->
+    <request-map uri="quickCreateProduct">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="poslotronQuickCreateProduct"/>
+        <response name="success" type="request-redirect" value="EditProduct"><redirect-parameter name="productId"/></response>
+        <response name="error" type="view" value="quickAddProduct"/>
+    </request-map>
+
+    <view-map name="quickAddProduct" type="screen"
+              page="component://poslotron/widget/CatalogAppExtScreens.xml#quickAddProduct"/>
+
+</site-conf>

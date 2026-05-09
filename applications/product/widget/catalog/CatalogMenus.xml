@@ -45,6 +45,16 @@ under the License.
             </condition>
             <link target="EditProduct"/>
         </menu-item>
+        <menu-item name="quickAddProduct" title="${uiLabelMap.PoslotronProductQuickAdd}"><!-- poslotron: minimal create-product entry form -->
+            <condition>
+                <and>
+                    <or>
+                        <if-has-permission permission="CATALOG" action="_CREATE"/>
+                    </or>
+                </and>
+            </condition>
+            <link target="quickAddProduct"/>
+        </menu-item>
         <menu-item name="newStore" title="${uiLabelMap.ProductCreateNewProductStore}">
             <condition>
                 <and>

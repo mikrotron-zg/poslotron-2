@@ -23,6 +23,7 @@ under the License.
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
     <include location="component://common/webcommon/WEB-INF/portal-controller.xml"/>
     <include location="component://commonext/webapp/WEB-INF/controller.xml"/>
+    <include location="component://poslotron/webapp/poslotron/WEB-INF/catalog-controller-ext.xml"/><!-- poslotron: extensions to Catalog Manager controller -->
     <description>Catalog Module Site Configuration File</description>
     
 

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<!--
+    Poslotron extensions: Forms used by the Catalog Manager screens added in
+    CatalogAppExtScreens.xml.
+-->
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+    <!--
+        Minimal product entry form. Submits to the plugin's
+        quickCreateProduct request, which runs the
+        poslotronQuickCreateProduct wrapper service and then redirects to
+        EditProduct for the new productId. The wrapper takes care of
+        creating both the Product and (when a price was entered) the
+        default EUR ProductPrice. The product type is fixed to
+        FINISHED_GOOD via a hidden field; productId is left empty so the
+        createProduct service auto-generates one.
+    -->
+    <form name="QuickAddProduct" type="single" target="quickCreateProduct" focus-field-name="internalName"
+          header-row-style="header-row" default-table-style="basic-table">
+        <actions>
+            <!--
+                Pre-check the "same as internal name" box on first render. Re-rendering
+                after a server-side validation error keeps whatever value the user
+                actually submitted (Y or empty) so the checkbox state survives a
+                round-trip.
+            -->
+            <set field="useInternalAsName" from-field="parameters.useInternalAsName" default-value="Y"/>
+        </actions>
+        <field name="productTypeId"><hidden value="FINISHED_GOOD"/></field>
+        <!--
+            Suppress the post-create indexProductKeywords ECA in
+            applications/product/entitydef/eecas.xml: the ECA only fires
+            when Product.autoCreateKeywords != "N", so persisting "N"
+            here keeps the Quick Add flow free of the keyword indexing
+            round-trip. Keywords can still be (re)built later from the
+            standard product screens.
+        -->
+        <field name="autoCreateKeywords"><hidden value="N"/></field>
+        <!--
+            Weight is captured once and stored against both productWeight
+            and shippingWeight; weightUomId is fixed to WT_g so the user
+            never has to pick a unit. The shippingWeight input is hidden
+            and kept in sync with productWeight via JS (see the screen).
+        -->
+        <field name="weightUomId"><hidden value="WT_g"/></field>
+        <field name="internalName" title="${uiLabelMap.ProductInternalName}" required-field="true">
+            <text size="30" maxlength="255"/>
+        </field>
+        <field name="useInternalAsName" title="${uiLabelMap.PoslotronProductNameSameAsInternal}">
+            <check></check>
+        </field>
+        <field name="productName" title="${uiLabelMap.ProductProductName}">
+            <text size="30" maxlength="255"/>
+        </field>
+        <field name="productWeight" title="${uiLabelMap.PoslotronProductWeightInGrams}"
+               tooltip="${uiLabelMap.PoslotronProductWeightInGramsHint}">
+            <text size="10" maxlength="20" default-value="15"/>
+        </field>
+        <field name="shippingWeight"><hidden/></field>
+        <!--
+            Optional sale price. When non-empty, the wrapper service
+            poslotronQuickCreateProduct creates a matching ProductPrice
+            row (DEFAULT_PRICE / PURCHASE / EUR / _NA_ / taxInPrice=Y)
+            with fromDate=now.
+        -->
+        <field name="price" title="${uiLabelMap.PoslotronProductPriceEur}"
+               tooltip="${uiLabelMap.PoslotronProductPriceEurHint}">
+            <text size="10" maxlength="20"/>
+        </field>
+        <!--
+            Optional KPD/CPA classification code. When non-empty, the
+            wrapper service creates a GoodIdentification row with
+            goodIdentificationTypeId=KPD_CPA tied to the new product.
+        -->
+        <field name="idValue" title="KPD/CPA">
+            <text size="20" maxlength="60" default-value="46.50.22"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonCreate}" widget-style="smallSubmit"><submit button-type="button"/></field>
+    </form>
+
+</forms>

@@ -61,4 +61,28 @@ under the License.
         <value xml:lang="en">Out of stock (QOH=0)</value>
         <value xml:lang="hr">Bez zalihe (QOH=0)</value>
     </property>
+    <property key="PoslotronProductQuickAdd">
+        <value xml:lang="en">Quick add product</value>
+        <value xml:lang="hr">Brzi unos proizvoda</value>
+    </property>
+    <property key="PoslotronProductNameSameAsInternal">
+        <value xml:lang="en">Product name same as internal name</value>
+        <value xml:lang="hr">Naziv proizvoda isti kao interni naziv</value>
+    </property>
+    <property key="PoslotronProductWeightInGrams">
+        <value xml:lang="en">Weight (g)</value>
+        <value xml:lang="hr">Težina (g)</value>
+    </property>
+    <property key="PoslotronProductWeightInGramsHint">
+        <value xml:lang="en">Enter the weight in grams. The same value will also be saved as the shipping weight.</value>
+        <value xml:lang="hr">Unesite težinu u gramima. Ista vrijednost spremit će se i kao težina za otpremu.</value>
+    </property>
+    <property key="PoslotronProductPriceEur">
+        <value xml:lang="en">Price (EUR)</value>
+        <value xml:lang="hr">Cijena (EUR)</value>
+    </property>
+    <property key="PoslotronProductPriceEurHint">
+        <value xml:lang="en">Saved as the product's default price for the PURCHASE purpose, in EUR, with tax included.</value>
+        <value xml:lang="hr">Sprema se kao osnovna cijena proizvoda za svrhu KUPNJA, u eurima, s uključenim porezom.</value>
+    </property>
 </resource>
