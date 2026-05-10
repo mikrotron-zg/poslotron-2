@@ -39,6 +39,15 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PoslotronProductQuickAdd"/>
                 <set field="headerItem" value="products"/>
+                <!--
+                    Lift the batch-import service's OUT param from the
+                    `parameters` map (where ServiceEventHandler placed it
+                    as a request attribute, then ScreenRenderer rolled it
+                    up via UtilHttp.getCombinedMap) onto the screen
+                    context so both the conditional below and the grid's
+                    list-name="createdProducts" can see it directly.
+                -->
+                <set field="createdProducts" from-field="parameters.createdProducts"/>
             </actions>
             <widgets>
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
@@ -60,6 +69,28 @@ under the License.
                                         <html><html-template location="component://poslotron/template/QuickAddProductScript.ftl"/></html>
                                     </platform-specific>
                                 </screenlet>
+                                <!--
+                                    Batch CSV import. Errors raised by the import service flow
+                                    through the standard OFBiz error channel and are rendered by
+                                    the application decorator at the top of the page.
+                                -->
+                                <screenlet title="${uiLabelMap.PoslotronBatchAddProducts}">
+                                    <include-form name="BatchCreateProductsCsv" location="component://poslotron/widget/CatalogAppExtForms.xml"/>
+                                </screenlet>
+                                <!--
+                                    Results grid. Only shown after a successful batch import
+                                    (when the service has populated the createdProducts list).
+                                -->
+                                <section>
+                                    <condition>
+                                        <not><if-empty field="createdProducts"/></not>
+                                    </condition>
+                                    <widgets>
+                                        <screenlet title="${uiLabelMap.PoslotronBatchAddProductsResult}">
+                                            <include-grid name="BatchCreateProductsResult" location="component://poslotron/widget/CatalogAppExtForms.xml"/>
+                                        </screenlet>
+                                    </widgets>
+                                </section>
                             </widgets>
                             <fail-widgets>
                                 <label style="h3" text="${uiLabelMap.ProductCatalogViewPermissionError}"/>

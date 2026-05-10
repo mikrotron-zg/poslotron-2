@@ -51,6 +51,19 @@ under the License.
         <response name="error" type="view" value="quickAddProduct"/>
     </request-map>
 
+    <!--
+        Batch CSV import. Forward (type=view) to quickAddProduct so the
+        request attributes set by the service (createdProducts, plus the
+        standard error/event message lists on failure) survive into the
+        rendered screen. A redirect would lose them.
+    -->
+    <request-map uri="batchCreateProductsCsv">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="poslotronBatchCreateProductsCsv"/>
+        <response name="success" type="view" value="quickAddProduct"/>
+        <response name="error" type="view" value="quickAddProduct"/>
+    </request-map>
+
     <view-map name="quickAddProduct" type="screen"
               page="component://poslotron/widget/CatalogAppExtScreens.xml#quickAddProduct"/>
 

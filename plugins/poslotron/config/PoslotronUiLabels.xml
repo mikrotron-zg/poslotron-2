@@ -85,4 +85,52 @@ under the License.
         <value xml:lang="en">Saved as the product's default price for the PURCHASE purpose, in EUR, with tax included.</value>
         <value xml:lang="hr">Sprema se kao osnovna cijena proizvoda za svrhu KUPNJA, u eurima, s uključenim porezom.</value>
     </property>
+
+    <!-- ===== Batch add products (CSV) ===== -->
+    <property key="PoslotronBatchAddProducts">
+        <value xml:lang="en">Batch add products (CSV)</value>
+        <value xml:lang="hr">Skupni unos proizvoda (CSV)</value>
+    </property>
+    <property key="PoslotronBatchAddProductsHint">
+        <value xml:lang="en">Upload a semicolon-separated CSV with columns: product name; default price; KPD/CPA; weight (g). Only product name and price are required. Defaults: KPD/CPA = 46.50.22, weight = 15. Numbers are parsed using your current locale (decimal separator).</value>
+        <value xml:lang="hr">Učitajte CSV s točka-zarezom kao razdjelnikom i stupcima: naziv proizvoda; osnovna cijena; KPD/CPA; težina (g). Obavezni su samo naziv proizvoda i cijena. Zadane vrijednosti: KPD/CPA = 46.50.22, težina = 15. Brojevi se tumače prema vašoj trenutnoj lokalizaciji (decimalni razdjelnik).</value>
+    </property>
+    <property key="PoslotronBatchCsvFile">
+        <value xml:lang="en">CSV file</value>
+        <value xml:lang="hr">CSV datoteka</value>
+    </property>
+    <property key="PoslotronBatchAddProductsResult">
+        <value xml:lang="en">Created products</value>
+        <value xml:lang="hr">Stvoreni proizvodi</value>
+    </property>
+
+    <!-- Batch validation/creation error messages (MessageFormat positional args) -->
+    <property key="PoslotronBatchEmptyFile">
+        <value xml:lang="en">The uploaded file is empty.</value>
+        <value xml:lang="hr">Učitana datoteka je prazna.</value>
+    </property>
+    <property key="PoslotronBatchInvalidColumnCount">
+        <value xml:lang="en">Row {0}: expected up to 4 semicolon-separated columns (product name; price; KPD/CPA; weight), found {1}.</value>
+        <value xml:lang="hr">Red {0}: očekivano je do 4 stupca razdvojena točkom-zarezom (naziv proizvoda; cijena; KPD/CPA; težina), pronađeno {1}.</value>
+    </property>
+    <property key="PoslotronBatchProductNameRequired">
+        <value xml:lang="en">Row {0}: product name is required.</value>
+        <value xml:lang="hr">Red {0}: naziv proizvoda je obavezan.</value>
+    </property>
+    <property key="PoslotronBatchPriceRequired">
+        <value xml:lang="en">Row {0}: default price is required.</value>
+        <value xml:lang="hr">Red {0}: osnovna cijena je obavezna.</value>
+    </property>
+    <property key="PoslotronBatchPriceInvalid">
+        <value xml:lang="en">Row {0}: default price ''{1}'' is not a valid number for the current locale.</value>
+        <value xml:lang="hr">Red {0}: osnovna cijena ''{1}'' nije valjan broj za trenutnu lokalizaciju.</value>
+    </property>
+    <property key="PoslotronBatchWeightInvalid">
+        <value xml:lang="en">Row {0}: weight ''{1}'' is not a valid number.</value>
+        <value xml:lang="hr">Red {0}: težina ''{1}'' nije valjan broj.</value>
+    </property>
+    <property key="PoslotronBatchCreateError">
+        <value xml:lang="en">Row {0} ({1}): {2}</value>
+        <value xml:lang="hr">Red {0} ({1}): {2}</value>
+    </property>
 </resource>

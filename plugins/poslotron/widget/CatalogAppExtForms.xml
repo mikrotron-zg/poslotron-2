@@ -98,4 +98,53 @@ under the License.
         <field name="submitButton" title="${uiLabelMap.CommonCreate}" widget-style="smallSubmit"><submit button-type="button"/></field>
     </form>
 
+    <!--
+        Batch CSV upload form. type="upload" makes the form widget render
+        with enctype="multipart/form-data" so OFBiz's multipart handler
+        decodes the bytes into the service's `uploadedFile` ByteBuffer.
+    -->
+    <form name="BatchCreateProductsCsv" type="upload" target="batchCreateProductsCsv"
+          header-row-style="header-row" default-table-style="basic-table">
+        <field name="uploadedFile" title="${uiLabelMap.PoslotronBatchCsvFile}"
+               tooltip="${uiLabelMap.PoslotronBatchAddProductsHint}" required-field="true">
+            <file size="40"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpload}" widget-style="smallSubmit"><submit button-type="button"/></field>
+    </form>
+
+    <!--
+        Result grid for the batch import. Bound to the createdProducts
+        list returned by the service (set as a request attribute via
+        the OUT mode declaration on the service definition). The
+        productId column is rendered as a button-styled hyperlink that
+        opens EditProduct for that product.
+
+        paginate="false" is intentional: the createdProducts list only
+        lives in the request that responded to the multipart upload,
+        so any pagination link would re-issue a plain GET to
+        batchCreateProductsCsv without `uploadedFile` and trip the
+        service-validation error. The dataset is bounded by a single
+        transaction's worth of rows, so rendering them all in one go
+        is the practical choice.
+    -->
+    <grid name="BatchCreateProductsResult" list-name="createdProducts" paginate="false"
+          header-row-style="header-row" default-table-style="basic-table">
+        <field name="productId" title="${uiLabelMap.ProductProductId}">
+            <!--
+                smallSubmit is a tomahawk theme class explicitly meant
+                to decorate plain <a> elements so they render with the
+                same chrome as a form submit button (border, background,
+                hover state). On <hyperlink> the attribute is `style`
+                (link-style only exists on <sub-hyperlink>).
+            -->
+            <hyperlink description="${productId}" target="EditProduct" style="smallSubmit">
+                <parameter param-name="productId"/>
+            </hyperlink>
+        </field>
+        <field name="productName" title="${uiLabelMap.ProductProductName}"><display/></field>
+        <field name="price" title="${uiLabelMap.PoslotronProductPriceEur}"><display type="currency" currency="EUR"/></field>
+        <field name="idValue" title="KPD/CPA"><display/></field>
+        <field name="productWeight" title="${uiLabelMap.PoslotronProductWeightInGrams}"><display/></field>
+    </grid>
+
 </forms>
