@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<!--
+    Poslotron extensions to the Order Manager controller. Mounted via
+    an <include> directive in
+    component://order/webapp/ordermgr/WEB-INF/controller.xml so that
+    these requests live under the existing /ordermgr context (and
+    therefore inside the Quote menus).
+-->
+<site-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Site-Conf"
+        xsi:schemaLocation="http://ofbiz.apache.org/Site-Conf http://ofbiz.apache.org/dtds/site-conf.xsd">
+
+    <description>Poslotron extensions to Order Manager controller</description>
+
+    <!-- ===== Batch add quote items (CSV) ===== -->
+    <!--
+        GET landing page that hosts the upload form. The QuoteSubTabBar
+        menu item links here with quoteId in the query string.
+    -->
+    <request-map uri="BatchAddQuoteItems">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="BatchAddQuoteItems"/>
+    </request-map>
+
+    <!--
+        POST target for the upload form. Runs the wrapper service and on
+        success redirects the user to ViewQuote so they immediately see
+        the items they just imported. On error we re-render the upload
+        view; the standard OFBiz error channel surfaces validation /
+        per-row creation messages via the application decorator.
+    -->
+    <request-map uri="batchAddQuoteItems">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="poslotronBatchAddQuoteItems"/>
+        <response name="success" type="request-redirect" value="ViewQuote">
+            <redirect-parameter name="quoteId"/>
+        </response>
+        <response name="error" type="view" value="BatchAddQuoteItems"/>
+    </request-map>
+
+    <view-map name="BatchAddQuoteItems" type="screen"
+              page="component://poslotron/widget/OrderAppExtScreens.xml#BatchAddQuoteItems"/>
+
+</site-conf>

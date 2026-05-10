@@ -481,6 +481,27 @@ under the License.
                 <parameter param-name="finalizeMode" value="init"/>
             </link>
         </menu-item>
+        <!--
+            Poslotron extension: batch-add quote items from a CSV upload.
+            Backed by component://poslotron/webapp/poslotron/WEB-INF/order-controller-ext.xml#BatchAddQuoteItems.
+            Same edit-when condition as the other "create something on
+            this quote" entries above (only meaningful while the quote
+            is still in QUO_CREATED).
+        -->
+        <menu-item name="batchAddQuoteItems" title="${uiLabelMap.PoslotronBatchAddQuoteItems}">
+            <condition>
+                <and>
+                    <or>
+                        <if-has-permission permission="ORDERMGR" action="_CREATE"/>
+                        <if-has-permission permission="ORDERMGR" action="_UPDATE"/>
+                    </or>
+                    <if-compare operator="equals" value="QUO_CREATED" field="quote.statusId"/>
+                </and>
+            </condition>
+            <link target="BatchAddQuoteItems">
+                <parameter param-name="quoteId" from-field="quote.quoteId"/>
+            </link>
+        </menu-item>
     </menu>
     <menu name="RequestTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
         <menu-item name="ViewRequest" title="${uiLabelMap.CommonOverview}">

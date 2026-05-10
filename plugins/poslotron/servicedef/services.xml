@@ -67,4 +67,25 @@ under the License.
         <attribute name="createdProducts" type="List" mode="OUT" optional="true"/>
     </service>
 
+    <!--
+        Batch import for QuoteItems. Same shape as the product batch
+        importer: validate the whole file first, then create every row
+        inside this service's transaction. quoteId travels through to
+        the success response so the controller can redirect to
+        ViewQuote. Sub-service createQuoteItem already enforces
+        ORDERMGR _CREATE so no permission-service is declared here -
+        the controller mandates auth and createQuoteItem rejects the
+        call otherwise.
+    -->
+    <service name="poslotronBatchAddQuoteItems" engine="groovy" auth="true"
+            transaction-timeout="600"
+            location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/quote/BatchAddQuoteItems.groovy"
+            invoke="batchAddQuoteItems">
+        <description>Batch-add quote items from a semicolon-separated CSV file.</description>
+        <attribute name="quoteId" type="String" mode="INOUT" optional="false"/>
+        <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="false"/>
+        <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
+    </service>
+
 </services>

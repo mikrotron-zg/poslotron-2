@@ -23,6 +23,7 @@ under the License.
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
     <include location="component://commonext/webapp/WEB-INF/controller.xml"/>
     <include location="component://content/webapp/content/WEB-INF/controller.xml"/>
+    <include location="component://poslotron/webapp/poslotron/WEB-INF/order-controller-ext.xml"/><!-- poslotron: extensions to Order Manager controller -->
     <description>Order Manager Module Site Configuration File</description>
     
     <!-- Events to run on every request before security (chains exempt) -->

@@ -133,4 +133,46 @@ under the License.
         <value xml:lang="en">Row {0} ({1}): {2}</value>
         <value xml:lang="hr">Red {0} ({1}): {2}</value>
     </property>
+
+    <!-- ===== Batch add quote items (CSV) ===== -->
+    <property key="PoslotronBatchAddQuoteItems">
+        <value xml:lang="en">Batch add items (CSV)</value>
+        <value xml:lang="hr">Skupni unos stavki (CSV)</value>
+    </property>
+    <property key="PoslotronBatchAddQuoteItemsHint">
+        <value xml:lang="en">Upload a semicolon-separated CSV with columns: product ID; quantity; price. Product ID and quantity are required. If price is omitted, the product's default price is used. Numbers are parsed using your current locale (decimal separator).</value>
+        <value xml:lang="hr">Učitajte CSV s točka-zarezom kao razdjelnikom i stupcima: šifra proizvoda; količina; cijena. Šifra proizvoda i količina su obavezni. Ako cijena nije navedena, koristi se osnovna cijena proizvoda. Brojevi se tumače prema vašoj trenutnoj lokalizaciji (decimalni razdjelnik).</value>
+    </property>
+    <property key="PoslotronQuoteBatchQuoteIdRequired">
+        <value xml:lang="en">Quote ID is required.</value>
+        <value xml:lang="hr">Šifra ponude je obavezna.</value>
+    </property>
+    <property key="PoslotronQuoteBatchInvalidColumnCount">
+        <value xml:lang="en">Row {0}: expected up to 3 semicolon-separated columns (product ID; quantity; price), found {1}.</value>
+        <value xml:lang="hr">Red {0}: očekivano je do 3 stupca razdvojena točkom-zarezom (šifra proizvoda; količina; cijena), pronađeno {1}.</value>
+    </property>
+    <property key="PoslotronQuoteBatchProductIdRequired">
+        <value xml:lang="en">Row {0}: product ID is required.</value>
+        <value xml:lang="hr">Red {0}: šifra proizvoda je obavezna.</value>
+    </property>
+    <property key="PoslotronQuoteBatchProductNotFound">
+        <value xml:lang="en">Row {0}: product ''{1}'' was not found.</value>
+        <value xml:lang="hr">Red {0}: proizvod ''{1}'' nije pronađen.</value>
+    </property>
+    <property key="PoslotronQuoteBatchQuantityRequired">
+        <value xml:lang="en">Row {0}: quantity is required.</value>
+        <value xml:lang="hr">Red {0}: količina je obavezna.</value>
+    </property>
+    <property key="PoslotronQuoteBatchQuantityInvalid">
+        <value xml:lang="en">Row {0}: quantity ''{1}'' is not a valid positive number for the current locale.</value>
+        <value xml:lang="hr">Red {0}: količina ''{1}'' nije valjan pozitivan broj za trenutnu lokalizaciju.</value>
+    </property>
+    <property key="PoslotronQuoteBatchPriceInvalid">
+        <value xml:lang="en">Row {0}: price ''{1}'' is not a valid number for the current locale.</value>
+        <value xml:lang="hr">Red {0}: cijena ''{1}'' nije valjan broj za trenutnu lokalizaciju.</value>
+    </property>
+    <property key="PoslotronQuoteBatchCreateError">
+        <value xml:lang="en">Row {0} ({1}): {2}</value>
+        <value xml:lang="hr">Red {0} ({1}): {2}</value>
+    </property>
 </resource>
