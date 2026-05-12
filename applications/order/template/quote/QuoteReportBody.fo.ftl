@@ -145,9 +145,10 @@ under the License.
                                 </fo:table-row>
                             </#if>
                         </#list>
-                        <#-- Calculate VAT -->
-                        <#assign vatRate = 25> <#-- store.defaultSalesTaxPercentage!0 doesn't work -->
-                        <#if vatRate?has_content && vatRate != 0>
+                        <#-- Calculate VAT (rate looked up from TaxAuthorityRateProduct by GetQuoteVatRate.groovy) -->
+                        <#assign partyTaxExempt = ((partyTaxInfo.isExempt)!"N") == "Y">
+                        <#assign vatRate = partyTaxExempt?then(0, (vatRate!0))>
+                        <#if vatRate?has_content>
                             <#assign vatAmount = (totalQuoteAmount + totalQuoteHeaderAdjustmentAmount) * (vatRate / 100)>
                             <fo:table-row>
                                 <fo:table-cell padding="2pt">

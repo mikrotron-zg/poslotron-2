@@ -132,6 +132,7 @@ under the License.
 
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/quote/GetPartyAddress.groovy"/>
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/quote/GetPartyTaxInfo.groovy"/>
+                <script location="component://order/src/main/groovy/org/apache/ofbiz/order/quote/GetQuoteVatRate.groovy"/>
                 <!--
                 <get-related value-name="quote" relation-name="QuoteRole" list-name="quoteRoles"/>
                 <get-related value-name="quote" relation-name="QuoteAttribute" list-name="quoteAttributes"/>
