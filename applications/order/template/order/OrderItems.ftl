@@ -54,7 +54,7 @@ under the License.
                                 <td colspan="7" valign="top" class="label"> &gt;&gt; ${orderItem.itemDescription}</td>
                             <#else>
                                 <td colspan="2">
-                                    <div style="font-weight: bold; font-size: 1.3em;">
+                                    <div class="importantText" style="font-weight: bold; font-size: 1.3em;">
                                         <#if orderItem.supplierProductId?has_content>
                                             ${orderItem.supplierProductId} - ${orderItem.itemDescription!}
                                         <#elseif productId??>
@@ -89,7 +89,7 @@ under the License.
                                     </#if>
                                 </td>
                                 <td colspan="5">
-                                    <span style="font-weight: bold; font-size: 1.3em;">${uiLabelMap.OrderQuantity}: ${orderItem.quantity}</span>
+                                    <span class="importantText" style="font-weight: bold; font-size: 1.3em;">${uiLabelMap.OrderQuantity}: ${orderItem.quantity}</span>
                                     <div style="float:right;">
                                         <#assign downloadContents = EntityQuery.use(delegator).from("OrderItemAndProductContentInfo").where( "orderId", orderItem.orderId!, "orderItemSeqId", orderItem.orderItemSeqId!, "productContentTypeId", "DIGITAL_DOWNLOAD", "statusId", "ITEM_COMPLETED").queryList()!/>
                                         <#if downloadContents?has_content>
@@ -98,7 +98,7 @@ under the License.
                                             </#list>
                                         </#if>
                                         <a href="<@ofbizUrl controlPath="/catalog/control">EditProduct?productId=${productId}</@ofbizUrl>" class="buttontext" target="_blank">${uiLabelMap.ProductCatalog}</a>
-                                        <a href="<@ofbizUrl controlPath="/ecommerce/control">product?product_id=${productId}</@ofbizUrl>" class="buttontext" target="_blank">${uiLabelMap.OrderEcommerce}</a>
+                                        <a href="<@ofbizUrl controlPath="/product">${productId}</@ofbizUrl>" class="buttontext" target="_blank">${uiLabelMap.OrderEcommerce}</a>
                                     </div>
                                 </td>
                             </#if>
