@@ -152,7 +152,7 @@ under the License.
                             <#assign vatAmount = (totalQuoteAmount + totalQuoteHeaderAdjustmentAmount) * (vatRate / 100)>
                             <fo:table-row>
                                 <fo:table-cell padding="2pt">
-                                    <fo:block font-weight="bold" text-align="right">${uiLabelMap.OrderSalesTax} ${vatRate}%</fo:block>
+                                    <fo:block font-weight="bold" text-align="right">${uiLabelMap.AccountingVat} ${vatRate}%</fo:block>
                                 </fo:table-cell>
                                 <fo:table-cell padding="2pt">
                                     <fo:block text-align="right"><@ofbizCurrency amount=vatAmount isoCode=quote.currencyUomId/></fo:block>
@@ -172,19 +172,21 @@ under the License.
                     </fo:table-body>
                 </fo:table>
             </fo:block>
-            <#assign grandTotalQuoteAmountCents = (grandTotalQuoteAmount * 100)?round>
-            <fo:block text-align="right" font-size="7pt" margin-right="12mm" margin-top="5mm">
-                ************* 2D barkod za plaćanje *************
-            </fo:block>
-            <fo:block text-align="right" margin-right="12mm">
-                <fo:instream-foreign-object>
-                    <barcode:barcode xmlns:barcode="http://barcode4j.krysalis.org/ns" message="HRVHUB30\u000A${quote.currencyUomId}\u000A${grandTotalQuoteAmountCents}\u000A\u000A\u000A\u000AMIKROTRON d.o.o.\u000APAKOSTANSKA 5 K2-9\u000A10000 ZAGREB\u000AHR8023400091110675464\u000AHR00\u000A${quote.quoteId}\u000A\u000APonuda ${quote.quoteId}">
-                        <barcode:pdf417><barcode:row-height>0.4mm</barcode:row-height><barcode:module-width>0.6mm</barcode:module-width></barcode:pdf417>
-                    </barcode:barcode>
-                </fo:instream-foreign-object>
-            </fo:block>
-            <fo:block text-align="right" font-size="11pt" margin-right="15mm">
-                OVO NIJE FISKALIZIRANI RAČUN
-            </fo:block>
+            <#if ((locale.language)!"") == "hr">
+                <#assign grandTotalQuoteAmountCents = (grandTotalQuoteAmount * 100)?round>
+                <fo:block text-align="right" font-size="7pt" margin-right="12mm" margin-top="5mm">
+                    ************* 2D barkod za plaćanje *************
+                </fo:block>
+                <fo:block text-align="right" margin-right="12mm">
+                    <fo:instream-foreign-object>
+                        <barcode:barcode xmlns:barcode="http://barcode4j.krysalis.org/ns" message="HRVHUB30\u000A${quote.currencyUomId}\u000A${grandTotalQuoteAmountCents}\u000A\u000A\u000A\u000AMIKROTRON d.o.o.\u000APAKOSTANSKA 5 K2-9\u000A10000 ZAGREB\u000AHR8023400091110675464\u000AHR00\u000A${quote.quoteId}\u000A\u000APonuda ${quote.quoteId}">
+                            <barcode:pdf417><barcode:row-height>0.4mm</barcode:row-height><barcode:module-width>0.6mm</barcode:module-width></barcode:pdf417>
+                        </barcode:barcode>
+                    </fo:instream-foreign-object>
+                </fo:block>
+                <fo:block text-align="right" font-size="11pt" margin-right="15mm">
+                    OVO NIJE FISKALIZIRANI RAČUN
+                </fo:block>
+            </#if>
         </fo:block>
 </#escape>

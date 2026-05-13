@@ -135,4 +135,8 @@
         <value xml:lang="en">Payment Terminal</value>
         <value xml:lang="hr">Naplatni uređaj</value>
     </property>
+    <property key="FiscalVatId">
+        <value xml:lang="en">VAT ID</value>
+        <value xml:lang="hr">OIB</value>
+    </property>
 </resource>

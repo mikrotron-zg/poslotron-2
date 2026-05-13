@@ -42,10 +42,12 @@ under the License.
             <#if sendingPartyTaxId??>
                 <fo:list-item>
                     <fo:list-item-label>
-                        <fo:block>${uiLabelMap.PartyTaxId}:</fo:block>
+                        <fo:block>${uiLabelMap.FiscalVatId}:</fo:block>
                     </fo:list-item-label>
                     <fo:list-item-body start-indent="body-start()">
-                        <fo:block>${sendingPartyTaxId}</fo:block>
+                        <fo:block>
+                            <#if ((locale.language)!"") != "hr">HR</#if>${sendingPartyTaxId}
+                        </fo:block>
                     </fo:list-item-body>
                 </fo:list-item>
             </#if>

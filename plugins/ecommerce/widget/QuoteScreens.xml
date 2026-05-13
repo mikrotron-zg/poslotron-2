@@ -97,6 +97,7 @@ under the License.
     <screen name="QuoteReport">
         <section>
              <actions>
+                <script location="component://order/src/main/groovy/org/apache/ofbiz/order/quote/OverrideLocaleFromParameter.groovy"/>
                 <set field="defaultTemplateLocation" value="component://ecommerce/widget/QuoteScreens.xml"/>
                 <set field="defaultTemplateName" value="DefaultQuotePDF"/>
                 <script location="component://commonext/src/main/groovy/org/apache/ofbiz/commonext/template/DocTypeTemplate.groovy"/>
@@ -116,6 +117,7 @@ under the License.
                 <property-map resource="AccountingUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="FiscalUiLabels" map-name="uiLabelMap" global="true"/>
 
                 <set field="quoteId" from-field="parameters.quoteId"/>
                 <entity-one entity-name="Quote" value-field="quote"/>

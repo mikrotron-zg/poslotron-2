@@ -50,7 +50,7 @@ under the License.
       <fo:table-row>
         <fo:table-cell>
           <fo:block>
-              <fo:block margin-top="1mm">${uiLabelMap.PartyTaxId}: ${partyTaxInfo.partyTaxId}</fo:block>
+              <fo:block margin-top="1mm">${uiLabelMap.FiscalVatId}: ${partyTaxInfo.partyTaxId}</fo:block>
           </fo:block>
         </fo:table-cell>
       </fo:table-row>

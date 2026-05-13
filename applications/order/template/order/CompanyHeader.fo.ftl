@@ -36,7 +36,7 @@ under the License.
 
     <#if sendingPartyTaxId?? || phone?? || email?? || website?? || eftAccount??>
         <#if sendingPartyTaxId??>
-            <fo:block>${uiLabelMap.PartyTaxId}: ${sendingPartyTaxId}</fo:block>
+            <fo:block>${uiLabelMap.FiscalVatId}: ${sendingPartyTaxId}</fo:block>
         </#if>
         <#if phone??>
             <fo:block>${uiLabelMap.CommonTelephoneAbbr}: <#if phone.countryCode??>${phone.countryCode}-</#if><#if phone.areaCode??>${phone.areaCode}-</#if>${phone.contactNumber!}</fo:block>

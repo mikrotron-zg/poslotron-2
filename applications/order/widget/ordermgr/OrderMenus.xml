@@ -379,6 +379,12 @@ under the License.
                 <parameter param-name="quoteId" from-field="quote.quoteId"/>
             </link>
         </menu-item>
+        <menu-item name="quoteReportEn" title="${uiLabelMap.CommonPrint} (EN)">
+            <link target="QuoteReport" target-window="_BLANK">
+                <parameter param-name="quoteId" from-field="quote.quoteId"/>
+                <parameter param-name="localeOverride" value="en"/>
+            </link>
+        </menu-item>
         <menu-item name="NewAttribute" title="${uiLabelMap.OrderNewQuoteAttribute}">
             <condition>
                 <and>
