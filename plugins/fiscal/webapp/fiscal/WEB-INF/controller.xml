@@ -35,8 +35,11 @@
     <request-map uri="updateFiscalInvoiceIsPayed">
         <security https="true" auth="true"/>
         <event type="service" invoke="updateFiscalInvoiceIsPayed"/>
-        <response name="success" type="view" value="FindFiscalInvoicePayment"/>
-        <response name="error" type="view" value="FindFiscalInvoicePayment"/>
+        <!-- save-last-view+view-last makes the response re-render the previous
+             FindFiscalInvoicePayment view with its original search parameters,
+             so the grid shows the same results the user was acting on. -->
+        <response name="success" type="view-last" value="FindFiscalInvoicePayment" save-last-view="true"/>
+        <response name="error" type="view-last" value="FindFiscalInvoicePayment" save-last-view="true"/>
     </request-map>
 
     <request-map uri="reporting">
