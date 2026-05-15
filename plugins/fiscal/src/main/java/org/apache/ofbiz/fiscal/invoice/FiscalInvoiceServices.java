@@ -694,7 +694,7 @@ public class FiscalInvoiceServices {
 
         for (GenericValue item : invoiceItems) {
             String invoiceItemTypeId = item.getString("invoiceItemTypeId");
-            String description = item.getString("description");
+            String description = item.getString("description") + " [" + item.getString("productId") + "]";
             BigDecimal quantity = item.getBigDecimal("quantity");
             BigDecimal amount = item.getBigDecimal("amount");
 
