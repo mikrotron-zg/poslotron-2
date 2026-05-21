@@ -20,6 +20,10 @@ under the License.
 <#-- NOTE: this template is used for the orderstatus screen in ecommerce AND for order notification emails through the OrderNoticeEmail.ftl file -->
 <#-- the "urlPrefix" value will be prepended to URLs by the ofbizUrl transform if/when there is no "request" object in the context -->
 <#if baseEcommerceSecureUrl??><#assign urlPrefix = baseEcommerceSecureUrl/></#if>
+<#assign HALF_UP = Static["java.math.RoundingMode"].HALF_UP>
+<#function round2 amount>
+  <#return Static["java.math.BigDecimal"].valueOf(amount).setScale(2, HALF_UP)>
+</#function>
 <div class="card">
     <#if "Y" == maySelectItems?default("N") && "PLACING_CUSTOMER" == roleTypeId!>
       <form method="post" id="sendMeThisEveryMonthForm" name="sendMeThisEveryMonthForm" action="<@ofbizUrl fullPath='true'>createShoppingListFromOrder</@ofbizUrl>">
@@ -70,7 +74,7 @@ under the License.
     <tfoot>
       <tr>
         <th colspan="7">${uiLabelMap.CommonSubtotal}</th>
-        <td class="amount"><@ofbizCurrency amount=orderSubTotal*(vatMultiplier!1.25) isoCode=currencyUomId/></td>
+        <td class="amount"><@ofbizCurrency amount=round2(orderSubTotal*(vatMultiplier!1.25)) isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
@@ -86,14 +90,14 @@ under the License.
       </#list>
       <tr>
         <th colspan="7">${uiLabelMap.OrderShippingAndHandling}</th>
-        <td class="amount"><@ofbizCurrency amount=orderShippingTotal*(vatMultiplier!1.25) isoCode=currencyUomId/></td>
+        <td class="amount"><@ofbizCurrency amount=round2(orderShippingTotal*(vatMultiplier!1.25)) isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
       </tr>
       <tr class="text-muted">
         <th colspan="7">${uiLabelMap.OrderSalesTaxIncluded}</th>
-        <td class="amount"><@ofbizCurrency amount=orderTaxTotal isoCode=currencyUomId/></td>
+        <td class="amount"><@ofbizCurrency amount=round2(orderTaxTotal) isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
@@ -110,7 +114,7 @@ under the License.
       <tr>
         <th colspan="7" class="text-primary">${uiLabelMap.OrderGrandTotal}</th>
         <td class="amount text-primary font-weight-bold">
-          <@ofbizCurrency amount=orderGrandTotal isoCode=currencyUomId/>
+          <@ofbizCurrency amount=round2(orderGrandTotal) isoCode=currencyUomId/>
         </td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
@@ -229,18 +233,19 @@ under the License.
             <td class="amount">
               <#-- Kind of a hack, we do not apply any other adjustments to the unit price
               but the VAT, so we can get unit price incl. VAT this way -->
-              <#assign orderItemTotal = localOrderReadHelper.getOrderItemTotal(orderItem)/>
-              <@ofbizCurrency amount=orderItemTotal/orderItem.quantity isoCode=currencyUomId/>
+              <#assign orderItemTotal = round2(localOrderReadHelper.getOrderItemTotal(orderItem))/>
+              <@ofbizCurrency amount=round2(orderItemTotal/orderItem.quantity) isoCode=currencyUomId/>
             </td>
             <#--<td class="amount">
               <@ofbizCurrency amount=localOrderReadHelper.getOrderItemAdjustmentsTotal(orderItem) isoCode=currencyUomId/>
             </td>-->
             <td class="amount" colspan="2">
-              <#if workEfforts??>
-                  <@ofbizCurrency amount=localOrderReadHelper.getOrderItemTotal(orderItem)*rentalQuantity isoCode=currencyUomId/>
+              <@ofbizCurrency amount=round2(orderItemTotal) isoCode=currencyUomId/>
+              <#--<#if workEfforts??>
+                  a:<@ofbizCurrency amount=localOrderReadHelper.getOrderItemTotal(orderItem)*rentalQuantity isoCode=currencyUomId/>
                 <#else>
                 <@ofbizCurrency amount=localOrderReadHelper.getOrderItemTotal(orderItem) isoCode=currencyUomId/>
-              </#if>
+              </#if>-->
             </td>
             <#if "Y" == maySelectItems?default("N") && "PLACING_CUSTOMER" == roleTypeId!>
               <td></td>
