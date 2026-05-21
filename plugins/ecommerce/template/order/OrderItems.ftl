@@ -70,8 +70,7 @@ under the License.
     <tfoot>
       <tr>
         <th colspan="7">${uiLabelMap.CommonSubtotal}</th>
-        <#-- TODO: add tax rate, currently 25%, shouldn't be hardcoded -->
-        <td class="amount"><@ofbizCurrency amount=orderSubTotal*1.25 isoCode=currencyUomId/></td>
+        <td class="amount"><@ofbizCurrency amount=orderSubTotal*(vatMultiplier!1.25) isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
@@ -87,19 +86,18 @@ under the License.
       </#list>
       <tr>
         <th colspan="7">${uiLabelMap.OrderShippingAndHandling}</th>
-        <#-- TODO: add tax rate, currently 25%, shouldn't be hardcoded -->
-        <td class="amount"><@ofbizCurrency amount=orderShippingTotal*1.25 isoCode=currencyUomId/></td>
+        <td class="amount"><@ofbizCurrency amount=orderShippingTotal*(vatMultiplier!1.25) isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
       </tr>
-      <#--<tr>
-        <th colspan="7">${uiLabelMap.OrderSalesTax}</th>
+      <tr class="text-muted">
+        <th colspan="7">${uiLabelMap.OrderSalesTaxIncluded}</th>
         <td class="amount"><@ofbizCurrency amount=orderTaxTotal isoCode=currencyUomId/></td>
         <#if "Y" == maySelectItems?default("N")>
           <td colspan="3"></td>
         </#if>
-      </tr>-->
+      </tr>
       <tr>
         <td colspan="3"></td>
         <#if "Y" == maySelectItems?default("N")>
@@ -229,8 +227,10 @@ under the License.
               </td>
             </#if>
             <td class="amount">
-              <#-- TODO: add tax rate, currently 25%, shouldn't be hardcoded -->
-              <@ofbizCurrency amount=orderItem.unitPrice*1.25 isoCode=currencyUomId/>
+              <#-- Kind of a hack, we do not apply any other adjustments to the unit price
+              but the VAT, so we can get unit price incl. VAT this way -->
+              <#assign orderItemTotal = localOrderReadHelper.getOrderItemTotal(orderItem)/>
+              <@ofbizCurrency amount=orderItemTotal/orderItem.quantity isoCode=currencyUomId/>
             </td>
             <#--<td class="amount">
               <@ofbizCurrency amount=localOrderReadHelper.getOrderItemAdjustmentsTotal(orderItem) isoCode=currencyUomId/>

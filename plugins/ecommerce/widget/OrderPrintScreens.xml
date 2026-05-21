@@ -48,6 +48,7 @@ under the License.
 
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/order/OrderView.groovy" />
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/order/OrderViewWebSecure.groovy" />
+                <script location="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/order/GetOrderVatMultiplier.groovy" />
             </actions>
             <widgets>
                 <section>

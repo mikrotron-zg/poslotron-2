@@ -67,8 +67,7 @@ under the License.
           <#list carrierShipmentMethodList as carrierShipmentMethod>
             <#assign shippingMethod = carrierShipmentMethod.shipmentMethodTypeId + "@" + carrierShipmentMethod.partyId>
             <#if shoppingCart.getShippingContactMechId()??>
-              <#-- TODO: multiplication by 1.25 is a hack, should be fixed in the future -->
-              <#assign shippingEst = (shippingEstWpr.getShippingEstimate(carrierShipmentMethod)*1.25)!(-1)>
+              <#assign shippingEst = (shippingEstWpr.getShippingEstimate(carrierShipmentMethod)*(vatMultiplier!1.25))!(-1)>
             </#if>
             <div class="form-check">
               <#if (shippingEst > -1)>

@@ -52,8 +52,7 @@ under the License.
                     <#assign remainingQuantity = (orderItem.quantity?default(0) - orderItem.cancelQuantity?default(0))>
                     <#assign itemAdjustment = Static["org.apache.ofbiz.order.order.OrderReadHelper"].getOrderItemAdjustmentsTotal(orderItem, orderAdjustments, true, false, false)>
                     <#assign internalImageUrl = Static["org.apache.ofbiz.product.imagemanagement.ImageManagementHelper"].getInternalImageUrl(request, productId!)!>
-                    <#-- FIXME: should be implemented in Groovy script -->
-                    <#assign pdv = 1.25>
+                    <#assign pdv = vatMultiplier!1.25>
                     <fo:table-row>
                         <fo:table-cell>
                             <fo:block>

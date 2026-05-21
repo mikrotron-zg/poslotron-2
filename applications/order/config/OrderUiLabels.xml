@@ -13803,10 +13803,10 @@
     <property key="OrderSalesTaxIncluded">
         <value xml:lang="ar">والذي يتضمن ضريبة المبيعات</value>
         <value xml:lang="de">Mehrwertsteuer inklusive</value>
-        <value xml:lang="en">Of which Sales Tax included</value>
+        <value xml:lang="en">Of which VAT included</value>
         <value xml:lang="en-GB">Of which VAT included</value>
         <value xml:lang="fr">Dont TVA incluse </value>
-        <value xml:lang="hr">Od toga PDV</value>
+        <value xml:lang="hr">PDV uključen u cijenu</value>
         <value xml:lang="it">Tasse di vendita incluse</value>
         <value xml:lang="ja">消費税込</value>
         <value xml:lang="nl">BTW (inclusief)</value>
