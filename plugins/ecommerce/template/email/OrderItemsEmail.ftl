@@ -26,7 +26,7 @@
             <td>${orderItem.productId} - ${orderItem.itemDescription?default("")}</td>
           </#if>
           <td class="amount">${orderItem.quantity?string.number}</td>
-          <td class="amount"><@ofbizCurrency amount=round2(orderItem.unitPrice*1.25) isoCode=currencyIso/></td>
+          <td class="amount"><@ofbizCurrency amount=round2(orderItem.unitPrice*(vatMultiplier!1.25)) isoCode=currencyIso/></td>
           <td class="amount">
             <#if workEfforts??>
               <#assign rentalQuantity = 1>
@@ -53,7 +53,7 @@
     <tfoot>
       <tr>
         <th colspan="3">${uiLabelMap.CommonSubtotal}</th>
-        <td class="amount"><@ofbizCurrency amount=round2((orderSubTotal!0)*1.25) isoCode=currencyIso/></td>
+        <td class="amount"><@ofbizCurrency amount=round2((orderSubTotal!0)*(vatMultiplier!1.25)) isoCode=currencyIso/></td>
       </tr>
       <#list (headerAdjustmentsToShow![]) as orderHeaderAdjustment>
         <tr>
@@ -63,7 +63,7 @@
       </#list>
       <tr>
         <th colspan="3">${uiLabelMap.OrderShippingAndHandling}</th>
-        <td class="amount"><@ofbizCurrency amount=round2((orderShippingTotal!0)*1.25) isoCode=currencyIso/></td>
+        <td class="amount"><@ofbizCurrency amount=round2((orderShippingTotal!0)*(vatMultiplier!1.25)) isoCode=currencyIso/></td>
       </tr>
       <tr>
         <th colspan="3">${uiLabelMap.OrderGrandTotal}</th>
