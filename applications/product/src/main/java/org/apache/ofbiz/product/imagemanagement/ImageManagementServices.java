@@ -25,10 +25,11 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.List;
@@ -92,6 +93,14 @@ public class ImageManagementServices {
                     "image.management.path", delegator), context);
             String imageServerUrl = FlexibleStringExpander.expandString(EntityUtilProperties.getPropertyValue("catalog",
                     "image.management.url", delegator), context);
+            // Guard against path traversal via productId
+            Path imageServerNormalizedPath = Paths.get(imageServerPath).normalize();
+            Path resolvedProductDir = Paths.get(imageServerPath, productId).normalize();
+            if (!resolvedProductDir.startsWith(imageServerNormalizedPath)) {
+                Debug.logError("Path traversal attempt detected in image management upload, productId: " + productId, MODULE);
+                return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
+                        "ProductImageViewUnableWriteFile", UtilMisc.toMap("fileName", resolvedProductDir.toString()), locale));
+            }
             String rootTargetDirectory = imageServerPath;
             File rootTargetDir = new File(rootTargetDirectory);
             if (!rootTargetDir.exists()) {
@@ -157,21 +166,21 @@ public class ImageManagementServices {
                 imageName = "";
             }
 
+            String fileExt = uploadFileName.contains(".") ? uploadFileName.substring(uploadFileName.lastIndexOf('.')) : "";
             if (UtilValidate.isEmpty(imageResize)) {
                 try {
-                    Path tempFile = Files.createTempFile(null, null);
+                    Path tempFile = Files.createTempFile(null, fileExt);
                     Files.write(tempFile, imageData.array(), StandardOpenOption.APPEND);
                     // Check if a webshell is not uploaded
                     if (!org.apache.ofbiz.security.SecuredUpload.isValidFile(tempFile.toString(), "Image", delegator)) {
                         String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedImageFormats", locale);
+                        new File(tempFile.toString()).deleteOnExit();
                         return ServiceUtil.returnError(errorMessage);
                     }
-                    File tempFileToDelete = new File(tempFile.toString());
-                    tempFileToDelete.deleteOnExit();
-                    // Create image file original to folder product id.
-                    RandomAccessFile out = new RandomAccessFile(file, "rw");
-                    out.write(imageData.array());
-                    out.close();
+                    // Copy from the sanitized temp file, not from the original byte array, so that
+                    // metadata and payloads stripped by imageMadeSafe() are not reintroduced.
+                    Files.copy(tempFile, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    new File(tempFile.toString()).deleteOnExit();
                 } catch (FileNotFoundException e) {
                     Debug.logError(e, MODULE);
                     return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
@@ -187,18 +196,18 @@ public class ImageManagementServices {
                 fileOriginal = checkExistsImage(fileOriginal);
 
                 try {
-                    Path tempFile = Files.createTempFile(null, null);
+                    Path tempFile = Files.createTempFile(null, fileExt);
                     Files.write(tempFile, imageData.array(), StandardOpenOption.APPEND);
                     // Check if a webshell is not uploaded
                     if (!org.apache.ofbiz.security.SecuredUpload.isValidFile(tempFile.toString(), "Image", delegator)) {
                         String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedImageFormats", locale);
+                        new File(tempFile.toString()).deleteOnExit();
                         return ServiceUtil.returnError(errorMessage);
                     }
-                    File tempFileToDelete = new File(tempFile.toString());
-                    tempFileToDelete.deleteOnExit();
-                    RandomAccessFile outFile = new RandomAccessFile(fileOriginal, "rw");
-                    outFile.write(imageData.array());
-                    outFile.close();
+                    // Copy from the sanitized temp file, not from the original byte array, so that
+                    // metadata and payloads stripped by imageMadeSafe() are not reintroduced.
+                    Files.copy(tempFile, fileOriginal.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    new File(tempFile.toString()).deleteOnExit();
                 } catch (FileNotFoundException e) {
                     Debug.logError(e, MODULE);
                     return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
@@ -306,11 +315,20 @@ public class ImageManagementServices {
         String contentId = (String) context.get("contentId");
         String dataResourceName = (String) context.get("dataResourceName");
         Delegator delegator = dctx.getDelegator();
+        Locale locale = (Locale) context.get("locale");
 
         try {
             if (UtilValidate.isNotEmpty(contentId)) {
                 String imageServerPath = FlexibleStringExpander.expandString(EntityUtilProperties.getPropertyValue("catalog",
                         "image.management.path", delegator), context);
+                // Guard against path traversal via productId or dataResourceName
+                Path imageServerNormalizedPath = Paths.get(imageServerPath).normalize();
+                Path resolvedFilePath = Paths.get(imageServerPath, productId, dataResourceName).normalize();
+                if (!resolvedFilePath.startsWith(imageServerNormalizedPath)) {
+                    Debug.logError("Path traversal attempt detected in image management remove, productId: " + productId, MODULE);
+                    return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
+                            "ProductImageViewUnableWriteFile", UtilMisc.toMap("fileName", resolvedFilePath.toString()), locale));
+                }
                 File file = new File(imageServerPath + "/" + productId + "/" + dataResourceName);
                 if (!file.delete()) {
                     Debug.logError("File :" + file.getName() + ", couldn't be deleted", MODULE);
@@ -369,7 +387,16 @@ public class ImageManagementServices {
                 "image.management.path", dctx.getDelegator()), context);
         String imageServerUrl = FlexibleStringExpander.expandString(EntityUtilProperties.getPropertyValue("catalog",
                 "image.management.url", dctx.getDelegator()), context);
-
+        // Guard against path traversal via productId
+        Path imageServerNormalizedPath = Paths.get(imageServerPath).normalize();
+        Path resolvedProductDir = Paths.get(imageServerPath, productId).normalize();
+        if (!resolvedProductDir.startsWith(imageServerNormalizedPath)) {
+            Debug.logError("Path traversal attempt detected in image management scale, productId: " + productId, MODULE);
+            String errMsg = UtilProperties.getMessage(RES_ERROR,
+                    "ProductImageViewUnableWriteFile", UtilMisc.toMap("fileName", resolvedProductDir.toString()), locale);
+            result.put(ModelService.ERROR_MESSAGE, errMsg);
+            return result;
+        }
 
         /* get original BUFFERED IMAGE */
         resultBufImgMap.putAll(ImageTransform.getBufferedImage(imageServerPath + "/" + productId + "/" + filenameToUse, locale));
@@ -536,6 +563,14 @@ public class ImageManagementServices {
                 "image.management.path", delegator), context);
         String nameOfThumb = FlexibleStringExpander.expandString(EntityUtilProperties.getPropertyValue("catalog",
                 "image.management.nameofthumbnail", delegator), context);
+        // Guard against path traversal via productId
+        Path imageServerNormalizedPath = Paths.get(imageServerPath).normalize();
+        Path resolvedProductDir = Paths.get(imageServerPath, productId).normalize();
+        if (!resolvedProductDir.startsWith(imageServerNormalizedPath)) {
+            Debug.logError("Path traversal attempt detected in image management thumbnail, productId: " + productId, MODULE);
+            return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
+                    "ProductImageViewUnableWriteFile", UtilMisc.toMap("fileName", resolvedProductDir.toString()), locale));
+        }
 
         // Create content for thumbnail
         Map<String, Object> contentThumb = new HashMap<>();
@@ -578,19 +613,20 @@ public class ImageManagementServices {
         // Create image file thumbnail to folder product id.
         String fileToCheck = imageServerPath + "/" + productId + "/" + filenameToUseThumb;
         File fileOriginalThumb = new File(fileToCheck);
+        String thumbExt = extensionThumb != null ? "." + extensionThumb.getString("fileExtensionId") : "";
         try {
-            Path tempFile = Files.createTempFile(null, null);
+            Path tempFile = Files.createTempFile(null, thumbExt);
             Files.write(tempFile, imageData.array(), StandardOpenOption.APPEND);
             // Check if a webshell is not uploaded
             if (!org.apache.ofbiz.security.SecuredUpload.isValidFile(tempFile.toString(), "Image", delegator)) {
                 String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedImageFormats", locale);
+                new File(tempFile.toString()).deleteOnExit();
                 return ServiceUtil.returnError(errorMessage);
             }
-            File tempFileToDelete = new File(tempFile.toString());
-            tempFileToDelete.deleteOnExit();
-            RandomAccessFile outFileThumb = new RandomAccessFile(fileOriginalThumb, "rw");
-            outFileThumb.write(imageData.array());
-            outFileThumb.close();
+            // Copy from the sanitized temp file, not from the original byte array, so that
+            // metadata and payloads stripped by imageMadeSafe() are not reintroduced.
+            Files.copy(tempFile, fileOriginalThumb.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            new File(tempFile.toString()).deleteOnExit();
         } catch (FileNotFoundException e) {
             Debug.logError(e, MODULE);
             return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
@@ -728,6 +764,14 @@ public class ImageManagementServices {
         String contentId = (String) context.get("contentId");
         String dataResourceName = (String) context.get("dataResourceName");
         String width = (String) context.get("sizeWidth");
+        // Guard against path traversal via productId
+        Path imageServerNormalizedPath = Paths.get(imageServerPath).normalize();
+        Path resolvedProductDir = Paths.get(imageServerPath, productId).normalize();
+        if (!resolvedProductDir.startsWith(imageServerNormalizedPath)) {
+            Debug.logError("Path traversal attempt detected in create new image thumbnail, productId: " + productId, MODULE);
+            return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
+                    "ProductImageViewUnableWriteFile", UtilMisc.toMap("fileName", resolvedProductDir.toString()), locale));
+        }
         String imageType = ".jpg";
         int resizeWidth = Integer.parseInt(width);
         int resizeHeight = resizeWidth;
@@ -800,6 +844,14 @@ public class ImageManagementServices {
         String width = (String) context.get("resizeWidth");
         int resizeWidth = Integer.parseInt(width);
         int resizeHeight = resizeWidth;
+        // Guard against path traversal via productId
+        Path imageServerNormalizedPath = Paths.get(imageServerPath).normalize();
+        Path resolvedProductDir = Paths.get(imageServerPath, productId).normalize();
+        if (!resolvedProductDir.startsWith(imageServerNormalizedPath)) {
+            Debug.logError("Path traversal attempt detected in resize image, productId: " + productId, MODULE);
+            return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
+                    "ProductImageViewUnableWriteFile", UtilMisc.toMap("fileName", resolvedProductDir.toString()), locale));
+        }
 
         try {
             BufferedImage bufImg = ImageIO.read(new File(imageServerPath + "/" + productId + "/" + dataResourceName));
@@ -830,6 +882,14 @@ public class ImageManagementServices {
         String productId = (String) context.get("productId");
         String contentId = (String) context.get("contentId");
         String filenameToUse = (String) context.get("drDataResourceName");
+        // Guard against path traversal via productId
+        Path imageServerNormalizedPath = Paths.get(imageServerPath).normalize();
+        Path resolvedProductDir = Paths.get(imageServerPath, productId).normalize();
+        if (!resolvedProductDir.startsWith(imageServerNormalizedPath)) {
+            Debug.logError("Path traversal attempt detected in rename image, productId: " + productId, MODULE);
+            return ServiceUtil.returnError(UtilProperties.getMessage(RES_ERROR,
+                    "ProductImageViewUnableWriteFile", UtilMisc.toMap("fileName", resolvedProductDir.toString()), locale));
+        }
         String imageType = filenameToUse.substring(filenameToUse.lastIndexOf('.'));
         String imgExtension = filenameToUse.substring(filenameToUse.length() - 3, filenameToUse.length());
         String imageUrl = imageServerUrl + "/" + productId + "/" + filenameToUse;

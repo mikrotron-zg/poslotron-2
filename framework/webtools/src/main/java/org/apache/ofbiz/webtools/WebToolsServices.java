@@ -44,11 +44,11 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ofbiz.base.location.FlexibleLocation;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.GeneralException;
@@ -87,6 +87,7 @@ import org.apache.ofbiz.entity.util.EntitySaxReader;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
 import org.apache.ofbiz.entityext.EntityGroupUtil;
 import org.apache.ofbiz.security.Security;
+import org.apache.ofbiz.security.SecurityUtil;
 import org.apache.ofbiz.service.DispatchContext;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
@@ -147,7 +148,7 @@ public class WebToolsServices {
         // #############################
         // FM Template
         // #############################
-        if (UtilValidate.urlInString(fulltext)
+        if (UtilValidate.isUrlInStringAndDoesNotStartByComponentProtocol(fulltext)
                 && !"true".equals(EntityUtilProperties.getPropertyValue("security", "security.datafile.loadurls.enable", "false", delegator))) {
             Debug.logError("For security reason HTTP URLs are not accepted, see OFBIZ-12304", MODULE);
             Debug.logInfo("Rather load your data from a file or set SystemProperty security.datafile.loadurls.enable = true", MODULE);
@@ -160,6 +161,11 @@ public class WebToolsServices {
                         UtilMisc.toMap("filename", fmfilename, "errorString", "Template file not found."), locale));
             }
             try {
+                SecurityUtil.checkOfbizFileAllowList(fmFile);
+            } catch (GeneralException e) {
+                return ServiceUtil.returnError(e.getMessage());
+            }
+            try {
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 factory.setValidating(true);
                 factory.setNamespaceAware(true);
@@ -167,6 +173,7 @@ public class WebToolsServices {
                 factory.setAttribute("http://xml.org/sax/features/validation", true);
                 factory.setAttribute("http://apache.org/xml/features/validation/schema", true);
 
+                factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
                 factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
                 factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
                 factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
@@ -514,6 +521,11 @@ public class WebToolsServices {
 
         if (UtilValidate.isNotEmpty(outpath)) {
             File outdir = new File(outpath);
+            try {
+                SecurityUtil.checkOfbizFileAllowList(outdir);
+            } catch (GeneralException e) {
+                return ServiceUtil.returnError(e.getMessage());
+            }
             if (!outdir.exists()) {
                 outdir.mkdir();
             }
@@ -809,7 +821,7 @@ public class WebToolsServices {
                         entityMap.put("title", entity.getTitle());
                         entityMap.put("description", entityDescription);
                         String entityLocation = entity.getLocation();
-                        entityLocation = StringUtils.replaceOnce(entityLocation, System.getProperty("ofbiz.home") + "/", "");
+                        entityLocation = entityLocation.replace(System.getProperty("ofbiz.home") + "/", "");
                         entityMap.put("location", entityLocation);
                         entityMap.put("javaNameList", javaNameList);
                         entityMap.put("relationsList", relationsList);

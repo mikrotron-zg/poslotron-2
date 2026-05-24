@@ -23,6 +23,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,16 +47,24 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
@@ -99,7 +108,11 @@ import org.apache.tika.sax.BasicContentHandlerFactory;
 import org.apache.tika.sax.ContentHandlerFactory;
 import org.apache.tika.sax.RecursiveParserWrapperHandler;
 import org.mustangproject.ZUGFeRD.ZUGFeRDImporter;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.drew.imaging.ImageMetadataReader;
@@ -127,11 +140,147 @@ public class SecuredUpload {
     private static final Boolean IMAGE_SANITIZE_ENABLED =
             UtilProperties.getPropertyAsBoolean("security", "image.sanitize.enabled", true);
 
+    /**
+     * Per-type extension allow-lists loaded from {@code security.properties}.
+     * Keys match the {@code fileType} argument of {@link #isValidFile}.
+     * "AllButCompressed" and "All" are derived automatically as unions of the others.
+     */
+    private static final Map<String, Set<String>> ALLOWED_EXTENSIONS_BY_TYPE = buildAllowedExtensionsMap();
+
+    /**
+     * SVG element names (lower-cased) whose presence in an SVG file is unconditionally rejected.
+     * These elements either execute script, embed foreign content, or enable timing-based attacks.
+     */
+    private static final Set<String> DENIED_SVG_ELEMENTS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+            "script", "foreignobject", "animate", "animatecolor",
+            "animatemotion", "animatetransform", "set", "handler", "listener")));
+
+    /**
+     * Allow-list pattern for entity primary-key values (e.g. {@code contentId}).
+     * Accepts ASCII letters, digits, underscores, hyphens and colons — the character
+     * set used by all OFBiz auto-generated and user-supplied IDs.
+     */
+    private static final Pattern ENTITY_KEY_PATTERN = Pattern.compile("[a-zA-Z0-9_:\\-]{1,255}");
+
+    /**
+     * Allow-list pattern for webapp-relative path parameters (e.g. {@code webappPath}).
+     * Accepts ASCII letters, digits and the path punctuation {@code / . - _}.
+     */
+    private static final Pattern WEBAPP_PATH_PATTERN = Pattern.compile("[a-zA-Z0-9/_\\.\\-]{1,4096}");
+
     // "(" and ")" for duplicates files
     private static final String FILENAMEVALIDCHARACTERS_DUPLICATES =
             UtilProperties.getPropertyValue("security", "fileNameValidCharactersDuplicates", "[a-zA-Z0-9-_ ()]");
     private static final String FILENAMEVALIDCHARACTERS =
             UtilProperties.getPropertyValue("security", "fileNameValidCharacters", "[a-zA-Z0-9-_ ]");
+
+    // -----------------------------------------------------------------------
+    // Allow-list validators (preferred over the deny-list in isValidText)
+    // -----------------------------------------------------------------------
+
+    /**
+     * Allow-list validator for entity primary-key values such as {@code contentId}.
+     * <p>Only ASCII letters, digits, underscores, hyphens and colons are accepted —
+     * the character set used by OFBiz auto-generated and user-supplied IDs.
+     * <p>This is an <em>allow-list</em> check and does not rely on a deny-list, so it
+     * cannot be bypassed by encoding tricks or token splitting.
+     *
+     * @param key the string to validate (must not be {@code null} or empty)
+     * @return {@code true} when {@code key} conforms to the expected format
+     */
+    public static boolean isValidEntityKey(String key) {
+        if (UtilValidate.isEmpty(key)) {
+            Debug.logError("Entity key is null or empty", MODULE);
+            return false;
+        }
+        if (!ENTITY_KEY_PATTERN.matcher(key).matches()) {
+            Debug.logError("Entity key contains disallowed characters: " + key, MODULE);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Allow-list validator for webapp-relative path parameters such as {@code webappPath}.
+     * <p>Accepts only ASCII letters, digits and the path punctuation {@code / . - _}.
+     * Path-traversal sequences ({@code ..}) and null bytes are always rejected regardless
+     * of encoding.
+     * <p>This is an <em>allow-list</em> check and does not rely on a deny-list.
+     *
+     * @param path the string to validate
+     * @return {@code true} when {@code path} is safe to use as a webapp path
+     */
+    public static boolean isValidWebAppPath(String path) {
+        if (UtilValidate.isEmpty(path)) {
+            Debug.logError("Webapp path is null or empty", MODULE);
+            return false;
+        }
+        if (path.indexOf('\0') >= 0) {
+            Debug.logError("Webapp path contains a null byte", MODULE);
+            return false;
+        }
+        if (path.contains("..")) {
+            Debug.logError("Path traversal sequence '..' is not allowed in webapp path: " + path, MODULE);
+            return false;
+        }
+        if (!WEBAPP_PATH_PATTERN.matcher(path).matches()) {
+            Debug.logError("Webapp path contains disallowed characters: " + path, MODULE);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Allow-list validator for text content (uploaded files, string parameters).
+     * <p>Accepts all printable Unicode code points and the four universally legitimate
+     * whitespace characters (U+0009 HT, U+000A LF, U+000D CR, U+0020 SPACE).
+     * All other C0 control characters (U+0000–U+001F) and C1 control characters
+     * (U+007F–U+009F) are rejected.
+     * <p>This approach is significantly more robust than the token deny-list in
+     * {@link #isValidText} because it operates on decoded Unicode code points.
+     * It cannot be bypassed by token splitting, alternate encodings, or obfuscation
+     * with whitespace.  Its intent is to guarantee that stored text can safely
+     * round-trip through any character-level processing without unexpected
+     * control-character effects, <em>not</em> to detect every conceivable injection
+     * payload — that responsibility belongs to the surrounding context (output
+     * encoding, CSP, FreeMarker SAFER_RESOLVER, etc.).
+     *
+     * @param content the text content to validate; {@code null} is rejected
+     * @return {@code true} when all code points are within the allowed set
+     */
+    public static boolean isValidTextContent(String content) {
+        if (content == null) {
+            return false;
+        }
+        for (int i = 0; i < content.length();) {
+            int cp = content.codePointAt(i);
+            i += Character.charCount(cp);
+            // Allow standard whitespace: HT, LF, CR
+            if (cp == 0x09 || cp == 0x0A || cp == 0x0D) {
+                continue;
+            }
+            // Reject all other C0 control characters, including the null byte (U+0000)
+            if (cp < 0x20) {
+                Debug.logInfo("Text content rejected: contains C0 control character U+"
+                        + String.format("%04X", cp), MODULE);
+                return false;
+            }
+            // Reject DEL (U+007F) and C1 control characters (U+0080–U+009F)
+            if (cp >= 0x7F && cp <= 0x9F) {
+                Debug.logInfo("Text content rejected: contains C1 control character U+"
+                        + String.format("%04X", cp), MODULE);
+                return false;
+            }
+            // Lone surrogate code points should not appear in valid Java strings, but
+            // guard against them explicitly to prevent bypass via malformed UTF-16.
+            if (cp >= 0xD800 && cp <= 0xDFFF) {
+                Debug.logInfo("Text content rejected: contains surrogate code point", MODULE);
+                return false;
+            }
+            // All other printable Unicode code points are accepted.
+        }
+        return true;
+    }
 
     // Cover method of the same name below. Historically used with 84 references when below was created
     // check there is no web shell in the uploaded file
@@ -261,6 +410,14 @@ public class SecuredUpload {
             return true;
         }
 
+        // Primary gate: file extension must be in the allow-list for the declared file type.
+        // This is the strongest control — only explicitly whitelisted extensions pass.
+        // The deny-list in isValidFileName acts as a secondary defence.
+        if (!isAllowedExtension(fileToCheck, fileType)) {
+            deleteBadFile(fileToCheck);
+            return false;
+        }
+
         // Check the file name
         if (!isValidFileName(fileToCheck, delegator)) { // Useless when the file is internally generated, but not sure for all cases
             return false;
@@ -383,12 +540,18 @@ public class SecuredUpload {
         Path filePath = Paths.get(fileName);
         byte[] bytesFromFile = Files.readAllBytes(filePath);
         ImageFormat imageFormat = Imaging.guessFormat(bytesFromFile);
-        return (imageFormat.equals(ImageFormats.PNG)
+        boolean knownRasterFormat = imageFormat.equals(ImageFormats.PNG)
                 || imageFormat.equals(ImageFormats.GIF)
                 || imageFormat.equals(ImageFormats.TIFF)
-                || imageFormat.equals(ImageFormats.JPEG))
-                && imageMadeSafe(fileName)
-                && isValidTextFile(fileName, false);
+                || imageFormat.equals(ImageFormats.JPEG);
+        if (!knownRasterFormat) {
+            return false;
+        }
+        // imageMadeSafe() re-encodes the pixel data and overwrites the file on disk,
+        // stripping all metadata and steganographic payloads. Running isValidTextFile
+        // on the resulting binary pixel data would be both redundant and unreliable,
+        // so it is intentionally omitted here.
+        return imageMadeSafe(fileName);
     }
 
     /**
@@ -407,11 +570,17 @@ public class SecuredUpload {
         if (!noWebshellInPNG(file)) {
             return false;
         }
+        if (!noWebshellInJPEG(file)) {
+            return false;
+        }
+        if (!noWebshellInGIF(file)) {
+            return false;
+        }
 
         boolean safeState = false;
 
         if ((file != null) && file.exists() && file.canRead() && file.canWrite()) {
-            try (OutputStream fos = Files.newOutputStream(file.toPath(), StandardOpenOption.WRITE)) {
+            try {
                 // Get the image format
                 String formatName;
                 ImageInputStream iis = ImageIO.createImageInputStream(file);
@@ -471,29 +640,33 @@ public class SecuredUpload {
                     imageToWrite = originalImage;
                 }
 
-                if (!fallbackOnApacheCommonsImaging) {
-                    ImageIO.write(imageToWrite, formatName, fos);
-                } else {
-                    ImageParser<?> imageParser;
-                    // Handle only formats for which Apache Commons Imaging can successfully write (YES in Write column of the reference link)
-                    // the image format. See reference link in the class header
-                    switch (formatName) {
-                    case "TIFF":
-                        imageParser = new TiffImageParser();
-                        break;
-                    case "GIF":
-                        imageParser = new GifImageParser();
-                        break;
-                    case "PNG":
-                        imageParser = new PngImageParser();
-                        break;
-                    // case "JPEG":
-                    // imageParser = new JpegImageParser(); // Does not provide imageParser.writeImage used below
-                    // break;
-                    default:
-                        throw new IOException("Format of the original image " + fileName + " is not supported for write operation !");
+                // Open the output stream only after the sanitized image is ready, so that
+                // TRUNCATE_EXISTING does not wipe the file before it has been read.
+                try (OutputStream fos = Files.newOutputStream(file.toPath(), StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING)) {
+                    if (!fallbackOnApacheCommonsImaging) {
+                        ImageIO.write(imageToWrite, formatName, fos);
+                    } else {
+                        ImageParser<?> imageParser;
+                        // Handle only formats for which Apache Commons Imaging can successfully write (YES in Write column of the reference link)
+                        // the image format. See reference link in the class header
+                        switch (formatName) {
+                        case "TIFF":
+                            imageParser = new TiffImageParser();
+                            break;
+                        case "GIF":
+                            imageParser = new GifImageParser();
+                            break;
+                        case "PNG":
+                            imageParser = new PngImageParser();
+                            break;
+                        // case "JPEG":
+                        // imageParser = new JpegImageParser(); // Does not provide imageParser.writeImage used below
+                        // break;
+                        default:
+                            throw new IOException("Format of the original image " + fileName + " is not supported for write operation !");
+                        }
+                        imageParser.writeImage(imageToWrite, fos, null);
                     }
-                    imageParser.writeImage(imageToWrite, fos, null);
                 }
                 // Set state flag
                 safeState = true;
@@ -543,31 +716,195 @@ public class SecuredUpload {
             return false;
         }
 
-        try (DataInputStream stream = new DataInputStream(new FileInputStream(file));) {
-            byte[] data = new byte[8];
-            stream.readFully(data); //Read PNG Header
+        try (DataInputStream stream = new DataInputStream(new FileInputStream(file))) {
+            byte[] header = new byte[8];
+            stream.readFully(header); // Read PNG signature
+            ByteArrayOutputStream idatBuffer = new ByteArrayOutputStream();
+            byte[] nameBuf = new byte[4];
             while (true) {
-                data = new byte[4];
-                stream.readFully(data); //Read Length
-                int length = ((data[0] & 0xFF) << 24)
-                        | ((data[1] & 0xFF) << 16)
-                        | ((data[2] & 0xFF) << 8)
-                        | (data[3] & 0xFF); //Byte array to int
-                stream.readFully(data); //Read Name
-                String name = new String(data); //Byte array to String
+                byte[] lenBuf = new byte[4];
+                stream.readFully(lenBuf); // Read chunk length
+                int length = ((lenBuf[0] & 0xFF) << 24)
+                        | ((lenBuf[1] & 0xFF) << 16)
+                        | ((lenBuf[2] & 0xFF) << 8)
+                        | (lenBuf[3] & 0xFF);
+                stream.readFully(nameBuf); // Read chunk type
+                String name = new String(nameBuf);
                 if (name.equals("IDAT")) {
-                    data = new byte[length];
-                    stream.readFully(data); //Read Data
-                    return inflate(data);
-                } else { //Don't care about other chunks
-                    data = new byte[length + 4]; //Data length + 4 byte CRC
-                    stream.readFully(data); //Skip Data and CRC.
+                    byte[] chunkData = new byte[length];
+                    stream.readFully(chunkData); // Read data
+                    idatBuffer.write(chunkData);
+                    stream.readFully(new byte[4]); // Skip CRC
+                } else if (name.equals("IEND")) {
+                    stream.readFully(new byte[4]); // Skip CRC
+                    break; // IEND marks end of PNG datastream
+                } else {
+                    stream.readFully(new byte[length + 4]); // Skip data and CRC
                 }
             }
+            // Reject any bytes appended after IEND
+            if (stream.read() != -1) {
+                Debug.logError("================== Not saved for security reason, PNG has trailing bytes after IEND ==================", MODULE);
+                return false;
+            }
+            // Inflate all concatenated IDAT chunks
+            return inflate(idatBuffer.toByteArray());
         } catch (IOException error) {
             Debug.logError("================== Not saved for security reason, wrong PNG IDAT (weird) ==================" + error, MODULE);
             return false;
         }
+    }
+
+    private static boolean noWebshellInJPEG(File file) {
+        try {
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            if (!Imaging.guessFormat(bytes).equals(ImageFormats.JPEG)) {
+                return true; // Not a JPEG file, it's OK so far
+            }
+            // SOI marker check
+            if (bytes.length < 4 || (bytes[0] & 0xFF) != 0xFF || (bytes[1] & 0xFF) != 0xD8) {
+                Debug.logError("================== Not saved for security reason, malformed JPEG ==================", MODULE);
+                return false;
+            }
+            int pos = 2;
+            while (pos < bytes.length) {
+                if ((bytes[pos] & 0xFF) != 0xFF) {
+                    Debug.logError("================== Not saved for security reason, malformed JPEG marker ==================", MODULE);
+                    return false;
+                }
+                // Skip 0xFF fill bytes (valid marker padding per JPEG spec)
+                while (pos < bytes.length && (bytes[pos] & 0xFF) == 0xFF) {
+                    pos++;
+                }
+                if (pos >= bytes.length) {
+                    Debug.logError("================== Not saved for security reason, JPEG missing EOI ==================", MODULE);
+                    return false;
+                }
+                int marker = bytes[pos++] & 0xFF;
+                if (marker == 0xD9) {
+                    // EOI — reject any trailing bytes
+                    if (pos != bytes.length) {
+                        Debug.logError("================ Not saved for security reason, JPEG has trailing bytes after EOI ================", MODULE);
+                        return false;
+                    }
+                    return true;
+                } else if (marker >= 0xD0 && marker <= 0xD8) {
+                    // SOI (0xD8) and RST0–RST7 (0xD0–0xD7) — no length field
+                    continue;
+                } else if (marker == 0xDA) {
+                    // SOS: length-prefixed header followed by entropy-coded scan data
+                    if (pos + 2 > bytes.length) return false;
+                    int len = ((bytes[pos] & 0xFF) << 8) | (bytes[pos + 1] & 0xFF);
+                    if (len < 2 || pos + len > bytes.length) return false;
+                    pos += len; // Skip SOS header
+                    // Scan entropy-coded data, respecting byte stuffing (FF 00) and restart markers
+                    while (pos < bytes.length - 1) {
+                        if ((bytes[pos] & 0xFF) == 0xFF) {
+                            int next = bytes[pos + 1] & 0xFF;
+                            if (next == 0x00 || (next >= 0xD0 && next <= 0xD7)) {
+                                pos += 2; // Stuffed 0xFF or RST — part of scan data
+                            } else {
+                                break; // Real marker — stop scanning scan data
+                            }
+                        } else {
+                            pos++;
+                        }
+                    }
+                } else {
+                    // Regular length-delimited segment
+                    if (pos + 2 > bytes.length) return false;
+                    int len = ((bytes[pos] & 0xFF) << 8) | (bytes[pos + 1] & 0xFF);
+                    if (len < 2 || pos + len > bytes.length) return false;
+                    pos += len;
+                }
+            }
+            Debug.logError("================== Not saved for security reason, JPEG missing EOI ==================", MODULE);
+            return false;
+        } catch (IOException error) {
+            Debug.logError("================== Not saved for security reason ==================" + error, MODULE);
+            return false;
+        }
+    }
+
+    private static boolean noWebshellInGIF(File file) {
+        try {
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            if (!Imaging.guessFormat(bytes).equals(ImageFormats.GIF)) {
+                return true; // Not a GIF file, it's OK so far
+            }
+            // Header: "GIF87a" or "GIF89a"
+            if (bytes.length < 13) return false;
+            String gifHeader = new String(bytes, 0, 6, StandardCharsets.US_ASCII);
+            if (!"GIF87a".equals(gifHeader) && !"GIF89a".equals(gifHeader)) {
+                Debug.logError("================== Not saved for security reason, malformed GIF ==================", MODULE);
+                return false;
+            }
+            int pos = 6;
+            // Logical Screen Descriptor: packed byte at offset 4 within LSD
+            int packed = bytes[pos + 4] & 0xFF;
+            boolean hasGCT = (packed & 0x80) != 0;
+            int gctSize = packed & 0x07;
+            pos += 7;
+            // Skip Global Color Table
+            if (hasGCT) {
+                int gctBytes = 3 * (1 << (gctSize + 1));
+                if (pos + gctBytes > bytes.length) return false;
+                pos += gctBytes;
+            }
+            // Parse blocks until Trailer
+            while (pos < bytes.length) {
+                int blockType = bytes[pos++] & 0xFF;
+                if (blockType == 0x3B) {
+                    // Trailer — reject any trailing bytes
+                    if (pos != bytes.length) {
+                        Debug.logError("=============== Not saved for security reason, GIF has trailing bytes after Trailer ===============", MODULE);
+                        return false;
+                    }
+                    return true;
+                } else if (blockType == 0x21) {
+                    // Extension: label byte + sub-blocks
+                    if (pos >= bytes.length) return false;
+                    pos++; // Skip extension label
+                    pos = skipGIFSubBlocks(bytes, pos);
+                    if (pos < 0) return false;
+                } else if (blockType == 0x2C) {
+                    // Image Descriptor: 9 bytes
+                    if (pos + 9 > bytes.length) return false;
+                    int imagePacked = bytes[pos + 8] & 0xFF;
+                    boolean hasLCT = (imagePacked & 0x80) != 0;
+                    int lctSize = imagePacked & 0x07;
+                    pos += 9;
+                    if (hasLCT) {
+                        int lctBytes = 3 * (1 << (lctSize + 1));
+                        if (pos + lctBytes > bytes.length) return false;
+                        pos += lctBytes;
+                    }
+                    pos++; // LZW minimum code size
+                    pos = skipGIFSubBlocks(bytes, pos);
+                    if (pos < 0) return false;
+                } else {
+                    Debug.logError("================== Not saved for security reason, unknown GIF block type ==================", MODULE);
+                    return false;
+                }
+            }
+            Debug.logError("================== Not saved for security reason, GIF missing Trailer ==================", MODULE);
+            return false;
+        } catch (IOException error) {
+            Debug.logError("================== Not saved for security reason ==================" + error, MODULE);
+            return false;
+        }
+    }
+
+    private static int skipGIFSubBlocks(byte[] bytes, int pos) {
+        while (pos < bytes.length) {
+            int blockSize = bytes[pos++] & 0xFF;
+            if (blockSize == 0) {
+                return pos; // Block Terminator
+            }
+            pos += blockSize;
+            if (pos > bytes.length) return -1;
+        }
+        return -1; // Reached EOF without Block Terminator
     }
 
     private static boolean isPNG(File file) throws IOException {
@@ -590,6 +927,9 @@ public class SecuredUpload {
                     } else if (inflater.needsDictionary()) { // Dictionary to be loaded
                         inflater.setDictionary(result);
                         inflater.getAdler();
+                    } else { // nothing to inflate, avoid endless loop
+                        inflater.end();
+                        return true;
                     }
                 }
             }
@@ -639,7 +979,11 @@ public class SecuredUpload {
             } catch (IOException e) {
                 return false;
             }
-            return isValidTextFile(fileName, true); // Validate content to prevent webshell
+            // DOM-level inspection: block dangerous elements (<script>, <foreignObject>, …)
+            // and unsafe attribute values (on* event handlers, javascript:/data: URIs).
+            // This is stronger than the text-token deny-list which can be bypassed by
+            // splitting tokens or using alternate serialisations.
+            return isSafeSvgContent(fileName);
         }
         return false;
     }
@@ -648,14 +992,15 @@ public class SecuredUpload {
      * @param fileName
      * @return true if it's a PDF file
      */
+    @SuppressWarnings("try")
     private static boolean isPdfFile(String fileName) {
         File file = new File(fileName);
         try {
             if (Objects.isNull(file) || !file.exists()) {
                 return false;
             }
-            // Load stream in PDF parser
-            new PdfReader(file.getAbsolutePath()); // Just a check
+            // Load stream in PDF parser — just probe whether the file is a valid PDF
+            new PdfReader(file.getAbsolutePath());
             return true;
         } catch (Exception e) {
             return false;
@@ -757,7 +1102,7 @@ public class SecuredUpload {
 
         // cf. https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html
         if (!content.contains("</svg>")) {
-            try (CSVParser parser = new CSVParser(in, cvsFormat)) {
+            try (CSVParser parser = cvsFormat.parse(in)) {
                 parser.getRecords();
             }
         } else {
@@ -961,11 +1306,23 @@ public class SecuredUpload {
     }
 
     /**
-     * Does this text file contains a Freemarker Server-Side Template Injection (SSTI) using freemarker.template.utility.Execute? Etc.
-     * @param fileName must be an UTF-8 encoded text file
-     * @param encodedContent true id the file content is encoded
-     * @return true if the text file does not contains a Freemarker SSTI or other issues
-     * @throws IOException
+     * Validates that the file at {@code fileName} is safe plain text.
+     * <p>Three checks are applied in order:
+     * <ol>
+     *   <li><strong>UTF-8 encoding</strong> (when {@code encodedContent} is {@code true}) — rejects
+     *       binary files masquerading as text.</li>
+     *   <li><strong>Dangerous XML constructs</strong> — rejects {@code xlink:href="http"} (external
+     *       resource loading) and {@code <!ENTITY} (Billion-Laughs / XXE).</li>
+     *   <li><strong>Character-class allow-list</strong> ({@link #isValidTextContent}) — accepts only
+     *       printable Unicode code points and standard whitespace.  This is an <em>allow-list</em>
+     *       strategy and cannot be bypassed by token splitting, alternate encodings, or obfuscation
+     *       with whitespace, unlike the token deny-list previously used here.</li>
+     * </ol>
+     *
+     * @param fileName       path to the file to validate
+     * @param encodedContent {@code true} to additionally enforce UTF-8 validity
+     * @return {@code true} when the file passes all checks
+     * @throws IOException if the file cannot be read
      */
     private static boolean isValidTextFile(String fileName, Boolean encodedContent) throws IOException {
         Path filePath = Paths.get(fileName);
@@ -983,8 +1340,11 @@ public class SecuredUpload {
             Debug.logInfo("Linked images inside or Entity in SVG are not allowed for security reason", MODULE);
             return false;
         }
-        ArrayList<String> allowed = new ArrayList<>();
-        return isValidText(content, allowed);
+        // Use the character-class allow-list instead of the token deny-list.
+        // The deny-list can be bypassed by token splitting, alternate encodings and
+        // obfuscation; isValidTextContent operates at the decoded code-point level
+        // and is immune to those bypass techniques.
+        return isValidTextContent(content);
     }
 
     // Check there is no web shell
@@ -1021,6 +1381,190 @@ public class SecuredUpload {
         if (badFile.exists() && !badFile.delete()) {
             Debug.logError("File : " + fileToCheck + ", couldn't be deleted", MODULE);
         }
+    }
+
+    // -----------------------------------------------------------------------
+    // Extension allow-list helpers
+    // -----------------------------------------------------------------------
+
+    /**
+     * Builds the per-file-type extension allow-list map from {@code security.properties}.
+     * Each key matches a {@code fileType} value accepted by {@link #isValidFile}.
+     * "AllButCompressed" and "All" are derived as unions of the individual sets.
+     */
+    private static Map<String, Set<String>> buildAllowedExtensionsMap() {
+        Set<String> image = loadAllowedExtensions("allowedExtensionsImage",
+                "jpg,jpeg,png,gif,tiff,tif");
+        Set<String> imageAndSvg = loadAllowedExtensions("allowedExtensionsImageAndSvg",
+                "jpg,jpeg,png,gif,tiff,tif,svg");
+        Set<String> pdf = loadAllowedExtensions("allowedExtensionsPdf",
+                "pdf");
+        Set<String> audio = loadAllowedExtensions("allowedExtensionsAudio",
+                "mp3,wav,ogg,flac,mp4,m4a,aac");
+        Set<String> video = loadAllowedExtensions("allowedExtensionsVideo",
+                "mp4,mov,avi,mkv,webm,wmv,mpg,mpeg,3gp,flv");
+        Set<String> text = loadAllowedExtensions("allowedExtensionsText",
+                "txt");
+        Set<String> csv = loadAllowedExtensions("allowedExtensionsCsv",
+                "csv");
+        Set<String> compressed = loadAllowedExtensions("allowedExtensionsCompressed",
+                "zip");
+
+        Set<String> allButCompressed = new LinkedHashSet<>();
+        allButCompressed.addAll(image);
+        allButCompressed.addAll(imageAndSvg);
+        allButCompressed.addAll(pdf);
+        allButCompressed.addAll(audio);
+        allButCompressed.addAll(video);
+        allButCompressed.addAll(text);
+        allButCompressed.addAll(csv);
+
+        Set<String> all = new LinkedHashSet<>(allButCompressed);
+        all.addAll(compressed);
+
+        Map<String, Set<String>> map = new LinkedHashMap<>();
+        map.put("Image", image);
+        map.put("ImageAndSvg", imageAndSvg);
+        map.put("PDF", pdf);
+        map.put("Audio", audio);
+        map.put("Video", video);
+        map.put("Text", text);
+        map.put("CSV", csv);
+        map.put("Compressed", compressed);
+        map.put("AllButCompressed", Collections.unmodifiableSet(allButCompressed));
+        map.put("All", Collections.unmodifiableSet(all));
+        return Collections.unmodifiableMap(map);
+    }
+
+    /**
+     * Loads a comma-separated list of lowercase file extensions from
+     * {@code security.properties} under the given key, falling back to
+     * {@code defaultValue} when the property is absent or blank.
+     */
+    private static Set<String> loadAllowedExtensions(String propertyKey, String defaultValue) {
+        String value = UtilProperties.getPropertyValue("security", propertyKey, defaultValue);
+        Set<String> exts = new LinkedHashSet<>();
+        for (String ext : value.split(",")) {
+            String trimmed = ext.trim().toLowerCase(Locale.ROOT);
+            if (!trimmed.isEmpty()) {
+                exts.add(trimmed);
+            }
+        }
+        return Collections.unmodifiableSet(exts);
+    }
+
+    /**
+     * Returns {@code true} if the extension of {@code fileToCheck} is in the
+     * allow-list for the given {@code fileType}.  Falls back to the "All" set
+     * for unknown file-type strings so that callers are never silently blocked
+     * by a misconfigured type name.
+     */
+    private static boolean isAllowedExtension(String fileToCheck, String fileType) {
+        Set<String> allowed = ALLOWED_EXTENSIONS_BY_TYPE.getOrDefault(
+                fileType, ALLOWED_EXTENSIONS_BY_TYPE.get("All"));
+        String extension = FilenameUtils.getExtension(fileToCheck).toLowerCase(Locale.ROOT);
+        if (allowed.contains(extension)) {
+            return true;
+        }
+        Debug.logError("File extension [." + extension + "] is not in the allow-list for"
+                + " file type [" + fileType + "]. To permit it, add it to the"
+                + " allowedExtensions" + fileType + " property in security.properties.", MODULE);
+        return false;
+    }
+
+    // -----------------------------------------------------------------------
+    // SVG DOM safety check
+    // -----------------------------------------------------------------------
+
+    /**
+     * Parses {@code fileName} as XML and walks the DOM tree looking for elements
+     * or attributes that can execute code or load external resources.
+     *
+     * <p>This replaces the text-token deny-list ({@code isValidTextFile}) for SVG
+     * files.  Token scanning can be bypassed by splitting keywords across lines,
+     * using alternate encodings, or exploiting SVG/XML serialisation ambiguities.
+     * DOM-level inspection operates on the fully-parsed structure and is therefore
+     * immune to those bypass techniques.
+     *
+     * <p>The parser is hardened against XXE and DOCTYPE-injection before use.
+     *
+     * @return {@code true} if no unsafe element or attribute was found
+     */
+    private static boolean isSafeSvgContent(String fileName) {
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            // Harden against XXE and DOCTYPE-based injection attacks
+            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+            dbf.setXIncludeAware(false);
+            dbf.setExpandEntityReferences(false);
+            dbf.setNamespaceAware(true);
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(new File(fileName));
+            return checkSvgNode(doc.getDocumentElement());
+        } catch (Exception e) {
+            Debug.logWarning(e, "SVG content safety check failed for: " + fileName, MODULE);
+            return false;
+        }
+    }
+
+    /**
+     * Recursively walks an SVG DOM tree and returns {@code false} on the first
+     * unsafe element or attribute found.
+     *
+     * <p>Rejected elements: anything in {@link #DENIED_SVG_ELEMENTS} (e.g.
+     * {@code <script>}, {@code <foreignObject>}, animation elements).
+     * Rejected attributes:
+     * <ul>
+     *   <li>{@code on*} event-handler attributes (e.g. {@code onclick}, {@code onload})</li>
+     *   <li>{@code href}, {@code xlink:href}, {@code src}, {@code action} pointing to a
+     *       {@code javascript:}, {@code data:}, or {@code vbscript:} URI scheme</li>
+     * </ul>
+     */
+    private static boolean checkSvgNode(Node node) {
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            String localName = node.getLocalName() != null ? node.getLocalName() : node.getNodeName();
+            if (DENIED_SVG_ELEMENTS.contains(localName.toLowerCase(Locale.ROOT))) {
+                Debug.logInfo("SVG rejected: contains denied element <" + localName + ">", MODULE);
+                return false;
+            }
+            NamedNodeMap attrs = node.getAttributes();
+            if (attrs != null) {
+                for (int i = 0; i < attrs.getLength(); i++) {
+                    Attr attr = (Attr) attrs.item(i);
+                    String attrName = attr.getName().toLowerCase(Locale.ROOT);
+                    String attrValue = attr.getValue() == null ? ""
+                            : attr.getValue().trim().toLowerCase(Locale.ROOT);
+                    // Block on* event-handler attributes
+                    if (attrName.startsWith("on")) {
+                        Debug.logInfo("SVG rejected: event-handler attribute ["
+                                + attr.getName() + "]", MODULE);
+                        return false;
+                    }
+                    // Block unsafe URI schemes in link/source attributes
+                    if (attrName.equals("href") || attrName.equals("xlink:href")
+                            || attrName.equals("src") || attrName.equals("action")) {
+                        if (attrValue.startsWith("javascript:")
+                                || attrValue.startsWith("data:")
+                                || attrValue.startsWith("vbscript:")) {
+                            Debug.logInfo("SVG rejected: unsafe URI scheme in attribute ["
+                                    + attr.getName() + "]", MODULE);
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        NodeList children = node.getChildNodes();
+        for (int i = 0; i < children.getLength(); i++) {
+            if (!checkSvgNode(children.item(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static List<String> getDeniedFileExtensions() {

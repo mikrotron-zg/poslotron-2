@@ -50,8 +50,12 @@ public final class XslTransform {
         String result = null;
         TransformerFactory tfactory = TransformerFactory.newInstance();
         tfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-        tfactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-        tfactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+        try {
+            tfactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            tfactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+        } catch (IllegalArgumentException e) {
+            Debug.logWarning("TransformerFactory does not support ACCESS_EXTERNAL_* attributes: " + e.getMessage(), MODULE);
+        }
         if (tfactory.getFeature(SAXSource.FEATURE)) {
             // setup for xml data file preprocessing to be able to xinclude
             SAXParserFactory pfactory = SAXParserFactory.newInstance();
@@ -60,6 +64,10 @@ public final class XslTransform {
             pfactory.setXIncludeAware(true);
             XMLReader reader = null;
             try {
+                pfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+                pfactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+                pfactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+                pfactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
                 reader = pfactory.newSAXParser().getXMLReader();
             } catch (Exception e) {
                 throw new TransformerException("Error creating SAX parser/reader", e);

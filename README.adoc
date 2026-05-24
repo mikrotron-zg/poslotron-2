@@ -23,7 +23,7 @@ The Apache OFBiz Project
 image:https://img.shields.io/badge/License-Apache%202.0-blue.svg[link=http://www.apache.org/licenses/LICENSE-2.0]
 image:https://img.shields.io/badge/Version-release24.09-orange.svg[link=https://github.com/apache/ofbiz-framework]
 
-image:https://github.com/apache/ofbiz-framework/actions/workflows/gradle.yaml/badge.svg?branch=trunk[link=https://github.com/apache/ofbiz-framework/actions/workflows/gradle.yaml]
+image:https://github.com/apache/ofbiz-framework/actions/workflows/gradle.yml/badge.svg?branch=trunk[link=https://github.com/apache/ofbiz-framework/actions/workflows/gradle.yml]
 // For the CodeQL badge to not get stuck on failing, you need to delete the last failing CodeQL workflow (AKA action)
 image:https://github.com/apache/ofbiz-framework/actions/workflows/codeql-analysis.yml/badge.svg[link=https://github.com/apache/ofbiz-framework/actions/workflows/codeql-analysis.yml]
 // For the BuildBot badge to not get stuck on failure, ALL builds of all branches handled by https://svn.apache.org/repos/infra/infrastructure/buildbot2/projects/ofbiz.py need to pass

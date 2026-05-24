@@ -21,9 +21,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ trunk ]
+    branches: [ trunk, release* ]
   pull_request:
-    branches: [ trunk ]
+    branches: [ trunk, release* ]
 
 permissions:
   contents: read
@@ -37,23 +37,21 @@ jobs:
       DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
 
     steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
-      with:
-        egress-policy: audit
-
     - name: Check out OFBiz sources
-      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
     - name: Set up JDK 17
-      uses: actions/setup-java@387ac29b308b003ca37ba93a6cab5eb57c8f5f93 # v4.0.0
+      uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
       with:
         java-version: 17
         distribution: temurin
         cache: 'gradle'
 
     - name: Grant execute permission for gradlew and pullAllPluginsSource.sh
-      run: chmod +x gradlew pullAllPluginsSource.sh
+      run: chmod +x gradlew gradle/init-gradle-wrapper.sh pullAllPluginsSource.sh
+
+    - name: Initialize Gradle wrapper
+      run: ./gradle/init-gradle-wrapper.sh
 
     - name: Load all plugins
       run: ./pullAllPluginsSource.sh

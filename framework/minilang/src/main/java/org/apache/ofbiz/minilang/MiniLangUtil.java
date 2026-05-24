@@ -29,6 +29,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
 
+import javax.xml.XMLConstants;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
@@ -282,6 +283,13 @@ public final class MiniLangUtil {
         try {
             styleSheetURL = FlexibleLocation.resolveLocation("component://minilang/config/MiniLang.xslt");
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            transformerFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            try {
+                transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+                transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+            } catch (IllegalArgumentException e) {
+                Debug.logWarning("TransformerFactory does not support ACCESS_EXTERNAL_* attributes: " + e.getMessage(), MODULE);
+            }
             try (InputStream styleSheetInStream = styleSheetURL.openStream()) {
                 transformer = transformerFactory.newTransformer(new StreamSource(styleSheetInStream));
             }

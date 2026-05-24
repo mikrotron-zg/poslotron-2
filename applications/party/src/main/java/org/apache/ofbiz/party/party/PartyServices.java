@@ -2262,8 +2262,8 @@ public class PartyServices {
         String searchPartyFirstContext = (String) context.get("searchPartyFirst");
         String searchAllIdContext = (String) context.get("searchAllId");
 
-        boolean searchPartyFirst = UtilValidate.isNotEmpty(searchPartyFirstContext) && "N".equals(searchPartyFirstContext) ? false : true;
-        boolean searchAllId = UtilValidate.isNotEmpty(searchAllIdContext) && "Y".equals(searchAllIdContext) ? true : false;
+        boolean searchPartyFirst = !UtilValidate.isNotEmpty(searchPartyFirstContext) || !"N".equals(searchPartyFirstContext);
+        boolean searchAllId = UtilValidate.isNotEmpty(searchAllIdContext) && "Y".equals(searchAllIdContext);
 
         GenericValue party = null;
         List<GenericValue> partiesFound = null;
@@ -2297,7 +2297,7 @@ public class PartyServices {
         String encoding = System.getProperty("file.encoding");
         String csvString = Charset.forName(encoding).decode(fileBytes).toString();
         Builder csvFormatBuilder = Builder.create().setHeader();
-        CSVFormat fmt = csvFormatBuilder.build();
+        CSVFormat fmt = csvFormatBuilder.get();
         List<String> errMsgs = new LinkedList<>();
         List<String> newErrMsgs = new LinkedList<>();
         String lastPartyId = null;        // last partyId read from the csv file

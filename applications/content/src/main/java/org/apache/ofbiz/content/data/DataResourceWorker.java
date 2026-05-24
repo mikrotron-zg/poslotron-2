@@ -27,13 +27,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.sql.Timestamp;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -53,12 +58,12 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.BoundedInputStream;
 import org.apache.ofbiz.base.location.FlexibleLocation;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.FileUtil;
 import org.apache.ofbiz.base.util.GeneralException;
 import org.apache.ofbiz.base.util.StringUtil;
-import org.apache.ofbiz.base.util.StringUtil.StringWrapper;
 import org.apache.ofbiz.base.util.UtilCodec;
 import org.apache.ofbiz.base.util.UtilDateTime;
 import org.apache.ofbiz.base.util.UtilGenerics;
@@ -82,6 +87,7 @@ import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
+import org.apache.ofbiz.security.SecurityUtil;
 import org.apache.ofbiz.service.ServiceUtil;
 import org.apache.ofbiz.widget.model.FormFactory;
 import org.apache.ofbiz.widget.model.ModelForm;
@@ -466,6 +472,160 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
         return prefix;
     }
 
+    /**
+     * Checks that the given file is within the provided context root directory.
+     * Uses a dual-check strategy to support EFS/Docker mount points:
+     * 1. Canonical paths (resolves symlinks on both sides) — works for non-mounted paths.
+     * 2. Normalized absolute paths (collapses ".." without following symlinks) — fallback for
+     *    when contextRoot or a subdirectory inside it is a mount point, causing canonical paths
+     *    to diverge. Path traversal via ".." is still blocked by the normalization step.
+     */
+    static void checkContextFileBoundary(File file, String contextRoot) throws GeneralException {
+        try {
+            String canonicalAllowed = new File(contextRoot).getCanonicalPath();
+            String canonicalFilePath = file.getCanonicalPath();
+            boolean passesCanonical = canonicalFilePath.startsWith(canonicalAllowed + File.separator)
+                    || canonicalFilePath.equals(canonicalAllowed);
+
+            Path normalizedAllowed = Path.of(contextRoot).toAbsolutePath().normalize();
+            Path normalizedFilePath = file.toPath().toAbsolutePath().normalize();
+            boolean passesNormalized = normalizedFilePath.startsWith(normalizedAllowed);
+
+            if (!passesCanonical && !passesNormalized) {
+                throw new GeneralException("Access to file denied: path resolves outside of the allowed directory");
+            }
+        } catch (IOException e) {
+            throw new GeneralException("Unable to validate file path: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Validates a URL for the URL_RESOURCE data type against SSRF (Server-Side Request Forgery)
+     * attacks. Enforces:
+     * <ul>
+     *   <li>Protocol restricted to http/https only</li>
+     *   <li>Host must match the configured allow-list when
+     *       {@code content.data.url.resource.allowed.hosts} (security.properties) is non-empty;
+     *       both exact and subdomain matches are supported</li>
+     *   <li>All resolved IP addresses must not be private, loopback, link-local, multicast,
+     *       or otherwise reserved (mitigates DNS-rebinding)</li>
+     * </ul>
+     */
+    private static void checkUrlResourceAllowed(URL url) throws GeneralException {
+        // 1. Protocol: only http and https are permitted
+        String protocol = url.getProtocol();
+        if (!"http".equalsIgnoreCase(protocol) && !"https".equalsIgnoreCase(protocol)) {
+            throw new GeneralException("URL_RESOURCE only supports http/https protocols; rejected: " + protocol);
+        }
+        String host = url.getHost();
+        if (UtilValidate.isEmpty(host)) {
+            throw new GeneralException("URL_RESOURCE URL has no host component");
+        }
+
+        // 2. Allow-list: if configured, the host must match one of the entries
+        String allowedHostsStr = UtilProperties.getPropertyValue("security",
+                "content.data.url.resource.allowed.hosts", "");
+        if (UtilValidate.isNotEmpty(allowedHostsStr)) {
+            String lcHost = host.toLowerCase(Locale.ROOT);
+            boolean hostAllowed = false;
+            for (String entry : allowedHostsStr.split(",")) {
+                String allowedEntry = entry.trim().toLowerCase(Locale.ROOT);
+                if (UtilValidate.isEmpty(allowedEntry)) {
+                    continue;
+                }
+                if (lcHost.equals(allowedEntry) || lcHost.endsWith("." + allowedEntry)) {
+                    hostAllowed = true;
+                    break;
+                }
+            }
+            if (!hostAllowed) {
+                throw new GeneralException("URL_RESOURCE host is not in the allowed list: " + host);
+            }
+        }
+
+        // 3. DNS resolution: block private/reserved IP ranges (SSRF / DNS-rebinding mitigation)
+        InetAddress[] addresses;
+        try {
+            addresses = InetAddress.getAllByName(host);
+        } catch (UnknownHostException e) {
+            throw new GeneralException("URL_RESOURCE host cannot be resolved: " + host);
+        }
+        if (addresses == null || addresses.length == 0) {
+            throw new GeneralException("URL_RESOURCE host resolved to no addresses: " + host);
+        }
+        for (InetAddress addr : addresses) {
+            checkNotPrivateOrReservedAddress(addr);
+        }
+    }
+
+    /**
+     * Throws {@link GeneralException} if {@code addr} belongs to a private, loopback,
+     * link-local, multicast, or otherwise reserved IP range (IPv4 and IPv6).
+     */
+    private static void checkNotPrivateOrReservedAddress(InetAddress addr) throws GeneralException {
+        if (addr.isLoopbackAddress()) {
+            throw new GeneralException("URL_RESOURCE target resolves to a loopback address: " + addr.getHostAddress());
+        }
+        if (addr.isLinkLocalAddress()) {
+            throw new GeneralException("URL_RESOURCE target resolves to a link-local address: " + addr.getHostAddress());
+        }
+        if (addr.isSiteLocalAddress()) {
+            throw new GeneralException("URL_RESOURCE target resolves to a private (site-local) address: " + addr.getHostAddress());
+        }
+        if (addr.isAnyLocalAddress()) {
+            throw new GeneralException("URL_RESOURCE target resolves to a wildcard address: " + addr.getHostAddress());
+        }
+        if (addr.isMulticastAddress()) {
+            throw new GeneralException("URL_RESOURCE target resolves to a multicast address: " + addr.getHostAddress());
+        }
+        byte[] b = addr.getAddress();
+        if (addr instanceof Inet4Address) {
+            int i0 = b[0] & 0xFF;
+            int i1 = b[1] & 0xFF;
+            // 0.0.0.0/8 – "this" network (RFC 1122)
+            if (i0 == 0) {
+                throw new GeneralException("URL_RESOURCE target resolves to a reserved network address (0.0.0.0/8): " + addr.getHostAddress());
+            }
+            // 100.64.0.0/10 – shared address space / CGNAT (RFC 6598)
+            if (i0 == 100 && i1 >= 64 && i1 <= 127) {
+                throw new GeneralException("URL_RESOURCE target resolves to a shared address space (CGNAT, 100.64.0.0/10): " + addr.getHostAddress());
+            }
+            // 192.0.0.0/24 – IETF protocol assignments (RFC 6890)
+            if (i0 == 192 && i1 == 0 && (b[2] & 0xFF) == 0) {
+                throw new GeneralException("URL_RESOURCE target resolves to an IETF reserved address (192.0.0.0/24): " + addr.getHostAddress());
+            }
+            // 198.18.0.0/15 – network benchmarking (RFC 2544)
+            if (i0 == 198 && (i1 == 18 || i1 == 19)) {
+                throw new GeneralException("URL_RESOURCE target resolves to a benchmarking address (198.18.0.0/15): " + addr.getHostAddress());
+            }
+            // 240.0.0.0/4 – reserved for future use (RFC 1112)
+            if ((i0 & 0xF0) == 240) {
+                throw new GeneralException("URL_RESOURCE target resolves to a reserved address (240.0.0.0/4): " + addr.getHostAddress());
+            }
+        } else if (addr instanceof Inet6Address) {
+            // fc00::/7 – Unique Local Addresses (ULA), private IPv6 (RFC 4193)
+            if ((b[0] & 0xFE) == 0xFC) {
+                throw new GeneralException("URL_RESOURCE target resolves to a unique-local (private) IPv6 address: " + addr.getHostAddress());
+            }
+            // ::ffff:0:0/96 – IPv4-mapped IPv6; re-validate the embedded IPv4 address
+            boolean isIpv4Mapped = true;
+            for (int i = 0; i < 10; i++) {
+                if (b[i] != 0) {
+                    isIpv4Mapped = false;
+                    break;
+                }
+            }
+            if (isIpv4Mapped && (b[10] & 0xFF) == 0xFF && (b[11] & 0xFF) == 0xFF) {
+                try {
+                    checkNotPrivateOrReservedAddress(
+                            InetAddress.getByAddress(new byte[]{b[12], b[13], b[14], b[15]}));
+                } catch (UnknownHostException e) {
+                    throw new GeneralException("URL_RESOURCE target contains an invalid IPv4-mapped IPv6 address");
+                }
+            }
+        }
+    }
+
     public static File getContentFile(String dataResourceTypeId, String objectInfo, String contextRoot)
             throws GeneralException, FileNotFoundException {
         File file = null;
@@ -478,6 +638,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (!file.isAbsolute()) {
                 throw new GeneralException("File (" + objectInfo + ") is not absolute");
             }
+            SecurityUtil.checkLocalFileAllowList(file);
         } else if ("OFBIZ_FILE".equals(dataResourceTypeId) || "OFBIZ_FILE_BIN".equals(dataResourceTypeId)) {
             String prefix = System.getProperty("ofbiz.home");
 
@@ -489,6 +650,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + (prefix + sep + objectInfo));
             }
+            SecurityUtil.checkOfbizFileAllowList(file);
         } else if ("CONTEXT_FILE".equals(dataResourceTypeId) || "CONTEXT_FILE_BIN".equals(dataResourceTypeId)) {
             if (UtilValidate.isEmpty(contextRoot)) {
                 throw new GeneralException("Cannot find CONTEXT_FILE with an empty context root!");
@@ -499,6 +661,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
                 sep = "/";
             }
             file = FileUtil.getFile(contextRoot + sep + objectInfo);
+            checkContextFileBoundary(file, contextRoot);
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + (contextRoot + sep + objectInfo));
             }
@@ -728,7 +891,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
                         StringBuffer newTemplateText = new StringBuffer(templateText);
                         String webAnalyticsCode = "<script type=\"application/javascript\">";
                         for (GenericValue webAnalytic : webAnalytics) {
-                            StringWrapper wrapString = StringUtil.wrapString((String) webAnalytic.get("webAnalyticsCode"));
+                            StringUtil.StringWrapper wrapString = StringUtil.wrapString((String) webAnalytic.get("webAnalyticsCode"));
                             webAnalyticsCode += wrapString.toString();
                         }
                         webAnalyticsCode += "</script>";
@@ -738,23 +901,18 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
 
                     // render the FTL template
                     boolean useTemplateCache = cache && !UtilProperties.getPropertyAsBoolean("content", "disable.ftl.template.cache", false);
-                    //Do not use dataResource.lastUpdatedStamp for dataResource template caching as it may use ftl file or electronicText
-                    // If dataResource using ftl file use nowTimestamp to avoid freemarker caching
-                    Timestamp lastUpdatedStamp = UtilDateTime.nowTimestamp();
-                    //If dataResource is type of ELECTRONIC_TEXT then only use the lastUpdatedStamp of electronicText entity for freemarker caching
-                    if ("ELECTRONIC_TEXT".equals(dataResource.getString("dataResourceTypeId"))) {
-                        GenericValue electronicText = dataResource.getRelatedOne("ElectronicText", true);
-                        if (electronicText != null) {
-                            lastUpdatedStamp = electronicText.getTimestamp("lastUpdatedStamp");
-                        }
+                    if ("ELECTRONIC_TEXT".equals(dataResource.getString("dataResourceTypeId"))
+                            || "SHORT_TEXT".equalsIgnoreCase(dataResource.getString("dataResourceTypeId"))
+                            || "LINK".equalsIgnoreCase(dataResource.getString("dataResourceTypeId"))) {
+                        throw new GeneralException("Error rendering template: FreeMarker templates are no longer supported for "
+                                + dataResource.getString("dataResourceTypeId") + " data resources.");
                     }
 
                     FreeMarkerWorker.renderTemplateFromString("delegator:" + delegator.getDelegatorName() + ":DataResource:"
-                            + dataResourceId, templateText, templateContext, out, lastUpdatedStamp.getTime(), useTemplateCache);
+                            + dataResourceId, templateText, templateContext, out, UtilDateTime.nowTimestamp().getTime(), useTemplateCache);
                 } catch (TemplateException e) {
                     throw new GeneralException("Error rendering FTL template", e);
                 }
-
             } else if ("XSLT".equals(dataTemplateTypeId)) {
                 File targetFileLocation = new File(System.getProperty("ofbiz.home") + "/runtime/tempfiles/docbook.css");
                 String defaultVisualThemeId = EntityUtilProperties.getPropertyValue("general", "VISUAL_THEME", delegator);
@@ -932,12 +1090,34 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             URL url = FlexibleLocation.resolveLocation(dataResource.getString("objectInfo"));
 
             if (url.getHost() != null) { // is absolute
-                int c;
-                try (InputStream in = url.openStream(); StringWriter sw = new StringWriter()) {
-                    while ((c = in.read()) != -1) {
-                        sw.write(c);
+                checkUrlResourceAllowed(url);
+                int connectTimeout = (int) UtilProperties.getPropertyNumber("security",
+                        "content.data.url.resource.connect.timeout", 10000.0);
+                int readTimeout = (int) UtilProperties.getPropertyNumber("security",
+                        "content.data.url.resource.read.timeout", 30000.0);
+                long maxResponseSize = (long) UtilProperties.getPropertyNumber("security",
+                        "content.data.url.resource.max.response.size", (double) (10L * 1024 * 1024));
+                URLConnection con = url.openConnection();
+                con.setConnectTimeout(connectTimeout);
+                con.setReadTimeout(readTimeout);
+                // Disable automatic redirect-following to prevent SSRF bypass via redirect to private addresses
+                if (con instanceof HttpURLConnection) ((HttpURLConnection) con).setInstanceFollowRedirects(false);
+                con.connect();
+                // Reject redirects outright; we cannot safely re-validate an arbitrary Location header
+                if (con instanceof HttpURLConnection) {
+                    HttpURLConnection httpCon = (HttpURLConnection) con;
+                    int responseCode = httpCon.getResponseCode();
+                    if (responseCode >= 300 && responseCode < 400) {
+                        httpCon.disconnect();
+                        throw new GeneralException("URL_RESOURCE request returned a redirect (" + responseCode
+                                + "); redirects are not followed for security reasons");
                     }
-                    text = sw.toString();
+                }
+                try (InputStream limitedIn = BoundedInputStream.builder()
+                        .setInputStream(con.getInputStream())
+                        .setMaxCount(maxResponseSize)
+                        .get()) {
+                    text = IOUtils.toString(limitedIn, StandardCharsets.UTF_8);
                 }
             } else {
                 String prefix = DataResourceWorker.buildRequestPrefix(delegator, locale, webSiteId, https);
@@ -1036,6 +1216,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + file.getAbsolutePath());
             }
+            SecurityUtil.checkLocalFileAllowList(file);
             try (InputStreamReader in = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
                 UtilIO.copy(in, out);
             }
@@ -1049,6 +1230,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + file.getAbsolutePath());
             }
+            SecurityUtil.checkOfbizFileAllowList(file);
             try (InputStreamReader in = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
                 UtilIO.copy(in, out);
             }
@@ -1059,6 +1241,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
                 sep = "/";
             }
             File file = FileUtil.getFile(prefix + sep + objectInfo);
+            checkContextFileBoundary(file, rootDir);
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + file.getAbsolutePath());
             }
@@ -1180,8 +1363,47 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
                     url = UtilURL.fromUrlString(newUrl);
                 }
 
+                // SSRF prevention: validate protocol, optional host allow-list, and resolved IP ranges
+                checkUrlResourceAllowed(url);
+
+                int connectTimeout = (int) UtilProperties.getPropertyNumber("security",
+                        "content.data.url.resource.connect.timeout", 10000.0);
+                int readTimeout = (int) UtilProperties.getPropertyNumber("security",
+                        "content.data.url.resource.read.timeout", 30000.0);
+                long maxResponseSize = (long) UtilProperties.getPropertyNumber("security",
+                        "content.data.url.resource.max.response.size", (double) (10L * 1024 * 1024));
+
                 URLConnection con = url.openConnection();
-                return UtilMisc.toMap("stream", con.getInputStream(), "length", (long) con.getContentLength());
+                con.setConnectTimeout(connectTimeout);
+                con.setReadTimeout(readTimeout);
+                // Disable automatic redirect-following to prevent SSRF bypass via redirect to private addresses
+                if (con instanceof HttpURLConnection) ((HttpURLConnection) con).setInstanceFollowRedirects(false);
+                con.connect();
+
+                // Reject redirects outright; we cannot safely re-validate an arbitrary Location header
+                if (con instanceof HttpURLConnection) {
+                    HttpURLConnection httpCon = (HttpURLConnection) con;
+                    int responseCode = httpCon.getResponseCode();
+                    if (responseCode >= 300 && responseCode < 400) {
+                        httpCon.disconnect();
+                        throw new GeneralException("URL_RESOURCE request returned a redirect (" + responseCode
+                                + "); redirects are not followed for security reasons");
+                    }
+                }
+
+                long contentLength = con.getContentLengthLong();
+                if (contentLength > maxResponseSize) {
+                    if (con instanceof HttpURLConnection) ((HttpURLConnection) con).disconnect();
+                    throw new GeneralException("URL_RESOURCE response Content-Length (" + contentLength
+                            + " bytes) exceeds the configured maximum of " + maxResponseSize + " bytes");
+                }
+
+                // Wrap with a bounded stream to enforce the size cap regardless of the Content-Length header
+                InputStream limitedStream = BoundedInputStream.builder()
+                        .setInputStream(con.getInputStream())
+                        .setMaxCount(maxResponseSize)
+                        .get();
+                return UtilMisc.toMap("stream", limitedStream, "length", contentLength);
             }
             throw new GeneralException("No objectInfo found for URL_RESOURCE type; cannot stream");
         }
