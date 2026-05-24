@@ -45,7 +45,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -115,6 +117,10 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
     private static final String MODULE = DataResourceWorker.class.getName();
     private static final String ERR_RESOURCE = "ContentErrorUiLabels";
     private static final String PROPERTY_RESOURCE = "content";
+    // poslotron-2 customization: track dataResourceIds for which we've already warned about
+    // the upstream FTL/ELECTRONIC_TEXT rendering restriction (OFBiz commit 8a72ba31ab), so the
+    // soft-fail path in renderDataResourceAsText doesn't spam the logs.
+    private static final Set<String> WARNED_LEGACY_FTL_DATA_RESOURCES = ConcurrentHashMap.newKeySet();
 
     /**
      * Traverses the DataCategory parent/child structure and put it in categoryNode. Returns non-null error string if there is an error.
@@ -901,15 +907,27 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
 
                     // render the FTL template
                     boolean useTemplateCache = cache && !UtilProperties.getPropertyAsBoolean("content", "disable.ftl.template.cache", false);
-                    if ("ELECTRONIC_TEXT".equals(dataResource.getString("dataResourceTypeId"))
-                            || "SHORT_TEXT".equalsIgnoreCase(dataResource.getString("dataResourceTypeId"))
-                            || "LINK".equalsIgnoreCase(dataResource.getString("dataResourceTypeId"))) {
-                        throw new GeneralException("Error rendering template: FreeMarker templates are no longer supported for "
-                                + dataResource.getString("dataResourceTypeId") + " data resources.");
+                    // poslotron-2 customization: upstream OFBiz commit 8a72ba31ab blocks FreeMarker rendering for
+                    // ELECTRONIC_TEXT / SHORT_TEXT / LINK data resources as a security hardening. Throwing here
+                    // breaks legitimate legacy data (e.g. category names/descriptions stored with
+                    // dataTemplateTypeId=FTL by the OFBiz back-office UI). Instead of throwing, render the raw
+                    // text without FreeMarker processing (same path as dataTemplateTypeId=NONE). This preserves
+                    // the security intent (no FTL evaluation of DB-stored templates) while keeping pages usable.
+                    String dataResourceTypeId = dataResource.getString("dataResourceTypeId");
+                    if ("ELECTRONIC_TEXT".equals(dataResourceTypeId)
+                            || "SHORT_TEXT".equalsIgnoreCase(dataResourceTypeId)
+                            || "LINK".equalsIgnoreCase(dataResourceTypeId)) {
+                        /*if (WARNED_LEGACY_FTL_DATA_RESOURCES.add(dataResourceId)) {
+                            Debug.logWarning("FreeMarker template rendering is disabled for " + dataResourceTypeId
+                                    + " data resources (upstream OFBiz security restriction). Falling back to plain"
+                                    + " text rendering. dataResourceId=" + dataResourceId
+                                    + ", dataResourceName=" + dataResource.getString("dataResourceName"), MODULE);
+                        }*/
+                        DataResourceWorker.writeDataResourceText(dataResource, targetMimeTypeId, locale, templateContext, delegator, out, cache);
+                    } else {
+                        FreeMarkerWorker.renderTemplateFromString("delegator:" + delegator.getDelegatorName() + ":DataResource:"
+                                + dataResourceId, templateText, templateContext, out, UtilDateTime.nowTimestamp().getTime(), useTemplateCache);
                     }
-
-                    FreeMarkerWorker.renderTemplateFromString("delegator:" + delegator.getDelegatorName() + ":DataResource:"
-                            + dataResourceId, templateText, templateContext, out, UtilDateTime.nowTimestamp().getTime(), useTemplateCache);
                 } catch (TemplateException e) {
                     throw new GeneralException("Error rendering FTL template", e);
                 }
