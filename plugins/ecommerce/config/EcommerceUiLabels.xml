@@ -2925,6 +2925,10 @@
         <value xml:lang="zh">请等待</value>
         <value xml:lang="zh-TW">請等待</value>
     </property>
+    <property key="EcommerceRegistrationCompleted">
+        <value xml:lang="en">Registration completed successfully. You are now logged in to the web shop.</value>
+        <value xml:lang="hr">Registracija je uspješno dovršena. Sada ste prijavljeni u web dućan.</value>
+    </property>
     <property key="EcommercePointsFrom">
         <value xml:lang="da">point fra</value>
         <value xml:lang="de">Punkte von</value>

@@ -382,6 +382,15 @@ under the License.
         <set field="securityParams.userLogin" from-field="userLogin"/>
         <call-service service-name="addUserLoginToSecurityGroup" in-map-name="securityParams"/>
 
+        <!-- Replace the auto-generated entity-auto success messages (e.g. "Security Component - User
+             Login Security Group created successfully") with a single, user-friendly, localized
+             message about the overall registration outcome. In a simple-method invoked as an EVENT
+             the request-visible fields are _event_message_ / _event_message_list_ (NOT
+             successMessage / successMessageList, which only apply in service mode). -->
+        <clear-field field="_event_message_list_"/>
+        <property-to-field field="registrationSuccessMessage" resource="EcommerceUiLabels" property="EcommerceRegistrationCompleted"/>
+        <set field="_event_message_" from-field="registrationSuccessMessage"/>
+
         <!-- tell the control servlet that we just logged in the user... -->
         <set value="TRUE" field="_LOGIN_PASSED_"/>
         <field-to-request field="_LOGIN_PASSED_"/>
