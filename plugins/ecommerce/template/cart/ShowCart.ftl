@@ -80,11 +80,11 @@ under the License.
       </a>
       <#if (shoppingCartSize > 0)>
         <a href="<@ofbizUrl>checkoutoptions</@ofbizUrl>" class="submenutext">
-          ${uiLabelMap.OrderCheckout}
+          ${uiLabelMap.OrderCheckoutQuick}
         </a>
       <#else>
         <span class="submenutextrightdisabled">
-          ${uiLabelMap.OrderCheckout}
+          ${uiLabelMap.OrderCheckoutQuick}
         </span>
       </#if>
       ${uiLabelMap.CommonQuickAdd}
@@ -166,9 +166,9 @@ under the License.
       <div class="col-xl-12">
         <span class="h3">${uiLabelMap.OrderShoppingCart}</span>
         <#if (shoppingCartSize > 0)>
-          <a class="btn btn-primary float-right" href="<@ofbizUrl>checkoutoptions</@ofbizUrl>">${uiLabelMap.OrderCheckout}</a>
+          <a class="btn btn-primary float-right" href="<@ofbizUrl>checkoutoptions</@ofbizUrl>">${uiLabelMap.OrderCheckoutQuick}</a>
         <#else>
-          <a class="btn btn-primary disabled float-right" href="#">${uiLabelMap.OrderCheckout}</a>
+          <a class="btn btn-primary disabled float-right" href="#">${uiLabelMap.OrderCheckoutQuick}</a>
         </#if>
       </div>
     </div>
@@ -567,9 +567,9 @@ under the License.
         <div class="row mb-2">
           <div class="col-xl-12">
             <#if (shoppingCartSize > 0)>
-              <a class="btn btn-primary float-right" href="<@ofbizUrl>checkoutoptions</@ofbizUrl>">${uiLabelMap.OrderCheckout}</a>
+              <a class="btn btn-primary float-right" href="<@ofbizUrl>checkoutoptions</@ofbizUrl>">${uiLabelMap.OrderCheckoutQuick}</a>
             <#else>
-              <a class="btn btn-primary disabled float-right" href="#">${uiLabelMap.OrderCheckout}</a>
+              <a class="btn btn-primary disabled float-right" href="#">${uiLabelMap.OrderCheckoutQuick}</a>
             </#if>
           </div>
         </div>
