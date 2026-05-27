@@ -55,7 +55,6 @@
                            fiscalServiceId="SOLO"
                            fiscalPaymentTerminalLabel="1"
                            description="B2C terminal"
-                           lastInvoiceNumber="0"
                            fromDate="2025-12-01 00:00:00.000"
                            thruDate=""/>
     <FiscalPaymentTerminal fiscalPaymentTerminalId="2"
@@ -63,7 +62,6 @@
                            fiscalServiceId="MER"
                            fiscalPaymentTerminalLabel="2"
                            description="B2B/B2G terminal"
-                           lastInvoiceNumber="0"
                            fromDate="2025-12-01 00:00:00.000"
                            thruDate=""/>
 
