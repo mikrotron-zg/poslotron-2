@@ -82,11 +82,11 @@ under the License.
           <td>
           <a href="<@ofbizUrl>CreateVirtualWithVariantsForm</@ofbizUrl>" class="buttontext">${uiLabelMap.ProductQuickCreateVirtualFromVariants}</a></td>
         </tr>
-        <tr>
+        <#--<tr>
           <td class="label"/>
           <td><a href="<@ofbizUrl>UpdateAllKeywords</@ofbizUrl>" class="buttontext"> ${uiLabelMap.ProductAutoCreateKeywordsForAllProducts}</a>
           </td>
-        </tr>
+        </tr>-->
         <tr>
             <td class="label"/>
             <td>
