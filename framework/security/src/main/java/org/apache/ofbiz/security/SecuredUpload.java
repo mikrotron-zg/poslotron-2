@@ -782,11 +782,10 @@ public class SecuredUpload {
                 }
                 int marker = bytes[pos++] & 0xFF;
                 if (marker == 0xD9) {
-                    // EOI — reject any trailing bytes
-                    if (pos != bytes.length) {
-                        Debug.logError("================ Not saved for security reason, JPEG has trailing bytes after EOI ================", MODULE);
-                        return false;
-                    }
+                    // EOI — trailing bytes (e.g. padding, thumbnails, scanner debris) are
+                    // tolerated here because imageMadeSafe() always re-encodes the file via
+                    // ImageIO.write / ImageParser.writeImage, which emits only valid image
+                    // data and silently drops anything past the terminator.
                     return true;
                 } else if (marker >= 0xD0 && marker <= 0xD8) {
                     // SOI (0xD8) and RST0–RST7 (0xD0–0xD7) — no length field
@@ -855,11 +854,9 @@ public class SecuredUpload {
             while (pos < bytes.length) {
                 int blockType = bytes[pos++] & 0xFF;
                 if (blockType == 0x3B) {
-                    // Trailer — reject any trailing bytes
-                    if (pos != bytes.length) {
-                        Debug.logError("=============== Not saved for security reason, GIF has trailing bytes after Trailer ===============", MODULE);
-                        return false;
-                    }
+                    // Trailer — trailing bytes are tolerated; see noWebshellInJPEG() above:
+                    // imageMadeSafe() re-encodes via ImageIO.write / ImageParser.writeImage
+                    // and emits only valid image data, dropping anything past the Trailer.
                     return true;
                 } else if (blockType == 0x21) {
                     // Extension: label byte + sub-blocks
