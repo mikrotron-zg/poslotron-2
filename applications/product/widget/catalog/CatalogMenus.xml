@@ -55,7 +55,7 @@ under the License.
             </condition>
             <link target="quickAddProduct"/>
         </menu-item>
-        <menu-item name="newStore" title="${uiLabelMap.ProductCreateNewProductStore}">
+        <menu-item name="newCategory" title="${uiLabelMap.ProductCreateNewCategory}">
             <condition>
                 <and>
                     <or>
@@ -63,7 +63,7 @@ under the License.
                     </or>
                 </and>
             </condition>
-            <link target="EditProductStore"/>
+            <link target="EditCategory"/>
         </menu-item>
         <menu-item name="newCatalog" title="${uiLabelMap.ProductCreateNewCatalog}">
             <condition>
@@ -75,7 +75,7 @@ under the License.
             </condition>
             <link target="EditProdCatalog"/>
         </menu-item>
-        <menu-item name="newCategory" title="${uiLabelMap.ProductCreateNewCategory}">
+        <menu-item name="newStore" title="${uiLabelMap.ProductCreateNewProductStore}">
             <condition>
                 <and>
                     <or>
@@ -83,7 +83,7 @@ under the License.
                     </or>
                 </and>
             </condition>
-            <link target="EditCategory"/>
+            <link target="EditProductStore"/>
         </menu-item>
     </menu>
     <menu name="CatalogShortcutAppBar" title="${uiLabelMap.ProductCatalogManager}">
