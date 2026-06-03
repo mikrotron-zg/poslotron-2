@@ -29,6 +29,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
@@ -108,7 +109,7 @@ public final class StringUtil {
     public static String join(Collection<?> col, CharSequence delim) {
         return UtilValidate.isEmpty(col)
                 ? null
-                : col.stream().map(Object::toString).collect(Collectors.joining(delim));
+                : col.stream().filter(Objects::nonNull).map(Object::toString).collect(Collectors.joining(delim));
     }
 
     /**
