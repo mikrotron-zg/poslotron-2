@@ -88,10 +88,14 @@ under the License.
                 <select-field field-name="partyId"/>
                 <select-field field-name="userLoginId"/>
                 <select-field field-name="clientIpAddress"/>
+                <select-field field-name="fromDate"/>
                 <order-by field-name="${parameters.sortField}"/>
             </entity-condition>
         </actions>
-        
+        <row-actions>
+            <set field="canForceLogout" value="${groovy: fromDate != null &amp;&amp; fromDate.time &lt; (nowTimestamp.time - 10800000L) ? 'true' : 'false'}" type="String"/>
+        </row-actions>
+
         <field name="userLoginId" title="${uiLabelMap.CommonUserLoginId}" sort-field="true"><display/></field>
         <field name="partyId" widget-style="buttontext" sort-field="true">
             <hyperlink description="${partyId}" target="viewprofile">
@@ -99,5 +103,11 @@ under the License.
             </hyperlink>
         </field>
         <field name="clientIpAddress" title="${uiLabelMap.PartyClientIP}" sort-field="true"><display/></field>
+        <field name="fromDate" title="${uiLabelMap.CommonFromDate}" sort-field="true"><display/></field>
+        <field name="forceLogout" title="${uiLabelMap.PartyForceLogout}" use-when="&quot;true&quot;.equals(canForceLogout)" widget-style="buttontext">
+            <hyperlink description="${uiLabelMap.PartyForceLogout}" target="forceUserLogout" confirmation-message="${uiLabelMap.PartyForceLogoutConfirm}">
+                <parameter param-name="userLoginId"/>
+            </hyperlink>
+        </field>
     </grid>
 </forms>

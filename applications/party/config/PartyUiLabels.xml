@@ -8636,6 +8636,14 @@
         <value xml:lang="zh">类型列表</value>
         <value xml:lang="zh-TW">表列類型</value>
     </property>
+    <property key="PartyForceLogout">
+        <value xml:lang="en">Force logout</value>
+        <value xml:lang="hr">Prisilna odjava</value>
+    </property>
+    <property key="PartyForceLogoutConfirm">
+        <value xml:lang="en">Force logout this user?</value>
+        <value xml:lang="hr">Prisilno odjaviti ovog korisnika?</value>
+    </property>
     <property key="PartyLoggedInUsers">
         <value xml:lang="ar">المستخدمين الداخلين على النظام</value>
         <value xml:lang="de">Angemeldete Benutzer</value>

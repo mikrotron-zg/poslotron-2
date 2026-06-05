@@ -254,4 +254,12 @@ under the License.
             </type-validate>
         </attribute>
     </service>
+
+    <service name="forceUserLogout" engine="groovy" auth="true"
+            location="component://party/src/main/groovy/org/apache/ofbiz/party/visit/VisitServices.groovy" invoke="forceUserLogout">
+        <description>Force a user to be logged out: sets UserLogin.hasLoggedOut=Y and expires active Visit records for that userLoginId</description>
+        <permission-service service-name="partyBasePermissionCheck" main-action="UPDATE"/>
+        <attribute name="userLoginId" type="String" mode="IN" optional="false"/>
+        <attribute name="expiredVisitCount" type="Integer" mode="OUT" optional="true"/>
+    </service>
 </services>

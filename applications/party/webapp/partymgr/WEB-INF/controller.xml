@@ -675,6 +675,12 @@ under the License.
     <request-map uri="findVisits"><security https="true" auth="true"/><response name="success" type="view" value="findVisits"/></request-map>
     <request-map uri="visitdetail"><security https="true" auth="true"/><response name="success" type="view" value="visitdetail"/></request-map>
     <request-map uri="listLoggedInUsers"><security https="true" auth="true"/><response name="success" type="view" value="listLoggedInUsers"/></request-map>
+    <request-map uri="forceUserLogout">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="forceUserLogout"/>
+        <response name="success" type="view" value="listLoggedInUsers"/>
+        <response name="error" type="view" value="listLoggedInUsers"/>
+    </request-map>
 
     <!-- communication event requests -->
     <request-map uri="setCommunicationEventRoleStatus">
