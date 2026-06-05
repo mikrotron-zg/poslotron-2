@@ -241,7 +241,7 @@ under the License.
                     </or>
                 </not>
             </condition>
-            <link target="/ecommerce/control/category" url-mode="plain">
+            <link target="/category" target-window="_blank" url-mode="inter-app">
                 <parameter param-name="category_id" from-field="productCategoryId"/>
             </link>
         </menu-item>
@@ -604,9 +604,7 @@ under the License.
                     </or>
                 </not>
             </condition>
-            <link target="/ecommerce/control/product" url-mode="inter-app">
-                <parameter param-name="product_id" from-field="productId"/>
-            </link>
+            <link target="/product/${productId}" target-window="_blank" url-mode="inter-app" />
         </menu-item>
         <menu-item name="ProductBarCode" title="${uiLabelMap.ProductBarcode}">
             <condition>
