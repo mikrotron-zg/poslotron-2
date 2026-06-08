@@ -147,4 +147,136 @@ under the License.
         <field name="productWeight" title="${uiLabelMap.PoslotronProductWeightInGrams}"><display/></field>
     </grid>
 
+    <!--
+        Warehouse status filter form. All fields are optional. productTypeId
+        is constrained to physical "GOOD" subtypes and defaults to FINISHED_GOOD
+        (the no-current-selected-key trick); every other field defaults to "any".
+
+        The supplierPartyId drop-down carries a sentinel value "__NONE__" right
+        after the empty (any) option so the user can ask for products that have
+        no active SupplierProduct row. The follow-up groovy script
+        (WarehouseStatus.groovy) interprets the sentinel.
+
+        QOH filtering is split across two fields - the operator selector and
+        the numeric value - because the result QOH is an aggregate (summed from
+        InventoryItem) that we can't push into a SQL WHERE clause. The groovy
+        script applies the comparison in memory.
+    -->
+    <form name="LookupWarehouseStatus" type="single" target="WarehouseStatus" focus-field-name="productId"
+          header-row-style="header-row" default-table-style="basic-table">
+        <!--
+            Hidden marker so the groovy script can tell a real form submission
+            apart from the initial GET on /catalog/control/WarehouseStatus.
+            On a first load the script applies its own default for productTypeId
+            (FINISHED_GOOD) - the form's no-current-selected-key only sets the
+            display default, it never reaches the request when the form has
+            not been submitted yet.
+        -->
+        <field name="searchSubmitted"><hidden value="Y"/></field>
+        <field name="productId" title="${uiLabelMap.ProductProductId}">
+            <lookup target-form-name="LookupProduct"/>
+        </field>
+        <!--
+            Mirror the productTypeId drop-down used by EditProduct
+            (ProductForms.xml#EditProduct): no entity-constraints, ordered by
+            description. This way SERVICE, DIGITAL_GOOD, RAW_MATERIAL, ... all
+            show up and the user can filter by any of them. FINISHED_GOOD is
+            kept as the initial display default via no-current-selected-key.
+        -->
+        <field name="productTypeId" title="${uiLabelMap.ProductProductType}">
+            <drop-down allow-empty="true" no-current-selected-key="FINISHED_GOOD">
+                <entity-options entity-name="ProductType">
+                    <entity-order-by field-name="description"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="productCategoryId" title="${uiLabelMap.ProductCategory}">
+            <lookup target-form-name="LookupProductCategory"/>
+        </field>
+        <field name="supplierPartyId" title="${uiLabelMap.PoslotronWarehouseStatusSupplier}">
+            <drop-down allow-empty="true">
+                <option key="__NONE__" description="${uiLabelMap.PoslotronWarehouseStatusNoSupplier}"/>
+                <entity-options entity-name="PartyRoleAndPartyDetail" key-field-name="partyId" description="${groupName} [${partyId}]">
+                    <entity-constraint name="roleTypeId" operator="equals" value="SUPPLIER"/>
+                    <entity-constraint name="statusId" operator="equals" value="PARTY_ENABLED"/>
+                    <entity-order-by field-name="groupName"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="quantityOnHandOp" title="${uiLabelMap.PoslotronWarehouseStatusQohOperator}">
+            <drop-down allow-empty="true">
+                <option key="LT" description="${uiLabelMap.PoslotronWarehouseStatusOpLT}"/>
+                <option key="LTE" description="${uiLabelMap.PoslotronWarehouseStatusOpLTE}"/>
+                <option key="EQ" description="${uiLabelMap.PoslotronWarehouseStatusOpEQ}"/>
+                <option key="GTE" description="${uiLabelMap.PoslotronWarehouseStatusOpGTE}"/>
+                <option key="GT" description="${uiLabelMap.PoslotronWarehouseStatusOpGT}"/>
+            </drop-down>
+        </field>
+        <field name="quantityOnHandValue" title="${uiLabelMap.PoslotronWarehouseStatusQohValue}">
+            <text size="10" maxlength="20"/>
+        </field>
+        <field name="searchButton" widget-style="search"><submit/></field>
+    </form>
+
+    <!--
+        Warehouse status result grid. Bound to the warehouseRows list built in
+        WarehouseStatus.groovy. Default ordering (QOH ascending) is applied
+        inside the script before the rows reach this widget; sort-field="true"
+        on every column lets the user re-order interactively (the script also
+        handles the sortField submit so pagination keeps the order across
+        pages).
+
+        lastPrice is rendered through display type="currency" with the per-row
+        currency code (currencyUomId comes from SupplierProduct). This is the
+        same pattern the fiscal plugin uses (see FiscalForms.xml#ListFiscalInvoice)
+        and produces locale-aware output - e.g., "45,28 €" for hr_HR + EUR -
+        instead of the raw BigDecimal.toString().
+    -->
+    <grid name="ListWarehouseStatus" list-name="warehouseRows"
+          odd-row-style="alternate-row" header-row-style="header-row-2"
+          default-table-style="basic-table hover-bar">
+        <actions>
+            <script location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/product/WarehouseStatus.groovy"/>
+        </actions>
+        <field name="productId" title="${uiLabelMap.ProductProductId}" sort-field="true" widget-style="buttontext">
+            <hyperlink description="${productId}" target="EditProduct">
+                <parameter param-name="productId"/>
+            </hyperlink>
+        </field>
+        <field name="internalName" title="${uiLabelMap.ProductInternalName}" sort-field="true">
+            <display description="${internalName}"/>
+        </field>
+        <field name="quantityOnHandTotal" title="${uiLabelMap.PoslotronWarehouseStatusQoh}" sort-field="true">
+            <display description="${quantityOnHandTotal}"/>
+        </field>
+        <field name="availableToPromiseTotal" title="${uiLabelMap.PoslotronWarehouseStatusAtp}" sort-field="true">
+            <display description="${availableToPromiseTotal}"/>
+        </field>
+        <field name="accountingQuantityTotal" title="${uiLabelMap.PoslotronWarehouseStatusAqt}" sort-field="true">
+            <display description="${accountingQuantityTotal}"/>
+        </field>
+        <!--
+            Supplier name rendered as a link to the supplier's primary web URL
+            when one is on file (mirrors the ListSupplier grid). The HTML is
+            built in WarehouseStatus.groovy with the URL + label HTML-encoded;
+            encode-output="false" lets the anchor markup pass through. The
+            field name remains "supplierName" so sort-field="true" sorts on
+            the raw text rather than the rendered markup.
+        -->
+        <field name="supplierName" title="${uiLabelMap.PoslotronWarehouseStatusSupplier}" sort-field="true" encode-output="false">
+            <display description="${supplierNameHtml}"/>
+        </field>
+        <field name="supplierProductId" title="${uiLabelMap.PoslotronWarehouseStatusSupplierProductId}" sort-field="true">
+            <display description="${supplierProductId}"/>
+        </field>
+        <field name="lastReceivedDate" title="${uiLabelMap.PoslotronWarehouseStatusLastReceived}" sort-field="true"
+               widget-area-style="align-center" title-area-style="align-center">
+            <display type="date"/>
+        </field>
+        <field name="lastPrice" title="${uiLabelMap.PoslotronWarehouseStatusLastPrice}" sort-field="true"
+               widget-area-style="align-right" title-area-style="align-right">
+            <display type="currency" currency="${currencyUomId}"/>
+        </field>
+    </grid>
+
 </forms>

@@ -67,4 +67,18 @@ under the License.
     <view-map name="quickAddProduct" type="screen"
               page="component://poslotron/widget/CatalogAppExtScreens.xml#quickAddProduct"/>
 
+    <!-- ===== Warehouse status ===== -->
+    <!--
+        Landing page for the global warehouse-status report (Stanje skladišta).
+        Reached from the new ProductSubTabBar menu item; all filtering happens
+        in the linked Groovy script.
+    -->
+    <request-map uri="WarehouseStatus">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="WarehouseStatus"/>
+    </request-map>
+
+    <view-map name="WarehouseStatus" type="screen"
+              page="component://poslotron/widget/CatalogAppExtScreens.xml#warehouseStatus"/>
+
 </site-conf>

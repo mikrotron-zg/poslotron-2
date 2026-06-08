@@ -102,4 +102,49 @@ under the License.
         </section>
     </screen>
 
+    <!--
+        Warehouse status landing screen. Hosts the filter form and the result
+        grid. The grid's <actions> block runs WarehouseStatus.groovy which
+        populates `warehouseRows` based on the submitted filters (productId,
+        productTypeId, productCategoryId, supplierPartyId, quantityOnHand
+        operator + value).
+
+        Linked from the ProductSubTabBar menu (see CatalogMenus.xml). The
+        screen is not product-specific even though the entry point lives in
+        the product menu, so we don't read or render a productId.
+    -->
+    <screen name="warehouseStatus">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PoslotronWarehouseStatus"/>
+                <set field="headerItem" value="products"/>
+                <set field="tabButtonItem" value="warehouseStatus"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <if-has-permission permission="CATALOG" action="_VIEW"/>
+                            </condition>
+                            <widgets>
+                                <screenlet id="WarehouseStatusFilterPanel" title="${uiLabelMap.PoslotronWarehouseStatus}"
+                                           navigation-form-name="LookupWarehouseStatus"
+                                           save-collapsed="false" collapsible="true" initially-collapsed="${initialyCollapsed}">
+                                    <include-form name="LookupWarehouseStatus" location="component://poslotron/widget/CatalogAppExtForms.xml"/>
+                                </screenlet>
+                                <screenlet title="${uiLabelMap.CommonSearchResults}" navigation-form-name="ListWarehouseStatus">
+                                    <include-grid name="ListWarehouseStatus" location="component://poslotron/widget/CatalogAppExtForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3" text="${uiLabelMap.ProductCatalogViewPermissionError}"/>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+
 </screens>

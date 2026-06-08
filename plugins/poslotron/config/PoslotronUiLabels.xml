@@ -175,4 +175,74 @@ under the License.
         <value xml:lang="en">Row {0} ({1}): {2}</value>
         <value xml:lang="hr">Red {0} ({1}): {2}</value>
     </property>
+
+    <!-- ===== Warehouse status (Stanje skladišta) ===== -->
+    <property key="PoslotronWarehouseStatus">
+        <value xml:lang="en">Warehouse status</value>
+        <value xml:lang="hr">Stanje skladišta</value>
+    </property>
+    <property key="PoslotronWarehouseStatusNoSupplier">
+        <value xml:lang="en">(No supplier defined)</value>
+        <value xml:lang="hr">(Bez dobavljača)</value>
+    </property>
+    <property key="PoslotronWarehouseStatusQohOperator">
+        <value xml:lang="en">QOH filter</value>
+        <value xml:lang="hr">Filtar QOH</value>
+    </property>
+    <property key="PoslotronWarehouseStatusQohValue">
+        <value xml:lang="en">QOH value</value>
+        <value xml:lang="hr">Vrijednost QOH</value>
+    </property>
+    <property key="PoslotronWarehouseStatusOpLT">
+        <value xml:lang="en">less than</value>
+        <value xml:lang="hr">manje od</value>
+    </property>
+    <property key="PoslotronWarehouseStatusOpLTE">
+        <value xml:lang="en">less than or equal</value>
+        <value xml:lang="hr">manje ili jednako</value>
+    </property>
+    <property key="PoslotronWarehouseStatusOpEQ">
+        <value xml:lang="en">equal to</value>
+        <value xml:lang="hr">jednako</value>
+    </property>
+    <property key="PoslotronWarehouseStatusOpGTE">
+        <value xml:lang="en">greater than or equal</value>
+        <value xml:lang="hr">veće ili jednako</value>
+    </property>
+    <property key="PoslotronWarehouseStatusOpGT">
+        <value xml:lang="en">greater than</value>
+        <value xml:lang="hr">veće od</value>
+    </property>
+    <property key="PoslotronWarehouseStatusQoh">
+        <value xml:lang="en">QOH</value>
+        <value xml:lang="hr">QOH</value>
+    </property>
+    <property key="PoslotronWarehouseStatusAtp">
+        <value xml:lang="en">ATP</value>
+        <value xml:lang="hr">ATP</value>
+    </property>
+    <property key="PoslotronWarehouseStatusAqt">
+        <value xml:lang="en">AQT</value>
+        <value xml:lang="hr">AQT</value>
+    </property>
+    <property key="PoslotronWarehouseStatusLastReceived">
+        <value xml:lang="en">Last received</value>
+        <value xml:lang="hr">Zadnji prijem</value>
+    </property>
+    <property key="PoslotronWarehouseStatusSupplier">
+        <value xml:lang="en">Supplier</value>
+        <value xml:lang="hr">Dobavljač</value>
+    </property>
+    <property key="PoslotronWarehouseStatusSupplierProductId">
+        <value xml:lang="en">Supplier's product ID</value>
+        <value xml:lang="hr">Id proizvoda dobavljača</value>
+    </property>
+    <property key="PoslotronWarehouseStatusLastPrice">
+        <value xml:lang="en">Last price</value>
+        <value xml:lang="hr">Zadnja cijena</value>
+    </property>
+    <property key="PoslotronWarehouseStatusQohValueInvalid">
+        <value xml:lang="en">QOH value ''{0}'' is not a valid number.</value>
+        <value xml:lang="hr">Vrijednost QOH ''{0}'' nije valjan broj.</value>
+    </property>
 </resource>
