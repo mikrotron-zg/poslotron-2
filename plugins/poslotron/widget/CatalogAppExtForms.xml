@@ -266,8 +266,19 @@ under the License.
         <field name="supplierName" title="${uiLabelMap.PoslotronWarehouseStatusSupplier}" sort-field="true" encode-output="false">
             <display description="${supplierNameHtml}"/>
         </field>
-        <field name="supplierProductId" title="${uiLabelMap.PoslotronWarehouseStatusSupplierProductId}" sort-field="true">
-            <display description="${supplierProductId}"/>
+        <!--
+            Supplier's product id, rendered as a deep link when the supplier
+            has a "catalog" web address on file. The base URL is any
+            WEB_ADDRESS contact mech without a contactMechPurposeTypeId
+            (PRIMARY_WEB_URL is intentionally excluded so the homepage and
+            the catalog deep-link can coexist on the same supplier). The
+            HTML is built in WarehouseStatus.groovy with both the URL and
+            the visible text properly encoded; encode-output="false" lets
+            the anchor markup pass through. Field name stays
+            "supplierProductId" so the column sorts on the raw text.
+        -->
+        <field name="supplierProductId" title="${uiLabelMap.PoslotronWarehouseStatusSupplierProductId}" sort-field="true" encode-output="false">
+            <display description="${supplierProductIdHtml}"/>
         </field>
         <field name="lastReceivedDate" title="${uiLabelMap.PoslotronWarehouseStatusLastReceived}" sort-field="true"
                widget-area-style="align-center" title-area-style="align-center">
