@@ -5706,4 +5706,8 @@
         <value xml:lang="en">Enter min 3 letters</value>
         <value xml:lang="hr">Upišite min. 3 slova</value>
     </property>
+    <property key="ProductTaxInPrice">
+        <value xml:lang="en">(VAT included)</value>
+        <value xml:lang="hr">(cijena s uračunatim PDV-om)</value>
+    </property>
 </resource>

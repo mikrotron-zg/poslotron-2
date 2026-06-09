@@ -504,48 +504,50 @@ ${variantInfoJavaScript!}
             <#assign priceStyle = "regularPrice" />
         </#if>-->
         <#if "Y" = product.isVirtual!>${uiLabelMap.CommonFrom}</#if>
-        <h4>
-          <span class="text-primary">
+        <div>
+          <span class="text-primary h4">
             <@ofbizCurrency amount=price.price isoCode=price.currencyUsed />
           </span>
-          <#if "ASSET_USAGE" == product.productTypeId! || "ASSET_USAGE_OUT_IN" == product.productTypeId!>
-            <#if product.reserv2ndPPPerc?? && product.reserv2ndPPPerc != 0><br/>
-              <span class="${priceStyle}">
-                ${uiLabelMap.ProductReserv2ndPPPerc}
-                <#if !product.reservNthPPPerc?? || product.reservNthPPPerc == 0>
-                  ${uiLabelMap.CommonUntil} ${product.reservMaxPersons!1}
-                </#if>
-                <@ofbizCurrency amount=product.reserv2ndPPPerc*price.price/100 isoCode=price.currencyUsed />
-              </span>
+          <span class="text-muted font-italic">${uiLabelMap.ProductTaxInPrice}</span>
+        </div>
+        <#if "ASSET_USAGE" == product.productTypeId! || "ASSET_USAGE_OUT_IN" == product.productTypeId!>
+        <#if product.reserv2ndPPPerc?? && product.reserv2ndPPPerc != 0><br/>
+          <span class="${priceStyle}">
+            ${uiLabelMap.ProductReserv2ndPPPerc}
+            <#if !product.reservNthPPPerc?? || product.reservNthPPPerc == 0>
+              ${uiLabelMap.CommonUntil} ${product.reservMaxPersons!1}
             </#if>
-            <#if product.reservNthPPPerc?? &&product.reservNthPPPerc != 0><br/>
-              <span class="${priceStyle}">
-                ${uiLabelMap.ProductReservNthPPPerc}
-                <#if !product.reserv2ndPPPerc?? || product.reserv2ndPPPerc == 0>
-                  ${uiLabelMap.ProductReservSecond}
-                <#else>
-                  ${uiLabelMap.ProductReservThird}
-                </#if>
-                ${uiLabelMap.CommonUntil} ${product.reservMaxPersons!1}, ${uiLabelMap.ProductEach}:
-                <@ofbizCurrency amount=product.reservNthPPPerc*price.price/100 isoCode=price.currencyUsed />
-              </span>
+            <@ofbizCurrency amount=product.reserv2ndPPPerc*price.price/100 isoCode=price.currencyUsed />
+          </span>
+        </#if>
+        <#if product.reservNthPPPerc?? &&product.reservNthPPPerc != 0><br/>
+          <span class="${priceStyle}">
+            ${uiLabelMap.ProductReservNthPPPerc}
+            <#if !product.reserv2ndPPPerc?? || product.reserv2ndPPPerc == 0>
+              ${uiLabelMap.ProductReservSecond}
+            <#else>
+              ${uiLabelMap.ProductReservThird}
             </#if>
-            <#if (!product.reserv2ndPPPerc?? || product.reserv2ndPPPerc == 0) && (!product.reservNthPPPerc?? ||
-                product.reservNthPPPerc == 0)>
-              <br/>${uiLabelMap.ProductMaximum} ${product.reservMaxPersons!1} ${uiLabelMap.ProductPersons}.
-            </#if>
-          </#if>
+            ${uiLabelMap.CommonUntil} ${product.reservMaxPersons!1}, ${uiLabelMap.ProductEach}:
+            <@ofbizCurrency amount=product.reservNthPPPerc*price.price/100 isoCode=price.currencyUsed />
+          </span>
+        </#if>
+        <#if (!product.reserv2ndPPPerc?? || product.reserv2ndPPPerc == 0) && (!product.reservNthPPPerc?? ||
+            product.reservNthPPPerc == 0)>
+          <br/>${uiLabelMap.ProductMaximum} ${product.reservMaxPersons!1} ${uiLabelMap.ProductPersons}.
+        </#if>
+        </#if>
       </div>
       <#if price.listPrice?? && price.price?? && price.price &lt; price.listPrice>
         <#assign priceSaved = price.listPrice - price.price />
         <#assign percentSaved = (priceSaved / price.listPrice) * 100 />
-        <p>
+        <div>
           ${uiLabelMap.OrderSave}:
           <span class="basePrice">
             <@ofbizCurrency amount=priceSaved isoCode=price.currencyUsed /> -
             ${percentSaved?int}%
           </span>
-        </p>
+        </div>
       </#if>
       <#-- show price details ("showPriceDetails" field can be set in the screen definition) -->
       <#if (showPriceDetails?? && "Y" == showPriceDetails?default("N"))>
@@ -622,9 +624,9 @@ ${variantInfoJavaScript!}
         <div>&nbsp;</div>
       </#if>
       <#if (productATP??) && (productATP > 0)>
-        <div class="text-info">${uiLabelMap.ProductQuantityOnHand}: ${productATP?string.number}</div>
+        <div class="text-info mt-3">${uiLabelMap.ProductQuantityOnHand}: ${productATP?string.number}</div>
       <#else>
-        <span class="text-danger">${uiLabelMap.FacilityNoItemsAvailableToShip}</span>
+        <div class="text-danger mt-3">${uiLabelMap.FacilityNoItemsAvailableToShip}</div>
       </#if>
     <div id="addItemForm">
       <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform" style="margin: 0;">
