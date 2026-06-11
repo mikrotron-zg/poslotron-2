@@ -290,4 +290,66 @@ under the License.
         </field>
     </grid>
 
+    <!--
+        Product deprecation result form. Bound to the deprecationRows list
+        built in ProductDeprecation.groovy. Default ordering (AQT descending)
+        is applied inside the script before the rows reach this widget;
+        sort-field="true" on every column lets the user re-order interactively
+        (the script also handles the sortField submit so pagination keeps the
+        order across pages).
+
+        type="multi" + use-row-submit="true" turns each row's _rowSubmit
+        checkbox into the row-selection mechanism understood by OFBiz's
+        multi-form helpers (UtilHttp.getMultiFormRowCount /
+        getRowSubmitPrefix). The hidden productId travels via
+        also-hidden="true" on the productId hyperlink so we get a
+        productId_o_<N> companion field per row that the form post carries
+        back to the controller event.
+
+        target = the POST endpoint that runs the bulk deprecation event;
+        paginate-target = the GET endpoint of this same screen so column
+        sorting and pagination links stay on ProductDeprecation rather than
+        re-issuing the deprecate-selected POST.
+
+        No <submit/> field is declared in the form. The "Deprecate selected
+        products" button is rendered above the table by the screen
+        (CatalogAppExtScreens.xml) and uses the HTML5 form="..." attribute
+        to submit this form by id; that way the call-to-action sits where
+        the user expects it (above the data) without us fighting the
+        form-widget renderer's footer-only submit placement.
+    -->
+    <form name="ListProductDeprecation" type="multi" use-row-submit="true"
+          target="deprecateSelectedProducts" list-name="deprecationRows"
+          paginate-target="ProductDeprecation"
+          odd-row-style="alternate-row" header-row-style="header-row-2"
+          default-table-style="basic-table hover-bar">
+        <actions>
+            <script location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/product/ProductDeprecation.groovy"/>
+        </actions>
+        <field name="productId" title="${uiLabelMap.ProductProductId}" sort-field="true" widget-style="buttontext">
+            <hyperlink description="${productId}" target="EditProduct" also-hidden="true">
+                <parameter param-name="productId"/>
+            </hyperlink>
+        </field>
+        <field name="internalName" title="${uiLabelMap.ProductInternalName}" sort-field="true">
+            <display description="${internalName}"/>
+        </field>
+        <field name="createdStamp" title="${uiLabelMap.FormFieldTitle_createdDate}" sort-field="true"
+               widget-area-style="align-center" title-area-style="align-center">
+            <display type="date"/>
+        </field>
+        <field name="accountingQuantityTotal" title="${uiLabelMap.PoslotronWarehouseStatusAqt}" sort-field="true">
+            <display description="${accountingQuantityTotal}"/>
+        </field>
+        <field name="_rowSubmit" title="${uiLabelMap.CommonSelect}">
+            <check/>
+        </field>
+        <field name="deprecateButton" title=" " widget-area-style="align-center" title-area-style="align-center" widget-style="smallSubmit" >
+            <hyperlink description="${uiLabelMap.PoslotronDeprecateProduct}" target="deprecateProduct"
+                       also-hidden="false">
+                <parameter param-name="productId"/>
+            </hyperlink>
+        </field>
+    </form>
+
 </forms>

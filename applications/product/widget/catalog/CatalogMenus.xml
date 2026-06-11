@@ -620,6 +620,9 @@ under the License.
         <menu-item name="warehouseStatus" title="${uiLabelMap.PoslotronWarehouseStatus}">
             <link target="WarehouseStatus"/>
         </menu-item>
+        <menu-item name="productDeprecation" title="${uiLabelMap.PoslotronProductDeprecation}">
+            <link target="ProductDeprecation"/>
+        </menu-item>
         <menu-item name="ExpandAll" title="${uiLabelMap.CommonExpandAll}" widget-style="buttontext expand-all">
             <condition>
                 <and>

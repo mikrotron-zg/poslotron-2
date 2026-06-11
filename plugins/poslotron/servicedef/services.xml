@@ -88,4 +88,28 @@ under the License.
         <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
     </service>
 
+    <!--
+        Bulk deprecation: stamp Product.salesDiscontinuationDate=now on every
+        productId in the input list and, for products that still have any
+        ProductKeyword rows, run the standard deleteProductKeywords service
+        to wipe them. Runs in a single transaction so a failure on any one
+        product rolls the whole batch back. Surfaced through the standard
+        OFBiz error / event message channels - the wrapper event (see
+        DeprecateSelectedProductsEvent.groovy) hands the user-friendly
+        success message to the redirect target.
+
+        transaction-timeout is generous (300 s) because the keyword cleanup
+        can iterate over hundreds of ProductKeyword rows for products that
+        were heavily indexed in the past.
+    -->
+    <service name="poslotronDeprecateSelectedProducts" engine="groovy" auth="true"
+            transaction-timeout="300"
+            location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/product/DeprecateProducts.groovy"
+            invoke="deprecateSelectedProducts">
+        <description>Mark selected products as deprecated and remove their keywords.</description>
+        <permission-service service-name="catalogPermissionCheck" main-action="UPDATE"/>
+        <attribute name="selectedProductIds" type="List" mode="IN" optional="false"/>
+        <attribute name="deprecatedCount" type="Integer" mode="OUT" optional="true"/>
+    </service>
+
 </services>

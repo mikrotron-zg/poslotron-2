@@ -245,4 +245,30 @@ under the License.
         <value xml:lang="en">QOH value ''{0}'' is not a valid number.</value>
         <value xml:lang="hr">Vrijednost QOH ''{0}'' nije valjan broj.</value>
     </property>
+
+    <!-- ===== Product deprecation (Umirovljenje proizvoda) ===== -->
+    <property key="PoslotronProductDeprecation">
+        <value xml:lang="en">Product deprecation</value>
+        <value xml:lang="hr">Umirovljenje proizvoda</value>
+    </property>
+    <property key="PoslotronDeprecateProduct">
+        <value xml:lang="en">Deprecate</value>
+        <value xml:lang="hr">Umirovi</value>
+    </property>
+    <property key="PoslotronDeprecateSelectedProducts">
+        <value xml:lang="en">Deprecate selected products</value>
+        <value xml:lang="hr">Umirovi odabrane proizvode</value>
+    </property>
+    <property key="PoslotronDeprecatedNProducts">
+        <value xml:lang="en">Deprecated {0} products.</value>
+        <value xml:lang="hr">Umirovljeno {0} proizvoda.</value>
+    </property>
+    <property key="PoslotronDeprecationNoProductsSelected">
+        <value xml:lang="en">No products selected for deprecation.</value>
+        <value xml:lang="hr">Nije odabran nijedan proizvod za umirovljenje.</value>
+    </property>
+    <property key="PoslotronDeprecationProductNotFound">
+        <value xml:lang="en">Product ''{0}'' not found.</value>
+        <value xml:lang="hr">Proizvod ''{0}'' nije pronađen.</value>
+    </property>
 </resource>

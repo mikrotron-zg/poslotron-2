@@ -81,4 +81,54 @@ under the License.
     <view-map name="WarehouseStatus" type="screen"
               page="component://poslotron/widget/CatalogAppExtScreens.xml#warehouseStatus"/>
 
+    <!-- ===== Product deprecation ===== -->
+    <!--
+        Landing page for the product-deprecation report (Zastara proizvoda).
+        Reached from the new ProductSubTabBar menu item; all filtering is
+        baked into the linked Groovy script (no user-facing search form).
+    -->
+    <request-map uri="ProductDeprecation">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ProductDeprecation"/>
+    </request-map>
+
+    <view-map name="ProductDeprecation" type="screen"
+              page="component://poslotron/widget/CatalogAppExtScreens.xml#productDeprecation"/>
+
+    <!--
+        POST target for the "Deprecate selected products" button. The form
+        is a multi-form so the event handler decodes the per-row checkbox
+        selection itself (see DeprecateSelectedProductsEvent.groovy) and
+        delegates the actual write work to the
+        poslotronDeprecateSelectedProducts service inside a single
+        transaction.
+
+        Success path: redirect back to ProductDeprecation so the user sees
+        a refreshed grid (the just-deprecated products drop out of the
+        result set because their salesDiscontinuationDate is no longer
+        null) and the standard OFBiz event-message banner shows the
+        "Deprecated N products." count. _EVENT_MESSAGE_ survives the
+        redirect through the framework's session-promoted message channel.
+    -->
+    <!--
+        Per-row "Deprecate" button. Accepts a single productId query
+        parameter and reuses the same batch service with a one-element list.
+        Always redirects back to ProductDeprecation so the grid refreshes.
+    -->
+    <request-map uri="deprecateProduct">
+        <security https="true" auth="true"/>
+        <event type="groovy"
+               path="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/product/DeprecateProductEvent.groovy"/>
+        <response name="success" type="request-redirect" value="ProductDeprecation"/>
+        <response name="error" type="request-redirect" value="ProductDeprecation"/>
+    </request-map>
+
+    <request-map uri="deprecateSelectedProducts">
+        <security https="true" auth="true"/>
+        <event type="groovy"
+               path="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/product/DeprecateSelectedProductsEvent.groovy"/>
+        <response name="success" type="request-redirect" value="ProductDeprecation"/>
+        <response name="error" type="view" value="ProductDeprecation"/>
+    </request-map>
+
 </site-conf>
