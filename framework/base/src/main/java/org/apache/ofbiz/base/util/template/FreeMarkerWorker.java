@@ -35,7 +35,6 @@ import java.util.stream.Stream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ofbiz.base.component.ComponentConfig;
 import org.apache.ofbiz.base.location.FlexibleLocation;
 import org.apache.ofbiz.base.util.Debug;
@@ -557,13 +556,13 @@ public final class FreeMarkerWorker {
             if (name != null && name.startsWith("delegator:")) {
                 return null; // this is a template stored in the database
             }
-            URL locationUrl = null;
             try {
-                locationUrl = FlexibleLocation.resolveLocation(name);
+                URL locationUrl = FlexibleLocation.resolveLocation(name);
+                return locationUrl != null && new File(locationUrl.toURI()).exists() ? locationUrl : null;
             } catch (Exception e) {
                 Debug.logWarning("Unable to locate the template: " + name, MODULE);
             }
-            return locationUrl != null && new File(locationUrl.getFile()).exists() ? locationUrl : null;
+            return null;
         }
     }
 

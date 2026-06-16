@@ -109,6 +109,9 @@ javadoc {
             'https://commons.apache.org/proper/commons-cli/apidocs'
         )
     }
+    options as StandardJavadocDocletOptions
+    // Generate Javadocs quietly, validate everything except missing documentation
+    options.addStringOption('Xdoclint:all,-missing', '-quiet')
 }
 
 java {
@@ -510,12 +513,6 @@ tasks.withType(AsciidoctorTask) { task ->
         } else {
             backends = ['html5', 'pdf']
         }
-         //It seems we have no choice when using Builbot we now get this issue:
-//        Caused by: org.jruby.exceptions.LoadError: (LoadError) no such file to load -- asciidoctor-pdf
-//        at org.jruby.RubyKernel.require(org/jruby/RubyKernel.java:1017)
-//        at RUBY.require(uri:classloader:/META-INF/jruby.home/lib/ruby/stdlib/rubygems/core_ext/kernel_require.rb:85)
-//        at RUBY.<main>(<script>:1)
-//        backends = ['html5']
     }
     attributes \
         'doctype': 'book',
