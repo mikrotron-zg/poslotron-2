@@ -49,31 +49,34 @@ under the License.
       </#if>
   </#if>
 
-  <#-- list all postal addresses of the order.  there should be just a billing and a shipping here. -->
-  <#list orderContactMechValueMaps as orderContactMechValueMap>
-      <#assign contactMech = orderContactMechValueMap.contactMech>
-      <#assign contactMechPurpose = orderContactMechValueMap.contactMechPurposeType>
-      <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
-          <#assign postalAddress = orderContactMechValueMap.postalAddress>
-          <fo:block font-family="NotoSans-Bold">${contactMechPurpose.get("description",locale)}:</fo:block>
-          <fo:block text-indent="5mm">
-              <#if postalAddress?has_content>
-                  <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName!}</fo:block></#if>
-                  <#if postalAddress.attnName?has_content><fo:block>${postalAddress.attnName!}</fo:block></#if>
-                  <fo:block>${postalAddress.address1!}</fo:block>
-                  <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2!}</fo:block></#if>
-                  <fo:block>
-                      <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId!}, false))! />
-                      ${postalAddress.postalCode!} ${postalAddress.city}
-                  </fo:block>
-                  <fo:block>
-                      <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId!}, false))! />
-                      <#if countryGeo?has_content>${countryGeo.geoName!}</#if>
-                  </fo:block>
-              </#if>
-          </fo:block>
-      </#if>
-  </#list>
+  <#-- list all postal addresses of the order in a table layout -->
+  <fo:table table-layout="fixed" border-spacing="3pt">
+      <fo:table-column column-width="3.75in"/>
+      <fo:table-column column-width="3.75in"/>
+      <fo:table-body>
+          <fo:table-row>
+              <#list orderContactMechValueMaps as orderContactMechValueMap>
+                  <#assign contactMech = orderContactMechValueMap.contactMech>
+                  <#assign contactMechPurpose = orderContactMechValueMap.contactMechPurposeType>
+                  <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
+                      <#assign postalAddress = orderContactMechValueMap.postalAddress>
+                      <#assign contactMechPurposeTypeId = orderContactMechValueMap.orderContactMech.contactMechPurposeTypeId!>
+                      <fo:table-cell>
+                          <fo:block>
+                              <fo:block font-family="NotoSans-Bold">${contactMechPurpose.get("description",locale)}:</fo:block>
+                              <#if postalAddress?has_content>
+                                  <#if postalAddress.toName?has_content><fo:block>${postalAddress.toName}</fo:block></#if>
+                                  <#if postalAddress.attnName?has_content><fo:block>${uiLabelMap.CommonAttn}: ${postalAddress.attnName}</fo:block></#if>
+                                  ${setContextField("postalAddress", postalAddress)}
+                                  ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressPdfFormatter")}
+                              </#if>
+                          </fo:block>
+                      </fo:table-cell>
+                  </#if>
+              </#list>
+          </fo:table-row>
+      </fo:table-body>
+  </fo:table>
 
   <fo:block space-after="5mm"/>
 

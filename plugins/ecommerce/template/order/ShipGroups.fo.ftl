@@ -33,20 +33,11 @@ under the License.
         <fo:table-cell number-rows-spanned="4">
           <#assign address = data.address!>
           <fo:block font-family="NotoSans-Bold">${uiLabelMap.OrderShippingAddress}:</fo:block>
-          <fo:block>${address.toName!}</fo:block>
-          <#if address.attnName?has_content>
-          <fo:block>${uiLabelMap.CommonAttn}: ${address.attnName!}</fo:block>
-          </#if>
-          <fo:block>${address.address1!}</fo:block>
-          <fo:block>${address.address2!}</fo:block>
-          <fo:block>${address.postalCode!} ${address.city!}</fo:block>
-          <fo:block>
-            <#assign countryGeo = (delegator.findOne("Geo", {"geoId", address.countryGeoId!}, false))! />
-              <#if countryGeo?has_content>${countryGeo.geoName!}<#else>${address.countryGeoId!}</#if>
-          </fo:block>
-
-          <#if data.phoneNumber??>
-            <fo:block><#if data.phoneNumber.areaCode??>(${data.phoneNumber.areaCode}) </#if>${data.phoneNumber.contactNumber}</fo:block>
+          <#if address?has_content>
+            <#if address.toName?has_content><fo:block>${address.toName}</fo:block></#if>
+            <#if address.attnName?has_content><fo:block>${uiLabelMap.CommonAttn}: ${address.attnName}</fo:block></#if>
+            ${setContextField("postalAddress", address)}
+            ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressPdfFormatter")}
           </#if>
         </fo:table-cell>
       </fo:table-row>
