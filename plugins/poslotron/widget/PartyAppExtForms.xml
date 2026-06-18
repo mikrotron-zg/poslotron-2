@@ -63,13 +63,16 @@ under the License.
             FindSuppliers.groovy from SupplierProduct (filterByDate) and
             InventoryItem (sum of quantityOnHandTotal per productId).
         -->
-        <field name="productCount" title="${uiLabelMap.PoslotronProductsSupplied}" sort-field="true">
+        <field name="productCount" title="${uiLabelMap.ProductProducts} ${uiLabelMap.FormFieldTitle_total}"
+               title-area-style="align-center" widget-area-style="align-center" sort-field="true">
             <display description="${productCount}"/>
         </field>
-        <field name="zeroQohCount" title="${uiLabelMap.PoslotronOutOfStockProducts}" sort-field="true">
+        <field name="zeroQohCount" title="${uiLabelMap.PoslotronOutOfStockProducts}"
+               title-area-style="align-center" widget-area-style="align-center" sort-field="true">
             <display description="${zeroQohCount}"/>
         </field>
-        <field name="createdDate" sort-field="true">
+        <field name="createdDate" sort-field="true"
+               title-area-style="align-center" widget-area-style="align-center">
             <display type="date"/>
         </field>
         <!--
@@ -87,6 +90,14 @@ under the License.
         </field>
         <field name="emailHtml" title="${uiLabelMap.PoslotronSendEmail}" encode-output="false">
             <display description="${emailHtml}"/>
+        </field>
+        <!--
+            Link to warehouse status page filtered by this supplier.
+            HTML is built in FindSuppliers.groovy (HTML-encodes partyId for XSS
+            safety); encode-output="false" lets the anchor markup render.
+        -->
+        <field name="productsHtml" title="${uiLabelMap.ProductProducts}" widget-area-style="align-center" title-area-style="align-center" encode-output="false">
+            <display description="${productsHtml}"/>
         </field>
     </grid>
 

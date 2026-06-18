@@ -53,10 +53,6 @@ under the License.
         <value xml:lang="en">Send e-mail</value>
         <value xml:lang="hr">Pošalji e-poštu</value>
     </property>
-    <property key="PoslotronProductsSupplied">
-        <value xml:lang="en">Products</value>
-        <value xml:lang="hr">Proizvodi</value>
-    </property>
     <property key="PoslotronOutOfStockProducts">
         <value xml:lang="en">Out of stock (QOH=0)</value>
         <value xml:lang="hr">Bez zalihe (QOH=0)</value>

@@ -179,6 +179,7 @@ if (allSuppliedProductIds) {
 def htmlEncoder = UtilCodec.getEncoder('html')
 String webLabel = htmlEncoder.encode((uiLabelMap?.PoslotronWebPage ?: 'Web page') as String)
 String emailLabel = htmlEncoder.encode((uiLabelMap?.PoslotronSendEmail ?: 'Send e-mail') as String)
+String productsLabel = htmlEncoder.encode((uiLabelMap?.ProductProducts ?: 'Products') as String)
 
 List enriched = suppliers.collect { gv ->
     Map row = new LinkedHashMap(gv.getAllFields())
@@ -191,6 +192,8 @@ List enriched = suppliers.collect { gv ->
     row.emailHtml = email
             ? '<a href="mailto:' + htmlEncoder.encode(email) + '" rel="nofollow noreferrer">' + emailLabel + '</a>'
             : ''
+    // Cross-webapp link to WarehouseStatus filtered by supplier. Rendered as a button via smallSubmit CSS class.
+    row.productsHtml = '<a href="/catalog/control/WarehouseStatus?supplierPartyId=' + htmlEncoder.encode(partyId) + '&amp;searchSubmitted=Y" class="smallSubmit">' + productsLabel + '</a>'
 
     Set<String> productIds = productsByPartyId[partyId] ?: Collections.<String>emptySet()
     row.productCount = productIds.size()
