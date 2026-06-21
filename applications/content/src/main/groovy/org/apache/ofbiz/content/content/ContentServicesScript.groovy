@@ -509,7 +509,7 @@ Map forceIndexContentKeywords() {
 Map createSimpleTextContent() {
     Map serviceResult = run service: 'createDataResource', with: [*: parameters,
                                                                   dataResourceTypeId: 'ELECTRONIC_TEXT',
-                                                                  dataTemplateTypeId: 'FTL']
+                                                                  dataTemplateTypeId: 'NONE']
 
     run service: 'createElectronicText', with: [*: parameters,
                                                 textData: parameters.text,
