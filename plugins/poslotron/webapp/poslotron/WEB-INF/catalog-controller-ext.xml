@@ -64,9 +64,6 @@ under the License.
         <response name="error" type="view" value="quickAddProduct"/>
     </request-map>
 
-    <view-map name="quickAddProduct" type="screen"
-              page="component://poslotron/widget/CatalogAppExtScreens.xml#quickAddProduct"/>
-
     <!-- ===== Warehouse status ===== -->
     <!--
         Landing page for the global warehouse-status report (Stanje skladišta).
@@ -78,9 +75,6 @@ under the License.
         <response name="success" type="view" value="WarehouseStatus"/>
     </request-map>
 
-    <view-map name="WarehouseStatus" type="screen"
-              page="component://poslotron/widget/CatalogAppExtScreens.xml#warehouseStatus"/>
-
     <!-- ===== Product deprecation ===== -->
     <!--
         Landing page for the product-deprecation report (Zastara proizvoda).
@@ -91,9 +85,6 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="ProductDeprecation"/>
     </request-map>
-
-    <view-map name="ProductDeprecation" type="screen"
-              page="component://poslotron/widget/CatalogAppExtScreens.xml#productDeprecation"/>
 
     <!--
         POST target for the "Deprecate selected products" button. The form
@@ -130,5 +121,15 @@ under the License.
         <response name="success" type="request-redirect" value="ProductDeprecation"/>
         <response name="error" type="view" value="ProductDeprecation"/>
     </request-map>
+
+    <!-- ===== View maps ===== -->
+    <view-map name="quickAddProduct" type="screen"
+              page="component://poslotron/widget/CatalogAppExtScreens.xml#quickAddProduct"/>
+
+    <view-map name="WarehouseStatus" type="screen"
+              page="component://poslotron/widget/CatalogAppExtScreens.xml#warehouseStatus"/>
+
+    <view-map name="ProductDeprecation" type="screen"
+              page="component://poslotron/widget/CatalogAppExtScreens.xml#productDeprecation"/>
 
 </site-conf>
