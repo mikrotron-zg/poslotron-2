@@ -42,3 +42,4 @@ themes/common-theme/webapp/images/products
 dev-tools/
 plugins/ai-agent-skills
 .claude/
+.agents/

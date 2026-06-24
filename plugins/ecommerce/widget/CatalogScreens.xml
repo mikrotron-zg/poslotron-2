@@ -569,6 +569,18 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="productCategoriesAccordion">
+        <section>
+            <actions>
+                <set field="tabButtonItem" value="LookupProductCategories"/>
+
+                <script location="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/catalog/ProductCategories.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template multi-block="true" location="component://ecommerce/template/catalog/ProductCategoriesAccordion.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
     <screen name="productCategoryList">
         <section>
             <condition>
