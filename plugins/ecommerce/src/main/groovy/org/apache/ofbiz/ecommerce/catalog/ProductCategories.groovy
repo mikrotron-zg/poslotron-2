@@ -73,6 +73,11 @@ List fillTree(rootCat ,CatLvl, parentCategoryId) {
                 rootMap["parentCategoryId"] = parentCategoryId
                 rootMap["child"] = childList
 
+                iconAttr = from("ProductCategoryAttribute").where("productCategoryId", root.productCategoryId, "attrName", "icon").queryOne()
+                if (iconAttr) {
+                    rootMap["categoryIcon"] = iconAttr.attrValue
+                }
+
                 listTree.add(rootMap)
             }
         }

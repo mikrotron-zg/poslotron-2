@@ -35,6 +35,7 @@
     <#assign catId = category.productCategoryId!>
     <#assign catName = category.categoryName!category.categoryDescription!catId>
     <#assign expandThis = (catId == curCategoryId)>
+    <#assign defaultIcon = "bi bi-dot">
     <#if category.child?has_content>
       <#list category.child as subcat>
         <#if subcat.productCategoryId! == curCategoryId>
@@ -45,7 +46,7 @@
         <div class="card-header" id="heading_${catId}">
             <h2 class="mb-0">
                 <a data-toggle="collapse" data-target="#collapse_${catId}" aria-expanded="${expandThis?string}" aria-controls="collapse_${catId}">
-                    <span>${catName}</span>
+                    <span><i class="bi ${category.categoryIcon!defaultIcon}"></i>${catName}</span>
                     <i class="bi bi-chevron-down toggle<#if expandThis> rotate</#if>"></i>
                 </a>
             </h2>
@@ -56,7 +57,9 @@
                   <#list category.child as subcat>
                     <#assign subcatId = subcat.productCategoryId!>
                     <#assign subcatName = subcat.categoryName!subcat.categoryDescription!subcatId>
-                    <li class="list-group-item"<#if subcatId == curCategoryId> class="active"</#if>><a href="<@ofbizUrl>category?category_id=${subcatId}</@ofbizUrl>">${subcatName}</a></li>
+                    <li class="list-group-item"<#if subcatId == curCategoryId> class="active"</#if>>
+                        <a href="<@ofbizUrl>category?category_id=${subcatId}</@ofbizUrl>">${subcatName}</a>
+                    </li>
                   </#list>
                 </ul>
             </div>
@@ -65,7 +68,11 @@
     <#else>
     <div class="card">
         <div class="card-header" id="heading_${catId}">
-            <h2 class="mb-0"><a href="<@ofbizUrl>category?category_id=${catId}</@ofbizUrl>"<#if expandThis> class="active"</#if>>${catName}</a></h2>
+            <h2 class="mb-0">
+                <a href="<@ofbizUrl>category?category_id=${catId}</@ofbizUrl>"<#if expandThis> class="active"</#if>>
+                    <i class="bi ${category.categoryIcon!defaultIcon}"></i>${catName}
+                </a>
+            </h2>
         </div>
     </div>
     </#if>
