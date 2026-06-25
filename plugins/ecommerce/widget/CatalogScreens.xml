@@ -154,9 +154,9 @@ under the License.
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
                 <script location="component://order/src/main/groovy/org/apache/ofbiz/order/entry/catalog/SideDeepCategory.groovy"/>
             </actions>
-            <widgets>
+            <!--<widgets>
                 <platform-specific><html><html-template location="component://order/template/entry/catalog/BreadCrumbs.ftl"/></html></platform-specific>
-            </widgets>
+            </widgets>-->
         </section>
     </screen>
 
@@ -635,11 +635,11 @@ under the License.
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
                 <script location="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/catalog/AjaxBreadcrumbs.groovy"/>
             </actions>
-            <widgets>
+            <!--<widgets>
                 <platform-specific>
                     <html><html-template location="component://ecommerce/template/catalog/AjaxBreadCrumbs.ftl"/></html>
                 </platform-specific>
-            </widgets>
+            </widgets>-->
         </section>
     </screen>
 
