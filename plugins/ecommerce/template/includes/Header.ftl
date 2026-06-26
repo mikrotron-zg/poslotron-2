@@ -79,6 +79,9 @@ $(document).ready(function() {
       <li class="nav-item">
         <a class="nav-link" href="<@ofbizUrl>main</@ofbizUrl>"><span class="bi-house-fill h5"></span>&nbsp;${uiLabelMap.CommonMain}</a>
       </li>
+      <li class="nav-item d-block d-lg-none">
+        <a class="nav-link" href="#accordionSideNavigation"><span class="bi-list h5"></span>&nbsp;${uiLabelMap.ProductCategories}</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="<@ofbizUrl>advancedsearch</@ofbizUrl>"><span class="bi-search h5"></span>&nbsp;${uiLabelMap.CommonSearch}</a>
       </li>
