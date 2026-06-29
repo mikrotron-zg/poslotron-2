@@ -290,6 +290,10 @@ button.jGrowl-close {
 }
 
 /* Accordion side menu style overrides */
+#accordionSideNavigation {
+    margin-bottom: 2em;
+}
+
 .accordion .card {
     color: #424e5d;
     border: 1px solid #dddddd;
