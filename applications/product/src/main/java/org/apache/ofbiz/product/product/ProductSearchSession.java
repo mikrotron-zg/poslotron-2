@@ -496,6 +496,31 @@ public class ProductSearchSession {
             }
         }
 
+        // If no keyword override was found, check if the search returns exactly one result
+        // and redirect to the product page instead of showing the search results
+        String clearSearchStr = request.getParameter("clearSearch");
+        if (!"N".equals(clearSearchStr) && UtilValidate.isNotEmpty(request.getParameter("SEARCH_STRING"))) {
+            ProductSearchSession.processSearchParameters(UtilHttp.getParameterMap(request), request);
+            String prodCatalogId = CatalogWorker.getCurrentCatalogId(request);
+            Map<String, Object> searchResult = ProductSearchSession.getProductSearchResult(request, delegator, prodCatalogId);
+            Integer listSize = (Integer) searchResult.get("listSize");
+            if (listSize != null && listSize == 1) {
+                @SuppressWarnings("unchecked")
+                List<String> resultProductIds = (List<String>) searchResult.get("productIds");
+                if (UtilValidate.isNotEmpty(resultProductIds)) {
+                    String productId = resultProductIds.get(0);
+                    RequestHandler rh = RequestHandler.from(request);
+                    String productUrl = rh.makeLink(request, response, "/product/" + productId, false, false, false);
+                    try {
+                        response.sendRedirect(productUrl);
+                        return "none";
+                    } catch (IOException e) {
+                        Debug.logError(e, "Could not redirect to product page for single result: " + productId, MODULE);
+                    }
+                }
+            }
+        }
+
         return "success";
     }
 

@@ -29,11 +29,11 @@ under the License.
   });
 </script>
 
-<div id="keywordsearchbox" class="card">
-  <div class="card-header">
+<div id="keywordsearchbox">
+  <#--<div class="card-header">
     ${uiLabelMap.ProductSearchCatalog}
   </div>
-  <div class="card-body">
+  <div class="card-body">-->
     <form name="keywordsearchform" id="keywordsearchbox_keywordsearchform" method="post" action="<@ofbizUrl>keywordsearch</@ofbizUrl>">
       <div class="form-group">
         <input type="hidden" name="VIEW_SIZE" value="20" />
@@ -76,7 +76,7 @@ under the License.
         </div>
       </div>-->
     </form>
-    <form name="advancedsearchform" id="keywordsearchbox_advancedsearchform" method="post" action="<@ofbizUrl>advancedsearch</@ofbizUrl>">
+    <#--<form name="advancedsearchform" id="keywordsearchbox_advancedsearchform" method="post" action="<@ofbizUrl>advancedsearch</@ofbizUrl>">
       <#if 0 &lt; otherSearchProdCatalogCategories?size>
         <label for="SEARCH_CATEGORY_ID">${uiLabelMap.ProductAdvancedSearchIn}: </label>
         <select name="SEARCH_CATEGORY_ID" id="SEARCH_CATEGORY_ID" class="form-control" size="1">
@@ -93,5 +93,5 @@ under the License.
       </#if>
         <input type="submit" value="${uiLabelMap.ProductAdvancedSearch}" class="btn btn-sm btn-link float-right"/>
     </form>
-  </div>
+  </div>-->
 </div>
