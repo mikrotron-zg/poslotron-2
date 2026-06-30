@@ -328,13 +328,14 @@ ${variantInfoJavaScript!}
         <#if productLargeImageUrl?string?has_content>
           <a href="javascript:popupDetail();">
             <img id="detailImage" src="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>"
-                name="mainImage" vspace="5" hspace="5" class="cssImgXLarge" alt=""/>
+                name="mainImage" vspace="5" hspace="5" class="cssImgXLarge" alt="Product image" onerror="if(this.src.indexOf('defaultImage.png')==-1){this.src='/images/defaultImage.png';}"/>
           </a>
           <input type="hidden" id="originalImage" name="originalImage"
               value="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>"/>
         </#if>
         <#if !productLargeImageUrl?string?has_content>
-          <img id="detailImage" src="/images/defaultImage.jpg" name="mainImage" alt=""/>
+          <img id="detailImage" src="/images/defaultImage.png" name="mainImage" vspace="5" hspace="5" class="cssImgXLarge"
+            alt="No image found"/>
         </#if>
       </div>
       <#-- Show Image Approved -->
@@ -345,7 +346,7 @@ ${variantInfoJavaScript!}
                 <a href="javascript:void(0);"
                     swapDetail="<@ofbizContentUrl>${productImage.productImage}</@ofbizContentUrl>">
                   <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>"
-                      vspace="5" hspace="5" alt=""/>
+                      vspace="5" hspace="5" alt="" onerror="if(this.src.indexOf('defaultImage.png')==-1){this.src='/images/defaultImage.png';}"/>
                 </a>
               </li>
             </#list>
@@ -362,7 +363,8 @@ ${variantInfoJavaScript!}
         <#if productLargeImageUrl?string?has_content>
             <img id="detailImage" src="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>"
                 data-toggle="modal" data-target="#imageModal" 
-                name="mainImage" vspace="5" hspace="5" class="cssImgXLarge img-fluid" alt=""/>
+                name="mainImage" vspace="5" hspace="5" class="cssImgXLarge img-fluid" alt="Product image"
+                onerror="if(this.src.indexOf('defaultImage.png')==-1){this.src='/images/defaultImage.png';}"/>
               <#-- Modal pop-up for image -->
               <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -381,7 +383,7 @@ ${variantInfoJavaScript!}
                     </div>
                     <div class="modal-body">
                     <img src="<@ofbizContentUrl>${contentPathPrefix!}${productLargeImageUrl!}</@ofbizContentUrl>" 
-                      class="w-100"/>
+                      class="w-100" onerror="if(this.src.indexOf('defaultImage.png')==-1){this.src='/images/defaultImage.png';}"/>
                     </div>
                     <div class="modal-footer text-secondary">
                       <div class="text-center w-100">
@@ -393,7 +395,8 @@ ${variantInfoJavaScript!}
               </div>
         </#if>
         <#if !productLargeImageUrl?string?has_content>
-            <img id="defaultDetailImage" src="/images/defaultImage.jpg" name="mainImage" alt=""/>
+            <img id="defaultDetailImage" src="/images/defaultImage.png" name="mainImage"
+                vspace="5" hspace="5" class="cssImgXLarge img-fluid" alt="Image not found"/>
         </#if>
       </div>
           <#--<div id="additionalImageBox">
@@ -887,12 +890,12 @@ ${variantInfoJavaScript!}
             <#assign imageUrl = productContentWrapper.get("SMALL_IMAGE_URL", "url")! />
           </#if>
           <#if !imageUrl?string?has_content>
-            <#assign imageUrl = "/images/defaultImage.jpg" />
+            <#assign imageUrl = "/images/defaultImage.png" />
           </#if>
           <li class="list-inline-item">
             <a href="javascript:getList('FT${featureOrderFirst}','${indexer}',1);" class="linktext">${key}</a>
             <a href="javascript:getList('FT${featureOrderFirst}','${indexer}',1);">
-              <img src="<@ofbizContentUrl>${contentPathPrefix!}${imageUrl}</@ofbizContentUrl>" class="cssImgSmall" alt=""/>
+              <img src="<@ofbizContentUrl>${contentPathPrefix!}${imageUrl}</@ofbizContentUrl>" class="cssImgSmall" alt="" onerror="if(this.src.indexOf('defaultImage.png')==-1){this.src='/images/defaultImage.png';}"/>
             </a>
           </li>
         </#if>

@@ -65,8 +65,8 @@ ${variantInfoJavaScript!}
   </#if>
   <#assign smallImageUrl = productContentWrapper.get("MEDIUM_IMAGE_URL", "url")!>
   <#assign largeImageUrl = productContentWrapper.get("LARGE_IMAGE_URL", "url")!>
-  <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.jpg"></#if>
-  <#if !largeImageUrl?string?has_content><#assign largeImageUrl = "/images/defaultImage.jpg"></#if>
+  <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.png"></#if>
+  <#if !largeImageUrl?string?has_content><#assign largeImageUrl = "/images/defaultImage.png"></#if>
   <#assign productInfoLinkId = "productInfoLink">
   <#assign productInfoLinkId = productInfoLinkId + product.productId/>
   <#assign productDetailId = "productDetailId"/>
@@ -76,7 +76,7 @@ ${variantInfoJavaScript!}
   <div class="col-xl-3 col-lg-4 col-sm-6 col-xs-12 products-card">
     <div class="card text-center">
       <a href="${productUrl}" class="mt-2">
-        <img class="card-img-top" src="<@ofbizContentUrl>${contentPathPrefix!}${smallImageUrl}</@ofbizContentUrl>" alt="Small Image">
+        <img class="card-img-top" src="<@ofbizContentUrl>${contentPathPrefix!}${smallImageUrl}</@ofbizContentUrl>" alt="Small Image" onerror="if(this.src.indexOf('defaultImage.png')==-1){this.src='<@ofbizContentUrl>/images/defaultImage.png</@ofbizContentUrl>';}">
       </a>
       <div class="card-body">
         <h4 class="card-title"><a href="${productUrl}" class="btn btn-link">${productContentWrapper.get("PRODUCT_NAME", "html")!}</a></h4>

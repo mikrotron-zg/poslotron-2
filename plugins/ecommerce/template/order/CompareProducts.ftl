@@ -33,7 +33,7 @@ under the License.
           <#assign productUrl><@ofbizCatalogAltUrl productId=product.productId/></#assign>
           <#assign smallImageUrl = productContentWrapper.get("SMALL_IMAGE_URL", "url")/>
           <#if smallImageUrl!?length == 0>
-            <#assign smallImageUrl = "/images/defaultImage.jpg"/>
+            <#assign smallImageUrl = "/images/defaultImage.png"/>
           </#if>
           <td style="width:${tdWidth?c}%;">
             <img src="<@ofbizContentUrl>${contentPathPrefix!}${smallImageUrl}</@ofbizContentUrl>" alt="Small Image"/><br />

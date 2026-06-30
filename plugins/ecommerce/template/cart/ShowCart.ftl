@@ -251,12 +251,12 @@ under the License.
                           Static["org.apache.ofbiz.product.product.ProductContentWrapper"].getProductContentAsText(
                           cartLine.getProduct(), "SMALL_IMAGE_URL", locale, dispatcher, "html")! />
                       <#if !smallImageUrl?string?has_content>
-                        <#assign smallImageUrl = "/images/defaultImage.jpg" />
+                        <#assign smallImageUrl = "/images/defaultImage.png" />
                       </#if>
                       <#if smallImageUrl?string?has_content>
                         <a href="<@ofbizCatalogAltUrl productId=parentProductId/>">
                           <img src="<@ofbizContentUrl>${requestAttributes.contentPathPrefix!}${smallImageUrl}</@ofbizContentUrl>"
-                              alt="Product Image" class="mr-3" />
+                              alt="Product Image" class="mr-3 img-fluid" style="max-width: 50px;" />
                         </a>
                       </#if>
                       <#-- end code to display a small image of the product -->

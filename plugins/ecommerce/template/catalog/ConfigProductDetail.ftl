@@ -445,7 +445,7 @@ ${virtualJavaScript!}
                   <#assign imageUrl = productContentWrapper.get("SMALL_IMAGE_URL", "url")!>
                 </#if>
                 <#if !imageUrl?string?has_content>
-                  <#assign imageUrl = "/images/defaultImage.jpg">
+                  <#assign imageUrl = "/images/defaultImage.png">
                 </#if>
                 <td align="center" valign="bottom">
                   <a href="javascript:getList('FT${featureOrderFirst}','${indexer}',1);">
