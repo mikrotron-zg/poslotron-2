@@ -111,43 +111,6 @@ under the License.
             </td>
           </tr>
           <tr>
-            <td align="right" class="label">${uiLabelMap.CommonFilter}</td>
-            <td nowrap="nowrap">
-                <div>
-                    <label>
-                    <#-- !if the linebreak was performed after the tag, it would be misinterpreted as a blank! -->
-                    <input type="checkbox" name="filterInventoryProblems" value="Y"
-                        <#if state.hasFilter('filterInventoryProblems')>checked="checked"</#if>/>${uiLabelMap.OrderFilterInventoryProblems}</label>
-                    <label>
-                    <#-- !if the linebreak was performed after the tag, it would be misinterpreted as a blank! -->
-                    <input type="checkbox" name="filterAuthProblems" value="Y"
-                        <#if state.hasFilter('filterAuthProblems')>checked="checked"</#if>/>${uiLabelMap.OrderFilterAuthProblems}</label>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td align="right" class="label">${uiLabelMap.CommonFilter} (${uiLabelMap.OrderFilterPOs})</td>
-            <td nowrap="nowrap">
-                <div>
-                    <#-- !if the linebreak was performed after the tag, it would be misinterpreted as a blank! -->
-                    <label>
-                        <input type="checkbox" name="filterPartiallyReceivedPOs" value="Y"
-                        <#if state.hasFilter('filterPartiallyReceivedPOs')>checked="checked"</#if>/>${uiLabelMap.OrderFilterPartiallyReceivedPOs}
-                    </label>
-                    <#-- !if the linebreak was performed after the tag, it would be misinterpreted as a blank! -->
-                    <label>
-                        <input type="checkbox" name="filterPOsOpenPastTheirETA" value="Y"
-                        <#if state.hasFilter('filterPOsOpenPastTheirETA')>checked="checked"</#if>/>${uiLabelMap.OrderFilterPOsOpenPastTheirETA}
-                    </label>
-                    <#-- !if the linebreak was performed after the tag, it would be misinterpreted as a blank! -->
-                    <label>
-                    <input type="checkbox" name="filterPOsWithRejectedItems" value="Y"
-                        <#if state.hasFilter('filterPOsWithRejectedItems')>checked="checked"</#if>/>${uiLabelMap.OrderFilterPOsWithRejectedItems}
-                    </label>
-                </div>
-            </td>
-          </tr>
-          <tr>
             <td colspan="3" align="center">
               <br />
             </td>
@@ -172,21 +135,16 @@ under the License.
     <div class="screenlet-body">
         <table class="basic-table hover-bar" cellspacing='0'>
           <tr class="header-row">
-            <td width="15%">${uiLabelMap.CommonDate}</td>
-            <td width="10%">${uiLabelMap.OrderOrder} ${uiLabelMap.CommonNbr}</td>
+            <td width="10%">${uiLabelMap.CommonDate}</td>
+            <td width="10%" align="center">${uiLabelMap.OrderOrder} ${uiLabelMap.CommonNbr}</td>
+            <td width="5%" align="center">${uiLabelMap.CommonInventory}</td>
             <td width="10%">${uiLabelMap.OrderOrderName}</td>
             <td width="10%">${uiLabelMap.OrderOrderType}</td>
             <td width="10%">${uiLabelMap.OrderOrderBillFromParty}</td>
-            <td width="10%">${uiLabelMap.OrderOrderBillToParty}</td>
+            <td width="15%">${uiLabelMap.OrderOrderBillToParty}</td>
             <td width="10%">${uiLabelMap.OrderProductStore}</td>
-            <td width="10%">${uiLabelMap.CommonAmount}</td>
-            <td width="10%">${uiLabelMap.OrderTrackingCode}</td>
-            <#if state.hasFilter('filterInventoryProblems') || state.hasFilter('filterAuthProblems') || state.hasFilter('filterPOsOpenPastTheirETA') || state.hasFilter('filterPOsWithRejectedItems') || state.hasFilter('filterPartiallyReceivedPOs')>
-                <td width="10%">${uiLabelMap.CommonStatus}</td>
-                <td width="5%">${uiLabelMap.CommonFilter}</td>
-            <#else>
-                <td colspan="2" width="15%">${uiLabelMap.CommonStatus}</td>
-            </#if>
+            <td width="10%" align="right">${uiLabelMap.CommonAmount}</td>
+            <td width="10%" align="right">${uiLabelMap.CommonStatus}</td>
           </tr>
           <#list orderHeaderList as orderHeader>
             <#assign status = orderHeader.getRelatedOne("StatusItem", true)>
@@ -207,45 +165,23 @@ under the License.
             <#assign productStore = orderHeader.getRelatedOne("ProductStore", true)! />
             <tr<#if (orderHeader_index % 2) == 1> class="alternate-row"</#if>>
               <td><#if orderHeader.orderDate?has_content>${Static["org.apache.ofbiz.base.util.UtilFormatOut"].formatDateTime(orderHeader.orderDate, "", locale, timeZone)!}</#if></td>
-              <td>
+              <td align="center">
                 <a href="<@ofbizUrl>orderview?orderId=${orderHeader.orderId}</@ofbizUrl>" class="buttontext">${orderHeader.orderId}</a>
+              </td>
+              <td align="center">
+                  <#if filterInventoryProblems.contains(orderHeader.orderId)>
+                      &#x274C;
+                  <#else>
+                      &#x2705;
+                  </#if>
               </td>
               <td>${orderHeader.orderName!}</td>
               <td>${orderHeader.getRelatedOne("OrderType", true).get("description",locale)}</td>
               <td>${billFrom!}</td>
               <td>${billTo!}</td>
               <td><#if productStore?has_content>${productStore.storeName?default(productStore.productStoreId)}</#if></td>
-              <td><@ofbizCurrency amount=orderHeader.grandTotal isoCode=orderHeader.currencyUom/></td>
-              <td>
-                <#assign trackingCodes = orderHeader.getRelated("TrackingCodeOrder", null, null, false)>
-                <#list trackingCodes as trackingCode>
-                    <#if trackingCode?has_content>
-                        <a href="<@ofbizUrl controlPath="/marketing/control">FindTrackingCodeOrders?trackingCodeId=${trackingCode.trackingCodeId}&amp;externalLoginKey=${requestAttributes.externalLoginKey!}</@ofbizUrl>">${trackingCode.trackingCodeId}</a><br />
-                    </#if>
-                </#list>
-              </td>
-              <td>${orderHeader.getRelatedOne("StatusItem", true).get("description",locale)}</td>
-              <#if state.hasFilter('filterInventoryProblems') || state.hasFilter('filterAuthProblems') || state.hasFilter('filterPOsOpenPastTheirETA') || state.hasFilter('filterPOsWithRejectedItems') || state.hasFilter('filterPartiallyReceivedPOs')>
-              <td>
-                  <#if filterInventoryProblems.contains(orderHeader.orderId)>
-                    Inv&nbsp;
-                  </#if>
-                  <#if filterAuthProblems.contains(orderHeader.orderId)>
-                   Aut&nbsp;
-                  </#if>
-                  <#if filterPOsOpenPastTheirETA.contains(orderHeader.orderId)>
-                    ETA&nbsp;
-                  </#if>
-                  <#if filterPOsWithRejectedItems.contains(orderHeader.orderId)>
-                    Rej&nbsp;
-                  </#if>
-                  <#if filterPartiallyReceivedPOs.contains(orderHeader.orderId)>
-                    Part&nbsp;
-                  </#if>
-              </td>
-              <#else>
-              <td>&nbsp;</td>
-              </#if>
+              <td align="right"><@ofbizCurrency amount=orderHeader.grandTotal isoCode=orderHeader.currencyUom/></td>
+              <td align="right">${orderHeader.getRelatedOne("StatusItem", true).get("description",locale)}</td>
             </tr>
           </#list>
           <#if !orderHeaderList?has_content>
