@@ -95,17 +95,10 @@ under the License.
                   <strong>${uiLabelMap.AccountingOfflinePayment}</strong><br><br>
                   <#if orderHeader?has_content && paymentAddress?has_content>
                     ${uiLabelMap.OrderSendPaymentTo}:<br>
-                    <#if paymentAddress.toName?has_content>${paymentAddress.toName}</#if><br>
-                    <#if paymentAddress.attnName?has_content>
-                      ${uiLabelMap.PartyAddrAttnName}  : ${paymentAddress.attnName}
-                    </#if>
-                    ${paymentAddress.address1}<br>
-                    <#if paymentAddress.address2?has_content>${paymentAddress.address2}</#if>
-                    <#assign paymentStateGeo = (delegator.findOne("Geo", {"geoId", paymentAddress.stateProvinceGeoId!}, false))! />
-                    ${paymentAddress.postalCode!} ${paymentAddress.city}<br>
-                    <#--<#if paymentStateGeo?has_content>, ${paymentStateGeo.geoName!}</#if>-->
-                    <#assign paymentCountryGeo = (delegator.findOne("Geo", {"geoId", paymentAddress.countryGeoId!}, false))! />
-                    <#if paymentCountryGeo?has_content>${paymentCountryGeo.geoName!}</#if><br>
+                    <#if paymentAddress.toName?has_content>${paymentAddress.toName}<br></#if>
+                    <#if paymentAddress.attnName?has_content>${uiLabelMap.CommonAttn}: ${paymentAddress.attnName}<br></#if>
+                    ${setContextField("postalAddress", paymentAddress)}
+                    ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressHtmlFormatter")}<br>
                     <em>${uiLabelMap.EcommerceBeSureToIncludeYourOrderNb}</em>
                   </#if>
                 <#else>
@@ -193,23 +186,11 @@ under the License.
                         <#if pmBillingAddress.toName?has_content>${uiLabelMap.CommonTo}: ${pmBillingAddress.toName}</#if>
                       </li>
                       <li>
-                        <#if pmBillingAddress.attnName?has_content>
-                          ${uiLabelMap.CommonAttn}  : ${pmBillingAddress.attnName}
-                        </#if>
+                        <#if pmBillingAddress.attnName?has_content>${uiLabelMap.CommonAttn}: ${pmBillingAddress.attnName}</#if>
                       </li>
                       <li>
-                        ${pmBillingAddress.address1}
-                      </li>
-                      <li>
-                        <#if pmBillingAddress.address2?has_content>${pmBillingAddress.address2}</#if>
-                      </li>
-                      <li>
-                        <#assign pmBillingStateGeo = (delegator.findOne("Geo", {"geoId", pmBillingAddress.stateProvinceGeoId!}, false))! />
-                        ${pmBillingAddress.city}
-                        <#if pmBillingStateGeo?has_content>  , ${ pmBillingStateGeo.geoName!}</#if>
-                        ${pmBillingAddress.postalCode!}
-                        <#assign pmBillingCountryGeo = (delegator.findOne("Geo", {"geoId", pmBillingAddress.countryGeoId!}, false))! />
-                        <#if pmBillingCountryGeo?has_content>${pmBillingCountryGeo.geoName!}</#if>
+                        ${setContextField("postalAddress", pmBillingAddress)}
+                        ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressHtmlFormatter")}
                       </li>
                     </ul>
                   </li>
@@ -264,32 +245,14 @@ under the License.
             <li>
               <ul class="list-unstyled">
                 <li>
-                  <#--${uiLabelMap.OrderDestination} [${groupNumber}]-->
-                  <#if shippingAddress.toName?has_content>
-                    <#--${uiLabelMap.CommonTo}: -->
-                    <strong>${shippingAddress.toName}</strong>
-                  </#if>
+                  <#if shippingAddress.toName?has_content><strong>${shippingAddress.toName}</strong></#if>
                 </li>
                 <li>
-                  <#if shippingAddress.attnName?has_content>
-                    ${uiLabelMap.PartyAddrAttnName}  : ${shippingAddress.attnName}
-                  </#if>
+                  <#if shippingAddress.attnName?has_content>${uiLabelMap.CommonAttn}: ${shippingAddress.attnName}</#if>
                 </li>
                 <li>
-                  ${shippingAddress.address1}
-                </li>
-                <li>
-                  <#if shippingAddress.address2?has_content>${shippingAddress.address2}</#if>
-                </li>
-                <li>
-                  <#assign shippingStateGeo = (delegator.findOne("Geo", {"geoId", shippingAddress.stateProvinceGeoId!}, false))! />
-                  ${shippingAddress.city}
-                  <#if shippingStateGeo?has_content>, ${shippingStateGeo.geoName!}</#if>
-                  ${shippingAddress.postalCode!}
-                </li>
-                <li>
-                  <#assign shippingCountryGeo = (delegator.findOne("Geo", {"geoId", shippingAddress.countryGeoId!}, false))! />
-                  <#if shippingCountryGeo?has_content>${shippingCountryGeo.geoName!}</#if>
+                  ${setContextField("postalAddress", shippingAddress)}
+                  ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressHtmlFormatter")}
                 </li>
               </ul>
             </li>

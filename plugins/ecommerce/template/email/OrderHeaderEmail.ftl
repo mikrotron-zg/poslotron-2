@@ -44,13 +44,10 @@
             <#if orderHeader?has_content && paymentAddress?has_content>
               <br/>
               ${uiLabelMap.OrderSendPaymentTo}:<br/>
-              <#if paymentAddress.toName?has_content>${paymentAddress.toName}</#if><br/>
-              <#if paymentAddress.attnName?has_content>${uiLabelMap.PartyAddrAttnName}: ${paymentAddress.attnName}<br/></#if>
-              ${paymentAddress.address1}<br/>
-              <#if paymentAddress.address2?has_content>${paymentAddress.address2}<br/></#if>
-              ${paymentAddress.postalCode!} ${paymentAddress.city}<br/>
-              <#assign paymentCountryGeo = (delegator.findOne("Geo", {"geoId", paymentAddress.countryGeoId!}, false))! />
-              <#if paymentCountryGeo?has_content>${paymentCountryGeo.geoName!}<br/></#if>
+              <#if paymentAddress.toName?has_content>${paymentAddress.toName}<br/></#if>
+              <#if paymentAddress.attnName?has_content>${uiLabelMap.CommonAttn}: ${paymentAddress.attnName}<br/></#if>
+              ${setContextField("postalAddress", paymentAddress)}
+              ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressHtmlFormatter")}
               <em>${uiLabelMap.EcommerceBeSureToIncludeYourOrderNb}</em>
             </#if>
           <#else>
@@ -109,11 +106,9 @@
         <ul>
           <li>
             <#if shippingAddress.toName?has_content><strong>${shippingAddress.toName}</strong><br/></#if>
-            ${shippingAddress.address1}<br/>
-            <#if shippingAddress.address2?has_content>${shippingAddress.address2}<br/></#if>
-            ${shippingAddress.postalCode!} ${shippingAddress.city}<br/>
-            <#assign shippingCountryGeo = (delegator.findOne("Geo", {"geoId", shippingAddress.countryGeoId!}, false))! />
-            <#if shippingCountryGeo?has_content>${shippingCountryGeo.geoName!}</#if>
+            <#if shippingAddress.attnName?has_content>${uiLabelMap.CommonAttn}: ${shippingAddress.attnName}<br/></#if>
+            ${setContextField("postalAddress", shippingAddress)}
+            ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressHtmlFormatter")}
           </li>
         </ul>
       </#if>
