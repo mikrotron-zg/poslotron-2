@@ -836,6 +836,14 @@ under the License.
         <response name="success" type="view" value="EditProductAssoc"/>
         <response name="error" type="view" value="EditProductAssoc"/>
     </request-map>
+    <request-map uri="deleteAllProductAssocs">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="deleteAllProductAssocs"/>
+        <response name="success" type="request-redirect" value="EditProductAssoc">
+            <redirect-parameter name="productId"/>
+        </response>
+        <response name="error" type="view" value="EditProductAssoc"/>
+    </request-map>
 
     <!-- ================ Product Manufacturing Requests ================= -->
     <request-map uri="ViewProductManufacturing">

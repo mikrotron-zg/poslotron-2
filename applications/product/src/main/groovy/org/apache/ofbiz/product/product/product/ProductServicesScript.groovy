@@ -928,3 +928,20 @@ Map checkProductGroupOrderExpired() {
     return success()
 }
 
+/**
+ * Delete all product associations for a given product in a given direction.
+ * direction "from" deletes associations where productId matches (MainProductAssoc),
+ * direction "to" deletes associations where productIdTo matches (AssocProductAssoc).
+ */
+Map deleteAllProductAssocs() {
+    GenericValue product = from('Product').where('productId', parameters.productId).queryOne()
+    if (product) {
+        if (parameters.direction == 'from') {
+            product.removeRelated('MainProductAssoc')
+        } else {
+            product.removeRelated('AssocProductAssoc')
+        }
+    }
+    return success()
+}
+

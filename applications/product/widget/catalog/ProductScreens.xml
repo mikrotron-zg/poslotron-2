@@ -1046,7 +1046,8 @@ under the License.
                                     <set field="assocProducts" from-field="assocSection.assocProducts"/>
                                 </actions>
                                 <widgets>
-                                    <screenlet title="${assocSection.sectionTitle}">
+                                    <screenlet title="${assocSection.sectionTitle}" navigation-menu-name="ListProductAssocsMenu">
+                                        <include-menu name="ListProductAssocsMenu" location="component://product/widget/catalog/CatalogMenus.xml"/>
                                         <include-grid name="ListProductAssocs" location="component://product/widget/catalog/ProductForms.xml"/>
                                         <label style="help-note">${uiLabelMap.CommonNote} : ${uiLabelMap.ProductHighlightedExplanation}</label>
                                     </screenlet>

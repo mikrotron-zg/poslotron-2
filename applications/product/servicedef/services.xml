@@ -240,6 +240,13 @@ under the License.
         <permission-service service-name="productGenericPermission" main-action="DELETE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
+    <service name="deleteAllProductAssocs" engine="groovy"
+            location="component://product/src/main/groovy/org/apache/ofbiz/product/product/product/ProductServicesScript.groovy" invoke="deleteAllProductAssocs" auth="true">
+        <description>Delete all product associations for a given product in a given direction (from/to)</description>
+        <permission-service service-name="productGenericPermission" main-action="DELETE"/>
+        <attribute name="productId" type="String" mode="IN" optional="false"/>
+        <attribute name="direction" type="String" mode="IN" optional="false"/>
+    </service>
 
     <!-- Product Price Services -->
     <service name="createProductPrice" default-entity-name="ProductPrice" engine="groovy"

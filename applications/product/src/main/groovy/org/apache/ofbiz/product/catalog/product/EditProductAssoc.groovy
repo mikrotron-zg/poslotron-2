@@ -41,7 +41,7 @@ context.productAssoc = productAssoc
 if (product) {
     assocFromProducts = product.getRelated('MainProductAssoc', null, ['sequenceNum'], false)
     assocToProducts = product.getRelated('AssocProductAssoc', null, null, false)
-    assocFromMap = ['assocProducts': assocFromProducts, 'sectionTitle': uiLabelMap.ProductAssociationsFromProduct]
-    assocToMap = ['assocProducts': assocToProducts, 'sectionTitle': uiLabelMap.ProductAssociationsToProduct]
+    assocFromMap = ['assocProducts': assocFromProducts, 'sectionTitle': uiLabelMap.ProductAssociationsFromProduct, 'direction': 'from']
+    assocToMap = ['assocProducts': assocToProducts, 'sectionTitle': uiLabelMap.ProductAssociationsToProduct, 'direction': 'to']
     context.assocSections = [assocFromMap, assocToMap]
 }
