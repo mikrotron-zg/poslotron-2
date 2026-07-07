@@ -913,6 +913,15 @@ under the License.
     </form>
     <grid name="ListSupplierProducts" list-name="productSuppliers" target="updateSupplierProduct"
         odd-row-style="alternate-row" default-table-style="basic-table">
+        <!--
+            poslotron: enrich each row with supplierProductIdHtml so the
+            supplierProductId column below can render a deep link into the
+            supplier's own catalog when the supplier has a purpose-less
+            WEB_ADDRESS on file. Same mechanism as the warehouse-status grid.
+        -->
+        <actions>
+            <script location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/product/EnrichProductSuppliersWithCatalogLinks.groovy"/>
+        </actions>
         <field name="partyId" title="${uiLabelMap.ProductSupplier}">
             <display-entity entity-name="PartyNameView" also-hidden="true" description="${firstName} ${middleName} ${lastName} ${groupName}">
                 <sub-hyperlink target="/partymgr/control/viewprofile" target-type="inter-app" description="${partyId}" link-style="buttontext">
@@ -920,7 +929,14 @@ under the License.
                 </sub-hyperlink>
             </display-entity>
         </field>
-        <field name="supplierProductId"><display/></field>
+        <!--
+            poslotron: supplierProductId is rendered as a deep link when the
+            supplier has a catalog web address on file (see
+            EnrichProductSuppliersWithCatalogLinks.groovy above). The pre-built
+            HTML has the URL + text properly encoded, so encode-output="false"
+            is safe here.
+        -->
+        <field name="supplierProductId" encode-output="false"><display description="${supplierProductIdHtml}"/></field>
         <field name="minimumOrderQuantity" title="${uiLabelMap.ProductMinimumOrderQuantity}" sort-field="true">
             <display/>
         </field>

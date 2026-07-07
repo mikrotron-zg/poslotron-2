@@ -279,44 +279,10 @@ if (supplierIds) {
                 }
             }
 
-    // "Catalog" base URL per supplier: a WEB_ADDRESS contact mech attached to
-    // the supplier with NO contactMechPurposeTypeId. Used as the prefix for
-    // supplierProductId hyperlinks (the productId is appended verbatim to the
-    // URL). This is intentionally distinct from PRIMARY_WEB_URL so the
-    // homepage and the catalog deep-link can live on the same supplier.
-    //
-    // Strategy: load all currently-active WEB_ADDRESS contact mechs for these
-    // suppliers via PartyAndContactMech, plus all currently-active
-    // PartyContactMechPurpose rows for the same parties, and filter out the
-    // (partyId, contactMechId) pairs that have any purpose assigned.
-    Set<String> mechsWithPurpose = new HashSet<String>()
-    EntityQuery.use(delegator)
-            .from('PartyContactMechPurpose')
-            .where(EntityCondition.makeCondition('partyId', EntityOperator.IN, supplierIdList))
-            .filterByDate()
-            .queryList()
-            .each { row ->
-                mechsWithPurpose << ((row.partyId as String) + '|' + (row.contactMechId as String))
-            }
-
-    EntityQuery.use(delegator)
-            .from('PartyAndContactMech')
-            .where(EntityCondition.makeCondition([
-                    EntityCondition.makeCondition('partyId', EntityOperator.IN, supplierIdList),
-                    EntityCondition.makeCondition('contactMechTypeId', 'WEB_ADDRESS'),
-            ], EntityOperator.AND))
-            .filterByDate()
-            .queryList()
-            .each { row ->
-                String partyId = row.partyId as String
-                String contactMechId = row.contactMechId as String
-                String key = partyId + '|' + contactMechId
-                if (mechsWithPurpose.contains(key)) return
-                if (!row.infoString) return
-                if (!supplierCatalogBaseUrlById.containsKey(partyId)) {
-                    supplierCatalogBaseUrlById[partyId] = row.infoString as String
-                }
-            }
+    // "Catalog" base URL per supplier - shared with the core
+    // ListSupplierProducts grid via SupplierCatalogLinks. See that class for
+    // the discovery rules (purpose-less WEB_ADDRESS, current date, etc.).
+    supplierCatalogBaseUrlById = SupplierCatalogLinks.loadCatalogBaseUrls(delegator, supplierIdList)
 }
 
 // Pre-render the supplier-name cell HTML once per supplier (HTML-encoded,
@@ -345,21 +311,11 @@ productIds.each { pid ->
     Closure addRow = { String supplierPartyId, String supplierName, String supplierNameHtml,
                        String supplierProductId, BigDecimal lastPrice, String currencyUomId ->
         // Linkify the supplier's product id when the supplier has a catalog
-        // base URL (= a WEB_ADDRESS contact mech without any purpose). The
-        // productId is URL-encoded for the href and HTML-encoded for the
-        // visible text. Falls back to plain HTML-encoded text otherwise.
-        String supplierProductIdHtml = ''
-        if (supplierProductId) {
-            String safeText = htmlEncoder.encode(supplierProductId)
-            String baseUrl = supplierPartyId ? supplierCatalogBaseUrlById[supplierPartyId] : null
-            if (baseUrl) {
-                String href = baseUrl + URLEncoder.encode(supplierProductId, 'UTF-8')
-                supplierProductIdHtml = '<a href="' + htmlEncoder.encode(href) +
-                        '" target="_blank" rel="nofollow noreferrer noopener">' + safeText + '</a>'
-            } else {
-                supplierProductIdHtml = safeText
-            }
-        }
+        // base URL on file - identical rendering to the ListSupplierProducts
+        // grid (see EnrichProductSuppliersWithCatalogLinks.groovy).
+        String baseUrl = supplierPartyId ? supplierCatalogBaseUrlById[supplierPartyId] : null
+        String supplierProductIdHtml = SupplierCatalogLinks.renderSupplierProductIdHtml(
+                supplierProductId, baseUrl, htmlEncoder)
         rows << [
                 productId             : pid,
                 internalName          : product.internalName,
