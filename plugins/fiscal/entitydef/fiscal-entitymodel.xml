@@ -177,12 +177,8 @@ under the License.
 
   <view-entity entity-name="FiscalInvoiceSearchView" package-name="org.apache.ofbiz.fiscal.invoice" title="Fiscal Invoice Search View">
     <member-entity entity-alias="FI" entity-name="FiscalInvoice"/>
-    <member-entity entity-alias="INV" entity-name="Invoice" join-from-alias="FI">
-      <key-map field-name="invoiceId"/>
-    </member-entity>
-    <member-entity entity-alias="FPT" entity-name="FiscalPaymentTerminal" join-from-alias="FI">
-      <key-map field-name="fiscalPaymentTerminalId"/>
-    </member-entity>
+    <member-entity entity-alias="INV" entity-name="Invoice"/>
+    <member-entity entity-alias="FPT" entity-name="FiscalPaymentTerminal"/>
     <alias entity-alias="FI" name="fiscalInvoiceId"/>
     <alias entity-alias="FI" name="invoiceId"/>
     <alias entity-alias="FI" name="orderId"/>
