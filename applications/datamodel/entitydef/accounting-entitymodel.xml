@@ -1158,6 +1158,7 @@ under the License.
 
     <entity entity-name="Invoice"
             package-name="org.apache.ofbiz.accounting.invoice"
+            sequence-bank-size="1"
             title="Invoice">
       <field name="invoiceId" type="id"></field>
       <field name="invoiceTypeId" type="id"></field>

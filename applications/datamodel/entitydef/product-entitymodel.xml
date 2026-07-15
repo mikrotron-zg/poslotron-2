@@ -2798,6 +2798,7 @@ under the License.
     </entity>
     <entity entity-name="Product"
             package-name="org.apache.ofbiz.product.product"
+            sequence-bank-size="1"
             title="Product">
       <field name="productId" type="id"></field>
       <field name="productTypeId" type="id"></field>

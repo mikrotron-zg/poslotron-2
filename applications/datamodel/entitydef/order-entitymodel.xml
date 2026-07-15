@@ -415,6 +415,7 @@ under the License.
     <entity entity-name="OrderHeader"
             package-name="org.apache.ofbiz.order.order"
             never-cache="true"
+            sequence-bank-size="1"
             title="Order Header">
       <field name="orderId" type="id"></field>
       <field name="orderTypeId" type="id"></field>
@@ -1432,6 +1433,7 @@ under the License.
 
     <entity entity-name="Quote"
             package-name="org.apache.ofbiz.order.quote"
+            sequence-bank-size="1"
             title="Quote">
       <field name="quoteId" type="id"></field>
       <field name="quoteTypeId" type="id"></field>
