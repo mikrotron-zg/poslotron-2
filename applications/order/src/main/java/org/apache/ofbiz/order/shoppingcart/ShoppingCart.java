@@ -3354,8 +3354,7 @@ public class ShoppingCart implements Iterable<ShoppingCartItem>, Serializable {
 
     /** Returns the total from the cart, including tax/shipping. */
     public BigDecimal getDisplayGrandTotal() {
-        return this.getDisplaySubTotal().add(this.getTotalShipping()).add(this.getTotalSalesTax())
-                .add(this.getOrderOtherAdjustmentTotal()).add(this.getOrderGlobalAdjustments());
+        return this.getDisplaySubTotal().add(this.getOrderOtherAdjustmentTotal()).add(this.getOrderGlobalAdjustments());
     }
 
     /**
