@@ -57,7 +57,9 @@ under the License.
         </tr>
       </table>
       <br />
-      ${uiLabelMap.SecurityExtLinkOnce}.
+      ${uiLabelMap.SecurityExtLinkOnce}. ${uiLabelMap.SecurityExtPasswordResetLink}:
+      <br /><br />
+      <a style="font-size: 0.8em" href="${passwordUrl}">${passwordUrl}</a>
   </div>
 </body>
 </html>
