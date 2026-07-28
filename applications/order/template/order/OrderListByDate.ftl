@@ -20,13 +20,18 @@ under the License.
 <div id="findOrdersList" class="screenlet">
   <div class="screenlet-title-bar">
     <ul>
-      <li class="h3">${uiLabelMap.OrderOrderReceivedOn} ${Static["org.apache.ofbiz.base.util.UtilDateTime"].toDateString(filterDate)}</li>
+      <li class="h3">
+        ${uiLabelMap.OrderOrderReceivedOn}
+        <strong>
+          ${Static["java.text.DateFormat"].getDateInstance(Static["java.text.DateFormat"].LONG, locale).format(filterDate)}
+        </strong>
+      </li>
       <#assign listSize = state.getSize()>
       <#if (listSize > 10)>
-        <li><a href="<@ofbizUrl controlPath="/ordermgr/control">orderlist?viewIndex=${state.getViewIndex() + 1}&amp;viewSize=${state.getViewSize()}&amp;filterDate=${filterDate!}</@ofbizUrl>">${uiLabelMap.CommonMore}</a></li>
+        <li class="h3"><a href="<@ofbizUrl controlPath="/ordermgr/control">orderlist?viewIndex=${state.getViewIndex() + 1}&amp;viewSize=${state.getViewSize()}&amp;filterDate=${filterDate!}</@ofbizUrl>">${uiLabelMap.CommonMore}</a></li>
       </#if>
       <#if orderHeaderList?has_content> 
-        <li>1-${orderHeaderList.size()} ${uiLabelMap.CommonOf} ${state.getSize()}</li>
+        <li class="h3">1-${orderHeaderList.size()} ${uiLabelMap.CommonOf} ${state.getSize()}</li>
       </#if>
     </ul>
     <br class="clear"/>

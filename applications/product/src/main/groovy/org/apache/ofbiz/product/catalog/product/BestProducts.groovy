@@ -27,10 +27,10 @@ import org.apache.ofbiz.product.product.ProductContentWrapper
 
 bestSellingProducts = []
 exprList = []
-exprList.add(EntityCondition.makeCondition('orderDate', EntityOperator.GREATER_THAN_EQUAL_TO, UtilDateTime.getDayStart(filterDate)))
-exprList.add(EntityCondition.makeCondition('orderDate', EntityOperator.LESS_THAN_EQUAL_TO, UtilDateTime.getDayEnd(filterDate)))
+exprList.add(EntityCondition.makeCondition('orderDate', EntityOperator.GREATER_THAN_EQUAL_TO, UtilDateTime.getMonthStart(filterDate)))
+exprList.add(EntityCondition.makeCondition('orderDate', EntityOperator.LESS_THAN_EQUAL_TO, UtilDateTime.getMonthEnd(filterDate, timeZone, locale)))
 exprList.add(EntityCondition.makeCondition('orderTypeId', EntityOperator.EQUALS, 'SALES_ORDER'))
-exprList.add(EntityCondition.makeCondition('statusId', EntityOperator.NOT_EQUAL, 'ORDER_CANCELLED'))
+exprList.add(EntityCondition.makeCondition('statusId', EntityOperator.EQUALS, 'ORDER_COMPLETED'))
 
 orderHeaderList = from('OrderHeader').where(exprList).queryList()
 
@@ -63,14 +63,16 @@ orderHeaderList.each { orderHeader ->
         }
 
         if (inListFlag == false) {
-            orderItemDetail.productId = orderItem.productId
             product = from('Product').where('productId', orderItem.productId).queryOne()
-            contentWrapper = new ProductContentWrapper(product, request)
-            orderItemDetail.productName = contentWrapper.get('PRODUCT_NAME', 'html')
-            orderItemDetail.amount = amount
-            orderItemDetail.qtyOrdered = qtyOrdered
-            orderItemDetail.currencyUom = orderHeader.currencyUom
-            bestSellingProducts.add(orderItemDetail)
+            if (!product.salesDiscontinuationDate) {
+                orderItemDetail.productId = orderItem.productId
+                contentWrapper = new ProductContentWrapper(product, request)
+                orderItemDetail.productName = contentWrapper.get('PRODUCT_NAME', 'html')
+                orderItemDetail.amount = amount
+                orderItemDetail.qtyOrdered = qtyOrdered
+                orderItemDetail.currencyUom = orderHeader.currencyUom
+                bestSellingProducts.add(orderItemDetail)
+            }
         }
     }
 }
@@ -78,7 +80,7 @@ orderHeaderList.each { orderHeader ->
 // Sorting List
 topSellingProducts = []
 itr = 1
-while (itr <= 5) {
+while (itr <= 10) {
     orderItemDetail = [:]
     bestSellingProducts.each { bestSellingProduct ->
         if (orderItemDetail) {
@@ -104,4 +106,4 @@ while (itr <= 5) {
 
 context.bestSellingProducts = topSellingProducts
 
-context.now = UtilDateTime.toDateString(UtilDateTime.nowDate())
+context.now = UtilDateTime.toDateString(UtilDateTime.nowDate(), 'MM/yyyy')
