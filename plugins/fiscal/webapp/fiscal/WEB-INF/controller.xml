@@ -22,6 +22,11 @@
         <response name="success" type="view" value="FindFiscalInvoice"/>
     </request-map>
 
+    <request-map uri="fiscalinvoiceview">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="FiscalInvoiceView"/>
+    </request-map>
+
     <request-map uri="payment">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="payment"/>
@@ -60,6 +65,7 @@
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://fiscal/widget/CommonScreens.xml#main"/>
     <view-map name="FindFiscalInvoice" type="screen" page="component://fiscal/widget/CommonScreens.xml#FindFiscalInvoice"/>
+    <view-map name="FiscalInvoiceView" type="screen" page="component://fiscal/widget/CommonScreens.xml#FiscalInvoiceView"/>
     <view-map name="payment" type="screen" page="component://fiscal/widget/CommonScreens.xml#payment"/>
     <view-map name="FindFiscalInvoicePayment" type="screen" page="component://fiscal/widget/CommonScreens.xml#FindFiscalInvoicePayment"/>
     <view-map name="reporting" type="screen" page="component://fiscal/widget/CommonScreens.xml#reporting"/>

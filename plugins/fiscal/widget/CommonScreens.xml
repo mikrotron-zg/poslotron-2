@@ -157,4 +157,68 @@
             </fail-widgets>
         </section>
     </screen>
+    <screen name="FiscalInvoiceView">
+        <section>
+            <condition>
+                <if-has-permission permission="ACCOUNTING" action="_VIEW"/>
+            </condition>
+            <actions>
+                <set field="headerItem" value="main"/>
+                <set field="titleProperty" value="FiscalInvoiceView"/>
+                <script location="component://fiscal/src/main/groovy/org/apache/ofbiz/fiscal/invoice/PrepareFiscalInvoiceView.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <not><if-empty field="fiscalInvoice"/></not>
+                            </condition>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.FiscalInvoiceView} ${fiscalInvoice.fiscalInvoiceNumber}">
+                                    <include-form name="FiscalInvoiceHeader" location="component://fiscal/widget/FiscalForms.xml"/>
+                                </screenlet>
+                                <section>
+                                    <condition>
+                                        <not><if-empty field="invItemAndOrdItems"/></not>
+                                    </condition>
+                                    <widgets>
+                                        <screenlet title="${uiLabelMap.AccountingInvoiceItems}" navigation-form-name="ListFiscalInvoiceItems">
+                                            <include-grid name="ListFiscalInvoiceItems" location="component://fiscal/widget/FiscalForms.xml"/>
+                                        </screenlet>
+                                    </widgets>
+                                </section>
+                                <section>
+                                    <condition>
+                                        <not><if-empty field="fiscalServiceApiRequests"/></not>
+                                    </condition>
+                                    <widgets>
+                                        <screenlet title="${uiLabelMap.FiscalApiRequests}" navigation-form-name="ListFiscalServiceApiRequests">
+                                            <include-grid name="ListFiscalServiceApiRequests" location="component://fiscal/widget/FiscalForms.xml"/>
+                                        </screenlet>
+                                    </widgets>
+                                </section>
+                                <section>
+                                    <condition>
+                                        <not><if-empty field="fiscalServiceApiResponses"/></not>
+                                    </condition>
+                                    <widgets>
+                                        <screenlet title="${uiLabelMap.FiscalApiResponses}" navigation-form-name="ListFiscalServiceApiResponses">
+                                            <include-grid name="ListFiscalServiceApiResponses" location="component://fiscal/widget/FiscalForms.xml"/>
+                                        </screenlet>
+                                    </widgets>
+                                </section>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="h3" text="${uiLabelMap.FiscalInvoiceNotFound}"/>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+            <fail-widgets>
+                <label style="h3" text="${uiLabelMap.AccountingViewPermissionError}"/>
+            </fail-widgets>
+        </section>
+    </screen>
 </screens>

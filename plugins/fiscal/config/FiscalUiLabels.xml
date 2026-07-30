@@ -139,4 +139,48 @@
         <value xml:lang="en">VAT ID</value>
         <value xml:lang="hr">OIB</value>
     </property>
+    <property key="FiscalInvoiceView">
+        <value xml:lang="en">Fiscal Invoice</value>
+        <value xml:lang="hr">Fiskalni račun</value>
+    </property>
+    <property key="FiscalInvoiceNotFound">
+        <value xml:lang="en">Fiscal invoice not found</value>
+        <value xml:lang="hr">Fiskalni račun nije pronađen</value>
+    </property>
+    <property key="FiscalInvoiceIdExternal">
+        <value xml:lang="en">External Invoice ID</value>
+        <value xml:lang="hr">Vanjski ID računa</value>
+    </property>
+    <property key="FiscalInvoicePdfExternal">
+        <value xml:lang="en">External Invoice PDF</value>
+        <value xml:lang="hr">Vanjski PDF računa</value>
+    </property>
+    <property key="FiscalZki">
+        <value xml:lang="en">ZKI</value>
+        <value xml:lang="hr">ZKI</value>
+    </property>
+    <property key="FiscalJir">
+        <value xml:lang="en">JIR</value>
+        <value xml:lang="hr">JIR</value>
+    </property>
+    <property key="FiscalApiRequests">
+        <value xml:lang="en">API Requests</value>
+        <value xml:lang="hr">API zahtjevi</value>
+    </property>
+    <property key="FiscalApiResponses">
+        <value xml:lang="en">API Responses</value>
+        <value xml:lang="hr">API odgovori</value>
+    </property>
+    <property key="FiscalApiRequestRawText">
+        <value xml:lang="en">Request Raw Text</value>
+        <value xml:lang="hr">Sirovi tekst zahtjeva</value>
+    </property>
+    <property key="FiscalApiResponseRawText">
+        <value xml:lang="en">Response Raw Text</value>
+        <value xml:lang="hr">Sirovi tekst odgovora</value>
+    </property>
+    <property key="FiscalApiResponseStatus">
+        <value xml:lang="en">Status</value>
+        <value xml:lang="hr">Status</value>
+    </property>
 </resource>
