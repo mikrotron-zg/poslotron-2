@@ -626,10 +626,12 @@ ${variantInfoJavaScript!}
         </#list>
         <div>&nbsp;</div>
       </#if>
-      <#if (productATP??) && (productATP > 0)>
-        <div class="text-info mt-3">${uiLabelMap.ProductQuantityOnHand}: ${productATP?string.number}</div>
-      <#else>
-        <div class="text-danger mt-3">${uiLabelMap.FacilityNoItemsAvailableToShip}</div>
+      <#if !product.salesDiscontinuationDate??>
+          <#if (productATP??) && (productATP > 0)>
+            <div class="text-info mt-3">${uiLabelMap.ProductQuantityOnHand}: ${productATP?string.number}</div>
+          <#else>
+            <div class="text-danger mt-3">${uiLabelMap.FacilityNoItemsAvailableToShip}</div>
+          </#if>
       </#if>
     <div id="addItemForm">
       <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform" style="margin: 0;">
@@ -723,7 +725,7 @@ ${variantInfoJavaScript!}
           <div style="color: red;">${uiLabelMap.ProductProductNotYetMadeAvailable}.</div>
         <#-- check to see if salesDiscontinuationDate has passed -->
         <#elseif product.salesDiscontinuationDate?? && nowTimestamp.after(product.salesDiscontinuationDate)>
-          <div style="color: red;">${uiLabelMap.ProductProductNoLongerAvailable}.</div>
+          <div style="color: red; margin-top: 0.5em;">${uiLabelMap.ProductProductNoLongerAvailable}.</div>
         <#-- check to see if the product requires inventory check and has inventory -->
         <#elseif product.virtualVariantMethodEnum! != "VV_FEATURETREE">
           <#if inStock>
