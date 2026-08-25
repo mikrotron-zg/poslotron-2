@@ -832,6 +832,18 @@ public class CheckOutHelper {
             }
         }
 
+        // create order contact mechs for the telecom number(s)
+        if (party != null) {
+            Iterator<GenericValue> telecomIter = UtilMisc.toIterator(ContactHelper.getContactMechByType(party, "TELECOM_NUMBER", false));
+            while (telecomIter != null && telecomIter.hasNext()) {
+                GenericValue telecom = telecomIter.next();
+                GenericValue orderContactMech = this.delegator.makeValue("OrderContactMech",
+                        UtilMisc.toMap("orderId", orderId, "contactMechId", telecom.getString("contactMechId"), "contactMechPurposeTypeId",
+                                "PHONE_SHIPPING"));
+                toBeStored.add(orderContactMech);
+            }
+        }
+
         // create dummy contact mechs and order contact mechs for the additional emails
         String additionalEmails = this.cart.getOrderAdditionalEmails();
         List<String> emailList = StringUtil.split(additionalEmails, ",");

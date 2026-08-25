@@ -17,6 +17,23 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<script type="application/javascript">
+  function copyToClipboard(txt) {
+    console.log(txt);
+    navigator.clipboard
+    .writeText(txt)
+    .then(() => console.log('Copied to clipboard'))
+    .catch((e) => console.log(e.message));
+  }
+</script>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="icon-copy" viewBox="0 0 16 16">
+    <path fill-rule="evenodd"
+    d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+  </symbol>
+</svg>
+
 <#macro updateOrderContactMech orderHeader contactMechTypeId contactMechList contactMechPurposeTypeId contactMechAddress>
   <#if ("ORDER_COMPLETED" != orderHeader.statusId) && ("ORDER_REJECTED" != orderHeader.statusId) && ("ORDER_CANCELLED" != orderHeader.statusId)>
     <form name="updateOrderContactMech" method="post" action="<@ofbizUrl>updateOrderContactMech</@ofbizUrl>">
@@ -84,12 +101,9 @@ under the License.
               </#if>
               <#if partyId??>
                 &nbsp;<a href="${customerDetailLink}${partyId}${StringUtil.wrapString(externalKeyParam)}" target="partymgr" class="buttontext">(${partyId})</a>
-                <br/>
                 <#if (orderHeader.salesChannelEnumId)?? && orderHeader.salesChannelEnumId != "POS_SALES_CHANNEL">
-                  <div>
-                     <a href="<@ofbizUrl>/orderentry?partyId=${partyId}&amp;orderTypeId=${orderHeader.orderTypeId}</@ofbizUrl>" class="buttontext">${uiLabelMap.OrderNewOrder}</a>
-                     <a href="javascript:document.searchOtherOrders.submit()" class="buttontext">${uiLabelMap.OrderOtherOrders}</a>
-                  </div>
+                  <a href="<@ofbizUrl>/orderentry?partyId=${partyId}&amp;orderTypeId=${orderHeader.orderTypeId}</@ofbizUrl>" class="buttontext">${uiLabelMap.OrderNewOrder}</a>
+                  <a href="javascript:document.searchOtherOrders.submit()" class="buttontext">${uiLabelMap.OrderOtherOrders}</a>
                   <form name="searchOtherOrders" method="post" action="<@ofbizUrl>searchorders</@ofbizUrl>">
                     <input type="hidden" name="lookupFlag" value="Y"/>
                     <input type="hidden" name="hideFields" value="Y"/>
@@ -137,26 +151,99 @@ under the License.
               <#if "POSTAL_ADDRESS" == contactMech.contactMechTypeId>
                 <#assign postalAddress = orderContactMechValueMap.postalAddress>
                 <#if postalAddress?has_content>
-                  <div>
-                     ${setContextField("postalAddress", postalAddress)}
-                     ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressHtmlFormatter")}
+                  <div style="margin-bottom: 1em; line-height: 1.8;">
+                    <#assign toName = (postalAddress["toName"]!"")?replace("\\s+", " ", "r")?trim>
+                    <#assign attnName = (postalAddress["attnName"]!)>
+                    <#assign address1 = (postalAddress["address1"]!)>
+                    <#assign address2 = (postalAddress["address2"]!)>
+                    <#assign postalCode = (postalAddress["postalCode"]!)>
+                    <#assign city = (postalAddress["city"]!)>
+                    <#assign countryGeoId = (postalAddress["countryGeoId"]!)>
+                    <#assign addressLines = []>
+                    <#if toName?has_content><#assign addressLines = addressLines + [toName]></#if>
+                    <#if attnName?has_content><#assign addressLines = addressLines + ["n/r " + attnName]></#if>
+                    <#if address1?has_content><#assign addressLines = addressLines + [address1]></#if>
+                    <#if address2?has_content><#assign addressLines = addressLines + [address2]></#if>
+                    <#if postalCode?has_content || city?has_content><#assign addressLines = addressLines + ["${postalCode!} ${city!}"?trim]></#if>
+                    <#assign fullAddress = addressLines?join("\n")>
+
+                    <b>${toName}</b>&nbsp;
+                    <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${toName}')">
+                      <svg width="14" height="14" fill="currentColor">
+                        <use href="#icon-copy"></use>
+                      </svg>
+                    </a>
+                    <br/>
+                    <#if attnName?has_content>
+                      n/r ${attnName}&nbsp;
+                      <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${attnName}')">
+                        <svg width="14" height="14" fill="currentColor">
+                          <use href="#icon-copy"></use>
+                        </svg>
+                      </a>
+                      <br/>
+                    </#if>
+                    ${address1}&nbsp;
+                    <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${address1}')">
+                      <svg width="14" height="14" fill="currentColor">
+                        <use href="#icon-copy"></use>
+                      </svg>
+                    </a>
+                    <br/>
+                    <#if address2?has_content>
+                      ${address2}&nbsp;
+                      <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${address2}')">
+                        <svg width="14" height="14" fill="currentColor">
+                          <use href="#icon-copy"></use>
+                        </svg>
+                      </a>
+                      <br/>
+                    </#if>
+                    ${postalCode}&nbsp;${city}&nbsp;
+                    <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${postalCode} ${city}')">
+                      <svg width="14" height="14" fill="currentColor">
+                        <use href="#icon-copy"></use>
+                      </svg>
+                    </a>
+                    <br/>
+                    <#if countryGeoId?has_content>
+                      <#assign countryGeo = delegator.findOne("Geo", Static["org.apache.ofbiz.base.util.UtilMisc"].toMap("geoId", countryGeoId), true)!>
+                      <#if countryGeo?has_content>${countryGeo.get("geoName", locale)!countryGeoId}<#else>${countryGeoId}</#if>
+                    </#if>
+                    &nbsp;
+                    <button class="smallSubmit" onclick="copyToClipboard('${fullAddress?js_string}')">
+                      <svg width="12" height="12" fill="currentColor">
+                        <use href="#icon-copy"></use>
+                      </svg>
+                      &nbsp;
+                      ${uiLabelMap.CommonAll}
+                    </button>
+                    <#--${setContextField("postalAddress", postalAddress)}
+                     ${screens.render("component://party/widget/partymgr/PartyScreens.xml#postalAddressHtmlFormatter")}-->
                   </div>
                   <@updateOrderContactMech orderHeader=orderHeader! contactMechTypeId=contactMech.contactMechTypeId contactMechList=postalContactMechList! contactMechPurposeTypeId=contactMechPurpose.contactMechPurposeTypeId! contactMechAddress=postalAddress! />
                 </#if>
               <#elseif "TELECOM_NUMBER" == contactMech.contactMechTypeId>
                 <#assign telecomNumber = orderContactMechValueMap.telecomNumber>
                 <div>
-                  ${telecomNumber.countryCode!}
-                  <#if telecomNumber.areaCode??>${telecomNumber.areaCode}-</#if>${telecomNumber.contactNumber}
-                  <#if !telecomNumber.countryCode?? || "011" == telecomNumber.countryCode || "1" == telecomNumber.countryCode>
-                    <a target="_blank" href="${uiLabelMap.CommonLookupAnywhoLink}" class="buttontext">${uiLabelMap.CommonLookupAnywho}</a>
-                   <a target="_blank" href="${uiLabelMap.CommonLookupWhitepagesTelNumberLink}" class="buttontext">${uiLabelMap.CommonLookupWhitepages}</a>
-                  </#if>
+                  <b>${telecomNumber.countryCode!}${telecomNumber.areaCode!}${telecomNumber.contactNumber}</b>
+                  &nbsp;
+                  <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${telecomNumber.countryCode!}${telecomNumber.areaCode!}${telecomNumber.contactNumber}')">
+                    <svg width="14" height="14" fill="currentColor">
+                      <use href="#icon-copy"></use>
+                    </svg>
+                  </a>
                 </div>
-                <@updateOrderContactMech orderHeader=orderHeader! contactMechTypeId=contactMech.contactMechTypeId contactMechList=telecomContactMechList! contactMechPurposeTypeId=contactMechPurpose.contactMechPurposeTypeId! contactMechAddress=telecomNumber! />
               <#elseif "EMAIL_ADDRESS" == contactMech.contactMechTypeId>
                 <div>
-                  ${contactMech.infoString}
+                  <b>${contactMech.infoString}</b>
+                  &nbsp;
+                  <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${contactMech.infoString}')">
+                    <svg width="14" height="14" fill="currentColor">
+                      <use href="#icon-copy"></use>
+                    </svg>
+                  </a>
+                  &nbsp;
                   <#if security.hasEntityPermission("ORDERMGR", "_SEND_CONFIRMATION", session)>
                      <a href="<@ofbizUrl>confirmationmailedit?orderId=${orderId}&amp;partyId=${partyId}&amp;sendTo=${contactMech.infoString}</@ofbizUrl>" class="buttontext">${uiLabelMap.OrderSendConfirmationEmail}</a>
                   <#else>
