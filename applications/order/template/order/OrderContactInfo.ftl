@@ -226,9 +226,9 @@ under the License.
               <#elseif "TELECOM_NUMBER" == contactMech.contactMechTypeId>
                 <#assign telecomNumber = orderContactMechValueMap.telecomNumber>
                 <div>
-                  <b>${telecomNumber.countryCode!}${telecomNumber.areaCode!}${telecomNumber.contactNumber}</b>
+                  <b>${telecomNumber.countryCode!}${telecomNumber.areaCode!}${telecomNumber.contactNumber!}</b>
                   &nbsp;
-                  <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${telecomNumber.countryCode!}${telecomNumber.areaCode!}${telecomNumber.contactNumber}')">
+                  <a href="#" title="${uiLabelMap.CommonCopy}" onclick="copyToClipboard('${telecomNumber.countryCode!}${telecomNumber.areaCode!}${telecomNumber.contactNumber!}')">
                     <svg width="14" height="14" fill="currentColor">
                       <use href="#icon-copy"></use>
                     </svg>
