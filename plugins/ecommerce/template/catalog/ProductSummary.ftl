@@ -98,6 +98,7 @@ ${variantInfoJavaScript!}
       <div class="card-footer">
         <p class="font-italic">ID:${product.productId!}</p>
 
+        <#if !product.salesDiscontinuationDate??>
         <#if totalPrice??>
           <p>${uiLabelMap.ProductAggregatedPrice}: <span class="basePrice"><@ofbizCurrency amount=totalPrice isoCode=totalPrice.currencyUsed/></span></p>
         <#else>
@@ -130,6 +131,7 @@ ${variantInfoJavaScript!}
               </span>
             </p>
           </#if>
+        </#if>
         </#if>
 
         <div class="productbuy">

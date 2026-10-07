@@ -23,6 +23,7 @@ under the License.
   </a>
   <ul class="list-unstyled mb-3">
     <li>
+      <#if !miniProduct.salesDiscontinuationDate??>
       <#if (priceResult.price?default(0) > 0 && "N" == miniProduct.requireAmount?default("N"))>
         <#if "Y" = miniProduct.isVirtual!>
           ${uiLabelMap.CommonFrom}
@@ -36,6 +37,7 @@ under the License.
           <span class="<#if priceResult.isSale>salePrice<#else>normalPrice</#if>">
           <@ofbizCurrency amount=price isoCode=priceResult.currencyUsed/></span>
         </#if>
+      </#if>
       </#if>
     </li>
     <#if (miniProduct.introductionDate??) && (nowTimeLong < miniProduct.introductionDate.getTime())>

@@ -468,6 +468,7 @@ ${variantInfoJavaScript!}
               - if price < defaultPrice and defaultPrice < listPrice, show default
               - if isSale show price with salePrice style and print "On Sale!"
       -->
+      <#if !product.salesDiscontinuationDate??>
       <#if price.competitivePrice?? && price.price?? && price.price &lt; price.competitivePrice>
         <div>${uiLabelMap.ProductCompareAtPrice}:
           <span class="basePrice">
@@ -559,6 +560,7 @@ ${variantInfoJavaScript!}
             <div>${orderItemPriceInfo.description!}</div>
           </#list>
         </#if>
+      </#if>
       </#if>
 
       <#-- Included quantities/pieces -->
