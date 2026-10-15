@@ -561,10 +561,12 @@ public class UtilCodec {
             String filtered = policy.sanitize(value);
             String unescapeHtml4 = StringEscapeUtils.unescapeHtml4(filtered);
             String unescapeEcmaScriptAndHtml4 = StringEscapeUtils.unescapeEcmaScript(unescapeHtml4);
-            // Replaces possible quotes entities in value (due to HtmlSanitizer above) to avoid issue with
+            // Replaces possible entities in value (due to HtmlSanitizer above) to avoid issue with
             // testCreateCustRequestItemNote and allow saving when using quotes in fields
-            // Maybe later we will figure out that some more HTML entities will need to be added to here, see OFBIZ-12691
-            if (filtered != null && !value.replace("&#39;", "'").replace("&#34;", "\"").replace("&#64;", "@").equals(unescapeEcmaScriptAndHtml4)) {
+            // The OWASP HTML Sanitizer encodes + (&#43;), = (&#61;), ` (&#96;) and & (&) in addition
+            // to quotes (&#39;, &#34;) and @ (&#64;) — all must be replaced here to avoid false positives, see OFBIZ-12691
+            if (filtered != null && !value.replace("&", "&").replace("&#39;", "'").replace("&#34;", "\"").replace("&#64;", "@")
+                    .replace("&#43;", "+").replace("&#61;", "=").replace("&#96;", "`").equals(unescapeEcmaScriptAndHtml4)) {
                 String issueMsg = null;
                 if (locale.equals(new Locale("test"))) { // labels are not available in testClasses Gradle task
                     issueMsg = "In field [" + valueName + "] by our input policy, your input has not been accepted "

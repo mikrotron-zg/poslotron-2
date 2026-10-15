@@ -106,4 +106,36 @@ public class UtilCodecTests {
         assertEquals("In field [fieldName] by our input policy, your input has not been accepted for security reason. "
                 + "Please check and modify accordingly, thanks.", errorList.get(0));
     }
+
+    @Test
+    public void testCheckStringForHtmlSafePlusSign() {
+        List<String> errorList = new ArrayList<>();
+        UtilCodec.checkStringForHtmlSafe("fieldName", "hello + world", errorList,
+                new Locale("test"), true);
+        assertEquals(0, errorList.size());
+    }
+
+    @Test
+    public void testCheckStringForHtmlSafeEqualsSign() {
+        List<String> errorList = new ArrayList<>();
+        UtilCodec.checkStringForHtmlSafe("fieldName", "a = b", errorList,
+                new Locale("test"), true);
+        assertEquals(0, errorList.size());
+    }
+
+    @Test
+    public void testCheckStringForHtmlSafeBacktick() {
+        List<String> errorList = new ArrayList<>();
+        UtilCodec.checkStringForHtmlSafe("fieldName", "hello ` world", errorList,
+                new Locale("test"), true);
+        assertEquals(0, errorList.size());
+    }
+
+    @Test
+    public void testCheckStringForHtmlSafeAmpersand() {
+        List<String> errorList = new ArrayList<>();
+        UtilCodec.checkStringForHtmlSafe("fieldName", "hello & world", errorList,
+                new Locale("test"), true);
+        assertEquals(0, errorList.size());
+    }
 }
