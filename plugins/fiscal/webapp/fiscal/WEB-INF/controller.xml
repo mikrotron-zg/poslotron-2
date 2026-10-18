@@ -47,6 +47,13 @@
         <response name="error" type="view-last" value="FindFiscalInvoicePayment" save-last-view="true"/>
     </request-map>
 
+    <request-map uri="updateFiscalInvoiceHeader">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="updateFiscalInvoiceHeader"/>
+        <response name="success" type="view" value="FiscalInvoiceView"/>
+        <response name="error" type="view" value="FiscalInvoiceView"/>
+    </request-map>
+
     <request-map uri="reporting">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="reporting"/>

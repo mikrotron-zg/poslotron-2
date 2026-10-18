@@ -215,14 +215,18 @@
         </field>
         <field name="poNumber" title="${uiLabelMap.FiscalPoNumber}"><display/></field>
     </grid>
-    <form name="FiscalInvoiceHeader" type="single" default-map-name="fiscalInvoice" default-entity-name="FiscalInvoice"
+    <form name="FiscalInvoiceHeader" type="single" target="updateFiscalInvoiceHeader" default-map-name="fiscalInvoice" default-entity-name="FiscalInvoice"
             odd-row-style="alternate-row" default-table-style="basic-table">
         <field name="fiscalInvoiceNumber" title="${uiLabelMap.FiscalInvoiceNumber}"><display/></field>
-        <field name="fiscalInvoiceId" title="Id"><display/></field>
+        <field name="fiscalInvoiceId"><hidden/></field>
         <field name="fiscalInvoiceDate" title="${uiLabelMap.FiscalInvoiceDate}"><display type="date"/></field>
         <field name="amount" title="${uiLabelMap.CommonAmount}"><display type="currency" currency="${invoice.currencyUomId}"/></field>
-        <field name="isPayed" title="${uiLabelMap.FiscalIsPayed}"><display description="${fiscalInvoice.isPayed == 'Y' ? uiLabelMap.CommonYes : uiLabelMap.CommonNo}"/></field>
-        <field name="poNumber" title="${uiLabelMap.FiscalPoNumber}"><display/></field>
+        <field name="isPayed" title="${uiLabelMap.FiscalIsPayed}">
+            <check>
+                <option key="Y" description=" "/>
+            </check>
+        </field>
+        <field name="poNumber" title="${uiLabelMap.FiscalPoNumber}"><text/></field>
         <field name="invoiceId" title="${uiLabelMap.OrderReceipt}" widget-style="buttontext">
             <hyperlink description="${fiscalInvoice.invoiceId}" target="/accounting/control/viewInvoice" target-type="inter-app">
                 <parameter param-name="invoiceId" from-field="fiscalInvoice.invoiceId"/>
@@ -237,10 +241,11 @@
         <field name="fiscalStoreId" title="${uiLabelMap.FiscalStoreId}"><display description="${fiscalStore.fiscalStoreLabel} [${fiscalStore.fiscalStoreId}]"/></field>
         <field name="fiscalInvoiceIdExternal" title="${uiLabelMap.FiscalInvoiceIdExternal}"><display/></field>
         <field name="fiscalInvoicePdfExternal" title="${uiLabelMap.FiscalInvoicePdfExternal}" widget-style="buttontext">
-            <hyperlink description="PDF" target="${fiscalInvoice.fiscalInvoicePdfExternal}" target-type="plain-url" target-window="_blank"/>
+            <hyperlink description="PDF" target="${fiscalInvoice.fiscalInvoicePdfExternal}" target-type="plain" target-window="_blank"/>
         </field>
         <field name="zki" title="${uiLabelMap.FiscalZki}"><display/></field>
         <field name="jir" title="${uiLabelMap.FiscalJir}"><display/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="smallSubmit"><submit button-type="button"/></field>
     </form>
     <grid name="ListFiscalInvoiceItems" list-name="invItemAndOrdItems" paginate-target="fiscalinvoiceview"
             odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar"

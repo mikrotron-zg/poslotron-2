@@ -27,6 +27,13 @@ under the License.
         <attribute name="isPayed" type="String" mode="IN" optional="true"/>
     </service>
 
+    <service name="updateFiscalInvoiceHeader" engine="java" location="org.apache.ofbiz.fiscal.invoice.FiscalInvoiceServices" invoke="updateFiscalInvoiceHeader" auth="true">
+        <description>Update FiscalInvoice header fields (isPayed and poNumber) from the invoice view form. Missing checkbox value is treated as N.</description>
+        <attribute name="fiscalInvoiceId" type="String" mode="IN" optional="false"/>
+        <attribute name="isPayed" type="String" mode="IN" optional="true"/>
+        <attribute name="poNumber" type="String" mode="IN" optional="true"/>
+    </service>
+
     <service name="addFiscalInvoice" engine="java" location="org.apache.ofbiz.fiscal.invoice.FiscalInvoiceServices" invoke="addFiscalInvoice" auth="true">
         <description>Add a fiscal invoice - handles both B2B and B2C cases</description>
         <attribute name="orderId" type="String" mode="IN" optional="false"/>

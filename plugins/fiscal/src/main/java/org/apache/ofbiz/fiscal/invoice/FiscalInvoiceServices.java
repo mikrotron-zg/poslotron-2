@@ -87,6 +87,49 @@ public class FiscalInvoiceServices {
     }
 
     /**
+     * Update the {@code isPayed} flag and {@code poNumber} of a fiscal invoice.
+     *
+     * <p>When the flag is rendered as a checkbox, an unchecked value is not submitted
+     * at all, so {@code isPayed} may be null here. In that case we explicitly store
+     * {@code "N"} so the flag can be toggled off from the UI. The PO number is trimmed
+     * and stored as {@code null} when empty.</p>
+     */
+    public static Map<String, Object> updateFiscalInvoiceHeader(DispatchContext ctx, Map<String, Object> context) {
+        Delegator delegator = ctx.getDelegator();
+        String fiscalInvoiceId = (String) context.get("fiscalInvoiceId");
+        String isPayed = (String) context.get("isPayed");
+        String poNumber = (String) context.get("poNumber");
+        if (!"Y".equals(isPayed)) {
+            isPayed = "N";
+        }
+        if (UtilValidate.isNotEmpty(poNumber)) {
+            poNumber = poNumber.trim();
+        } else {
+            poNumber = null;
+        }
+
+        try {
+            GenericValue fiscalInvoice = EntityQuery.use(delegator)
+                    .from("FiscalInvoice")
+                    .where("fiscalInvoiceId", fiscalInvoiceId)
+                    .queryOne();
+
+            if (fiscalInvoice == null) {
+                return ServiceUtil.returnError("Fiscal invoice not found: " + fiscalInvoiceId);
+            }
+
+            fiscalInvoice.set("isPayed", isPayed);
+            fiscalInvoice.set("poNumber", poNumber);
+            fiscalInvoice.store();
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Error updating fiscal invoice header", MODULE);
+            return ServiceUtil.returnError("Error updating fiscal invoice: " + e.getMessage());
+        }
+
+        return ServiceUtil.returnSuccess();
+    }
+
+    /**
      * Add a fiscal invoice - handles both B2B and B2C cases
      * @param ctx the dispatch context
      * @param context the context
