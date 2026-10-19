@@ -25,17 +25,23 @@ under the License.
         <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
         <field name="productId" title="${uiLabelMap.ProductProductId}"><text-find/></field>
         <field name="internalName" title="${uiLabelMap.ProductInternalName}"><text-find/></field>
+        <field name="supplierProductId" title="${uiLabelMap.FormFieldTitle_supplierProductId}"><text-find/></field>
         <field name="submitButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit">
             <submit button-type="button"/>
         </field>
     </form>
-    <grid name="ListProducts" list-name="list" paginate-target="FindProduct" override-list-size="true"
+    <grid name="ListProducts" list-name="listIt" paginate-target="FindProduct"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar" header-row-style="header-row-2">
         <actions>
-            <set field="entityName" value="Product"/>
-            <service service-name="performFindList" result-map="result" result-map-list="list">
+            <set field="hasSupplierProductCondition" value="${groovy: org.apache.ofbiz.base.util.UtilValidate.isNotEmpty(requestParameters.supplierProductId) || 'empty' == requestParameters.supplierProductId_op}" type="Boolean"/>
+            <set field="entityName" value="${groovy: hasSupplierProductCondition ? 'SupplierProductAndProduct' : 'Product'}"/>
+            <set field="fieldList" value="${groovy: hasSupplierProductCondition ? ['productId', 'productTypeId', 'internalName', 'brandName', 'productName', 'description'] : null}" type="List"/>
+            <set field="distinct" value="${groovy: hasSupplierProductCondition ? 'Y' : 'N'}"/>
+            <service service-name="performFind" result-map="result" result-map-list="listIt">
                 <field-map field-name="inputFields" from-field="requestParameters"/>
                 <field-map field-name="entityName" from-field="entityName"/>
+                <field-map field-name="fieldList" from-field="fieldList"/>
+                <field-map field-name="distinct" from-field="distinct"/>
                 <field-map field-name="orderBy" from-field="parameters.sortField"/>
                 <field-map field-name="viewIndex" from-field="viewIndex"/>
                 <field-map field-name="viewSize" from-field="viewSize"/>
