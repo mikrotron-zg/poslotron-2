@@ -697,6 +697,19 @@ public final class CommonWidgetModels {
         }
 
         /**
+         * Creates a parameter whose value is taken literally and never evaluated as an expression, for values that were
+         * computed or come from a request.
+         * @param paramName the name of the parameter
+         * @param paramValue the value of the parameter
+         * @return the parameter
+         */
+        public static Parameter literal(String paramName, String paramValue) {
+            Parameter parameter = new Parameter(paramName, "", false);
+            parameter.value = FlexibleStringExpander.getLiteral(paramValue);
+            return parameter;
+        }
+
+        /**
          * Gets from field.
          * @return the from field
          */
@@ -774,14 +787,15 @@ public final class CommonWidgetModels {
     public static class ParameterFactory {
 
         /**
-         * For an entry map return a parameter after convert correctly the value
+         * For an entry map return a parameter after convert correctly the value. The value is taken literally and is
+         * never evaluated as an expression, as it is not part of a widget definition.
          * @param entry
          * @return
          */
         public static Parameter create(Map.Entry<String, Object> entry) {
             try {
-                return new CommonWidgetModels.Parameter(entry.getKey(),
-                        (String) ObjectType.simpleTypeOrObjectConvert(entry.getValue(), "String", null, null), false);
+                return CommonWidgetModels.Parameter.literal(entry.getKey(),
+                        (String) ObjectType.simpleTypeOrObjectConvert(entry.getValue(), "String", null, null));
             } catch (GeneralException e) {
                 throw new RuntimeException(e);
             }

@@ -48,6 +48,12 @@ import org.apache.ofbiz.webapp.control.JWTManager;
 public final class SecurityUtil {
 
     private static final String MODULE = SecurityUtil.class.getName();
+
+    /** JWT purpose claim value for a token that authorizes a full login session. */
+    public static final String JWT_PURPOSE_LOGIN = "login";
+    /** JWT purpose claim value for a token that only authorizes resetting a forgotten password. */
+    public static final String JWT_PURPOSE_PASSWORD_RESET = "password_reset";
+
     private static final List<String> ADMIN_PERMISSIONS = UtilMisc.toList(
             "IMPERSONATE_ADMIN",
             "ARTIFACT_INFO_VIEW",
@@ -182,58 +188,78 @@ public final class SecurityUtil {
      * subdirectory (e.g. {@code runtime/}) is a mount point, the file's canonical path diverges
      * from {@code canonicalHome}, but the per-allowed-path comparison below still passes because
      * it resolves both sides through the mount. Path traversal via {@code ../} is still blocked.
+     * An empty or missing setting means the default list is used.
+     *
+     * @param file  the file to check
+     * @return the canonical file, which callers should use for the actual file access
+     * @throws GeneralException when the file is not within an allowed directory
      */
-    public static void checkOfbizFileAllowList(File file) throws GeneralException {
+    public static File checkOfbizFileAllowList(File file) throws GeneralException {
         try {
             String canonicalHome = new File(System.getProperty("ofbiz.home")).getCanonicalPath();
             String canonicalFilePath = file.getCanonicalPath();
             String allowedPathsStr = UtilProperties.getPropertyValue("security",
                     "content.data.ofbiz.file.allowed.paths", "applications/,themes/,plugins/,runtime/");
-            if (UtilValidate.isNotEmpty(allowedPathsStr)) {
-                boolean inAllowedPath = false;
-                for (String relPath : allowedPathsStr.split(",")) {
-                    relPath = relPath.trim().replaceAll("^/+", "");
-                    if (UtilValidate.isEmpty(relPath)) {
-                        continue;
-                    }
-                    String canonicalAllowedDir = new File(canonicalHome, relPath).getCanonicalPath();
-                    if (canonicalFilePath.startsWith(canonicalAllowedDir + File.separator)
-                            || canonicalFilePath.equals(canonicalAllowedDir)) {
-                        inAllowedPath = true;
-                        break;
-                    }
+            for (String relPath : allowedPathsStr.split(",")) {
+                relPath = relPath.trim().replaceAll("^/+", "");
+                if (UtilValidate.isEmpty(relPath)) {
+                    continue;
                 }
-                if (!inAllowedPath) {
-                    throw new GeneralException("Access to file denied: path is not within an allowed directory");
+                String canonicalAllowedDir = new File(canonicalHome, relPath).getCanonicalPath();
+                if (canonicalFilePath.startsWith(canonicalAllowedDir + File.separator)
+                        || canonicalFilePath.equals(canonicalAllowedDir)) {
+                    return new File(canonicalFilePath);
                 }
             }
+            throw new GeneralException("Access to file denied: path is not within an allowed directory");
         } catch (IOException e) {
             throw new GeneralException("Unable to validate file path: " + e.getMessage());
         }
     }
 
     /**
-     * Return a JWToken for authenticate a userLogin with salt the token by userLoginId and currentPassword
+     * Return a JWToken for authenticate a userLogin with salt the token by userLoginId and currentPassword.
+     * The token is scoped to {@link #JWT_PURPOSE_LOGIN}, so it may be used to establish a full login session.
      */
     public static String generateJwtToAuthenticateUserLogin(Delegator delegator, String userLoginId)
             throws GenericEntityException {
+        return generateJwtToAuthenticateUserLogin(delegator, userLoginId, JWT_PURPOSE_LOGIN);
+    }
+
+    /**
+     * Return a JWToken for authenticate a userLogin with salt the token by userLoginId and currentPassword,
+     * scoped to the given purpose (e.g. {@link #JWT_PURPOSE_LOGIN} or {@link #JWT_PURPOSE_PASSWORD_RESET}) so
+     * it is only accepted where that purpose is expected.
+     */
+    public static String generateJwtToAuthenticateUserLogin(Delegator delegator, String userLoginId, String purpose)
+            throws GenericEntityException {
         GenericValue userLogin = EntityQuery.use(delegator).from("UserLogin").where("userLoginId", userLoginId).queryOne();
-        Map<String, String> claims = UtilMisc.toMap("userLoginId", userLogin.getString("userLoginId"));
+        Map<String, String> claims = UtilMisc.toMap("userLoginId", userLogin.getString("userLoginId"), "purpose", purpose);
         return JWTManager.createJwt(delegator, claims,
                 userLogin.getString("userLoginId") + userLogin.getString("currentPassword"), -1);
     }
 
     /**
-     * For a jwtToken and userLoginId check the coherence between them
+     * For a jwtToken and userLoginId check the coherence between them, for a token scoped to {@link #JWT_PURPOSE_LOGIN}.
      */
     public static boolean authenticateUserLoginByJWT(Delegator delegator, String userLoginId, String jwtToken) {
+        return authenticateUserLoginByJWT(delegator, userLoginId, jwtToken, JWT_PURPOSE_LOGIN);
+    }
+
+    /**
+     * For a jwtToken and userLoginId check the coherence between them, and that the token was issued for the
+     * given purpose. A token issued for one purpose (e.g. resetting a forgotten password) must never be accepted
+     * for another (e.g. establishing a full login session).
+     */
+    public static boolean authenticateUserLoginByJWT(Delegator delegator, String userLoginId, String jwtToken, String purpose) {
         if (UtilValidate.isNotEmpty(jwtToken)) {
             try {
                 GenericValue userLogin = EntityQuery.use(delegator).from("UserLogin").where("userLoginId", userLoginId).queryOne();
                 if (userLoginId != null) {
                     Map<String, Object> claims = JWTManager.validateToken(delegator, jwtToken,
                             userLogin.getString("userLoginId") + userLogin.getString("currentPassword"));
-                    return (!ServiceUtil.isError(claims)) && userLoginId.equals(claims.get("userLoginId"));
+                    return (!ServiceUtil.isError(claims)) && userLoginId.equals(claims.get("userLoginId"))
+                            && purpose.equals(claims.get("purpose"));
                 }
             } catch (GenericEntityException e) {
                 Debug.logWarning("failed to validate a jwToken for user " + userLoginId, MODULE);

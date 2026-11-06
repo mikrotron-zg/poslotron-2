@@ -21,7 +21,6 @@ package org.apache.ofbiz.widget.renderer.macro;
 import java.net.URI;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -32,13 +31,23 @@ import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
-import org.apache.ofbiz.base.util.string.FlexibleStringExpander;
 import org.apache.ofbiz.webapp.control.RequestHandler;
 import org.apache.ofbiz.widget.WidgetWorker;
 import org.apache.ofbiz.widget.model.CommonWidgetModels;
 import org.apache.ofbiz.widget.model.ModelForm;
 
 public class MacroCommonRenderer {
+
+    /**
+     * Escape a value so that it is rendered literally when it is placed inside a double-quoted FreeMarker
+     * string literal of a macro call: the backslash and the double quote are escaped, and so is the opening
+     * brace, so that neither <code>${...}</code> nor <code>#{...}</code> is interpolated.
+     * @param value the value to escape, may be null
+     * @return the escaped value, or an empty string if the value is null
+     */
+    public static String escapeFtlString(String value) {
+        return value == null ? "" : value.replace("\\", "\\\\").replace("\"", "\\\"").replace("{", "\\{");
+    }
 
     /**
      * Create an ajaxXxxx JavaScript CSV string from a list of UpdateArea objects. See
@@ -67,8 +76,9 @@ public class MacroCommonRenderer {
             String targetToCall;
             String parametersToForward;
 
-            // 1. areaId to update, use the screen stack with the potential area given by the update area element
-            areaIdToUpdate = WidgetWorker.getScreenStack(ctx).resolveScreenAreaId(updateArea.getAreaId());
+            // 1. areaId to update, use the screen stack with the potential area given by the update area element.
+            //     It is the only part that is an expression; the target and the parameters are expanded below.
+            areaIdToUpdate = WidgetWorker.getScreenStack(ctx).resolveScreenAreaId(updateArea.getAreaId(ctx));
 
             // 2. the target, if the updateArea haven't the information and we are on event link to the pagination,
             //     will ask to the parent model the pagination target
@@ -104,8 +114,7 @@ public class MacroCommonRenderer {
                 sb.append(",");
             }
         }
-        Locale locale = UtilMisc.ensureLocale(context.get("locale"));
-        return FlexibleStringExpander.expandString(sb.toString(), context, locale);
+        return sb.toString();
     }
 
     private static String buildParamStringFromMap(Map<String, Object> extraParamsAsMap) {
@@ -130,7 +139,7 @@ public class MacroCommonRenderer {
         HttpServletResponse response = (HttpServletResponse) context.get("response");
         switch (linkType) {
         case "update-area":
-            ModelForm.UpdateArea resolveUpdateArea = new ModelForm.UpdateArea("onclick",
+            ModelForm.UpdateArea resolveUpdateArea = ModelForm.UpdateArea.literal("onclick",
                     WidgetWorker.getScreenStack(context).resolveScreenAreaId(link.getTargetWindow(context)),
                     link.getTarget(context));
             linkUrl = createAjaxParamsFromUpdateAreas(UtilMisc.toList(resolveUpdateArea),

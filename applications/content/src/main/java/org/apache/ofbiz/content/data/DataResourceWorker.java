@@ -122,6 +122,15 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
     // soft-fail path in renderDataResourceAsText doesn't spam the logs.
     private static final Set<String> WARNED_LEGACY_FTL_DATA_RESOURCES = ConcurrentHashMap.newKeySet();
 
+    // Data resource source types whose stored text may be rendered as a FreeMarker template
+    // (dataTemplateTypeId=FTL). Limited to the file- and URL-backed types, each of which is
+    // independently path- or protocol-restricted elsewhere (OFBIZ/LOCAL/CONTEXT file path
+    // allow-lists in SecurityUtil; URL_RESOURCE http(s) and host checks in checkUrlResourceAllowed).
+    // Free-text types (ELECTRONIC_TEXT/SHORT_TEXT/LINK) are not supported as FreeMarker templates.
+    // Kept as an allow-list so a data resource type added later is not renderable by default.
+    private static final Set<String> FTL_ALLOWED_SOURCE_TYPES =
+            UtilMisc.toSet("OFBIZ_FILE", "LOCAL_FILE", "CONTEXT_FILE", "URL_RESOURCE");
+
     /**
      * Traverses the DataCategory parent/child structure and put it in categoryNode. Returns non-null error string if there is an error.
      * @param depth The place on the categoryTypesIds to start collecting.
@@ -485,21 +494,28 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
      * 2. Normalized absolute paths (collapses ".." without following symlinks) — fallback for
      *    when contextRoot or a subdirectory inside it is a mount point, causing canonical paths
      *    to diverge. Path traversal via ".." is still blocked by the normalization step.
+     *
+     * @param file  the file to check
+     * @param contextRoot  the directory the file has to be in
+     * @return the validated file (canonical, or normalized when the canonical check does not apply),
+     *         which callers should use for the actual file access
+     * @throws GeneralException when the file resolves outside of the context root
      */
-    static void checkContextFileBoundary(File file, String contextRoot) throws GeneralException {
+    static File checkContextFileBoundary(File file, String contextRoot) throws GeneralException {
         try {
             String canonicalAllowed = new File(contextRoot).getCanonicalPath();
             String canonicalFilePath = file.getCanonicalPath();
-            boolean passesCanonical = canonicalFilePath.startsWith(canonicalAllowed + File.separator)
-                    || canonicalFilePath.equals(canonicalAllowed);
+            if (canonicalFilePath.startsWith(canonicalAllowed + File.separator)
+                    || canonicalFilePath.equals(canonicalAllowed)) {
+                return new File(canonicalFilePath);
+            }
 
             Path normalizedAllowed = Path.of(contextRoot).toAbsolutePath().normalize();
             Path normalizedFilePath = file.toPath().toAbsolutePath().normalize();
-            boolean passesNormalized = normalizedFilePath.startsWith(normalizedAllowed);
-
-            if (!passesCanonical && !passesNormalized) {
-                throw new GeneralException("Access to file denied: path resolves outside of the allowed directory");
+            if (normalizedFilePath.startsWith(normalizedAllowed)) {
+                return normalizedFilePath.toFile();
             }
+            throw new GeneralException("Access to file denied: path resolves outside of the allowed directory");
         } catch (IOException e) {
             throw new GeneralException("Unable to validate file path: " + e.getMessage());
         }
@@ -638,13 +654,13 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
 
         if ("LOCAL_FILE".equals(dataResourceTypeId) || "LOCAL_FILE_BIN".equals(dataResourceTypeId)) {
             file = FileUtil.getFile(objectInfo);
-            if (!file.exists()) {
-                throw new FileNotFoundException("No file found: " + (objectInfo));
-            }
             if (!file.isAbsolute()) {
                 throw new GeneralException("File (" + objectInfo + ") is not absolute");
             }
             SecurityUtil.checkLocalFileAllowList(file);
+            if (!file.exists()) {
+                throw new FileNotFoundException("No file found: " + (objectInfo));
+            }
         } else if ("OFBIZ_FILE".equals(dataResourceTypeId) || "OFBIZ_FILE_BIN".equals(dataResourceTypeId)) {
             String prefix = System.getProperty("ofbiz.home");
 
@@ -652,11 +668,10 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (objectInfo.indexOf('/') != 0 && prefix.lastIndexOf('/') != (prefix.length() - 1)) {
                 sep = "/";
             }
-            file = FileUtil.getFile(prefix + sep + objectInfo);
+            file = SecurityUtil.checkOfbizFileAllowList(FileUtil.getFile(prefix + sep + objectInfo));
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + (prefix + sep + objectInfo));
             }
-            SecurityUtil.checkOfbizFileAllowList(file);
         } else if ("CONTEXT_FILE".equals(dataResourceTypeId) || "CONTEXT_FILE_BIN".equals(dataResourceTypeId)) {
             if (UtilValidate.isEmpty(contextRoot)) {
                 throw new GeneralException("Cannot find CONTEXT_FILE with an empty context root!");
@@ -666,8 +681,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (objectInfo.indexOf('/') != 0 && contextRoot.lastIndexOf('/') != (contextRoot.length() - 1)) {
                 sep = "/";
             }
-            file = FileUtil.getFile(contextRoot + sep + objectInfo);
-            checkContextFileBoundary(file, contextRoot);
+            file = checkContextFileBoundary(FileUtil.getFile(contextRoot + sep + objectInfo), contextRoot);
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + (contextRoot + sep + objectInfo));
             }
@@ -886,6 +900,16 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             // a template is defined; render the template first
             templateContext.put("mimeTypeId", targetMimeTypeId);
 
+            // A template engine (FTL, XSLT, SCREEN_COMBINED, FORM_COMBINED) is only given content that
+            // is authored template text. For an *_OBJECT data resource getDataResourceText() returns
+            // the data resource's own primary key (see writeDataResourceText), not template text, so
+            // an *_OBJECT is never a valid template source for any template type.
+            String drSourceTypeId = dataResource.getString("dataResourceTypeId");
+            if (drSourceTypeId != null && drSourceTypeId.endsWith("_OBJECT")) {
+                throw new GeneralException("Data resource [" + dataResourceId + "] of type [" + drSourceTypeId
+                        + "] cannot be rendered as a [" + dataTemplateTypeId + "] template.");
+            }
+
             // FTL template
             if ("FTL".equals(dataTemplateTypeId)) {
                 try {
@@ -981,20 +1005,16 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
                     ModelScreen modelScreen = null;
                     ScreenStringRenderer renderer = screens.getScreenStringRenderer();
                     String combinedName = dataResource.getString("objectInfo");
-                    if ("URL_RESOURCE".equals(dataResource.getString("dataResourceTypeId")) && UtilValidate.isNotEmpty(combinedName)
-                            && combinedName.startsWith("component://")) {
-                        modelScreen = ScreenFactory.getScreenFromLocation(combinedName);
-                    } else { // stored in  a single file, long or short text
-                        Document screenXml = UtilXml.readXmlDocument(getDataResourceText(dataResource, targetMimeTypeId, locale, templateContext,
-                                delegator, cache), true, true);
-                        Map<String, ModelScreen> modelScreenMap = ScreenFactory.readScreenDocument(screenXml, "DataResourceId: "
-                                + dataResource.getString("dataResourceId"));
-                        if (UtilValidate.isNotEmpty(modelScreenMap)) {
-                            Map.Entry<String, ModelScreen> entry = modelScreenMap.entrySet().iterator().next();
-                            // get first entry, only one screen allowed per file
-                            modelScreen = entry.getValue();
-                        }
+                    // A SCREEN_COMBINED data resource is rendered only when it references a deployed
+                    // screen definition (URL_RESOURCE with a component:// objectInfo location).
+                    // Building a ModelScreen from screen XML stored in the data resource text is not
+                    // supported: that text can carry widget actions and scripts.
+                    if (!"URL_RESOURCE".equals(dataResource.getString("dataResourceTypeId")) || UtilValidate.isEmpty(combinedName)
+                            || !combinedName.startsWith("component://")) {
+                        throw new GeneralException("SCREEN_COMBINED data resource [" + dataResource.getString("dataResourceId")
+                                + "] must reference a component:// screen location via objectInfo.");
                     }
+                    modelScreen = ScreenFactory.getScreenFromLocation(combinedName);
                     if (UtilValidate.isNotEmpty(modelScreen)) {
                         modelScreen.renderScreenString(out, context, renderer);
                     } else {
@@ -1231,10 +1251,10 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (!file.isAbsolute()) {
                 throw new GeneralException("File (" + objectInfo + ") is not absolute");
             }
+            SecurityUtil.checkLocalFileAllowList(file);
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + file.getAbsolutePath());
             }
-            SecurityUtil.checkLocalFileAllowList(file);
             try (InputStreamReader in = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
                 UtilIO.copy(in, out);
             }
@@ -1244,11 +1264,10 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (objectInfo.indexOf('/') != 0 && prefix.lastIndexOf('/') != (prefix.length() - 1)) {
                 sep = "/";
             }
-            File file = FileUtil.getFile(prefix + sep + objectInfo);
+            File file = SecurityUtil.checkOfbizFileAllowList(FileUtil.getFile(prefix + sep + objectInfo));
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + file.getAbsolutePath());
             }
-            SecurityUtil.checkOfbizFileAllowList(file);
             try (InputStreamReader in = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
                 UtilIO.copy(in, out);
             }
@@ -1258,8 +1277,7 @@ public class DataResourceWorker implements org.apache.ofbiz.widget.content.DataR
             if (objectInfo.indexOf('/') != 0 && prefix.lastIndexOf('/') != (prefix.length() - 1)) {
                 sep = "/";
             }
-            File file = FileUtil.getFile(prefix + sep + objectInfo);
-            checkContextFileBoundary(file, rootDir);
+            File file = checkContextFileBoundary(FileUtil.getFile(prefix + sep + objectInfo), rootDir);
             if (!file.exists()) {
                 throw new FileNotFoundException("No file found: " + file.getAbsolutePath());
             }

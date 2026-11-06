@@ -27,6 +27,7 @@ import org.apache.ofbiz.entity.condition.EntityConditionBuilder
 import org.apache.ofbiz.entity.GenericValue
 import org.apache.ofbiz.entity.condition.EntityOperator
 import org.apache.ofbiz.entity.util.EntityListIterator
+import org.apache.ofbiz.entity.util.EntityUtilProperties
 import org.apache.ofbiz.service.GenericServiceException
 
 import org.apache.ofbiz.service.ModelService
@@ -36,13 +37,13 @@ import org.apache.ofbiz.base.util.UtilDateTime
 Map createTextAndUploadedContent() {
     Map result = success()
 
-    Map serviceResult = run service: 'createContent', with: parameters
+    Map serviceResult = run service: 'createTextContent', with: parameters
     parameters.parentContentId = serviceResult.contentId
 
     if (parameters.uploadedFile) {
         logInfo('Uploaded file found; processing sub-content')
         Map uploadContext = [*: parameters,
-                             ownerContentId: parentContentId,
+                             ownerContentId: parameters.parentContentId,
                              contentIdFrom: parameters.parentContentId,
                              contentAssocTypeId: 'SUB_CONTENT',
                              contentPurposeTypeId: 'SECTION']
@@ -131,9 +132,9 @@ Map createContentAlternativeUrl() {
     EntityListIterator contents
 
     EntityCondition entryExprs
-    EntityCondition contentTypeExprs = EntityCondition.makeCondition(EntityOperator.OR,
-        'contentTypeId', 'DOCUMENT',
-        'contentTypeId', 'WEB_SITE_PUB_PT')
+    EntityCondition contentTypeExprs = EntityCondition.makeCondition([
+            EntityCondition.makeCondition('contentTypeId', 'DOCUMENT'),
+            EntityCondition.makeCondition('contentTypeId', 'WEB_SITE_PUB_PT')], EntityOperator.OR)
     if (parameters.contentId) {
         entryExprs = new EntityConditionBuilder().AND(contentTypeExprs) {
             NOT_EQUAL(contentName: null)
@@ -161,14 +162,13 @@ Map createContentAlternativeUrl() {
                 .filterByDate('caFromDate', 'caThruDate')
                 .queryList()
         if (contentAssocDataResources) {
-            if (contentAssocDataResources
-                    && contentAssocDataResources[0].drObjectInfo
+            if (!contentAssocDataResources[0].drObjectInfo
                     && content.contentName) {
                 String uri = UrlServletHelper.invalidCharacter(content.contentName)
                 if (uri) {
                     try {
                         serviceResult = run service: 'updateDataResource', with: [dataResourceId: contentAssocDataResources[0].dataResourceId,
-                                      objectInfo: "/${uri}'${content.contentId}-content"]
+                                      objectInfo: "/${uri}-${content.contentId}-content"]
                         if (ServiceUtil.isSuccess(serviceResult)) {
                             contentIdTo = serviceResult.contentId
                         }
@@ -177,6 +177,8 @@ Map createContentAlternativeUrl() {
                     }
                     contentCreated = 'Y'
                 }
+            } else {
+                contentCreated = 'N'
             }
         } else {
             if (content.contentName) {
@@ -186,7 +188,7 @@ Map createContentAlternativeUrl() {
                         Map serviceResult = run service: 'createDataResource', with: [dataResourceId: delegator.getNextSeqId('DataResource'),
                                                                                       dataResourceTypeId: 'URL_RESOURCE',
                                                                                       localeString: localeString.toString(),
-                                                                                      objectInfo: "${uri}-${content.contentId}-content",
+                                                                                      objectInfo: "/${uri}-${content.contentId}-content",
                                                                                       statusId: 'CTNT_IN_PROGRESS']
                         if (ServiceUtil.isSuccess(serviceResult)) {
                             dataResourceId = serviceResult.dataResourceId
@@ -258,11 +260,8 @@ Map createArticleContent() {
     if (textData) {
         int textDataLen = textData.length()
         logInfo('textDataLen: ' + textDataLen)
-        int descriptLen = 0
-        if (parameters.descriptLen) {
-            descriptLen = (int) parameters.descriptLen
-            logInfo('descriptLen: ' + descriptLen)
-        }
+        int descriptLen = EntityUtilProperties.getPropertyValue('forum', 'descriptLen', '0', delegator) as Integer
+        logInfo('descriptLen: ' + descriptLen)
         int subStringLen = Math.min(descriptLen, textDataLen)
         logInfo('subStringLen: ' + subStringLen)
         subDescript = textData.substring(0, subStringLen)
@@ -374,8 +373,11 @@ Map setContentStatus() {
                 content.statusId = parameters.statusId
                 content.store()
             } else {
-                result.errorMessage = "Cannot change from ${oldStatusId} to ${parameters.statusId}"
-                logError(result.errorMessage)
+                String errorMessage = "Cannot change from ${oldStatusId} to ${parameters.statusId}"
+                logError(errorMessage)
+                result.responseMessage = 'error'
+                result.errorMessage = errorMessage
+                return result
             }
         }
     } else {
@@ -592,6 +594,7 @@ Map createMissingContentAltUrls() {
     if (parameters.webSiteId) {
         from('WebSiteContent')
                 .where(webSiteId: parameters.webSiteId)
+                .filterByDate()
                 .getFieldList('contentId')
                 .each { String contentId ->
                     contentCreatedList.addAll(createMissingContentAltUrlInline(contentId))
@@ -701,7 +704,7 @@ Map removeContentAndRelated() {
  */
 Map copyContentAndElectronicTextandAssoc() {
     Map getContentResult = run service: 'getContent', with: parameters
-    GenericValue content = getContentResult.view
+    GenericValue content = (GenericValue) getContentResult.view.clone()
     if (content.dataResourceId) {
         Map getElectronicTextResult = run service: 'getElectronicText', with: content.getAllFields()
         Map dataResourceResult = run service: 'createDataResource', with: [dataResourceTypeId: 'ELECTRONIC_TEXT']

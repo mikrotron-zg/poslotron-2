@@ -428,7 +428,7 @@ public abstract class ModelForm extends ModelWidget {
             if ("paginate".equals(updateArea.getEventType())) {
                 int index = onPaginateUpdateAreas.indexOf(updateArea);
                 if (index != -1) {
-                    if (!updateArea.areaTarget.isEmpty()) {
+                    if (!updateArea.getAreaTarget().isEmpty()) {
                         onPaginateUpdateAreas.set(index, updateArea);
                     } else {
                         // blank target indicates a removing override
@@ -447,7 +447,7 @@ public abstract class ModelForm extends ModelWidget {
             } else if ("sort-column".equals(updateArea.getEventType())) {
                 int index = onSortColumnUpdateAreas.indexOf(updateArea);
                 if (index != -1) {
-                    if (!updateArea.areaTarget.isEmpty()) {
+                    if (!updateArea.getAreaTarget().isEmpty()) {
                         onSortColumnUpdateAreas.set(index, updateArea);
                     } else {
                         // blank target indicates a removing override
@@ -2287,8 +2287,8 @@ public abstract class ModelForm extends ModelWidget {
      */
     public static class UpdateArea {
         private final String eventType;
-        private final String areaId;
-        private final String areaTarget;
+        private final FlexibleStringExpander areaIdExdr;
+        private final FlexibleStringExpander areaTargetExdr;
         private final String defaultServiceName;
         private final String defaultEntityName;
         private final CommonWidgetModels.AutoEntityParameters autoEntityParameters;
@@ -2305,8 +2305,8 @@ public abstract class ModelForm extends ModelWidget {
          */
         public UpdateArea(Element updateAreaElement, String defaultServiceName, String defaultEntityName) {
             this.eventType = updateAreaElement.getAttribute("event-type");
-            this.areaId = updateAreaElement.getAttribute("area-id");
-            this.areaTarget = updateAreaElement.getAttribute("area-target");
+            this.areaIdExdr = FlexibleStringExpander.getInstance(updateAreaElement.getAttribute("area-id"));
+            this.areaTargetExdr = FlexibleStringExpander.getInstance(updateAreaElement.getAttribute("area-target"));
             this.defaultServiceName = defaultServiceName;
             this.defaultEntityName = defaultEntityName;
             List<? extends Element> parameterElementList = UtilXml.childElementList(updateAreaElement, "parameter");
@@ -2352,14 +2352,8 @@ public abstract class ModelForm extends ModelWidget {
          * @param areaTarget The target URL called to update the area
          */
         public UpdateArea(String eventType, String areaId, String areaTarget) {
-            this.eventType = eventType;
-            this.areaId = areaId;
-            this.areaTarget = areaTarget;
-            this.defaultServiceName = null;
-            this.defaultEntityName = null;
-            this.parameterList = Collections.emptyList();
-            this.autoServiceParameters = null;
-            this.autoEntityParameters = null;
+            this(eventType, FlexibleStringExpander.getInstance(areaId), FlexibleStringExpander.getInstance(areaTarget),
+                    Collections.emptyList());
         }
 
         /** String constructor.
@@ -2369,14 +2363,43 @@ public abstract class ModelForm extends ModelWidget {
          */
         public UpdateArea(String eventType, String areaId, String areaTarget,
                           List<CommonWidgetModels.Parameter> parameterList) {
+            this(eventType, FlexibleStringExpander.getInstance(areaId), FlexibleStringExpander.getInstance(areaTarget),
+                    parameterList);
+        }
+
+        private UpdateArea(String eventType, FlexibleStringExpander areaIdExdr, FlexibleStringExpander areaTargetExdr,
+                           List<CommonWidgetModels.Parameter> parameterList) {
             this.eventType = eventType;
-            this.areaId = areaId;
-            this.areaTarget = areaTarget;
+            this.areaIdExdr = areaIdExdr;
+            this.areaTargetExdr = areaTargetExdr;
             this.defaultServiceName = null;
             this.defaultEntityName = null;
             this.parameterList = parameterList;
             this.autoServiceParameters = null;
             this.autoEntityParameters = null;
+        }
+
+        /** Creates an update area whose area id and target are already evaluated values, such as the ones of a callback
+         * token, so that they are taken literally and never evaluated as an expression.
+         * @param areaId The evaluated id of the widget element to be updated
+         * @param areaTarget The evaluated target URL called to update the area
+         * @param parameterList The list of parameters, whose values are taken as they are by the caller
+         * @return the update area
+         */
+        public static UpdateArea literal(String eventType, String areaId, String areaTarget,
+                                         List<CommonWidgetModels.Parameter> parameterList) {
+            return new UpdateArea(eventType, FlexibleStringExpander.getLiteral(areaId),
+                    FlexibleStringExpander.getLiteral(areaTarget), parameterList);
+        }
+
+        /** Creates an update area without parameters whose area id and target are already evaluated values, so that they
+         * are taken literally and never evaluated as an expression.
+         * @param areaId The evaluated id of the widget element to be updated
+         * @param areaTarget The evaluated target URL called to update the area
+         * @return the update area
+         */
+        public static UpdateArea literal(String eventType, String areaId, String areaTarget) {
+            return literal(eventType, areaId, areaTarget, Collections.emptyList());
         }
 
         @Override
@@ -2389,7 +2412,16 @@ public abstract class ModelForm extends ModelWidget {
          * @return the area id
          */
         public String getAreaId() {
-            return areaId;
+            return areaIdExdr.getOriginal();
+        }
+
+        /**
+         * Gets area id, evaluated.
+         * @param context the context
+         * @return the area id
+         */
+        public String getAreaId(Map<String, ? extends Object> context) {
+            return areaIdExdr.expandString(context);
         }
 
         /**
@@ -2398,7 +2430,7 @@ public abstract class ModelForm extends ModelWidget {
          * @return the area target
          */
         public String getAreaTarget(Map<String, ? extends Object> context) {
-            return FlexibleStringExpander.expandString(areaTarget, context);
+            return areaTargetExdr.expandString(context);
         }
 
         /**
@@ -2431,7 +2463,7 @@ public abstract class ModelForm extends ModelWidget {
 
         @Override
         public int hashCode() {
-            return areaId.hashCode();
+            return areaIdExdr.getOriginal().hashCode();
         }
 
         /**
@@ -2439,7 +2471,7 @@ public abstract class ModelForm extends ModelWidget {
          * @return the area target
          */
         public String getAreaTarget() {
-            return areaTarget;
+            return areaTargetExdr.getOriginal();
         }
 
         /**
@@ -2490,7 +2522,7 @@ public abstract class ModelForm extends ModelWidget {
             Delegator delegator = (Delegator) context.get("delegator");
 
             Map<String, String> claims = UtilMisc.toMap(
-                    "areaId", WidgetWorker.getScreenStack(context).resolveScreenAreaId(getAreaId()),
+                    "areaId", WidgetWorker.getScreenStack(context).resolveScreenAreaId(getAreaId(context)),
                     "areaTarget", getAreaTarget(context));
 
             // Propagate on the callback parameters use by pagination list
@@ -2538,7 +2570,8 @@ public abstract class ModelForm extends ModelWidget {
                     Debug.logWarning("Failed to convert JSON to with " + claims.get("parameters"), MODULE);
                 }
             }
-            return new UpdateArea("", areaId, areaTarget,
+            // what is in the token was evaluated when the token was created, so it is taken literally
+            return UpdateArea.literal("", areaId, areaTarget,
                     parameters != null
                             ? parameters.entrySet()
                             .stream()

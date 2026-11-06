@@ -131,10 +131,6 @@ public final class MacroFormRenderer implements FormStringRenderer {
                 : new RenderableFtlFormElementsBuilder(this.visualTheme, rh, request, response, staticContentUrlProvider);
     }
 
-    private static String encodeDoubleQuotes(String htmlString) {
-        return htmlString.replace("\"", "\\\"");
-    }
-
     public boolean getRenderPagination() {
         return this.renderPagination;
     }
@@ -453,7 +449,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
         String name = modelFormField.getParameterName(context);
         String buttonType = submitField.getButtonType();
         String formName = FormRenderer.getCurrentFormName(modelForm, context);
-        String imgSrc = submitField.getImageLocation(context);
+        String imgSrc = encode(submitField.getImageLocation(context), modelFormField, context);
         String confirmation = submitField.getConfirmation(context);
         String className = "";
         String alert = "false";
@@ -481,7 +477,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
         String backgroundSubmitRefreshTarget = submitField.getBackgroundSubmitRefreshTarget(context);
         ModelForm.UpdateArea jwtCallback = ModelForm.UpdateArea.fromJwtToken(context);
         if (UtilValidate.isNotEmpty(backgroundSubmitRefreshTarget)) {
-            updateAreas.add(new ModelForm.UpdateArea("submit", formId, backgroundSubmitRefreshTarget));
+            updateAreas.add(ModelForm.UpdateArea.literal("submit", formId, backgroundSubmitRefreshTarget));
         }
 
         // In context a callback is present and no other update area to call after the submit, so trigger it.
@@ -649,7 +645,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
                     sr.append(" name=\"");
                     sr.append(modelFormField.getModelForm().getName());
                     sr.append("\" title=\"");
-                    sr.append(encodeDoubleQuotes(title));
+                    sr.append(MacroCommonRenderer.escapeFtlString(title));
                     sr.append("\" />");
                     executeMacro(writer, sr.toString());
                 } else if (modelFormField.isSortField()) {
@@ -689,7 +685,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
                 String helpText = UtilHelpText.getEntityFieldDescription(entityName, fieldName, delegator, locale);
 
                 sr.append("\" fieldHelpText=\"");
-                sr.append(encodeDoubleQuotes(helpText));
+                sr.append(MacroCommonRenderer.escapeFtlString(helpText));
             }
             sr.append("\" title=\"");
             sr.append(sb.toString());
@@ -1424,7 +1420,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
             }
             autoCompleterTarget = autoCompleterTarget + "ajaxLookup=Y";
             updateAreas = new LinkedList<>();
-            updateAreas.add(new ModelForm.UpdateArea("change", id, autoCompleterTarget));
+            updateAreas.add(ModelForm.UpdateArea.literal("change", id, autoCompleterTarget));
         }
         boolean ajaxEnabled = UtilValidate.isNotEmpty(updateAreas) && this.javaScriptEnabled;
         String autocomplete = "";
@@ -2131,23 +2127,8 @@ public final class MacroFormRenderer implements FormStringRenderer {
         if (ajaxEnabled) {
             linkUrl = MacroCommonRenderer.createAjaxParamsFromUpdateAreas(updateAreas, paramMap, modelForm, null, context);
         } else {
-            StringBuilder sb = new StringBuilder("?");
-            Iterator<Map.Entry<String, Object>> iter = paramMap.entrySet().iterator();
-            while (iter.hasNext()) {
-                Map.Entry<String, Object> entry = iter.next();
-                sb.append(entry.getKey()).append("=").append(entry.getValue());
-                if (iter.hasNext()) {
-                    sb.append("&amp;");
-                }
-            }
-            String newQueryString = sb.toString();
             String urlPath = UtilHttp.removeQueryStringFromTarget(paginateTarget);
-            if (newQueryString.contains("?null=")) { // FIXME, not sure how to handle URL encoding in tests
-                newQueryString = newQueryString.replace("?null=LinkFromQBEString", "?sortField=LinkFromQBEString");
-                linkUrl = rh.makeLink(this.request, this.response, urlPath.concat(newQueryString));
-            } else {
-                linkUrl = rh.makeLink(this.request, this.response, urlPath.concat(UtilCodec.encodeUrl(newQueryString, context)));
-            }
+            linkUrl = rh.makeLink(this.request, this.response, urlPath + "?" + UtilHttp.urlEncodeArgs(paramMap));
         }
         StringWriter sr = new StringWriter();
         sr.append("<@renderSortField ");
@@ -2156,7 +2137,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
         sr.append("\" title=\"");
         sr.append(titleText);
         sr.append("\" linkUrl=\"");
-        sr.append(linkUrl);
+        sr.append(MacroCommonRenderer.escapeFtlString(linkUrl));
         sr.append("\" ajaxEnabled=");
         sr.append(Boolean.toString(ajaxEnabled));
         String tooltip = modelFormField.getSortFieldHelpText(context);
@@ -2313,7 +2294,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
                 action = modelFormField.getAction(context);
             }
             if (UtilValidate.isNotEmpty(request.getAttribute("image"))) {
-                imgSrc = request.getAttribute("image").toString();
+                imgSrc = encode(request.getAttribute("image").toString(), modelFormField, context);
             }
             if (UtilValidate.isNotEmpty(request.getAttribute("imageTitle"))) {
                 imgTitle = request.getAttribute("imageTitle").toString();
@@ -2377,7 +2358,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
             sr.append("\" alternate=\"");
             sr.append(alt);
             sr.append("\" targetParameters=\"");
-            sr.append(encodeDoubleQuotes(targetParameters.toString()));
+            sr.append(MacroCommonRenderer.escapeFtlString(targetParameters.toString()));
             sr.append("\" linkUrl=\"");
             sr.append(linkUrl.toString());
             sr.append("\" targetWindow=\"");

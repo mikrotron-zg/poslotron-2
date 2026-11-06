@@ -33,13 +33,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.FileNameMap;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URLConnection;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -64,7 +60,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.net.ssl.SSLContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -73,15 +68,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.ssl.SSLContexts;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
 import org.apache.ofbiz.webapp.control.ConfigXMLReader;
@@ -104,6 +90,8 @@ public final class UtilHttp {
     private static final String COMPOSITE_DELIMITER = "_c_";
     private static final int MULTI_ROW_DELIMITER_LENGTH = MULTI_ROW_DELIMITER.length();
     private static final int ROW_SUBMIT_PREFIX_LENGTH = ROW_SUBMIT_PREFIX.length();
+    private static final int MAX_MULTI_FORM_ROWS = UtilProperties.getPropertyAsInteger(
+            "general", "multiform.max.rows", 1000);
 
     private static final String SESSION_KEY_TIMEZONE = "timeZone";
     private static final String SESSION_KEY_THEME = "visualTheme";
@@ -170,21 +158,6 @@ public final class UtilHttp {
         }
         if (Debug.verboseOn()) {
             Debug.logVerbose("Made Request Parameter Map with [" + params.size() + "] Entries", MODULE);
-        }
-
-        // Handles encoded queryStrings
-        String requestURI = req.getRequestURI();
-        if (params.isEmpty() && null != requestURI) {
-            try {
-                List<NameValuePair> nameValuePairs = URLEncodedUtils.parse(
-                        new URI(UtilHttp.encodeBlanks(URLDecoder.decode(requestURI, "UTF-8"))),
-                        Charset.forName("UTF-8"));
-                for (NameValuePair element : nameValuePairs) {
-                    params.put(element.getName(), element.getValue());
-                }
-            } catch (UnsupportedEncodingException | URISyntaxException e) {
-                Debug.logError("Can't handle encoded queryString " + requestURI, MODULE);
-            }
         }
         return canonicalizeParameterMap(params);
     }
@@ -1623,6 +1596,16 @@ public final class UtilHttp {
     }
 
     /**
+     * Removes the control characters, such as the carriage return and the line feed, from a value that is going to
+     * be set in a response header, so that the value cannot end the header or add another one.
+     * @param value the value to clean, may be null
+     * @return the value without control characters, or null if the value is null
+     */
+    public static String stripControlCharacters(String value) {
+        return value == null ? null : value.replaceAll("\\p{Cntrl}", "");
+    }
+
+    /**
      * Returns true if the user has JavaScript enabled.
      * @param request
      * @return whether javascript is enabled
@@ -1670,6 +1653,11 @@ public final class UtilHttp {
                 Debug.logWarning("Invalid value for row index found: " + maxRowIndex, MODULE);
             }
         }
+        if (rowCount > MAX_MULTI_FORM_ROWS) {
+            Debug.logWarning("Multi form row count " + rowCount + " exceeds the maximum "
+                    + MAX_MULTI_FORM_ROWS + ", clamping to it", MODULE);
+            rowCount = MAX_MULTI_FORM_ROWS;
+        }
         return rowCount;
     }
 
@@ -1681,7 +1669,7 @@ public final class UtilHttp {
             session.setAttribute("_PARAM_MAP_STORE_", paramMapStore);
         }
         Map<String, Object> parameters = getParameterMap(request);
-        String paramMapId = RandomStringUtils.randomAlphanumeric(10);
+        String paramMapId = StringUtil.randomString(10, StringUtil.ALPHANUMERIC_CHARS);
         paramMapStore.put(paramMapId, parameters);
         return paramMapId;
     }
@@ -1723,32 +1711,6 @@ public final class UtilHttp {
     private static void setContentDisposition(final HttpServletResponse response, final String filename) {
         String dispositionType = UtilProperties.getPropertyValue("requestHandler", "content-disposition-type", "attachment");
         response.setHeader("Content-Disposition", String.format("%s; filename=\"%s\"", dispositionType, filename));
-    }
-
-    public static CloseableHttpClient getAllowAllHttpClient() {
-        return getAllowAllHttpClient("component://base/config/ofbizssl.jks", "changeit");
-    }
-
-    private static CloseableHttpClient getAllowAllHttpClient(String jksStoreFileName, String jksStorePassword) {
-        try {
-            // Trust own CA and all self-signed certs
-            SSLContext sslContext = SSLContexts.custom()
-                    .loadTrustMaterial(FileUtil.getFile(jksStoreFileName), jksStorePassword.toCharArray(),
-                            new TrustSelfSignedStrategy())
-                    .build();
-            // No host name verifier
-            SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
-                    sslContext,
-                    NoopHostnameVerifier.INSTANCE);
-            CloseableHttpClient httpClient = HttpClients.custom()
-                    .setSSLSocketFactory(sslsf)
-                    .build();
-            return httpClient;
-        } catch (RuntimeException e) {
-            throw e;
-        } catch (Exception e) {
-            return HttpClients.createDefault();
-        }
     }
 
     public static String getMultiRowDelimiter() {
@@ -1807,4 +1769,7 @@ public final class UtilHttp {
         return allowedProtocolList;
     }
 
+    public static int getMaxMultiFormRowCount() {
+        return MAX_MULTI_FORM_ROWS;
+    }
 }

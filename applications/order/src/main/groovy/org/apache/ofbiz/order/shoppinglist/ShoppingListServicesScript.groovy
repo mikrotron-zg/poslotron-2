@@ -32,6 +32,10 @@ Map createShoppingList() {
     newEntity.partyId = newEntity.partyId ?: userLogin.partyId
     newEntity.shoppingListTypeId = newEntity.shoppingListTypeId ?: 'SLT_WISH_LIST'
     newEntity.isPublic = newEntity.isPublic ?: 'N'
+    if ((parameters.paymentMethodId || parameters.contactMechId)
+            && !ShoppingListServices.hasOwnPaymentMethodAndAddress(delegator, newEntity)) {
+        return error(UtilProperties.getMessage('OrderErrorUiLabels', 'OrderShoppingListPaymentMethodOrAddressNotOwned', parameters.locale))
+    }
 
     newEntity.listName = newEntity.listName ?: UtilProperties.getMessage('OrderUiLabels',
             'OrderNewShoppingList', parameters.locale) ?: 'New Shopping List'
@@ -53,6 +57,10 @@ Map createShoppingList() {
 Map updateShoppingList() {
     GenericValue shoppingList = from('ShoppingList').where(parameters).queryOne()
     shoppingList.setNonPKFields(parameters)
+    if ((parameters.paymentMethodId || parameters.contactMechId)
+            && !ShoppingListServices.hasOwnPaymentMethodAndAddress(delegator, shoppingList)) {
+        return error(UtilProperties.getMessage('OrderErrorUiLabels', 'OrderShoppingListPaymentMethodOrAddressNotOwned', parameters.locale))
+    }
 
     // don't let auto-reorders be active unless there is some recurrence info
     if (shoppingList.shoppingListTypeId == 'SLT_AUTO_REODR' &&
@@ -87,7 +95,7 @@ Map createShoppingListItem() {
                     .queryList()
             if ((!slItemAttributes && !parameters.shoppingListItemAttributes) ||
                     Objects.equals(slItemAttributes, parameters.shoppingListItemAttributes)) {
-                BigDecimal totalquantity = shoppingListItem.quantity + parameters.quantity
+                BigDecimal totalquantity = (shoppingListItem.quantity ?: BigDecimal.ZERO) + (parameters.quantity ?: BigDecimal.ZERO)
                 result.shoppingListItemSeqId = shoppingListItem.shoppingListItemSeqId
                 Map serviceResult = run service: 'updateShoppingListItem', with: [*: shoppingListItem, quantity: totalquantity]
                 if (!ServiceUtil.isSuccess(serviceResult)) {
@@ -168,7 +176,8 @@ Map addDistinctShoppingListItem() {
  */
 Map calculateShoppingListDeepTotalPrice() {
     Map result = success()
-    Map serviceResult = run service: 'checkShoppingListItemSecurity', with: parameters
+    Map serviceResult = run service: 'checkShoppingListItemSecurity', with: [*: parameters,
+            mainAction: 'VIEW', resourceDescription: 'calculateShoppingListDeepTotalPrice']
     if (!ServiceUtil.isSuccess(serviceResult)) {
         return error(serviceResult.errorMessage)
     }
@@ -225,10 +234,20 @@ Map calculateShoppingListDeepTotalPrice() {
  * Checks security on a ShoppingList
  */
 Map checkShoppingListSecurity() {
+    // for an existing list, check against its stored owner, not the partyId sent with the request
+    if (parameters.shoppingListId) {
+        GenericValue shoppingList = from('ShoppingList').where(shoppingListId: parameters.shoppingListId).queryOne()
+        if (shoppingList?.partyId && userLogin?.partyId != shoppingList.partyId
+                && !security.hasEntityPermission('PARTYMGR', "_${parameters.mainAction}", parameters.userLogin)) {
+            return error(UtilProperties.getMessage('OrderErrorUiLabels', 'OrderSecurityErrorToRunForAnotherParty',
+                    [parentMethodName: parameters.resourceDescription, permissionAction: parameters.mainAction], parameters.locale))
+        }
+    }
     if (userLogin && (userLogin.userLoginId != 'anonymous') &&
             parameters.partyId && (userLogin.partyId != parameters.partyId)
-            && !security.hasEntityPermission('PARTYMGR', "_${parameters.permissionAction}", parameters.userLogin)) {
-        return error(UtilProperties.getMessage('OrderErrorUiLabels', 'OrderSecurityErrorToRunForAnotherParty', parameters.locale))
+            && !security.hasEntityPermission('PARTYMGR', "_${parameters.mainAction}", parameters.userLogin)) {
+        return error(UtilProperties.getMessage('OrderErrorUiLabels', 'OrderSecurityErrorToRunForAnotherParty',
+                [parentMethodName: parameters.resourceDescription, permissionAction: parameters.mainAction], parameters.locale))
     }
 
     Map result = success()
@@ -242,11 +261,11 @@ Map checkShoppingListSecurity() {
 Map checkShoppingListItemSecurity() {
     GenericValue shoppingList = from('ShoppingList').where(parameters).queryOne()
     if (shoppingList?.partyId && userLogin.partyId != shoppingList.partyId &&
-            !security.hasEntityPermission('PARTYMGR', "_${parameters.permissionAction}", parameters.userLogin)) {
+            !security.hasEntityPermission('PARTYMGR', "_${parameters.mainAction}", parameters.userLogin)) {
         return error(UtilProperties.getMessage('OrderErrorUiLabels',
                 'OrderSecurityErrorToRunForAnotherParty',
-                [parentMethodName: parameters.parentMethodName,
-                 permissionAction: parameters.permissionAction],
+                [parentMethodName: parameters.resourceDescription,
+                 permissionAction: parameters.mainAction],
                 parameters.locale))
     }
 
@@ -279,12 +298,13 @@ Map addSuggestionsToShoppingList() {
         Map createShoppingListInMap = [partyId: orderRole.partyId,
                                        listName: 'Auto Suggestions',
                                        shoppingListTypeId: 'SLT_WISH_LIST',
-                                       productStoreId: parameters.productStoreId]
+                                       productStoreId: parameters.productStoreId,
+                                       userLogin: parameters.userLogin]
         Map serviceResultCSL = dispatcher.runSync('createShoppingList', createShoppingListInMap, 7200, true)
         if (!ServiceUtil.isSuccess(serviceResultCSL)) {
             return error(serviceResultCSL.errorMessage)
         }
-        shoppingListId = serviceResultCSL.serviceResult
+        shoppingListId = serviceResultCSL.shoppingListId
     }
     List orderItemList = from ('OrderItem').where(orderId: parameters.orderId).orderBy('orderItemSeqId').queryList()
     for (GenericValue orderItem : orderItemList) {
@@ -298,7 +318,7 @@ Map addSuggestionsToShoppingList() {
                         .filterByDate()
                         .queryFirst()
                 if (virtualProductAssoc) {
-                    linkProductToShoppingList(virtualProductAssoc.productIdTo, shoppingListId)
+                    linkProductToShoppingList(virtualProductAssoc.productId, shoppingListId)
                 }
             }
         }

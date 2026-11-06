@@ -26,6 +26,7 @@ import org.apache.ofbiz.entity.GenericValue
 import org.apache.ofbiz.entity.condition.EntityCondition
 import org.apache.ofbiz.entity.condition.EntityOperator
 import org.apache.ofbiz.entity.util.EntityUtil
+import org.apache.ofbiz.entity.util.EntityUtilProperties
 import org.apache.ofbiz.service.ServiceUtil
 
 /**
@@ -304,7 +305,7 @@ Map calculateProductCosts() {
         totalTaskCost = totalTaskCost.setScale(6)
         costsByType.entrySet().each { Map.Entry entry ->
             if (totalCostsByType."${entry.key}") {
-                totalCostsByType."${entry.key}" = entry.value + totalCostByType."${entry.key}"
+                totalCostsByType."${entry.key}" = entry.value + totalCostsByType."${entry.key}"
             } else {
                 totalCostsByType."${entry.key}" = entry.value
             }
@@ -386,19 +387,22 @@ Map calculateProductAverageCost() {
     Boolean differentCurrencies = false
     String currencyUomId
     for (GenericValue inventoryItem : inventoryItems) {
-        totalQuantityOnHand += inventoryItem.quantityOnHandTotal
+        totalQuantityOnHand = (totalQuantityOnHand + inventoryItem.quantityOnHandTotal).setScale(2, RoundingMode.HALF_EVEN)
         currencyUomId = currencyUomId ?: inventoryItem.currencyUomId
         if (!differentCurrencies) {
             if (currencyUomId == inventoryItem.currencyUomId) {
-                totalInventoryCost += (inventoryItem.unitCost * inventoryItem.quantityOnHandTotal)
+                totalInventoryCost = (totalInventoryCost + (inventoryItem.unitCost * inventoryItem.quantityOnHandTotal))
+                        .setScale(2, RoundingMode.HALF_EVEN)
 
                 // calculation of absolute values of QOH and total inventory cost
                 if (inventoryItem.quantityOnHandTotal < (BigDecimal) 0) {
-                    absValOfTotalQOH = absValOfTotalQOH - inventoryItem.quantityOnHandTotal
-                    absValOfTotalInvCost = absValOfTotalInvCost + (-1 * inventoryItem.quantityOnHandTotal * inventoryItem.unitCost)
+                    absValOfTotalQOH = (absValOfTotalQOH - inventoryItem.quantityOnHandTotal).setScale(2, RoundingMode.HALF_EVEN)
+                    absValOfTotalInvCost = (absValOfTotalInvCost + (-1 * inventoryItem.quantityOnHandTotal * inventoryItem.unitCost))
+                            .setScale(2, RoundingMode.HALF_EVEN)
                 } else {
-                    absValOfTotalQOH += inventoryItem.quantityOnHandTotal
-                    absValOfTotalInvCost = absValOfTotalInvCost + (inventoryItem.quantityOnHandTotal * inventoryItem.unitCost)
+                    absValOfTotalQOH = (absValOfTotalQOH + inventoryItem.quantityOnHandTotal).setScale(2, RoundingMode.HALF_EVEN)
+                    absValOfTotalInvCost = (absValOfTotalInvCost + (inventoryItem.quantityOnHandTotal * inventoryItem.unitCost))
+                            .setScale(2, RoundingMode.HALF_EVEN)
                 }
             } else {
                 differentCurrencies = true
@@ -456,8 +460,9 @@ Map updateProductAverageCostOnReceiveInventory() {
         BigDecimal oldProductQuantity = quantityOnHandTotal - parameters.quantityAccepted
         BigDecimal averageCost = ((productAverageCost.averageCost * oldProductQuantity)
                 + (inventoryItem.unitCost * parameters.quantityAccepted)) / (quantityOnHandTotal)
-        int roundingDecimal = UtilProperties.getPropertyAsInteger('arithmetic', 'finaccout.decimals', 2)
-        String roundingMode = UtilProperties.getPropertyValue('arithmetic', 'finaccount.roundingGroovyMethod', 'HALF_UP')
+        int roundingDecimal = EntityUtilProperties.getPropertyValue('arithmetic', 'finaccount.decimals', '2', delegator) as int
+        String roundingMode = EntityUtilProperties.getPropertyValue('arithmetic', 'finaccount.roundingGroovyMethod',
+                'HALF_UP', delegator)
         averageCost = averageCost.setScale(roundingDecimal, RoundingMode."${roundingMode}")
         productAverageCostMap.averageCost = averageCost
         productAverageCostMap.fromDate = UtilDateTime.nowTimestamp()

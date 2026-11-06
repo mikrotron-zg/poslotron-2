@@ -29,12 +29,12 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.imaging.ImageReadException;
 import org.apache.ofbiz.base.location.FlexibleLocation;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilProperties;
+import org.apache.ofbiz.base.util.UtilURL;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.base.util.string.FlexibleStringExpander;
 import org.apache.ofbiz.common.image.ImageTransform;
@@ -95,7 +95,7 @@ public class ScaleImage {
 
         /* ImageProperties.xml */
         String fileName = "component://product/config/ImageProperties.xml";
-        String imgPropertyFullPath = FlexibleLocation.resolveLocation(fileName).getFile();
+        String imgPropertyFullPath = UtilURL.toFile(FlexibleLocation.resolveLocation(fileName)).getPath();
         resultXMLMap.putAll(ImageTransform.getXMLValue(imgPropertyFullPath, locale));
         if (resultXMLMap.containsKey("responseMessage") && "success".equals(resultXMLMap.get("responseMessage"))) {
             imgPropertyMap.putAll(UtilGenerics.<Map<String, Map<String, String>>>cast(resultXMLMap.get("xml")));
@@ -234,7 +234,7 @@ public class ScaleImage {
                         Debug.logError(errMsg, MODULE);
                         result.put(ModelService.ERROR_MESSAGE, errMsg);
                         return result;
-                    } catch (IOException | ImageReadException e) {
+                    } catch (IOException e) {
                         String errMsg = UtilProperties.getMessage(RESOURCE, "ScaleImage.error_occurs_during_writing", locale) + e.toString();
                         Debug.logError(errMsg, MODULE);
                         result.put(ModelService.ERROR_MESSAGE, errMsg);
@@ -289,7 +289,7 @@ public class ScaleImage {
 
         /* ImageProperties.xml */
         String fileName = "component://product/config/ImageProperties.xml";
-        String imgPropertyFullPath = FlexibleLocation.resolveLocation(fileName).getFile();
+        String imgPropertyFullPath = UtilURL.toFile(FlexibleLocation.resolveLocation(fileName)).getPath();
         resultXMLMap.putAll(ImageTransform.getXMLValue(imgPropertyFullPath, locale));
         if (resultXMLMap.containsKey("responseMessage") && "success".equals(resultXMLMap.get("responseMessage"))) {
             imgPropertyMap.putAll(UtilGenerics.<Map<String, Map<String, String>>>cast(resultXMLMap.get("xml")));
@@ -413,7 +413,7 @@ public class ScaleImage {
                         Debug.logError(errMsg, MODULE);
                         result.put(ModelService.ERROR_MESSAGE, errMsg);
                         return result;
-                    } catch (IOException | ImageReadException e) {
+                    } catch (IOException e) {
                         String errMsg = UtilProperties.getMessage(RESOURCE, "ScaleImage.error_occurs_during_writing", locale) + e.toString();
                         Debug.logError(errMsg, MODULE);
                         result.put(ModelService.ERROR_MESSAGE, errMsg);

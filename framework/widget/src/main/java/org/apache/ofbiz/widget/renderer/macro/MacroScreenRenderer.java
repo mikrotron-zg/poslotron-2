@@ -36,6 +36,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.GeneralException;
+import org.apache.ofbiz.base.util.UtilCodec;
 import org.apache.ofbiz.base.util.UtilFormatOut;
 import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilHttp;
@@ -125,7 +126,7 @@ public class MacroScreenRenderer implements ScreenStringRenderer {
                 Object value = parameter.getValue();
                 if (value instanceof String) {
                     sb.append('"');
-                    sb.append(((String) value).replace("\\", "\\\\").replace("\"", "\\\"").replace("$", "\\$"));
+                    sb.append(MacroCommonRenderer.escapeFtlString((String) value));
                     sb.append('"');
                 } else {
                     sb.append(value);
@@ -134,6 +135,10 @@ public class MacroScreenRenderer implements ScreenStringRenderer {
         }
         sb.append(" />");
         executeMacro(writer, sb.toString());
+    }
+
+    private static String escapeFtlSingleQuoted(String value) {
+        return value == null ? "" : value.replace("\\", "\\\\").replace("'", "\\'").replace("{", "\\{");
     }
 
     private Environment getEnvironment(Appendable writer) throws TemplateException, IOException {
@@ -298,10 +303,10 @@ public class MacroScreenRenderer implements ScreenStringRenderer {
                     parameters.append(",");
                 }
                 parameters.append("{'name':'");
-                parameters.append(parameter.getKey());
+                parameters.append(escapeFtlSingleQuoted(parameter.getKey()));
                 parameters.append("'");
                 parameters.append(",'value':'");
-                parameters.append(parameter.getValue());
+                parameters.append(escapeFtlSingleQuoted(parameter.getValue()));
                 parameters.append("'}");
             }
             parameters.append("]");
@@ -386,6 +391,10 @@ public class MacroScreenRenderer implements ScreenStringRenderer {
             }
         } else {
             urlString = src;
+        }
+        UtilCodec.SimpleEncoder simpleEncoder = (UtilCodec.SimpleEncoder) context.get("simpleEncoder");
+        if (simpleEncoder != null) {
+            urlString = simpleEncoder.encode(urlString);
         }
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("src", src);

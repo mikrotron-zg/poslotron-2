@@ -133,9 +133,9 @@ Map getBlogEntry() {
                      contentId: content.contentId,
                      contentName: content.contentName,
                      description: content.description,
-                     statusId: content.statusId]
+                     statusId: content.statusId,
+                     templateDataResourceId: content.dataResourceId]
     if (imageContent) {
-        resultMap.templateDataResourceId = content.dataResourceId
         resultMap.imageContentId = imageContent.contentId
         resultMap.imageDataResourceId = imageContent.dataResourceId
     }
@@ -168,7 +168,7 @@ Map updateBlogEntry() {
         }
     }
 
-    if (!blog.articleText && parameters.articleData) {
+    if (!blog.articleData && parameters.articleData) {
         run service: 'createTextContent',
                 with: [
                         dataResourceTypeId: 'ELECTRONIC_TEXT',

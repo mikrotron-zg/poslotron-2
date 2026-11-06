@@ -18,9 +18,14 @@
  *******************************************************************************/
 package org.apache.ofbiz.base.util;
 
+import java.io.File;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.commons.validator.routines.UrlValidator;
@@ -656,6 +661,39 @@ public final class UtilValidate {
         return UrlValidator.getInstance().isValid(s);
     }
 
+    /**
+     * isAllowedPath takes a String representing a non-component widget resource path, normalizes it and
+     * checks it against the administrator-configured <code>security.allowFilePaths</code> regular
+     * expression. Unset or blank configuration denies every path (secure by default): an administrator
+     * must explicitly opt in to loading widget resources from outside a <code>component://</code> location.
+     * @param rawPathString
+     * @return true if it's an allowed path, false otherwise (including when unconfigured)
+     */
+    public static boolean isAllowedPath(String rawPathString) {
+        if (UtilValidate.isEmpty(rawPathString)) {
+            return false;
+        }
+        String allowFilePaths = UtilProperties.getPropertyValue("security", "allowFilePaths", "");
+        if (UtilValidate.isEmpty(allowFilePaths)) {
+            return false;
+        }
+        String normalizedPath;
+        try {
+            normalizedPath = Paths.get(rawPathString).normalize().toString();
+        } catch (InvalidPathException e) {
+            Debug.logWarning(String.format("Invalid path [%s], %s", rawPathString, e.getReason()), MODULE);
+            return false;
+        }
+        if (File.separatorChar != '/') {
+            normalizedPath = normalizedPath.replace(File.separatorChar, '/');
+        }
+        try {
+            return Pattern.compile(allowFilePaths).matcher(normalizedPath).matches();
+        } catch (PatternSyntaxException e) {
+            Debug.logError(e, "security.properties allowFilePaths is not a valid regular expression, denying every path", MODULE);
+            return false;
+        }
+    }
 
     /** isYear returns true if string s is a valid
      *  Year number.  Must be 2 or 4 digits only.

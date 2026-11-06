@@ -20,6 +20,7 @@ package org.apache.ofbiz.widget.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,7 +34,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.GeneralException;
-import org.apache.ofbiz.base.util.StringUtil;
 import org.apache.ofbiz.base.util.UtilCodec;
 import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilHttp;
@@ -276,10 +276,8 @@ public class ModelTree extends ModelWidget {
         }
         List<String> trail = null;
         if (UtilValidate.isNotEmpty(treeString)) {
-            trail = StringUtil.split(treeString, "|");
-            if (UtilValidate.isEmpty(trail)) {
-                throw new RuntimeException("Tree 'trail' value is empty.");
-            }
+            // an empty element is kept, as it is the id of a root node that has none (see ModelNode.renderNodeString)
+            trail = new LinkedList<>(Arrays.asList(treeString.split("\\|", -1)));
             context.put("rootEntityId", trail.get(0));
             context.put(getDefaultPkName(context), trail.get(0));
         } else {
@@ -681,7 +679,8 @@ public class ModelTree extends ModelWidget {
                     id = (String) context.get(pkName);
                 }
                 if (currentNodeTrail != null) {
-                    currentNodeTrail.add(id);
+                    // a root node that is not an entity (no pk in the context) must still take its place in the trail
+                    currentNodeTrail.add(id == null ? "" : id);
                 }
                 treeStringRenderer.renderNodeBegin(writer, context, this, depth);
                 try {
@@ -1087,6 +1086,8 @@ public class ModelTree extends ModelWidget {
             // FIXME: Something to be replaced by a builder class, but allows us to quickly
             // build Links to represent nodes with parameters in a tree, rather that trying
             // to encode the parameters early in the link's target.
+            // The style, target and text are computed by the renderer, and the target comes from the request,
+            // so they are taken literally and never evaluated as an expression.
             public Link(String style, String target, String text, List<Parameter> parameterList) {
                 this.encode = false;
                 this.fullPath = false;
@@ -1097,10 +1098,10 @@ public class ModelTree extends ModelWidget {
                 this.parameterList = parameterList != null ? Collections.unmodifiableList(parameterList) : Collections.emptyList();
                 this.prefixExdr = FlexibleStringExpander.getInstance("");
                 this.secure = false;
-                this.styleExdr = FlexibleStringExpander.getInstance(style);
-                this.targetExdr = FlexibleStringExpander.getInstance(target);
+                this.styleExdr = FlexibleStringExpander.getLiteral(style);
+                this.targetExdr = FlexibleStringExpander.getLiteral(target);
                 this.targetWindowExdr = FlexibleStringExpander.getInstance("");
-                this.textExdr = FlexibleStringExpander.getInstance(text);
+                this.textExdr = FlexibleStringExpander.getLiteral(text);
                 this.titleExdr = FlexibleStringExpander.getInstance("");
                 this.urlMode = "intra-app";
             }

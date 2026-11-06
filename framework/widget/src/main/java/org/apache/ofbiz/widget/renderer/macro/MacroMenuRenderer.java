@@ -98,6 +98,10 @@ public class MacroMenuRenderer implements MenuStringRenderer {
                 src = newURL.toString();
             }
         }
+        UtilCodec.SimpleEncoder simpleEncoder = (UtilCodec.SimpleEncoder) context.get("simpleEncoder");
+        if (simpleEncoder != null) {
+            src = simpleEncoder.encode(src);
+        }
         parameters.put("src", src);
         return parameters;
     }
@@ -124,7 +128,7 @@ public class MacroMenuRenderer implements MenuStringRenderer {
                 Object value = parameter.getValue();
                 if (value instanceof String) {
                     sb.append('"');
-                    sb.append(((String) value).replace("\"", "\\\""));
+                    sb.append(MacroCommonRenderer.escapeFtlString((String) value));
                     sb.append('"');
                 } else {
                     sb.append(value);

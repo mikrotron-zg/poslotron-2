@@ -2051,6 +2051,7 @@ under the License.
         <response name="success" type="view" value="BankReconciliation"/>
     </request-map>
     <request-map uri="getFinAccountTransRunningTotalAndBalances">
+        <security https="true" auth="true"/>
         <event type="service-multi" invoke="getFinAccountTransRunningTotalAndBalances"/>
         <response name="success" type="request" value="json"/>
         <response name="error" type="request" value="json"/>
@@ -2281,8 +2282,6 @@ under the License.
     <request-map uri="LookupGlReconciliation"><security auth="true" https="true"/><response name="success" type="view" value="LookupGlReconciliation"/></request-map>
     <request-map uri="LookupCustomTimePeriod"><security auth="true" https="true"/><response name="success" type="view" value="LookupCustomTimePeriod"/></request-map>
 
-    <request-map uri="viewprofile"><security https="true" auth="true"/><response name="success" type="view" value="viewprofile"/></request-map>
-
     <!-- ================ PDF generation requests ================== -->
     <request-map uri="invoice.pdf">
         <security https="true" auth="true"/>
@@ -2338,6 +2337,10 @@ under the License.
     <request-map uri="LookupSupplier">
         <security auth="true" https="true"/>
         <response name="success" type="view" value="LookupSupplier"/>
+    </request-map>
+    <request-map uri="LookupTaxAuthority">
+        <security auth="true" https="true"/>
+        <response name="success" type="view" value="LookupTaxAuthority"/>
     </request-map>
     <request-map uri="depositWithdrawPayments">
         <security auth="true" https="true"/>
@@ -2838,7 +2841,6 @@ under the License.
     <view-map name="EditPaymentGatewayConfigType" type="screen" page="component://accounting/widget/PaymentGatewayConfigScreens.xml#EditPaymentGatewayConfigType"/>
 
     <!-- Lookup mappings -->
-    <view-map name="viewprofile" type="screen" page="component://party/widget/partymgr/PartyScreens.xml#viewprofile"/>
     <view-map name="LookupPerson" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupPerson"/>
     <view-map name="LookupPartyGroup" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupPartyGroup"/>
     <view-map name="LookupPartyName" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupPartyName"/>
@@ -2897,6 +2899,7 @@ under the License.
     <view-map name="PaymentsDepositWithdraw" type="screen" page="component://accounting/widget/FinAccountScreens.xml#PaymentsDepositWithdraw"/>
     <view-map name="LookupCustomerName" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupCustomerName"/>
     <view-map name="LookupSupplier" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupSupplier"/>
+    <view-map name="LookupTaxAuthority" type="screen" page="component://party/widget/partymgr/LookupScreens.xml#LookupTaxAuthority"/>
     <view-map name="NewDepositSlip" type="screen" page="component://accounting/widget/FinAccountScreens.xml#NewDepositSlip"/>
     <view-map name="InventoryValuation" type="screen" page="component://accounting/widget/ReportFinancialSummaryScreens.xml#InventoryValuation"/>
     <view-map name="InventoryValuationPdf" type="screenfop" page="component://accounting/widget/ReportFinancialSummaryScreens.xml#InventoryValuationPdf" content-type="application/pdf" encoding="none"/>

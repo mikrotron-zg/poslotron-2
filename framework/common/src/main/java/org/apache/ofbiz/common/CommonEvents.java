@@ -42,15 +42,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ofbiz.base.lang.JSON;
-import org.apache.ofbiz.base.location.FlexibleLocation;
+import org.apache.ofbiz.base.location.ComponentLocationResolver;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.GeneralException;
+import org.apache.ofbiz.base.util.StringUtil;
 import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilHttp;
 import org.apache.ofbiz.base.util.UtilProperties;
+import org.apache.ofbiz.base.util.UtilURL;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.base.util.string.FlexibleStringExpander;
 import org.apache.ofbiz.entity.Delegator;
@@ -285,8 +286,8 @@ public class CommonEvents {
             final int height = Integer.parseInt(captchaSizeConfigs[1]);
             final int width = Integer.parseInt(captchaSizeConfigs[2]);
             final int charsToPrint = UtilProperties.getPropertyAsInteger("captcha", "captcha.code_length", 6);
-            final char[] availableChars = EntityUtilProperties
-                    .getPropertyValue("captcha", "captcha.characters", delegator).toCharArray();
+            final String availableChars = EntityUtilProperties
+                    .getPropertyValue("captcha", "captcha.characters", delegator);
 
             // It is possible to pass the font size, image width and height with the request as well
             Color backgroundColor = Color.gray;
@@ -319,7 +320,7 @@ public class CommonEvents {
             int maxAdvance = fontMetrics.getMaxAdvance();
             int fontHeight = fontMetrics.getHeight();
 
-            String captchaCode = RandomStringUtils.random(6, availableChars);
+            String captchaCode = StringUtil.randomString(6, availableChars);
 
             float spaceForLetters = -horizMargin * 2 + width;
             float spacePerChar = spaceForLetters / (charsToPrint - 1.0f);
@@ -402,26 +403,28 @@ public class CommonEvents {
             String sourceLocation = request.getParameter("sourceLocation");
             if (UtilValidate.isNotEmpty(sourceLocation) && sourceLocation.startsWith("component:")) {
                 try {
+                    // only component: locations are accepted, so resolve them with the component resolver directly
+                    ComponentLocationResolver componentLocationResolver = new ComponentLocationResolver();
                     // find absolute path of file
                     URL sourceFileUrl = null;
                     String fragment = "";
                     if (sourceLocation.contains("#")) {
                         int indexOfHash = sourceLocation.indexOf("#");
-                        sourceFileUrl = FlexibleLocation.resolveLocation(sourceLocation.substring(0, indexOfHash));
+                        sourceFileUrl = componentLocationResolver.resolveLocation(sourceLocation.substring(0, indexOfHash));
                         fragment = sourceLocation.substring(indexOfHash + 1);
                     } else {
-                        sourceFileUrl = FlexibleLocation.resolveLocation(sourceLocation);
+                        sourceFileUrl = componentLocationResolver.resolveLocation(sourceLocation);
                     }
-                    String platformSpecificPath = sourceFileUrl.getFile();
+                    String platformSpecificPath = UtilURL.toFile(sourceFileUrl).getPath();
                     // ensure file separator in location is correct
                     if (!platformSpecificPath.contains(File.separator) && "\\".equals(File.separator)) {
                         platformSpecificPath = platformSpecificPath.replace("/", "\\");
                     }
-                    SecurityUtil.checkOfbizFileAllowList(new File(platformSpecificPath));
+                    File sourceFile = SecurityUtil.checkOfbizFileAllowList(new File(platformSpecificPath));
                     // get line number
                     int lineNumber = 1;
                     if (UtilValidate.isNotEmpty(fragment)) {
-                        try (LineNumberReader lnr = new LineNumberReader(new FileReader(platformSpecificPath))) {
+                        try (LineNumberReader lnr = new LineNumberReader(new FileReader(sourceFile))) {
                             String line;
                             while ((line = lnr.readLine()) != null) {
                                 if (line.matches(".*name=\"" + Pattern.quote(fragment) + "\".*")) {

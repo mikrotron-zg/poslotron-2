@@ -23,6 +23,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
@@ -71,16 +72,6 @@ import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import org.apache.commons.imaging.ImageFormat;
-import org.apache.commons.imaging.ImageFormats;
-import org.apache.commons.imaging.ImageInfo;
-import org.apache.commons.imaging.ImageParser;
-import org.apache.commons.imaging.ImageReadException;
-import org.apache.commons.imaging.ImageWriteException;
-import org.apache.commons.imaging.Imaging;
-import org.apache.commons.imaging.formats.gif.GifImageParser;
-import org.apache.commons.imaging.formats.png.PngImageParser;
-import org.apache.commons.imaging.formats.tiff.TiffImageParser;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
@@ -93,6 +84,8 @@ import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.base.util.UtilXml;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.io.RandomAccessReadBufferedFile;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentNameDictionary;
 import org.apache.pdfbox.pdmodel.PDEmbeddedFilesNameTreeNode;
@@ -115,6 +108,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.drew.imaging.FileType;
+import com.drew.imaging.FileTypeDetector;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Directory;
@@ -402,9 +397,8 @@ public class SecuredUpload {
      * @param fileType
      * @return true if the file is valid
      * @throws IOException
-     * @throws ImageReadException
      */
-    public static boolean isValidFile(String fileToCheck, String fileType, Delegator delegator) throws IOException, ImageReadException {
+    public static boolean isValidFile(String fileToCheck, String fileType, Delegator delegator) throws IOException {
         // Allow all uploads w/o check
         if (("true".equalsIgnoreCase(EntityUtilProperties.getPropertyValue("security", "allowAllUploads", delegator)))) {
             return true;
@@ -534,16 +528,16 @@ public class SecuredUpload {
      * Is it a supported image format?
      * @param fileName
      * @return true if it's a valid image file
-     * @throws IOException ImageReadException
+     * @throws IOException
      */
-    private static boolean isValidImageFile(String fileName) throws ImageReadException, IOException {
+    private static boolean isValidImageFile(String fileName) throws IOException {
         Path filePath = Paths.get(fileName);
         byte[] bytesFromFile = Files.readAllBytes(filePath);
-        ImageFormat imageFormat = Imaging.guessFormat(bytesFromFile);
-        boolean knownRasterFormat = imageFormat.equals(ImageFormats.PNG)
-                || imageFormat.equals(ImageFormats.GIF)
-                || imageFormat.equals(ImageFormats.TIFF)
-                || imageFormat.equals(ImageFormats.JPEG);
+        FileType fileType = FileTypeDetector.detectFileType(new ByteArrayInputStream(bytesFromFile));
+        boolean knownRasterFormat = fileType == FileType.Png
+                || fileType == FileType.Gif
+                || fileType == FileType.Tiff
+                || fileType == FileType.Jpeg;
         if (!knownRasterFormat) {
             return false;
         }
@@ -557,12 +551,12 @@ public class SecuredUpload {
     /**
      * Implementation based on https://github.com/righettod/document-upload-protection sanitizer for Image file. See
      * https://github.com/righettod/document-upload-protection/blob/master/src/main/java/eu/righettod/poc/sanitizer/ImageDocumentSanitizerImpl.java
-     * Uses Java built-in API in complement of Apache Commons Imaging for format not supported by the built-in API. See
-     * http://commons.apache.org/proper/commons-imaging/ and http://commons.apache.org/proper/commons-imaging/formatsupport.html
+     * PNG, GIF and JPEG are supported by the JDK's built-in ImageIO; TIFF support comes from the TwelveMonkeys
+     * ImageIO plugin (com.twelvemonkeys.imageio:imageio-tiff), registered transparently as an ImageIO service
+     * provider, so no format-specific fallback code is needed here.
      */
     private static boolean imageMadeSafe(String fileName) {
         File file = new File(fileName);
-        boolean fallbackOnApacheCommonsImaging;
 
         if (!noWebshellInMetadata(file)) {
             return false;
@@ -583,31 +577,17 @@ public class SecuredUpload {
             try {
                 // Get the image format
                 String formatName;
-                ImageInputStream iis = ImageIO.createImageInputStream(file);
-                Iterator<ImageReader> imageReaderIterator = ImageIO.getImageReaders(iis);
-                // If there not ImageReader instance found so it's means that the current format is not supported by the Java built-in API
-                if (!imageReaderIterator.hasNext()) {
-                    ImageInfo imageInfo = Imaging.getImageInfo(file);
-                    if (imageInfo != null && imageInfo.getFormat() != null && imageInfo.getFormat().getName() != null) {
-                        formatName = imageInfo.getFormat().getName();
-                        fallbackOnApacheCommonsImaging = true;
-                    } else {
+                try (ImageInputStream iis = ImageIO.createImageInputStream(file)) {
+                    Iterator<ImageReader> imageReaderIterator = ImageIO.getImageReaders(iis);
+                    if (!imageReaderIterator.hasNext()) {
                         throw new IOException("Format of the original image " + fileName + " is not supported for read operation !");
                     }
-                } else {
                     ImageReader reader = imageReaderIterator.next();
                     formatName = reader.getFormatName();
-                    fallbackOnApacheCommonsImaging = false;
-                    iis.close(); // This was not correctly handled in the document-upload-protection example, and I did not spot it :/
                 }
 
                 // Load the image
-                BufferedImage originalImage;
-                if (!fallbackOnApacheCommonsImaging) {
-                    originalImage = ImageIO.read(file);
-                } else {
-                    originalImage = Imaging.getBufferedImage(file);
-                }
+                BufferedImage originalImage = ImageIO.read(file);
 
                 // Check that image has been successfully loaded
                 if (originalImage == null) {
@@ -670,7 +650,7 @@ public class SecuredUpload {
                 }
                 // Set state flag
                 safeState = true;
-            } catch (IOException | ImageReadException | ImageWriteException e) {
+            } catch (IOException e) {
                 Debug.logWarning(e, "Error during Image file " + fileName + " processing !", MODULE);
             }
         }
@@ -683,6 +663,7 @@ public class SecuredUpload {
             metadata = ImageMetadataReader.readMetadata(file);
         } catch (ImageProcessingException | IOException error) {
             Debug.logError("================== Not saved for security reason ==================" + error, MODULE);
+            return false;
         }
 
         for (Directory directory : metadata.getDirectories()) {
@@ -758,7 +739,7 @@ public class SecuredUpload {
     private static boolean noWebshellInJPEG(File file) {
         try {
             byte[] bytes = Files.readAllBytes(file.toPath());
-            if (!Imaging.guessFormat(bytes).equals(ImageFormats.JPEG)) {
+            if (FileTypeDetector.detectFileType(new ByteArrayInputStream(bytes)) != FileType.Jpeg) {
                 return true; // Not a JPEG file, it's OK so far
             }
             // SOI marker check
@@ -828,7 +809,7 @@ public class SecuredUpload {
     private static boolean noWebshellInGIF(File file) {
         try {
             byte[] bytes = Files.readAllBytes(file.toPath());
-            if (!Imaging.guessFormat(bytes).equals(ImageFormats.GIF)) {
+            if (FileTypeDetector.detectFileType(new ByteArrayInputStream(bytes)) != FileType.Gif) {
                 return true; // Not a GIF file, it's OK so far
             }
             // Header: "GIF87a" or "GIF89a"
@@ -907,8 +888,7 @@ public class SecuredUpload {
     private static boolean isPNG(File file) throws IOException {
         Path filePath = Paths.get(file.getPath());
         byte[] bytesFromFile = Files.readAllBytes(filePath);
-        ImageFormat imageFormat = Imaging.guessFormat(bytesFromFile);
-        return (imageFormat.equals(ImageFormats.PNG));
+        return FileTypeDetector.detectFileType(new ByteArrayInputStream(bytesFromFile)) == FileType.Png;
     }
 
     private static boolean inflate(byte[] data) {
@@ -953,9 +933,9 @@ public class SecuredUpload {
      * Is it a supported image format, including SVG?
      * @param fileName
      * @return true if it's a valid image file
-     * @throws IOException ImageReadException
+     * @throws IOException
      */
-    private static boolean isValidImageIncludingSvgFile(String fileName) throws ImageReadException, IOException {
+    private static boolean isValidImageIncludingSvgFile(String fileName) throws IOException {
         return isValidImageFile(fileName) || isValidSvgFile(fileName);
     }
 
@@ -1011,7 +991,7 @@ public class SecuredUpload {
     private static boolean isValidPdfFile(String fileName) {
         File file = new File(fileName);
         boolean safeState = false;
-        boolean canParseZUGFeRD = true;
+        boolean canParseZUGFeRD = false;
         try {
             if (Objects.isNull(file) || !file.exists()) {
                 return safeState;
@@ -1026,7 +1006,7 @@ public class SecuredUpload {
             }
             // OK no JS code, pass to check 2: detect if the document has any embedded files
             PDEmbeddedFilesNameTreeNode efTree = null;
-            try (PDDocument pdDocument = PDDocument.load(file)) {
+            try (PDDocument pdDocument = Loader.loadPDF(new RandomAccessReadBufferedFile(fileName))) {
                 PDDocumentNameDictionary names = new PDDocumentNameDictionary(pdDocument.getDocumentCatalog());
                 efTree = names.getEmbeddedFiles();
             }
@@ -1042,12 +1022,14 @@ public class SecuredUpload {
                     } else {
                         try {
                             Document document = UtilXml.readXmlDocument(importer.getUTF8());
-                            if (document.toString().equals("[#document: null]")) {
+                            if (document == null || document.getDocumentElement() == null) {
                                 safeState = false;
                                 Debug.logInfo("The file " + file.getAbsolutePath()
                                         + " is not a readable (valid and secure) PDF file. For security reason it's not accepted as a such file",
                                         MODULE);
 
+                            } else {
+                                canParseZUGFeRD = true;
                             }
                         } catch (SAXException | ParserConfigurationException | IOException e) {
                             safeState = false;
@@ -1115,12 +1097,18 @@ public class SecuredUpload {
             Debug.logError("The file " + fileName + " is a Windows executable, for security reason it's not accepted", MODULE);
             return true;
         }
-        // Check for ELF (Linux) and scripts
+        // Check for ELF (Linux) and scripts. Tika reports the generic application/x-elf only for
+        // ELF files it can't further classify; real-world binaries are detected as one of its
+        // more specific sub-types below (e.g. every PIE-compiled executable or shared library).
         if ("application/x-elf".equals(mimeType)
+                || "application/x-executable".equals(mimeType)
+                || "application/x-sharedlib".equals(mimeType)
+                || "application/x-object".equals(mimeType)
+                || "application/x-coredump".equals(mimeType)
                 || "application/x-sh".equals(mimeType)
-                || "application/text/x-perl".equals(mimeType)
-                || "application/text/x-ruby".equals(mimeType)
-                || "application/text/x-python".equals(mimeType)) {
+                || "text/x-perl".equals(mimeType)
+                || "text/x-ruby".equals(mimeType)
+                || "text/x-python".equals(mimeType)) {
             Debug.logError("The file " + fileName + " is a Linux executable, for security reason it's not accepted", MODULE);
             return true;
         }
@@ -1134,9 +1122,9 @@ public class SecuredUpload {
      * http://commons.apache.org/proper/commons-compress/examples.html
      * @param fileName
      * @return true if it's a valid compressed file
-     * @throws IOException ImageReadException
+     * @throws IOException
      */
-    private static boolean isValidCompressedFile(String fileName, Delegator delegator) throws IOException, ImageReadException {
+    private static boolean isValidCompressedFile(String fileName, Delegator delegator) throws IOException {
         String mimeType = getMimeTypeFromFileName(fileName);
         // I planned to handle more formats but did only ZIP
         // The code can be extended based on that
@@ -1192,7 +1180,7 @@ public class SecuredUpload {
         return null;
     }
 
-    private static boolean isValidDirectoryInCompressedFile(String folderName, Delegator delegator) throws IOException, ImageReadException {
+    private static boolean isValidDirectoryInCompressedFile(String folderName, Delegator delegator) throws IOException {
         File folder = new File(folderName);
         Collection<File> files = FileUtils.listFiles(folder, null, true);
         for (File f : files) {

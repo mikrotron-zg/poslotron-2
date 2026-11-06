@@ -37,7 +37,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.commons.imaging.ImageReadException;
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.GeneralException;
 import org.apache.ofbiz.base.util.UtilDateTime;
@@ -50,6 +49,7 @@ import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.security.SecuredUpload;
+import org.apache.ofbiz.security.SecurityUtil;
 import org.apache.ofbiz.service.DispatchContext;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.ModelService;
@@ -196,8 +196,7 @@ public class DataServices {
         return createFileMethod(dctx, context);
     }
 
-    public static Map<String, Object> createFileNoPerm(DispatchContext dctx, Map<String, ? extends Object> rcontext) throws IOException,
-            ImageReadException {
+    public static Map<String, Object> createFileNoPerm(DispatchContext dctx, Map<String, ? extends Object> rcontext) throws IOException {
         String originalFileName = (String) rcontext.get("dataResourceName");
         String fileNameAndPath = (String) rcontext.get("objectInfo");
         Delegator delegator = dctx.getDelegator();
@@ -253,12 +252,22 @@ public class DataServices {
             if (!file.isAbsolute()) {
                 return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentLocalFileDoesNotPointToAbsoluteLocation", locale));
             }
+            try {
+                SecurityUtil.checkLocalFileAllowList(file);
+            } catch (GeneralException e) {
+                return ServiceUtil.returnError(e.getMessage());
+            }
         } else if ("OFBIZ_FILE".equals(dataResourceTypeId) || "OFBIZ_FILE_BIN".equals(dataResourceTypeId)) {
             prefix = System.getProperty("ofbiz.home");
             if (objectInfo.indexOf('/') != 0 && prefix.lastIndexOf('/') != (prefix.length() - 1)) {
                 sep = "/";
             }
             file = new File(prefix + sep + objectInfo);
+            try {
+                SecurityUtil.checkOfbizFileAllowList(file);
+            } catch (GeneralException e) {
+                return ServiceUtil.returnError(e.getMessage());
+            }
         } else if ("CONTEXT_FILE".equals(dataResourceTypeId) || "CONTEXT_FILE_BIN".equals(dataResourceTypeId)) {
             prefix = (String) context.get("rootDir");
             if (UtilValidate.isEmpty(prefix)) {
@@ -289,7 +298,7 @@ public class DataServices {
                     String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedTextFileFormats", locale);
                     return ServiceUtil.returnError(errorMessage);
                 }
-            } catch (IOException | ImageReadException e) {
+            } catch (IOException e) {
                 Debug.logWarning(e, MODULE);
                 return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentUnableWriteCharacterDataToFile",
                         UtilMisc.toMap("fileName", file.getAbsolutePath()), locale));
@@ -309,10 +318,6 @@ public class DataServices {
                 Files.copy(tempFile, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 new File(tempFile.toString()).deleteOnExit();
 
-            } catch (ImageReadException e) {
-                Debug.logError(e, MODULE);
-                return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentUnableToOpenFileForWriting",
-                        UtilMisc.toMap("fileName", file.getAbsolutePath()), locale));
             } catch (IOException e) {
                 Debug.logError(e, MODULE);
                 return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentUnableWriteBinaryDataToFile",
@@ -471,12 +476,22 @@ public class DataServices {
                 if (!file.isAbsolute()) {
                     throw new GenericServiceException("File: " + fileName + " is not absolute.");
                 }
+                try {
+                    SecurityUtil.checkLocalFileAllowList(file);
+                } catch (GeneralException e) {
+                    return ServiceUtil.returnError(e.getMessage());
+                }
             } else if (dataResourceTypeId.startsWith("OFBIZ_FILE")) {
                 prefix = System.getProperty("ofbiz.home");
                 if (objectInfo.indexOf('/') != 0 && prefix.lastIndexOf('/') != (prefix.length() - 1)) {
                     sep = "/";
                 }
                 file = new File(prefix + sep + objectInfo);
+                try {
+                    SecurityUtil.checkOfbizFileAllowList(file);
+                } catch (GeneralException e) {
+                    return ServiceUtil.returnError(e.getMessage());
+                }
             } else if (dataResourceTypeId.startsWith("CONTEXT_FILE")) {
                 prefix = (String) context.get("rootDir");
                 if (objectInfo.indexOf('/') != 0 && prefix.lastIndexOf('/') != (prefix.length() - 1)) {
@@ -503,7 +518,7 @@ public class DataServices {
                         String errorMessage = UtilProperties.getMessage("SecurityUiLabels", "SupportedTextFileFormats", locale);
                         return ServiceUtil.returnError(errorMessage);
                     }
-                } catch (IOException | ImageReadException e) {
+                } catch (IOException e) {
                     Debug.logWarning(e, MODULE);
                     return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentUnableWriteCharacterDataToFile",
                             UtilMisc.toMap("fileName", file.getAbsolutePath()), locale));
@@ -522,10 +537,6 @@ public class DataServices {
                     }
                     Files.copy(tempFile, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     new File(tempFile.toString()).deleteOnExit();
-                } catch (ImageReadException e) {
-                    Debug.logError(e, MODULE);
-                    return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentUnableToOpenFileForWriting",
-                            UtilMisc.toMap("fileName", file.getAbsolutePath()), locale));
                 } catch (IOException e) {
                     Debug.logError(e, MODULE);
                     return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentUnableWriteBinaryDataToFile",
@@ -694,7 +705,7 @@ public class DataServices {
                 if (Debug.infoOn()) {
                     Debug.logInfo("in createBinaryFileMethod, length:" + file.length(), MODULE);
                 }
-            } catch (IOException | ImageReadException e) {
+            } catch (IOException e) {
                 Debug.logWarning(e, MODULE);
                 throw new GenericServiceException(e.getMessage());
             }
@@ -755,7 +766,7 @@ public class DataServices {
                 if (Debug.infoOn()) {
                     Debug.logInfo("in updateBinaryFileMethod, length:" + file.length(), MODULE);
                 }
-            } catch (IOException | ImageReadException e) {
+            } catch (IOException e) {
                 Debug.logWarning(e, MODULE);
                 throw new GenericServiceException(e.getMessage());
             }

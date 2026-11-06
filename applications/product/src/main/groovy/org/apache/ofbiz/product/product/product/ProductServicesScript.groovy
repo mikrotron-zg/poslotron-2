@@ -122,7 +122,7 @@ Map updateProduct() {
  * Update a Product Name from quick admin
  */
 Map updateProductQuickAdminName() {
-    Map res = checkProductRelatedPermission('updateQuickAdminName', 'UPDATE')
+    Map res = checkProductRelatedPermission('updateProductQuickAdminName', 'UPDATE')
 
     if (!ServiceUtil.isSuccess(res)) {
         return res
@@ -311,7 +311,7 @@ Map duplicateProduct() {
  * induce all the keywords of a product
  */
 Map forceIndexProductKeywords() {
-    GenericValue product = from('Product').where(parameters).cache().queryOne()
+    GenericValue product = from('Product').where(parameters).queryOne()
     KeywordIndex.forceIndexKeywords(product)
     return success()
 }
@@ -320,7 +320,7 @@ Map forceIndexProductKeywords() {
  * delete all the keywords of a produc
  */
 Map deleteProductKeywords() {
-    GenericValue product = from('Product').where(parameters).cache().queryOne()
+    GenericValue product = from('Product').where(parameters).queryOne()
     product.removeRelated('ProductKeyword')
     return success()
 }
@@ -360,8 +360,12 @@ Map discontinueProductSales() {
     delegator.storeByCondition('ProductCategoryMember',
             [thruDate: nowTimestamp], condition)
     // expire product from all associations going to it
+    assocCondition = new EntityConditionBuilder().AND {
+        EQUALS(productIdTo: product.productId)
+        EQUALS(thruDate: null)
+    }
     delegator.storeByCondition('ProductAssoc',
-            [thruDate: nowTimestamp], condition)
+            [thruDate: nowTimestamp], assocCondition)
     return success()
 }
 
@@ -369,8 +373,8 @@ Map countProductView() {
     long weight = parameters.weight ?: 1L
 
     GenericValue productCalculatedInfo = from('ProductCalculatedInfo').where(parameters).queryOne()
-    if (productCalculatedInfo?.totalTimesViewed) {
-        productCalculatedInfo.totalTimesViewed += weight
+    if (productCalculatedInfo) {
+        productCalculatedInfo.totalTimesViewed = (productCalculatedInfo.totalTimesViewed ?: 0L) + weight
         productCalculatedInfo.store()
     } else {
         // go ahead and create it
@@ -401,6 +405,10 @@ Map createProductReview() {
     // code to check for auto-approved reviews (store setting)
     GenericValue productStore = from('ProductStore').where(parameters).cache().queryOne()
     if (productStore && productStore.autoApproveReviews == 'Y') {
+        newEntity.statusId = 'PRR_APPROVED'
+    }
+    // auto approve the review if it is just a rating and has no review text
+    if (!parameters.productReview) {
         newEntity.statusId = 'PRR_APPROVED'
     }
 
@@ -453,7 +461,7 @@ Map setProductReviewStatus() {
                 .where(statusId: productReview.statusId, statusIdTo: parameters.statusId)
                 .queryCount() == 0) {
             String errorMessage = UtilProperties.getMessage('ProductErrorUiLabels',
-                    ProductReviewErrorCouldNotChangeOrderStatusFromTo, parameters.locale)
+                    'ProductReviewErrorCouldNotChangeOrderStatusFromTo', parameters.locale)
             logError(errorMessage)
             return error(errorMessage)
         }
@@ -574,7 +582,7 @@ Map checkProductRelatedPermission(String callingMethodName, String checkAction) 
                                        roleTypeId: 'LTD_ADMIN']
         roleCategories = from('ProductCategoryMemberAndRole')
                 .where(lookupRoleCategoriesMap)
-                .filterByDate('roleFromDate', 'roleThruDate')
+                .filterByDate('fromDate', 'thruDate', 'roleFromDate', 'roleThruDate')
                 .queryList()
     }
 
@@ -613,7 +621,7 @@ Map productGenericPermission() {
     result.hasPermission = ServiceUtil.isSuccess(
             checkProductRelatedPermission(parameters.resourceDescription, parameters.mainAction))
     if (!result.hasPermission) {
-        result = fail(UtilProperties.getMessage('ProductUiLabels', 'ProductPermissionError', parameters.locale))
+        result = failure(UtilProperties.getMessage('ProductUiLabels', 'ProductPermissionError', parameters.locale))
     }
     return result
 }
@@ -633,9 +641,10 @@ Map productPriceGenericPermission() {
         result = error(UtilProperties.getMessage('ProductUiLabels',
                 'ProductPriceMaintPermissionError', parameters.locale))
     }
-    result.hasPermission = ServiceUtil.isSuccess(result) && checkProductRelatedPermission(parameters.resourceDescription, mainAction)
+    result.hasPermission = ServiceUtil.isSuccess(result) &&
+            ServiceUtil.isSuccess(checkProductRelatedPermission(parameters.resourceDescription, mainAction))
     if (!result.hasPermission) {
-        result = fail(UtilProperties.getMessage('ProductUiLabels', 'ProductPermissionError', parameters.locale))
+        result = failure(UtilProperties.getMessage('ProductUiLabels', 'ProductPermissionError', parameters.locale))
     }
     return result
 }
@@ -785,8 +794,10 @@ Map updateProductGroupOrder() {
  */
 Map deleteProductGroupOrder() {
     GenericValue productGroupOrder = from('ProductGroupOrder').where(parameters).queryOne()
+    from('OrderItemGroupOrder').where(groupOrderId: productGroupOrder.groupOrderId).queryList().each {
+        it.remove()
+    }
     productGroupOrder.remove()
-    productGroupOrder.removeRelated('OrderItemGroupOrder')
 
     GenericValue jobSandbox = from('JobSandbox').where(jobId: productGroupOrder.jobId).queryOne()
     if (jobSandbox) {
@@ -801,7 +812,7 @@ Map deleteProductGroupOrder() {
  */
 Map createJobForProductGroupOrder() {
     GenericValue productGroupOrder = from('ProductGroupOrder').where(parameters).queryOne()
-    if (productGroupOrder.jobId) {
+    if (!productGroupOrder.jobId) {
         // Create RuntimeData For ProductGroupOrder
         Map runtimeDataMap = [groupOrderId: parameters.groupOrderId]
         XmlSerializer xmlSerializer = new XmlSerializer()
@@ -886,7 +897,7 @@ Map cancleOrderItemGroupOrder() {
             if (productGroupOrder) {
                 if (productGroupOrder.statusId == 'GO_CREATED') {
                     if (orderItem.statusId == 'ITEM_CANCELLED') {
-                        BigDecimal cancelQuantity = orderItem.cancelQuantity ?: orderItem.quantity
+                        BigDecimal cancelQuantity = orderItem.cancelQuantity != null ? orderItem.cancelQuantity : orderItem.quantity
                         productGroupOrder.soldOrderQty -= cancelQuantity
                     }
                     productGroupOrder.store()

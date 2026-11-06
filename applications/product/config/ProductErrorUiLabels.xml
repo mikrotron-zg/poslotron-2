@@ -224,6 +224,9 @@
         <value xml:lang="en">Cannot replace image.</value>
     <value xml:lang="hr">Nije moguće zamijeniti sliku.</value>
     </property>
+    <property key="ProductImageManagementPermissionError">
+        <value xml:lang="en">You do not have permission to manage images ("IMAGE_MANAGEMENT_ADMIN" needed).</value>
+    </property>
     <property key="ProductCreateCommunicationEventProductPermissionError">
         <value xml:lang="de">Berechtigungsfehler beim Erstellen des Produkt Communication Events</value>
         <value xml:lang="en">Create Communication Event Product Permission Error</value>
@@ -1809,5 +1812,8 @@
     <property key="ProductRequiredFieldMissingTotalIssuedQty">
         <value xml:lang="en">Required Field Missing :Total Issued Qty. </value>
     <value xml:lang="hr">Nedostaje obavezno polje: Ukupna izdana količina.</value>
+    </property>
+    <property key="CatalogViewPermissionError">
+        <value xml:lang="en">You do not have permission to view Catalog Manager category data.</value>
     </property>
 </resource>

@@ -373,6 +373,10 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
         <auto-attributes entity-name="Content" include="nonpk" mode="IN" optional="true"/>
         <override name="fromDate" default-value="${date:nowTimestamp()}"/>
+        <!-- serviceName/customMethodId choose what code renderContentAsText runs against the live request
+             parameters; neither is set through this generic mass-assignment path (see ContentWorker.java) -->
+        <override name="serviceName" mode="OUT"/>
+        <override name="customMethodId" mode="OUT"/>
     </service>
     <service name="updateProductContent" default-entity-name="ProductContent" engine="groovy"
         location="component://product/src/main/groovy/org/apache/ofbiz/product/product/product/ProductContentServicesScript.groovy" invoke="updateProductContent" auth="true">
@@ -380,6 +384,10 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
         <auto-attributes entity-name="Content" include="nonpk" mode="IN" optional="true"/>
+        <!-- serviceName/customMethodId choose what code renderContentAsText runs against the live request
+             parameters; neither is set through this generic mass-assignment path (see ContentWorker.java) -->
+        <override name="serviceName" mode="OUT"/>
+        <override name="customMethodId" mode="OUT"/>
     </service>
     <service name="removeProductContent" default-entity-name="ProductContent" engine="entity-auto" invoke="delete" auth="true">
         <description>Remove Content From Product</description>
@@ -992,6 +1000,7 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" entity-name="Content" optional="true"/>
         <attribute name="dataResourceTypeId" type="String" mode="IN" optional="true"/>
+        <override name="contentId" mode="INOUT" optional="true"/>
         <override name="prodCatContentTypeId" optional="false"/>
     </service>
     <service name="updateDownloadContentForCategory" default-entity-name="ProductCategoryContent" engine="groovy"
@@ -1317,16 +1326,19 @@ under the License.
     <!-- Start Web Analytics configuration services -->
     <service name="createWebAnalyticsConfig" default-entity-name="WebAnalyticsConfig" engine="entity-auto" invoke="create" auth="true">
         <description>Create a WebAnalyticsConfig</description>
+        <permission-service service-name="contentManagerPermission" main-action="CREATE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
     <service name="updateWebAnalyticsConfig" default-entity-name="WebAnalyticsConfig" engine="entity-auto" invoke="update" auth="true">
         <description>Update a WebAnalyticsConfig</description>
+        <permission-service service-name="contentManagerPermission" main-action="UPDATE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
     <service name="deleteWebAnalyticsConfig" default-entity-name="WebAnalyticsConfig" engine="entity-auto" invoke="delete" auth="true">
         <description>Delete a WebAnalyticsConfig</description>
+        <permission-service service-name="contentManagerPermission" main-action="DELETE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
 

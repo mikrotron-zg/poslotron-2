@@ -29,6 +29,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.ofbiz.base.util.Debug;
@@ -59,6 +61,7 @@ import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
 import org.apache.ofbiz.service.ModelService;
 import org.apache.ofbiz.service.ServiceUtil;
+import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -194,10 +197,22 @@ public class ContentWorker implements org.apache.ofbiz.widget.content.ContentWor
         // if the content has a service attached run the service
 
         Delegator delegator = dispatcher.getDelegator();
-        String serviceName = content.getString("serviceName"); //Kept for backward compatibility
+        // NOTE: Content.serviceName is a legacy, client-writable field (createContent/updateContent both
+        // accept it as a plain non-PK attribute) that used to be resolved and run here directly; that let
+        // anyone able to write a Content row choose an arbitrary service to run with the live HTTP request
+        // parameters as its input. It is no longer honored. Only a CustomMethod explicitly typed for
+        // content rendering may be run, so arming a row requires a CustomMethod that was deliberately set
+        // up for this purpose, not just a string dropped into the Content row itself.
+        String serviceName = null;
         GenericValue custMethod = null;
         if (UtilValidate.isNotEmpty(content.getString("customMethodId"))) {
-            custMethod = EntityQuery.use(delegator).from("CustomMethod").where("customMethodId", content.get("customMethodId")).cache().queryOne();
+            custMethod = EntityQuery.use(delegator).from("CustomMethod")
+                    .where("customMethodId", content.get("customMethodId"), "customMethodTypeId", "CONTENT_RENDER")
+                    .cache().queryOne();
+            if (custMethod == null) {
+                throw new GeneralException("customMethodId [" + content.get("customMethodId")
+                        + "] on content [" + content.get("contentId") + "] is not a content rendering method");
+            }
         }
         if (custMethod != null) serviceName = custMethod.getString("customMethodName");
         if (UtilValidate.isNotEmpty(serviceName)) {
@@ -317,7 +332,24 @@ public class ContentWorker implements org.apache.ofbiz.widget.content.ContentWor
                         if ("FTL".equals(templateDataResource.getString("dataTemplateTypeId"))) {
                             StringReader sr = new StringReader(textData);
                             try {
-                                NodeModel nodeModel = NodeModel.parse(new InputSource(sr));
+                                // NodeModel.parse(InputSource) uses FreeMarker's default, unhardened
+                                // DocumentBuilderFactory, which resolves external entities/DTDs (XXE, CWE-611).
+                                // Parse with a hardened factory ourselves and wrap the resulting DOM instead,
+                                // matching the entity-resolution lockdown already used by EntitySaxReader.
+                                // namespaceAware/ignoringElementContentWhitespace are kept identical to
+                                // FreeMarker's own NodeModel default factory to preserve existing template
+                                // behavior for namespaced or whitespace-sensitive XML content.
+                                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                                factory.setNamespaceAware(true);
+                                factory.setIgnoringElementContentWhitespace(true);
+                                factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+                                factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+                                factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+                                factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+                                factory.setXIncludeAware(false);
+                                factory.setExpandEntityReferences(false);
+                                Document document = factory.newDocumentBuilder().parse(new InputSource(sr));
+                                NodeModel nodeModel = NodeModel.wrap(document);
                                 templateContext.put("doc", nodeModel);
                             } catch (SAXException | ParserConfigurationException e) {
                                 throw new GeneralException(e.getMessage());

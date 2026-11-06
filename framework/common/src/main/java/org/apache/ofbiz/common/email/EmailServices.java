@@ -63,7 +63,6 @@ import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilProperties;
 import org.apache.ofbiz.base.util.UtilValidate;
 import org.apache.ofbiz.base.util.collections.MapStack;
-import org.apache.ofbiz.base.util.string.FlexibleStringExpander;
 import org.apache.ofbiz.entity.Delegator;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
@@ -362,7 +361,7 @@ public class EmailServices {
             }
             Boolean sendFailureNotification = (Boolean) context.get("sendFailureNotification");
             if (sendFailureNotification == null || sendFailureNotification) {
-                sendFailureNotification(ctx, context, mail, failedAddresses);
+                sendFailureNotification(ctx, context, mail, failedAddresses, sendFrom);
                 results.put("messageWrapper", new MimeMessageWrapper(session, mail));
                 try {
                     results.put("messageId", mail.getMessageID());
@@ -537,7 +536,8 @@ public class EmailServices {
         if (UtilValidate.isNotEmpty(xslfoAttachScreenLocationList)) {
             List<Map<String, ? extends Object>> bodyParts = new LinkedList<>();
             if (bodyText != null) {
-                bodyText = FlexibleStringExpander.expandString(bodyText, screenContext, locale);
+                // bodyText is caller-supplied (e.g. from a request parameter); it must not be run through
+                // FlexibleStringExpander, which would compile and execute any ${groovy:...} substring it contains.
                 bodyParts.add(UtilMisc.<String, Object>toMap("content", bodyText, "type", UtilValidate.isNotEmpty(contentType) ? contentType
                         : "text/html"));
             } else {
@@ -596,7 +596,7 @@ public class EmailServices {
             isMultiPart = false;
             // store body and type for single part message in the context.
             if (bodyText != null) {
-                bodyText = FlexibleStringExpander.expandString(bodyText, screenContext, locale);
+                // bodyText is caller-supplied; see the comment on the identical guard above.
                 serviceContext.put("body", bodyText);
             } else {
                 serviceContext.put("body", bodyWriter.toString());
@@ -611,11 +611,11 @@ public class EmailServices {
             }
         }
 
-        // also expand the subject at this point, just in case it has the FlexibleStringExpander syntax in it...
+        // subject is caller-supplied; do not run it through FlexibleStringExpander, which would compile and
+        // execute any ${groovy:...} substring it contains -- same reasoning as the bodyText guards above.
         String subject = (String) serviceContext.remove("subject");
-        subject = FlexibleStringExpander.expandString(subject, screenContext, locale);
         if (Debug.infoOn()) {
-            Debug.logInfo("Expanded email subject to: " + subject, MODULE);
+            Debug.logInfo("Email subject: " + subject, MODULE);
         }
         serviceContext.put("subject", subject);
         serviceContext.put("partyId", partyId);
@@ -687,13 +687,13 @@ public class EmailServices {
         return sendMailFromScreen(dctx, serviceContext);
     }
     public static void sendFailureNotification(DispatchContext dctx, Map<String, ? extends Object> context, MimeMessage message,
-                                               List<SMTPAddressFailedException> failures) {
+                                               List<SMTPAddressFailedException> failures, String sendFrom) {
         Locale locale = (Locale) context.get("locale");
         Map<String, Object> newContext = new LinkedHashMap<>();
         newContext.put("userLogin", context.get("userLogin"));
         newContext.put("sendFailureNotification", false);
-        newContext.put("sendFrom", context.get("sendFrom"));
-        newContext.put("sendTo", context.get("sendFrom"));
+        newContext.put("sendFrom", sendFrom);
+        newContext.put("sendTo", sendFrom);
         newContext.put("subject", UtilProperties.getMessage(RESOURCE, "CommonEmailSendUndeliveredMail", locale));
         StringBuilder sb = new StringBuilder();
         sb.append(UtilProperties.getMessage(RESOURCE, "CommonEmailDeliveryFailed", locale));

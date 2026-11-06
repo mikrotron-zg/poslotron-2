@@ -24,7 +24,6 @@ import java.io.InputStream;
 import org.apache.ofbiz.base.start.Start;
 import org.apache.ofbiz.base.util.HttpClient;
 import org.apache.ofbiz.base.util.HttpClientException;
-import org.apache.ofbiz.base.util.SSLUtil;
 import org.apache.ofbiz.service.testtools.OFBizTestCase;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
@@ -34,7 +33,7 @@ import org.apache.tika.sax.BodyContentHandler;
 
 public class WidgetMacroLibraryTests extends OFBizTestCase {
 
-    private String screenUrl = "https://localhost:8443/webtools/control/WebtoolsLayoutDemo"; //use existing screen to present most of layout use case
+    private String screenUrl = buildScreenUrl();
     private final String authentificationQuery = "?USERNAME=admin&PASSWORD=ofbiz";
 
     public WidgetMacroLibraryTests(String name) {
@@ -48,8 +47,22 @@ public class WidgetMacroLibraryTests extends OFBizTestCase {
         HttpClient http = new HttpClient();
         http.followRedirects(true);
         http.setAllowUntrusted(true);
-        http.setHostVerificationLevel(SSLUtil.getHostCertNoCheck());
+        // the test certificate is not issued for localhost
+        http.setHostnameVerifier((hostname, session) -> "localhost".equals(hostname));
         return http;
+    }
+
+    /**
+     * Build the demo layout screen URL, accounting for --portoffset since each
+     * test method runs against a fresh instance and can't share a mutated field.
+     */
+    private static String buildScreenUrl() {
+        String url = "https://localhost:8443/webtools/control/WebtoolsLayoutDemo"; //use existing screen to present most of layout use case
+        int portOffset = Start.getInstance().getConfig().getPortOffset();
+        if (portOffset != 0) {
+            url = url.replace("8443", String.valueOf(8443 + portOffset));
+        }
+        return url;
     }
 
     /**
@@ -58,10 +71,6 @@ public class WidgetMacroLibraryTests extends OFBizTestCase {
      */
     public void testHtmlMacroLibrary() throws Exception {
         HttpClient http = initHttpClient();
-        if (Start.getInstance().getConfig().getPortOffset() != 0) {
-            Integer port = 8443 + Start.getInstance().getConfig().getPortOffset();
-            screenUrl = screenUrl.replace("8443", port.toString());
-        }
         http.setUrl(screenUrl.concat(authentificationQuery));
         String screenOutString = http.post();
         assertNotNull("Response failed from ofbiz", screenOutString);

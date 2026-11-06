@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ofbiz.base.util.Debug;
 import org.apache.ofbiz.base.util.StringUtil;
+import org.apache.ofbiz.base.util.UtilCodec;
 import org.apache.ofbiz.base.util.UtilGenerics;
 import org.apache.ofbiz.base.util.UtilMisc;
 import org.apache.ofbiz.base.util.UtilValidate;
@@ -171,7 +172,7 @@ public class MacroTreeRenderer implements TreeStringRenderer {
                     StringBuilder target = new StringBuilder(node.getModelTree().getExpandCollapseRequest(context));
                     String trailName = node.getModelTree().getTrailName(context);
                     expandCollapseLink = new ModelTree.ModelNode.Link("collapsed", target.toString(), " ",
-                            ImmutableList.of(new CommonWidgetModels.Parameter(trailName, currentNodeTrailPiped, false)));
+                            ImmutableList.of(CommonWidgetModels.Parameter.literal(trailName, currentNodeTrailPiped)));
                 }
             } else {
                 context.put("processChildren", Boolean.TRUE);
@@ -183,7 +184,7 @@ public class MacroTreeRenderer implements TreeStringRenderer {
                 StringBuilder target = new StringBuilder(node.getModelTree().getExpandCollapseRequest(context));
                 String trailName = node.getModelTree().getTrailName(context);
                 expandCollapseLink = new ModelTree.ModelNode.Link("expanded", target.toString(), " ",
-                        ImmutableList.of(new CommonWidgetModels.Parameter(trailName, currentNodeTrailPiped, false)));
+                        ImmutableList.of(CommonWidgetModels.Parameter.literal(trailName, currentNodeTrailPiped)));
                 // add it so it can be remove in renderNodeEnd
                 currentNodeTrail.add(lastContentId);
             }
@@ -292,7 +293,7 @@ public class MacroTreeRenderer implements TreeStringRenderer {
         sr.append("\" linkText=\"");
         sr.append(linkText);
         sr.append("\" imgStr=\"");
-        sr.append(imgStr.replace("\"", "\\\""));
+        sr.append(MacroCommonRenderer.escapeFtlString(imgStr));
         sr.append("\" />");
         executeMacro(sr.toString().replace("|", "%7C")); // Fix for OFBIZ-9191
     }
@@ -336,10 +337,14 @@ public class MacroTreeRenderer implements TreeStringRenderer {
         } else {
             urlString = src;
         }
+        UtilCodec.SimpleEncoder simpleEncoder = (UtilCodec.SimpleEncoder) context.get("simpleEncoder");
+        if (simpleEncoder != null) {
+            urlString = simpleEncoder.encode(urlString);
+        }
         StringWriter sr = new StringWriter();
         sr.append("<@renderImage ");
         sr.append("src=\"");
-        sr.append(src);
+        sr.append(MacroCommonRenderer.escapeFtlString(src));
         sr.append("\" id=\"");
         sr.append(id);
         sr.append("\" style=\"");
@@ -353,7 +358,7 @@ public class MacroTreeRenderer implements TreeStringRenderer {
         sr.append("\" alt=\"");
         sr.append(alt);
         sr.append("\" urlString=\"");
-        sr.append(urlString);
+        sr.append(MacroCommonRenderer.escapeFtlString(urlString));
         sr.append("\" />");
         executeMacro(sr.toString());
     }

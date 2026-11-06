@@ -62,6 +62,7 @@ import org.apache.ofbiz.entity.util.EntityUtil;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
 import org.apache.ofbiz.order.order.OrderReadHelper;
 import org.apache.ofbiz.product.product.ProductWorker;
+import org.apache.ofbiz.security.Security;
 import org.apache.ofbiz.service.DispatchContext;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
@@ -2685,7 +2686,13 @@ public class InvoiceServices {
     public static Map<String, Object> updatePaymentApplicationDefBd(DispatchContext dctx, Map<String, Object> context) {
         Delegator delegator = dctx.getDelegator();
         Locale locale = (Locale) context.get("locale");
+        Security security = dctx.getSecurity();
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
 
+        if (!security.hasEntityPermission("ACCOUNTING", "_UPDATE", userLogin)) {
+            return ServiceUtil.returnError(UtilProperties.getMessage("AccountingUiLabels",
+                    "AccountingPaymentAuthorizationFailed", locale));
+        }
         if (DECIMALS == -1 || ROUNDING == null) {
             return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE,
                     "AccountingAritmeticPropertiesNotConfigured", locale));
@@ -3673,7 +3680,7 @@ public class InvoiceServices {
         String organizationPartyId = (String) context.get("organizationPartyId");
         String encoding = System.getProperty("file.encoding");
         String csvString = Charset.forName(encoding).decode(fileBytes).toString();
-        Builder csvFormatBuilder = Builder.create().setHeader();
+        Builder csvFormatBuilder = Builder.create().setHeader().setAllowMissingColumnNames(true);
         CSVFormat fmt = csvFormatBuilder.get();
         List<String> errMsgs = new LinkedList<>();
         List<String> newErrMsgs;

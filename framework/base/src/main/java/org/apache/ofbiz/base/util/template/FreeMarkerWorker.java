@@ -54,7 +54,6 @@ import freemarker.core.Environment;
 import freemarker.core.TemplateClassResolver;
 import freemarker.ext.beans.BeanModel;
 import freemarker.ext.beans.BeansWrapper;
-import freemarker.ext.beans.BeansWrapperBuilder;
 import freemarker.template.Configuration;
 import freemarker.template.SimpleHash;
 import freemarker.template.SimpleScalar;
@@ -72,7 +71,7 @@ public final class FreeMarkerWorker {
     /** The template used to retrieved Freemarker transforms from multiple component classpaths. */
     private static final String TRANSFORMS_PROPERTIES = "org/apache/ofbiz/%s/freemarkerTransforms.properties";
     private static final String MODULE = FreeMarkerWorker.class.getName();
-    public static final Version VERSION = Configuration.VERSION_2_3_34;
+    public static final Version VERSION = Configuration.VERSION_2_3_35;
 
     private FreeMarkerWorker() { }
 
@@ -80,7 +79,7 @@ public final class FreeMarkerWorker {
     // or maybe not for performance reasons... hmmm, leave to config file...
     private static final UtilCache<String, Template> CACHED_TEMPLATES =
             UtilCache.createUtilCache("template.ftl.general", 0, 0, false);
-    private static final BeansWrapper DEFAULT_OFBIZ_WRAPPER = new BeansWrapperBuilder(VERSION).build();
+    private static final BeansWrapper DEFAULT_OFBIZ_WRAPPER = new OfbizBeansWrapper(VERSION);
     private static final TemplateHashModel DEFAULT_STATIC_MODELS =
             getConfiguredStaticModel(getDefaultOfbizWrapper());
     private static final Configuration DEFAULT_OFBIZ_CONFIG = makeConfiguration(DEFAULT_OFBIZ_WRAPPER);

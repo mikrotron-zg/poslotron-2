@@ -108,11 +108,15 @@ public class GiftCertificateServices {
                 finAccountId = cardNumber;
 
                 // create the FinAccount
+                // createFinAccount requires accounting permission; run as the "system" user since this is a
+                // trusted side effect of an already-validated gift certificate purchase
+                GenericValue createFaPermUserLogin = EntityQuery.use(delegator).from("UserLogin").where("userLoginId", "system")
+                        .cache().queryOne();
                 Map<String, Object> acctCtx = UtilMisc.<String, Object>toMap("finAccountId", finAccountId);
                 acctCtx.put("finAccountTypeId", FinAccountHelper.getGiftCertFinAccountTypeId());
                 acctCtx.put("finAccountName", accountName);
                 acctCtx.put("finAccountCode", pinNumber);
-                acctCtx.put("userLogin", userLogin);
+                acctCtx.put("userLogin", createFaPermUserLogin);
                 acctResult = dispatcher.runSync("createFinAccount", acctCtx);
                 if (ServiceUtil.isError(acctResult)) {
                     return ServiceUtil.returnError(ServiceUtil.getErrorMessage(acctResult));
@@ -544,10 +548,14 @@ public class GiftCertificateServices {
                 if (giftCertSettings.getLong("authValidDays") != null) {
                     thruDate = UtilDateTime.getDayEnd(UtilDateTime.nowTimestamp(), giftCertSettings.getLong("authValidDays"));
                 }
+                // createFinAccountAuth requires accounting permission; run as the "system" user since this is a
+                // trusted side effect of an already-validated gift certificate authorization
+                GenericValue authPermUserLogin = EntityQuery.use(delegator).from("UserLogin").where("userLoginId", "system")
+                        .cache().queryOne();
                 Map<String, Object> tmpResult = dispatcher.runSync("createFinAccountAuth",
                         UtilMisc.<String, Object>toMap("finAccountId", finAccountId,
                                 "amount", amount, "currencyUomId", currency,
-                                "thruDate", thruDate, "userLogin", userLogin));
+                                "thruDate", thruDate, "userLogin", authPermUserLogin));
                 if (ServiceUtil.isError(tmpResult)) {
                     return ServiceUtil.returnError(ServiceUtil.getErrorMessage(tmpResult));
                 } else {
@@ -813,7 +821,12 @@ public class GiftCertificateServices {
                 }
                 if (question != null) {
                     String desc = question.getString("description");
-                    String ans = answer.getString("textResponse");  // only support text response types for now
+                    String ans;
+                    if ("BOOLEAN".equals(question.getString("surveyQuestionTypeId"))) {
+                        ans = "Y".equalsIgnoreCase(answer.getString("booleanResponse")) ? "true" : "false";
+                    } else {
+                        ans = answer.getString("textResponse");  // only support text response types otherwise
+                    }
                     answerMap.put(desc, ans);
                 }
             }
@@ -892,7 +905,8 @@ public class GiftCertificateServices {
                 Debug.logError(e, "Unable to get product store email setting for gift card purchase", MODULE);
             }
             if (productStoreEmail == null) {
-                Debug.logError("No gift card purchase email setting found for this store; cannot send gift card information", MODULE);
+                Debug.logError("No ProductStoreEmailSetting for productStoreId [" + productStoreId + "] emailType [" + emailType
+                        + "]; gift card activation email for orderId [" + orderId + "] was NOT sent", MODULE);
             } else {
                 answerMap.put("locale", locale);
 
@@ -1392,7 +1406,10 @@ public class GiftCertificateServices {
         Map<String, Object> transCtx = UtilMisc.<String, Object>toMap("finAccountTransTypeId", txType);
         transCtx.put("finAccountId", finAccountId);
         transCtx.put("partyId", userLogin.getString("partyId"));
-        transCtx.put("userLogin", userLogin);
+        // createFinAccountTrans requires accounting permission; run as the "system" user since this transaction is
+        // a trusted side effect of an already-validated gift certificate operation (the partyId above still records
+        // the real party the transaction is with)
+        transCtx.put("userLogin", EntityQuery.use(delegator).from("UserLogin").where("userLoginId", "system").cache().queryOne());
         transCtx.put("paymentId", paymentId);
         transCtx.put("orderId", orderId);
         transCtx.put("amount", amount);

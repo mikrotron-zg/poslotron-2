@@ -19,24 +19,18 @@
 package org.apache.ofbiz.base.util;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
-import java.security.Principal;
 import java.security.SecureRandom;
-import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
@@ -53,10 +47,6 @@ import org.apache.ofbiz.base.config.GenericConfigException;
 public final class SSLUtil {
 
     private static final String MODULE = SSLUtil.class.getName();
-
-    private static final int HOSTCERT_NO_CHECK = 0;
-    private static final int HOSTCERT_MIN_CHECK = 1;
-    private static final int HOSTCERT_NORMAL_CHECK = 2;
 
     private static boolean loadedProps = false;
 
@@ -93,18 +83,6 @@ public final class SSLUtil {
         }
     }
 
-
-    public static int getHostCertNoCheck() {
-        return HOSTCERT_NO_CHECK;
-    }
-
-    public static int getHostCertMinCheck() {
-        return HOSTCERT_MIN_CHECK;
-    }
-
-    static int getHostCertNormalCheck() {
-        return HOSTCERT_NORMAL_CHECK;
-    }
 
     public static boolean isClientTrusted(X509Certificate[] chain, String authType) {
         TrustManager[] mgrs = new TrustManager[0];
@@ -253,45 +231,6 @@ public final class SSLUtil {
     public static SSLServerSocketFactory getSSLServerSocketFactory(String alias)
             throws IOException, GeneralSecurityException, GenericConfigException {
         return getSSLContext(alias, false).getServerSocketFactory();
-    }
-
-    public static HostnameVerifier getHostnameVerifier(int level) {
-        switch (level) {
-        case HOSTCERT_MIN_CHECK:
-            return (hostname, session) -> {
-                Certificate[] peerCerts;
-                try {
-                    peerCerts = session.getPeerCertificates();
-                } catch (SSLPeerUnverifiedException e) {
-                    // cert not verified
-                    Debug.logWarning(e.getMessage(), MODULE);
-                    return false;
-                }
-                for (Certificate peerCert : peerCerts) {
-                    try {
-                        Principal x500s = session.getPeerPrincipal();
-                        Map<String, String> subjectMap = KeyStoreUtil.getX500Map(x500s);
-                        if (Debug.infoOn()) {
-                            byte[] encodedCert = peerCert.getEncoded();
-                            Debug.logInfo(new BigInteger(encodedCert).toString(16)
-                                    + " :: " + subjectMap.get("CN"), MODULE);
-                        }
-                        peerCert.verify(peerCert.getPublicKey());
-                    } catch (RuntimeException e) {
-                        throw e;
-                    } catch (Exception e) {
-                        // certificate not valid
-                        Debug.logWarning("Certificate is not valid!", MODULE);
-                        return false;
-                    }
-                }
-                return true;
-            };
-        case HOSTCERT_NO_CHECK:
-            return (hostname, session) -> true;
-        default:
-            return null;
-        }
     }
 
     public static void loadJsseProperties() {

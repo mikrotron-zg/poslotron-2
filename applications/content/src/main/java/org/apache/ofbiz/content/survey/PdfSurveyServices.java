@@ -19,8 +19,6 @@
 package org.apache.ofbiz.content.survey;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.sql.Timestamp;
@@ -85,6 +83,9 @@ public class PdfSurveyServices {
             String surveyName = (String) context.get("surveyName");
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             ByteBuffer byteBuffer = getInputByteBuffer(context, delegator);
+            if (byteBuffer == null) {
+                return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentPDFInputMissing", locale));
+            }
             PdfReader pdfReader = new PdfReader(byteBuffer.array());
             PdfStamper pdfStamper = new PdfStamper(pdfReader, os);
             AcroFields acroFields = pdfStamper.getAcroFields();
@@ -251,6 +252,9 @@ public class PdfSurveyServices {
 
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             ByteBuffer byteBuffer = getInputByteBuffer(context, delegator);
+            if (byteBuffer == null) {
+                return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentPDFInputMissing", locale));
+            }
             PdfReader r = new PdfReader(byteBuffer.array());
             PdfStamper s = new PdfStamper(r, os);
             AcroFields fs = s.getAcroFields();
@@ -270,12 +274,13 @@ public class PdfSurveyServices {
                 String surveyQuestionId = (String) surveyQuestionAndAppl.get("surveyQuestionId");
                 String surveyQuestionTypeId = (String) surveyQuestionAndAppl.get("surveyQuestionTypeId");
                 GenericValue surveyResponseAnswer = delegator.makeValue("SurveyResponseAnswer",
-                        UtilMisc.toMap("surveyResponseId", surveyResponseId, "surveyQuestionId", surveyQuestionId));
+                        UtilMisc.toMap("surveyResponseId", surveyResponseId, "surveyQuestionId", surveyQuestionId,
+                                "surveyMultiRespColId", "_NA_"));
                 if (surveyQuestionTypeId == null || "TEXT_SHORT".equals(surveyQuestionTypeId)) {
                     surveyResponseAnswer.set("textResponse", value);
                 }
 
-                delegator.create(surveyResponseAnswer);
+                delegator.createOrStore(surveyResponseAnswer);
             }
             s.close();
         } catch (GeneralException | DocumentException | IOException e) {
@@ -296,7 +301,11 @@ public class PdfSurveyServices {
         Map<String, Object> acroFieldMap = new HashMap<>();
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         Delegator delegator = dctx.getDelegator();
+        Locale locale = (Locale) context.get("locale");
         ByteBuffer byteBuffer = getInputByteBuffer(context, delegator);
+        if (byteBuffer == null) {
+            return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentPDFInputMissing", locale));
+        }
         try (PdfReader r = new PdfReader(byteBuffer.array());
                 PdfStamper s = new PdfStamper(r, os)) {
             AcroFields fs = s.getAcroFields();
@@ -323,9 +332,13 @@ public class PdfSurveyServices {
     public static Map<String, Object> setAcroFields(DispatchContext dctx, Map<String, ? extends Object> context) {
         Map<String, Object> results = ServiceUtil.returnSuccess();
         Delegator delegator = dctx.getDelegator();
+        Locale locale = (Locale) context.get("locale");
         try {
             Map<String, Object> acroFieldMap = UtilGenerics.cast(context.get("acroFieldMap"));
             ByteBuffer byteBuffer = getInputByteBuffer(context, delegator);
+            if (byteBuffer == null) {
+                return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentPDFInputMissing", locale));
+            }
             PdfReader r = new PdfReader(byteBuffer.array());
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PdfStamper s = new PdfStamper(r, baos);
@@ -540,15 +553,9 @@ public class PdfSurveyServices {
             if (ServiceUtil.isError(map)) {
                 return ServiceUtil.returnError(ServiceUtil.getErrorMessage(map));
             }
-            String pdfFileNameOut = (String) context.get("pdfFileNameOut");
             ByteBuffer outByteBuffer = (ByteBuffer) map.get("outByteBuffer");
             results.put("outByteBuffer", outByteBuffer);
-            if (UtilValidate.isNotEmpty(pdfFileNameOut)) {
-                FileOutputStream fos = new FileOutputStream(pdfFileNameOut);
-                fos.write(outByteBuffer.array());
-                fos.close();
-            }
-        } catch (IOException | GenericServiceException e) {
+        } catch (GenericServiceException e) {
             Debug.logError(e, "Error generating PDF: " + e.toString(), MODULE);
             return ServiceUtil.returnError(UtilProperties.getMessage(RESOURCE, "ContentPDFGeneratingError",
                     UtilMisc.toMap("errorString", e.toString()), locale));
@@ -561,28 +568,19 @@ public class PdfSurveyServices {
         ByteBuffer inputByteBuffer = (ByteBuffer) context.get("inputByteBuffer");
 
         if (inputByteBuffer == null) {
-            String pdfFileNameIn = (String) context.get("pdfFileNameIn");
             String contentId = (String) context.get("contentId");
-            if (UtilValidate.isNotEmpty(pdfFileNameIn)) {
-                try (FileInputStream fis = new FileInputStream(pdfFileNameIn)) {
-                    int c;
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    while ((c = fis.read()) != -1) {
-                        baos.write(c);
-                    }
-                    inputByteBuffer = ByteBuffer.wrap(baos.toByteArray());
-                } catch (IOException e) {
-                    throw(new GeneralException(e.getMessage()));
-                }
-            } else if (UtilValidate.isNotEmpty(contentId)) {
+            if (UtilValidate.isNotEmpty(contentId)) {
                 try {
                     Locale locale = (Locale) context.get("locale");
                     String https = (String) context.get("https");
                     String webSiteId = (String) context.get("webSiteId");
                     String rootDir = (String) context.get("rootDir");
                     GenericValue content = EntityQuery.use(delegator).from("Content").where("contentId", contentId).cache().queryOne();
-                    String dataResourceId = content.getString("dataResourceId");
-                    inputByteBuffer = DataResourceWorker.getContentAsByteBuffer(delegator, dataResourceId, https, webSiteId, locale, rootDir);
+                    String dataResourceId = content != null ? content.getString("dataResourceId") : null;
+                    if (UtilValidate.isNotEmpty(dataResourceId)) {
+                        inputByteBuffer = DataResourceWorker.getContentAsByteBuffer(delegator, dataResourceId, https, webSiteId, locale,
+                                rootDir);
+                    }
                 } catch (GenericEntityException | IOException e) {
                     throw(new GeneralException(e.getMessage()));
                 }

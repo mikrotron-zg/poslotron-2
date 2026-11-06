@@ -97,7 +97,7 @@ Map partyStatusPermissionCheck() {
  */
 Map partyGroupPermissionCheck() {
     parameters.altPermission = 'PARTYMGR_GRP'
-    Map result = run service: 'partyStatusPermissionCheck', with: parameters
+    Map result = basePlusPartyIdPermissionCheck()
     return result
 }
 
@@ -117,7 +117,7 @@ Map partyDatasourcePermissionCheck() {
  */
 Map partyRolePermissionCheck() {
     parameters.altPermission = 'PARTYMGR_ROLE'
-    Map result = run service: 'partyStatusPermissionCheck', with: parameters
+    Map result = basePlusPartyIdPermissionCheck()
     return result
 }
 
@@ -179,12 +179,13 @@ Map accAndDecPartyInvitationPermissionCheck() {
             }
             Map serviceResult = run service: 'findPartyFromEmailAddress', with: [address: partyInvitation.emailAddress]
             String partyId = serviceResult.partyId
-            if (partyId && partyId == userLogin.partyId) {
-                hasPermission = true
-                result.hasPermission = hasPermission
-            } else {
+            if (!partyId) {
                 return error(UtilProperties.getMessage('PartyUiLabels',
                         'PartyInvitationNotValidError', parameters.locale))
+            }
+            if (partyId == userLogin.partyId) {
+                hasPermission = true
+                result.hasPermission = hasPermission
             }
         }
     }
@@ -259,9 +260,10 @@ Map cancelPartyInvitationPermissionCheck() {
  */
 Map partyCommunicationEventPermissionCheck() {
     Map result = success()
-    if (parameters.communicationEventTypeId == 'EMAIL_COMMUNICATION') {
+    String action = parameters.mainAction ?: parameters.action
+    if (parameters.communicationEventTypeId == 'EMAIL_COMMUNICATION' && action == 'CREATE') {
         parameters.altPermission = 'PARTYMGR_CME-EMAIL'
-    } else if (parameters.communicationEventTypeId == 'COMMENT_NOTE') {
+    } else if (parameters.communicationEventTypeId == 'COMMENT_NOTE' && action == 'CREATE') {
         parameters.altPermission = 'PARTYMGR_CME-NOTE'
     } else if (parameters.partyIdFrom != userLogin.partyId
             && parameters.partyIdTo != userLogin.partyId
@@ -271,6 +273,7 @@ Map partyCommunicationEventPermissionCheck() {
         result.hasPermission = true
     }
     if (!result.hasPermission) {
+        parameters.mainAction = action
         result = run service: 'basePermissionCheck', with: parameters
     }
     return result
