@@ -105,8 +105,9 @@ if (productId) {
                 }
                 productCategoryIds = from('ProductCategoryMember').where('productId', productId).filterByDate()
                         .queryList()*.productCategoryId as Set
-                if (storeCatalogCategoryIds.disjoint(productCategoryIds)) {
+                if (storeCatalogCategoryIds.disjoint(productCategoryIds) && !product.salesDiscontinuationDate) {
                     // product isn't reachable from any catalog belonging to the current store, axe it...
+                    // (a discontinued product is kept viewable: its page still carries technical data customers may need)
                     product = null
                 }
             }
