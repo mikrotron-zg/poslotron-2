@@ -105,11 +105,11 @@ under the License.
     <form name="ListRequests" type="list" extends="ListRequestList" list-name="listIt">
         <actions>
             <set field="defaultOrderBy" value="-custRequestId"/>
-            <set field="orderBy" from-field="parameters.sortField" default-value="${defaultOrderBy}"/>
+            <set field="orderBy" from-field="parameters.custRequestSortField" default-value="${defaultOrderBy}"/>
             <service service-name="performFind" result-map="result" result-map-list="listIt">
                 <field-map field-name="inputFields" from-field="parameters"/>
                 <field-map field-name="entityName" from-field="entityName"/>
-                <field-map field-name="orderBy" from-field="parameters.custRequestSortField"/>
+                <field-map field-name="orderBy" from-field="orderBy"/>
                 <field-map field-name="viewIndex" from-field="viewIndex"/>
                 <field-map field-name="viewSize" from-field="viewSize"/>
             </service>
