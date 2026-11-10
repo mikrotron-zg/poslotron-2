@@ -637,12 +637,12 @@ Map createQuoteFromCustRequest() {
     Map serviceResult = run service: 'createQuote', with: createQuoteInMap
     String quoteId = serviceResult.quoteId
 
-    List exprdCond = [
-            EntityCondition.makeCondition('custRequestId', custRequest.custRequestId),
-            EntityCondition.makeCondition('statusId', EntityOperator.NOT_EQUAL, 'CRQ_CANCELLED'),
-            EntityCondition.makeCondition('statusId', EntityOperator.NOT_EQUAL, 'CRQ_REJECTED')
-    ]
-    List custRequestItems = from('CustRequestItem').where(exprdCond).queryList()
+    // Get all customer request items
+    List custRequestItems = from('CustRequestItem').where('custRequestId', custRequest.custRequestId).queryList()
+    if (custRequestItems.isEmpty()) {
+        return error(UtilProperties.getMessage('OrderErrorUiLabels', 'OrderErrorCustRequestHasNoItems',
+                [custRequestId: parameters.custRequestId], locale))
+    }
 
     custRequestItems.each { GenericValue custRequestItem ->
         // Combine description and story for comments

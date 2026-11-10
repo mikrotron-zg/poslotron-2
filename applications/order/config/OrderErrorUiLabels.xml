@@ -1240,6 +1240,10 @@
         <value xml:lang="zh">错误：不存在标识为 [ ${custRequestId} ] 的客户请求。 </value>
         <value xml:lang="zh-TW">錯誤：不存在ID為 [ ${custRequestId} ] 的客戶要求。 </value>
     </property>
+    <property key="OrderErrorCustRequestHasNoItems">
+        <value xml:lang="en">Error : CustRequest with id [ ${custRequestId} ] has no items.</value>
+        <value xml:lang="hr">Greška: CustRequest s ID-om [ ${custRequestId} ] nema stavki.</value>
+    </property>
     <property key="OrderErrorCustRequestNotFound">
         <value xml:lang="ar">لم يوجد طلب العميل, دليل الحالة: ${custRequest.statusId}</value>
         <value xml:lang="de">Kundenanfrage nicht gefunden, statusId Id: ${custRequest.statusId} </value>

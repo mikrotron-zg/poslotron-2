@@ -444,8 +444,8 @@ class QuoteTests extends OFBizTestCase {
         ]
         Map serviceResult = dispatcher.runSync('createQuoteFromCustRequest', input)
         assert ServiceUtil.isSuccess(serviceResult)
-        GenericValue quoteItem = from('QuoteItem').where('quoteId', serviceResult.quoteId, 'custRequestId', '9000').queryFirst()
-        assert quoteItem
+        List quoteItems = from('QuoteItem').where('quoteId', serviceResult.quoteId, 'custRequestId', '9000').queryList()
+        assert quoteItems.size() == 2
     }
 
     // Test autoCreateQuoteAdjustments
