@@ -402,6 +402,19 @@ public final class LoginWorker {
     }
 
     /**
+     * Ends the confinement of a session that was established with a password-reset token. Must be called
+     * once the token-based password reset has completed successfully, otherwise checkLogin() keeps
+     * rejecting every request outside the small reset allow-list.
+     * @param request The HTTP request object for the current JSP or Servlet request.
+     */
+    public static void clearPasswordResetSession(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute(PASSWORD_RESET_ONLY_SESSION_ATTR);
+        session.removeAttribute("_PASSWORD_RESET_TOKEN_");
+        session.removeAttribute("_PASSWORD_CHANGE_REQUIRED_");
+    }
+
+    /**
      * An HTTP WebEvent handler that logs in a userLogin. This should run before the security check.
      * @param request The HTTP request object for the current JSP or Servlet request.
      * @param response The HTTP response object for the current JSP or Servlet request.
@@ -608,7 +621,7 @@ public final class LoginWorker {
                     }
                     if (passwordResetOnly) {
                         // the reset is now complete; let the normal login flow proceed with a full session
-                        session.removeAttribute(PASSWORD_RESET_ONLY_SESSION_ATTR);
+                        clearPasswordResetSession(request);
                     }
                 }
             }
@@ -619,6 +632,14 @@ public final class LoginWorker {
 
             // check to see if a password change is required for the user
             Map<String, Object> userLoginSession = checkMap(result.get("userLoginSession"), String.class, Object.class);
+            // Check if using a token with forgotPwdFlag for password reset; the token must be stored in the
+            // session before the early returns below, so the requirePasswordChange view can render the
+            // token-based reset form instead of asking for the old password
+            boolean isTokenPasswordReset = UtilValidate.isNotEmpty(token) && "true".equals(forgotPwdFlag);
+            if (isTokenPasswordReset) {
+                // Store the token in session for the password change form
+                session.setAttribute("_PASSWORD_RESET_TOKEN_", token);
+            }
             if ("Y".equals(session.getAttribute(PASSWORD_RESET_ONLY_SESSION_ATTR))) {
                 // establish only the minimal session identity needed to complete the reset; skip the
                 // remember-me cookies and after-login events a full login would otherwise trigger
@@ -628,14 +649,9 @@ public final class LoginWorker {
             if (userLogin != null && "Y".equals(userLogin.getString("requirePasswordChange"))) {
                 return "requirePasswordChange";
             }
-
-            // Check if using a token with forgotPwdFlag for password reset
-            boolean isTokenPasswordReset = UtilValidate.isNotEmpty(token) && "true".equals(forgotPwdFlag);
             if (isTokenPasswordReset) {
                 // Set a session attribute to indicate password change is needed after login
                 session.setAttribute("_PASSWORD_CHANGE_REQUIRED_", "true");
-                // Store the token in session for the password change form
-                session.setAttribute("_PASSWORD_RESET_TOKEN_", token);
             }
 
             String autoChangePassword = EntityUtilProperties.getPropertyValue("security", "user.auto.change.password.enable", "false", delegator);

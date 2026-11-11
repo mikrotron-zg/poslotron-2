@@ -42,6 +42,8 @@ import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.entity.util.EntityUtilProperties;
+import org.apache.ofbiz.minilang.MiniLangException;
+import org.apache.ofbiz.minilang.SimpleMethod;
 import org.apache.ofbiz.party.contact.ContactHelper;
 import org.apache.ofbiz.product.product.ProductEvents;
 import org.apache.ofbiz.product.store.ProductStoreWorker;
@@ -332,5 +334,27 @@ public class LoginEvents {
         }
         // if we logged in okay, do the check store customer role
         return ProductEvents.checkStoreCustomerRole(request, response);
+    }
+
+    /**
+     * Runs the token/standard password update from LoginSimpleEvents.xml and, when a password-reset token
+     * was used, ends the session confinement that checkLogin() enforces for reset-token sessions; without
+     * this the user would stay confined to a few URLs after completing the reset.
+     */
+    public static String updatePassword(HttpServletRequest request, HttpServletResponse response) {
+        String responseString;
+        try {
+            responseString = SimpleMethod.runSimpleEvent(
+                    "component://securityext/minilang/login/LoginSimpleEvents.xml", "updatePassword", request, response);
+        } catch (MiniLangException e) {
+            Debug.logError(e, "Error running updatePassword event", MODULE);
+            request.setAttribute("_ERROR_MESSAGE_", e.getMessage());
+            return "error";
+        }
+        if ("success".equals(responseString) && UtilValidate.isNotEmpty(request.getParameter("token"))) {
+            // the token-based password reset has completed; the session may now be used as a normal login
+            LoginWorker.clearPasswordResetSession(request);
+        }
+        return responseString;
     }
 }

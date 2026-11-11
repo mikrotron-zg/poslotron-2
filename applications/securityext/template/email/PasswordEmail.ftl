@@ -28,11 +28,14 @@ under the License.
   
   <br />
   <div>
-      <#-- Pre-assign URL-encoded parameters -->
-      <#assign username = userLogin.userLoginId?url('UTF-8')>
-      <#assign tokenParam = token?url('UTF-8')>
-      <#assign tenantParam = (tenantId?url('UTF-8'))!>
-      <#assign siteParam = (webSiteId!'WebStore')?url('UTF-8')>
+      <#-- Pre-assign parameters; do NOT use ?url on these values: the widget template engine
+           HTML-entity-encodes interpolated strings (e.g. @ becomes &#x40;), and url-encoding that
+           entity text would produce a double-encoded, unusable link. The entities are decoded by
+           the mail client when the href attribute is parsed. -->
+      <#assign username = userLogin.userLoginId>
+      <#assign tokenParam = token>
+      <#assign tenantParam = (tenantId!'')>
+      <#assign siteParam = (webSiteId!'WebStore')>
       <#assign baseUrl = baseSecureUrl!baseUrl!>
       
       <#-- Build the password reset URL -->
