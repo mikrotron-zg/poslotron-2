@@ -280,6 +280,7 @@ under the License.
     <ProductPriceType description="Box Price" productPriceTypeId="BOX_PRICE"/>
     <ProductPriceType description="Minimum Order Price" productPriceTypeId="MINIMUM_ORDER_PRICE"/>
     <ProductPriceType description="Shipping Allowance Price" productPriceTypeId="SHIPPING_ALLOWANCE"/>
+    <ProductPriceType description="Base Price" productPriceTypeId="BASE_PRICE"/>
 
     <ProductPricePurpose description="Deposit price" productPricePurposeId="DEPOSIT"/>
     <ProductPricePurpose description="Purchase/Initial" productPricePurposeId="PURCHASE"/>

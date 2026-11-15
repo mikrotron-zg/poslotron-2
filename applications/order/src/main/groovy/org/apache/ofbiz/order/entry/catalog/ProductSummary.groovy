@@ -31,6 +31,7 @@ import org.apache.ofbiz.product.catalog.CatalogWorker
 import org.apache.ofbiz.product.store.ProductStoreWorker
 import org.apache.ofbiz.order.shoppingcart.ShoppingCartEvents
 import org.apache.ofbiz.product.product.ProductWorker
+import org.apache.ofbiz.service.ServiceUtil
 import org.apache.ofbiz.webapp.website.WebSiteWorker
 import java.text.NumberFormat
 
@@ -66,6 +67,8 @@ context.remove('daysToShip')
 context.remove('averageRating')
 context.remove('numRatings')
 context.remove('totalPrice')
+context.remove('basePrice')
+context.remove('basePriceAmount')
 
 // get the product entity
 if (!product && productId) {
@@ -126,6 +129,24 @@ if (product) {
         priceMap = runService('calculatePurchasePrice', priceContext)
 
         context.price = priceMap
+    }
+
+    // get the currently valid BASE_PRICE to show with its fromDate
+    basePrice = from('ProductPrice')
+            .where('productId', productId, 'productPriceTypeId', 'BASE_PRICE', 'currencyUomId', cart.getCurrency())
+            .orderBy('-fromDate')
+            .filterByDate()
+            .queryFirst()
+    if (basePrice) {
+        context.basePrice = basePrice
+        // show the base price with VAT included, like the default and list price
+        if ("Y".equals(productStore?.showPricesWithVatTax)) {
+            Map calcTaxResult = runService('calcTaxForDisplay',
+                    [basePrice: basePrice.getBigDecimal('price'), productId: productId, productStoreId: productStoreId, locale: locale])
+            context.basePriceAmount = ServiceUtil.isError(calcTaxResult) ? basePrice.getBigDecimal('price') : calcTaxResult.priceWithTax
+        } else {
+            context.basePriceAmount = basePrice.getBigDecimal('price')
+        }
     }
 
     // get aggregated product totalPrice

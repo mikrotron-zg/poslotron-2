@@ -134,6 +134,14 @@ ${variantInfoJavaScript!}
         </#if>
         </#if>
 
+        <#-- current base price with its valid-from date -->
+        <#if basePrice??>
+          <p class="text-muted">
+            ${uiLabelMap.EcommercePrice} ${basePrice.fromDate?date?string("dd.MM.yyyy.")}
+            <@ofbizCurrency amount=basePriceAmount isoCode=basePrice.currencyUomId />
+          </p>
+        </#if>
+
         <div class="productbuy">
           <#-- check to see if introductionDate hasn't passed yet -->
           <#if product.introductionDate?? && nowTimestamp.before(product.introductionDate)>

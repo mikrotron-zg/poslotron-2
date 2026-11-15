@@ -3477,6 +3477,10 @@
         <value xml:lang="zh">组件价格</value>
         <value xml:lang="zh-TW">元件價格</value>
     </property>
+    <property key="ProductPriceType.description.BASE_PRICE">
+        <value xml:lang="en">Base Price</value>
+        <value xml:lang="hr">Bazna cijena</value>
+    </property>
     <property key="ProductPriceType.description.DEFAULT_PRICE">
         <value xml:lang="de">Standardpreis</value>
         <value xml:lang="en">Default Price</value>

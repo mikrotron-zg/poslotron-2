@@ -203,6 +203,24 @@ if (product) {
         context.priceMap = priceMap
     }
 
+    // get the currently valid BASE_PRICE to show with its fromDate
+    basePrice = from('ProductPrice')
+            .where('productId', productId, 'productPriceTypeId', 'BASE_PRICE', 'currencyUomId', currencyUomId)
+            .orderBy('-fromDate')
+            .filterByDate()
+            .queryFirst()
+    if (basePrice) {
+        context.basePrice = basePrice
+        // show the base price with VAT included, like the default and list price
+        if ("Y".equals(productStore?.showPricesWithVatTax)) {
+            Map calcTaxResult = runService('calcTaxForDisplay',
+                    [basePrice: basePrice.getBigDecimal('price'), productId: productId, productStoreId: productStoreId, locale: locale])
+            context.basePriceAmount = ServiceUtil.isError(calcTaxResult) ? basePrice.getBigDecimal('price') : calcTaxResult.priceWithTax
+        } else {
+            context.basePriceAmount = basePrice.getBigDecimal('price')
+        }
+    }
+
     // get the product review(s)
     // get all product review in case of Purchase Order.
     reviewByAnd = [:]

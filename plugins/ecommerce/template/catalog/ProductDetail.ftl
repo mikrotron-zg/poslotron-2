@@ -561,6 +561,15 @@ ${variantInfoJavaScript!}
           </#list>
         </#if>
       </#if>
+
+      </#if>
+
+      <#-- current base price with its valid-from date -->
+      <#if basePrice??>
+        <div>
+          ${uiLabelMap.EcommercePrice} ${basePrice.fromDate?date?string("dd.MM.yyyy.")}
+          <@ofbizCurrency amount=basePriceAmount isoCode=basePrice.currencyUomId />
+        </div>
       </#if>
 
       <#-- Included quantities/pieces -->
