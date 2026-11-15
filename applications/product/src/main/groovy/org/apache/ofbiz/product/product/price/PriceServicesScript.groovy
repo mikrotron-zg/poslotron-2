@@ -49,6 +49,19 @@ Map createProductPrice() {
     newEntity.createdByUserLogin = userLogin.userLoginId
     newEntity.create()
 
+    if ('DEFAULT_PRICE' == newEntity.productPriceTypeId) {
+        // also create a matching BASE_PRICE if none currently exists
+        GenericValue basePrice = from('ProductPrice')
+                .where('productId', newEntity.productId, 'productPriceTypeId', 'BASE_PRICE', 'currencyUomId', newEntity.currencyUomId)
+                .filterByDate()
+                .queryFirst()
+        if (!basePrice) {
+            GenericValue basePriceEntity = GenericValue.create(newEntity)
+            basePriceEntity.productPriceTypeId = 'BASE_PRICE'
+            basePriceEntity.create()
+        }
+    }
+
     return result
 }
 
