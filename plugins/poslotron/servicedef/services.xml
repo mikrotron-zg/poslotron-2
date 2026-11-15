@@ -112,4 +112,31 @@ under the License.
         <attribute name="deprecatedCount" type="Integer" mode="OUT" optional="true"/>
     </service>
 
+    <!--
+        Pricelist publication (Croatian Trade Act, Art. 12 - objava cjenika).
+        Both services run unauthenticated from the nightly JobSandbox jobs
+        (jobs have no session, so no userLogin can be provided). They only
+        read catalog data and write to this plugin's own PoslotronPricelist
+        entity plus the archive directory configured in poslotron.properties,
+        so no permission check is required. See data/PoslotronPricelistSeedData.xml
+        for the schedule (03:00 / 03:15).
+    -->
+    <service name="poslotronGeneratePricelist" engine="groovy" auth="false"
+            transaction-timeout="600"
+            location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/pricelist/PricelistServices.groovy"
+            invoke="generatePricelist">
+        <description>Generate the webshop pricelist CSV and archive it on disk.</description>
+        <attribute name="pricelistId" type="String" mode="OUT" optional="true"/>
+        <attribute name="fileName" type="String" mode="OUT" optional="true"/>
+        <attribute name="itemCount" type="Integer" mode="OUT" optional="true"/>
+        <attribute name="storageNumber" type="Long" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="poslotronCleanupPricelistArchive" engine="groovy" auth="false"
+            location="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/pricelist/PricelistServices.groovy"
+            invoke="cleanupPricelistArchive">
+        <description>Delete pricelist archive entries and files older than the configured retention.</description>
+        <attribute name="removedPricelists" type="Integer" mode="OUT" optional="true"/>
+    </service>
+
 </services>

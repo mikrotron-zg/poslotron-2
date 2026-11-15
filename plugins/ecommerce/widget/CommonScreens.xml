@@ -32,6 +32,7 @@ under the License.
                 <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="OrderUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="MarketingUiLabels.xml" map-name="uiLabelMap" global="true"/>
+                <property-map resource="PoslotronUiLabels" map-name="uiLabelMap" global="true"/><!-- poslotron: plugin labels (pricelist page) -->
 
                 <set field="MainColumnStyle" value="nocolumns" global="true"/>
                 <script location="component://ecommerce/src/main/groovy/org/apache/ofbiz/ecommerce/EcommerceSetup.groovy"/>

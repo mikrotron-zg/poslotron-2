@@ -28,4 +28,22 @@ under the License.
     <copyright></copyright>
     <version></version>
 
+    <entity entity-name="PoslotronPricelist" package-name="hr.mikrotron.poslotron" title="Published pricelist archive entry">
+        <description>
+            One row per published webshop pricelist CSV (Croatian Trade Act, cjenik).
+            The physical file lives under the directory configured in
+            poslotron.properties (pricelist.output.dir); the download event
+            resolves it from the stored fileName, so no absolute path is kept here.
+        </description>
+        <field name="pricelistId" type="id"></field>
+        <field name="productStoreId" type="id"></field>
+        <field name="fileName" type="description"></field>
+        <field name="storageNumber" type="numeric"></field>
+        <field name="sentDate" type="date-time"></field>
+        <field name="itemCount" type="numeric"></field>
+        <prim-key field="pricelistId"/>
+        <relation type="one" fk-name="POSPL_PLI_PSTR" rel-entity-name="ProductStore">
+            <key-map field-name="productStoreId"/>
+        </relation>
+    </entity>
 </entitymodel>

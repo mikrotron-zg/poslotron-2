@@ -17,6 +17,7 @@ runtime/data/utilcache.*
 runtime/catalina/work/*
 runtime/tempfiles/*
 runtime/indexes/products/
+runtime/poslotron/
 !runtime/tempfiles/README
 changelog
 .classpath

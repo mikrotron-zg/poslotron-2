@@ -20,6 +20,7 @@ under the License.
 
 <site-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://ofbiz.apache.org/Site-Conf" xsi:schemaLocation="http://ofbiz.apache.org/Site-Conf http://ofbiz.apache.org/dtds/site-conf.xsd">
+    <include location="component://poslotron/webapp/poslotron/WEB-INF/ecommerce-controller-ext.xml"/><!-- poslotron: extensions to the webshop controller -->
     <description>OFBiz: eCommerce Controller Configuration File</description>
 
     <errorpage>component://common/webcommon/error/Error.ftl</errorpage>

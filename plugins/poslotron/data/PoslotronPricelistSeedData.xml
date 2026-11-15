@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<entity-engine-xml>
+    <!--
+        Nightly pricelist publication schedule (Croatian Trade Act, Art. 12).
+
+        The generate job runs at 03:00 local server time; the archive cleanup
+        follows at 03:15 so it can never race with a running generation. Both
+        frequency expressions anchor the daily time-of-day through date1; if
+        the server timezone changes, adjust date1/runTime/runTimeEpoch
+        accordingly. runTimeEpoch stores the explicit UTC milliseconds
+        (2026-11-16 02:00 UTC / 02:15 UTC = CET 03:00 / 03:15) to avoid DST
+        shift issues.
+    -->
+    <TemporalExpression tempExprId="POSL_DAILY_0300" tempExprTypeId="FREQUENCY"
+            description="Poslotron daily at 03:00" integer1="5" integer2="1"
+            date1="2026-11-16 03:00:00.000"/>
+    <TemporalExpression tempExprId="POSL_DAILY_0315" tempExprTypeId="FREQUENCY"
+            description="Poslotron daily at 03:15" integer1="5" integer2="1"
+            date1="2026-11-16 03:15:00.000"/>
+
+    <JobSandbox jobName="Poslotron: Generate webshop pricelist (cjenik)"
+            serviceName="poslotronGeneratePricelist" statusId="SERVICE_PENDING"
+            runTime="2026-11-16 03:00:00.000" runTimeEpoch="1794794400000"
+            tempExprId="POSL_DAILY_0300" poolId="pool" maxRetry="3"/>
+    <JobSandbox jobName="Poslotron: Cleanup pricelist archive"
+            serviceName="poslotronCleanupPricelistArchive" statusId="SERVICE_PENDING"
+            runTime="2026-11-16 03:15:00.000" runTimeEpoch="1794795300000"
+            tempExprId="POSL_DAILY_0315" poolId="pool" maxRetry="3"/>
+</entity-engine-xml>

@@ -22,7 +22,8 @@ under the License.
 <div class="footer-block">
   <div class="p-2 text-center">
     <a href="<@ofbizUrl>aboutus</@ofbizUrl>">${uiLabelMap.EcommerceAboutUs}</a> - 
-    <a href="<@ofbizUrl>policies</@ofbizUrl>">${uiLabelMap.EcommerceSeeStorePoliciesHere}</a>
+    <a href="<@ofbizUrl>policies</@ofbizUrl>">${uiLabelMap.EcommerceSeeStorePoliciesHere}</a> -
+    <a href="<@ofbizUrl>pricelist</@ofbizUrl>">${uiLabelMap.PoslotronPricelistPageTitle}</a><!-- poslotron: pricelist publication (Trade Act Art. 12) -->
     <div>Poslotron 2.0 by <a href="http://www.mikrotron.hr">Mikrotron</a></div>
     <div>Powered by <a href="//ofbiz.apache.org">Apache OFBiz</a></div>
     <hr>

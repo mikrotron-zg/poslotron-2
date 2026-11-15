@@ -30,6 +30,7 @@ under the License.
     <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
     <!-- <entity-resource type="eca" reader-name="main" loader="main" location="entitydef/eecas.xml"/> -->
     <entity-resource type="data" reader-name="seed" loader="main" location="data/PoslotronTypeData.xml"/>
+    <entity-resource type="data" reader-name="seed" loader="main" location="data/PoslotronPricelistSeedData.xml"/>
     <entity-resource type="data" reader-name="seed" loader="main" location="data/PoslotronSecurityPermissionSeedData.xml"/>
     <entity-resource type="data" reader-name="demo" loader="main" location="data/PoslotronSecurityGroupDemoData.xml"/>
     <entity-resource type="data" reader-name="demo" loader="main" location="data/PoslotronDemoData.xml"/>

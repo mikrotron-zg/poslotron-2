@@ -267,4 +267,46 @@ under the License.
         <value xml:lang="en">Product ''{0}'' not found.</value>
         <value xml:lang="hr">Proizvod ''{0}'' nije pronađen.</value>
     </property>
+
+    <!-- ===== Pricelist publication (objava cjenika) ===== -->
+    <property key="PoslotronPricelistPageTitle">
+        <value xml:lang="en">Price list</value>
+        <value xml:lang="hr">Cjenik</value>
+    </property>
+    <property key="PoslotronPricelistArchiveNote">
+        <value xml:lang="en">Published price lists are available for download below. Each price list is generated once daily and kept available for 30 days from publication.</value>
+        <value xml:lang="hr">Objavljeni cjenici dostupni su za preuzimanje u nastavku. Cjenik se generira jednom dnevno i dostupan je 30 dana od dana objave.</value>
+    </property>
+    <property key="PoslotronPricelistFileName">
+        <value xml:lang="en">File name</value>
+        <value xml:lang="hr">Naziv datoteke</value>
+    </property>
+    <property key="PoslotronPricelistSentDate">
+        <value xml:lang="en">Sent (date and time)</value>
+        <value xml:lang="hr">Datum i vrijeme slanja</value>
+    </property>
+    <property key="PoslotronPricelistItemCount">
+        <value xml:lang="en">Items</value>
+        <value xml:lang="hr">Stavaka</value>
+    </property>
+    <property key="PoslotronPricelistEmpty">
+        <value xml:lang="en">No published price list is currently available.</value>
+        <value xml:lang="hr">Trenutno nema dostupnog objavljenog cjenika.</value>
+    </property>
+    <property key="PoslotronPricelistNotConfigured">
+        <value xml:lang="en">Pricelist publication is not configured: set the pricelist.productStoreId property (poslotron resource).</value>
+        <value xml:lang="hr">Objava cjenika nije konfigurirana: postavite svojstvo pricelist.productStoreId (resurs poslotron).</value>
+    </property>
+    <property key="PoslotronPricelistStoreNotFound">
+        <value xml:lang="en">The configured product store does not exist.</value>
+        <value xml:lang="hr">Konfigurirana trgovina (product store) ne postoji.</value>
+    </property>
+    <property key="PoslotronPricelistNoBrowseRoot">
+        <value xml:lang="en">No browse-root catalog category found for the product store.</value>
+        <value xml:lang="hr">Za trgovinu nije pronađena korijenska kategorija kataloga (browse root).</value>
+    </property>
+    <property key="PoslotronPricelistNoProducts">
+        <value xml:lang="en">No active products found under the webshop browse-root category.</value>
+        <value xml:lang="hr">Ispod korijenske kategorije web trgovine nema aktivnih proizvoda.</value>
+    </property>
 </resource>
