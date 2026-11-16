@@ -135,15 +135,18 @@ Map generatePricelist() {
             .queryFirst()
     long storageNumber = lastPricelist ? ((lastPricelist.getLong('storageNumber') ?: 0L) + 1L) : 1L
 
-    // File name per Art. 12(2): oblik, adresa i oznaka prodajnog mjesta,
-    // broj pohrane and the date/time stamp of the publication.
+    // File name per Art. 12(2): OIB (trgovac - pravna osoba) or maticni broj
+    // (trgovac - fizicka osoba), oblik, adresa i oznaka prodajnog mjesta,
+    // naznaka cjenika robe, broj pohrane and the publication timestamp
+    // formatted GGGGMMDD_SSMM.
     Timestamp sentDate = UtilDateTime.nowTimestamp()
-    String timestamp = new SimpleDateFormat('yyyy-MM-dd_HH-mm-ss').format(sentDate)
+    String timestamp = new SimpleDateFormat('yyyyMMdd_HHmm').format(sentDate)
+    String merchantId = UtilProperties.getPropertyValue('poslotron', 'pricelist.merchantId')
     String pointOfSaleForm = UtilProperties.getPropertyValue('poslotron', 'pricelist.pointOfSale.form')
     String pointOfSaleAddress = UtilProperties.getPropertyValue('poslotron', 'pricelist.pointOfSale.address')
     String pointOfSaleIdentifier = UtilProperties.getPropertyValue('poslotron', 'pricelist.pointOfSale.identifier')
-    String fileName = "cjenik_${sanitizeFilePart(pointOfSaleForm)}_${sanitizeFilePart(pointOfSaleAddress)}" +
-            "_${sanitizeFilePart(pointOfSaleIdentifier)}_${String.format('%06d', storageNumber)}_${timestamp}.csv"
+    String fileName = "${sanitizeFilePart(merchantId)}_${sanitizeFilePart(pointOfSaleForm)}_${sanitizeFilePart(pointOfSaleAddress)}" +
+            "_${sanitizeFilePart(pointOfSaleIdentifier)}_cjenik_robe_${String.format('%06d', storageNumber)}_${timestamp}.csv"
 
     // Write to a temp sibling first, so a partially written file can never be
     // observed by the download endpoint, then move into place only after the
