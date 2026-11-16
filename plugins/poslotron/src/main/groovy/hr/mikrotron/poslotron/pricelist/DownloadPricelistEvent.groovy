@@ -37,15 +37,31 @@ import org.apache.ofbiz.entity.util.EntityQuery
  * servlet output stream.
  */
 
-String pricelistId = parameters.pricelistId
+// The id comes either from ?pricelistId=... or, for the stable
+// /downloadPricelist/{pricelistId} URL, from the request attribute set by
+// the URI-template request-map.
+String pricelistId = parameters.pricelistId ?: request.getAttribute('pricelistId')
 if (UtilValidate.isEmpty(pricelistId)) {
     response.sendError(404)
     return 'success'
 }
 
-def pricelist = EntityQuery.use(delegator).from('PoslotronPricelist')
-        .where('pricelistId', pricelistId)
-        .queryOne()
+def pricelist
+if ('current'.equals(pricelistId)) {
+    // Stable URL for automated tools: always the latest published pricelist
+    // of the configured store (newest sentDate first).
+    String productStoreId = org.apache.ofbiz.base.util.UtilProperties.getPropertyValue(
+            'poslotron', 'pricelist.productStoreId')
+    EntityQuery query = EntityQuery.use(delegator).from('PoslotronPricelist')
+    if (UtilValidate.isNotEmpty(productStoreId)) {
+        query.where('productStoreId', productStoreId)
+    }
+    pricelist = query.orderBy('-sentDate').queryFirst()
+} else {
+    pricelist = EntityQuery.use(delegator).from('PoslotronPricelist')
+            .where('pricelistId', pricelistId)
+            .queryOne()
+}
 if (!pricelist) {
     response.sendError(404)
     return 'success'

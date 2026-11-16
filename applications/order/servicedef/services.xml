@@ -1449,7 +1449,7 @@ under the License.
         </attribute>
         <attribute name="giftMessage" type="String" mode="IN" optional="true"/>
     </service>
-    <service name="createAlsoBoughtProductAssocs" engine="java" auth="true" 
+    <service name="createAlsoBoughtProductAssocs" engine="java" auth="true" transaction-timeout="3600"
             location="org.apache.ofbiz.order.order.OrderServices" invoke="createAlsoBoughtProductAssocs">
         <description>
             Cycles through all newly created sales orders and creates ProductAssoc records (of type ALSO_BOUGHT) for products 

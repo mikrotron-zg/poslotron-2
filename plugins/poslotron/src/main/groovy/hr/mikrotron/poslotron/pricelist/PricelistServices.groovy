@@ -143,7 +143,7 @@ Map generatePricelist() {
     String pointOfSaleAddress = UtilProperties.getPropertyValue('poslotron', 'pricelist.pointOfSale.address')
     String pointOfSaleIdentifier = UtilProperties.getPropertyValue('poslotron', 'pricelist.pointOfSale.identifier')
     String fileName = "cjenik_${sanitizeFilePart(pointOfSaleForm)}_${sanitizeFilePart(pointOfSaleAddress)}" +
-            "_${sanitizeFilePart(pointOfSaleIdentifier)}_pohrana_${String.format('%06d', storageNumber)}_${timestamp}.csv"
+            "_${sanitizeFilePart(pointOfSaleIdentifier)}_${String.format('%06d', storageNumber)}_${timestamp}.csv"
 
     // Write to a temp sibling first, so a partially written file can never be
     // observed by the download endpoint, then move into place only after the
@@ -177,7 +177,7 @@ Map generatePricelist() {
  * from the last publication, so the default retention is 30 days.
  */
 Map cleanupPricelistArchive() {
-    int retentionDays = UtilProperties.getPropertyValue('poslotron', 'pricelist.retention.days', 30)
+    int retentionDays = UtilProperties.getPropertyAsInteger('poslotron', 'pricelist.retention.days', 30)
     Timestamp cutoff = new Timestamp(System.currentTimeMillis() - (retentionDays * 24L * 60L * 60L * 1000L))
     List<GenericValue> expired = from('PoslotronPricelist')
             .where(EntityCondition.makeCondition('sentDate', EntityOperator.LESS_THAN, cutoff))

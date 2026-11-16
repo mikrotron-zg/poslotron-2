@@ -293,6 +293,10 @@ under the License.
         <value xml:lang="en">No published price list is currently available.</value>
         <value xml:lang="hr">Trenutno nema dostupnog objavljenog cjenika.</value>
     </property>
+    <property key="PoslotronPricelistCurrentDownloadNote">
+        <value xml:lang="en">The currently valid price list is always available at the following address (suitable for automated retrieval):</value>
+        <value xml:lang="hr">Trenutno važeći cjenik uvijek je dostupan na sljedećoj adresi (prikladno za automatsko preuzimanje):</value>
+    </property>
     <property key="PoslotronPricelistNotConfigured">
         <value xml:lang="en">Pricelist publication is not configured: set the pricelist.productStoreId property (poslotron resource).</value>
         <value xml:lang="hr">Objava cjenika nije konfigurirana: postavite svojstvo pricelist.productStoreId (resurs poslotron).</value>

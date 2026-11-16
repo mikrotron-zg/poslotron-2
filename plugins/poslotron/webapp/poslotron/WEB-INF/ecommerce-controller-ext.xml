@@ -56,6 +56,20 @@ under the License.
         <response name="error" type="none"/>
     </request-map>
 
+    <!--
+        Stable URL for automated tools (Art. 12 requires the pricelist to be
+        machine-retrievable): /downloadPricelist/current always serves the
+        latest published pricelist of the configured store. The template
+        variable is passed to the event as a request attribute.
+    -->
+    <request-map uri="downloadPricelist/{pricelistId}">
+        <security https="false" auth="false"/>
+        <event type="groovy"
+                path="component://poslotron/src/main/groovy/hr/mikrotron/poslotron/pricelist/DownloadPricelistEvent.groovy"/>
+        <response name="success" type="none"/>
+        <response name="error" type="none"/>
+    </request-map>
+
     <!-- ===== View maps ===== -->
     <view-map name="pricelist" type="screen" auth="false"
             page="component://poslotron/widget/EcommerceAppExtScreens.xml#pricelist"/>

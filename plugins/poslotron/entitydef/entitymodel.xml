@@ -28,7 +28,8 @@ under the License.
     <copyright></copyright>
     <version></version>
 
-    <entity entity-name="PoslotronPricelist" package-name="hr.mikrotron.poslotron" title="Published pricelist archive entry">
+    <entity entity-name="PoslotronPricelist" package-name="hr.mikrotron.poslotron" title="Published pricelist archive entry"
+            sequence-bank-size="1">
         <description>
             One row per published webshop pricelist CSV (Croatian Trade Act, cjenik).
             The physical file lives under the directory configured in

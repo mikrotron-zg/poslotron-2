@@ -20,6 +20,9 @@
 <h1>${uiLabelMap.PoslotronPricelistPageTitle}</h1>
 <p>${uiLabelMap.PoslotronPricelistArchiveNote}</p>
 <#if pricelists?has_content>
+  <p>${uiLabelMap.PoslotronPricelistCurrentDownloadNote}
+    <a href="<@ofbizUrl>downloadPricelist/current</@ofbizUrl>"><@ofbizUrl>downloadPricelist/current</@ofbizUrl></a>
+  </p>
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
