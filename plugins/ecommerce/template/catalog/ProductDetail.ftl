@@ -1030,8 +1030,8 @@ ${variantInfoJavaScript!}
     ${setRequestAttribute("productValue", productValue)}
     <div id="associated-products">
     <#-- also bought -->
-      <@associated assocProducts=alsoBoughtProducts beforeName="" showName="N"
-          afterName="${uiLabelMap.ProductAlsoBought}" formNamePrefix="albt" targetRequestName="" />
+      <#--<@associated assocProducts=alsoBoughtProducts beforeName="" showName="N"
+          afterName="${uiLabelMap.ProductAlsoBought}" formNamePrefix="albt" targetRequestName="" />-->
       <#-- obsolete -->
       <@associated assocProducts=obsoleteProducts beforeName="" showName="N" afterName=" ${uiLabelMap.ProductObsolete}"
           formNamePrefix="obs" targetRequestName="" />
