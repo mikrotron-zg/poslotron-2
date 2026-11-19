@@ -70,7 +70,7 @@ under the License.
   <fieldset>
     <div>
       <label for="shipping_instructions">${uiLabelMap.OrderSpecialInstructions}</label>
-      <textarea cols="30" rows="3" name="shipping_instructions">${shoppingCart.getShippingInstructions()!}</textarea>
+      <textarea cols="30" rows="3" name="shipping_instructions" maxlength="255">${shoppingCart.getShippingInstructions()!}</textarea>
     </div>
     <div>
       <label for="correspondingPoId">${uiLabelMap.OrderPoNumber}</label>
@@ -92,7 +92,7 @@ under the License.
       </div>
       <div>
         <label for="gift_message">${uiLabelMap.OrderGiftMessage}</label>
-        <textarea class="textAreaBox" name="gift_message">${shoppingCart.getGiftMessage()!}</textarea>
+        <textarea class="textAreaBox" name="gift_message" maxlength="255">${shoppingCart.getGiftMessage()!}</textarea>
       </div>
     </fieldset>
   </#if>

@@ -107,7 +107,7 @@ under the License.
           </div>
           <hr>-->
           <h4>${uiLabelMap.OrderSpecialInstructions}</h4>
-          <textarea class="form-control" name="shipping_instructions">${shoppingCart.getShippingInstructions()!}</textarea>
+          <textarea class="form-control" name="shipping_instructions" maxlength="255">${shoppingCart.getShippingInstructions()!}</textarea>
           <hr>
           <h4>${uiLabelMap.PartyEmailAddresses}</h4>
           <div>${uiLabelMap.OrderEmailSentToFollowingAddresses}:</div>

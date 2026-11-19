@@ -111,7 +111,7 @@ function onClickShippingMethod(e) {
             </tr>
             <tr>
               <td colspan="2">
-                <textarea class='textAreaBox' cols="30" rows="3" name="shipping_instructions">${shoppingCart.getShippingInstructions()!}</textarea>
+                <textarea class='textAreaBox' cols="30" rows="3" name="shipping_instructions" maxlength="255">${shoppingCart.getShippingInstructions()!}</textarea>
               </td>
             </tr>
             <tr><td colspan="2"><hr /></td></tr>
@@ -140,7 +140,7 @@ function onClickShippingMethod(e) {
             </tr>
             <tr>
               <td colspan="2">
-                <textarea class='textAreaBox' cols="30" rows="3" name="gift_message">${shoppingCart.getGiftMessage()!}</textarea>
+                <textarea class='textAreaBox' cols="30" rows="3" name="gift_message" maxlength="255">${shoppingCart.getGiftMessage()!}</textarea>
               </td>
             </tr>
             </#if>

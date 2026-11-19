@@ -171,7 +171,7 @@ function submitForm(form, mode, value) {
                     <input type="hidden" name="is_gift" value="false"/>
                 </#if>
                       <h5>${uiLabelMap.OrderSpecialInstructions}</h5>
-                      <textarea rows="3" wrap="hard" name="shipping_instructions">${shoppingCart.getShippingInstructions()!}</textarea>
+                      <textarea rows="3" wrap="hard" name="shipping_instructions" maxlength="255">${shoppingCart.getShippingInstructions()!}</textarea>
                  <#if shipping == true>
                   <#if productStore.showCheckoutGiftOptions! != "N" && giftEnable! != "N">
                       <div>
@@ -186,7 +186,7 @@ function submitForm(form, mode, value) {
                         </div>
                       </div>
                       <h5>${uiLabelMap.OrderGiftMessage}</h5>
-                      <textarea rows="3" wrap="hard" name="gift_message">${shoppingCart.getGiftMessage()!}</textarea>
+                      <textarea rows="3" wrap="hard" name="gift_message" maxlength="255">${shoppingCart.getGiftMessage()!}</textarea>
                   <#else>
                   <input type="hidden" name="is_gift" value="false"/>
                   </#if>

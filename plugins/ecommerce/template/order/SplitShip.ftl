@@ -109,7 +109,7 @@ function submitForm(form, mode, value) {
                     </select>
 
                     <h2>${uiLabelMap.OrderSpecialInstructions}</h2>
-                    <textarea class='textAreaBox' cols="35" rows="3" wrap="hard" name="shippingInstructions">${cart.getShippingInstructions(groupIdx)!}</textarea>
+                    <textarea class='textAreaBox' cols="35" rows="3" wrap="hard" name="shippingInstructions" maxlength="255">${cart.getShippingInstructions(groupIdx)!}</textarea>
                   </td>
                   <td>
                     <div>
@@ -130,7 +130,7 @@ function submitForm(form, mode, value) {
                     </div>
 
                     <h2>${uiLabelMap.OrderGiftMessage}</h2>
-                    <textarea class='textAreaBox' cols="30" rows="3" wrap="hard" name="giftMessage">${cart.getGiftMessage(groupIdx)!}</textarea>
+                    <textarea class='textAreaBox' cols="30" rows="3" wrap="hard" name="giftMessage" maxlength="255">${cart.getGiftMessage(groupIdx)!}</textarea>
                   </td>
                   <td><input type="button" class="smallSubmit" value="${uiLabelMap.CommonSave}" onclick="javascript:submitForm(document.editgroupform${groupIdx}, 'SV', null);"/></td>
                 </tr>
