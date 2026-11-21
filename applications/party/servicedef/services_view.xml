@@ -84,6 +84,7 @@ under the License.
         <attribute name="partyTypeId" type="String" mode="IN" optional="true"/>
         <attribute name="userLoginId" type="String" mode="IN" optional="true"/> <!-- does a LIKE compare on this, can do partial, case insensitive, etc -->
         <attribute name="externalId" type="String" mode="IN" optional="true"/>
+        <attribute name="partyTaxId" type="String" mode="IN" optional="true"/> <!-- does a LIKE compare on this, case insensitive -->
         <attribute name="groupName" type="String" mode="IN" optional="true"/>
         <attribute name="firstName" type="String" mode="IN" optional="true"/>
         <attribute name="lastName" type="String" mode="IN" optional="true"/>

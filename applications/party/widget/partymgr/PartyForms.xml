@@ -42,6 +42,7 @@ under the License.
         <field name="partyId"><text size="15" /></field>
         <field name="userLoginId"><lookup target-form-name="LookupUserLogin" size="15"/></field>
         <field name="externalId"><text size="15" /></field>
+        <field name="partyTaxId"><text size="15"/></field>
         <field name="lastName"><text size="15"/></field>
         <field name="firstName"><text size="15"/></field>
         <field name="groupName" title="${uiLabelMap.PartyGroupName}"><text size="15"/></field>
@@ -94,6 +95,7 @@ under the License.
             <sort-field name="partyId"/>
             <sort-field name="userLoginId"/>
             <sort-field name="externalId"/>
+            <sort-field name="partyTaxId"/>
             <sort-field name="lastName"/>
             <sort-field name="firstName"/>
             <sort-field name="groupName"/>

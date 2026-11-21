@@ -1621,6 +1621,25 @@ public class PartyServices {
         if (UtilValidate.isNotEmpty(externalId)) {
             andExprs.add(EntityCondition.makeCondition("externalId", externalId));
         }
+
+        // ----
+        // PartyTaxAuthInfo Fields
+        // ----
+
+        // filter on party tax id
+        String partyTaxId = (String) context.get("partyTaxId");
+        if (UtilValidate.isNotEmpty(partyTaxId)) {
+
+            // modify the dynamic view
+            dynamicView.addMemberEntity("PTAI", "PartyTaxAuthInfo");
+            dynamicView.addAlias("PTAI", "partyTaxId");
+            dynamicView.addViewLink("PT", "PTAI", Boolean.FALSE, ModelKeyMap.makeKeyMapList("partyId"));
+
+            // add the expr
+            andExprs.add(EntityCondition.makeCondition(EntityFunction.upperField("partyTaxId"), EntityOperator.LIKE,
+                    EntityFunction.upper("%" + partyTaxId + "%")));
+            fieldsToSelect.add("partyTaxId");
+        }
         // ----
         // UserLogin Fields
         // ----
