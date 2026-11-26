@@ -15917,6 +15917,10 @@
         <value xml:lang="zh">你可以更新这些在你的</value>
         <value xml:lang="zh-TW">你可以更新這些在你的</value>
     </property>
+    <property key="OrderCancelItem">
+        <value xml:lang="en">Cancel item</value>
+        <value xml:lang="hr">Otkaži stavku</value>
+    </property>
     <property key="OrderUpdateItems">
         <value xml:lang="ar">تحديث البنود</value>
         <value xml:lang="de">Elemente aktualisieren</value>

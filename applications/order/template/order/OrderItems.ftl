@@ -89,7 +89,8 @@ under the License.
                                     </#if>
                                 </td>
                                 <td colspan="5">
-                                    <span class="importantText" style="font-weight: bold; font-size: 1.3em;">${uiLabelMap.OrderQuantity}: ${orderItem.quantity}</span>
+                                    <#assign display_quantity = orderItem.quantity?default(0) - orderItem.cancelQuantity?default(0)>
+                                    <span class="importantText" style="font-weight: bold; font-size: 1.3em;">${uiLabelMap.OrderQuantity}: ${display_quantity}</span>
                                     <div style="float:right;">
                                         <#assign downloadContents = EntityQuery.use(delegator).from("OrderItemAndProductContentInfo").where( "orderId", orderItem.orderId!, "orderItemSeqId", orderItem.orderItemSeqId!, "productContentTypeId", "DIGITAL_DOWNLOAD", "statusId", "ITEM_COMPLETED").queryList()!/>
                                         <#if downloadContents?has_content>

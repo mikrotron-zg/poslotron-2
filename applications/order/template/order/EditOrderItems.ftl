@@ -276,7 +276,7 @@ under the License.
                                     <td colspan="4">&nbsp;</td>
                                     <td>
                                         <#if itemSelectable>
-                                            <a href="javascript:document.updateItemInfo.action='<@ofbizUrl>cancelOrderItem</@ofbizUrl>';document.updateItemInfo.orderItemSeqId.value='${orderItem.orderItemSeqId}';document.updateItemInfo.shipGroupSeqId.value='${shipGroup.shipGroupSeqId}';document.updateItemInfo.submit()" class="buttontext">${uiLabelMap.CommonCancel}</a>
+                                            <a href="javascript:document.updateItemInfo.action='<@ofbizUrl>cancelOrderItem</@ofbizUrl>';document.updateItemInfo.orderItemSeqId.value='${orderItem.orderItemSeqId}';document.updateItemInfo.shipGroupSeqId.value='${shipGroup.shipGroupSeqId}';document.updateItemInfo.submit()" class="buttontext">${uiLabelMap.OrderCancelItem}</a>
                                         <#else>
                                             &nbsp;
                                         </#if>
