@@ -181,6 +181,13 @@ under the License.
         </field>
     </form>
     <form name="OverviewRequestItems" extends="ListRequestItems">
+        <row-actions>
+            <service service-name="getProductInventoryAvailable" result-map="inventoryAvailableResult">
+                <field-map field-name="productId" from-field="productId"/>
+            </service>
+            <set field="atp" value="${groovy: inventoryAvailableResult?.availableToPromiseTotal == null ? null : inventoryAvailableResult.availableToPromiseTotal.intValue()}"/>
+            <set field="qoh" value="${groovy: inventoryAvailableResult?.quantityOnHandTotal == null ? null : inventoryAvailableResult.quantityOnHandTotal.intValue()}"/>
+        </row-actions>
         <field name="priority"><ignored/></field>
         <field name="sequenceNum"><ignored/></field>
         <field name="sequenceNumber"><ignored/></field>
@@ -191,6 +198,18 @@ under the License.
         <field name="reservLength"><ignored/></field>
         <field name="reservPersons"><ignored/></field>
         <field name="configId"><ignored/></field>
+        <field name="story"><ignored/></field>
+        <field name="atp" title="${uiLabelMap.ProductAtp}" widget-area-style="align-text" use-when="(quantity ?: 0) > (atp ?: 0)" widget-style="alert"><display/></field>
+        <field name="atp" title="${uiLabelMap.ProductAtp}" widget-area-style="align-text" use-when="!((quantity ?: 0) > (atp ?: 0))"><display/></field>
+        <field name="qoh" title="${uiLabelMap.ProductQoh}" widget-area-style="align-text"><display/></field>
+        <sort-order>
+            <sort-field name="custRequestItemSeqId"/>
+            <sort-field name="statusId"/>
+            <sort-field name="productId"/>
+            <sort-field name="quantity"/>
+            <sort-field name="atp"/>
+            <sort-field name="qoh"/>
+        </sort-order>
     </form>
 
     <form name="ListRequestQuoteItems" type="list" use-row-submit="true"  title="" list-name="quotes"

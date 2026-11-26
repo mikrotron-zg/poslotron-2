@@ -28,8 +28,6 @@ under the License.
                     <th>${uiLabelMap.ProductItem}</th>
                     <th>${uiLabelMap.OrderProduct}</th>
                     <th>${uiLabelMap.ProductQuantity}</th>
-                    <th>${uiLabelMap.OrderAmount}</th>
-                    <th>${uiLabelMap.OrderRequestMaximumAmount}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -49,17 +47,15 @@ under the License.
                     </td>
                     <td>
                         <div>
-                            ${(product.internalName)!}&nbsp;
                             <#if showRequestManagementLinks??>
                                 <a href="<@ofbizUrl controlPath="/catalog/control">EditProduct?productId=${requestItem.productId!}</@ofbizUrl>" class="buttontext">${requestItem.productId!}</a>
                             <#else>
                                 <a href="<@ofbizUrl>product?product_id=${requestItem.productId!}</@ofbizUrl>" class="buttontext">${requestItem.productId!}</a>
                             </#if>
+                            &nbsp;-&nbsp;${(product.internalName)!}
                         </div>
                     </td>
                     <td>${requestItem.quantity?default("N/A")}</td>
-                    <td>${requestItem.selectedAmount?default("N/A")}</td>
-                    <td><@ofbizCurrency amount=requestItem.maximumAmount isoCode=request.maximumAmountUomId/></td>
                 </tr>
             </#list>
             </tbody>
